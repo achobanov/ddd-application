@@ -10,7 +10,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     [Authorize]
-    public class ArticlesController : ApiController
+    public class ArticlesController : BaseApiController
     {
         [AllowAnonymous]
         [HttpGet("{id}")]

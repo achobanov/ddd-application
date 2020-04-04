@@ -6,7 +6,7 @@
 
     [ApiController]
     [Route("api/[controller]")]
-    public abstract class ApiController : ControllerBase
+    public abstract class BaseApiController : ControllerBase
     {
         private IMediator mediator;
 
