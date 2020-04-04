@@ -2,6 +2,7 @@
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Blog.Application.Common.Handlers;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@
     {
         public int Id { get; set; }
 
-        public class ArticleIsByUserQueryHandler : IRequestHandler<ArticleIsByUserQuery, bool>
+        public class ArticleIsByUserQueryHandler : Handler<ArticleIsByUserQuery, bool>
         {
             private readonly IBlogData data;
             private readonly ICurrentUser currentUser;
@@ -21,7 +22,7 @@
                 this.currentUser = currentUser;
             }
 
-            public async Task<bool> Handle(
+            public override async Task<bool> Handle(
                 ArticleIsByUserQuery request, 
                 CancellationToken cancellationToken) 
                 => await this.data

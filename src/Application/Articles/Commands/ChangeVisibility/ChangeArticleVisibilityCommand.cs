@@ -2,6 +2,7 @@
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Blog.Application.Common.Handlers;
     using Common.Interfaces;
     using MediatR;
 
@@ -9,7 +10,7 @@
     {
         public int Id { get; set; }
 
-        public class ChangeArticleVisibilityCommandHandler : AsyncRequestHandler<ChangeArticleVisibilityCommand>
+        public class ChangeArticleVisibilityCommandHandler : Handler<ChangeArticleVisibilityCommand>
         {
             private readonly IBlogData data;
             private readonly IDateTime dateTime;

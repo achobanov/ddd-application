@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
+    using Blog.Application.Common.Handlers;
     using Common.Interfaces;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,7 @@
     {
         public int Id { get; set; }
 
-        public class ArticleDetailsQueryHandler : IRequestHandler<ArticleDetailsQuery, ArticleDetailsOutputModel>
+        public class ArticleDetailsQueryHandler : Handler<ArticleDetailsQuery, ArticleDetailsOutputModel>
         {
             private readonly IBlogData data;
             private readonly IMapper mapper;
@@ -29,7 +30,7 @@
                 this.identity = identity;
             }
 
-            public async Task<ArticleDetailsOutputModel> Handle(
+            public override async Task<ArticleDetailsOutputModel> Handle(
                 ArticleDetailsQuery request, 
                 CancellationToken cancellationToken)
             {
