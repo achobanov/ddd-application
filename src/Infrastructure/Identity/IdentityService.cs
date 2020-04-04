@@ -9,9 +9,9 @@
 
     public class IdentityService : IIdentity
     {
-        private readonly UserManager<User> userManager;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public IdentityService(UserManager<User> userManager) 
+        public IdentityService(UserManager<IdentityUser> userManager) 
             => this.userManager = userManager;
 
         public async Task<string> GetUserName(string userId)
@@ -23,7 +23,7 @@
         
         public async Task<(Result Result, string UserId)> CreateUser(string userName, string password)
         {
-            var user = new User
+            var user = new IdentityUser
             {
                 UserName = userName,
                 Email = userName,
@@ -48,7 +48,7 @@
             return Result.Success;
         }
 
-        public async Task<Result> DeleteUser(User user)
+        public async Task<Result> DeleteUser(IdentityUser user)
         {
             var result = await this.userManager.DeleteAsync(user);
 

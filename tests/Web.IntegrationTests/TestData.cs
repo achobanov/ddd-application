@@ -2,7 +2,7 @@
 {
     using System;
     using Domain.Entities;
-    using Infrastructure.Identity;
+    using Microsoft.AspNetCore.Identity;
     using MyTested.AspNetCore.Mvc;
 
     public class TestData
@@ -21,7 +21,7 @@
                 {
                     Id = 2
                 },
-                new User
+                new IdentityUser
                 {
                     Id = TestUser.Identifier,
                     UserName = TestUser.Username

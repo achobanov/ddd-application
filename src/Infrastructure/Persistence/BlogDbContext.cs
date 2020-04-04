@@ -6,13 +6,13 @@
     using Application.Common.Interfaces;
     using Domain.Common;
     using Domain.Entities;
-    using Identity;
     using IdentityServer4.EntityFramework.Options;
     using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Options;
 
-    public class BlogDbContext : ApiAuthorizationDbContext<User>, IBlogData
+    public class BlogDbContext : ApiAuthorizationDbContext<IdentityUser>, IBlogData
     {
         private readonly ICurrentUser currentUserService;
         private readonly IDateTime dateTime;

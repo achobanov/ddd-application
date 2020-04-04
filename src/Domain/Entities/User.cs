@@ -1,11 +1,12 @@
-﻿namespace Blog.Infrastructure.Identity
+﻿namespace Blog.Domain.Entities
 {
     using System.Collections.Generic;
-    using Domain.Entities;
-    using Microsoft.AspNetCore.Identity;
+    using Blog.Domain.Common;
 
-    public class User : IdentityUser
+    public class User : AuditableEntity<int>
     {
+        public string Username { get; set; }
+
         public ICollection<Article> Articles { get; } = new List<Article>();
 
         public ICollection<Comment> Comments { get; } = new List<Comment>();
