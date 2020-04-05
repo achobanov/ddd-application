@@ -35,10 +35,6 @@
 
             switch (exception)
             {
-                case ModelValidationException validationException:
-                    code = HttpStatusCode.BadRequest;
-                    result = JsonConvert.SerializeObject(validationException.Failures);
-                    break;
                 case NotFoundException _:
                     code = HttpStatusCode.NotFound;
                     break;
