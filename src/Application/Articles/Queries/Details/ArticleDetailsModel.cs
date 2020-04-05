@@ -17,5 +17,7 @@
         public DateTime? PublishedOn { get; set; }
 
         public string CreatedBy { get; set; }
+
+        public string AuthorUsername { get; set; }
     }
 }

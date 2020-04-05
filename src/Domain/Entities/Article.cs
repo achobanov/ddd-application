@@ -54,6 +54,8 @@
 
         public DateTime? PublishedOn { get; set; }
 
+        public User Author { get; }
+
         public ICollection<Comment> Comments { get; } = new List<Comment>();
 
         public void AddComment(string comment, string userId)
