@@ -3,9 +3,10 @@
     using System.Linq;
     using Application.Articles.Commands.ChangeVisibility;
     using Blog.Gateways.Web.Api;
-    using Infrastructure.Persistence;
+    using Gateways.Persistence;
     using MyTested.AspNetCore.Mvc;
     using Shouldly;
+    using Web.Features;
     using Xunit;
 
     public class ArticlesPipelineTests

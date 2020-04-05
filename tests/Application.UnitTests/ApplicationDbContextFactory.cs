@@ -5,7 +5,7 @@ namespace Blog.Application.UnitTests
     using Blog.Application.Contracts;
     using Domain.Entities;
     using IdentityServer4.EntityFramework.Options;
-    using Infrastructure.Persistence;
+    using Gateways.Persistence;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Options;
     using Moq;

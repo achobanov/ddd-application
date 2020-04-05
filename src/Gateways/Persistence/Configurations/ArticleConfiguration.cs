@@ -1,15 +1,19 @@
-﻿namespace Blog.Infrastructure.Persistence.Configurations
+﻿namespace Blog.Gateways.Persistence.Configurations
 {
     using Domain.Entities;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    public class CommentConfiguration : IEntityTypeConfiguration<Comment>
+    public class ArticleConfiguration : IEntityTypeConfiguration<Article>
     {
-        public void Configure(EntityTypeBuilder<Comment> builder)
+        public void Configure(EntityTypeBuilder<Article> builder)
         {
             builder
                 .HasKey(a => a.Id);
+
+            builder
+                .Property(a => a.Title)
+                .IsRequired();
 
             builder
                 .Property(a => a.Content)
@@ -20,8 +24,14 @@
                 .IsRequired();
 
             builder
+                .HasMany(a => a.Comments)
+                .WithOne()
+                .HasForeignKey("ArticleId")
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
                 .HasOne(typeof(User))
-                .WithMany("Comments")
+                .WithMany("Articles")
                 .HasForeignKey("CreatedBy")
                 .OnDelete(DeleteBehavior.Restrict);
         }

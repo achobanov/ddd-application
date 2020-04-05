@@ -4,7 +4,7 @@
     using Application.Articles.Commands.Create;
     using Application.Articles.Queries.Details;
     using Blog.Gateways.Web.Api;
-    using Infrastructure.Persistence;
+    using Blog.Gateways.Persistence;
     using MyTested.AspNetCore.Mvc;
     using Shouldly;
     using Xunit;
