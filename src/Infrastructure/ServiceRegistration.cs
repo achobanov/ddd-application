@@ -2,14 +2,12 @@
 {
     using Application;
     using Application.Common.Interfaces;
-    using Identity;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Persistence;
-    using Services;
 
     public static class ServiceRegistration
     {
