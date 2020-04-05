@@ -2,7 +2,7 @@
 {
     using Blog.Application.Common.Services;
 
-    public interface ICurrentUser : IScopedService
+    public interface IIdentityContext : IScopedService
     {
         string UserId { get; }
     }

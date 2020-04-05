@@ -16,11 +16,11 @@
         public class CreateArticleCommandHandler : Handler<CreateArticleCommand, int>
         {
             private readonly IBlogData data;
-            private readonly ICurrentUser currentUser;
+            private readonly IIdentityContext currentUser;
 
             public CreateArticleCommandHandler(
                 IBlogData data,
-                ICurrentUser currentUser)
+                IIdentityContext currentUser)
             {
                 this.data = data;
                 this.currentUser = currentUser;

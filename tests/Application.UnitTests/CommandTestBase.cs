@@ -13,18 +13,18 @@ namespace Blog.Application.UnitTests
         {
             this.Context = ApplicationDbContextFactory.Create();
 
-            var currentUserMock = new Mock<ICurrentUser>();
+            var currentUserMock = new Mock<IIdentityContext>();
 
             currentUserMock
                 .SetupGet(u => u.UserId)
                 .Returns(TestUserId);
 
-            this.CurrentUser = currentUserMock.Object;
+            this.IdentityContext = currentUserMock.Object;
         }
 
         public BlogDbContext Context { get; }
 
-        public ICurrentUser CurrentUser { get; }
+        public IIdentityContext IdentityContext { get; }
 
         public void Dispose() => ApplicationDbContextFactory.Destroy(this.Context);
     }

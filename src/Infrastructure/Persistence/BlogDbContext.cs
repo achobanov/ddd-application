@@ -14,13 +14,13 @@
 
     public class BlogDbContext : ApiAuthorizationDbContext<IdentityUser>, IBlogData
     {
-        private readonly ICurrentUser currentUserService;
+        private readonly IIdentityContext currentUserService;
         private readonly IDateTime dateTime;
 
         public BlogDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions,
-            ICurrentUser currentUserService,
+            IIdentityContext currentUserService,
             IDateTime dateTime) 
             : base(options, operationalStoreOptions)
         {

@@ -14,9 +14,9 @@
         public class ArticleIsByUserQueryHandler : Handler<ArticleIsByUserQuery, bool>
         {
             private readonly IBlogData data;
-            private readonly ICurrentUser currentUser;
+            private readonly IIdentityContext currentUser;
 
-            public ArticleIsByUserQueryHandler(IBlogData data, ICurrentUser currentUser)
+            public ArticleIsByUserQueryHandler(IBlogData data, IIdentityContext currentUser)
             {
                 this.data = data;
                 this.currentUser = currentUser;
