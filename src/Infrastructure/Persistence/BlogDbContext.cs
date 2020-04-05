@@ -3,24 +3,24 @@
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
-    using Application.Common.Interfaces;
+    using Blog.Application.Contracts;
     using Domain.Common;
     using Domain.Entities;
-    using Identity;
     using IdentityServer4.EntityFramework.Options;
     using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Options;
 
-    public class BlogDbContext : ApiAuthorizationDbContext<User>, IBlogData
+    public class BlogDbContext : ApiAuthorizationDbContext<IdentityUser>, IBlogData
     {
-        private readonly ICurrentUser currentUserService;
+        private readonly IIdentityContext currentUserService;
         private readonly IDateTime dateTime;
 
         public BlogDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions,
-            ICurrentUser currentUserService,
+            IIdentityContext currentUserService,
             IDateTime dateTime) 
             : base(options, operationalStoreOptions)
         {

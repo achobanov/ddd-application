@@ -2,7 +2,8 @@
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Common.Interfaces;
+    using Blog.Application.Common.Handlers;
+    using Blog.Application.Contracts;
     using Domain.Entities;
     using MediatR;
 
@@ -12,20 +13,20 @@
 
         public string Content { get; set; }
 
-        public class CreateArticleCommandHandler : IRequestHandler<CreateArticleCommand, int>
+        public class CreateArticleCommandHandler : Handler<CreateArticleCommand, int>
         {
             private readonly IBlogData data;
-            private readonly ICurrentUser currentUser;
+            private readonly IIdentityContext currentUser;
 
             public CreateArticleCommandHandler(
                 IBlogData data,
-                ICurrentUser currentUser)
+                IIdentityContext currentUser)
             {
                 this.data = data;
                 this.currentUser = currentUser;
             }
 
-            public async Task<int> Handle(
+            public override async Task<int> Handle(
                 CreateArticleCommand request, 
                 CancellationToken cancellationToken)
             {

@@ -1,14 +1,13 @@
 ﻿namespace Blog.Infrastructure
 {
     using Application;
-    using Application.Common.Interfaces;
-    using Identity;
+    using Blog.Application.Contracts;
     using Microsoft.AspNetCore.Authentication;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Persistence;
-    using Services;
 
     public static class ServiceRegistration
     {
@@ -24,12 +23,12 @@
                 .AddScoped<IBlogData>(provider => provider.GetService<BlogDbContext>());
 
             services
-                .AddDefaultIdentity<User>()
+                .AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<BlogDbContext>();
 
             services
                 .AddIdentityServer()
-                .AddApiAuthorization<User, BlogDbContext>();
+                .AddApiAuthorization<IdentityUser, BlogDbContext>();
 
             services
                 .AddConventionalServices(typeof(ServiceRegistration).Assembly);

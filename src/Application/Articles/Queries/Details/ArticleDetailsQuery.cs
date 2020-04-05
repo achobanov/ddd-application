@@ -5,50 +5,42 @@
     using System.Threading.Tasks;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
-    using Common.Interfaces;
+    using Blog.Application.Common.Handlers;
+    using Blog.Application.Contracts;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
 
-    public class ArticleDetailsQuery : IRequest<ArticleDetailsOutputModel>
+    public class ArticleDetailsQuery : IRequest<ArticleDetailsModel>
     {
         public int Id { get; set; }
 
-        public class ArticleDetailsQueryHandler : IRequestHandler<ArticleDetailsQuery, ArticleDetailsOutputModel>
+        public class ArticleDetailsQueryHandler : Handler<ArticleDetailsQuery, ArticleDetailsModel>
         {
             private readonly IBlogData data;
             private readonly IMapper mapper;
-            private readonly IIdentity identity;
 
-            public ArticleDetailsQueryHandler(
-                IBlogData data,
-                IMapper mapper,
-                IIdentity identity)
+            public ArticleDetailsQueryHandler(IBlogData data, IMapper mapper)
             {
                 this.data = data;
                 this.mapper = mapper;
-                this.identity = identity;
             }
 
-            public async Task<ArticleDetailsOutputModel> Handle(
+            public override async Task<ArticleDetailsModel> Handle(
                 ArticleDetailsQuery request, 
                 CancellationToken cancellationToken)
             {
-                var articleDetails = await this.data
+                var article = await this.data
                     .Articles
                     .Where(a => a.Id == request.Id)
                     .ProjectTo<ArticleDetailsModel>(this.mapper.ConfigurationProvider)
                     .FirstOrDefaultAsync(cancellationToken);
 
-                if (articleDetails == null)
+                if (article != null)
                 {
-                    return null;
+                    article.Author = "some author"; // Will be fixed in https://github.com/achobanov/web-application/issues/11
                 }
 
-                var articleDetailsOutput = this.mapper.Map<ArticleDetailsOutputModel>(articleDetails);
-
-                articleDetailsOutput.Author = await this.identity.GetUserName(articleDetails.CreatedBy);
-
-                return articleDetailsOutput;
+                return article;
             }
         }
     }

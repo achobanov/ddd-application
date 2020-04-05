@@ -14,7 +14,7 @@
     {
         [AllowAnonymous]
         [HttpGet("{id}")]
-        public async Task<ActionResult<ArticleDetailsOutputModel>> Details(
+        public async Task<ActionResult<ArticleDetailsModel>> Details(
             [FromRoute] ArticleDetailsQuery query)
             => await this.Mediator.Send(query);
 

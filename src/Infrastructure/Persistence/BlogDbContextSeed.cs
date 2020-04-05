@@ -13,9 +13,9 @@
     {
         public static async Task SeedAsync(
             BlogDbContext data, 
-            UserManager<User> userManager)
+            UserManager<IdentityUser> userManager)
         {
-            var defaultUser = new User
+            var defaultUser = new IdentityUser
             {
                 UserName = "admin@dev.com", 
                 Email = "admin@dev.com"

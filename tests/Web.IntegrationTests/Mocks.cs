@@ -1,16 +1,16 @@
 ﻿namespace Blog.Web.IntegrationTests
 {
-    using Application.Common.Interfaces;
+    using Blog.Application.Contracts;
     using Moq;
     using MyTested.AspNetCore.Mvc;
 
     public class Mocks
     {
-        public static ICurrentUser CurrentUser
+        public static IIdentityContext IdentityContext
         {
             get
             {
-                var currentUserMock = new Mock<ICurrentUser>();
+                var currentUserMock = new Mock<IIdentityContext>();
 
                 currentUserMock
                     .SetupGet(u => u.UserId)

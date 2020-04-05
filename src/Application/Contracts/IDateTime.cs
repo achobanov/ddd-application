@@ -1,7 +1,7 @@
-﻿namespace Blog.Application.Common.Interfaces
+﻿namespace Blog.Application.Contracts
 {
     using System;
-    using Services;
+    using Blog.Application.Common.Services;
 
     public interface IDateTime : IService
     {

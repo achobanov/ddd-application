@@ -3,6 +3,7 @@
     using System.Diagnostics;
     using System.Threading;
     using System.Threading.Tasks;
+    using Blog.Application.Contracts;
     using Interfaces;
     using MediatR;
     using Microsoft.Extensions.Logging;
@@ -11,12 +12,12 @@
     {
         private readonly Stopwatch timer;
         private readonly ILogger<TRequest> logger;
-        private readonly ICurrentUser currentUserService;
+        private readonly IIdentityContext currentUserService;
         private readonly IIdentity identityService;
 
         public RequestPerformanceBehaviour(
             ILogger<TRequest> logger, 
-            ICurrentUser currentUserService,
+            IIdentityContext currentUserService,
             IIdentity identityService)
         {
             this.timer = new Stopwatch();

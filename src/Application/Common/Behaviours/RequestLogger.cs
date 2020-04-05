@@ -2,6 +2,7 @@
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Blog.Application.Contracts;
     using Interfaces;
     using MediatR.Pipeline;
     using Microsoft.Extensions.Logging;
@@ -9,12 +10,12 @@
     public class RequestLogger<TRequest> : IRequestPreProcessor<TRequest>
     {
         private readonly ILogger logger;
-        private readonly ICurrentUser currentUserService;
+        private readonly IIdentityContext currentUserService;
         private readonly IIdentity identityService;
 
         public RequestLogger(
             ILogger<TRequest> logger, 
-            ICurrentUser currentUserService, 
+            IIdentityContext currentUserService, 
             IIdentity identityService)
         {
             this.logger = logger;

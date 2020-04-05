@@ -2,14 +2,15 @@
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Common.Interfaces;
+    using Blog.Application.Common.Handlers;
+    using Blog.Application.Contracts;
     using MediatR;
 
     public class ChangeArticleVisibilityCommand : IRequest
     {
         public int Id { get; set; }
 
-        public class ChangeArticleVisibilityCommandHandler : AsyncRequestHandler<ChangeArticleVisibilityCommand>
+        public class ChangeArticleVisibilityCommandHandler : Handler<ChangeArticleVisibilityCommand>
         {
             private readonly IBlogData data;
             private readonly IDateTime dateTime;
@@ -21,6 +22,8 @@
                 this.data = data;
                 this.dateTime = dateTime;
             }
+
+            public IDateTime DateTime => dateTime;
 
             protected override async Task Handle(
                 ChangeArticleVisibilityCommand request, 
@@ -37,7 +40,7 @@
 
                 if (article.PublishedOn == null)
                 {
-                    article.PublishedOn = this.dateTime.Now;
+                    article.PublishedOn = this.DateTime.Now;
                 }
 
                 await this.data.SaveChanges(cancellationToken);

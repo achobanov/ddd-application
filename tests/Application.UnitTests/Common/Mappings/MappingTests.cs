@@ -18,7 +18,7 @@
         }
 
         [Theory]
-        [InlineData(typeof(ArticleDetailsModel), typeof(ArticleDetailsOutputModel))]
+        [InlineData(typeof(Article), typeof(ArticleDetailsModel))]
         public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
         {
             var instance = Activator.CreateInstance(source);

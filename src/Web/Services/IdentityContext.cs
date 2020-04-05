@@ -1,12 +1,12 @@
 ﻿namespace Blog.Web.Services
 {
     using System.Security.Claims;
-    using Application.Common.Interfaces;
+    using Blog.Application.Contracts;
     using Microsoft.AspNetCore.Http;
 
-    public class CurrentUserService : ICurrentUser
+    public class IdentityContext : IIdentityContext
     {
-        public CurrentUserService(IHttpContextAccessor httpContextAccessor) 
+        public IdentityContext(IHttpContextAccessor httpContextAccessor) 
             => this.UserId = httpContextAccessor
                 .HttpContext?
                 .User?

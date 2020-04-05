@@ -36,7 +36,7 @@
                         .WithEntities<BlogDbContext>(TestData.Articles)))
                 .Calling(c => c.Details(new ArticleDetailsQuery { Id = id }))
                 .ShouldReturn()
-                .ActionResult<ArticleDetailsOutputModel>(result => result
+                .ActionResult<ArticleDetailsModel>(result => result
                     .Passing(model => model.Id == id && model.Author == TestUser.Username));
 
         [Theory]

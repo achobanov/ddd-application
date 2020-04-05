@@ -18,7 +18,7 @@
             };
 
             var handler = new CreateArticleCommand
-                .CreateArticleCommandHandler(this.Context, this.CurrentUser);
+                .CreateArticleCommandHandler(this.Context, this.IdentityContext);
 
             var result = await handler.Handle(command, CancellationToken.None);
 
