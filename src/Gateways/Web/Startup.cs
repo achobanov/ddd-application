@@ -25,8 +25,8 @@ namespace Blog.Gateways.Web
         {
             services
                 .AddApplication()
-                .AddPersistence(this.Configuration)
                 .AddInfrastructure()
+                .AddPersistence(this.Configuration)
                 .AddApiAuthentication()
                 .AddWebComponents();
 
