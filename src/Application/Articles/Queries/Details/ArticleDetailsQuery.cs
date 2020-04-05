@@ -10,47 +10,29 @@
     using MediatR;
     using Microsoft.EntityFrameworkCore;
 
-    public class ArticleDetailsQuery : IRequest<ArticleDetailsOutputModel>
+    public class ArticleDetailsQuery : IRequest<ArticleDetailsModel>
     {
         public int Id { get; set; }
 
-        public class ArticleDetailsQueryHandler : Handler<ArticleDetailsQuery, ArticleDetailsOutputModel>
+        public class ArticleDetailsQueryHandler : Handler<ArticleDetailsQuery, ArticleDetailsModel>
         {
             private readonly IBlogData data;
             private readonly IMapper mapper;
-            private readonly IIdentity identity;
 
-            public ArticleDetailsQueryHandler(
-                IBlogData data,
-                IMapper mapper,
-                IIdentity identity)
+            public ArticleDetailsQueryHandler(IBlogData data, IMapper mapper)
             {
                 this.data = data;
                 this.mapper = mapper;
-                this.identity = identity;
             }
 
-            public override async Task<ArticleDetailsOutputModel> Handle(
+            public override Task<ArticleDetailsModel> Handle(
                 ArticleDetailsQuery request, 
                 CancellationToken cancellationToken)
-            {
-                var articleDetails = await this.data
+                => this.data
                     .Articles
                     .Where(a => a.Id == request.Id)
                     .ProjectTo<ArticleDetailsModel>(this.mapper.ConfigurationProvider)
                     .FirstOrDefaultAsync(cancellationToken);
-
-                if (articleDetails == null)
-                {
-                    return null;
-                }
-
-                var articleDetailsOutput = this.mapper.Map<ArticleDetailsOutputModel>(articleDetails);
-
-                articleDetailsOutput.Author = await this.identity.GetUserName(articleDetails.CreatedBy);
-
-                return articleDetailsOutput;
-            }
         }
     }
 }
