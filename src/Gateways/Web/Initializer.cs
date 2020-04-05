@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Infrastructure.Identity;
     using Infrastructure.Persistence;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -22,7 +21,7 @@
                 var context = services.GetRequiredService<BlogDbContext>();
                 context.Database.Migrate();
 
-                var userManager = services.GetRequiredService<UserManager<User>>();
+                var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
 
                 Task
                     .Run(async () =>

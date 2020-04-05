@@ -1,7 +1,7 @@
 namespace Blog.Gateways.Web
 {
     using Application;
-    using Application.Common.Interfaces;
+    using Application.Contracts;
     using FluentValidation.AspNetCore;
     using Infrastructure;
     using Infrastructure.Persistence;
