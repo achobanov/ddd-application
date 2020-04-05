@@ -37,7 +37,7 @@
                 .Calling(c => c.Details(new ArticleDetailsQuery { Id = id }))
                 .ShouldReturn()
                 .ActionResult<ArticleDetailsModel>(result => result
-                    .Passing(model => model.Id == id && model.AuthorUsername == TestUser.Username));
+                    .Passing(model => model.Id == id && model.Author == TestUser.Username));
 
         [Theory]
         [InlineData("Test Title", "Test Content")]

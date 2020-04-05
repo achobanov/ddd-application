@@ -18,6 +18,6 @@
 
         public string CreatedBy { get; set; }
 
-        public string AuthorUsername { get; set; }
+        public string Author { get; set; }
     }
 }

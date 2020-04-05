@@ -25,14 +25,23 @@
                 this.mapper = mapper;
             }
 
-            public override Task<ArticleDetailsModel> Handle(
+            public override async Task<ArticleDetailsModel> Handle(
                 ArticleDetailsQuery request, 
                 CancellationToken cancellationToken)
-                => this.data
+            {
+                var article = await this.data
                     .Articles
                     .Where(a => a.Id == request.Id)
                     .ProjectTo<ArticleDetailsModel>(this.mapper.ConfigurationProvider)
                     .FirstOrDefaultAsync(cancellationToken);
+
+                if (article != null)
+                {
+                    article.Author = "some author"; // Will be fixed in https://github.com/achobanov/web-application/issues/11
+                }
+
+                return article;
+            }
         }
     }
 }

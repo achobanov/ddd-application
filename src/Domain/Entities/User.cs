@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using Blog.Domain.Common;
 
-    public class User : AuditableEntity<int>
+    public class User : AuditableEntity<string>
     {
         public string Username { get; set; }
 

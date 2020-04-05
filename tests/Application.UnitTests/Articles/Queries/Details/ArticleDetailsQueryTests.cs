@@ -26,8 +26,7 @@
             // Assert
             var query = new ArticleDetailsQuery { Id = 1 };
 
-            var handler = new ArticleDetailsQuery
-                .ArticleDetailsQueryHandler(this.context, this.mapper);
+            var handler = new ArticleDetailsQuery.ArticleDetailsQueryHandler(this.context, this.mapper);
 
             // Act
             var result = await handler.Handle(query, CancellationToken.None);
@@ -35,7 +34,7 @@
             // Assert
             result.Id.ShouldBe(1);
             result.Title.ShouldBe("Test Title 1");
-            result.AuthorUsername.ShouldBe("Test User");
+            result.Author.ShouldBe("Test User");
         }
     }
 }
