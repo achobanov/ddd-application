@@ -19,7 +19,7 @@
                     .WithMethod(HttpMethod.Put)
                     .WithLocation("api/Articles/ChangeVisibility")
                     .WithJsonBody(new {Id = id}))
-                .To<ArticlesController>(c => c
+                .To<ArticlesApiController>(c => c
                     .ChangeVisibility(new ChangeArticleVisibilityCommand {Id = id}))
                 .Which(controller => controller
                     .WithData(data => data

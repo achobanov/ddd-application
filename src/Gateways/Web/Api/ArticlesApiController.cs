@@ -1,16 +1,15 @@
-﻿namespace Blog.Web.Features
+﻿namespace Blog.Web.Api
 {
     using System.Threading.Tasks;
     using Application.Articles.Commands.ChangeVisibility;
     using Application.Articles.Commands.Create;
     using Application.Articles.Queries.Details;
     using Application.Articles.Queries.IsByUser;
-    using Common;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     [Authorize]
-    public class ArticlesController : BaseApiController
+    public class ArticlesApiController : BaseApiController
     {
         [AllowAnonymous]
         [HttpGet("{id}")]

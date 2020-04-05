@@ -1,4 +1,4 @@
-﻿namespace Blog.Web.Common
+﻿namespace Blog.Web.Api
 {
     using MediatR;
     using Microsoft.AspNetCore.Mvc;

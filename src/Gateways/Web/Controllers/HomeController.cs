@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Blog.Web.Controllers
 {
-    [Route("[controller]")]
     public class HomeController : BaseViewController
     {
         [HttpGet]

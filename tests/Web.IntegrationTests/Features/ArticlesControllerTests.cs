@@ -13,14 +13,14 @@
     {
         [Fact]
         public void ArticleControllerShouldBeForAuthorizedUsers()
-            => MyController<ArticlesController>
+            => MyController<ArticlesApiController>
                 .ShouldHave()
                 .Attributes(attr => attr
                     .RestrictingForAuthorizedRequests());
 
         [Fact]
         public void DetailsShouldBeAllowedForAnonymousUsersAndGetRequestsOnly()
-            => MyController<ArticlesController>
+            => MyController<ArticlesApiController>
                 .Calling(c => c.Details(With.Default<ArticleDetailsQuery>()))
                 .ShouldHave()
                 .ActionAttributes(attr => attr
@@ -30,7 +30,7 @@
         [Theory]
         [InlineData(1)]
         public void DetailsShouldReturnCorrectArticleDetailsOutputModelWithValidData(int id)
-            => MyController<ArticlesController>
+            => MyController<ArticlesApiController>
                 .Instance(controller => controller
                     .WithData(entities => entities
                         .WithEntities<BlogDbContext>(TestData.Articles)))
@@ -42,7 +42,7 @@
         [Theory]
         [InlineData("Test Title", "Test Content")]
         public void CreateShouldSaveArticleToTheDatabaseAndReturnCorrectArticleId(string title, string content)
-            => MyController<ArticlesController>
+            => MyController<ArticlesApiController>
                 .Instance(controller => controller
                     .WithData(entities => entities
                         .WithEntities<BlogDbContext>(TestData.Articles)))
