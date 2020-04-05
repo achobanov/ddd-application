@@ -1,4 +1,4 @@
-namespace Blog
+namespace Blog.Gateways.Web
 {
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;

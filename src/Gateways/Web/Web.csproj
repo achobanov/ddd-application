@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Blog.Web</RootNamespace>
-    <AssemblyName>Blog.Web</AssemblyName>
+    <RootNamespace>Blog.Gateways.Web</RootNamespace>
+    <AssemblyName>Blog.Gateways.Web</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace Blog
+﻿namespace Blog.Gateways.Web
 {
     using System;
     using System.Threading.Tasks;

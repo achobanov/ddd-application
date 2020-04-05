@@ -1,4 +1,4 @@
-﻿namespace Blog.Web
+﻿namespace Blog.Gateways.Web
 {
     using Application;
     using Microsoft.Extensions.DependencyInjection;

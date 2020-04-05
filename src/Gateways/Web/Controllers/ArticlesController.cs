@@ -1,4 +1,4 @@
-﻿namespace Blog.Web.Controllers
+﻿namespace Blog.Gateways.Web.Controllers
 {
     using System;
     using System.Collections.Generic;

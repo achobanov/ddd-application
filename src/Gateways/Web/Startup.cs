@@ -1,18 +1,17 @@
-namespace Blog
+namespace Blog.Gateways.Web
 {
     using Application;
     using Application.Common.Interfaces;
     using FluentValidation.AspNetCore;
     using Infrastructure;
     using Infrastructure.Persistence;
+    using Web.Middleware;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Web;
-    using Web.Middleware;
 
     public class Startup
     {
