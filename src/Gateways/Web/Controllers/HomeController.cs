@@ -9,7 +9,7 @@
     public class HomeController : BaseViewController
     {
         [HttpGet]
-        public async Task<ActionResult> Index() 
-            => await Task.FromResult<ActionResult>(this.View());
+        public Task<ActionResult> Index() 
+            => Task.FromResult<ActionResult>(this.View());
     }
 }
