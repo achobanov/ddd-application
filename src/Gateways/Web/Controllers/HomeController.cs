@@ -4,11 +4,12 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Threading.Tasks;
 
     public class HomeController : BaseViewController
     {
         [HttpGet]
-        public ActionResult Index() 
-            => this.View();
+        public async Task<ActionResult> Index() 
+            => await Task.FromResult<ActionResult>(this.View());
     }
 }
