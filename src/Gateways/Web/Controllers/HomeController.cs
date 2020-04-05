@@ -8,9 +8,7 @@ namespace Blog.Web.Controllers
     public class HomeController : BaseViewController
     {
         [HttpGet]
-        public ActionResult Index()
-        {
-            return View();
-        }
+        public ActionResult Index() 
+            => this.View();
     }
 }

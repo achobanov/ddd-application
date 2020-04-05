@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using Blog.Application.Articles.Queries.Details;
+
     public class ArticlesController : BaseViewController
     {
         [HttpGet("{id}")]
