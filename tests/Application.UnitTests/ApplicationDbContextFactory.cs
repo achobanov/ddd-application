@@ -2,6 +2,7 @@ namespace Blog.Application.UnitTests
 {
     using System;
     using Application.Common.Interfaces;
+    using Blog.Application.Contracts;
     using Domain.Entities;
     using IdentityServer4.EntityFramework.Options;
     using Infrastructure.Persistence;

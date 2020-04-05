@@ -3,7 +3,7 @@
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
-    using Application.Common.Interfaces;
+    using Blog.Application.Contracts;
     using Domain.Common;
     using Domain.Entities;
     using IdentityServer4.EntityFramework.Options;

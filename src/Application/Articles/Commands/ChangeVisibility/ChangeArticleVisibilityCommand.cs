@@ -3,7 +3,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Blog.Application.Common.Handlers;
-    using Common.Interfaces;
+    using Blog.Application.Contracts;
     using MediatR;
 
     public class ChangeArticleVisibilityCommand : IRequest
@@ -23,6 +23,8 @@
                 this.dateTime = dateTime;
             }
 
+            public IDateTime DateTime => dateTime;
+
             protected override async Task Handle(
                 ChangeArticleVisibilityCommand request, 
                 CancellationToken cancellationToken)
@@ -38,7 +40,7 @@
 
                 if (article.PublishedOn == null)
                 {
-                    article.PublishedOn = this.dateTime.Now;
+                    article.PublishedOn = this.DateTime.Now;
                 }
 
                 await this.data.SaveChanges(cancellationToken);

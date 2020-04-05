@@ -1,6 +1,6 @@
 ﻿namespace Blog.Web.IntegrationTests
 {
-    using Application.Common.Interfaces;
+    using Blog.Application.Contracts;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using MyTested.AspNetCore.Mvc;

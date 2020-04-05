@@ -1,6 +1,6 @@
 ﻿namespace Blog.Web.IntegrationTests
 {
-    using Application.Common.Interfaces;
+    using Blog.Application.Contracts;
     using Moq;
     using MyTested.AspNetCore.Mvc;
 

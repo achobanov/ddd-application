@@ -1,7 +1,7 @@
 ﻿namespace Blog.Infrastructure
 {
     using Application;
-    using Application.Common.Interfaces;
+    using Blog.Application.Contracts;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;

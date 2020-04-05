@@ -3,7 +3,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Blog.Application.Common.Handlers;
-    using Common.Interfaces;
+    using Blog.Application.Contracts;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
 

@@ -6,7 +6,7 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using Blog.Application.Common.Handlers;
-    using Common.Interfaces;
+    using Blog.Application.Contracts;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
 

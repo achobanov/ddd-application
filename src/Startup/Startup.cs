@@ -1,7 +1,7 @@
 namespace Blog
 {
     using Application;
-    using Application.Common.Interfaces;
+    using Blog.Application.Contracts;
     using FluentValidation.AspNetCore;
     using Infrastructure;
     using Infrastructure.Persistence;

@@ -3,6 +3,7 @@
     using System.Diagnostics;
     using System.Threading;
     using System.Threading.Tasks;
+    using Blog.Application.Contracts;
     using Interfaces;
     using MediatR;
     using Microsoft.Extensions.Logging;

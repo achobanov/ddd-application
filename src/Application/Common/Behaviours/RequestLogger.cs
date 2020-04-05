@@ -2,6 +2,7 @@
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Blog.Application.Contracts;
     using Interfaces;
     using MediatR.Pipeline;
     using Microsoft.Extensions.Logging;

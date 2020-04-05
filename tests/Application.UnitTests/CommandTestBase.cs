@@ -1,7 +1,7 @@
 namespace Blog.Application.UnitTests
 {
     using System;
-    using Application.Common.Interfaces;
+    using Blog.Application.Contracts;
     using Infrastructure.Persistence;
     using Moq;
 
