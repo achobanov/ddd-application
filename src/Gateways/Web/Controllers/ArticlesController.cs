@@ -10,7 +10,7 @@
     public class ArticlesController : BaseViewController
     {
         [HttpGet("{id}")]
-        async public Task<ActionResult> Index([FromRoute] ArticleDetailsQuery query)
+        public async Task<ActionResult> Index([FromRoute] ArticleDetailsQuery query)
         {
             var articleDetails = await Mediator.Send(query);
             
