@@ -1,5 +1,6 @@
 ﻿namespace Blog.Web.IntegrationTests
 {
+    using Blog.Gateways.Web;
     using Blog.Application.Contracts;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;

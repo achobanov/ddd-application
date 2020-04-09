@@ -3,8 +3,8 @@
     using Application.Articles.Commands.ChangeVisibility;
     using Application.Articles.Commands.Create;
     using Application.Articles.Queries.Details;
+    using Blog.Gateways.Web.Api;
     using MyTested.AspNetCore.Mvc;
-    using Web.Features;
     using Xunit;
 
     public class ArticlesRoutingTests
