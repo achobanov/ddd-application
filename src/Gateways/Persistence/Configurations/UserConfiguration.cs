@@ -19,12 +19,14 @@
 
             builder
                 .HasMany(u => u.Articles)
-                .WithOne()
+                .WithOne(a => a.Author)
+                .HasForeignKey(a => a.AuthorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .HasMany(u => u.Comments)
-                .WithOne()
+                .WithOne(a => a.Author)
+                .HasForeignKey(a => a.AuthorId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }
