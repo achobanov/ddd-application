@@ -12,6 +12,7 @@ namespace Blog.Gateways.Web
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Blog.Web.Authentication;
 
     public class Startup
     {
@@ -25,6 +26,7 @@ namespace Blog.Gateways.Web
             services
                 .AddApplication()
                 .AddInfrastructure(this.Configuration)
+                .AddApiAuthentication()
                 .AddWebComponents();
 
             services

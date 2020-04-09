@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Application\Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\Web.Authentication\Web.Authentication\Web.Authentication.csproj" />
   </ItemGroup>
 
 </Project>

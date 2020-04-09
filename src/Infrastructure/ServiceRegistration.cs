@@ -2,8 +2,6 @@
 {
     using Application;
     using Blog.Application.Contracts;
-    using Microsoft.AspNetCore.Authentication;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -23,23 +21,7 @@
                 .AddScoped<IBlogData>(provider => provider.GetService<BlogDbContext>());
 
             services
-                .AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<BlogDbContext>();
-
-            services
-                .AddIdentityServer()
-                .AddApiAuthorization<IdentityUser, BlogDbContext>();
-
-            services
                 .AddConventionalServices(typeof(ServiceRegistration).Assembly);
-
-            // services
-            //    .AddTransient<IDateTime, DateTimeService>()
-            //    .AddTransient<IIdentity, IdentityService>();
-
-            services
-                .AddAuthentication()
-                .AddIdentityServerJwt();
 
             return services;
         }
