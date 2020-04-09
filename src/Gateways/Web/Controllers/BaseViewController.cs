@@ -1,16 +1,16 @@
-﻿namespace Blog.Web.Common
+﻿namespace Blog.Gateways.Web.Controllers
 {
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.DependencyInjection;
 
-    [ApiController]
-    [Route("api/[controller]")]
-    public abstract class ApiController : ControllerBase
+    [Controller]
+    [Route("[controller]")]
+    public abstract class BaseViewController : Controller
     {
         private IMediator mediator;
 
-        protected IMediator Mediator 
+        protected IMediator Mediator
             => this.mediator ??= this.HttpContext
                 .RequestServices
                 .GetService<IMediator>();

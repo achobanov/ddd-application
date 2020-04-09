@@ -1,4 +1,4 @@
-﻿namespace Blog.Web.Middleware
+﻿namespace Blog.Gateways.Web.Middleware
 {
     using System;
     using System.Net;

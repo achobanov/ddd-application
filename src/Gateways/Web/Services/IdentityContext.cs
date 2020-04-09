@@ -1,4 +1,4 @@
-﻿namespace Blog.Web.Services
+﻿namespace Blog.Gateways.Web.Services
 {
     using System.Security.Claims;
     using Blog.Application.Contracts;

@@ -14,7 +14,7 @@
             => MyRouting
                 .Configuration()
                 .ShouldMap("api/Articles/1")
-                .To<ArticlesController>(c => c.Details(new ArticleDetailsQuery { Id = 1 }));
+                .To<ArticlesApiController>(c => c.Details(new ArticleDetailsQuery { Id = 1 }));
 
         [Theory]
         [InlineData("Test Title", "Test Content")]
@@ -29,7 +29,7 @@
                         Title = title,
                         Content = content
                     }))
-                .To<ArticlesController>(c => c.Create(new CreateArticleCommand
+                .To<ArticlesApiController>(c => c.Create(new CreateArticleCommand
                 {
                     Title = title,
                     Content = content
@@ -44,7 +44,7 @@
                     .WithMethod(HttpMethod.Put)
                     .WithLocation("api/Articles/ChangeVisibility")
                     .WithJsonBody(new { Id = id }))
-                .To<ArticlesController>(c => c.ChangeVisibility(new ChangeArticleVisibilityCommand
+                .To<ArticlesApiController>(c => c.ChangeVisibility(new ChangeArticleVisibilityCommand
                 {
                     Id = id
                 }));
