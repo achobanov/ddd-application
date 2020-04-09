@@ -20,9 +20,8 @@
                 .IsRequired();
 
             builder
-                .HasOne(typeof(User))
-                .WithMany("Comments")
-                .HasForeignKey("CreatedBy")
+                .HasOne(c => c.Author)
+                .WithMany(u => u.Comments)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

@@ -4,7 +4,7 @@
     using Common;
     using Exceptions;
 
-    public class Comment : AuditableEntity<int>
+    public class Comment : AuditableEntity
     {
         private string content;
 
@@ -27,6 +27,14 @@
                 this.content = value;
             }
         }
+
+        public Article Article { get; set; }
+
+        public int ArticleId { get; set; }
+
+        public User Author { get; set; }
+
+        public int AuthorId { get; set; }
 
         public bool IsPublic { get; set; }
 
