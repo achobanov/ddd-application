@@ -28,7 +28,7 @@
             this.dateTime = dateTime;
         }
 
-        public DbSet<User> Authors { get; set; }
+        public DbSet<User> DomainUsers { get; set; }
 
         public DbSet<Article> Articles { get; set; }
 

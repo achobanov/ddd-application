@@ -29,19 +29,18 @@
                 return;
             }
 
-            var authUser = await data.Users.FirstAsync();
-            var domainUser = new User(authUser.Id)
-            {
-                Username = authUser.Email
-            };
-            data.Authors.Add(domainUser);
-            data.Articles.Add(new Article("Test Article", "Test Article Content", authUser.Id)
+            var user = await data.Users.FirstAsync();
+            var domainUser = new User(user.Email, user.Id);           
+            var article = (new Article("Test Article", "Test Article Content", user.Id)
             {
                 CreatedOn = DateTime.Now.AddDays(-1),
                 IsPublic = true,
                 PublishedOn = DateTime.Now,
                 Author = domainUser
             });
+
+            data.DomainUsers.Add(domainUser);
+            data.Articles.Add(article);
 
             await data.SaveChangesAsync();
         }

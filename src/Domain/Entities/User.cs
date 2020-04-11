@@ -9,13 +9,14 @@
         {
 
         }
-        public User(string IdentityId)
+        public User(string userName, string identityId)
         {
-            this.IdentityId = IdentityId;
+            this.Username = userName;
+            this.IdentityId = identityId;
         }
         public string Username { get; set; }
 
-        public string IdentityId { get; }
+        public string IdentityId { get; private set; }
 
         public ICollection<Article> Articles { get; } = new List<Article>();
 
