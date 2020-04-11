@@ -2,6 +2,5 @@
 {
     public interface IRegisterModelContract : ILoginModelContract
     {
-        string ConfirmPassword { get; }
     }
 }
