@@ -3,7 +3,7 @@
     using System.Linq;
     using Application.Articles.Commands.Create;
     using Application.Articles.Queries.Details;
-    using Blog.Web.Features;
+    using Blog.Gateways.Web.Api;
     using Infrastructure.Persistence;
     using MyTested.AspNetCore.Mvc;
     using Shouldly;

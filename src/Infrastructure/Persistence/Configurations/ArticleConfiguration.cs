@@ -1,7 +1,6 @@
 ﻿namespace Blog.Infrastructure.Persistence.Configurations
 {
     using Domain.Entities;
-    using Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
