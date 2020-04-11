@@ -1,59 +1,51 @@
-﻿namespace Blog.Infrastructure.Identity
-{
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Blog.Application.Common.Interfaces;
-    using Blog.Application.Common.Models;
-    using Blog.Web.Authentication;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
+﻿using System.Threading.Tasks;
+using Blog.Application.Common.Models;
+using Blog.Gateways.Web.Contracts;
+using Blog.Web.Authentication;
+using Microsoft.AspNetCore.Identity;
 
-    public class IdentityService : IIdentity
+namespace Blog.Gateways.Web.Authentication
+{
+    public class IdentityService : IAuthenticationService
     {
         private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<IdentityUser> signInManager;
 
-        public IdentityService(UserManager<IdentityUser> userManager) 
-            => this.userManager = userManager;
-
-        public async Task<string> GetUserName(string userId)
-            => await this.userManager
-                .Users
-                .Where(u => u.Id == userId)
-                .Select(u => u.UserName)
-                .FirstOrDefaultAsync();
-        
-        public async Task<(Result Result, string UserId)> CreateUser(string userName, string password)
+        public IdentityService(
+            UserManager<IdentityUser> userManager, 
+            SignInManager<IdentityUser> signInManager)
         {
-            var user = new IdentityUser
-            {
-                UserName = userName,
-                Email = userName,
-            };
-
-            var result = await this.userManager.CreateAsync(user, password);
-
-            return (result.ToApplicationResult(), user.Id);
+            this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
-        public async Task<Result> DeleteUser(string userId)
+        public Task<Result> ChangePassword()
         {
-            var user = this.userManager
-                .Users
-                .SingleOrDefault(u => u.Id == userId);
+            throw new System.NotImplementedException();
+        }
 
-            if (user != null)
+        public Task<Result> Login()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<Result> Logout()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public async Task<Result> Register(IRegisterModelContract model)
+        {
+            var user = new IdentityUser { UserName = model.Username };
+            var result = await this.userManager.CreateAsync(user, model.Password);
+            if (!result.Succeeded)
             {
-                return await this.DeleteUser(user);
+                return result.ToApplicationResult();
             }
 
+            await this.signInManager.SignInAsync(user, isPersistent: false);
+
             return Result.Success;
-        }
-
-        public async Task<Result> DeleteUser(IdentityUser user)
-        {
-            var result = await this.userManager.DeleteAsync(user);
-
-            return result.ToApplicationResult();
         }
     }
 }

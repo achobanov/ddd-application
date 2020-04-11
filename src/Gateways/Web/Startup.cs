@@ -5,14 +5,13 @@ namespace Blog.Gateways.Web
     using FluentValidation.AspNetCore;
     using Infrastructure;
     using Infrastructure.Persistence;
-    using Web.Middleware;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Blog.Web.Authentication;
+    using Blog.Gateways.Web.Providers;
 
     public class Startup
     {
@@ -26,7 +25,7 @@ namespace Blog.Gateways.Web
             services
                 .AddApplication()
                 .AddInfrastructure(this.Configuration)
-                .AddApiAuthentication()
+                .AddApiAuthentication<BlogDbContext>()
                 .AddWebComponents();
 
             services
@@ -57,7 +56,7 @@ namespace Blog.Gateways.Web
                 app.UseHsts();
             }
 
-            app.UseCustomExceptionHandler();
+            // app.UseCustomExceptionHandler();
             app.UseHealthChecks("/health");
             app.UseHttpsRedirection();
 

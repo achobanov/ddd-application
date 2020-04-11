@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Blog.Gateways.Web.Providers</RootNamespace>
+    <AssemblyName>Blog.Gateways.Web.Providers</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Application\Application.csproj" />
+    <ProjectReference Include="..\..\Web.Authentication\Web.Authentication\Web.Authentication.csproj" />
+  </ItemGroup>
+
+</Project>

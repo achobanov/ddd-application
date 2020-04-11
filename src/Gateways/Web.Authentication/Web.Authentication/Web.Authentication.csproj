@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Blog.Authentication</RootNamespace>
-    <AssemblyName>Blog.Authentication</AssemblyName>
+    <RootNamespace>Blog.Gateways.Web.Authentication</RootNamespace>
+    <AssemblyName>Blog.Gateways.Web.Authentication</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Application\Application.csproj" />
     <ProjectReference Include="..\..\..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Web.Contracts\Web.Contracts\Web.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
