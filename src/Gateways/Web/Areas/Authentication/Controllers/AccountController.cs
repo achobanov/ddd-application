@@ -66,5 +66,13 @@ namespace Blog.Gateways.Web.Areas.Authentication.Controllers
 
             return this.Redirect(model.ReturnUrl);
         }
+
+        [HttpPost]
+        public async Task<ActionResult> Logout(string returnUrl = RootPath)
+        {
+            await this.authentication.Logout();
+
+            return this.Redirect(returnUrl);
+        }
     }
 }

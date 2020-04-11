@@ -35,10 +35,8 @@ namespace Blog.Gateways.Web.Authentication
             return result.ToApplicationResult();
         }
 
-        public Task<Result> Logout()
-        {
-            throw new System.NotImplementedException();
-        }
+        public Task Logout()
+            => this.signInManager.SignOutAsync();
 
         public async Task<Result> Register(IRegisterModelContract model)
         {

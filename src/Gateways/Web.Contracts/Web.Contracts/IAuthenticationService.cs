@@ -10,7 +10,7 @@
 
         Task<Result> Login(ILoginModelContract model);
 
-        Task<Result> Logout();
+        Task Logout();
         
         Task<Result> Register(IRegisterModelContract model);
     }
