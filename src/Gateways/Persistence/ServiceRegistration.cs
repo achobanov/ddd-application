@@ -1,8 +1,6 @@
 ﻿namespace Blog.Gateways.Persistence
 {
-    using Application;
     using Blog.Application.Contracts;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -19,14 +17,6 @@
                         configuration.GetConnectionString("DefaultConnection"), 
                         b => b.MigrationsAssembly(typeof(BlogDbContext).Assembly.FullName)))
                 .AddScoped<IBlogData>(provider => provider.GetService<BlogDbContext>());
-
-            services
-                .AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<BlogDbContext>();
-
-            services
-                .AddIdentityServer()
-                .AddApiAuthorization<IdentityUser, BlogDbContext>();
 
             return services;
         }
