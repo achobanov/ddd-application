@@ -29,13 +29,18 @@
                 return;
             }
 
-            var userId = await data.Users.Select(u => u.Id).FirstAsync();
-
-            data.Articles.Add(new Article("Test Article", "Test Article Content", userId)
+            var authUser = await data.Users.FirstAsync();
+            var domainUser = new User(authUser.Id)
+            {
+                Username = authUser.Email
+            };
+            data.Authors.Add(domainUser);
+            data.Articles.Add(new Article("Test Article", "Test Article Content", authUser.Id)
             {
                 CreatedOn = DateTime.Now.AddDays(-1),
                 IsPublic = true,
-                PublishedOn = DateTime.Now
+                PublishedOn = DateTime.Now,
+                Author = domainUser
             });
 
             await data.SaveChangesAsync();

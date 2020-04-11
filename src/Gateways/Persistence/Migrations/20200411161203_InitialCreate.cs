@@ -47,6 +47,19 @@ namespace Blog.Gateways.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Authors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Username = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Authors", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DeviceCodes",
                 columns: table => new
                 {
@@ -78,22 +91,6 @@ namespace Blog.Gateways.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PersistedGrants", x => x.Key);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "User",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    CreatedBy = table.Column<string>(nullable: true),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedBy = table.Column<string>(nullable: true),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    Username = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_User", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -215,15 +212,16 @@ namespace Blog.Gateways.Persistence.Migrations
                     Title = table.Column<string>(nullable: false),
                     Content = table.Column<string>(nullable: false),
                     IsPublic = table.Column<bool>(nullable: false),
-                    PublishedOn = table.Column<DateTime>(nullable: true)
+                    PublishedOn = table.Column<DateTime>(nullable: true),
+                    AuthorId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Articles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Articles_User_CreatedBy",
-                        column: x => x.CreatedBy,
-                        principalTable: "User",
+                        name: "FK_Articles_Authors_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "Authors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -239,9 +237,10 @@ namespace Blog.Gateways.Persistence.Migrations
                     ModifiedBy = table.Column<string>(nullable: true),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     Content = table.Column<string>(nullable: false),
+                    ArticleId = table.Column<int>(nullable: false),
+                    AuthorId = table.Column<int>(nullable: false),
                     IsPublic = table.Column<bool>(nullable: false),
-                    PublishedOn = table.Column<DateTime>(nullable: true),
-                    ArticleId = table.Column<int>(nullable: true)
+                    PublishedOn = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -253,17 +252,17 @@ namespace Blog.Gateways.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Comments_User_CreatedBy",
-                        column: x => x.CreatedBy,
-                        principalTable: "User",
+                        name: "FK_Comments_Authors_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "Authors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Articles_CreatedBy",
+                name: "IX_Articles_AuthorId",
                 table: "Articles",
-                column: "CreatedBy");
+                column: "AuthorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -310,9 +309,9 @@ namespace Blog.Gateways.Persistence.Migrations
                 column: "ArticleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_CreatedBy",
+                name: "IX_Comments_AuthorId",
                 table: "Comments",
-                column: "CreatedBy");
+                column: "AuthorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DeviceCodes_DeviceCode",
@@ -372,7 +371,7 @@ namespace Blog.Gateways.Persistence.Migrations
                 name: "Articles");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Authors");
         }
     }
 }

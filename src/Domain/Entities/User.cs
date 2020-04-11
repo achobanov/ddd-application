@@ -3,9 +3,13 @@
     using System.Collections.Generic;
     using Blog.Domain.Common;
 
-    public class User : AuditableEntity
+    public class User : Entity
     {
-        User(string IdentityId)
+        public User()
+        {
+
+        }
+        public User(string IdentityId)
         {
             this.IdentityId = IdentityId;
         }

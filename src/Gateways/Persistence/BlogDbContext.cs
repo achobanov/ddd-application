@@ -28,9 +28,12 @@
             this.dateTime = dateTime;
         }
 
+        public DbSet<User> Authors { get; set; }
+
         public DbSet<Article> Articles { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
+
 
         public Task<int> SaveChanges(CancellationToken cancellationToken = new CancellationToken())
             => this.SaveChangesAsync(cancellationToken);
