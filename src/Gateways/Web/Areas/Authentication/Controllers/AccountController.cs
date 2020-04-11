@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Blog.Gateways.Web.Authentication.Models;
+using Blog.Gateways.Web.Areas.Authentication.Models;
 using Blog.Gateways.Web.Common.Extensions;
 using Blog.Gateways.Web.Contracts;
 using Blog.Gateways.Web.Controllers;
@@ -36,9 +36,32 @@ namespace Blog.Gateways.Web.Areas.Authentication.Controllers
             var result = await this.authentication.Register(model);
             if (!result.Succeeded)
             {
-                result.Errors.ForEach(e => this.ModelState.AddModelError(string.Empty, e));
-                
-                return this.View(model);
+                return this.FailureResult(model, result);
+            }
+
+            return this.Redirect(model.ReturnUrl);
+        }
+
+        [HttpGet]
+        public Task<ActionResult> Login(string returnUrl = RootPath)
+            => this
+                .View(new LoginViewModel { ReturnUrl = returnUrl })
+                .AsTask();
+
+        [HttpPost]
+        public async Task<ActionResult> Login(LoginViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return await this
+                    .View(model)
+                    .AsTask();
+            }
+
+            var result = await this.authentication.Login(model);
+            if (!result.Succeeded)
+            {
+                return this.FailureResult(model, result);
             }
 
             return this.Redirect(model.ReturnUrl);

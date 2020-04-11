@@ -1,5 +1,8 @@
 ﻿namespace Blog.Gateways.Web.Controllers
 {
+    using System;
+    using Blog.Application.Common.Models;
+    using Blog.Gateways.Web.Common.Extensions;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.DependencyInjection;
@@ -14,5 +17,17 @@
             => this.mediator ??= this.HttpContext
                 .RequestServices
                 .GetService<IMediator>();
+
+        protected ViewResult FailureResult(object model, Result result)
+        {
+            if (result.Succeeded)
+            {
+                throw new ArgumentException($"Provided '{nameof(result)}' argument has no errors.");
+            }
+
+            result.Errors.ForEach(e => this.ModelState.AddModelError(string.Empty, e));
+
+            return this.View(model);
+        }
     }
 }

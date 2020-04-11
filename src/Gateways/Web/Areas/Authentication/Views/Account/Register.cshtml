@@ -1,4 +1,4 @@
-﻿@using Blog.Gateways.Web.Authentication.Models
+﻿@using Blog.Gateways.Web.Areas.Authentication.Models
 
 @model RegisterViewModel
 
@@ -11,9 +11,11 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            
+
             <h4>Create a new account.</h4>
             <hr />
+
+            <input asp-for="@Model.ReturnUrl" />
 
             <div asp-validation-summary="All" class="text-danger"></div>
 

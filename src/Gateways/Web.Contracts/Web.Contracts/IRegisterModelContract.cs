@@ -1,6 +1,9 @@
 ﻿namespace Blog.Gateways.Web.Contracts
 {
-    public interface IRegisterModelContract : ILoginModelContract
+    public interface IRegisterModelContract
     {
+        string Username { get; }
+
+        string Password { get; }
     }
 }

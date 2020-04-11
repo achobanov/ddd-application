@@ -19,7 +19,7 @@
 
         public string[] Errors { get; set; }
 
-        public static Result Failure(IEnumerable<string> errors) 
+        public static Result Failure(params string[] errors) 
             => new Result(false, errors);
     }
 }

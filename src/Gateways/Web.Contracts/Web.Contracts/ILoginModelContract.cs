@@ -6,6 +6,6 @@
 
         string Password { get; }
 
-        string ReturnUrl { get; set;}
+        bool RememberMe { get; }
     }
 }

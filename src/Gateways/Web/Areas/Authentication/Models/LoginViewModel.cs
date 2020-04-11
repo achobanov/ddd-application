@@ -2,19 +2,11 @@
 using Blog.Gateways.Web.Contracts;
 using static Blog.Gateways.Web.Common.WebConstants.ViewConstants;
 
-namespace Blog.Gateways.Web.Authentication.Models
+namespace Blog.Gateways.Web.Areas.Authentication.Models
 {
-    public class LoginViewModel : ILoginModelContract
+    public class LoginViewModel : BaseAuthenticationViewModel, ILoginModelContract
     {
-        [Required]
-        [Display(Name = UsernameLabel)]
-        public string Username { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = PasswordLabel)]
-        public string Password { get; set; }
-
-        public string ReturnUrl { get;set; }
+        [Display(Name = Labels.RememberMe)]
+        public bool RememberMe { get; set; }
     }
 }

@@ -24,9 +24,15 @@ namespace Blog.Gateways.Web.Authentication
             throw new System.NotImplementedException();
         }
 
-        public Task<Result> Login()
+        public async Task<Result> Login(ILoginModelContract model)
         {
-            throw new System.NotImplementedException();
+            var result = await this.signInManager.PasswordSignInAsync(
+                model.Username,
+                model.Password,
+                model.RememberMe,
+                lockoutOnFailure: false);
+
+            return result.ToApplicationResult();
         }
 
         public Task<Result> Logout()

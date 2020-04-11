@@ -6,9 +6,18 @@
 
         public static class ViewConstants
         {
-            public const string UsernameLabel = "Потребителско име";
-            public const string PasswordLabel = "Парола";
-            public const string ConfirmPasswordLabel = "Повтори паролата";
+            public static class Labels
+            {
+                public const string Username = "Потребителско име";
+                public const string Password = "Парола";
+                public const string ConfirmPassword = "Повтори паролата";
+                public const string RememberMe = "Запомни ме";
+            }
+
+            public static class ValidationMessages
+            {
+                public const string PasswordsDoNotMatch = "Паролите не съвпадат";
+            }
         }
     }
 }
