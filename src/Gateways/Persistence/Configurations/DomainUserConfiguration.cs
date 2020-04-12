@@ -14,8 +14,7 @@
             builder.HasKey(u => u.Id);
 
             builder
-                .Property(u => u.Username)
-                .IsRequired();
+                .Property(u => u.Username);
 
             builder
                 .HasMany(u => u.Articles)
