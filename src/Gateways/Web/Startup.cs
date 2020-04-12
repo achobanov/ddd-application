@@ -12,6 +12,8 @@ namespace Blog.Gateways.Web
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Blog.Gateways.Web.Providers;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Authentication.Cookies;
 
     public class Startup
     {
@@ -25,7 +27,7 @@ namespace Blog.Gateways.Web
             services
                 .AddApplication()
                 .AddInfrastructure(this.Configuration)
-                .AddApiAuthentication<BlogDbContext>()
+                .AddAuthentication<BlogDbContext>()
                 .AddWebComponents();
 
             services
@@ -34,39 +36,36 @@ namespace Blog.Gateways.Web
 
             services
                 .AddControllers()
-                .AddFluentValidation(options => options
+                .AddFluentValidation(options => options // unnecessary
                     .RegisterValidatorsFromAssemblyContaining<IBlogData>())
                 .AddNewtonsoftJson();
 
-            services.Configure<ApiBehaviorOptions>(options =>
+            services.Configure<ApiBehaviorOptions>(options => // probably unnecessary 
             {
                 options.SuppressModelStateInvalidFilter = true;
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder application, IWebHostEnvironment environment)
         {
-            if (env.IsDevelopment())
+            if (environment.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                application.UseDeveloperExceptionPage();
+                application.UseDatabaseErrorPage();
             }
             else
             {
-                app.UseHsts();
+                application.UseHsts();
             }
-
-            // app.UseCustomExceptionHandler();
-            app.UseHealthChecks("/health");
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseIdentityServer();
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints => endpoints.MapControllers());
+            
+            application
+                // app.UseCustomExceptionHandler();
+                .UseHealthChecks("/health")
+                .UseHttpsRedirection()
+                .UseRouting()
+                .UseAuthentication()
+                .UseAuthorization()
+                .UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }
