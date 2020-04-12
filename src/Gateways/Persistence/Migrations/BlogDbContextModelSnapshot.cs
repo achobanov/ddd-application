@@ -108,7 +108,7 @@ namespace Blog.Gateways.Persistence.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("Blog.Domain.Entities.User", b =>
+            modelBuilder.Entity("Blog.Domain.Entities.DomainUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -411,7 +411,7 @@ namespace Blog.Gateways.Persistence.Migrations
 
             modelBuilder.Entity("Blog.Domain.Entities.Article", b =>
                 {
-                    b.HasOne("Blog.Domain.Entities.User", "Author")
+                    b.HasOne("Blog.Domain.Entities.DomainUser", "Author")
                         .WithMany("Articles")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -426,7 +426,7 @@ namespace Blog.Gateways.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Blog.Domain.Entities.User", "Author")
+                    b.HasOne("Blog.Domain.Entities.DomainUser", "Author")
                         .WithMany("Comments")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Restrict)

@@ -3,7 +3,7 @@
     using System;
     using Exceptions;
 
-    public abstract class AuditableEntity : Entity, IAuditableEntity
+    public abstract class AuditableEntity : DomainEntity, IAuditableEntity
     {
         private string createdBy;
         private string modifiedBy;

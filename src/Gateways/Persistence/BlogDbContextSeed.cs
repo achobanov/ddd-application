@@ -30,7 +30,7 @@
             }
 
             var user = await data.Users.FirstAsync();
-            var domainUser = new User(user.Email, user.Id);           
+            var domainUser = new DomainUser(user.Email, user.Id);           
             var article = (new Article("Test Article", "Test Article Content", user.Id)
             {
                 CreatedOn = DateTime.Now.AddDays(-1),
