@@ -8,6 +8,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
 
+    // This file will be removed in follow up issue.
     public class Identity : IIdentity
     {
         private readonly UserManager<IdentityUser> userManager;

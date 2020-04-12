@@ -4,7 +4,7 @@
     using Blog.Application.Contracts;
     using Microsoft.AspNetCore.Http;
 
-    public class IdentityContext : IIdentityContext
+    public class IdentityContext : IAuthenticationContext
     {
         public IdentityContext(IHttpContextAccessor httpContextAccessor) 
             => this.UserId = httpContextAccessor

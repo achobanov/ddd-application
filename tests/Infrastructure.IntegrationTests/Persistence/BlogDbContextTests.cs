@@ -26,7 +26,7 @@
             dateTimeMock.SetupGet(dt => dt.Now).Returns(this.dateTime);
 
             this.userId = "00000000-0000-0000-0000-000000000000";
-            var currentUserMock = new Mock<IIdentityContext>();
+            var currentUserMock = new Mock<IAuthenticationContext>();
             currentUserMock.Setup(m => m.UserId).Returns(this.userId);
 
             var options = new DbContextOptionsBuilder<BlogDbContext>()

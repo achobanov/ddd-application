@@ -18,7 +18,7 @@
             base.ConfigureServices(services);
 
             services
-                .ReplaceTransient<IIdentityContext>(_ => Mocks.IdentityContext)
+                .ReplaceTransient<IAuthenticationContext>(_ => Mocks.IdentityContext)
                 .ReplaceTransient<IDateTime>(_ => Mocks.DateTime);
         }
     }

@@ -6,11 +6,11 @@
 
     public class Mocks
     {
-        public static IIdentityContext IdentityContext
+        public static IAuthenticationContext IdentityContext
         {
             get
             {
-                var currentUserMock = new Mock<IIdentityContext>();
+                var currentUserMock = new Mock<IAuthenticationContext>();
 
                 currentUserMock
                     .SetupGet(u => u.UserId)

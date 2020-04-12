@@ -29,7 +29,7 @@ namespace Blog.Application.UnitTests
             dateTimeMock.Setup(m => m.Now)
                 .Returns(new DateTime(3001, 1, 1));
 
-            var currentUserServiceMock = new Mock<IIdentityContext>();
+            var currentUserServiceMock = new Mock<IAuthenticationContext>();
             currentUserServiceMock.Setup(m => m.UserId)
                 .Returns("00000000-0000-0000-0000-000000000000");
 
