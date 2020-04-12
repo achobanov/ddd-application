@@ -2,7 +2,6 @@
 using Blog.Application.Contracts;
 using Blog.Gateways.Web.Authentication;
 using IdentityServer4.EntityFramework.Interfaces;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +27,7 @@ namespace Blog.Gateways.Web.Providers
                 
             services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/Login");
 
+            // Figure out how to do API Authorization
             //services
             //    .AddIdentityServer()
             //    .AddApiAuthorization<IdentityUser, TDbContext>();

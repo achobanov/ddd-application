@@ -1,12 +1,12 @@
-﻿namespace Blog.Gateways.Web.Controllers
-{
-    using Blog.Application.Contracts;
-    using Blog.Gateways.Web.Common.Extensions;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
-    using static Blog.Gateways.Web.Common.WebConstants;
+﻿using Blog.Application.Contracts;
+using Blog.Gateways.Web.Common.Extensions;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using static Blog.Gateways.Web.Common.WebConstants;
 
+namespace Blog.Gateways.Web.Controllers
+{
     [Route("[action]")]
     public class HomeController : BaseViewController
     {
