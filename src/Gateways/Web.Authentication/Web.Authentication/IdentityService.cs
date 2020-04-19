@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Security.Claims;
+using System.Threading.Tasks;
 using Blog.Application.Common.Models;
 using Blog.Gateways.Web.Contracts;
 using Blog.Web.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 
 namespace Blog.Gateways.Web.Authentication

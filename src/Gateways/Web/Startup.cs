@@ -27,7 +27,7 @@ namespace Blog.Gateways.Web
             services
                 .AddApplication()
                 .AddInfrastructure(this.Configuration)
-                .AddAuthentication<BlogDbContext>()
+                .AddAuthentication<BlogDbContext>(this.Configuration)
                 .AddWebComponents();
 
             services

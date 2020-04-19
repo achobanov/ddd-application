@@ -7,11 +7,9 @@
     using Application.Articles.Queries.IsByUser;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-
-    [Authorize]
+    
     public class ArticlesApiController : BaseApiController
     {
-        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<ArticleDetailsModel>> Details(
             [FromRoute] ArticleDetailsQuery query)
