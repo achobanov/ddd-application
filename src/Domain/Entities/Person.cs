@@ -3,13 +3,13 @@
     using System.Collections.Generic;
     using Blog.Domain.Common;
 
-    public class DomainUser : DomainEntity
+    public class Person : Entity
     {
-        public DomainUser()
+        public Person()
         {
 
         }
-        public DomainUser(string userName, string identityId)
+        public Person(string userName, string identityId)
         {
             this.Username = userName;
             this.IdentityId = identityId;

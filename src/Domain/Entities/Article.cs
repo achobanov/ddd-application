@@ -54,7 +54,7 @@
 
         public DateTime? PublishedOn { get; set; }
 
-        public DomainUser Author { get; set; }
+        public Person Author { get; set; }
 
         public int AuthorId { get; set; }
 

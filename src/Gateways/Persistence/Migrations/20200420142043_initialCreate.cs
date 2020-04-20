@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Blog.Gateways.Persistence.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class initialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -64,7 +64,7 @@ namespace Blog.Gateways.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DomainUsers",
+                name: "People",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -74,7 +74,7 @@ namespace Blog.Gateways.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DomainUsers", x => x.Id);
+                    table.PrimaryKey("PK_People", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -220,9 +220,9 @@ namespace Blog.Gateways.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Articles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Articles_DomainUsers_AuthorId",
+                        name: "FK_Articles_People_AuthorId",
                         column: x => x.AuthorId,
-                        principalTable: "DomainUsers",
+                        principalTable: "People",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -253,9 +253,9 @@ namespace Blog.Gateways.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Comments_DomainUsers_AuthorId",
+                        name: "FK_Comments_People_AuthorId",
                         column: x => x.AuthorId,
-                        principalTable: "DomainUsers",
+                        principalTable: "People",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -372,7 +372,7 @@ namespace Blog.Gateways.Persistence.Migrations
                 name: "Articles");
 
             migrationBuilder.DropTable(
-                name: "DomainUsers");
+                name: "People");
         }
     }
 }

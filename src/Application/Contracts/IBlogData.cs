@@ -7,7 +7,7 @@
 
     public interface IBlogData
     {
-        DbSet<DomainUser> DomainUsers { get; set; }
+        DbSet<Person> People { get; set; }
         DbSet<Article> Articles { get; set; }
 
         DbSet<Comment> Comments { get; set; }

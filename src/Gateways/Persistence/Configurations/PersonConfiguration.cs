@@ -7,9 +7,9 @@
     using System.Collections.Generic;
     using System.Text;
 
-    public class DomainUserConfiguration : IEntityTypeConfiguration<DomainUser>
+    public class PersonConfiguration : IEntityTypeConfiguration<Person>
     {
-        public void Configure(EntityTypeBuilder<DomainUser> builder)
+        public void Configure(EntityTypeBuilder<Person> builder)
         {
             builder.HasKey(u => u.Id);
 

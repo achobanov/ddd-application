@@ -30,16 +30,16 @@
             }
 
             var user = await data.Users.FirstAsync();
-            var domainUser = new DomainUser(user.Email, user.Id);           
+            var person = new Person(user.Email, user.Id);           
             var article = (new Article("Test Article", "Test Article Content", user.Id)
             {
                 CreatedOn = DateTime.Now.AddDays(-1),
                 IsPublic = true,
                 PublishedOn = DateTime.Now,
-                Author = domainUser
+                Author = person
             });
 
-            data.DomainUsers.Add(domainUser);
+            data.People.Add(person);
             data.Articles.Add(article);
 
             await data.SaveChangesAsync();

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Blog.Gateways.Persistence.Migrations
 {
     [DbContext(typeof(BlogDbContext))]
-    [Migration("20200412195914_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200420142043_initialCreate")]
+    partial class initialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,7 +110,7 @@ namespace Blog.Gateways.Persistence.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("Blog.Domain.Entities.DomainUser", b =>
+            modelBuilder.Entity("Blog.Domain.Entities.Person", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -125,7 +125,7 @@ namespace Blog.Gateways.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DomainUsers");
+                    b.ToTable("People");
                 });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
@@ -412,7 +412,7 @@ namespace Blog.Gateways.Persistence.Migrations
 
             modelBuilder.Entity("Blog.Domain.Entities.Article", b =>
                 {
-                    b.HasOne("Blog.Domain.Entities.DomainUser", "Author")
+                    b.HasOne("Blog.Domain.Entities.Person", "Author")
                         .WithMany("Articles")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -427,7 +427,7 @@ namespace Blog.Gateways.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Blog.Domain.Entities.DomainUser", "Author")
+                    b.HasOne("Blog.Domain.Entities.Person", "Author")
                         .WithMany("Comments")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Restrict)
