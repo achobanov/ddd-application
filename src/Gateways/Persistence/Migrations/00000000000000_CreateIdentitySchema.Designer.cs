@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Blog.Infrastructure.Persistence.Migrations
+namespace Blog.Gateways.Persistence.Migrations
 {
     [DbContext(typeof(BlogDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]

@@ -1,4 +1,4 @@
-﻿namespace Blog.Infrastructure.Persistence.Migrations
+﻿namespace Blog.Gateways.Persistence.Migrations
 {
     using System;
     using Microsoft.EntityFrameworkCore.Migrations;

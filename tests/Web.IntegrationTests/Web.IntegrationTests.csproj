@@ -38,6 +38,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Application\Application.csproj" />
+    <ProjectReference Include="..\..\src\Gateways\Persistence\Persistence.csproj" />
     <ProjectReference Include="..\..\src\Gateways\Web\Web.csproj" />
   </ItemGroup>
 

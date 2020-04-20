@@ -1,4 +1,4 @@
-﻿namespace Blog.Infrastructure.Persistence
+﻿namespace Blog.Gateways.Persistence
 {
     using System;
     using System.Linq;

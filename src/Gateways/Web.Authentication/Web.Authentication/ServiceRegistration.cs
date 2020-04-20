@@ -1,6 +1,6 @@
 ﻿namespace Blog.Web.Authentication
 {
-    using Blog.Infrastructure.Persistence;
+    using Blog.Gateways.Persistence;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
