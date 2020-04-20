@@ -24,11 +24,6 @@ namespace Blog.Gateways.Web.Authentication
             this.signInManager = signInManager;
         }
 
-        public Task<Result> ChangePassword()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public async Task<Result<string>> Login(ILoginModelContract model)
         {
             var result = await this.signInManager.PasswordSignInAsync(

@@ -11,6 +11,6 @@ namespace Blog.Gateways.Web.Authentication
         public IdentityContext(IHttpContextAccessor httpContextAccessor)
             => this.httpContext = httpContextAccessor.HttpContext;
 
-        public string UserId => this.httpContext.User.FindFirstValue(ClaimTypes.NameIdentifier); 
+        public string Username => this.httpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
     }
 }

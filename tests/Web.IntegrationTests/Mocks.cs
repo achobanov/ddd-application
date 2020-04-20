@@ -13,7 +13,7 @@
                 var currentUserMock = new Mock<IAuthenticationContext>();
 
                 currentUserMock
-                    .SetupGet(u => u.UserId)
+                    .SetupGet(u => u.Username)
                     .Returns(TestUser.Identifier);
 
                 return currentUserMock.Object;

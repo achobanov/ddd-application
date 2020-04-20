@@ -27,7 +27,7 @@ namespace Blog.Gateways.Web.Controllers
         [Authorize]
         public Task<ActionResult> Authorized()
         {
-            this.ViewBag.UserId = this.authenticationContext.UserId;
+            this.ViewBag.UserId = this.authenticationContext.Username;
             return this
                 .View()
                 .AsTask();

@@ -14,12 +14,12 @@
         public class ArticleIsByUserQueryHandler : Handler<ArticleIsByUserQuery, bool>
         {
             private readonly IBlogData data;
-            private readonly IAuthenticationContext currentUser;
+            private readonly IAuthenticationContext authenticationContext;
 
-            public ArticleIsByUserQueryHandler(IBlogData data, IAuthenticationContext currentUser)
+            public ArticleIsByUserQueryHandler(IBlogData data, IAuthenticationContext authenticationContext)
             {
                 this.data = data;
-                this.currentUser = currentUser;
+                this.authenticationContext = authenticationContext;
             }
 
             public override async Task<bool> Handle(
@@ -28,7 +28,7 @@
                 => await this.data
                     .Articles
                     .AnyAsync(
-                        a => a.Id == request.Id && a.CreatedBy == this.currentUser.UserId,
+                        a => a.Id == request.Id && a.CreatedBy == this.authenticationContext.Username,
                         cancellationToken);
         }
     }

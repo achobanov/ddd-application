@@ -4,6 +4,6 @@
 
     public interface IAuthenticationContext : IScopedService
     {
-        string UserId { get; }
+        string Username { get; }
     }
 }

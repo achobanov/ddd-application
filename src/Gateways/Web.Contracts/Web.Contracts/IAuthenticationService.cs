@@ -3,11 +3,8 @@
     using System.Threading.Tasks;
     using Blog.Application.Common.Models;
 
-    // Work in progress - it is not yet used.
     public interface IAuthenticationService
     {
-        Task<Result> ChangePassword();
-
         Task<Result<string>> Login(ILoginModelContract model);
 
         Task Logout();

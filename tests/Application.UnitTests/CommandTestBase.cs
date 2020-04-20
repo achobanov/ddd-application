@@ -16,7 +16,7 @@ namespace Blog.Application.UnitTests
             var currentUserMock = new Mock<IAuthenticationContext>();
 
             currentUserMock
-                .SetupGet(u => u.UserId)
+                .SetupGet(u => u.Username)
                 .Returns(TestUserId);
 
             this.IdentityContext = currentUserMock.Object;

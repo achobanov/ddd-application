@@ -16,21 +16,21 @@
         public class CreateArticleCommandHandler : Handler<CreateArticleCommand, int>
         {
             private readonly IBlogData data;
-            private readonly IAuthenticationContext currentUser;
+            private readonly IAuthenticationContext authenticationContext;
 
             public CreateArticleCommandHandler(
                 IBlogData data,
-                IAuthenticationContext currentUser)
+                IAuthenticationContext authenticationContext)
             {
                 this.data = data;
-                this.currentUser = currentUser;
+                this.authenticationContext = authenticationContext;
             }
 
             public override async Task<int> Handle(
                 CreateArticleCommand request, 
                 CancellationToken cancellationToken)
             {
-                var article = new Article(request.Title, request.Content, this.currentUser.UserId);
+                var article = new Article(request.Title, request.Content, this.authenticationContext.Username);
 
                 this.data.Articles.Add(article);
 

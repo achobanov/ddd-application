@@ -42,11 +42,11 @@
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedBy ??= this.currentUserService.UserId;
+                        entry.Entity.CreatedBy ??= this.currentUserService.Username;
                         entry.Entity.CreatedOn = this.dateTime.Now;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.ModifiedBy = this.currentUserService.UserId;
+                        entry.Entity.ModifiedBy = this.currentUserService.Username;
                         entry.Entity.ModifiedOn = this.dateTime.Now;
                         break;
                 }
