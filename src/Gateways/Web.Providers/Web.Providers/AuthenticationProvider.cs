@@ -1,6 +1,7 @@
 ﻿using Blog.Application.Common.Services;
 using Blog.Application.Contracts;
 using Blog.Gateways.Web.Authentication;
+using Blog.Gateways.Web.Contracts;
 using IdentityServer4.EntityFramework.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -15,7 +16,7 @@ namespace Blog.Gateways.Web.Providers
     {
         public IServiceCollection ProvideImplementations(IServiceCollection services)
             => services
-                .AddTransient<Contracts.IAuthenticationService, IdentityService>()
+                .AddTransient<IAuthenticationService, IdentityService>()
                 .AddScoped<IAuthenticationContext, IdentityContext>();
     }
 
@@ -26,10 +27,10 @@ namespace Blog.Gateways.Web.Providers
             IConfiguration configuration)
             where TDbContext : DbContext, IPersistedGrantDbContext
             => services
-                .AddCookieScheme<TDbContext>()
+                .AddDefaultIdentityWithCookieScheme<TDbContext>()
                 .AddJwtScheme(configuration);
 
-        private static IServiceCollection AddCookieScheme<TDbContext>(this IServiceCollection services)
+        private static IServiceCollection AddDefaultIdentityWithCookieScheme<TDbContext>(this IServiceCollection services)
             where TDbContext : DbContext, IPersistedGrantDbContext
         {
             services
