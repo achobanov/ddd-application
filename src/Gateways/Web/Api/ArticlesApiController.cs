@@ -7,7 +7,7 @@
     using Application.Articles.Queries.IsByUser;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    
+
     public class ArticlesApiController : BaseApiController
     {
         [HttpGet("{id}")]

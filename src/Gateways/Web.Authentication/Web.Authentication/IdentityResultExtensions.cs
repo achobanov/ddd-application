@@ -15,5 +15,11 @@
             => result.Succeeded
                 ? Result.Success
                 : Result.Failure(result.ToString());
+
+        public static Result<T> ToApplicationResult<T>(this SignInResult result, T data = null)
+            where T : class
+            => result.Succeeded
+                ? Result<T>.Success(data)
+                : Result<T>.Failure(result.ToString());
     }
 }

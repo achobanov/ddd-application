@@ -64,6 +64,8 @@ namespace Blog.Gateways.Web.Areas.Authentication.Controllers
                 return this.FailureResult(model, result);
             }
 
+            this.Response.Headers.Add("authorization-token", result.Data);
+
             return this.Redirect(model.ReturnUrl);
         }
 

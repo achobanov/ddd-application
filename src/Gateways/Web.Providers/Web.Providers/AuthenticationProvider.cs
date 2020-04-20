@@ -1,5 +1,4 @@
-﻿using System.Text;
-using Blog.Application.Common.Services;
+﻿using Blog.Application.Common.Services;
 using Blog.Application.Contracts;
 using Blog.Gateways.Web.Authentication;
 using IdentityServer4.EntityFramework.Interfaces;
@@ -53,12 +52,15 @@ namespace Blog.Gateways.Web.Providers
                     JwtBearerDefaults.AuthenticationScheme,
                     options => options.TokenValidationParameters = new TokenValidationParameters
                     {
+                        // Tighten options for production
+                        ValidateAudience = false,
+                        ValidateActor = false,
+                        ValidateTokenReplay = false,
                         ValidateIssuer = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = SymmetricKeyFactory.Create(configuration["Jwt:Key"]),
                         ValidIssuer = configuration["Jwt:Issuer"],
-                        ValidAudience = configuration["Jwt:Issuer"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"])),
                     });
 
             return services;

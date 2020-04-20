@@ -8,7 +8,7 @@
     {
         Task<Result> ChangePassword();
 
-        Task<Result> Login(ILoginModelContract model);
+        Task<Result<string>> Login(ILoginModelContract model);
 
         Task Logout();
         
