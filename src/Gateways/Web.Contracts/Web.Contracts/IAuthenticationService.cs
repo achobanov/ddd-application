@@ -1,8 +1,8 @@
-﻿namespace Blog.Gateways.Web.Contracts
-{
-    using System.Threading.Tasks;
-    using Blog.Common.Models;
+﻿using System.Threading.Tasks;
+using Blog.Common.Models;
 
+namespace Blog.Gateways.Web.Contracts
+{
     public interface IAuthenticationService
     {
         Task<Result<string>> Login(ILoginModelContract model);
