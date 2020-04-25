@@ -1,7 +1,6 @@
 ﻿namespace Blog.Domain.UnitTests.Entities
 {
-    using Domain.Entities;
-    using Exceptions;
+    using Blog.Domain.Articles;
     using Xunit;
 
     public class ArticleTests
@@ -10,7 +9,7 @@
         public void TitleShouldThrowExceptionWhenNull()
         {
             // Assert
-            Assert.Throws<InvalidArticleException>(
+            Assert.Throws<ArticleException>(
                 () => new Article(null, "Test Content", "Test Id"));
         }
 
@@ -18,7 +17,7 @@
         public void UserIdShouldThrowExceptionWhenNull()
         {
             // Assert
-            Assert.Throws<InvalidEntityException>(
+            Assert.Throws<ArticleException>(
                 () => new Article("Test Title", "Test Content", null));
         }
     }

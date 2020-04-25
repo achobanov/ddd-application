@@ -1,0 +1,19 @@
+﻿using System;
+
+namespace Blog.Domain
+{
+    public class DomainException : Exception
+    {
+        public const string PropertyIsRequiredMessage = "Property '{1}' on '{0}' is required.";
+
+        public DomainException(string entityName, string propertyName)
+            : base(string.Format(PropertyIsRequiredMessage, propertyName, entityName))
+        {
+        }
+
+        public DomainException(string entityName, string propertyName, string messageTemplate)
+            : base(string.Format(messageTemplate, entityName, propertyName))
+        {
+        }
+    }
+}

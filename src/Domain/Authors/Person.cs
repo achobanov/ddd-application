@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using Blog.Domain.Infrastructure;
+using Blog.Domain.Articles;
+using Blog.Domain.Comments;
 using Blog.Domain.Infrastructure.Entities;
 
-namespace Blog.Domain.Entities
+namespace Blog.Domain.Authors
 {
     public class Person : Entity
     {
@@ -25,7 +26,7 @@ namespace Blog.Domain.Entities
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new DomainException("Username cannot be null");
+                    throw new AuthorException(nameof(this.Username));
                 }
 
                 this.username = value;

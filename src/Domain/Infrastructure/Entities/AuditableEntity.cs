@@ -1,5 +1,4 @@
 ﻿using System;
-using Blog.Domain.Exceptions;
 
 namespace Blog.Domain.Infrastructure.Entities
 {
@@ -11,7 +10,7 @@ namespace Blog.Domain.Infrastructure.Entities
         public string CreatedBy
         {
             get => this.createdBy;
-            set => this.createdBy = value ?? throw new InvalidEntityException("User ID cannot be null.");
+            set => this.createdBy = value ?? throw new DomainException(this.GetType().Name, nameof(this.CreatedBy));
         }
 
         public DateTime CreatedOn { get; set; }
@@ -19,7 +18,7 @@ namespace Blog.Domain.Infrastructure.Entities
         public string ModifiedBy
         {
             get => this.modifiedBy;
-            set => this.modifiedBy = value ?? throw new InvalidEntityException("User ID cannot be null.");
+            set => this.modifiedBy = value ?? throw new DomainException(this.GetType().Name, nameof(this.ModifiedBy));
         }
 
         public DateTime? ModifiedOn { get; set; }

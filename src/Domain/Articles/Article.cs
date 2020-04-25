@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Blog.Domain.Exceptions;
-using Blog.Domain.Infrastructure;
+using Blog.Domain.Authors;
+using Blog.Domain.Comments;
 using Blog.Domain.Infrastructure.Entities;
 
-namespace Blog.Domain.Entities
+namespace Blog.Domain.Articles
 {
     public class Article : AuditableEntity
     {
@@ -25,12 +25,12 @@ namespace Blog.Domain.Entities
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ValueException(this, nameof(this.Title));
+                    throw new ArticleException(nameof(this.Title));
                 }
 
                 if (value.Length > 40)
                 {
-                    throw new DomainException("Article title cannot be more than 40 symbols.");
+                    throw new ArticleException(nameof(this.Title), "Article title cannot be more than 40 symbols.");
                 }
 
                 this.title = value;
@@ -44,7 +44,7 @@ namespace Blog.Domain.Entities
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new DomainException("Article content cannot be null.");
+                    throw new ArticleException(nameof(this.Content), "Article content cannot be null.");
                 }
 
                 this.content = value;

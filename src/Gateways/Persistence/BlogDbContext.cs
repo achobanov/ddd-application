@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Blog.Application.Contracts;
-using Blog.Domain.Entities;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.AspNetCore.Identity;
@@ -10,6 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Blog.Common.Contracts;
 using Blog.Domain.Infrastructure.Entities;
+using Blog.Domain.Authors;
+using Blog.Domain.Articles;
+using Blog.Domain.Comments;
 
 namespace Blog.Gateways.Persistence
 {

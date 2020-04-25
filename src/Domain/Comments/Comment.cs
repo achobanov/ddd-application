@@ -1,10 +1,10 @@
 ﻿using System;
-using Blog.Domain.Infrastructure;
+using Blog.Domain.Articles;
+using Blog.Domain.Authors;
 using Blog.Domain.Infrastructure.Entities;
 
-namespace Blog.Domain.Entities
+namespace Blog.Domain.Comments
 {
-
     public class Comment : AuditableEntity
     {
         private string content;
@@ -22,7 +22,7 @@ namespace Blog.Domain.Entities
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new DomainException("Comment content cannot be null.");
+                    throw new CommentException(nameof(this.Content));
                 }
 
                 this.content = value;

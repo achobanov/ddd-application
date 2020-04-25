@@ -1,7 +1,7 @@
 ﻿namespace Blog.Web.IntegrationTests
 {
     using System;
-    using Domain.Entities;
+    using Blog.Domain.Articles;
     using Microsoft.AspNetCore.Identity;
     using MyTested.AspNetCore.Mvc;
 

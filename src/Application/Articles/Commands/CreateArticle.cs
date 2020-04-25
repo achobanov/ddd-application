@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using Blog.Application.Infrastructure.Handlers;
 using Blog.Application.Contracts;
-using Blog.Domain.Entities;
 using MediatR;
+using Blog.Domain.Articles;
 
 namespace Blog.Application.Articles.Commands
 {

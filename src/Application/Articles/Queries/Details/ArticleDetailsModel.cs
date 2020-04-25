@@ -1,6 +1,6 @@
 ﻿using System;
-using Blog.Domain.Entities;
 using Blog.Common.Mappings;
+using Blog.Domain.Articles;
 
 namespace Blog.Application.Articles.Queries
 {

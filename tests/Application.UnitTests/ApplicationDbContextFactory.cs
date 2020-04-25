@@ -1,12 +1,12 @@
 using System;
 using Blog.Application.Contracts;
-using Blog.Domain.Entities;
 using IdentityServer4.EntityFramework.Options;
 using Blog.Gateways.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Moq;
 using Blog.Common.Contracts;
+using Blog.Domain.Articles;
 
 namespace Blog.Application.UnitTests
 {

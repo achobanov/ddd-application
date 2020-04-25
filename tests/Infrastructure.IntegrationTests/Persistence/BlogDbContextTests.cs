@@ -3,7 +3,6 @@
     using System;
     using System.Threading.Tasks;
     using Blog.Application.Contracts;
-    using Domain.Entities;
     using IdentityServer4.EntityFramework.Options;
     using Gateways.Persistence;
     using Microsoft.EntityFrameworkCore;
@@ -12,6 +11,7 @@
     using Shouldly;
     using Xunit;
     using Blog.Common.Contracts;
+    using Blog.Domain.Articles;
 
     public class BlogDbContextTests : IDisposable
     {

@@ -4,7 +4,7 @@ using Blog.Application.Infrastructure.Handlers;
 using Blog.Application.Contracts;
 using MediatR;
 using Blog.Common.Contracts;
-using Blog.Domain.Entities;
+using Blog.Domain.Articles;
 
 namespace Blog.Application.Articles.Commands
 {

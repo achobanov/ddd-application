@@ -1,11 +1,8 @@
 ﻿namespace Blog.Gateways.Persistence.Configurations
 {
-    using Blog.Domain.Entities;
+    using Blog.Domain.Authors;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
 
     public class PersonConfiguration : IEntityTypeConfiguration<Person>
     {

@@ -2,9 +2,9 @@
 {
     using AutoMapper;
     using System;
-    using Domain.Entities;
     using Xunit;
     using Blog.Application.Articles.Queries;
+    using Blog.Domain.Articles;
 
     public class MappingTests : IClassFixture<MappingTestsFixture>
     {

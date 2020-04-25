@@ -1,6 +1,6 @@
 ﻿namespace Blog.Gateways.Persistence.Configurations
 {
-    using Domain.Entities;
+    using Blog.Domain.Articles;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

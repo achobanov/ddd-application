@@ -3,7 +3,8 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Domain.Entities;
+    using Blog.Domain.Articles;
+    using Blog.Domain.Authors;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
 
