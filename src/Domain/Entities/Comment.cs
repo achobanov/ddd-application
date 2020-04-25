@@ -1,6 +1,6 @@
 ﻿using System;
+using Blog.Domain.Infrastructure;
 using Blog.Domain.Infrastructure.Entities;
-using Blog.Domain.Exceptions;
 
 namespace Blog.Domain.Entities
 {
@@ -22,7 +22,7 @@ namespace Blog.Domain.Entities
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new InvalidArticleException("Comment content cannot be null.");
+                    throw new DomainException("Comment content cannot be null.");
                 }
 
                 this.content = value;

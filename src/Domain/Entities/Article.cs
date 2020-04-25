@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Blog.Domain.Exceptions;
+using Blog.Domain.Infrastructure;
 using Blog.Domain.Infrastructure.Entities;
 
 namespace Blog.Domain.Entities
@@ -24,12 +24,12 @@ namespace Blog.Domain.Entities
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new InvalidArticleException("Article title cannot be null.");
+                    throw new DomainException("Article title cannot be null.");
                 }
 
                 if (value.Length > 40)
                 {
-                    throw new InvalidArticleException("Article title cannot be more than 40 symbols.");
+                    throw new DomainException("Article title cannot be more than 40 symbols.");
                 }
 
                 this.title = value;
@@ -43,7 +43,7 @@ namespace Blog.Domain.Entities
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new InvalidArticleException("Article content cannot be null.");
+                    throw new DomainException("Article content cannot be null.");
                 }
 
                 this.content = value;
