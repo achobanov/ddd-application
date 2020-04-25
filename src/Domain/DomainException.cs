@@ -8,12 +8,12 @@ namespace Blog.Domain
 
         public DomainException(string entityName, string propertyName)
             : base(string.Format(PropertyIsRequiredMessage, propertyName, entityName))
-        {
-        }
+            => this.PropertyName = propertyName;
 
         public DomainException(string entityName, string propertyName, string messageTemplate)
             : base(string.Format(messageTemplate, entityName, propertyName))
-        {
-        }
+            => this.PropertyName = propertyName;
+
+        public string PropertyName { get; }
     }
 }
