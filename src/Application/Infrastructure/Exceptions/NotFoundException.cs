@@ -1,7 +1,7 @@
-﻿namespace Blog.Application.Common.Exceptions
-{
-    using System;
+﻿using System;
 
+namespace Blog.Application.Infrastructure.Exceptions
+{
     public class NotFoundException : Exception
     {
         public NotFoundException(string name, object key)

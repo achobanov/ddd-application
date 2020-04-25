@@ -1,10 +1,10 @@
-﻿namespace Blog.Application.Common.Mappings
-{
-    using System;
-    using System.Linq;
-    using System.Reflection;
-    using AutoMapper;
+﻿using System;
+using System.Linq;
+using System.Reflection;
+using AutoMapper;
 
+namespace Blog.Application.Infrastructure.Mappings
+{
     public class MappingProfile : Profile
     {
         public MappingProfile() 

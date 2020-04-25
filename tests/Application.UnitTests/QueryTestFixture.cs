@@ -2,8 +2,8 @@ namespace Blog.Application.UnitTests
 {
     using System;
     using System.Threading.Tasks;
-    using Application.Common.Interfaces;
-    using Application.Common.Mappings;
+    using Application.Infrastructure.Interfaces;
+    using Application.Infrastructure.Mappings;
     using AutoMapper;
     using Gateways.Persistence;
     using Moq;

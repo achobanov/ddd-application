@@ -1,13 +1,13 @@
-﻿namespace Blog.Gateways.Web.Middleware
-{
-    using System;
-    using System.Net;
-    using System.Threading.Tasks;
-    using Application.Common.Exceptions;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Http;
-    using Newtonsoft.Json;
+﻿using System;
+using System.Net;
+using System.Threading.Tasks;
+using Blog.Application.Infrastructure.Exceptions;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
+namespace Blog.Gateways.Web.Infrastructure.Middleware
+{
     public class ExceptionHandlerMiddleware
     {
         private readonly RequestDelegate next;

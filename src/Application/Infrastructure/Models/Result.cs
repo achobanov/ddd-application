@@ -1,9 +1,9 @@
-﻿namespace Blog.Application.Common.Models
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
+namespace Blog.Application.Infrastructure.Models
+{   
     public class Result
     {
         internal Result(bool succeeded, IEnumerable<string> errors)

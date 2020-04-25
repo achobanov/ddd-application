@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Blog.Gateways.Web.Areas.Authentication.Models;
-using Blog.Gateways.Web.Common.Extensions;
+using Blog.Gateways.Web.Infrastructure.Extensions;
 using Blog.Gateways.Web.Contracts;
 using Blog.Gateways.Web.Controllers;
+using Blog.Gateways.Web.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Mvc;
-using static Blog.Gateways.Web.Common.WebConstants;
+using static Blog.Gateways.Web.Infrastructure.WebConstants;
 
 namespace Blog.Gateways.Web.Areas.Authentication.Controllers
 {

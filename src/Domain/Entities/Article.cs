@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using Common;
+    using Infrastructure;
     using Exceptions;
 
     public class Article : AuditableEntity

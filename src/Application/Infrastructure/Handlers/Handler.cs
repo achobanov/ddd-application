@@ -1,9 +1,9 @@
-﻿namespace Blog.Application.Common.Handlers
-{
-    using System.Threading;
-    using System.Threading.Tasks;
-    using MediatR;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 
+namespace Blog.Application.Infrastructure.Handlers
+{
     public abstract class Handler<TRequest> : AsyncRequestHandler<TRequest> where TRequest : IRequest
     {
     }

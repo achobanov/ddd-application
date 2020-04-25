@@ -1,4 +1,4 @@
-﻿namespace Blog.Gateways.Web.Common
+﻿namespace Blog.Gateways.Web.Infrastructure
 {
     public static class WebConstants
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Blog.Application.Common.Models;
+using Blog.Application.Infrastructure.Models;
 using Blog.Gateways.Web.Contracts;
 using Blog.Web.Authentication;
 using Microsoft.AspNetCore.Identity;

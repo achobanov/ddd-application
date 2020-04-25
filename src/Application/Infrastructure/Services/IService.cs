@@ -1,4 +1,4 @@
-﻿namespace Blog.Application.Common.Services
+﻿namespace Blog.Application.Infrastructure.Services
 {
     public interface IService
     {

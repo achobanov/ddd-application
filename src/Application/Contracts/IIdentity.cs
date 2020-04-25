@@ -1,4 +1,4 @@
-﻿namespace Blog.Application.Common.Interfaces
+﻿namespace Blog.Application.Infrastructure.Interfaces
 {
     using System.Threading.Tasks;
     using Models;

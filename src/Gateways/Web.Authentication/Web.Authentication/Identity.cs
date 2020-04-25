@@ -2,8 +2,8 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
-    using Blog.Application.Common.Interfaces;
-    using Blog.Application.Common.Models;
+    using Blog.Application.Infrastructure.Interfaces;
+    using Blog.Application.Infrastructure.Models;
     using Blog.Web.Authentication;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;

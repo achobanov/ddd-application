@@ -1,4 +1,4 @@
-﻿namespace Blog.Domain.Common
+﻿namespace Blog.Domain.Infrastructure
 {
     using System;
 

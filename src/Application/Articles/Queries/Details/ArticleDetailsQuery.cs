@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
-    using Blog.Application.Common.Handlers;
+    using Blog.Application.Infrastructure.Handlers;
     using Blog.Application.Contracts;
     using MediatR;
     using Microsoft.EntityFrameworkCore;

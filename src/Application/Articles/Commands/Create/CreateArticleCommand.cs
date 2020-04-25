@@ -2,7 +2,7 @@
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Blog.Application.Common.Handlers;
+    using Blog.Application.Infrastructure.Handlers;
     using Blog.Application.Contracts;
     using Domain.Entities;
     using MediatR;

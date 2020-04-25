@@ -1,4 +1,4 @@
-﻿using Blog.Application.Common.Services;
+﻿using Blog.Application.Infrastructure.Services;
 using Blog.Application.Contracts;
 using Blog.Gateways.Web.Authentication;
 using Blog.Gateways.Web.Contracts;

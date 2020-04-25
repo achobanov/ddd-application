@@ -1,7 +1,7 @@
 ﻿namespace Blog.Web.Authentication
 {
     using System.Linq;
-    using Blog.Application.Common.Models;
+    using Blog.Application.Infrastructure.Models;
     using Microsoft.AspNetCore.Identity;
 
     public static class IdentityResultExtensions

@@ -1,7 +1,7 @@
 ﻿namespace Blog.Domain.Entities
 {
     using System.Collections.Generic;
-    using Blog.Domain.Common;
+    using Blog.Domain.Infrastructure;
 
     public class Person : Entity
     {

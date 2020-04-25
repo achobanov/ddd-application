@@ -1,12 +1,12 @@
-﻿namespace Blog.Application.Common.Behaviours
-{
-    using System.Diagnostics;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Blog.Application.Contracts;
-    using MediatR;
-    using Microsoft.Extensions.Logging;
+﻿using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
+using Blog.Application.Contracts;
+using MediatR;
+using Microsoft.Extensions.Logging;
 
+namespace Blog.Application.Infrastructure.Behaviours
+{
     public class RequestPerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
         private readonly Stopwatch timer;

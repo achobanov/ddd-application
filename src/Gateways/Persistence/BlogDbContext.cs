@@ -4,7 +4,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Blog.Application.Contracts;
-    using Domain.Common;
+    using Domain.Infrastructure;
     using Domain.Entities;
     using IdentityServer4.EntityFramework.Options;
     using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Blog.Gateways.Web.Common.Extensions
+namespace Blog.Gateways.Web.Infrastructure.Extensions
 {
     public static class EnumerableExtensions
     {

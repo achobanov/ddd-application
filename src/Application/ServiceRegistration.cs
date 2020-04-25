@@ -4,8 +4,8 @@
     using System.Linq;
     using System.Reflection;
     using AutoMapper;
-    using Common.Behaviours;
-    using Common.Services;
+    using Infrastructure.Behaviours;
+    using Infrastructure.Services;
     using MediatR;
     using Microsoft.Extensions.DependencyInjection;
 

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Blog.Gateways.Web.Common.Extensions
+namespace Blog.Gateways.Web.Infrastructure.Extensions
 {
     public static class ActionResultExtensions
     {

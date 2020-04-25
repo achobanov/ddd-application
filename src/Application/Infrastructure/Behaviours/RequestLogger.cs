@@ -1,11 +1,11 @@
-﻿namespace Blog.Application.Common.Behaviours
-{
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Blog.Application.Contracts;
-    using MediatR.Pipeline;
-    using Microsoft.Extensions.Logging;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Blog.Application.Contracts;
+using MediatR.Pipeline;
+using Microsoft.Extensions.Logging;
 
+namespace Blog.Application.Infrastructure.Behaviours
+{
     public class RequestLogger<TRequest> : IRequestPreProcessor<TRequest>
     {
         private readonly ILogger logger;
