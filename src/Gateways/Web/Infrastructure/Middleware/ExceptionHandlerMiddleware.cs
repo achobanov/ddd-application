@@ -51,10 +51,4 @@ namespace Blog.Gateways.Web.Infrastructure.Middleware
             return context.Response.WriteAsync(result);
         }
     }
-
-    public static class CustomExceptionHandlerMiddlewareExtensions
-    {
-        public static IApplicationBuilder UseCustomExceptionHandler(this IApplicationBuilder builder) 
-            => builder.UseMiddleware<ExceptionHandlerMiddleware>();
-    }
 }
