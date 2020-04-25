@@ -6,6 +6,7 @@
     using Blog.Application.Contracts;
     using MediatR;
     using Blog.Common.Contracts;
+    using Blog.Domain.Entities;
 
     public class ChangeArticleVisibilityCommand : IRequest
     {
@@ -29,7 +30,9 @@
                 ChangeArticleVisibilityCommand request, 
                 CancellationToken cancellationToken)
             {
-                var article = await this.data.Articles.FindAsync(request.Id);
+                var article = await this.data
+                    .Set<Article>()
+                    .Find(request.Id);
 
                 if (article == null)
                 {

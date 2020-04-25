@@ -32,7 +32,9 @@
             {
                 var article = new Article(request.Title, request.Content, this.authenticationContext.Username);
 
-                this.data.Articles.Add(article);
+                await this.data
+                    .Set<Article>()
+                    .Add(article);
 
                 await this.data.SaveChanges(cancellationToken);
 

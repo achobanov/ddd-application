@@ -1,18 +1,18 @@
-﻿namespace Blog.Gateways.Persistence
-{
-    using System.Reflection;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Blog.Application.Contracts;
-    using Domain.Infrastructure;
-    using Domain.Entities;
-    using IdentityServer4.EntityFramework.Options;
-    using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Options;
-    using Blog.Common.Contracts;
+﻿using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
+using Blog.Application.Contracts;
+using Blog.Domain.Infrastructure;
+using Blog.Domain.Entities;
+using IdentityServer4.EntityFramework.Options;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Blog.Common.Contracts;
 
+namespace Blog.Gateways.Persistence
+{
     public class BlogDbContext : ApiAuthorizationDbContext<IdentityUser>, IPersistenceContract
     {
         private readonly IAuthenticationContract currentUserService;
@@ -35,9 +35,6 @@
 
         public DbSet<Comment> Comments { get; set; }
 
-
-        public Task<int> SaveChanges(CancellationToken cancellationToken = new CancellationToken())
-            => this.SaveChangesAsync(cancellationToken);
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -65,5 +62,17 @@
 
             base.OnModelCreating(builder);
         }
+
+        #region IPersistenceContract implementation
+
+        IDataSet<TEntity> IPersistenceContract.Set<TEntity>()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<int> SaveChanges(CancellationToken cancellationToken = new CancellationToken())
+            => this.SaveChangesAsync(cancellationToken);
+
+        #endregion
     }
 }

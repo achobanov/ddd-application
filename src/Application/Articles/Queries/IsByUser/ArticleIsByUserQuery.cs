@@ -6,6 +6,7 @@
     using Blog.Application.Contracts;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
+    using Blog.Domain.Entities;
 
     public class ArticleIsByUserQuery : IRequest<bool>
     {
@@ -26,7 +27,7 @@
                 ArticleIsByUserQuery request, 
                 CancellationToken cancellationToken) 
                 => await this.data
-                    .Articles
+                    .Set<Article>()
                     .AnyAsync(
                         a => a.Id == request.Id && a.CreatedBy == this.authenticationContext.Username,
                         cancellationToken);

@@ -9,6 +9,7 @@
     using Blog.Application.Contracts;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
+    using Blog.Domain.Entities;
 
     public class ArticleDetailsQuery : IRequest<ArticleDetailsModel>
     {
@@ -30,7 +31,7 @@
                 CancellationToken cancellationToken)
             {
                 var article = await this.data
-                    .Articles
+                    .Set<Article>()
                     .Where(a => a.Id == request.Id)
                     .ProjectTo<ArticleDetailsModel>(this.mapper.ConfigurationProvider)
                     .FirstOrDefaultAsync(cancellationToken);
