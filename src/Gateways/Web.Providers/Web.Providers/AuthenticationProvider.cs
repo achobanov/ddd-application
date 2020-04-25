@@ -1,6 +1,4 @@
-﻿using Blog.Application.Contracts;
-using Blog.Gateways.Web.Authentication;
-using Blog.Gateways.Web.Contracts;
+﻿using Blog.Gateways.Web.Authentication;
 using IdentityServer4.EntityFramework.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -16,8 +14,8 @@ namespace Blog.Gateways.Web.Providers
     {
         public IServiceCollection ProvideImplementations(IServiceCollection services)
             => services
-                .AddTransient<IAuthenticationService, IdentityService>()
-                .AddScoped<IAuthenticationContract, IdentityContext>();
+                .AddTransient<Contracts.IAuthenticationContract, IdentityService>()
+                .AddScoped<Application.Contracts.IAuthenticationContract, IdentityContext>();
     }
 
     public static class Extensions

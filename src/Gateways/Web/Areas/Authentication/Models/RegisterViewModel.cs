@@ -4,7 +4,7 @@ using static Blog.Gateways.Web.Infrastructure.WebConstants.ViewConstants;
 
 namespace Blog.Gateways.Web.Areas.Authentication.Models
 {
-    public class RegisterViewModel : BaseAuthenticationViewModel, IRegisterModelContract
+    public class RegisterViewModel : BaseAuthenticationViewModel, IRegisterModel
     {
         [Required]
         [DataType(DataType.Password)]

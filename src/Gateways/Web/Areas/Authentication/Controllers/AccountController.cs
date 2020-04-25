@@ -2,9 +2,9 @@
 using Blog.Gateways.Web.Areas.Authentication.Models;
 using Blog.Gateways.Web.Infrastructure.Extensions;
 using Blog.Gateways.Web.Contracts;
-using Blog.Gateways.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using static Blog.Gateways.Web.Infrastructure.WebConstants;
+using Blog.Gateways.Web.Infrastructure.Controllers;
 
 namespace Blog.Gateways.Web.Areas.Authentication.Controllers
 {
@@ -12,9 +12,9 @@ namespace Blog.Gateways.Web.Areas.Authentication.Controllers
     [Route("/Account/[action]")]
     public class AccountController : BaseViewController
     {
-        private readonly IAuthenticationService authentication;
+        private readonly IAuthenticationContract authentication;
 
-        public AccountController(IAuthenticationService authentication)
+        public AccountController(IAuthenticationContract authentication)
             => this.authentication = authentication;
 
         [HttpGet]

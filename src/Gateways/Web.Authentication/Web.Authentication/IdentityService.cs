@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Blog.Gateways.Web.Authentication
 {
-    public class IdentityService : IAuthenticationService
+    public class IdentityService : IAuthenticationContract
     {
         private readonly IConfiguration configuration;
         private readonly UserManager<IdentityUser> userManager;
@@ -24,7 +24,7 @@ namespace Blog.Gateways.Web.Authentication
             this.signInManager = signInManager;
         }
 
-        public async Task<Result<string>> Login(ILoginModelContract model)
+        public async Task<Result<string>> Login(ILoginModel model)
         {
             var result = await this.signInManager.PasswordSignInAsync(
                 model.Username,
@@ -49,7 +49,7 @@ namespace Blog.Gateways.Web.Authentication
         public Task Logout()
             => this.signInManager.SignOutAsync();
 
-        public async Task<Result> Register(IRegisterModelContract model)
+        public async Task<Result> Register(IRegisterModel model)
         {
             var user = new IdentityUser { UserName = model.Username };
             var result = await this.userManager.CreateAsync(user, model.Password);
