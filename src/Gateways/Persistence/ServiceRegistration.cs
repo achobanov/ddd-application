@@ -16,7 +16,7 @@
                     .UseSqlServer(
                         configuration.GetConnectionString("DefaultConnection"), 
                         b => b.MigrationsAssembly(typeof(BlogDbContext).Assembly.FullName)))
-                .AddScoped<IBlogData>(provider => provider.GetService<BlogDbContext>());
+                .AddScoped<IPersistenceContract>(provider => provider.GetService<BlogDbContext>());
 
             return services;
         }

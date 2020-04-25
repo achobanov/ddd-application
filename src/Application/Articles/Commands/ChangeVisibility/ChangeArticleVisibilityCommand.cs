@@ -13,10 +13,10 @@
 
         public class ChangeArticleVisibilityCommandHandler : Handler<ChangeArticleVisibilityCommand>
         {
-            private readonly IBlogData data;
+            private readonly IPersistenceContract data;
 
             public ChangeArticleVisibilityCommandHandler(
-                IBlogData data, 
+                IPersistenceContract data, 
                 IDateTime dateTime)
             {
                 this.data = data;

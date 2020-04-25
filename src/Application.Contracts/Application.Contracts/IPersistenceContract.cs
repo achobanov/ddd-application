@@ -5,7 +5,7 @@
     using Domain.Entities;
     using Microsoft.EntityFrameworkCore;
 
-    public interface IBlogData
+    public interface IPersistenceContract
     {
         DbSet<Person> People { get; set; }
 

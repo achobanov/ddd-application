@@ -13,10 +13,10 @@
 
         public class ArticleIsByUserQueryHandler : Handler<ArticleIsByUserQuery, bool>
         {
-            private readonly IBlogData data;
+            private readonly IPersistenceContract data;
             private readonly IAuthenticationContract authenticationContext;
 
-            public ArticleIsByUserQueryHandler(IBlogData data, IAuthenticationContract authenticationContext)
+            public ArticleIsByUserQueryHandler(IPersistenceContract data, IAuthenticationContract authenticationContext)
             {
                 this.data = data;
                 this.authenticationContext = authenticationContext;

@@ -13,7 +13,7 @@
     using Microsoft.Extensions.Options;
     using Blog.Common.Contracts;
 
-    public class BlogDbContext : ApiAuthorizationDbContext<IdentityUser>, IBlogData
+    public class BlogDbContext : ApiAuthorizationDbContext<IdentityUser>, IPersistenceContract
     {
         private readonly IAuthenticationContract currentUserService;
         private readonly IDateTime dateTime;

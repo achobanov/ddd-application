@@ -15,11 +15,11 @@
 
         public class CreateArticleCommandHandler : Handler<CreateArticleCommand, int>
         {
-            private readonly IBlogData data;
+            private readonly IPersistenceContract data;
             private readonly IAuthenticationContract authenticationContext;
 
             public CreateArticleCommandHandler(
-                IBlogData data,
+                IPersistenceContract data,
                 IAuthenticationContract authenticationContext)
             {
                 this.data = data;

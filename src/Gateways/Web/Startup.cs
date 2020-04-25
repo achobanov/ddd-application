@@ -36,7 +36,7 @@ namespace Blog.Gateways.Web
             services
                 .AddControllers()
                 .AddFluentValidation(options => options // unnecessary
-                    .RegisterValidatorsFromAssemblyContaining<IBlogData>())
+                    .RegisterValidatorsFromAssemblyContaining<IPersistenceContract>())
                 .AddNewtonsoftJson();
 
             services.Configure<ApiBehaviorOptions>(options => // probably unnecessary 

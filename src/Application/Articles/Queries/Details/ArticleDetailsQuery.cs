@@ -16,10 +16,10 @@
 
         public class ArticleDetailsQueryHandler : Handler<ArticleDetailsQuery, ArticleDetailsModel>
         {
-            private readonly IBlogData data;
+            private readonly IPersistenceContract data;
             private readonly IMapper mapper;
 
-            public ArticleDetailsQueryHandler(IBlogData data, IMapper mapper)
+            public ArticleDetailsQueryHandler(IPersistenceContract data, IMapper mapper)
             {
                 this.data = data;
                 this.mapper = mapper;
