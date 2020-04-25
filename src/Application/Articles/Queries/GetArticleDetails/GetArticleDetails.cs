@@ -1,33 +1,33 @@
-﻿namespace Blog.Application.Articles.Queries.Details
-{
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using AutoMapper;
-    using AutoMapper.QueryableExtensions;
-    using Blog.Application.Infrastructure.Handlers;
-    using Blog.Application.Contracts;
-    using MediatR;
-    using Microsoft.EntityFrameworkCore;
-    using Blog.Domain.Entities;
+﻿using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Blog.Application.Infrastructure.Handlers;
+using Blog.Application.Contracts;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Blog.Domain.Entities;
 
-    public class ArticleDetailsQuery : IRequest<ArticleDetailsModel>
+namespace Blog.Application.Articles.Queries
+{
+    public class GetArticleDetails : IRequest<ArticleDetailsModel>
     {
         public int Id { get; set; }
 
-        public class ArticleDetailsQueryHandler : Handler<ArticleDetailsQuery, ArticleDetailsModel>
+        public class GetArticleDetailsHandler : Handler<GetArticleDetails, ArticleDetailsModel>
         {
             private readonly IPersistenceContract data;
             private readonly IMapper mapper;
 
-            public ArticleDetailsQueryHandler(IPersistenceContract data, IMapper mapper)
+            public GetArticleDetailsHandler(IPersistenceContract data, IMapper mapper)
             {
                 this.data = data;
                 this.mapper = mapper;
             }
 
             public override async Task<ArticleDetailsModel> Handle(
-                ArticleDetailsQuery request, 
+                GetArticleDetails request, 
                 CancellationToken cancellationToken)
             {
                 var article = await this.data

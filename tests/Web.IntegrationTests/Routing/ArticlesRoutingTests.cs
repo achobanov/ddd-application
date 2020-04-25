@@ -1,8 +1,7 @@
 ﻿namespace Blog.Web.IntegrationTests.Routing
 {
-    using Application.Articles.Commands.ChangeVisibility;
-    using Application.Articles.Commands.Create;
-    using Application.Articles.Queries.Details;
+    using Blog.Application.Articles.Commands;
+    using Blog.Application.Articles.Queries;
     using Blog.Gateways.Web.Api;
     using MyTested.AspNetCore.Mvc;
     using Xunit;
@@ -14,7 +13,7 @@
             => MyRouting
                 .Configuration()
                 .ShouldMap("api/Articles/1")
-                .To<ArticlesController>(c => c.Details(new ArticleDetailsQuery { Id = 1 }));
+                .To<ArticlesController>(c => c.Details(new GetArticleDetails { Id = 1 }));
 
         [Theory]
         [InlineData("Test Title", "Test Content")]
@@ -29,7 +28,7 @@
                         Title = title,
                         Content = content
                     }))
-                .To<ArticlesController>(c => c.Create(new CreateArticleCommand
+                .To<ArticlesController>(c => c.Create(new CreateArticle
                 {
                     Title = title,
                     Content = content
@@ -44,7 +43,7 @@
                     .WithMethod(HttpMethod.Put)
                     .WithLocation("api/Articles/ChangeVisibility")
                     .WithJsonBody(new { Id = id }))
-                .To<ArticlesController>(c => c.ChangeVisibility(new ChangeArticleVisibilityCommand
+                .To<ArticlesController>(c => c.ChangeVisibility(new ChangeArticleVisibility
                 {
                     Id = id
                 }));

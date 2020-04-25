@@ -1,22 +1,22 @@
-﻿namespace Blog.Application.Articles.Commands.ChangeVisibility
-{
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Blog.Application.Infrastructure.Handlers;
-    using Blog.Application.Contracts;
-    using MediatR;
-    using Blog.Common.Contracts;
-    using Blog.Domain.Entities;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Blog.Application.Infrastructure.Handlers;
+using Blog.Application.Contracts;
+using MediatR;
+using Blog.Common.Contracts;
+using Blog.Domain.Entities;
 
-    public class ChangeArticleVisibilityCommand : IRequest
+namespace Blog.Application.Articles.Commands
+{
+    public class ChangeArticleVisibility : IRequest
     {
         public int Id { get; set; }
 
-        public class ChangeArticleVisibilityCommandHandler : Handler<ChangeArticleVisibilityCommand>
+        public class ChangeArticleVisibilityHandler : Handler<ChangeArticleVisibility>
         {
             private readonly IPersistenceContract data;
 
-            public ChangeArticleVisibilityCommandHandler(
+            public ChangeArticleVisibilityHandler(
                 IPersistenceContract data, 
                 IDateTime dateTime)
             {
@@ -27,7 +27,7 @@
             public IDateTime DateTime { get; }
 
             protected override async Task Handle(
-                ChangeArticleVisibilityCommand request, 
+                ChangeArticleVisibility request,
                 CancellationToken cancellationToken)
             {
                 var article = await this.data

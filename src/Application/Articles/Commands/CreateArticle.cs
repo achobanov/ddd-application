@@ -1,24 +1,24 @@
-﻿namespace Blog.Application.Articles.Commands.Create
-{
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Blog.Application.Infrastructure.Handlers;
-    using Blog.Application.Contracts;
-    using Domain.Entities;
-    using MediatR;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Blog.Application.Infrastructure.Handlers;
+using Blog.Application.Contracts;
+using Blog.Domain.Entities;
+using MediatR;
 
-    public class CreateArticleCommand : IRequest<int>
+namespace Blog.Application.Articles.Commands
+{
+    public class CreateArticle : IRequest<int>
     {
         public string Title { get; set; }
 
         public string Content { get; set; }
 
-        public class CreateArticleCommandHandler : Handler<CreateArticleCommand, int>
+        public class CreateArticleHandler : Handler<CreateArticle, int>
         {
             private readonly IPersistenceContract data;
             private readonly IAuthenticationContract authenticationContext;
 
-            public CreateArticleCommandHandler(
+            public CreateArticleHandler(
                 IPersistenceContract data,
                 IAuthenticationContract authenticationContext)
             {
@@ -27,7 +27,7 @@
             }
 
             public override async Task<int> Handle(
-                CreateArticleCommand request, 
+                CreateArticle request,
                 CancellationToken cancellationToken)
             {
                 var article = new Article(request.Title, request.Content, this.authenticationContext.Username);

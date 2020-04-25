@@ -2,23 +2,22 @@
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Application.Articles.Commands.Create;
+    using Blog.Application.Articles.Commands;
     using Shouldly;
     using Xunit;
 
-    public class CreateArticleCommandTests : CommandTestBase
+    public class CreateArticleTests : CommandTestBase
     {
         [Fact]
         public async Task HandleShouldPersistArticle()
         {
-            var command = new CreateArticleCommand
+            var command = new CreateArticle
             {
                 Title = "Test Title Command",
                 Content = "Test Content Command"
             };
 
-            var handler = new CreateArticleCommand
-                .CreateArticleCommandHandler(this.Context, this.IdentityContext);
+            var handler = new CreateArticle.CreateArticleHandler(this.Context, this.IdentityContext);
 
             var result = await handler.Handle(command, CancellationToken.None);
 

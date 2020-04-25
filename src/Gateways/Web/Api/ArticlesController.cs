@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Blog.Application.Articles.Commands.ChangeVisibility;
-using Blog.Application.Articles.Commands.Create;
-using Blog.Application.Articles.Queries.Details;
+using Blog.Application.Articles.Commands;
+using Blog.Application.Articles.Queries;
 using Blog.Application.Articles.Queries.IsByUser;
 using Blog.Gateways.Web.Infrastructure.Controllers;
 using Microsoft.AspNetCore.Authorization;
@@ -13,16 +12,16 @@ namespace Blog.Gateways.Web.Api
     {
         [HttpGet("{id}")]
         public async Task<ActionResult<ArticleDetailsModel>> Details(
-            [FromRoute] ArticleDetailsQuery query)
+            [FromRoute] GetArticleDetails query)
             => await this.Mediator.Send(query);
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<ActionResult<int>> Create(CreateArticleCommand command)
+        public async Task<ActionResult<int>> Create(CreateArticle command)
             => await this.Mediator.Send(command);
 
         [HttpPut("[action]")]
-        public async Task<ActionResult> ChangeVisibility(ChangeArticleVisibilityCommand command)
+        public async Task<ActionResult> ChangeVisibility(ChangeArticleVisibility command)
         {
             await this.Mediator.Send(command);
 
@@ -30,8 +29,7 @@ namespace Blog.Gateways.Web.Api
         }
 
         [HttpGet("[action]/{id}")]
-        public async Task<ActionResult<bool>> IsByUser(
-            [FromRoute] ArticleIsByUserQuery query)
+        public async Task<ActionResult<bool>> IsByUser([FromRoute] IsArticleByAuthor query)
             => await this.Mediator.Send(query);
     }
 }

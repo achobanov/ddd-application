@@ -1,7 +1,7 @@
 ﻿namespace Blog.Web.IntegrationTests.Pipeline
 {
     using System.Linq;
-    using Application.Articles.Commands.ChangeVisibility;
+    using Blog.Application.Articles.Commands;
     using Blog.Gateways.Web.Api;
     using Gateways.Persistence;
     using MyTested.AspNetCore.Mvc;
@@ -20,7 +20,7 @@
                     .WithLocation("api/Articles/ChangeVisibility")
                     .WithJsonBody(new {Id = id}))
                 .To<ArticlesController>(c => c
-                    .ChangeVisibility(new ChangeArticleVisibilityCommand {Id = id}))
+                    .ChangeVisibility(new ChangeArticleVisibility {Id = id}))
                 .Which(controller => controller
                     .WithData(data => data
                         .WithEntities<BlogDbContext>(TestData.Articles)))

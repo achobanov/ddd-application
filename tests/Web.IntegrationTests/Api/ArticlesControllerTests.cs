@@ -1,13 +1,13 @@
 ﻿namespace Blog.Web.IntegrationTests.Api
 {
     using System.Linq;
-    using Application.Articles.Commands.Create;
-    using Application.Articles.Queries.Details;
     using Blog.Gateways.Web.Api;
     using Blog.Gateways.Persistence;
     using MyTested.AspNetCore.Mvc;
     using Shouldly;
     using Xunit;
+    using Blog.Application.Articles.Commands;
+    using Blog.Application.Articles.Queries;
 
     public class ArticlesControllerTests
     {
@@ -21,7 +21,7 @@
         [Fact]
         public void DetailsShouldBeAllowedForAnonymousUsersAndGetRequestsOnly()
             => MyController<ArticlesController>
-                .Calling(c => c.Details(With.Default<ArticleDetailsQuery>()))
+                .Calling(c => c.Details(With.Default<GetArticleDetails>()))
                 .ShouldHave()
                 .ActionAttributes(attr => attr
                     .AllowingAnonymousRequests()
@@ -34,7 +34,7 @@
                 .Instance(controller => controller
                     .WithData(entities => entities
                         .WithEntities<BlogDbContext>(TestData.Articles)))
-                .Calling(c => c.Details(new ArticleDetailsQuery { Id = id }))
+                .Calling(c => c.Details(new GetArticleDetails { Id = id }))
                 .ShouldReturn()
                 .ActionResult<ArticleDetailsModel>(result => result
                     .Passing(model => model.Id == id && model.Author == TestUser.Username));
@@ -46,7 +46,7 @@
                 .Instance(controller => controller
                     .WithData(entities => entities
                         .WithEntities<BlogDbContext>(TestData.Articles)))
-                .Calling(c => c.Create(new CreateArticleCommand
+                .Calling(c => c.Create(new CreateArticle
                 {
                     Title = title,
                     Content = content

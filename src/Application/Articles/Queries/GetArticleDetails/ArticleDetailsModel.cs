@@ -1,9 +1,9 @@
-﻿namespace Blog.Application.Articles.Queries.Details
-{
-    using System;
-    using Domain.Entities;
-    using Blog.Common.Mappings;
+﻿using System;
+using Blog.Domain.Entities;
+using Blog.Common.Mappings;
 
+namespace Blog.Application.Articles.Queries
+{
     public class ArticleDetailsModel : IMapFrom<Article>
     {
         public int Id { get; set; }

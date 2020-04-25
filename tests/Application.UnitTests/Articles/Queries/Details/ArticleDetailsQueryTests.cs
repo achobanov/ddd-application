@@ -1,20 +1,20 @@
-﻿namespace Blog.Application.UnitTests.Articles.Queries.Details
-{
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Application.Articles.Queries.Details;
-    using AutoMapper;
-    using Gateways.Persistence;
-    using Shouldly;
-    using Xunit;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
+using Blog.Application.Articles.Queries;
+using Blog.Gateways.Persistence;
+using Shouldly;
+using Xunit;
 
+namespace Blog.Application.UnitTests.Articles.Queries.Details
+{
     [Collection("QueryTests")]
-    public class ArticleDetailsQueryTests
+    public class GetArticleDetailsTests
     {
         private readonly BlogDbContext context;
         private readonly IMapper mapper;
 
-        public ArticleDetailsQueryTests(QueryTestFixture fixture)
+        public GetArticleDetailsTests(QueryTestFixture fixture)
         {
             this.context = fixture.Context;
             this.mapper = fixture.Mapper;
@@ -24,9 +24,9 @@
         public async Task HandleReturnsCorrectArticleDetails()
         {
             // Assert
-            var query = new ArticleDetailsQuery { Id = 1 };
+            var query = new GetArticleDetails { Id = 1 };
 
-            var handler = new ArticleDetailsQuery.ArticleDetailsQueryHandler(this.context, this.mapper);
+            var handler = new GetArticleDetails.GetArticleDetailsHandler(this.context, this.mapper);
 
             // Act
             var result = await handler.Handle(query, CancellationToken.None);
