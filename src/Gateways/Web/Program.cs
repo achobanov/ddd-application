@@ -1,8 +1,8 @@
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+
 namespace Blog.Gateways.Web
 {
-    using Microsoft.AspNetCore;
-    using Microsoft.AspNetCore.Hosting;
-
     public class Program
     {
         public static void Main(string[] args) 

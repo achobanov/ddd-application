@@ -1,9 +1,9 @@
-﻿namespace Blog.Gateways.Web
-{
-    using Blog.Common.ConventionalServices;
-    using Blog.Gateways.Web.Providers;
-    using Microsoft.Extensions.DependencyInjection;
+﻿using Blog.Common.ConventionalServices;
+using Blog.Gateways.Web.Providers;
+using Microsoft.Extensions.DependencyInjection;
 
+namespace Blog.Gateways.Web
+{
     public static class ServiceRegistration
     {
         public static IServiceCollection AddWebComponents(

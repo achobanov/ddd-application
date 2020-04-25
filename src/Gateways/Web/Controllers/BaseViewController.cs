@@ -1,12 +1,12 @@
-﻿namespace Blog.Gateways.Web.Controllers
-{
-    using System;
-    using Blog.Common.Models;
-    using Blog.Gateways.Web.Infrastructure.Extensions;
-    using MediatR;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using Blog.Common.Models;
+using Blog.Gateways.Web.Infrastructure.Extensions;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
+namespace Blog.Gateways.Web.Controllers
+{
     [Controller]
     [Route("[controller]")]
     public abstract class BaseViewController : Controller

@@ -1,14 +1,14 @@
-﻿namespace Blog.Gateways.Web.Api
-{
-    using System.Threading.Tasks;
-    using Application.Articles.Commands.ChangeVisibility;
-    using Application.Articles.Commands.Create;
-    using Application.Articles.Queries.Details;
-    using Application.Articles.Queries.IsByUser;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Blog.Application.Articles.Commands.ChangeVisibility;
+using Blog.Application.Articles.Commands.Create;
+using Blog.Application.Articles.Queries.Details;
+using Blog.Application.Articles.Queries.IsByUser;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-    public class ArticlesApiController : BaseApiController
+namespace Blog.Gateways.Web.Api
+{
+    public class ArticlesController : BaseApiController
     {
         [HttpGet("{id}")]
         public async Task<ActionResult<ArticleDetailsModel>> Details(

@@ -1,14 +1,14 @@
-﻿namespace Blog.Gateways.Web
-{
-    using System;
-    using System.Threading.Tasks;
-    using Gateways.Persistence;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
+﻿using System;
+using System.Threading.Tasks;
+using Blog.Gateways.Persistence;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
+namespace Blog.Gateways.Web
+{
     public static class Initializer
     {
         public static IWebHost Initialize(this IWebHost host)
