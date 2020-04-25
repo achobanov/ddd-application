@@ -1,8 +1,9 @@
-﻿namespace Blog.Domain.Entities
+﻿using System;
+using Blog.Domain.Infrastructure.Entities;
+using Blog.Domain.Exceptions;
+
+namespace Blog.Domain.Entities
 {
-    using System;
-    using Infrastructure;
-    using Exceptions;
 
     public class Comment : AuditableEntity
     {

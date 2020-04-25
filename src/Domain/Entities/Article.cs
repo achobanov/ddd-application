@@ -1,10 +1,10 @@
-﻿namespace Blog.Domain.Entities
-{
-    using System;
-    using System.Collections.Generic;
-    using Infrastructure;
-    using Exceptions;
+﻿using System;
+using System.Collections.Generic;
+using Blog.Domain.Exceptions;
+using Blog.Domain.Infrastructure.Entities;
 
+namespace Blog.Domain.Entities
+{
     public class Article : AuditableEntity
     {
         private string title;

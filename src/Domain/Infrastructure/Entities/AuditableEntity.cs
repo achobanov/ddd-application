@@ -1,8 +1,8 @@
-﻿namespace Blog.Domain.Infrastructure
-{
-    using System;
-    using Exceptions;
+﻿using System;
+using Blog.Domain.Exceptions;
 
+namespace Blog.Domain.Infrastructure.Entities
+{
     public abstract class AuditableEntity : Entity, IAuditableEntity
     {
         private string createdBy;

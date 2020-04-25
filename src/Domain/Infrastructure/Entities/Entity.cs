@@ -1,4 +1,4 @@
-﻿namespace Blog.Domain.Infrastructure
+﻿namespace Blog.Domain.Infrastructure.Entities
 {
     public abstract class Entity
     {

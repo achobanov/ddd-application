@@ -1,8 +1,8 @@
-﻿namespace Blog.Domain.Entities
-{
-    using System.Collections.Generic;
-    using Blog.Domain.Infrastructure;
+﻿using System.Collections.Generic;
+using Blog.Domain.Infrastructure.Entities;
 
+namespace Blog.Domain.Entities
+{
     public class Person : Entity
     {
         public Person()

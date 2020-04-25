@@ -1,7 +1,7 @@
-﻿namespace Blog.Domain.Infrastructure
-{
-    using System;
+﻿using System;
 
+namespace Blog.Domain.Infrastructure.Entities
+{
     public interface IAuditableEntity
     {
         public string CreatedBy { get; set; }
