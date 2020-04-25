@@ -66,9 +66,7 @@ namespace Blog.Gateways.Persistence
         #region IPersistenceContract implementation
 
         IDataSet<TEntity> IPersistenceContract.Set<TEntity>()
-        {
-            throw new System.NotImplementedException();
-        }
+            => new DataSet<TEntity>(this.Set<TEntity>());
 
         public Task<int> SaveChanges(CancellationToken cancellationToken = new CancellationToken())
             => this.SaveChangesAsync(cancellationToken);
