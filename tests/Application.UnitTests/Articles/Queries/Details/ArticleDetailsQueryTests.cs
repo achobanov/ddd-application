@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using Application.Articles.Queries.Details;
     using AutoMapper;
-    using Infrastructure.Persistence;
+    using Gateways.Persistence;
     using Shouldly;
     using Xunit;
 

@@ -4,7 +4,7 @@ namespace Blog.Gateways.Web
     using Application.Contracts;
     using FluentValidation.AspNetCore;
     using Infrastructure;
-    using Infrastructure.Persistence;
+    using Gateways.Persistence;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -26,7 +26,8 @@ namespace Blog.Gateways.Web
         {
             services
                 .AddApplication()
-                .AddInfrastructure(this.Configuration)
+                .AddInfrastructure()
+                .AddPersistence(this.Configuration)
                 .AddAuthentication<BlogDbContext>(this.Configuration)
                 .AddWebComponents();
 

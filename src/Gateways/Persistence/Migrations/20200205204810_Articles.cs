@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Blog.Infrastructure.Persistence.Migrations
+namespace Blog.Gateways.Persistence.Migrations
 {
     public partial class Articles : Migration
     {

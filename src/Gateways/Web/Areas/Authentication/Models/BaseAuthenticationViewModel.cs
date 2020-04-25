@@ -6,7 +6,6 @@ namespace Blog.Gateways.Web.Areas.Authentication.Models
 {
     public abstract class BaseAuthenticationViewModel
     {
-
         [Required]
         [Display(Name = Labels.Username)]
         public string Username { get; set; }

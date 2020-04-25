@@ -1,4 +1,4 @@
-﻿namespace Blog.Web.IntegrationTests.Features
+﻿namespace Blog.Web.IntegrationTests.Api
 {
     using System.Linq;
     using Application.Articles.Commands.Create;

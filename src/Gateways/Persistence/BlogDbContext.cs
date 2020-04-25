@@ -1,4 +1,4 @@
-﻿namespace Blog.Infrastructure.Persistence
+﻿namespace Blog.Gateways.Persistence
 {
     using System.Reflection;
     using System.Threading;

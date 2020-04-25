@@ -5,7 +5,7 @@ namespace Blog.Application.UnitTests
     using Application.Common.Interfaces;
     using Application.Common.Mappings;
     using AutoMapper;
-    using Infrastructure.Persistence;
+    using Gateways.Persistence;
     using Moq;
     using Xunit;
 
