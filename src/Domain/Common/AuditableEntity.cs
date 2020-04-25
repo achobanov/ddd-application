@@ -3,7 +3,7 @@
     using System;
     using Exceptions;
 
-    public abstract class AuditableEntity<TKey> : Entity<TKey>, IAuditableEntity
+    public abstract class AuditableEntity : Entity, IAuditableEntity
     {
         private string createdBy;
         private string modifiedBy;

@@ -5,7 +5,7 @@
     using Common;
     using Exceptions;
 
-    public class Article : AuditableEntity<int>
+    public class Article : AuditableEntity
     {
         private string title;
         private string content;
@@ -53,6 +53,10 @@
         public bool IsPublic { get; set; }
 
         public DateTime? PublishedOn { get; set; }
+
+        public Person Author { get; set; }
+
+        public int AuthorId { get; set; }
 
         public ICollection<Comment> Comments { get; } = new List<Comment>();
 
