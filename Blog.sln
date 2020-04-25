@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Providers", "src\Gatewa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "src\Gateways\Persistence\Persistence.csproj", "{02BA5C28-833A-445D-9A48-3E649834A096}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Contracts", "src\Application.Contracts\Application.Contracts\Application.Contracts.csproj", "{A6ABA695-44A7-4DA4-A0AF-EEB9AD4F03E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{02BA5C28-833A-445D-9A48-3E649834A096}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02BA5C28-833A-445D-9A48-3E649834A096}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02BA5C28-833A-445D-9A48-3E649834A096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6ABA695-44A7-4DA4-A0AF-EEB9AD4F03E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6ABA695-44A7-4DA4-A0AF-EEB9AD4F03E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6ABA695-44A7-4DA4-A0AF-EEB9AD4F03E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6ABA695-44A7-4DA4-A0AF-EEB9AD4F03E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,6 +111,7 @@ Global
 		{866268CF-7EAD-4CC7-AEEB-523AE5CED06F} = {D327FC5A-4CE3-4663-A655-D4420E57240A}
 		{BD49768C-15CA-4154-A12B-62BAFBCCD388} = {D327FC5A-4CE3-4663-A655-D4420E57240A}
 		{02BA5C28-833A-445D-9A48-3E649834A096} = {D327FC5A-4CE3-4663-A655-D4420E57240A}
+		{A6ABA695-44A7-4DA4-A0AF-EEB9AD4F03E6} = {6ED356A7-8B47-4613-AD01-C85CF28491BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3CB609D9-5D54-4C11-A371-DAAC8B74E430}
