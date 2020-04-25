@@ -1,8 +1,8 @@
 ﻿namespace Blog.Domain.Common
 {
-    public abstract class Entity<TKey>
+    public abstract class Entity
     {
-        public virtual TKey Id { get; set; }
+        public virtual int Id { get; set; }
 
         // Add GetHashCode(), Equals(), etc.
     }

@@ -25,14 +25,14 @@
 
             builder
                 .HasMany(a => a.Comments)
-                .WithOne()
-                .HasForeignKey("ArticleId")
+                .WithOne(a => a.Article)
+                .HasForeignKey(c => c.ArticleId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
-                .HasOne(typeof(User))
-                .WithMany("Articles")
-                .HasForeignKey("CreatedBy")
+                .HasOne(a => a.Author)
+                .WithMany(u => u.Articles)
+                .HasForeignKey(a => a.AuthorId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

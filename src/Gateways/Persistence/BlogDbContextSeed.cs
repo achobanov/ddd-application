@@ -29,14 +29,18 @@
                 return;
             }
 
-            var userId = await data.Users.Select(u => u.Id).FirstAsync();
-
-            data.Articles.Add(new Article("Test Article", "Test Article Content", userId)
+            var user = await data.Users.FirstAsync();
+            var person = new Person(user.Email, user.Id);           
+            var article = (new Article("Test Article", "Test Article Content", user.Id)
             {
                 CreatedOn = DateTime.Now.AddDays(-1),
                 IsPublic = true,
-                PublishedOn = DateTime.Now
+                PublishedOn = DateTime.Now,
+                Author = person
             });
+
+            data.People.Add(person);
+            data.Articles.Add(article);
 
             await data.SaveChangesAsync();
         }
