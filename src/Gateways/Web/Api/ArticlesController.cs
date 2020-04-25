@@ -3,6 +3,7 @@ using Blog.Application.Articles.Commands.ChangeVisibility;
 using Blog.Application.Articles.Commands.Create;
 using Blog.Application.Articles.Queries.Details;
 using Blog.Application.Articles.Queries.IsByUser;
+using Blog.Gateways.Web.Infrastructure.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,4 +1,5 @@
 ﻿using Blog.Application.Contracts;
+using Blog.Gateways.Web.Infrastructure.Controllers;
 using Blog.Gateways.Web.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

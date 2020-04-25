@@ -5,7 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Blog.Gateways.Web.Controllers
+namespace Blog.Gateways.Web.Infrastructure.Controllers
 {
     [Controller]
     [Route("[controller]")]

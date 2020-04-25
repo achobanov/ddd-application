@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Blog.Application.Articles.Queries.Details;
+using Blog.Gateways.Web.Infrastructure.Controllers;
 
 namespace Blog.Gateways.Web.Controllers
 {
