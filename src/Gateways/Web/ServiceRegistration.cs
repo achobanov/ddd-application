@@ -1,6 +1,6 @@
 ﻿namespace Blog.Gateways.Web
 {
-    using Application;
+    using Blog.Common.ConventionalServices;
     using Blog.Gateways.Web.Providers;
     using Microsoft.Extensions.DependencyInjection;
 

@@ -9,6 +9,7 @@ namespace Blog.Application.UnitTests
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Options;
     using Moq;
+    using Blog.Common.Contracts;
 
     public static class ApplicationDbContextFactory
     {

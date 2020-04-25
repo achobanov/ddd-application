@@ -1,7 +1,7 @@
 ﻿namespace Blog.Gateways.Web.Controllers
 {
     using System;
-    using Blog.Application.Infrastructure.Models;
+    using Blog.Common.Models;
     using Blog.Gateways.Web.Infrastructure.Extensions;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;

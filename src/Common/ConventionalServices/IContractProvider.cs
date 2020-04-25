@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Blog.Application.Infrastructure.Services
+namespace Blog.Common.ConventionalServices
 {
     public interface IContractProvider
     {

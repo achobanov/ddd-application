@@ -3,8 +3,8 @@ namespace Blog.Application.UnitTests
     using System;
     using System.Threading.Tasks;
     using Application.Infrastructure.Interfaces;
-    using Application.Infrastructure.Mappings;
     using AutoMapper;
+    using Blog.Common.Mappings;
     using Gateways.Persistence;
     using Moq;
     using Xunit;

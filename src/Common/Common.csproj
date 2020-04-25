@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Blog.Infrastructure</RootNamespace>
-    <AssemblyName>Blog.Infrastructure</AssemblyName>
+    <RootNamespace>Blog.Common</RootNamespace>
+    <AssemblyName>Blog.Common</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

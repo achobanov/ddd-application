@@ -2,10 +2,10 @@
 {
     using Blog.Gateways.Web;
     using Blog.Application.Contracts;
-    using Gateways.Web;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using MyTested.AspNetCore.Mvc;
+    using Blog.Common.Contracts;
 
     public class TestStartup : Startup
     {

@@ -1,4 +1,4 @@
-﻿using Blog.Application;
+﻿using Blog.Common.ConventionalServices;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Blog.Common

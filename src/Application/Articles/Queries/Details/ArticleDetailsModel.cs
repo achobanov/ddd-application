@@ -1,8 +1,8 @@
 ﻿namespace Blog.Application.Articles.Queries.Details
 {
     using System;
-    using Infrastructure.Mappings;
     using Domain.Entities;
+    using Blog.Common.Mappings;
 
     public class ArticleDetailsModel : IMapFrom<Article>
     {

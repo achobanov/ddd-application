@@ -1,7 +1,7 @@
 ﻿namespace Blog.Application.UnitTests.Common.Mappings
 {
     using AutoMapper;
-    using Blog.Application.Infrastructure.Mappings;
+    using Blog.Common.Mappings;
 
     public class MappingTestsFixture
     {

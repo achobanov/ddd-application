@@ -3,7 +3,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Blog.Application.Infrastructure.Interfaces;
-    using Blog.Application.Infrastructure.Models;
+    using Blog.Common.Models;
     using Blog.Web.Authentication;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
@@ -55,6 +55,16 @@
             var result = await this.userManager.DeleteAsync(user);
 
             return result.ToApplicationResult();
+        }
+
+        Task<(Result Result, string UserId)> IIdentity.CreateUser(string userName, string password)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        Task<Result> IIdentity.DeleteUser(string userId)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

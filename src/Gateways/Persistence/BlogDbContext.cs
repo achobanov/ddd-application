@@ -11,6 +11,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Options;
+    using Blog.Common.Contracts;
 
     public class BlogDbContext : ApiAuthorizationDbContext<IdentityUser>, IBlogData
     {

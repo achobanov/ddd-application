@@ -8,6 +8,7 @@
     public interface IBlogData
     {
         DbSet<Person> People { get; set; }
+
         DbSet<Article> Articles { get; set; }
 
         DbSet<Comment> Comments { get; set; }

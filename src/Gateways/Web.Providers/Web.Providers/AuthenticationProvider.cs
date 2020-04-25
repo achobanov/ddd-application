@@ -1,5 +1,4 @@
-﻿using Blog.Application.Infrastructure.Services;
-using Blog.Application.Contracts;
+﻿using Blog.Application.Contracts;
 using Blog.Gateways.Web.Authentication;
 using Blog.Gateways.Web.Contracts;
 using IdentityServer4.EntityFramework.Interfaces;
@@ -9,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Blog.Common.ConventionalServices;
 
 namespace Blog.Gateways.Web.Providers
 {

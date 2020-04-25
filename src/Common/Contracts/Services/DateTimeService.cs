@@ -1,7 +1,7 @@
-﻿namespace Blog.Common.Services
+﻿namespace Blog.Common.Contracts.Services
 {
     using System;
-    using Blog.Application.Contracts;
+    using Blog.Common.Contracts;
 
     public class DateTimeService : IDateTime
     {

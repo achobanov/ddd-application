@@ -1,4 +1,4 @@
-﻿namespace Blog.Application.Contracts
+﻿namespace Blog.Common.Contracts
 {
     using System;
     using Blog.Common.ConventionalServices;

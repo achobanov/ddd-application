@@ -1,7 +1,7 @@
 ﻿namespace Blog.Gateways.Web.Contracts
 {
     using System.Threading.Tasks;
-    using Blog.Application.Infrastructure.Models;
+    using Blog.Common.Models;
 
     public interface IAuthenticationService
     {

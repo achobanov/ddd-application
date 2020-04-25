@@ -5,6 +5,7 @@
     using Blog.Application.Infrastructure.Handlers;
     using Blog.Application.Contracts;
     using MediatR;
+    using Blog.Common.Contracts;
 
     public class ChangeArticleVisibilityCommand : IRequest
     {
@@ -13,17 +14,16 @@
         public class ChangeArticleVisibilityCommandHandler : Handler<ChangeArticleVisibilityCommand>
         {
             private readonly IBlogData data;
-            private readonly IDateTime dateTime;
 
             public ChangeArticleVisibilityCommandHandler(
                 IBlogData data, 
                 IDateTime dateTime)
             {
                 this.data = data;
-                this.dateTime = dateTime;
+                this.DateTime = dateTime;
             }
 
-            public IDateTime DateTime => dateTime;
+            public IDateTime DateTime { get; }
 
             protected override async Task Handle(
                 ChangeArticleVisibilityCommand request, 

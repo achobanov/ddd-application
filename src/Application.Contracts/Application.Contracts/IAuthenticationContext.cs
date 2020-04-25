@@ -1,6 +1,6 @@
 ﻿namespace Blog.Application.Contracts
 {
-    using Blog.Application.Infrastructure.Services;
+    using Blog.Common.ConventionalServices;
 
     public interface IAuthenticationContext : IScopedService
     {

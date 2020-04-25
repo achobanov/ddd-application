@@ -11,6 +11,7 @@
     using Moq;
     using Shouldly;
     using Xunit;
+    using Blog.Common.Contracts;
 
     public class BlogDbContextTests : IDisposable
     {
