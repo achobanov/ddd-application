@@ -4,6 +4,26 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>Blog.Domain</RootNamespace>
     <AssemblyName>Blog.Domain</AssemblyName>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Update="E:\Software Development\web-application\src\Domain\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
 
 </Project>
