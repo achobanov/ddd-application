@@ -110,7 +110,7 @@ namespace Blog.Gateways.Persistence.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("Blog.Domain.Entities.Person", b =>
+            modelBuilder.Entity("Blog.Domain.Entities.Author", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -125,7 +125,7 @@ namespace Blog.Gateways.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("People");
+                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
@@ -412,7 +412,7 @@ namespace Blog.Gateways.Persistence.Migrations
 
             modelBuilder.Entity("Blog.Domain.Entities.Article", b =>
                 {
-                    b.HasOne("Blog.Domain.Entities.Person", "Author")
+                    b.HasOne("Blog.Domain.Entities.Author", "Author")
                         .WithMany("Articles")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -427,7 +427,7 @@ namespace Blog.Gateways.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Blog.Domain.Entities.Person", "Author")
+                    b.HasOne("Blog.Domain.Entities.Author", "Author")
                         .WithMany("Comments")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Restrict)
