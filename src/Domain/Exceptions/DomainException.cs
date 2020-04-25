@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blog.Domain.Infrastructure
+namespace Blog.Domain.Exceptions
 {
     public class DomainException : Exception
     {
