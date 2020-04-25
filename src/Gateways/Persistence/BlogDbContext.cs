@@ -14,13 +14,13 @@
 
     public class BlogDbContext : ApiAuthorizationDbContext<IdentityUser>, IBlogData
     {
-        private readonly IIdentityContext currentUserService;
+        private readonly IAuthenticationContext currentUserService;
         private readonly IDateTime dateTime;
 
         public BlogDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions,
-            IIdentityContext currentUserService,
+            IAuthenticationContext currentUserService,
             IDateTime dateTime) 
             : base(options, operationalStoreOptions)
         {
@@ -45,11 +45,11 @@
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedBy ??= this.currentUserService.UserId;
+                        entry.Entity.CreatedBy ??= this.currentUserService.Username;
                         entry.Entity.CreatedOn = this.dateTime.Now;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.ModifiedBy = this.currentUserService.UserId;
+                        entry.Entity.ModifiedBy = this.currentUserService.Username;
                         entry.Entity.ModifiedOn = this.dateTime.Now;
                         break;
                 }

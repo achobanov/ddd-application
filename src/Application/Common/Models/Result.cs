@@ -9,17 +9,38 @@
         internal Result(bool succeeded, IEnumerable<string> errors)
         {
             this.Succeeded = succeeded;
-            this.Errors = errors.ToArray();
+            this.Errors = errors?.ToArray() ?? Array.Empty<string>();
         }
 
         public static Result Success 
-            => new Result(true, Array.Empty<string>());
+            => new Result(true, null);
 
         public bool Succeeded { get; set; }
 
         public string[] Errors { get; set; }
 
-        public static Result Failure(IEnumerable<string> errors) 
+        public static Result Failure(params string[] errors) 
             => new Result(false, errors);
+    }
+
+    public class Result<T> : Result
+        where T: class
+    {
+        internal Result(T data)
+            : base(true, null)
+            => this.Data = data;
+
+        internal Result(bool succeeded, IEnumerable<string> errors)
+            : base(succeeded, errors)
+        {
+        }
+
+        public T Data { get; set; }
+
+        public static new Result<T> Success(T data)
+            => new Result<T>(data);
+
+        public static new Result<T> Failure(params string[] errors)
+            => Result.Failure(errors) as Result<T>;
     }
 }

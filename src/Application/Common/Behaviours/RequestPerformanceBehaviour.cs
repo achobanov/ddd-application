@@ -4,7 +4,6 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Blog.Application.Contracts;
-    using Interfaces;
     using MediatR;
     using Microsoft.Extensions.Logging;
 
@@ -12,22 +11,20 @@
     {
         private readonly Stopwatch timer;
         private readonly ILogger<TRequest> logger;
-        private readonly IIdentityContext currentUserService;
-        private readonly IIdentity identityService;
+        private readonly IAuthenticationContext authenticationContext;
 
-        public RequestPerformanceBehaviour(
-            ILogger<TRequest> logger, 
-            IIdentityContext currentUserService,
-            IIdentity identityService)
+        public RequestPerformanceBehaviour(ILogger<TRequest> logger, IAuthenticationContext authenticationContext)
         {
             this.timer = new Stopwatch();
             
             this.logger = logger;
-            this.currentUserService = currentUserService;
-            this.identityService = identityService;
+            this.authenticationContext = authenticationContext;
         }
 
-        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+        public async Task<TResponse> Handle(
+            TRequest request,
+            CancellationToken cancellationToken,
+            RequestHandlerDelegate<TResponse> next)
         {
             this.timer.Start();
 
@@ -43,15 +40,13 @@
             }
 
             var requestName = typeof(TRequest).Name;
-            var userId = this.currentUserService.UserId;
-            var userName = await this.identityService.GetUserName(userId);
+            var username = this.authenticationContext.Username;
 
             this.logger.LogWarning(
-                "Blog Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@Request}",
+                "Blog Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Username} {@Request}",
                 requestName, 
                 elapsedMilliseconds, 
-                userId,
-                userName ?? "Anonymous", 
+                username ?? "Anonymous",
                 request);
 
             return response;

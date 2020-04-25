@@ -1,59 +1,66 @@
-﻿namespace Blog.Infrastructure.Identity
+﻿using System;
+using System.Threading.Tasks;
+using Blog.Application.Common.Models;
+using Blog.Gateways.Web.Contracts;
+using Blog.Web.Authentication;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+
+namespace Blog.Gateways.Web.Authentication
 {
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Blog.Application.Common.Interfaces;
-    using Blog.Application.Common.Models;
-    using Blog.Web.Authentication;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
-
-    public class IdentityService : IIdentity
+    public class IdentityService : IAuthenticationService
     {
+        private readonly IConfiguration configuration;
         private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<IdentityUser> signInManager;
 
-        public IdentityService(UserManager<IdentityUser> userManager) 
-            => this.userManager = userManager;
-
-        public async Task<string> GetUserName(string userId)
-            => await this.userManager
-                .Users
-                .Where(u => u.Id == userId)
-                .Select(u => u.UserName)
-                .FirstOrDefaultAsync();
-        
-        public async Task<(Result Result, string UserId)> CreateUser(string userName, string password)
+        public IdentityService(
+            IConfiguration configuration,
+            UserManager<IdentityUser> userManager, 
+            SignInManager<IdentityUser> signInManager)
         {
-            var user = new IdentityUser
-            {
-                UserName = userName,
-                Email = userName,
-            };
-
-            var result = await this.userManager.CreateAsync(user, password);
-
-            return (result.ToApplicationResult(), user.Id);
+            this.configuration = configuration;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
-        public async Task<Result> DeleteUser(string userId)
+        public async Task<Result<string>> Login(ILoginModelContract model)
         {
-            var user = this.userManager
-                .Users
-                .SingleOrDefault(u => u.Id == userId);
+            var result = await this.signInManager.PasswordSignInAsync(
+                model.Username,
+                model.Password,
+                model.RememberMe,
+                lockoutOnFailure: false);
 
-            if (user != null)
+            if (!result.Succeeded)
             {
-                return await this.DeleteUser(user);
+                return Result<string>.Failure(result.ToString());
             }
 
-            return Result.Success;
+            var jwtToken = JwtTokenFactory.Create(
+                model.Username,
+                configuration["Jwt:Key"],
+                configuration["Jwt:Issuer"],
+                TimeSpan.FromDays(int.Parse(configuration["Jwt:ExpirationInDays"])));
+
+            return Result<string>.Success(jwtToken);
         }
 
-        public async Task<Result> DeleteUser(IdentityUser user)
-        {
-            var result = await this.userManager.DeleteAsync(user);
+        public Task Logout()
+            => this.signInManager.SignOutAsync();
 
-            return result.ToApplicationResult();
+        public async Task<Result> Register(IRegisterModelContract model)
+        {
+            var user = new IdentityUser { UserName = model.Username };
+            var result = await this.userManager.CreateAsync(user, model.Password);
+            if (!result.Succeeded)
+            {
+                return result.ToApplicationResult();
+            }
+
+            await this.signInManager.SignInAsync(user, isPersistent: false);
+
+            return Result.Success;
         }
     }
 }

@@ -5,14 +5,15 @@ namespace Blog.Gateways.Web
     using FluentValidation.AspNetCore;
     using Infrastructure;
     using Gateways.Persistence;
-    using Web.Middleware;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Blog.Web.Authentication;
+    using Blog.Gateways.Web.Providers;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Authentication.Cookies;
 
     public class Startup
     {
@@ -27,7 +28,7 @@ namespace Blog.Gateways.Web
                 .AddApplication()
                 .AddInfrastructure()
                 .AddPersistence(this.Configuration)
-                .AddApiAuthentication()
+                .AddAuthentication<BlogDbContext>(this.Configuration)
                 .AddWebComponents();
 
             services
@@ -36,39 +37,36 @@ namespace Blog.Gateways.Web
 
             services
                 .AddControllers()
-                .AddFluentValidation(options => options
+                .AddFluentValidation(options => options // unnecessary
                     .RegisterValidatorsFromAssemblyContaining<IBlogData>())
                 .AddNewtonsoftJson();
 
-            services.Configure<ApiBehaviorOptions>(options =>
+            services.Configure<ApiBehaviorOptions>(options => // probably unnecessary 
             {
                 options.SuppressModelStateInvalidFilter = true;
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder application, IWebHostEnvironment environment)
         {
-            if (env.IsDevelopment())
+            if (environment.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                application.UseDeveloperExceptionPage();
+                application.UseDatabaseErrorPage();
             }
             else
             {
-                app.UseHsts();
+                application.UseHsts();
             }
-
-            app.UseCustomExceptionHandler();
-            app.UseHealthChecks("/health");
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseIdentityServer();
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints => endpoints.MapControllers());
+            
+            application
+                // app.UseCustomExceptionHandler();
+                .UseHealthChecks("/health")
+                .UseHttpsRedirection()
+                .UseRouting()
+                .UseAuthentication()
+                .UseAuthorization()
+                .UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }

@@ -14,7 +14,7 @@
 
     public class BlogDbContextTests : IDisposable
     {
-        private readonly string userId;
+        private readonly string username;
         private readonly DateTime dateTime;
         private readonly BlogDbContext data;
 
@@ -25,9 +25,9 @@
             var dateTimeMock = new Mock<IDateTime>();
             dateTimeMock.SetupGet(dt => dt.Now).Returns(this.dateTime);
 
-            this.userId = "00000000-0000-0000-0000-000000000000";
-            var currentUserMock = new Mock<IIdentityContext>();
-            currentUserMock.Setup(m => m.UserId).Returns(this.userId);
+            this.username = "mevolent";
+            var authenticationMock = new Mock<IAuthenticationContext>();
+            authenticationMock.Setup(m => m.Username).Returns(this.username);
 
             var options = new DbContextOptionsBuilder<BlogDbContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
@@ -40,9 +40,9 @@
                     PersistedGrants = new TableConfiguration("PersistedGrants")
                 });
 
-            this.data = new BlogDbContext(options, operationalStoreOptions, currentUserMock.Object, dateTimeMock.Object);
+            this.data = new BlogDbContext(options, operationalStoreOptions, authenticationMock.Object, dateTimeMock.Object);
 
-            this.data.Articles.Add(new Article("Test Title", "Test Content", this.userId));
+            this.data.Articles.Add(new Article("Test Title", "Test Content", this.username));
 
             this.data.SaveChanges();
         }
@@ -50,14 +50,14 @@
         [Fact]
         public async Task SaveChangesAsyncGivenNewArticleShouldSetCreatedProperties()
         {
-            var article = new Article("Test Title 2", "Test Content 2", this.userId);
+            var article = new Article("Test Title 2", "Test Content 2", this.username);
 
             this.data.Articles.Add(article);
 
             await this.data.SaveChangesAsync();
 
             article.CreatedOn.ShouldBe(this.dateTime);
-            article.CreatedBy.ShouldBe(this.userId);
+            article.CreatedBy.ShouldBe(this.username);
         }
 
         [Fact]
@@ -71,7 +71,7 @@
 
             article.ModifiedOn.ShouldNotBeNull();
             article.ModifiedOn.ShouldBe(this.dateTime);
-            article.ModifiedBy.ShouldBe(this.userId);
+            article.ModifiedBy.ShouldBe(this.username);
         }
 
         public void Dispose() => this.data?.Dispose();

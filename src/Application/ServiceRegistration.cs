@@ -1,5 +1,6 @@
 ﻿namespace Blog.Application
 {
+    using System;
     using System.Linq;
     using System.Reflection;
     using AutoMapper;
@@ -18,14 +19,14 @@
 
         public static IServiceCollection AddConventionalServices(
             this IServiceCollection services,
-            Assembly assembly)
+            params Assembly[] assemblies)
         {
             var serviceInterfaceType = typeof(IService);
             var singletonServiceInterfaceType = typeof(ISingletonService);
             var scopedServiceInterfaceType = typeof(IScopedService);
 
-            var types = assembly
-                .GetExportedTypes()
+            var types = assemblies
+                .SelectMany(x => x.GetExportedTypes())
                 .Where(t => t.IsClass && !t.IsAbstract)
                 .Select(t => new
                 {
@@ -48,6 +49,26 @@
                 {
                     services.AddScoped(type.Service, type.Implementation);
                 }
+            }
+
+            return services;
+        }
+
+        public static IServiceCollection AddContractProviders(
+            this IServiceCollection services,
+            params Assembly[] assemblies)
+        {
+            var contractProviderType = typeof(IContractProvider);
+
+            var contractProviders = assemblies
+                .SelectMany(assembly => assembly.GetExportedTypes())
+                .Where(type => type.IsClass && !type.IsAbstract && contractProviderType.IsAssignableFrom(type))
+                .Select(Activator.CreateInstance)
+                .Cast<IContractProvider>();
+
+            foreach (var provider in contractProviders)
+            {
+                provider.ProvideImplementations(services);
             }
 
             return services;

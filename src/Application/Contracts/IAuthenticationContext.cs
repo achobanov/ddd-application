@@ -2,8 +2,8 @@
 {
     using Blog.Application.Common.Services;
 
-    public interface IIdentityContext : IScopedService
+    public interface IAuthenticationContext : IScopedService
     {
-        string UserId { get; }
+        string Username { get; }
     }
 }

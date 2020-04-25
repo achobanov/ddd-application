@@ -3,38 +3,34 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Blog.Application.Contracts;
-    using Interfaces;
     using MediatR.Pipeline;
     using Microsoft.Extensions.Logging;
 
     public class RequestLogger<TRequest> : IRequestPreProcessor<TRequest>
     {
         private readonly ILogger logger;
-        private readonly IIdentityContext currentUserService;
-        private readonly IIdentity identityService;
+        private readonly IAuthenticationContext authenticationContext;
 
         public RequestLogger(
             ILogger<TRequest> logger, 
-            IIdentityContext currentUserService, 
-            IIdentity identityService)
+            IAuthenticationContext authenticationContext)
         {
             this.logger = logger;
-            this.currentUserService = currentUserService;
-            this.identityService = identityService;
+            this.authenticationContext = authenticationContext;
         }
 
-        public async Task Process(TRequest request, CancellationToken cancellationToken)
+        public Task Process(TRequest request, CancellationToken cancellationToken)
         {
             var requestName = typeof(TRequest).Name;
-            var userId = this.currentUserService.UserId;
-            var userName = await this.identityService.GetUserName(userId);
+            var username = this.authenticationContext.Username;
 
             this.logger.LogInformation(
-                "Blog Request: {Name} {@UserId} {@UserName} {@Request}",
+                "Blog Request: {Name} {@UserName} {@Request}",
                 requestName,
-                userId, 
-                userName ?? "Anonymous",
+                username ?? "Anonymous",
                 request);
+
+            return Task.CompletedTask;
         }
     }
 }
