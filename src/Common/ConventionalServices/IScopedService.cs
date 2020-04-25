@@ -1,4 +1,4 @@
-﻿namespace Blog.Application.Infrastructure.Services
+﻿namespace Blog.Common.ConventionalServices
 {
     public interface IScopedService
     {

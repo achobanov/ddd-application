@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Blog.Application.Infrastructure.Models
+namespace Blog.Common.Models
 {   
     public class Result
     {
