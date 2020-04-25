@@ -1,10 +1,10 @@
-﻿namespace Blog.Gateways.Persistence
-{
-    using Blog.Application.Contracts;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
+﻿using Blog.Application.Contracts;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
+namespace Blog.Gateways.Persistence
+{
     public static class ServiceRegistration
     {
         public static IServiceCollection AddPersistence(
