@@ -31,7 +31,7 @@ namespace Blog.Gateways.Persistence
             this.dateTime = dateTime;
         }
 
-        public DbSet<Person> People { get; set; }
+        public DbSet<Author> People { get; set; }
 
         public DbSet<Article> Articles { get; set; }
 

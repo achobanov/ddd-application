@@ -4,9 +4,9 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    public class PersonConfiguration : IEntityTypeConfiguration<Person>
+    public class PersonConfiguration : IEntityTypeConfiguration<Author>
     {
-        public void Configure(EntityTypeBuilder<Person> builder)
+        public void Configure(EntityTypeBuilder<Author> builder)
         {
             builder.HasKey(u => u.Id);
 

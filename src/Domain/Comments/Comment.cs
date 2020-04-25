@@ -33,7 +33,7 @@ namespace Blog.Domain.Comments
 
         public int ArticleId { get; set; }
 
-        public Person Author { get; set; }
+        public Author Author { get; set; }
 
         public int AuthorId { get; set; }
 

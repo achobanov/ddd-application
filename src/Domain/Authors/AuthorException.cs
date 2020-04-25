@@ -4,7 +4,7 @@ namespace Blog.Domain.Authors
 {
     public class AuthorException : DomainException
     {
-        private static readonly Type Type = typeof(Person);
+        private static readonly Type Type = typeof(Author);
 
         public AuthorException(string propertyName)
             : base(Type.Name, propertyName)

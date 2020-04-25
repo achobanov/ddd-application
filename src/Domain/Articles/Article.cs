@@ -55,7 +55,7 @@ namespace Blog.Domain.Articles
 
         public DateTime? PublishedOn { get; set; }
 
-        public Person Author { get; set; }
+        public Author Author { get; set; }
 
         public int AuthorId { get; set; }
 

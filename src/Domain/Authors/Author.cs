@@ -5,16 +5,16 @@ using Blog.Domain.Infrastructure.Entities;
 
 namespace Blog.Domain.Authors
 {
-    public class Person : Entity
+    public class Author : Entity
     {
         private string username;
 
-        public Person()
+        public Author()
         {
 
         }
 
-        public Person(string username, string identityId)
+        public Author(string username, string identityId)
         {
             this.Username = username;
             this.IdentityId = identityId;
