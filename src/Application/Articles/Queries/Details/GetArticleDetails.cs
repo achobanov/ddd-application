@@ -27,7 +27,7 @@ namespace Blog.Application.Articles.Queries
             }
 
             public override async Task<ArticleDetailsModel> Handle(
-                GetArticleDetails request, 
+                GetArticleDetails request,
                 CancellationToken cancellationToken)
             {
                 var article = await this.data
