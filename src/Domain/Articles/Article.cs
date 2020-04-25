@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Blog.Domain.Exceptions;
 using Blog.Domain.Infrastructure;
 using Blog.Domain.Infrastructure.Entities;
 
@@ -24,7 +25,7 @@ namespace Blog.Domain.Entities
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new DomainException("Article title cannot be null.");
+                    throw new ValueException(this, nameof(this.Title));
                 }
 
                 if (value.Length > 40)
