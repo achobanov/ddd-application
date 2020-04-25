@@ -1,14 +1,12 @@
+using System;
+using AutoMapper;
+using Blog.Common.Mappings;
+using Blog.Gateways.Persistence;
+using Xunit;
+
 namespace Blog.Application.UnitTests
 {
-    using System;
-    using System.Threading.Tasks;
-    using Application.Infrastructure.Interfaces;
-    using AutoMapper;
-    using Blog.Common.Mappings;
-    using Gateways.Persistence;
-    using Moq;
-    using Xunit;
-
+    // Tests will be fixed in: https://github.com/achobanov/web-application/issues/21
     public sealed class QueryTestFixture : IDisposable
     {
         public QueryTestFixture()
@@ -22,20 +20,20 @@ namespace Blog.Application.UnitTests
 
             this.Mapper = configurationProvider.CreateMapper();
 
-            var identityMock = new Mock<IIdentity>();
+            //var identityMock = new Mock<IIdentity>();
 
-            identityMock
-                .Setup(i => i.GetUserName(It.IsAny<string>()))
-                .Returns(Task.FromResult("Test User"));
+            //identityMock
+            //    .Setup(i => i.GetUserName(It.IsAny<string>()))
+            //    .Returns(Task.FromResult("Test User"));
 
-            this.Identity = identityMock.Object;
+            //this.Identity = identityMock.Object;
         }
 
         public BlogDbContext Context { get; }
 
         public IMapper Mapper { get; }
 
-        public IIdentity Identity { get; }
+        // public IIdentity Identity { get; }
 
         public void Dispose() => ApplicationDbContextFactory.Destroy(this.Context);
     }
