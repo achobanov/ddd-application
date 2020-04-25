@@ -1,8 +1,7 @@
-﻿namespace Blog.Common.Contracts.Services
-{
-    using System;
-    using Blog.Common.Contracts;
+﻿using System;
 
+namespace Blog.Common.Contracts.Services
+{
     public class DateTimeService : IDateTime
     {
         public DateTime Now => DateTime.Now;

@@ -1,13 +1,11 @@
-﻿namespace Blog.Application
-{
-    using System;
-    using System.Linq;
-    using System.Reflection;
-    using AutoMapper;
-    using Infrastructure.Behaviours;
-    using MediatR;
-    using Microsoft.Extensions.DependencyInjection;
+﻿using System.Reflection;
+using AutoMapper;
+using Blog.Application.Infrastructure.Behaviours;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 
+namespace Blog.Application
+{
     public static class ServiceRegistration
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)

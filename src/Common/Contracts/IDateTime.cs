@@ -1,8 +1,8 @@
-﻿namespace Blog.Common.Contracts
-{
-    using System;
-    using Blog.Common.ConventionalServices;
+﻿using System;
+using Blog.Common.ConventionalServices;
 
+namespace Blog.Common.Contracts
+{
     public interface IDateTime : IService
     {
         DateTime Now { get; }
