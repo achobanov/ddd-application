@@ -2,7 +2,7 @@
 {
     using Blog.Common.ConventionalServices;
 
-    public interface IAuthenticationContext : IScopedService
+    public interface IAuthenticationContract : IScopedService
     {
         string Username { get; }
     }

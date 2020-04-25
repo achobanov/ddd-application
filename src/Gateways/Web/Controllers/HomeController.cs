@@ -10,9 +10,9 @@ namespace Blog.Gateways.Web.Controllers
     [Route("[action]")]
     public class HomeController : BaseViewController
     {
-        private readonly IAuthenticationContext authenticationContext;
+        private readonly IAuthenticationContract authenticationContext;
 
-        public HomeController(IAuthenticationContext authenticationContext)
+        public HomeController(IAuthenticationContract authenticationContext)
         {
             this.authenticationContext = authenticationContext;
         }

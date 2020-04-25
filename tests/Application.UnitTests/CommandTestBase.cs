@@ -13,7 +13,7 @@ namespace Blog.Application.UnitTests
         {
             this.Context = ApplicationDbContextFactory.Create();
 
-            var currentUserMock = new Mock<IAuthenticationContext>();
+            var currentUserMock = new Mock<IAuthenticationContract>();
 
             currentUserMock
                 .SetupGet(u => u.Username)
@@ -24,7 +24,7 @@ namespace Blog.Application.UnitTests
 
         public BlogDbContext Context { get; }
 
-        public IAuthenticationContext IdentityContext { get; }
+        public IAuthenticationContract IdentityContext { get; }
 
         public void Dispose() => ApplicationDbContextFactory.Destroy(this.Context);
     }

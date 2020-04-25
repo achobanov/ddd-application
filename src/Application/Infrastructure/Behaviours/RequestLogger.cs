@@ -9,11 +9,11 @@ namespace Blog.Application.Infrastructure.Behaviours
     public class RequestLogger<TRequest> : IRequestPreProcessor<TRequest>
     {
         private readonly ILogger logger;
-        private readonly IAuthenticationContext authenticationContext;
+        private readonly IAuthenticationContract authenticationContext;
 
         public RequestLogger(
             ILogger<TRequest> logger, 
-            IAuthenticationContext authenticationContext)
+            IAuthenticationContract authenticationContext)
         {
             this.logger = logger;
             this.authenticationContext = authenticationContext;

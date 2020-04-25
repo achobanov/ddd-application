@@ -17,7 +17,7 @@ namespace Blog.Gateways.Web.Providers
         public IServiceCollection ProvideImplementations(IServiceCollection services)
             => services
                 .AddTransient<IAuthenticationService, IdentityService>()
-                .AddScoped<IAuthenticationContext, IdentityContext>();
+                .AddScoped<IAuthenticationContract, IdentityContext>();
     }
 
     public static class Extensions
