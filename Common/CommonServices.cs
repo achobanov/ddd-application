@@ -2,6 +2,7 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
+using Blog.Common.ConventionalServices;
 
 namespace Blog.Common
 {
@@ -10,13 +11,13 @@ namespace Blog.Common
         public static IServiceCollection AddInfrastructure(
             this IServiceCollection services,
             params Assembly[] assemblies)
-            => services.AddMapping(assemblies);
+            => services
+                .AddConventionalServices(assemblies)
+                .AddMapping(assemblies);
 
         private static IServiceCollection AddMapping(
             this IServiceCollection services,
             IEnumerable<Assembly> assemblies)
-        {
-            return services.AddAutoMapper(assemblies);
-        }
+            => services.AddAutoMapper(assemblies);
     }
 }

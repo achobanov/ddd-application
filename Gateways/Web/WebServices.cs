@@ -10,7 +10,6 @@ namespace Blog.Gateways.Web
             this IServiceCollection services)
             => services
                 .AddHttpContextAccessor()
-                .AddConventionalServices(typeof(ServiceRegistration).Assembly)
                 .AddContractProviders(typeof(AuthenticationProvider).Assembly);
     }
 }
