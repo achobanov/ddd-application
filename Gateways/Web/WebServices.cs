@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Reflection;
 using Blog.Common.ConventionalServices;
+using Blog.Gateways.Web.Contracts;
 using Blog.Gateways.Web.Providers;
+using Blog.Gateways.Web.Startup;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Blog.Gateways.Web
@@ -13,6 +15,7 @@ namespace Blog.Gateways.Web
             this IServiceCollection services)
             => services
                 .AddHttpContextAccessor()
+                .AddSingleton<IInitializtion, WebInitialization>()
                 .AddContractProviders(typeof(AuthenticationProvider).Assembly);
 
         public static IServiceCollection AddContractProviders(

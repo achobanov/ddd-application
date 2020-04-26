@@ -11,6 +11,7 @@ namespace Blog.Gateways.Web.Areas.Api
     [Area("Api")]
     public class ArticlesController : BaseApiController
     {
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<ArticleDetailsModel>> Details(
             [FromRoute] GetArticleDetails query)

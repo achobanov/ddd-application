@@ -12,13 +12,9 @@ namespace Blog.Application.UnitTests.Articles.Queries.Details
     public class GetArticleDetailsTests
     {
         private readonly BlogDbContext context;
-        private readonly IMapper mapper;
 
         public GetArticleDetailsTests(QueryTestFixture fixture)
-        {
-            this.context = fixture.Context;
-            this.mapper = fixture.Mapper;
-        }
+            => this.context = fixture.Context;
 
         [Fact]
         public async Task HandleReturnsCorrectArticleDetails()
@@ -26,7 +22,7 @@ namespace Blog.Application.UnitTests.Articles.Queries.Details
             // Assert
             var query = new GetArticleDetails { Id = 1 };
 
-            var handler = new GetArticleDetails.GetArticleDetailsHandler(this.context, this.mapper);
+            var handler = new GetArticleDetails.GetArticleDetailsHandler(this.context);
 
             // Act
             var result = await handler.Handle(query, CancellationToken.None);

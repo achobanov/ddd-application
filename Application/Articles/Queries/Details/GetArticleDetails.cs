@@ -1,13 +1,12 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Blog.Application.Infrastructure.Handlers;
 using Blog.Application.Contracts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Blog.Domain.Articles;
+using Blog.Common.Mappings;
 
 namespace Blog.Application.Articles.Queries
 {
@@ -18,13 +17,9 @@ namespace Blog.Application.Articles.Queries
         public class GetArticleDetailsHandler : Handler<GetArticleDetails, ArticleDetailsModel>
         {
             private readonly IPersistenceContract data;
-            private readonly IMapper mapper;
 
-            public GetArticleDetailsHandler(IPersistenceContract data, IMapper mapper)
-            {
-                this.data = data;
-                this.mapper = mapper;
-            }
+            public GetArticleDetailsHandler(IPersistenceContract data)
+                => this.data = data;
 
             public override async Task<ArticleDetailsModel> Handle(
                 GetArticleDetails request,
@@ -33,7 +28,7 @@ namespace Blog.Application.Articles.Queries
                 var article = await this.data
                     .Set<Article>()
                     .Where(a => a.Id == request.Id)
-                    .ProjectTo<ArticleDetailsModel>(this.mapper.ConfigurationProvider)
+                    .MapCollection<ArticleDetailsModel>()
                     .FirstOrDefaultAsync(cancellationToken);
 
                 if (article != null)
