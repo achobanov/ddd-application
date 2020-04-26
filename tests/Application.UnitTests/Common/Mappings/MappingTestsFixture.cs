@@ -9,7 +9,7 @@
         {
             this.ConfigurationProvider = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile<MappingProfile>();
+                cfg.AddProfile<ApplicationMappingProfile>();
             });
 
             this.Mapper = this.ConfigurationProvider.CreateMapper();

@@ -1,6 +1,6 @@
 ﻿using System;
+using Blog.Common.Extensions;
 using Blog.Common.Models;
-using Blog.Gateways.Web.Infrastructure.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;

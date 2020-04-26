@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Blog.Common.Mappings;
 using Blog.Common.Models;
 
 namespace Blog.Gateways.Web.Contracts

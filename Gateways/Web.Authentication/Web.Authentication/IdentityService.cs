@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AutoMapper;
 using Blog.Common.Models;
 using Blog.Gateways.Web.Contracts;
 using Blog.Web.Authentication;
@@ -10,15 +11,18 @@ namespace Blog.Gateways.Web.Authentication
 {
     public class IdentityService : IAuthenticationContract
     {
+        private readonly IMapper mapper;
         private readonly IConfiguration configuration;
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
 
         public IdentityService(
+            IMapper mapper,
             IConfiguration configuration,
             UserManager<IdentityUser> userManager, 
             SignInManager<IdentityUser> signInManager)
         {
+            this.mapper = mapper;
             this.configuration = configuration;
             this.userManager = userManager;
             this.signInManager = signInManager;

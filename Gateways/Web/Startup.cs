@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Blog.Gateways.Web.Providers;
 using Blog.Common;
+using Blog.Domain;
 
 namespace Blog.Gateways.Web
 {
@@ -24,7 +25,11 @@ namespace Blog.Gateways.Web
         {
             services
                 .AddApplication()
-                .AddInfrastructure()
+                .AddInfrastructure(
+                    typeof(WebMappingProfile).Assembly,
+                    typeof(ApplicationMappingProfile).Assembly,
+                    typeof(DomainMappingProfile).Assembly,
+                    typeof(CommonMappingProfile).Assembly)
                 .AddPersistence(this.Configuration)
                 .AddAuthentication<BlogDbContext>(this.Configuration)
                 .AddWebComponents();

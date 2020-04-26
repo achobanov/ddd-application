@@ -1,6 +1,5 @@
 using System;
 using AutoMapper;
-using Blog.Common.Mappings;
 using Blog.Gateways.Persistence;
 using Xunit;
 
@@ -15,7 +14,7 @@ namespace Blog.Application.UnitTests
 
             var configurationProvider = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile<MappingProfile>();
+                cfg.AddProfile<ApplicationMappingProfile>();
             });
 
             this.Mapper = configurationProvider.CreateMapper();

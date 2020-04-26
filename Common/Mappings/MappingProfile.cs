@@ -2,34 +2,38 @@
 using System.Linq;
 using System.Reflection;
 using AutoMapper;
+using Blog.Common.Extensions;
 
 namespace Blog.Common.Mappings
 {
-    public class MappingProfile : Profile
+    public abstract class MappingProfile : Profile
     {
-        public MappingProfile() 
-            => this.ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
+        public MappingProfile()
+            => this.RegisterMaps();
 
-        private void ApplyMappingsFromAssembly(Assembly assembly)
+        protected abstract Assembly[] Assemblies { get; }
+
+        private void RegisterMaps()
+            => this.Assemblies
+                .SelectMany(a => a.GetExportedTypes())
+                .Where(t =>
+                    !t.IsAbstract
+                     && !t.IsInterface
+                     && typeof(IMapCreator).IsAssignableFrom(t))
+                .ForEach(this.CreateMap);
+
+        private void CreateMap(Type type)
         {
-            var types = assembly.GetExportedTypes()
-                .Where(t => t
-                    .GetInterfaces()
-                    .Any(i => i.IsGenericType 
-                        && i.GetGenericTypeDefinition() == typeof(IMapFrom<>)))
-                .ToList();
-
-            foreach (var type in types)
+            if (Activator.CreateInstance(type) is IMapCreator instance)
             {
-                var instance = Activator.CreateInstance(type);
-
-                const string mappingMethodName = "Mapping";
-
-                var methodInfo = type.GetMethod(mappingMethodName) 
-                    ?? type.GetInterface("IMapFrom`1").GetMethod(mappingMethodName);
+                instance.CreateMap(this);
                 
-                methodInfo?.Invoke(instance, new object[] { this });
+                return;
             }
+
+            throw new ArgumentException(
+                $"Type '{type}' does not implement 'IMapCreator'.",
+                nameof(type));
         }
     }
 }

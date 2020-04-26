@@ -10,7 +10,6 @@ namespace Blog.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
             => services
-                .AddAutoMapper(Assembly.GetExecutingAssembly())
                 .AddMediatR(Assembly.GetExecutingAssembly())
                 .AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
     }
