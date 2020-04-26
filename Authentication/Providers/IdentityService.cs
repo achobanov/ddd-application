@@ -2,8 +2,9 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Blog.Common.Models;
+using Blog.Gateways.Web.Authentication.Infrastructure;
 using Blog.Gateways.Web.Contracts;
-using Blog.Web.Authentication;
+using Blog.Web.Authentication.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 

@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Blog.Gateways.Web.Authentication
+namespace Blog.Gateways.Web.Authentication.Infrastructure
 {
     public static class SymmetricKeyFactory
     {
