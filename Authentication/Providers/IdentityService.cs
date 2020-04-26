@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
+using Blog.Authentication.Infrastructure;
 using Blog.Common.Models;
-using Blog.Gateways.Web.Authentication.Infrastructure;
 using Blog.Gateways.Web.Contracts;
-using Blog.Web.Authentication.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 
-namespace Blog.Gateways.Web.Authentication.Providers
+namespace Blog.Authentication.Providers
 {
     public class IdentityService : IAuthenticationContract
     {

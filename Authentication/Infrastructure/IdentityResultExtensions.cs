@@ -2,7 +2,7 @@
 using Blog.Common.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace Blog.Web.Authentication.Infrastructure
+namespace Blog.Authentication.Infrastructure
 {
     public static class IdentityResultExtensions
     {

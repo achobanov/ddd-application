@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace Blog.Gateways.Web.Authentication.Providers
+namespace Blog.Authentication.Providers
 {
     public class IdentityContext : IAuthenticationContract
     {

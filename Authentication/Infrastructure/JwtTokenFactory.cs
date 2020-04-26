@@ -3,7 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Blog.Gateways.Web.Authentication.Infrastructure
+namespace Blog.Authentication.Infrastructure
 {
     public static class JwtTokenFactory
     {

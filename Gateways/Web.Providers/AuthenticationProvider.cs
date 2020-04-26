@@ -1,5 +1,4 @@
-﻿using Blog.Gateways.Web.Authentication;
-using IdentityServer4.EntityFramework.Interfaces;
+﻿using IdentityServer4.EntityFramework.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -7,8 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Blog.Common.ConventionalServices;
-using Blog.Gateways.Web.Authentication.Providers;
-using Blog.Gateways.Web.Authentication.Infrastructure;
+using Blog.Authentication.Providers;
+using Blog.Authentication.Infrastructure;
 
 namespace Blog.Gateways.Web.Providers
 {
