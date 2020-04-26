@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Application\Application.csproj" />
-    <ProjectReference Include="..\..\Web.Authentication\Web.Authentication\Web.Authentication.csproj" />
+    <ProjectReference Include="..\..\Application\Application.csproj" />
+    <ProjectReference Include="..\..\Authentication\Authentication.csproj" />
   </ItemGroup>
 
 </Project>

@@ -20,8 +20,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Application\Application.csproj" />
     <ProjectReference Include="..\..\Common\Common.csproj" />
-    <ProjectReference Include="..\Web.Contracts\Web.Contracts\Web.Contracts.csproj" />
-    <ProjectReference Include="..\Web.Providers\Web.Providers\Web.Providers.csproj" />
+    <ProjectReference Include="..\Web.Contracts\Web.Contracts.csproj" />
+    <ProjectReference Include="..\Web.Providers\Web.Providers.csproj" />
     <ProjectReference Include="..\Persistence\Persistence.csproj" />
   </ItemGroup>
 
