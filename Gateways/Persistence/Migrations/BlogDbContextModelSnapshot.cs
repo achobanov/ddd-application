@@ -4,6 +4,7 @@ using Blog.Gateways.Persistence.Providers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blog.Gateways.Persistence.Migrations
 {
@@ -18,7 +19,7 @@ namespace Blog.Gateways.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Blog.Domain.Entities.Article", b =>
+            modelBuilder.Entity("Blog.Domain.Articles.Article", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -62,7 +63,25 @@ namespace Blog.Gateways.Persistence.Migrations
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("Blog.Domain.Entities.Comment", b =>
+            modelBuilder.Entity("Blog.Domain.Authors.Author", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("IdentityId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Authors");
+                });
+
+            modelBuilder.Entity("Blog.Domain.Comments.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -105,24 +124,6 @@ namespace Blog.Gateways.Persistence.Migrations
                     b.HasIndex("AuthorId");
 
                     b.ToTable("Comments");
-                });
-
-            modelBuilder.Entity("Blog.Domain.Entities.Author", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("IdentityId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
@@ -407,24 +408,24 @@ namespace Blog.Gateways.Persistence.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Blog.Domain.Entities.Article", b =>
+            modelBuilder.Entity("Blog.Domain.Articles.Article", b =>
                 {
-                    b.HasOne("Blog.Domain.Entities.Author", "Author")
+                    b.HasOne("Blog.Domain.Authors.Author", "Author")
                         .WithMany("Articles")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Blog.Domain.Entities.Comment", b =>
+            modelBuilder.Entity("Blog.Domain.Comments.Comment", b =>
                 {
-                    b.HasOne("Blog.Domain.Entities.Article", "Article")
+                    b.HasOne("Blog.Domain.Articles.Article", "Article")
                         .WithMany("Comments")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Blog.Domain.Entities.Author", "Author")
+                    b.HasOne("Blog.Domain.Authors.Author", "Author")
                         .WithMany("Comments")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Restrict)
