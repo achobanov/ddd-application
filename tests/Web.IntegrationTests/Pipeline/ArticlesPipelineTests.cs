@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using Blog.Application.Articles.Commands;
-    using Blog.Gateways.Web.Api;
+    using Blog.Gateways.Web.Areas.Api;
     using Gateways.Persistence;
     using MyTested.AspNetCore.Mvc;
     using Shouldly;

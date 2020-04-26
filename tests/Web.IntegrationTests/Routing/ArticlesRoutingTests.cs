@@ -2,7 +2,7 @@
 {
     using Blog.Application.Articles.Commands;
     using Blog.Application.Articles.Queries;
-    using Blog.Gateways.Web.Api;
+    using Blog.Gateways.Web.Areas.Api;
     using MyTested.AspNetCore.Mvc;
     using Xunit;
 
