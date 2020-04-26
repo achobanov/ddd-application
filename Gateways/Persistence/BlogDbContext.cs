@@ -37,7 +37,6 @@ namespace Blog.Gateways.Persistence
 
         public DbSet<Comment> Comments { get; set; }
 
-
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in this.ChangeTracker.Entries<IAuditableEntity>())

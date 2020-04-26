@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -39,26 +38,6 @@ namespace Blog.Common.ConventionalServices
                 {
                     services.AddScoped(type.Service, type.Implementation);
                 }
-            }
-
-            return services;
-        }
-
-        public static IServiceCollection AddContractProviders(
-            this IServiceCollection services,
-            params Assembly[] assemblies)
-        {
-            var contractProviderType = typeof(IContractProvider);
-
-            var contractProviders = assemblies
-                .SelectMany(assembly => assembly.GetExportedTypes())
-                .Where(type => type.IsClass && !type.IsAbstract && contractProviderType.IsAssignableFrom(type))
-                .Select(Activator.CreateInstance)
-                .Cast<IContractProvider>();
-
-            foreach (var provider in contractProviders)
-            {
-                provider.ProvideImplementations(services);
             }
 
             return services;

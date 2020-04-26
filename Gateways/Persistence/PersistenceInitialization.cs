@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Blog.Gateways.Persistence
 {
-    public class BlogDbContextSeed : IInitializtion
+    public class PersistenceInitialization : IInitializtion
     {
         public async Task Initialize(IServiceProvider serviceProvider)
         {
