@@ -1,13 +1,13 @@
-﻿namespace Blog.Gateways.Persistence
-{
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Blog.Domain.Articles;
-    using Blog.Domain.Authors;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Blog.Domain.Articles;
+using Blog.Domain.Authors;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
+namespace Blog.Gateways.Persistence
+{
     public static class BlogDbContextSeed
     {
         public static async Task SeedAsync(

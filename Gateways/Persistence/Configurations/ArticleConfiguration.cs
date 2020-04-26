@@ -1,9 +1,9 @@
-﻿namespace Blog.Gateways.Persistence.Configurations
-{
-    using Blog.Domain.Articles;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Blog.Domain.Articles;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+namespace Blog.Gateways.Persistence.Configurations
+{
     public class ArticleConfiguration : IEntityTypeConfiguration<Article>
     {
         public void Configure(EntityTypeBuilder<Article> builder)
