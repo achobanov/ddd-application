@@ -1,4 +1,5 @@
 ﻿using System;
+using Blog.Domain.Infrastructure;
 
 namespace Blog.Domain.Articles
 {
