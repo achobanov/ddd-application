@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Blog.Gateways.Web.Authentication</RootNamespace>
-    <AssemblyName>Blog.Gateways.Web.Authentication</AssemblyName>
+    <RootNamespace>Blog.Authentication</RootNamespace>
+    <AssemblyName>Blog.Authentication</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

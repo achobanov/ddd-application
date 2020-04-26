@@ -10,8 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Blog.Common;
 using Blog.Domain;
-using Blog.Gateways.Web.Providers;
 using Blog.Gateways.Persistence.Providers;
+using Blog.Authentication;
 
 namespace Blog.Gateways.Web
 {
