@@ -8,9 +8,7 @@ namespace Blog.Common
 {
     public static class CommonServices
     {
-        public static IServiceCollection AddInfrastructure(
-            this IServiceCollection services,
-            params Assembly[] assemblies)
+        public static IServiceCollection AddCommon(this IServiceCollection services, params Assembly[] assemblies)
             => services
                 .AddConventionalServices(assemblies)
                 .AddMapping(assemblies);

@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using AutoMapper;
 using Blog.Application.Infrastructure.Behaviours;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;

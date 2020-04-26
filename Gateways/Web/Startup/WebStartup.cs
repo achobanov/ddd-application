@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Blog.Gateways.Web.Providers;
 using Blog.Common;
 using Blog.Domain;
+using Blog.Gateways.Web.Providers;
 
 namespace Blog.Gateways.Web
 {
@@ -24,15 +24,15 @@ namespace Blog.Gateways.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddApplication()
-                .AddInfrastructure(
+                .AddCommon(
                     typeof(WebMappingProfile).Assembly,
                     typeof(ApplicationMappingProfile).Assembly,
                     typeof(DomainMappingProfile).Assembly,
                     typeof(CommonMappingProfile).Assembly)
+                .AddApplication()
                 .AddPersistence(this.Configuration)
-                .AddAuthentication<BlogDbContext>(this.Configuration)
-                .AddWebComponents();
+                .AddWeb()
+                .AddAuthentication<BlogDbContext>(this.Configuration);
 
             services
                 .AddHealthChecks()

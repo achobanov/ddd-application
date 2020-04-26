@@ -7,18 +7,16 @@ namespace Blog.Gateways.Persistence
 {
     public static class PersistenceServices
     {
-        public static IServiceCollection AddPersistence(
-            this IServiceCollection services, 
-            IConfiguration configuration)
-        {
-            services
+        public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
+            => services
+                .AddDatabase(configuration)
+                .AddScoped<IPersistenceContract, BlogDbContext>();
+
+        private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
+            => services
                 .AddDbContext<BlogDbContext>(options => options
                     .UseSqlServer(
-                        configuration.GetConnectionString("DefaultConnection"), 
-                        b => b.MigrationsAssembly(typeof(BlogDbContext).Assembly.FullName)))
-                .AddScoped<IPersistenceContract>(provider => provider.GetService<BlogDbContext>());
-
-            return services;
-        }
+                        configuration.GetConnectionString("DefaultConnection"),
+                        b => b.MigrationsAssembly(typeof(BlogDbContext).Assembly.FullName)));
     }
 }

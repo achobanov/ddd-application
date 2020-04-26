@@ -6,7 +6,7 @@ namespace Blog.Gateways.Web
 {
     public static class WebServices
     {
-        public static IServiceCollection AddWebComponents(
+        public static IServiceCollection AddWeb(
             this IServiceCollection services)
             => services
                 .AddHttpContextAccessor()
