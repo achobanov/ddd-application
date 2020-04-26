@@ -6,8 +6,9 @@ using Blog.Gateways.Web.Infrastructure.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Blog.Gateways.Web.Api
+namespace Blog.Gateways.Web.Areas.Api
 {
+    [Area("Api")]
     public class ArticlesController : BaseApiController
     {
         [HttpGet("{id}")]
