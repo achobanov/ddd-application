@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blog.Domain.Articles;
 using Blog.Domain.Authors;
+using Blog.Gateways.Persistence.Providers;
 using Blog.Gateways.Web.Contracts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

@@ -13,7 +13,7 @@ using Blog.Domain.Authors;
 using Blog.Domain.Articles;
 using Blog.Domain.Comments;
 
-namespace Blog.Gateways.Persistence
+namespace Blog.Gateways.Persistence.Providers
 {
     public class BlogDbContext : ApiAuthorizationDbContext<IdentityUser>, IPersistenceContract
     {

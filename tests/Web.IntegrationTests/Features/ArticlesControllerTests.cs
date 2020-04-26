@@ -1,13 +1,13 @@
 ﻿namespace Blog.Web.IntegrationTests.Features
 {
     using System.Linq;
-    using Blog.Gateways.Persistence;
     using MyTested.AspNetCore.Mvc;
     using Shouldly;
     using Xunit;
     using Blog.Application.Articles.Commands;
     using Blog.Application.Articles.Queries;
     using Blog.Gateways.Web.Areas.Api;
+    using Blog.Gateways.Persistence.Providers;
 
     public class ArticlesControllerTests
     {

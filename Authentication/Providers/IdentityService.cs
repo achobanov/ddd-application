@@ -7,7 +7,7 @@ using Blog.Web.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 
-namespace Blog.Gateways.Web.Authentication
+namespace Blog.Gateways.Web.Authentication.Providers
 {
     public class IdentityService : IAuthenticationContract
     {

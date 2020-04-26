@@ -1,4 +1,5 @@
 ﻿using Blog.Application.Contracts;
+using Blog.Gateways.Persistence.Providers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

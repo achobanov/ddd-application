@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using Moq;
 using Blog.Common.Contracts;
 using Blog.Domain.Articles;
+using Blog.Gateways.Persistence.Providers;
 
 namespace Blog.Application.UnitTests
 {

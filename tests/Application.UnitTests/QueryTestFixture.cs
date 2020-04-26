@@ -1,6 +1,6 @@
 using System;
 using AutoMapper;
-using Blog.Gateways.Persistence;
+using Blog.Gateways.Persistence.Providers;
 using Xunit;
 
 namespace Blog.Application.UnitTests

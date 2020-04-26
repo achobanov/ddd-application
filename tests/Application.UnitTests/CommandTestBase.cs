@@ -2,7 +2,7 @@ namespace Blog.Application.UnitTests
 {
     using System;
     using Blog.Application.Contracts;
-    using Gateways.Persistence;
+    using Blog.Gateways.Persistence.Providers;
     using Moq;
 
     public class CommandTestBase : IDisposable

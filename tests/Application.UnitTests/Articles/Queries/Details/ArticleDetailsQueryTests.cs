@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Blog.Application.Articles.Queries;
-using Blog.Gateways.Persistence;
+using Blog.Gateways.Persistence.Providers;
 using Shouldly;
 using Xunit;
 

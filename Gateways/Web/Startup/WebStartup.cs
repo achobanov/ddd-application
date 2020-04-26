@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Blog.Common;
 using Blog.Domain;
 using Blog.Gateways.Web.Providers;
+using Blog.Gateways.Persistence.Providers;
 
 namespace Blog.Gateways.Web
 {

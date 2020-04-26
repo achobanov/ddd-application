@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Blog.Common.ConventionalServices;
+using Blog.Gateways.Web.Authentication.Providers;
 
 namespace Blog.Gateways.Web.Providers
 {

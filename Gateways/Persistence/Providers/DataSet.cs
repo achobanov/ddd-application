@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Blog.Application.Contracts;
 using Microsoft.EntityFrameworkCore;
 
-namespace Blog.Gateways.Persistence
+namespace Blog.Gateways.Persistence.Providers
 {
     public class DataSet<TEntity> : IDataSet<TEntity>
         where TEntity : class
