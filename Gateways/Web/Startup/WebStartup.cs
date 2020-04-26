@@ -1,7 +1,5 @@
 using Blog.Application;
-using Blog.Application.Contracts;
 using Blog.Gateways.Persistence;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -41,8 +39,6 @@ namespace Blog.Gateways.Web
 
             services
                 .AddControllers()
-                .AddFluentValidation(options => options // unnecessary
-                    .RegisterValidatorsFromAssemblyContaining<IPersistenceContract>())
                 .AddNewtonsoftJson();
 
             services.Configure<ApiBehaviorOptions>(options => // probably unnecessary 

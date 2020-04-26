@@ -24,20 +24,11 @@ namespace Blog.Application.Articles.Queries
             public override async Task<ArticleDetailsModel> Handle(
                 GetArticleDetails request,
                 CancellationToken cancellationToken)
-            {
-                var article = await this.data
+                => await this.data
                     .Set<Article>()
                     .Where(a => a.Id == request.Id)
                     .MapCollection<ArticleDetailsModel>()
                     .FirstOrDefaultAsync(cancellationToken);
-
-                if (article != null)
-                {
-                    article.Author = "some author"; // Will be fixed in https://github.com/achobanov/web-application/issues/11
-                }
-
-                return article;
-            }
         }
     }
 }
