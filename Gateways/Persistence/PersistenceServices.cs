@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Blog.Gateways.Persistence
 {
-    public static class ServiceRegistration
+    public static class PersistenceServices
     {
         public static IServiceCollection AddPersistence(
             this IServiceCollection services, 

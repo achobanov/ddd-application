@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Blog.Application
 {
-    public static class ServiceRegistration
+    public static class ApplicationServices
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
             => services

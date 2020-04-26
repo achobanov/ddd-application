@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Blog.Gateways.Web
 {
-    public static class ServiceRegistration
+    public static class WebServices
     {
         public static IServiceCollection AddWebComponents(
             this IServiceCollection services)

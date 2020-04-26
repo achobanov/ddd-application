@@ -6,7 +6,7 @@ using Blog.Common.ConventionalServices;
 
 namespace Blog.Common
 {
-    public static class ServiceRegistration
+    public static class CommonServices
     {
         public static IServiceCollection AddInfrastructure(
             this IServiceCollection services,
