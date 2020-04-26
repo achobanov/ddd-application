@@ -14,9 +14,9 @@ using Blog.Domain;
 
 namespace Blog.Gateways.Web
 {
-    public class Startup
+    public class WebStartup
     {
-        public Startup(IConfiguration configuration) 
+        public WebStartup(IConfiguration configuration)
             => this.Configuration = configuration;
 
         public IConfiguration Configuration { get; }

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Blog.Gateways.Web
 {
-    public static class Initializer
+    public static class WebInitialization
     {
         public static IWebHost Initialize(this IWebHost host)
         {

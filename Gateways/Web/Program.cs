@@ -14,6 +14,6 @@ namespace Blog.Gateways.Web
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
             => WebHost
                 .CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .UseStartup<WebStartup>();
     }
 }

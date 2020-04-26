@@ -7,7 +7,7 @@
     using MyTested.AspNetCore.Mvc;
     using Blog.Common.Contracts;
 
-    public class TestStartup : Startup
+    public class TestStartup : WebStartup
     {
         public TestStartup(IConfiguration configuration) 
             : base(configuration)
