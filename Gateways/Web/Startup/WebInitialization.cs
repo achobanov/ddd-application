@@ -21,6 +21,6 @@ namespace Blog.Gateways.Web.Startup
         }
 
         public void ConfigureMappingApi()
-            => MappingApi.Configure(this.mapper.ConfigurationProvider);
+            => MappingApi.Configure(this.mapper);
     }
 }

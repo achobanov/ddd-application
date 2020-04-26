@@ -36,6 +36,9 @@ namespace Blog.Gateways.Persistence.Providers
         IEnumerator IEnumerable.GetEnumerator()
             => this.queryable.GetEnumerator();
 
+        public IAsyncEnumerator<TEntity> GetAsyncEnumerator(CancellationToken cancellationToken = default)
+            => this.dbSet.AsAsyncEnumerable().GetAsyncEnumerator();
+
         #endregion
 
         #region IDataSet implementation

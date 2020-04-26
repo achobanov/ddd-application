@@ -13,7 +13,7 @@ namespace Blog.Application.Contracts
         Task<int> SaveChanges(CancellationToken cancellationToken = default);
     }
 
-    public interface IDataSet<TEntity> : IQueryable<TEntity>, IEnumerable<TEntity>
+    public interface IDataSet<TEntity> : IQueryable<TEntity>, IEnumerable<TEntity>, IAsyncEnumerable<TEntity>
         where TEntity : class
     {
         ValueTask<TEntity> Add(TEntity entity, CancellationToken cancellationToken = default);
