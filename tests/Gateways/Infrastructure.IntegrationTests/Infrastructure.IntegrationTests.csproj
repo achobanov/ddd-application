@@ -29,8 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Gateways\Persistence\Persistence.csproj" />
-    <ProjectReference Include="..\..\Common\Common.csproj" />
+    <ProjectReference Include="..\..\..\Gateways\Persistence\Persistence.csproj" />
+    <ProjectReference Include="..\..\..\Common\Common.csproj" />
   </ItemGroup>
 
 </Project>
