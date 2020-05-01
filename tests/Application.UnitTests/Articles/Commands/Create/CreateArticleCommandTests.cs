@@ -7,7 +7,7 @@
     using Shouldly;
     using Xunit;
 
-    public class CreateArticleTests : BaseCommandTests
+    public class CreateArticleTests : BaseTests
     {
         [Fact]
         public async Task HandleShouldPersistArticle()
