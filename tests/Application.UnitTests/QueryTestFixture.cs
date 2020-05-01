@@ -1,17 +1,13 @@
-using System;
 using AutoMapper;
-using Blog.Gateways.Persistence.Providers;
 using Xunit;
 
 namespace Blog.Application.UnitTests
 {
     // Tests will be fixed in: https://github.com/achobanov/web-application/issues/21
-    public sealed class QueryTestFixture : IDisposable
+    public abstract class BaseQueryTests : BaseTests
     {
-        public QueryTestFixture()
+        public BaseQueryTests()
         {
-            this.Context = ApplicationDbContextFactory.Create();
-
             var configurationProvider = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<ApplicationMappingProfile>();
@@ -28,15 +24,11 @@ namespace Blog.Application.UnitTests
             //this.Identity = identityMock.Object;
         }
 
-        public BlogDbContext Context { get; }
-
         public IMapper Mapper { get; }
 
         // public IIdentity Identity { get; }
-
-        public void Dispose() => ApplicationDbContextFactory.Destroy(this.Context);
     }
 
     [CollectionDefinition("QueryTests")]
-    public class QueryCollection : ICollectionFixture<QueryTestFixture> { }
+    public class QueryCollection : ICollectionFixture<BaseQueryTests> { }
 }

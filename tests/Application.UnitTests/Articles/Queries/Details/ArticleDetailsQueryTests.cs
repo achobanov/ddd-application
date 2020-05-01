@@ -1,28 +1,21 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using Blog.Application.Articles.Queries;
-using Blog.Gateways.Persistence.Providers;
 using Shouldly;
 using Xunit;
 
 namespace Blog.Application.UnitTests.Articles.Queries.Details
 {
     [Collection("QueryTests")]
-    public class GetArticleDetailsTests
+    public class GetArticleDetailsTests : BaseQueryTests
     {
-        private readonly BlogDbContext context;
-
-        public GetArticleDetailsTests(QueryTestFixture fixture)
-            => this.context = fixture.Context;
-
         [Fact]
         public async Task HandleReturnsCorrectArticleDetails()
         {
             // Assert
             var query = new GetArticleDetails { Id = 1 };
 
-            var handler = new GetArticleDetails.GetArticleDetailsHandler(this.context);
+            var handler = new GetArticleDetails.GetArticleDetailsHandler(this.Persistence);
 
             // Act
             var result = await handler.Handle(query, CancellationToken.None);

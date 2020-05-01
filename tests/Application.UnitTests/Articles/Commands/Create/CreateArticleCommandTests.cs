@@ -3,10 +3,11 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Blog.Application.Articles.Commands;
+    using Blog.Domain.Articles;
     using Shouldly;
     using Xunit;
 
-    public class CreateArticleTests : CommandTestBase
+    public class CreateArticleTests : BaseCommandTests
     {
         [Fact]
         public async Task HandleShouldPersistArticle()
@@ -17,15 +18,15 @@
                 Content = "Test Content Command"
             };
 
-            var handler = new CreateArticle.CreateArticleHandler(this.Context);
+            var handler = new CreateArticle.CreateArticleHandler(this.Persistence);
 
             var result = await handler.Handle(command, CancellationToken.None);
 
-            var article = this.Context.Articles.Find(result);
+            var article = await this.Persistence.Set<Article>().Find(result);
 
             article.ShouldNotBeNull();
             article.Title.ShouldBe(command.Title);
-            article.CreatedBy.ShouldBe(TestUserId);
+            article.CreatedBy.ShouldBe(SampleUsername);
         }
     }
 }

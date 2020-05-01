@@ -1,31 +1,12 @@
 namespace Blog.Application.UnitTests
 {
-    using System;
-    using Blog.Application.Contracts;
-    using Blog.Gateways.Persistence.Providers;
-    using Moq;
-
-    public class CommandTestBase : IDisposable
+    public abstract class BaseCommandTests : BaseTests
     {
-        protected const string TestUserId = "Test User Id";
+        protected const string SampleUsername = "Sample Username";
 
-        public CommandTestBase()
-        {
-            this.Context = ApplicationDbContextFactory.Create();
-
-            var currentUserMock = new Mock<IAuthenticationContext>();
-
-            currentUserMock
+        public BaseCommandTests()
+            => this.AuthenticationContextMock
                 .SetupGet(u => u.Username)
-                .Returns(TestUserId);
-
-            this.IdentityContext = currentUserMock.Object;
-        }
-
-        public BlogDbContext Context { get; }
-
-        public IAuthenticationContext IdentityContext { get; }
-
-        public void Dispose() => ApplicationDbContextFactory.Destroy(this.Context);
+                .Returns(SampleUsername);
     }
 }
