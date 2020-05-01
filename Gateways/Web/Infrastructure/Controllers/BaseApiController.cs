@@ -7,13 +7,14 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Blog.Gateways.Web.Infrastructure.Controllers
 {
     [ApiController]
+    [Area("Api")]
     [Route("api/[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public abstract class BaseApiController : ControllerBase
     {
         private IMediator mediator;
 
-        protected IMediator Mediator 
+        protected IMediator Mediator
             => this.mediator ??= this.HttpContext
                 .RequestServices
                 .GetService<IMediator>();

@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Gateways.Web.Areas.Api
 {
-    [Area("Api")]
     public class ArticlesController : BaseApiController
     {
         [AllowAnonymous]

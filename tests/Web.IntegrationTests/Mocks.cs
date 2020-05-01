@@ -1,10 +1,10 @@
-﻿namespace Blog.Web.IntegrationTests
-{
-    using Blog.Application.Contracts;
-    using Blog.Common.Contracts;
-    using Moq;
-    using MyTested.AspNetCore.Mvc;
+﻿using Blog.Application.Contracts;
+using Blog.Common.Contracts;
+using Moq;
+using MyTested.AspNetCore.Mvc;
 
+namespace Blog.Web.IntegrationTests
+{
     public class Mocks
     {
         public static IAuthenticationContext IdentityContext
