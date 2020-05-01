@@ -29,7 +29,7 @@ namespace Blog.Web.IntegrationTests.Routing
                             Title = title,
                             Content = content
                         }))
-                .To<ArticlesController>(c => 
+                .To<ArticlesController>(c =>
                     c.Create(new CreateArticle
                     {
                         Title = title,
