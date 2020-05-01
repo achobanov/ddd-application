@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Blog.Common.Models
-{   
+{
     public class Result
     {
         internal Result(bool succeeded, IEnumerable<string> errors)
@@ -12,19 +12,19 @@ namespace Blog.Common.Models
             this.Errors = errors?.ToArray() ?? Array.Empty<string>();
         }
 
-        public static Result Success 
+        public static Result Success
             => new Result(true, null);
 
         public bool Succeeded { get; set; }
 
         public string[] Errors { get; set; }
 
-        public static Result Failure(params string[] errors) 
+        public static Result Failure(params string[] errors)
             => new Result(false, errors);
     }
 
     public class Result<T> : Result
-        where T: class
+        where T : class
     {
         internal Result(T data)
             : base(true, null)
@@ -35,12 +35,17 @@ namespace Blog.Common.Models
         {
         }
 
+        internal Result(Result failedResult)
+            : base(false, failedResult.Errors)
+        {
+        }
+
         public T Data { get; set; }
 
         public static new Result<T> Success(T data)
             => new Result<T>(data);
 
         public static new Result<T> Failure(params string[] errors)
-            => Result.Failure(errors) as Result<T>;
+            => new Result<T>(Result.Failure(errors));
     }
 }
