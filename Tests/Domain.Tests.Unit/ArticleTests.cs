@@ -1,7 +1,7 @@
 ﻿using Blog.Domain.Articles;
 using Xunit;
 
-namespace Blog.Domain.Tests.Unit.Entities
+namespace Blog.Domain.Tests.Unit
 {
     public class ArticleTests
     {
