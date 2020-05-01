@@ -14,9 +14,10 @@ namespace Blog.Gateways.Persistence
 
         private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
             => services
-                .AddDbContext<IPersistenceContract, BlogDbContext>(options =>
+                .AddDbContext<BlogDbContext>(options =>
                     options.UseSqlServer(
                         configuration.GetConnectionString("DefaultConnection"),
-                        b => b.MigrationsAssembly(typeof(BlogDbContext).Assembly.FullName)));
+                        b => b.MigrationsAssembly(typeof(BlogDbContext).Assembly.FullName)))
+                .AddScoped<IPersistenceContract, BlogDbContext>();
     }
 }
