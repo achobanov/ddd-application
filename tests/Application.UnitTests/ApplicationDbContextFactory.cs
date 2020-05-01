@@ -48,9 +48,9 @@ namespace Blog.Application.UnitTests
         public static void SeedSampleData(BlogDbContext context)
         {
             context.Articles.AddRange(
-                new Article("Test Title 1", "Test Content 1", "Test User 1"),
-                new Article("Test Title 2", "Test Content 2", "Test User 2"),
-                new Article("Test Title 3", "Test Content 3", "Test User 3"));
+                new Article("Test Title 1", "Test Content 1") { CreatedBy = "Test User 1" },
+                new Article("Test Title 2", "Test Content 2") { CreatedBy = "Test User 2" },
+                new Article("Test Title 3", "Test Content 3") { CreatedBy = "Test User 3" });
 
             context.SaveChanges();
         }

@@ -17,7 +17,7 @@
                 Content = "Test Content Command"
             };
 
-            var handler = new CreateArticle.CreateArticleHandler(this.Context, this.IdentityContext);
+            var handler = new CreateArticle.CreateArticleHandler(this.Context);
 
             var result = await handler.Handle(command, CancellationToken.None);
 

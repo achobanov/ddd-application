@@ -26,7 +26,7 @@ namespace Blog.Gateways.Persistence
             => dbContext.Database.Migrate();
 
         private async Task SeedAsync(
-            BlogDbContext data, 
+            BlogDbContext data,
             UserManager<IdentityUser> userManager)
         {
             var defaultUser = new IdentityUser
@@ -47,13 +47,14 @@ namespace Blog.Gateways.Persistence
 
             var user = await data.Users.FirstAsync();
             var author = new Author(user.Email, user.Id);
-            var article = (new Article("Test Article", "Test Article Content", user.Id)
+            var article = new Article("Test Article", "Test Article Content")
             {
                 CreatedOn = DateTime.Now.AddDays(-1),
                 IsPublic = true,
                 PublishedOn = DateTime.Now,
-                Author = author
-            });
+                Author = author,
+                CreatedBy = user.Id,
+            };
 
             data.Authors.Add(author);
             data.Articles.Add(article);

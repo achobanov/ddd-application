@@ -43,7 +43,7 @@
 
             this.data = new BlogDbContext(options, operationalStoreOptions, authenticationMock.Object, dateTimeMock.Object);
 
-            this.data.Articles.Add(new Article("Test Title", "Test Content", this.username));
+            this.data.Articles.Add(new Article("Test Title", "Test Content") { CreatedBy = this.username });
 
             this.data.SaveChanges();
         }
@@ -51,7 +51,7 @@
         [Fact]
         public async Task SaveChangesAsyncGivenNewArticleShouldSetCreatedProperties()
         {
-            var article = new Article("Test Title 2", "Test Content 2", this.username);
+            var article = new Article("Test Title 2", "Test Content 2") { CreatedBy = this.username };
 
             this.data.Articles.Add(article);
 

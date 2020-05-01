@@ -15,28 +15,22 @@ namespace Blog.Application.Articles.Commands
 
         public class CreateArticleHandler : Handler<CreateArticle, int>
         {
-            private readonly IPersistenceContract data;
-            private readonly IAuthenticationContext authenticationContext;
+            private readonly IPersistenceContract persistence;
 
-            public CreateArticleHandler(
-                IPersistenceContract data,
-                IAuthenticationContext authenticationContext)
-            {
-                this.data = data;
-                this.authenticationContext = authenticationContext;
-            }
+            public CreateArticleHandler(IPersistenceContract data)
+                => this.persistence = data;
 
             public override async Task<int> Handle(
                 CreateArticle request,
                 CancellationToken cancellationToken)
             {
-                var article = new Article(request.Title, request.Content, this.authenticationContext.Username);
+                var article = new Article(request.Title, request.Content);
 
-                await this.data
+                await this.persistence
                     .Set<Article>()
                     .Add(article);
 
-                await this.data.SaveChanges(cancellationToken);
+                await this.persistence.SaveChanges(cancellationToken);
 
                 return article.Id;
             }

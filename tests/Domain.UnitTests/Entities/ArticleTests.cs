@@ -10,7 +10,7 @@
         {
             // Assert
             Assert.Throws<ArticleException>(
-                () => new Article(null, "Test Content", "Test Id"));
+                () => new Article(null, "Test Content"));
         }
 
         [Fact]
@@ -18,7 +18,7 @@
         {
             // Assert
             Assert.Throws<ArticleException>(
-                () => new Article("Test Title", "Test Content", null));
+                () => new Article("Test Title", "Test Content"));
         }
     }
 }

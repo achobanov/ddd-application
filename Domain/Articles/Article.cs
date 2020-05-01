@@ -11,11 +11,10 @@ namespace Blog.Domain.Articles
         private string title;
         private string content;
 
-        public Article(string title, string content, string createdBy)
+        public Article(string title, string content)
         {
             this.Title = title;
             this.Content = content;
-            this.CreatedBy = createdBy;
         }
 
         public string Title
