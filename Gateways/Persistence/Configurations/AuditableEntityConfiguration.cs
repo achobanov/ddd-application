@@ -4,9 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Blog.Gateways.Persistence.Configurations
 {
-    public class AuditableEntityConfiguration : IEntityTypeConfiguration<AuditableEntity>
+    public class AuditableEntityConfiguration<TEntity> : IEntityTypeConfiguration<TEntity>
+        where TEntity : AuditableEntity
     {
-        public void Configure(EntityTypeBuilder<AuditableEntity> builder)
+        public virtual void Configure(EntityTypeBuilder<TEntity> builder)
         {
             builder
                 .Property(x => x.CreatedOn)

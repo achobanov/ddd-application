@@ -1,13 +1,14 @@
 ﻿using Blog.Domain.Comments;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Blog.Gateways.Persistence.Configurations
 {
-    public class CommentConfiguration : IEntityTypeConfiguration<Comment>
+    public class CommentConfiguration : AuditableEntityConfiguration<Comment>
     {
-        public void Configure(EntityTypeBuilder<Comment> builder)
+        public override void Configure(EntityTypeBuilder<Comment> builder)
         {
+            base.Configure(builder);
+
             builder.HasKey(a => a.Id);
         }
     }

@@ -4,10 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Blog.Gateways.Persistence.Configurations
 {
-    public class ArticleConfiguration : IEntityTypeConfiguration<Article>
+    public class ArticleConfiguration : AuditableEntityConfiguration<Article>
     {
-        public void Configure(EntityTypeBuilder<Article> builder)
+        public override void Configure(EntityTypeBuilder<Article> builder)
         {
+            base.Configure(builder);
+
             builder.HasKey(a => a.Id);
 
             builder
