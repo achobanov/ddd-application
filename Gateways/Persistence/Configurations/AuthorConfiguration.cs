@@ -14,13 +14,13 @@ namespace Blog.Gateways.Persistence.Configurations
                 .HasMany(u => u.Articles)
                 .WithOne(a => a.Author)
                 .HasForeignKey(a => a.AuthorId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.SetNull);
 
             builder
                 .HasMany(u => u.Comments)
                 .WithOne(a => a.Author)
                 .HasForeignKey(a => a.AuthorId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }
