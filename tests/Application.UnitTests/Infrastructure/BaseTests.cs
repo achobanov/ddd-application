@@ -7,12 +7,17 @@ using Moq;
 using Blog.Common.Contracts;
 using Blog.Domain.Articles;
 using Blog.Gateways.Persistence.Providers;
+using Blog.Common.Mappings;
+using AutoMapper;
 
 namespace Blog.Application.UnitTests
 {
     public abstract class BaseTests : IDisposable
     {
-        private DbContext dbContext;
+        protected const string SampleUsername = "Sample Username";
+        protected static readonly DateTime SampleNow = DateTime.Now;
+
+        private readonly DbContext dbContext;
 
         public BaseTests()
         {
@@ -42,6 +47,9 @@ namespace Blog.Application.UnitTests
 
             this.DateTimeMock = dateTimeMock;
             this.AuthenticationContextMock = authenticationContextMock;
+
+            this.ConfigureMappingApi();
+            this.SetupDefault();
         }
 
         protected IPersistenceContract Persistence => (IPersistenceContract)this.dbContext;
@@ -55,6 +63,28 @@ namespace Blog.Application.UnitTests
             this.dbContext.Database.EnsureDeleted();
 
             this.dbContext.Dispose();
+        }
+
+        private void ConfigureMappingApi()
+        {
+            var configurationProvider = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<ApplicationMappingProfile>();
+            });
+
+            var mapper = configurationProvider.CreateMapper();
+            MappingApi.Configure(mapper);
+        }
+
+        private void SetupDefault()
+        {
+            this.AuthenticationContextMock
+                .SetupGet(x => x.Username)
+                .Returns(SampleUsername);
+
+            this.DateTimeMock
+                .SetupGet(x => x.Now)
+                .Returns(SampleNow);
         }
 
         private void SeedSampleData()

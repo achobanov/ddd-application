@@ -24,11 +24,26 @@ namespace Blog.Application.Articles.Queries
             public override async Task<ArticleDetailsModel> Handle(
                 GetArticleDetails request,
                 CancellationToken cancellationToken)
-                => await this.data
+            {
+                var articles = await this.data
+                    .Set<Article>()
+                    .ToListAsync();
+
+                var mapped = articles.MapCollection<ArticleDetailsModel>();
+
+                var article = await this.data
+                    .Set<Article>()
+                    .Where(a => a.Id == request.Id)
+                    .FirstOrDefaultAsync();
+
+                var projectedArticle = await this.data
                     .Set<Article>()
                     .Where(a => a.Id == request.Id)
                     .MapCollection<ArticleDetailsModel>()
                     .FirstOrDefaultAsync(cancellationToken);
+
+                return projectedArticle;
+            }
         }
     }
 }

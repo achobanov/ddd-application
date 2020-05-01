@@ -37,7 +37,11 @@ namespace Blog.Common.Mappings
         {
             ValidateConfiguration();
 
-            return source.ProjectTo<TDestination>(Mapper.ConfigurationProvider);
+            var result = source.ProjectTo<TDestination>(Mapper.ConfigurationProvider);
+
+            var value = result.ToList();
+
+            return result;
         }
 
         public static async Task<IEnumerable<TDestination>> MapCollection<TDestination>(this Task source)

@@ -27,7 +27,7 @@ namespace Blog.Common.Mappings
             if (Activator.CreateInstance(type) is IMapCreator instance)
             {
                 instance.CreateMap(this);
-                
+
                 return;
             }
 
