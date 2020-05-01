@@ -1,18 +1,18 @@
-﻿namespace Blog.Infrastructure.IntegrationTests.Persistence
-{
-    using System;
-    using System.Threading.Tasks;
-    using Blog.Application.Contracts;
-    using IdentityServer4.EntityFramework.Options;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Options;
-    using Moq;
-    using Shouldly;
-    using Xunit;
-    using Blog.Common.Contracts;
-    using Blog.Domain.Articles;
-    using Blog.Gateways.Persistence.Providers;
+﻿using System;
+using System.Threading.Tasks;
+using Blog.Application.Contracts;
+using IdentityServer4.EntityFramework.Options;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Moq;
+using Shouldly;
+using Xunit;
+using Blog.Common.Contracts;
+using Blog.Domain.Articles;
+using Blog.Gateways.Persistence.Providers;
 
+namespace Blog.Gateways.Persistence.IntegrationTests
+{
     public class BlogDbContextTests : IDisposable
     {
         private readonly string username;
