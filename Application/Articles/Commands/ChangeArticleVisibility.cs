@@ -17,7 +17,7 @@ namespace Blog.Application.Articles.Commands
             private readonly IPersistenceContract data;
 
             public ChangeArticleVisibilityHandler(
-                IPersistenceContract data, 
+                IPersistenceContract data,
                 IDateTime dateTime)
             {
                 this.data = data;

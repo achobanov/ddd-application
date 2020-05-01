@@ -16,12 +16,12 @@
                 {
                     Id = 1,
                     IsPublic = false,
-                    CreatedBy = TestUser.Identifier
+                    CreatedBy = TestUser.Username
                 },
                 new Article("Test Title 2", "Test Content 2")
                 {
                     Id = 2,
-                    CreatedBy = TestUser.Identifier,
+                    CreatedBy = TestUser.Username,
                 },
                 new IdentityUser
                 {
