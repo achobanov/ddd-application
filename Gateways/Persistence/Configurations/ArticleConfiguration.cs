@@ -8,8 +8,7 @@ namespace Blog.Gateways.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Article> builder)
         {
-            builder
-                .HasKey(a => a.Id);
+            builder.HasKey(a => a.Id);
 
             builder
                 .Property(a => a.Title)
@@ -17,10 +16,6 @@ namespace Blog.Gateways.Persistence.Configurations
 
             builder
                 .Property(a => a.Content)
-                .IsRequired();
-
-            builder
-                .Property(a => a.CreatedBy)
                 .IsRequired();
 
             builder
