@@ -36,9 +36,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solutio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{6B795677-05A8-4F00-A179-05F5C5E11099}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence.IntegrationTests", "Tests\Gateways\Infrastructure.IntegrationTests\Persistence.IntegrationTests.csproj", "{44CEC58A-DDBD-40D5-873D-9F26A7367925}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence.Tests.Integration", "Tests\Gateways\Infrastructure.IntegrationTests\Persistence.Tests.Integration.csproj", "{44CEC58A-DDBD-40D5-873D-9F26A7367925}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.IntegrationTests", "Tests\Gateways\Web.IntegrationTests\Web.IntegrationTests.csproj", "{8E903A4F-10AD-4E0B-9DB9-3796B1AD157D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Tests.Integration", "Tests\Gateways\Web.IntegrationTests\Web.Tests.Integration.csproj", "{8E903A4F-10AD-4E0B-9DB9-3796B1AD157D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
