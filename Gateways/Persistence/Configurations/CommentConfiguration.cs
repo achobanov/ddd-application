@@ -12,10 +12,6 @@ namespace Blog.Gateways.Persistence.Configurations
                 .HasKey(a => a.Id);
 
             builder
-                .Property(a => a.Content)
-                .IsRequired();
-
-            builder
                 .HasOne(c => c.Author)
                 .WithMany(u => u.Comments)
                 .OnDelete(DeleteBehavior.Restrict);

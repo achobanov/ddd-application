@@ -11,9 +11,6 @@ namespace Blog.Gateways.Persistence.Configurations
             builder.HasKey(u => u.Id);
 
             builder
-                .Property(u => u.Username);
-
-            builder
                 .HasMany(u => u.Articles)
                 .WithOne(a => a.Author)
                 .HasForeignKey(a => a.AuthorId)

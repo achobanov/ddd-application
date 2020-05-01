@@ -11,14 +11,6 @@ namespace Blog.Gateways.Persistence.Configurations
             builder.HasKey(a => a.Id);
 
             builder
-                .Property(a => a.Title)
-                .IsRequired();
-
-            builder
-                .Property(a => a.Content)
-                .IsRequired();
-
-            builder
                 .HasMany(a => a.Comments)
                 .WithOne(a => a.Article)
                 .HasForeignKey(c => c.ArticleId)
