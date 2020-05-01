@@ -5,11 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 using MyTested.AspNetCore.Mvc;
 using Blog.Common.Contracts;
 
-namespace Blog.Web.IntegrationTests
+namespace Blog.Web.Tests.Integration
 {
     public class TestStartup : WebStartup
     {
-        public TestStartup(IConfiguration configuration) 
+        public TestStartup(IConfiguration configuration)
             : base(configuration)
         {
         }

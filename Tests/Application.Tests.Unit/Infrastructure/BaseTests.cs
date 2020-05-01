@@ -10,7 +10,7 @@ using Blog.Gateways.Persistence.Providers;
 using Blog.Common.Mappings;
 using AutoMapper;
 
-namespace Blog.Application.UnitTests
+namespace Blog.Application.Tests.Unit
 {
     public abstract class BaseTests : IDisposable
     {

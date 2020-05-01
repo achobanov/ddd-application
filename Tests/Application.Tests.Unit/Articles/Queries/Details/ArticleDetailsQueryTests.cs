@@ -4,13 +4,13 @@ using Blog.Application.Articles.Queries;
 using Shouldly;
 using Xunit;
 
-namespace Blog.Application.UnitTests.Articles.Queries.Details
+namespace Blog.Application.Tests.Unit.Articles.Queries
 {
     [Collection("QueryTests")]
     public class GetArticleDetailsTests : BaseTests
     {
         [Fact]
-        public async Task HandleReturnsCorrectArticleDetails()
+        public async Task Handle_ShouldReturnArticleDetails()
         {
             var query = new GetArticleDetails { Id = 1 };
             var handler = new GetArticleDetails.GetArticleDetailsHandler(this.Persistence);

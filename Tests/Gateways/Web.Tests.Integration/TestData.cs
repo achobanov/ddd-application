@@ -3,7 +3,7 @@ using Blog.Domain.Articles;
 using Microsoft.AspNetCore.Identity;
 using MyTested.AspNetCore.Mvc;
 
-namespace Blog.Web.IntegrationTests
+namespace Blog.Web.Tests.Integration
 {
     public class TestData
     {

@@ -1,16 +1,16 @@
-﻿namespace Blog.Application.UnitTests.Articles.Commands.Create
-{
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Blog.Application.Articles.Commands;
-    using Blog.Domain.Articles;
-    using Shouldly;
-    using Xunit;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Blog.Application.Articles.Commands;
+using Blog.Domain.Articles;
+using Shouldly;
+using Xunit;
 
+namespace Blog.Application.Tests.Unit.Articles.Commands
+{
     public class CreateArticleTests : BaseTests
     {
         [Fact]
-        public async Task HandleShouldPersistArticle()
+        public async Task Handle_ShouldPersistArticle()
         {
             var command = new CreateArticle
             {

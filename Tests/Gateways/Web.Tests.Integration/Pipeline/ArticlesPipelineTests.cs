@@ -6,13 +6,13 @@ using MyTested.AspNetCore.Mvc;
 using Shouldly;
 using Xunit;
 
-namespace Blog.Web.IntegrationTests.Pipeline
+namespace Blog.Web.Tests.Integration.Pipeline
 {
     public class ArticlesPipelineTests
     {
         [Theory]
         [InlineData(1)]
-        public void ChangeVisibilityShouldBeRoutedCorrectlyAndShouldReturnNoContent(int id)
+        public void ChangeVisibility(int id)
             => MyPipeline
                 .Configuration()
                 .ShouldMap(request =>

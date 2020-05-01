@@ -5,16 +5,15 @@ using Xunit;
 using Blog.Application.Articles.Commands;
 using Blog.Application.Articles.Queries;
 using Blog.Gateways.Web.Areas.Api;
-using Blog.Gateways.Persistence.Providers;
 using Blog.Domain.Articles;
 
-namespace Blog.Web.IntegrationTests.Api
+namespace Blog.Web.Tests.Integration.Api
 {
-    public class ArticlesControllerTests
+    public class ArticlesEndpointTests
     {
         [Theory]
         [InlineData(1)]
-        public void Details_ShouldReturnCorrectArticleDetailsModelWithValidData(int id)
+        public void Details(int id)
             => MyController<ArticlesController>
                 .Instance(controller =>
                     controller.WithData(TestData.Articles))
@@ -26,7 +25,7 @@ namespace Blog.Web.IntegrationTests.Api
 
         [Theory]
         [InlineData("Test Title", "Test Content")]
-        public void CreateShouldSaveArticleToTheDatabaseAndReturnCorrectArticleId(string title, string content)
+        public void Create(string title, string content)
             => MyController<ArticlesController>
                 .Instance(controller =>
                     controller.WithData(TestData.Articles))

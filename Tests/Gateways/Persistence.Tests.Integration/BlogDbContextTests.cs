@@ -11,7 +11,7 @@ using Blog.Common.Contracts;
 using Blog.Domain.Articles;
 using Blog.Gateways.Persistence.Providers;
 
-namespace Blog.Gateways.Persistence.IntegrationTests
+namespace Blog.Gateways.Persistence.Tests.Integration
 {
     public class BlogDbContextTests : IDisposable
     {
@@ -49,7 +49,7 @@ namespace Blog.Gateways.Persistence.IntegrationTests
         }
 
         [Fact]
-        public async Task SaveChangesAsyncGivenNewArticleShouldSetCreatedProperties()
+        public async Task SaveChangesAsync_ShouldSetCreatedProperties()
         {
             var article = new Article("Test Title 2", "Test Content 2") { CreatedBy = this.username };
 
@@ -62,7 +62,7 @@ namespace Blog.Gateways.Persistence.IntegrationTests
         }
 
         [Fact]
-        public async Task SaveChangesAsyncGivenExistingArticleShouldSetModifiedProperties()
+        public async Task SaveChangesAsync_ShouldSetModifiedProperties()
         {
             var article = await this.data.Articles.FindAsync(1);
 

@@ -3,7 +3,7 @@ using Blog.Common.Contracts;
 using Moq;
 using MyTested.AspNetCore.Mvc;
 
-namespace Blog.Web.IntegrationTests
+namespace Blog.Web.Tests.Integration
 {
     public class Mocks
     {
@@ -11,13 +11,13 @@ namespace Blog.Web.IntegrationTests
         {
             get
             {
-                var currentUserMock = new Mock<IAuthenticationContext>();
+                var authenticationContext = new Mock<IAuthenticationContext>();
 
-                currentUserMock
+                authenticationContext
                     .SetupGet(u => u.Username)
                     .Returns(TestUser.Identifier);
 
-                return currentUserMock.Object;
+                return authenticationContext.Object;
             }
         }
 
@@ -25,13 +25,13 @@ namespace Blog.Web.IntegrationTests
         {
             get
             {
-                var currentUserMock = new Mock<IDateTime>();
+                var dateTimeMock = new Mock<IDateTime>();
 
-                currentUserMock
+                dateTimeMock
                     .SetupGet(u => u.Now)
                     .Returns(TestData.TestNow);
 
-                return currentUserMock.Object;
+                return dateTimeMock.Object;
             }
         }
     }

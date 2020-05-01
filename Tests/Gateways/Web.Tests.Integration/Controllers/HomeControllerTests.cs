@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Blog.Web.IntegrationTests.Controllers
+namespace Blog.Web.Tests.Integration.Controllers
 {
     class HomeControllerTests
     {

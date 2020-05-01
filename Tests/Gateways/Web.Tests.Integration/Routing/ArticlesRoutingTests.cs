@@ -4,12 +4,12 @@ using Blog.Gateways.Web.Areas.Api;
 using MyTested.AspNetCore.Mvc;
 using Xunit;
 
-namespace Blog.Web.IntegrationTests.Routing
+namespace Blog.Web.Tests.Integration.Routing
 {
     public class ArticlesRoutingTests
     {
         [Fact]
-        public void DetailsShouldBeRoutedCorrectly()
+        public void Details()
             => MyRouting
                 .Configuration()
                 .ShouldMap("api/Articles/1")
@@ -17,7 +17,7 @@ namespace Blog.Web.IntegrationTests.Routing
 
         [Theory]
         [InlineData("Test Title", "Test Content")]
-        public void CreateShouldBeRoutedCorrectly(string title, string content)
+        public void Create(string title, string content)
             => MyRouting
                 .Configuration()
                 .ShouldMap(request =>
@@ -38,7 +38,7 @@ namespace Blog.Web.IntegrationTests.Routing
 
         [Theory]
         [InlineData(1)]
-        public void ChangeVisibilityShouldBeRoutedCorrectly(int id)
+        public void ChangeVisibility(int id)
             => MyRouting
                 .Configuration()
                 .ShouldMap(request =>
