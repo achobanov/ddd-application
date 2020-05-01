@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Blog.Common.ConventionalServices;
 using Blog.Authentication.Providers;
+using Blog.Gateways.Web.Contracts;
+using Blog.Application.Contracts;
 
 namespace Blog.Gateways.Web.Providers
 {
@@ -8,7 +10,7 @@ namespace Blog.Gateways.Web.Providers
     {
         public IServiceCollection ProvideImplementations(IServiceCollection services)
             => services
-                .AddTransient<Contracts.IAuthenticationContract, IdentityService>()
-                .AddScoped<Application.Contracts.IAuthenticationContract, IdentityContext>();
+                .AddTransient<IAuthenticationContract, IdentityService>()
+                .AddScoped<IAuthenticationContext, IdentityContext>();
     }
 }

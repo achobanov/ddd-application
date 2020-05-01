@@ -17,17 +17,17 @@ namespace Blog.Gateways.Persistence.Providers
 {
     public class BlogDbContext : ApiAuthorizationDbContext<IdentityUser>, IPersistenceContract
     {
-        private readonly IAuthenticationContract currentUserService;
+        private readonly IAuthenticationContext authenticationContext;
         private readonly IDateTime dateTime;
 
         public BlogDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions,
-            IAuthenticationContract currentUserService,
-            IDateTime dateTime) 
+            IAuthenticationContext authenticationContext,
+            IDateTime dateTime)
             : base(options, operationalStoreOptions)
         {
-            this.currentUserService = currentUserService;
+            this.authenticationContext = authenticationContext;
             this.dateTime = dateTime;
         }
 
@@ -44,11 +44,11 @@ namespace Blog.Gateways.Persistence.Providers
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedBy ??= this.currentUserService.Username;
+                        entry.Entity.CreatedBy ??= this.authenticationContext.Username;
                         entry.Entity.CreatedOn = this.dateTime.Now;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.ModifiedBy = this.currentUserService.Username;
+                        entry.Entity.ModifiedBy = this.authenticationContext.Username;
                         entry.Entity.ModifiedOn = this.dateTime.Now;
                         break;
                 }
@@ -66,7 +66,7 @@ namespace Blog.Gateways.Persistence.Providers
 
         #region IPersistenceContract implementation
 
-        IDataSet<TEntity> IPersistenceContract.Set<TEntity>()
+        IDataSetContext<TEntity> IPersistenceContract.Set<TEntity>()
             => new DataSet<TEntity>(this.Set<TEntity>());
 
         public Task<int> SaveChanges(CancellationToken cancellationToken = new CancellationToken())

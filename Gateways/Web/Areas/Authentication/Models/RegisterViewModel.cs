@@ -6,7 +6,7 @@ using static Blog.Gateways.Web.Infrastructure.WebConstants.ViewConstants;
 
 namespace Blog.Gateways.Web.Areas.Authentication.Models
 {
-    public class RegisterViewModel : BaseAuthenticationViewModel, IRegisterModel, IMapExplicitly
+    public class RegisterViewModel : BaseAuthenticationViewModel, IRegisterContext, IMapExplicitly
     {
         [Required]
         [DataType(DataType.Password)]

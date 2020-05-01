@@ -11,9 +11,9 @@ namespace Blog.Application.Infrastructure.Behaviours
     {
         private readonly Stopwatch timer;
         private readonly ILogger<TRequest> logger;
-        private readonly IAuthenticationContract authenticationContext;
+        private readonly IAuthenticationContext authenticationContext;
 
-        public RequestPerformanceBehaviour(ILogger<TRequest> logger, IAuthenticationContract authenticationContext)
+        public RequestPerformanceBehaviour(ILogger<TRequest> logger, IAuthenticationContext authenticationContext)
         {
             this.timer = new Stopwatch();
             

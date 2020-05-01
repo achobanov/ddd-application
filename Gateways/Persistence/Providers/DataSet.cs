@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Gateways.Persistence.Providers
 {
-    public class DataSet<TEntity> : IDataSet<TEntity>
+    public class DataSet<TEntity> : IDataSetContext<TEntity>
         where TEntity : class
     {
         private readonly DbSet<TEntity> dbSet;

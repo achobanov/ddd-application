@@ -28,7 +28,7 @@ namespace Blog.Authentication.Providers
             this.signInManager = signInManager;
         }
 
-        public async Task<Result<string>> Login(ILoginModel model)
+        public async Task<Result<string>> Login(ILoginContext model)
         {
             var result = await this.signInManager.PasswordSignInAsync(
                 model.Username,
@@ -53,7 +53,7 @@ namespace Blog.Authentication.Providers
         public Task Logout()
             => this.signInManager.SignOutAsync();
 
-        public async Task<Result> Register(IRegisterModel model)
+        public async Task<Result> Register(IRegisterContext model)
         {
             var user = new IdentityUser { UserName = model.Username };
             var result = await this.userManager.CreateAsync(user, model.Password);

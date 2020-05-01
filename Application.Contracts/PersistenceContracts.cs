@@ -7,13 +7,13 @@ namespace Blog.Application.Contracts
 {
     public interface IPersistenceContract
     {
-        IDataSet<TEntity> Set<TEntity>()
+        IDataSetContext<TEntity> Set<TEntity>()
             where TEntity : class;
 
         Task<int> SaveChanges(CancellationToken cancellationToken = default);
     }
 
-    public interface IDataSet<TEntity> : IQueryable<TEntity>, IEnumerable<TEntity>, IAsyncEnumerable<TEntity>
+    public interface IDataSetContext<TEntity> : IQueryable<TEntity>, IEnumerable<TEntity>, IAsyncEnumerable<TEntity>
         where TEntity : class
     {
         ValueTask<TEntity> Add(TEntity entity, CancellationToken cancellationToken = default);

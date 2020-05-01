@@ -27,7 +27,7 @@
             dateTimeMock.SetupGet(dt => dt.Now).Returns(this.dateTime);
 
             this.username = "mevolent";
-            var authenticationMock = new Mock<IAuthenticationContract>();
+            var authenticationMock = new Mock<IAuthenticationContext>();
             authenticationMock.Setup(m => m.Username).Returns(this.username);
 
             var options = new DbContextOptionsBuilder<BlogDbContext>()

@@ -4,7 +4,7 @@ using System.Security.Claims;
 
 namespace Blog.Authentication.Providers
 {
-    public class IdentityContext : IAuthenticationContract
+    public class IdentityContext : IAuthenticationContext
     {
         private readonly HttpContext httpContext;
         

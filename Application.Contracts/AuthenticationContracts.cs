@@ -2,7 +2,7 @@
 
 namespace Blog.Application.Contracts
 {
-    public interface IAuthenticationContract : IScopedService
+    public interface IAuthenticationContext : IScopedService
     {
         string Username { get; }
     }

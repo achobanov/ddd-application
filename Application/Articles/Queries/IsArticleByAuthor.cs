@@ -15,9 +15,9 @@ namespace Blog.Application.Articles.Queries.IsByUser
         public class IsArticleByAuthorHandler : Handler<IsArticleByAuthor, bool>
         {
             private readonly IPersistenceContract data;
-            private readonly IAuthenticationContract authenticationContext;
+            private readonly IAuthenticationContext authenticationContext;
 
-            public IsArticleByAuthorHandler(IPersistenceContract data, IAuthenticationContract authenticationContext)
+            public IsArticleByAuthorHandler(IPersistenceContract data, IAuthenticationContext authenticationContext)
             {
                 this.data = data;
                 this.authenticationContext = authenticationContext;

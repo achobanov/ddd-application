@@ -5,7 +5,7 @@ using static Blog.Gateways.Web.Infrastructure.WebConstants.ViewConstants;
 
 namespace Blog.Gateways.Web.Areas.Authentication.Models
 {
-    public class LoginViewModel : BaseAuthenticationViewModel, ILoginModel, IMapFrom<RegisterViewModel>
+    public class LoginViewModel : BaseAuthenticationViewModel, ILoginContext, IMapFrom<RegisterViewModel>
     {
         [Display(Name = Labels.RememberMe)]
         public bool RememberMe { get; set; }

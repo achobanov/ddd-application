@@ -5,21 +5,21 @@ namespace Blog.Gateways.Web.Contracts
 {
     public interface IAuthenticationContract
     {
-        Task<Result<string>> Login(ILoginModel model);
+        Task<Result<string>> Login(ILoginContext model);
 
         Task Logout();
 
-        Task<Result> Register(IRegisterModel model);
+        Task<Result> Register(IRegisterContext model);
     }
 
-    public interface IRegisterModel
+    public interface IRegisterContext
     {
         string Username { get; }
 
         string Password { get; }
     }
 
-    public interface ILoginModel
+    public interface ILoginContext
     {
         string Username { get; }
 

@@ -16,11 +16,11 @@ namespace Blog.Application.Articles.Commands
         public class CreateArticleHandler : Handler<CreateArticle, int>
         {
             private readonly IPersistenceContract data;
-            private readonly IAuthenticationContract authenticationContext;
+            private readonly IAuthenticationContext authenticationContext;
 
             public CreateArticleHandler(
                 IPersistenceContract data,
-                IAuthenticationContract authenticationContext)
+                IAuthenticationContext authenticationContext)
             {
                 this.data = data;
                 this.authenticationContext = authenticationContext;
