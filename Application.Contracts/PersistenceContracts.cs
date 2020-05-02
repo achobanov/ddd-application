@@ -10,6 +10,13 @@ namespace Blog.Application.Contracts
         IDataSetContext<TEntity> Set<TEntity>()
             where TEntity : class;
 
+        ValueTask<TEntity> Add<TEntity>(TEntity endity)
+            where TEntity : class;
+
+        Task AddRange<TEntity>(IEnumerable<TEntity> entities);
+        
+        Task AddRange<TEntity>(params TEntity[] entities);
+
         Task<int> SaveChanges(CancellationToken cancellationToken = default);
     }
 

@@ -12,6 +12,7 @@ using Blog.Domain.Infrastructure.Entities;
 using Blog.Domain.Authors;
 using Blog.Domain.Articles;
 using Blog.Domain.Comments;
+using System.Collections.Generic;
 
 namespace Blog.Gateways.Persistence.Providers
 {
@@ -68,6 +69,21 @@ namespace Blog.Gateways.Persistence.Providers
 
         IDataSetContext<TEntity> IPersistenceContract.Set<TEntity>()
             => new DataSet<TEntity>(this.Set<TEntity>());
+
+        async ValueTask<TEntity> IPersistenceContract.Add<TEntity>(TEntity entity)
+        {
+            var entry = this.Add(entity);
+
+            await this.SaveChangesAsync();
+
+            return entry.Entity;
+        }
+
+        async Task IPersistenceContract.AddRange<TEntity>(IEnumerable<TEntity> entities)
+            => await this.AddRangeAsync(entities);
+
+        async Task IPersistenceContract.AddRange<TEntity>(params TEntity[] entities)
+            => await this.AddRangeAsync(entities);
 
         public Task<int> SaveChanges(CancellationToken cancellationToken = new CancellationToken())
             => this.SaveChangesAsync(cancellationToken);
