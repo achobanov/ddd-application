@@ -9,14 +9,14 @@ namespace Blog.Domain.Comments
     {
         private string content;
 
-        public Comment(string content, Article article, Author author = null)
+        internal Comment(string content, Article article, Author author = null)
         {
             this.Content = content;
             this.Article = article;
             this.Author = author;
         }
 
-        public Comment(string content, int articleId, int? authorId = null)
+        internal Comment(string content, int articleId, int? authorId = null)
         {
             this.Content = content;
             this.ArticleId = articleId;

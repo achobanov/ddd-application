@@ -23,7 +23,7 @@ namespace Blog.Common.Mappings
 
             var value = await (dynamic)source;
 
-            return Mapper.Map<TDestination>(value);
+            return value.Map<TDestination>();
         }
 
         public static IEnumerable<TDestination> MapCollection<TDestination>(this IEnumerable source)
@@ -35,10 +35,10 @@ namespace Blog.Common.Mappings
 
         public static async Task<IEnumerable<TDestination>> MapCollection<TDestination>(this Task source)
         {
-            var value = (await (dynamic)source);
+            var value = await (dynamic)source;
             if (value is IEnumerable enumerable)
             {
-                return Mapper.Map<IEnumerable<TDestination>>(enumerable);
+                return enumerable.MapCollection<TDestination>();
             }
 
             throw new ArgumentException(
