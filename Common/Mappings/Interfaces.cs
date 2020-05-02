@@ -3,7 +3,7 @@
 namespace Blog.Common.Mappings
 {
     public interface IMapFrom<T> : IMapCreator
-    {   
+    {
         void IMapCreator.CreateMap(Profile mapper) => mapper.CreateMap(typeof(T), this.GetType());
     }
 
@@ -12,8 +12,9 @@ namespace Blog.Common.Mappings
         void IMapCreator.CreateMap(Profile mapper) => mapper.CreateMap(this.GetType(), typeof(T));
     }
 
-    public interface IMapExplicitly : IMapCreator
+    public interface IMapExplicitly
     {
+        void CreateMap(Profile mapper);
     }
 
     public interface IMapCreator

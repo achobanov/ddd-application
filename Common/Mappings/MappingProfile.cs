@@ -19,20 +19,29 @@ namespace Blog.Common.Mappings
                 .Where(t =>
                     !t.IsAbstract
                      && !t.IsInterface
-                     && typeof(IMapCreator).IsAssignableFrom(t))
+                     && (typeof(IMapCreator).IsAssignableFrom(t)
+                        || typeof(IMapExplicitly).IsAssignableFrom(t)))
                 .ForEach(this.CreateMap);
 
         private void CreateMap(Type type)
         {
-            if (Activator.CreateInstance(type) is IMapCreator instance)
+            var instance = Activator.CreateInstance(type);
+            if (instance is IMapCreator mapCreator)
             {
-                instance.CreateMap(this);
+                mapCreator.CreateMap(this);
+
+                return;
+            }
+
+            if (instance is IMapExplicitly explicitMapCreator)
+            {
+                explicitMapCreator.CreateMap(this);
 
                 return;
             }
 
             throw new ArgumentException(
-                $"Type '{type}' does not implement 'IMapCreator'.",
+                $"Cannot register map. Type '{type}' must implement 'IMapCreator' or 'IMapExplicitly",
                 nameof(type));
         }
     }

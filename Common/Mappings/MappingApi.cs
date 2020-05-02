@@ -33,13 +33,6 @@ namespace Blog.Common.Mappings
             return Mapper.Map<IEnumerable<TDestination>>(source);
         }
 
-        public static IQueryable<TDestination> MapCollection<TDestination>(this IQueryable source)
-        {
-            ValidateConfiguration();
-
-            return source.ProjectTo<TDestination>(Mapper.ConfigurationProvider);
-        }
-
         public static async Task<IEnumerable<TDestination>> MapCollection<TDestination>(this Task source)
         {
             var value = (await (dynamic)source);
@@ -51,6 +44,13 @@ namespace Blog.Common.Mappings
             throw new ArgumentException(
                 "Cannot map collection - argument value is not 'IEnumerable'.",
                 nameof(source));
+        }
+
+        public static IQueryable<TDestination> MapCollection<TDestination>(this IQueryable source)
+        {
+            ValidateConfiguration();
+
+            return source.ProjectTo<TDestination>(Mapper.ConfigurationProvider);
         }
 
         #region AutoMapper configuration
