@@ -9,10 +9,18 @@ namespace Blog.Domain.Comments
     {
         private string content;
 
-        public Comment(string content, string createdBy)
+        public Comment(string content, Article article, Author author = null)
         {
             this.Content = content;
-            this.CreatedBy = createdBy;
+            this.Article = article;
+            this.Author = author;
+        }
+
+        public Comment(string content, int articleId, int? authorId = null)
+        {
+            this.Content = content;
+            this.ArticleId = articleId;
+            this.AuthorId = authorId;
         }
 
         public string Content
@@ -29,13 +37,13 @@ namespace Blog.Domain.Comments
             }
         }
 
-        public Article Article { get; set; }
+        public Article Article { get; }
 
-        public int ArticleId { get; set; }
+        public int ArticleId { get; }
 
-        public Author Author { get; set; }
+        public Author Author { get; }
 
-        public int? AuthorId { get; set; }
+        public int? AuthorId { get; }
 
         public bool IsPublic { get; set; }
 

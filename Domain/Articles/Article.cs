@@ -60,7 +60,7 @@ namespace Blog.Domain.Articles
 
         public ICollection<Comment> Comments { get; } = new List<Comment>();
 
-        public void AddComment(string comment, string userId)
-            => this.Comments.Add(new Comment(comment, userId));
+        public void AddComment(string content, int authorId)
+            => this.Comments.Add(new Comment(content, this.Id, authorId));
     }
 }
