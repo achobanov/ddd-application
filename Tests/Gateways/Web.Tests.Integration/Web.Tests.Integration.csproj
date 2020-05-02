@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Blog.Web.IntegrationTests</RootNamespace>
-    <AssemblyName>Blog.Web.IntegrationTests</AssemblyName>
+    <RootNamespace>Blog.Web.Tests.Integration</RootNamespace>
+    <AssemblyName>Blog.Web.Tests.Integration</AssemblyName>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
