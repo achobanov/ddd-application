@@ -35,7 +35,7 @@ namespace Blog.Domain.Comments
 
         public Author Author { get; set; }
 
-        public int AuthorId { get; set; }
+        public int? AuthorId { get; set; }
 
         public bool IsPublic { get; set; }
 

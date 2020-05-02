@@ -1,4 +1,5 @@
 ﻿using Blog.Domain.Comments;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Blog.Gateways.Persistence.Configurations
@@ -10,6 +11,18 @@ namespace Blog.Gateways.Persistence.Configurations
             base.Configure(builder);
 
             builder.HasKey(a => a.Id);
+
+            builder
+                .HasOne(c => c.Article)
+                .WithMany(a => a.Comments)
+                .HasForeignKey(c => c.ArticleId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder
+                .HasOne(c => c.Author)
+                .WithMany(a => a.Comments)
+                .HasForeignKey(c => c.AuthorId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
