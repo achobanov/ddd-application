@@ -11,20 +11,17 @@ namespace Blog.Domain.Authors
 
         public Author()
         {
-
         }
 
-        public Author(string username, string identityId)
+        public Author(string username)
+            => this.Username = username;
+
+        public string Username
         {
-            this.Username = username;
-            this.IdentityId = identityId;
-        }
-
-        public string Username {
             get => this.username;
-            set
+            private set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new AuthorException(nameof(this.Username));
                 }
@@ -33,10 +30,20 @@ namespace Blog.Domain.Authors
             }
         }
 
-        public string IdentityId { get; private set; }
-
         public ICollection<Article> Articles { get; } = new List<Article>();
 
         public ICollection<Comment> Comments { get; } = new List<Comment>();
+
+        public void SetUser(string username)
+        {
+            if (this.Username != null)
+            {
+                throw new AuthorException(
+                    nameof(this.Username),
+                    $"Cannot set username '{username}' Author. It is already set to '{this.Username}'");
+            }
+
+            this.Username = username;
+        }
     }
 }

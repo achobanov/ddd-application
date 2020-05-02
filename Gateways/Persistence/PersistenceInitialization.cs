@@ -31,7 +31,7 @@ namespace Blog.Gateways.Persistence
         {
             var defaultUser = new IdentityUser
             {
-                UserName = "admin@dev.com", 
+                UserName = "admin@dev.com",
                 Email = "admin@dev.com"
             };
 
@@ -46,7 +46,7 @@ namespace Blog.Gateways.Persistence
             }
 
             var user = await data.Users.FirstAsync();
-            var author = new Author(user.Email, user.Id);
+            var author = new Author(user.UserName);
             var article = new Article("Test Article", "Test Article Content")
             {
                 CreatedOn = DateTime.Now.AddDays(-1),
