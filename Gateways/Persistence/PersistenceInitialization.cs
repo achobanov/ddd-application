@@ -47,12 +47,11 @@ namespace Blog.Gateways.Persistence
 
             var user = await data.Users.FirstAsync();
             var author = new Author(user.UserName);
-            var article = new Article("Test Article", "Test Article Content")
+            var article = new Article("Test Article", "Test Article Content", author)
             {
                 CreatedOn = DateTime.Now.AddDays(-1),
                 IsPublic = true,
                 PublishedOn = DateTime.Now,
-                Author = author,
                 CreatedBy = user.Id,
             };
 

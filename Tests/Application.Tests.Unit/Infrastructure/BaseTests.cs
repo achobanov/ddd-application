@@ -9,6 +9,7 @@ using Blog.Domain.Articles;
 using Blog.Gateways.Persistence.Providers;
 using Blog.Common.Mappings;
 using AutoMapper;
+using Blog.Domain.Authors;
 
 namespace Blog.Application.Tests.Unit
 {
@@ -89,12 +90,14 @@ namespace Blog.Application.Tests.Unit
 
         private void SeedSampleData()
         {
-            this.Persistence
-                .Set<Article>()
-                .AddRange(
-                    new Article("Test Title 1", "Test Content 1") { CreatedBy = "Test User 1" },
-                    new Article("Test Title 2", "Test Content 2") { CreatedBy = "Test User 2" },
-                    new Article("Test Title 3", "Test Content 3") { CreatedBy = "Test User 3" });
+            var author = new Author("username");
+
+            this.Persistence.Add(author);
+
+            this.Persistence.AddRange(
+                new Article("Test Title 1", "Test Content 1", author),
+                new Article("Test Title 2", "Test Content 2", author),
+                new Article("Test Title 3", "Test Content 3", author));
 
             this.Persistence.SaveChanges();
         }

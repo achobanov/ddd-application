@@ -43,7 +43,7 @@ namespace Blog.Gateways.Persistence.Tests.Integration
 
             this.data = new BlogDbContext(options, operationalStoreOptions, authenticationMock.Object, dateTimeMock.Object);
 
-            this.data.Articles.Add(new Article("Test Title", "Test Content") { CreatedBy = this.username });
+            this.data.Articles.Add(new Article("Test Title", "Test Content", 1));
 
             this.data.SaveChanges();
         }
@@ -51,7 +51,7 @@ namespace Blog.Gateways.Persistence.Tests.Integration
         [Fact]
         public async Task SaveChangesAsync_ShouldSetCreatedProperties()
         {
-            var article = new Article("Test Title 2", "Test Content 2") { CreatedBy = this.username };
+            var article = new Article("Test Title 2", "Test Content 2", 1);
 
             this.data.Articles.Add(article);
 

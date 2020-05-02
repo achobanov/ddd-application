@@ -11,10 +11,18 @@ namespace Blog.Domain.Articles
         private string title;
         private string content;
 
-        public Article(string title, string content)
+        public Article(string title, string content, Author author)
         {
             this.Title = title;
             this.Content = content;
+            this.Author = author;
+        }
+
+        public Article(string title, string content, int authorId)
+        {
+            this.Title = title;
+            this.Content = content;
+            this.AuthorId = authorId;
         }
 
         public string Title

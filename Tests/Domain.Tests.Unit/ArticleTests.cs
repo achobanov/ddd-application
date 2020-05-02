@@ -1,37 +1,30 @@
 ﻿using Blog.Domain.Articles;
+using Moq;
 using Xunit;
 
 namespace Blog.Domain.Tests.Unit
 {
     public class ArticleTests
     {
-        private const string SampleText = "Sample text";
-
-        [Fact]
-        public void Title_ShouldNotBeNull()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        public void Title_ShouldNotBeNull(string title)
             => Assert.Throws<ArticleException>(
-                () => new Article(null, SampleText));
-
-        [Fact]
-        public void Title_ShouldNotBeEmpty()
-            => Assert.Throws<ArticleException>(
-                () => new Article(string.Empty, SampleText));
+                () => new Article(title, It.IsAny<string>(), It.IsAny<int>()));
 
         [Theory]
         [InlineData(41)]
         [InlineData(100)]
         public void Title_ShouldBeOfValidLength(int length)
             => Assert.Throws<ArticleException>(
-                () => new Article(new string('x', length), SampleText));
+                () => new Article(new string('x', length), It.IsAny<string>(), It.IsAny<int>()));
 
-        [Fact]
-        public void Content_ShouldNotBeNull()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        public void Content_ShouldNotBeNullOrEmpty(string content)
             => Assert.Throws<ArticleException>(
-                () => new Article(SampleText, null));
-
-        [Fact]
-        public void Content_ShouldNotBeEmpty()
-            => Assert.Throws<ArticleException>(
-                () => new Article(SampleText, string.Empty));
+                () => new Article(It.IsAny<string>(), content, It.IsAny<int>()));
     }
 }
