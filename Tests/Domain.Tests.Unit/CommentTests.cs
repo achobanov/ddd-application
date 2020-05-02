@@ -1,18 +1,16 @@
-﻿using Blog.Domain.Comments;
+﻿using Blog.Domain.Articles;
+using Blog.Domain.Comments;
 using Xunit;
 
 namespace Blog.Domain.Tests.Unit
 {
     public class CommentTests
     {
-        [Fact]
-        public void Content_ShouldNotBeNull()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        public void Content_ShouldNotBeNull(string comment)
             => Assert.Throws<CommentException>(
-                () => new Comment(null, articleId: 1, authorId: 1));
-
-        [Fact]
-        public void Content_ShouldNotBeEmpty()
-            => Assert.Throws<CommentException>(
-                () => new Comment(string.Empty, articleId: 1, authorId: 1));
+                () => new Article("Some title", "Some content", 1).AddComment(comment, 1));
     }
 }

@@ -31,13 +31,18 @@ namespace Blog.Application.Tests.Unit.Articles.Commands
                 this.Persistence,
                 this.AuthenticationContextMock.Object);
 
+            this.AuthenticationContextMock
+                .SetupGet(x => x.Username)
+                .Returns(SampleUsername);
+
             var result = await handler.Handle(command, CancellationToken.None);
 
             var article = await this.Persistence.Set<Article>().Find(result);
 
-            article.ShouldNotBeNull();
-            article.Title.ShouldBe(command.Title);
-            article.CreatedBy.ShouldBe(SampleUsername);
+            article.ShouldSatisfyAllConditions(
+                () => article.ShouldNotBeNull(),
+                () => article.Title.ShouldBe(command.Title),
+                () => article.Author.Username.ShouldBe(SampleUsername));
         }
     }
 }

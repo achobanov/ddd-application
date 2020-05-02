@@ -22,11 +22,15 @@ namespace Blog.Common.Tests.Unit
 
         [Fact]
         public void Map_WhenNotConfigured_ShouldThrowInvalidOperation()
-            => Assert.Throws<InvalidOperationException>(
+        {
+            MappingApi.Configure(null);
+
+            Assert.Throws<InvalidOperationException>(
                 () => new Article(
                     SampleTitle,
                     SampleContent,
                     SampleAuthorId).Map<ArticleDetailsModel>());
+        }
 
         [Fact]
         public void Map_ShouldMapPropertiesByConvention()
@@ -34,8 +38,6 @@ namespace Blog.Common.Tests.Unit
             var title = "some title";
             var content = "some content";
             var authorId = 1;
-
-            this.Configure();
 
             var article = new Article(title, content, authorId);
             var mapped = article.Map<ArticleDetailsModel>();
@@ -65,35 +67,46 @@ namespace Blog.Common.Tests.Unit
         }
 
         [Fact]
-        public void MapTask_WhenNotConfigured_ShouldThrowInvalidOperation()
-            => Assert.ThrowsAsync<InvalidOperationException>(
-                () => Task
-                    .FromResult(new Article(SampleTitle, SampleContent, SampleAuthorId))
-                    .Map<ArticleDetailsModel>());
+        public void MapCollection_ShouldMapPropertiesByConvention()
+        {
+            var title = "some title";
+            var content = "some content";
+            var authorId = 1;
+
+            var article = new Article(title, content, authorId);
+            var articles = new List<Article> { article };
+
+            var mappedCollection = articles.MapCollection<ArticleDetailsModel>();
+            var mapped = mappedCollection.First();
+
+            mapped.ShouldSatisfyAllConditions(
+                () => mappedCollection.Count().ShouldBe(articles.Count),
+                () => mapped.Title.ShouldBe(article.Title),
+                () => mapped.Content.ShouldBe(article.Content));
+        }
 
         [Fact]
-        public void MapCollection_WhenNotConfigured_ShouldThrowInvalidOperation()
-            => Assert.Throws<InvalidOperationException>(
-                () =>
-                {
-                    var article = new Article(SampleTitle, SampleContent, SampleAuthorId);
-                    var articlesList = new List<Article> { article };
+        public void MapCollection_ShouldMapExplicitProperties()
+        {
+            var title = "some title";
+            var content = "some content";
+            var authorId = 1;
 
-                    articlesList.MapCollection<ArticleDetailsModel>();
-                });
+            this.Configure();
 
-        [Fact]
-        public void MapCollectionTask_WhenNotConfigured_ShouldThrowInvalidOperation()
-            => Assert.ThrowsAsync<InvalidOperationException>(
-                () =>
-                {
-                    var article = new Article(SampleTitle, SampleContent, SampleAuthorId);
-                    var articlesList = new List<Article> { article };
+            var article = new Article(title, content, authorId);
+            article.AddComment("some comment", authorId);
+            article.AddComment("second comment", authorId);
 
-                    return Task
-                        .FromResult(articlesList)
-                        .MapCollection<ArticleDetailsModel>();
-                });
+            var articles = new List<Article> { article };
+
+            var mappedCollection = articles.MapCollection<ArticleDetailsModel>();
+            var mapped = mappedCollection.First();
+
+            mappedCollection.ShouldSatisfyAllConditions(
+                () => mappedCollection.Count().ShouldBe(articles.Count),
+                () => mapped.CommmentsCount.ShouldBe(article.Comments.Count()));
+        }
 
         [Fact]
         public void MapCollectionTask_WhenUserOnNonEnumerableTask_ShouldThrowArgument()
@@ -104,19 +117,6 @@ namespace Blog.Common.Tests.Unit
 
                     return Task
                         .FromResult(article)
-                        .MapCollection<ArticleDetailsModel>();
-                });
-
-        [Fact]
-        public void MapQueryable_WhenNotConfigured_ShouldThrowInvalidOperation()
-            => Assert.Throws<InvalidOperationException>(
-                () =>
-                {
-                    var article = new Article(SampleTitle, SampleContent, SampleAuthorId);
-                    var articlesList = new List<Article> { article };
-
-                    articlesList
-                        .AsQueryable()
                         .MapCollection<ArticleDetailsModel>();
                 });
 
