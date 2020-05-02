@@ -11,15 +11,15 @@ namespace Blog.Gateways.Persistence.Configurations
             builder.HasKey(u => u.Id);
 
             builder
-                .HasMany(u => u.Articles)
-                .WithOne(a => a.Author)
-                .HasForeignKey(a => a.AuthorId)
-                .OnDelete(DeleteBehavior.SetNull);
+                .HasMany(aut => aut.Articles)
+                .WithOne(art => art.Author)
+                .HasForeignKey(art => art.AuthorId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder
-                .HasMany(u => u.Comments)
-                .WithOne(a => a.Author)
-                .HasForeignKey(a => a.AuthorId)
+                .HasMany(aut => aut.Comments)
+                .WithOne(art => art.Author)
+                .HasForeignKey(art => art.AuthorId)
                 .OnDelete(DeleteBehavior.SetNull);
         }
     }
