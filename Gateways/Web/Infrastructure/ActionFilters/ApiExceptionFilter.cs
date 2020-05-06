@@ -4,7 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Blog.Gateways.Web.Models;
 
 namespace Blog.Gateways.Web.Infrastructure.ActionFilters
 {
@@ -12,18 +14,21 @@ namespace Blog.Gateways.Web.Infrastructure.ActionFilters
     {
         public override void OnException(ExceptionContext context)
         {
-            var response = context.HttpContext.Response;
-            string message;
+            ErrorModel error;
 
             if (context.Exception is ValidationException)
             {
-                message = context.Exception.Message;
+                context.HttpContext.Response.StatusCode = 401;
+                error = new ErrorModel("Unauthorized Access");
             } else
             {
-                message = "Something went wrong.";
+                context.HttpContext.Response.StatusCode = 500;
+                error = new ErrorModel();
             }
 
-            response.WriteJsonAsync(new { error = new { message } });
+            context.Result = new JsonResult(error);
+
+            base.OnException(context);
         }
     }
 }
