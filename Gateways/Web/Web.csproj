@@ -28,4 +28,8 @@
     <ProjectReference Include="..\Persistence\Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Authentication\Views\shared\" />
+  </ItemGroup>
+
 </Project>

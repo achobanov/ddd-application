@@ -1,5 +1,6 @@
 using Blog.Application;
 using Blog.Gateways.Persistence;
+using Blog.Gateways.Web.Infrastructure.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -61,7 +62,11 @@ namespace Blog.Gateways.Web
             
             application
                 // app.UseCustomExceptionHandler();
+                .UseCustomResponseHandlerMiddleware()
+                .UseStaticFiles()
                 .UseHealthChecks("/health")
+                .UseDefaultFiles()
+                .UseStaticFiles()
                 .UseHttpsRedirection()
                 .UseRouting()
                 .UseAuthentication()
