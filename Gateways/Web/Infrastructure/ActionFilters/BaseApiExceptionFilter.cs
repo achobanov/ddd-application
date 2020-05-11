@@ -10,23 +10,17 @@ using Blog.Gateways.Web.Models;
 
 namespace Blog.Gateways.Web.Infrastructure.ActionFilters
 {
-    public class ApiExceptionFilter : ExceptionFilterAttribute
+    public class BaseApiExceptionFilter : ExceptionFilterAttribute
     {
         public override void OnException(ExceptionContext context)
         {
-            ErrorModel error;
-
-            if (context.Exception is ValidationException)
-            {
-                context.HttpContext.Response.StatusCode = 401;
-                error = new ErrorModel("Unauthorized Access");
-            } else
+            if (!context.ExceptionHandled)
             {
                 context.HttpContext.Response.StatusCode = 500;
-                error = new ErrorModel();
+                var error = new ErrorModel();
+                context.Result = new JsonResult(error);
+                context.ExceptionHandled = true;
             }
-
-            context.Result = new JsonResult(error);
 
             base.OnException(context);
         }

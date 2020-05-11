@@ -62,7 +62,6 @@ namespace Blog.Gateways.Web
             
             application
                 // app.UseCustomExceptionHandler();
-                .UseStaticFiles()
                 .UseHealthChecks("/health")
                 .UseDefaultFiles()
                 .UseStaticFiles()

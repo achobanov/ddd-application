@@ -3,14 +3,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Blog.Gateways.Web.Infrastructure.ActionFilters;
+using Blog.Gateways.Web.Infrastructure.ActionFilters.Validation;
 
 namespace Blog.Gateways.Web.Infrastructure.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [ApiExceptionFilter]
+    [ApiValidationExceptionFilter]
     public abstract class BaseApiController : ControllerBase
     {
         private IMediator mediator;

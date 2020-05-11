@@ -12,7 +12,7 @@ namespace Blog.Gateways.Web.Models
         public bool IsError { get; set; }
         public string Message { get; set; }
        
-        public ErrorModel(string message = "Something went wrong!")
+        public ErrorModel(string message = "Generic Error Message!")
         {
             this.IsError = true;
             this.Message = message;
