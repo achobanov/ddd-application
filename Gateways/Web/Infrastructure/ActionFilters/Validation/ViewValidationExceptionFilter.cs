@@ -8,16 +8,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Routing;
 
 namespace Blog.Gateways.Web.Infrastructure.ActionFilters.Validation
 {
     public class ViewValidationExceptionFilter : BaseViewExceptionFilter
     {
-        private IModelMetadataProvider modelMetadataProvider;
-        public ViewValidationExceptionFilter(IModelMetadataProvider modelMetadataProvider) : base()
-        {
-            this.modelMetadataProvider = modelMetadataProvider;
-        }
         public override void OnException(ExceptionContext context)
         {
             if (!context.ExceptionHandled && context.Exception is ValidationException)
@@ -35,12 +31,13 @@ namespace Blog.Gateways.Web.Infrastructure.ActionFilters.Validation
                     ViewName = actionName
                 };
 
-                viewData = new ViewDataDictionary(this.modelMetadataProvider, context.ModelState);
+                viewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary());
 
                 result.TempData = tempDataFactory.GetTempData(context.HttpContext);
                 result.TempData.Add("error", message);
                 result.ViewData = viewData;
-                context.Result = new RedirectToRouteResult(new Microsoft.AspNetCore.Routing.RouteValueDictionary(new { controller = controllerName, action = actionName }));
+                //context.Result = result;
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = controllerName, action = actionName }));
                 context.ExceptionHandled = true;
             }
 
