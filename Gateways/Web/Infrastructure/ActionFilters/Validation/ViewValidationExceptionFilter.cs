@@ -13,12 +13,18 @@ namespace Blog.Gateways.Web.Infrastructure.ActionFilters.Validation
 {
     public class ViewValidationExceptionFilter : BaseViewExceptionFilter
     {
+        private IModelMetadataProvider modelMetadataProvider;
+        public ViewValidationExceptionFilter(IModelMetadataProvider modelMetadataProvider) : base()
+        {
+            this.modelMetadataProvider = modelMetadataProvider;
+        }
         public override void OnException(ExceptionContext context)
         {
             if (!context.ExceptionHandled && context.Exception is ValidationException)
             {
                 ViewResult result;
                 ViewDataDictionary viewData;
+                var controllerName = context.RouteData.Values["controller"].ToString();
                 var actionName = context.RouteData.Values["action"].ToString();
                 var message = context.Exception.Message;
                 //This is an antipattern. It makes discerning a class's dependencies harder.
@@ -29,14 +35,12 @@ namespace Blog.Gateways.Web.Infrastructure.ActionFilters.Validation
                     ViewName = actionName
                 };
 
-                viewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary())
-                {
-                    Model = context.ModelState
-                };
+                viewData = new ViewDataDictionary(this.modelMetadataProvider, context.ModelState);
 
                 result.TempData = tempDataFactory.GetTempData(context.HttpContext);
                 result.TempData.Add("error", message);
                 result.ViewData = viewData;
+                context.Result = new RedirectToRouteResult(new Microsoft.AspNetCore.Routing.RouteValueDictionary(new { controller = controllerName, action = actionName }));
                 context.ExceptionHandled = true;
             }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Gateways.Web.Models
 {
-    public class ErrorModel : IErrorContract
+    public class ErrorModel
     {
         public bool IsError { get; set; }
         public string Message { get; set; }
