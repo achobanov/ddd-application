@@ -1,6 +1,7 @@
 ﻿using System;
 using Blog.Common.Extensions;
 using Blog.Common.Models;
+using Blog.Gateways.Web.Infrastructure.ActionFilters;
 using Blog.Gateways.Web.Infrastructure.ActionFilters.Validation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +11,7 @@ namespace Blog.Gateways.Web.Infrastructure.Controllers
 {
     [Controller]
     [Route("[controller]")]
-    [ViewValidationExceptionFilter]
+    [BaseViewExceptionFilter]
     public abstract class BaseViewController : Controller
     {
         private IMediator mediator;

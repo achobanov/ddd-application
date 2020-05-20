@@ -18,7 +18,7 @@ namespace Blog.Gateways.Web.Infrastructure.ActionFilters
             {
                 ViewResult result;
                 ViewDataDictionary viewData;
-                var model = new ErrorModel("This is broken!");
+                var model = new ErrorModel("User friendly error message.");
 
                 result = new ViewResult
                 {
