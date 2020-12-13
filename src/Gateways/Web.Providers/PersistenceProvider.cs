@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Blog.Gateways.Web.Providers
 {
-    public class InitializationProvider : IContractProvider
+    public class PersistenceProvider : IContractProvider
     {
         public IServiceCollection ProvideImplementations(IServiceCollection services)
             => services

@@ -1,9 +1,11 @@
 ﻿using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using Blog.Common.ConventionalServices;
 
-namespace Blog.Common.ConventionalServices
+namespace Blog.Common.Extensions
 {
+
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddConventionalServices(

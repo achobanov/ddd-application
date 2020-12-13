@@ -37,7 +37,7 @@ namespace Blog.Gateways.Persistence.Providers
 
         public DbSet<Comment> Comments { get; set; }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             foreach (var entry in this.ChangeTracker.Entries<IAuditableEntity>())
             {
@@ -64,14 +64,14 @@ namespace Blog.Gateways.Persistence.Providers
             base.OnModelCreating(builder);
         }
 
-        #region IPersistenceContract implementation
+#region IPersistenceContract implementation
 
         IDataSetContext<TEntity> IPersistenceContract.Set<TEntity>()
             => new DataSet<TEntity>(this.Set<TEntity>());
 
-        public Task<int> SaveChanges(CancellationToken cancellationToken = new CancellationToken())
+        public Task<int> SaveChanges(CancellationToken cancellationToken = default)
             => this.SaveChangesAsync(cancellationToken);
 
-        #endregion
+#endregion
     }
 }

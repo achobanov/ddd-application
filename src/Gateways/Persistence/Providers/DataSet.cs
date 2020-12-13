@@ -22,7 +22,7 @@ namespace Blog.Gateways.Persistence.Providers
             this.queryable = dbSet.AsQueryable();
         }
 
-        #region IQueryable implementaion
+#region IQueryable implementaion
 
         public Type ElementType => this.queryable.ElementType;
 
@@ -37,11 +37,11 @@ namespace Blog.Gateways.Persistence.Providers
             => this.queryable.GetEnumerator();
 
         public IAsyncEnumerator<TEntity> GetAsyncEnumerator(CancellationToken cancellationToken = default)
-            => this.dbSet.AsAsyncEnumerable().GetAsyncEnumerator();
+            => this.dbSet.AsAsyncEnumerable().GetAsyncEnumerator(cancellationToken);
 
-        #endregion
+#endregion
 
-        #region IDataSet implementation
+#region IDataSet implementation
 
         public async ValueTask<TEntity> Add(TEntity entity, CancellationToken cancellationToken = default)
         {
@@ -91,6 +91,6 @@ namespace Blog.Gateways.Persistence.Providers
         public void UpdateRange(IEnumerable<TEntity> entities)
             => this.dbSet.UpdateRange(entities);
 
-        #endregion
+#endregion
     }
 }
