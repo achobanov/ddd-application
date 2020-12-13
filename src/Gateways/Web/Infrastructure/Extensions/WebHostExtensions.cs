@@ -15,9 +15,9 @@ namespace Blog.Gateways.Web.Infrastructure.Extensions
 
             var initializations = webHost.Services.GetServices<IInitialization>();
 
-            foreach (var initalization in initializations)
+            foreach (var initialization in initializations)
             {
-                await initalization.Initialize(services);
+                await initialization.Initialize(services);
             }
         }
     }
