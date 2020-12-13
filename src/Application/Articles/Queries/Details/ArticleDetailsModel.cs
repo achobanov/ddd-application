@@ -1,9 +1,9 @@
-﻿namespace Blog.Application.Articles.Queries.Details
-{
-    using System;
-    using Common.Mappings;
-    using Domain.Entities;
+﻿using System;
+using Blog.Common.Mappings;
+using Blog.Domain.Articles;
 
+namespace Blog.Application.Articles.Queries
+{
     public class ArticleDetailsModel : IMapFrom<Article>
     {
         public int Id { get; set; }
@@ -17,5 +17,7 @@
         public DateTime? PublishedOn { get; set; }
 
         public string CreatedBy { get; set; }
+
+        public string Author { get; set; }
     }
 }
