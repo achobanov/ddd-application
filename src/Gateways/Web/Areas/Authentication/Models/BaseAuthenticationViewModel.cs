@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
-using static Blog.Gateways.Web.Common.WebConstants.ViewConstants;
+using static Blog.Gateways.Web.Infrastructure.WebConstants.ViewConstants;
 
 namespace Blog.Gateways.Web.Areas.Authentication.Models
 {

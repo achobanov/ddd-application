@@ -1,9 +1,10 @@
 ﻿using Blog.Application.Contracts;
-using Blog.Gateways.Web.Common.Extensions;
+using Blog.Gateways.Web.Infrastructure.Controllers;
+using Blog.Gateways.Web.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using static Blog.Gateways.Web.Common.WebConstants;
+using static Blog.Gateways.Web.Infrastructure.WebConstants;
 
 namespace Blog.Gateways.Web.Controllers
 {

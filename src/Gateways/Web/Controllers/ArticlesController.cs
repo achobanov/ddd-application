@@ -1,16 +1,14 @@
-﻿namespace Blog.Gateways.Web.Controllers
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
-    using Blog.Application.Articles.Queries.Details;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Blog.Gateways.Web.Infrastructure.Controllers;
+using Blog.Application.Articles.Queries;
 
+namespace Blog.Gateways.Web.Controllers
+{
     public class ArticlesController : BaseViewController
     {
         [HttpGet("{id}")]
-        public async Task<ActionResult> Index([FromRoute] ArticleDetailsQuery query)
+        public async Task<ActionResult> Index([FromRoute] GetArticleDetails query)
         {
             var articleDetails = await Mediator.Send(query);
             

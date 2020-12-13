@@ -1,28 +1,28 @@
-﻿namespace Blog.Gateways.Persistence.Configurations
+﻿using Blog.Domain.Comments;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace Blog.Gateways.Persistence.Configurations
 {
-    using Domain.Entities;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-    public class CommentConfiguration : IEntityTypeConfiguration<Comment>
+    public class CommentConfiguration : AuditableEntityConfiguration<Comment>
     {
-        public void Configure(EntityTypeBuilder<Comment> builder)
+        public override void Configure(EntityTypeBuilder<Comment> builder)
         {
-            builder
-                .HasKey(a => a.Id);
+            base.Configure(builder);
+
+            builder.HasKey(a => a.Id);
 
             builder
-                .Property(a => a.Content)
-                .IsRequired();
-
-            builder
-                .Property(a => a.CreatedBy)
-                .IsRequired();
+                .HasOne(c => c.Article)
+                .WithMany(a => a.Comments)
+                .HasForeignKey(c => c.ArticleId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .HasOne(c => c.Author)
-                .WithMany(u => u.Comments)
-                .OnDelete(DeleteBehavior.Restrict);
+                .WithMany(a => a.Comments)
+                .HasForeignKey(c => c.AuthorId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

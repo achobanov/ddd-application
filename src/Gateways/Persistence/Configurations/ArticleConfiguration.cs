@@ -1,39 +1,28 @@
-﻿namespace Blog.Gateways.Persistence.Configurations
+﻿using Blog.Domain.Articles;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace Blog.Gateways.Persistence.Configurations
 {
-    using Domain.Entities;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-    public class ArticleConfiguration : IEntityTypeConfiguration<Article>
+    public class ArticleConfiguration : AuditableEntityConfiguration<Article>
     {
-        public void Configure(EntityTypeBuilder<Article> builder)
+        public override void Configure(EntityTypeBuilder<Article> builder)
         {
-            builder
-                .HasKey(a => a.Id);
+            base.Configure(builder);
+
+            builder.HasKey(a => a.Id);
 
             builder
-                .Property(a => a.Title)
-                .IsRequired();
-
-            builder
-                .Property(a => a.Content)
-                .IsRequired();
-
-            builder
-                .Property(a => a.CreatedBy)
-                .IsRequired();
+                .HasOne(art => art.Author)
+                .WithMany(aut => aut.Articles)
+                .HasForeignKey(art => art.AuthorId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .HasMany(a => a.Comments)
-                .WithOne(a => a.Article)
+                .WithOne(c => c.Article)
                 .HasForeignKey(c => c.ArticleId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder
-                .HasOne(a => a.Author)
-                .WithMany(u => u.Articles)
-                .HasForeignKey(a => a.AuthorId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
