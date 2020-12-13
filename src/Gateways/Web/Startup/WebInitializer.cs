@@ -6,11 +6,11 @@ using Blog.Gateways.Web.Contracts;
 
 namespace Blog.Gateways.Web.Startup
 {
-    public class WebInitialization : IInitialization
+    public class WebInitializer : IInitializer
     {
         private readonly IMapper mapper;
 
-        public WebInitialization(IMapper mapper)
+        public WebInitializer(IMapper mapper)
             => this.mapper = mapper;
 
         public Task Initialize(IServiceProvider serviceProvider)

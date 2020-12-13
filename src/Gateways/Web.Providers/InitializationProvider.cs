@@ -9,6 +9,6 @@ namespace Blog.Gateways.Web.Providers
     {
         public IServiceCollection ProvideImplementations(IServiceCollection services)
             => services
-                .AddSingleton<IInitialization, PersistenceInitialization>();
+                .AddSingleton<IInitializer, PersistenceInitializer>();
     }
 }

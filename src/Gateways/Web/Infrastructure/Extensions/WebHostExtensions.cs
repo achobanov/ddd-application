@@ -13,7 +13,7 @@ namespace Blog.Gateways.Web.Infrastructure.Extensions
             using var scope = webHost.Services.CreateScope();
             var services = scope.ServiceProvider;
 
-            var initializations = webHost.Services.GetServices<IInitialization>();
+            var initializations = webHost.Services.GetServices<IInitializer>();
 
             foreach (var initialization in initializations)
             {
