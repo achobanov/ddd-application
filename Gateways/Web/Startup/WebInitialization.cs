@@ -6,7 +6,7 @@ using Blog.Gateways.Web.Contracts;
 
 namespace Blog.Gateways.Web.Startup
 {
-    public class WebInitialization : IInitializtion
+    public class WebInitialization : IInitialization
     {
         private readonly IMapper mapper;
 

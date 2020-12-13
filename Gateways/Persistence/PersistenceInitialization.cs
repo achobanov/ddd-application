@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Blog.Gateways.Persistence
 {
-    public class PersistenceInitialization : IInitializtion
+    public class PersistenceInitialization : IInitialization
     {
         public async Task Initialize(IServiceProvider serviceProvider)
         {

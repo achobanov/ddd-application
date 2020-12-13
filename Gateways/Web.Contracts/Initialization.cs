@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Gateways.Web.Contracts
 {
-    public interface IInitializtion
+    public interface IInitialization
     {
         Task Initialize(IServiceProvider serviceProvider);
     }

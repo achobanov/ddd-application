@@ -15,7 +15,7 @@ namespace Blog.Gateways.Web
             this IServiceCollection services)
             => services
                 .AddHttpContextAccessor()
-                .AddSingleton<IInitializtion, WebInitialization>()
+                .AddSingleton<IInitialization, WebInitialization>()
                 .AddContractProviders(typeof(AuthenticationProvider).Assembly);
 
         public static IServiceCollection AddContractProviders(
