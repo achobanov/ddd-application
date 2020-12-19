@@ -1,6 +1,7 @@
 using System;
 using AutoMapper;
-using Blog.Gateways.Persistence.Providers;
+using EnduranceContestManager.Application;
+using EnduranceContestManager.Gateways.Persistence.Providers;
 using Xunit;
 
 namespace Blog.Application.UnitTests
@@ -28,7 +29,7 @@ namespace Blog.Application.UnitTests
             //this.Identity = identityMock.Object;
         }
 
-        public BlogDbContext Context { get; }
+        public ContestDbContext Context { get; }
 
         public IMapper Mapper { get; }
 

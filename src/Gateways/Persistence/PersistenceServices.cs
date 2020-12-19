@@ -11,13 +11,13 @@ namespace EnduranceContestManager.Gateways.Persistence
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
             => services
                 .AddDatabase(configuration)
-                .AddScoped<IPersistenceContract, EnduranceContestManagerDbContext>();
+                .AddScoped<IPersistenceContract, ContestDbContext>();
 
         private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
             => services
-                .AddDbContext<EnduranceContestManagerDbContext>(options => options
+                .AddDbContext<ContestDbContext>(options => options
                     .UseSqlServer(
                         configuration.GetConnectionString("DefaultConnection"),
-                        b => b.MigrationsAssembly(typeof(EnduranceContestManagerDbContext).Assembly.FullName)));
+                        b => b.MigrationsAssembly(typeof(ContestDbContext).Assembly.FullName)));
     }
 }

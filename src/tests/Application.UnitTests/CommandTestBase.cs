@@ -1,8 +1,9 @@
+using EnduranceContestManager.Application.Contracts;
+using EnduranceContestManager.Gateways.Persistence.Providers;
+
 namespace Blog.Application.UnitTests
 {
     using System;
-    using Blog.Application.Contracts;
-    using Blog.Gateways.Persistence.Providers;
     using Moq;
 
     public class CommandTestBase : IDisposable
@@ -22,7 +23,7 @@ namespace Blog.Application.UnitTests
             this.IdentityContext = currentUserMock.Object;
         }
 
-        public BlogDbContext Context { get; }
+        public ContestDbContext Context { get; }
 
         public IAuthenticationContext IdentityContext { get; }
 

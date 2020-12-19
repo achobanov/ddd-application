@@ -1,10 +1,10 @@
-﻿namespace Blog.Web.IntegrationTests
-{
-    using System;
-    using Blog.Domain.Articles;
-    using Microsoft.AspNetCore.Identity;
-    using MyTested.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Identity;
+using MyTested.AspNetCore.Mvc;
+using EnduranceContestManager.Domain.Articles;
 
+namespace Blog.Web.IntegrationTests
+{
     public class TestData
     {
         public static DateTime TestNow => new DateTime(3000, 10, 10);

@@ -1,13 +1,14 @@
-﻿namespace Blog.Web.IntegrationTests.Features
+﻿using EnduranceContestManager.Application.Articles.Commands;
+using EnduranceContestManager.Application.Articles.Queries;
+using EnduranceContestManager.Gateways.Persistence.Providers;
+using EnduranceContestManager.Gateways.Web.Areas.Api;
+using Shouldly;
+using System.Linq;
+
+namespace Blog.Web.IntegrationTests.Features
 {
-    using System.Linq;
     using MyTested.AspNetCore.Mvc;
-    using Shouldly;
     using Xunit;
-    using Blog.Application.Articles.Commands;
-    using Blog.Application.Articles.Queries;
-    using Blog.Gateways.Web.Areas.Api;
-    using Blog.Gateways.Persistence.Providers;
 
     public class ArticlesControllerTests
     {
@@ -33,7 +34,7 @@
             => MyController<ArticlesController>
                 .Instance(controller => controller
                     .WithData(entities => entities
-                        .WithEntities<BlogDbContext>(TestData.Articles)))
+                        .WithEntities<ContestDbContext>(TestData.Articles)))
                 .Calling(c => c.Details(new GetArticleDetails { Id = id }))
                 .ShouldReturn()
                 .ActionResult<ArticleDetailsModel>(result => result
@@ -45,7 +46,7 @@
             => MyController<ArticlesController>
                 .Instance(controller => controller
                     .WithData(entities => entities
-                        .WithEntities<BlogDbContext>(TestData.Articles)))
+                        .WithEntities<ContestDbContext>(TestData.Articles)))
                 .Calling(c => c.Create(new CreateArticle
                 {
                     Title = title,
@@ -53,14 +54,14 @@
                 }))
                 .ShouldHave()
                 .Data(data => data
-                    .WithEntities<BlogDbContext>(entities =>
+                    .WithEntities<ContestDbContext>(entities =>
                     {
                         entities.Articles.Count().ShouldBe(3);
 
                         entities
                             .Articles
-                            .FirstOrDefault(a => 
-                                a.Title == title && 
+                            .FirstOrDefault(a =>
+                                a.Title == title &&
                                 a.Content == content &&
                                 a.CreatedBy == TestUser.Identifier &&
                                 a.CreatedOn == TestData.TestNow)

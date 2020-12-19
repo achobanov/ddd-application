@@ -31,11 +31,11 @@ namespace EnduranceContestManager.Gateways.Web
                 .AddApplication()
                 .AddPersistence(this.Configuration)
                 .AddWeb()
-                .AddAuthentication<EnduranceContestManagerDbContext>(this.Configuration);
+                .AddAuthentication<ContestDbContext>(this.Configuration);
 
             services
                 .AddHealthChecks()
-                .AddDbContextCheck<EnduranceContestManagerDbContext>();
+                .AddDbContextCheck<ContestDbContext>();
 
             services
                 .AddControllers()

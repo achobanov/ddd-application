@@ -15,18 +15,18 @@ namespace EnduranceContestManager.Gateways.Persistence
     {
         public async Task Initialize(IServiceProvider serviceProvider)
         {
-            var dbContext = serviceProvider.GetService<EnduranceContestManagerDbContext>();
+            var dbContext = serviceProvider.GetService<ContestDbContext>();
             var userManager = serviceProvider.GetService<UserManager<IdentityUser>>();
 
             this.Migrate(dbContext);
             await this.SeedAsync(dbContext, userManager);
         }
 
-        private void Migrate(EnduranceContestManagerDbContext dbContext)
+        private void Migrate(ContestDbContext dbContext)
             => dbContext.Database.Migrate();
 
         private async Task SeedAsync(
-            EnduranceContestManagerDbContext data,
+            ContestDbContext data,
             UserManager<IdentityUser> userManager)
         {
             var defaultUser = new IdentityUser

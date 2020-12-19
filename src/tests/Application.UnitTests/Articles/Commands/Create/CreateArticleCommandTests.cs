@@ -1,10 +1,11 @@
-﻿namespace Blog.Application.UnitTests.Articles.Commands.Create
+﻿using EnduranceContestManager.Application.Articles.Commands;
+using System.Threading;
+using System.Threading.Tasks;
+using Shouldly;
+using Xunit;
+
+namespace Blog.Application.UnitTests.Articles.Commands.Create
 {
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Blog.Application.Articles.Commands;
-    using Shouldly;
-    using Xunit;
 
     public class CreateArticleTests : CommandTestBase
     {

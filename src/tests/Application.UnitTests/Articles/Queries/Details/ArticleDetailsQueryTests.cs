@@ -1,9 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
-using Blog.Application.Articles.Queries;
-using Blog.Gateways.Persistence.Providers;
+﻿using EnduranceContestManager.Application.Articles.Queries;
+using EnduranceContestManager.Gateways.Persistence.Providers;
 using Shouldly;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Blog.Application.UnitTests.Articles.Queries.Details
@@ -11,7 +10,7 @@ namespace Blog.Application.UnitTests.Articles.Queries.Details
     [Collection("QueryTests")]
     public class GetArticleDetailsTests
     {
-        private readonly BlogDbContext context;
+        private readonly ContestDbContext context;
 
         public GetArticleDetailsTests(QueryTestFixture fixture)
             => this.context = fixture.Context;

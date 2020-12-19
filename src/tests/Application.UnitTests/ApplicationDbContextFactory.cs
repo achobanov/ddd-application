@@ -1,21 +1,20 @@
 using System;
-using Blog.Application.Contracts;
 using IdentityServer4.EntityFramework.Options;
-using Blog.Gateways.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Moq;
-using Blog.Common.Contracts;
-using Blog.Domain.Articles;
-using Blog.Gateways.Persistence.Providers;
+using EnduranceContestManager.Application.Contracts;
+using EnduranceContestManager.Common.Contracts;
+using EnduranceContestManager.Domain.Articles;
+using EnduranceContestManager.Gateways.Persistence.Providers;
 
 namespace Blog.Application.UnitTests
 {
     public static class ApplicationDbContextFactory
     {
-        public static BlogDbContext Create()
+        public static ContestDbContext Create()
         {
-            var options = new DbContextOptionsBuilder<BlogDbContext>()
+            var options = new DbContextOptionsBuilder<ContestDbContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
 
@@ -34,7 +33,7 @@ namespace Blog.Application.UnitTests
             currentUserServiceMock.Setup(m => m.Username)
                 .Returns("00000000-0000-0000-0000-000000000000");
 
-            var context = new BlogDbContext(
+            var context = new ContestDbContext(
                 options, operationalStoreOptions,
                 currentUserServiceMock.Object, dateTimeMock.Object);
 
@@ -45,7 +44,7 @@ namespace Blog.Application.UnitTests
             return context;
         }
 
-        public static void SeedSampleData(BlogDbContext context)
+        public static void SeedSampleData(ContestDbContext context)
         {
             context.Articles.AddRange(
                 new Article("Test Title 1", "Test Content 1") { CreatedBy = "Test User 1" },
@@ -55,7 +54,7 @@ namespace Blog.Application.UnitTests
             context.SaveChanges();
         }
 
-        public static void Destroy(BlogDbContext context)
+        public static void Destroy(ContestDbContext context)
         {
             context.Database.EnsureDeleted();
 

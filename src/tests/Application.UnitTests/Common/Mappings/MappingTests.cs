@@ -1,11 +1,11 @@
-﻿namespace Blog.Application.UnitTests.Common.Mappings
-{
-    using AutoMapper;
-    using System;
-    using Xunit;
-    using Blog.Application.Articles.Queries;
-    using Blog.Domain.Articles;
+﻿using AutoMapper;
+using System;
+using Xunit;
+using EnduranceContestManager.Application.Articles.Queries;
+using EnduranceContestManager.Domain.Articles;
 
+namespace Blog.Application.UnitTests.Common.Mappings
+{
     public class MappingTests : IClassFixture<MappingTestsFixture>
     {
         private readonly IConfigurationProvider configuration;

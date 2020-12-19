@@ -1,9 +1,10 @@
-﻿namespace Blog.Web.IntegrationTests
+﻿using EnduranceContestManager.Application.Contracts;
+using EnduranceContestManager.Common.Contracts;
+using Moq;
+using MyTested.AspNetCore.Mvc;
+
+namespace Blog.Web.IntegrationTests
 {
-    using Blog.Application.Contracts;
-    using Blog.Common.Contracts;
-    using Moq;
-    using MyTested.AspNetCore.Mvc;
 
     public class Mocks
     {

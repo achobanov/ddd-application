@@ -1,14 +1,14 @@
-﻿namespace Blog.Web.IntegrationTests.Api
-{
-    using System.Linq;
-    using MyTested.AspNetCore.Mvc;
-    using Shouldly;
-    using Xunit;
-    using Blog.Application.Articles.Commands;
-    using Blog.Application.Articles.Queries;
-    using Blog.Gateways.Web.Areas.Api;
-    using Blog.Gateways.Persistence.Providers;
+﻿using EnduranceContestManager.Application.Articles.Commands;
+using EnduranceContestManager.Application.Articles.Queries;
+using EnduranceContestManager.Gateways.Persistence.Providers;
+using EnduranceContestManager.Gateways.Web.Areas.Api;
+using MyTested.AspNetCore.Mvc;
+using Shouldly;
+using System.Linq;
+using Xunit;
 
+namespace Blog.Web.IntegrationTests.Api
+{
     public class ArticlesControllerTests
     {
         [Fact]
@@ -33,7 +33,7 @@
             => MyController<ArticlesController>
                 .Instance(controller => controller
                     .WithData(entities => entities
-                        .WithEntities<BlogDbContext>(TestData.Articles)))
+                        .WithEntities<ContestDbContext>(TestData.Articles)))
                 .Calling(c => c.Details(new GetArticleDetails { Id = id }))
                 .ShouldReturn()
                 .ActionResult<ArticleDetailsModel>(result => result
@@ -45,7 +45,7 @@
             => MyController<ArticlesController>
                 .Instance(controller => controller
                     .WithData(entities => entities
-                        .WithEntities<BlogDbContext>(TestData.Articles)))
+                        .WithEntities<ContestDbContext>(TestData.Articles)))
                 .Calling(c => c.Create(new CreateArticle
                 {
                     Title = title,
@@ -53,7 +53,7 @@
                 }))
                 .ShouldHave()
                 .Data(data => data
-                    .WithEntities<BlogDbContext>(entities =>
+                    .WithEntities<ContestDbContext>(entities =>
                     {
                         entities.Articles.Count().ShouldBe(3);
 

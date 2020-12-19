@@ -1,25 +1,25 @@
-﻿namespace Blog.Infrastructure.IntegrationTests.Persistence
-{
-    using System;
-    using System.Threading.Tasks;
-    using Blog.Application.Contracts;
-    using IdentityServer4.EntityFramework.Options;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Options;
-    using Moq;
-    using Shouldly;
-    using Xunit;
-    using Blog.Common.Contracts;
-    using Blog.Domain.Articles;
-    using Blog.Gateways.Persistence.Providers;
+﻿using EnduranceContestManager.Application.Contracts;
+using EnduranceContestManager.Common.Contracts;
+using EnduranceContestManager.Domain.Articles;
+using EnduranceContestManager.Gateways.Persistence.Providers;
+using System;
+using System.Threading.Tasks;
+using IdentityServer4.EntityFramework.Options;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Moq;
+using Shouldly;
+using Xunit;
 
-    public class BlogDbContextTests : IDisposable
+namespace Blog.Infrastructure.IntegrationTests.Persistence
+{
+    public class ContestDbContextTests : IDisposable
     {
         private readonly string username;
         private readonly DateTime dateTime;
-        private readonly BlogDbContext data;
+        private readonly ContestDbContext data;
 
-        public BlogDbContextTests()
+        public ContestDbContextTests()
         {
             this.dateTime = new DateTime(3001, 1, 1);
 
@@ -30,7 +30,7 @@
             var authenticationMock = new Mock<IAuthenticationContext>();
             authenticationMock.Setup(m => m.Username).Returns(this.username);
 
-            var options = new DbContextOptionsBuilder<BlogDbContext>()
+            var options = new DbContextOptionsBuilder<ContestDbContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
 
@@ -41,7 +41,7 @@
                     PersistedGrants = new TableConfiguration("PersistedGrants")
                 });
 
-            this.data = new BlogDbContext(options, operationalStoreOptions, authenticationMock.Object, dateTimeMock.Object);
+            this.data = new ContestDbContext(options, operationalStoreOptions, authenticationMock.Object, dateTimeMock.Object);
 
             this.data.Articles.Add(new Article("Test Title", "Test Content") { CreatedBy = this.username });
 

@@ -15,12 +15,12 @@ using EnduranceContestManager.Domain.Infrastructure.Entities;
 
 namespace EnduranceContestManager.Gateways.Persistence.Providers
 {
-    public class EnduranceContestManagerDbContext : ApiAuthorizationDbContext<IdentityUser>, IPersistenceContract
+    public class ContestDbContext : ApiAuthorizationDbContext<IdentityUser>, IPersistenceContract
     {
         private readonly IAuthenticationContext authenticationContext;
         private readonly IDateTime dateTime;
 
-        public EnduranceContestManagerDbContext(
+        public ContestDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions,
             IAuthenticationContext authenticationContext,

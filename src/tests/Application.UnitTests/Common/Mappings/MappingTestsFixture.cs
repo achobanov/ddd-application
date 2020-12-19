@@ -1,8 +1,8 @@
-﻿namespace Blog.Application.UnitTests.Common.Mappings
-{
-    using AutoMapper;
-    using Blog.Common.Mappings;
+﻿using AutoMapper;
+using EnduranceContestManager.Application;
 
+namespace Blog.Application.UnitTests.Common.Mappings
+{
     public class MappingTestsFixture
     {
         public MappingTestsFixture()

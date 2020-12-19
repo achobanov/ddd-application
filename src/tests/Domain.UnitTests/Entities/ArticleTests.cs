@@ -1,8 +1,8 @@
-﻿namespace Blog.Domain.UnitTests.Entities
-{
-    using Blog.Domain.Articles;
-    using Xunit;
+﻿using EnduranceContestManager.Domain.Articles;
+using Xunit;
 
+namespace Blog.Domain.UnitTests.Entities
+{
     public class ArticleTests
     {
         [Fact]

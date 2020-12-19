@@ -1,11 +1,11 @@
-﻿namespace Blog.Web.IntegrationTests.Routing
-{
-    using Blog.Application.Articles.Commands;
-    using Blog.Application.Articles.Queries;
-    using Blog.Gateways.Web.Areas.Api;
-    using MyTested.AspNetCore.Mvc;
-    using Xunit;
+﻿using EnduranceContestManager.Application.Articles.Commands;
+using EnduranceContestManager.Application.Articles.Queries;
+using EnduranceContestManager.Gateways.Web.Areas.Api;
+using MyTested.AspNetCore.Mvc;
+using Xunit;
 
+namespace Blog.Web.IntegrationTests.Routing
+{
     public class ArticlesRoutingTests
     {
         [Fact]
