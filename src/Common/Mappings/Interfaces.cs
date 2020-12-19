@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Blog.Common.Mappings
+namespace EnduranceContestManager.Common.Mappings
 {
     public interface IMapFrom<T> : IMapCreator
     {   

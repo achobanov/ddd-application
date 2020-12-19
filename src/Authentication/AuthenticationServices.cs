@@ -1,4 +1,4 @@
-﻿using Blog.Authentication.Infrastructure;
+﻿using EnduranceContestManager.Authentication.Infrastructure;
 using IdentityServer4.EntityFramework.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Blog.Authentication
+namespace EnduranceContestManager.Authentication
 {
     public static class AuthenticationServices
     {

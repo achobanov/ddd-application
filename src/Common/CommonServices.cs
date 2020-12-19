@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Blog.Common.Extensions;
+using EnduranceContestManager.Common.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Blog.Common
+namespace EnduranceContestManager.Common
 {
     public static class CommonServices
     {

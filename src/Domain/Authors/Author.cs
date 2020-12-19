@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Blog.Domain.Articles;
-using Blog.Domain.Comments;
-using Blog.Domain.Infrastructure.Entities;
+using EnduranceContestManager.Domain.Articles;
+using EnduranceContestManager.Domain.Comments;
+using EnduranceContestManager.Domain.Infrastructure.Entities;
 
-namespace Blog.Domain.Authors
+namespace EnduranceContestManager.Domain.Authors
 {
     public class Author : Entity
     {

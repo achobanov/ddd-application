@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Blog.Common.Extensions
+namespace EnduranceContestManager.Common.Extensions
 {
     public static class EnumerableExtensions
     {

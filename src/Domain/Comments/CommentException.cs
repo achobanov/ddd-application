@@ -1,7 +1,7 @@
 ﻿using System;
-using Blog.Domain.Infrastructure;
+using EnduranceContestManager.Domain.Infrastructure;
 
-namespace Blog.Domain.Comments
+namespace EnduranceContestManager.Domain.Comments
 {
     public class CommentException : DomainException
     {

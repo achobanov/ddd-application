@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blog.Domain.Infrastructure.Entities
+namespace EnduranceContestManager.Domain.Infrastructure.Entities
 {
     public interface IAuditableEntity
     {

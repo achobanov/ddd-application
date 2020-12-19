@@ -1,8 +1,8 @@
 ﻿using System;
-using Blog.Common.Mappings;
-using Blog.Domain.Articles;
+using EnduranceContestManager.Common.Mappings;
+using EnduranceContestManager.Domain.Articles;
 
-namespace Blog.Application.Articles.Queries
+namespace EnduranceContestManager.Application.Articles.Queries
 {
     public class ArticleDetailsModel : IMapFrom<Article>
     {

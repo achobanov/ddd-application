@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Blog.Application.Contracts</RootNamespace>
-    <AssemblyName>Blog.Application.Contracts</AssemblyName>
+    <RootNamespace>EnduranceContestManager.Application.Contracts</RootNamespace>
+    <AssemblyName>EnduranceContestManager.Application.Contracts</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

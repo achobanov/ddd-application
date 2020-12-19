@@ -1,10 +1,10 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Blog.Application.Contracts;
+using EnduranceContestManager.Application.Contracts;
 using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
 
-namespace Blog.Application.Infrastructure.Behaviours
+namespace EnduranceContestManager.Application.Infrastructure.Behaviours
 {
     public class RequestLogger<TRequest> : IRequestPreProcessor<TRequest>
     {
@@ -25,7 +25,7 @@ namespace Blog.Application.Infrastructure.Behaviours
             var username = this.authenticationContext.Username;
 
             this.logger.LogInformation(
-                "Blog Request: {Name} {@UserName} {@Request}",
+                "EnduranceContestManager Request: {Name} {@UserName} {@Request}",
                 requestName,
                 username ?? "Anonymous",
                 request);

@@ -1,11 +1,11 @@
 ﻿using System;
-using Blog.Common.Extensions;
-using Blog.Common.Models;
+using EnduranceContestManager.Common.Extensions;
+using EnduranceContestManager.Common.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Blog.Gateways.Web.Infrastructure.Controllers
+namespace EnduranceContestManager.Gateways.Web.Infrastructure.Controllers
 {
     [Controller]
     [Route("[controller]")]

@@ -1,9 +1,9 @@
-﻿using Blog.Common.ConventionalServices;
-using Blog.Gateways.Persistence;
-using Blog.Gateways.Web.Contracts;
+﻿using EnduranceContestManager.Common.ConventionalServices;
+using EnduranceContestManager.Gateways.Persistence;
+using EnduranceContestManager.Gateways.Web.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Blog.Gateways.Web.Providers
+namespace EnduranceContestManager.Gateways.Web.Providers
 {
     public class PersistenceProvider : IContractProvider
     {

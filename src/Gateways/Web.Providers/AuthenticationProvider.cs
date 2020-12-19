@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Blog.Common.ConventionalServices;
-using Blog.Authentication.Providers;
-using Blog.Gateways.Web.Contracts;
-using Blog.Application.Contracts;
+using EnduranceContestManager.Application.Contracts;
+using EnduranceContestManager.Authentication.Providers;
+using EnduranceContestManager.Common.ConventionalServices;
+using EnduranceContestManager.Gateways.Web.Contracts;
 
-namespace Blog.Gateways.Web.Providers
+namespace EnduranceContestManager.Gateways.Web.Providers
 {
     public class AuthenticationProvider : IContractProvider
     {

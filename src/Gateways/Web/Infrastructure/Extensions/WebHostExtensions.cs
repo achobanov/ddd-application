@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Blog.Gateways.Web.Contracts;
+using EnduranceContestManager.Gateways.Web.Contracts;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Blog.Gateways.Web.Infrastructure.Extensions
+namespace EnduranceContestManager.Gateways.Web.Infrastructure.Extensions
 {
     public static class WebHostExtensions
     {

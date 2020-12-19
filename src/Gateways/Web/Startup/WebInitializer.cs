@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
-using Blog.Common.Mappings;
-using Blog.Gateways.Web.Contracts;
+using EnduranceContestManager.Common.Mappings;
+using EnduranceContestManager.Gateways.Web.Contracts;
 
-namespace Blog.Gateways.Web.Startup
+namespace EnduranceContestManager.Gateways.Web.Startup
 {
     public class WebInitializer : IInitializer
     {

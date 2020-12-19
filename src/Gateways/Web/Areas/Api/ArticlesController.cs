@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
-using Blog.Application.Articles.Commands;
-using Blog.Application.Articles.Queries;
-using Blog.Application.Articles.Queries.IsByUser;
-using Blog.Gateways.Web.Infrastructure.Controllers;
+using EnduranceContestManager.Application.Articles.Commands;
+using EnduranceContestManager.Application.Articles.Queries;
+using EnduranceContestManager.Application.Articles.Queries.IsByUser;
+using EnduranceContestManager.Gateways.Web.Infrastructure.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Blog.Gateways.Web.Areas.Api
+namespace EnduranceContestManager.Gateways.Web.Areas.Api
 {
     [Area("Api")]
     public class ArticlesController : BaseApiController

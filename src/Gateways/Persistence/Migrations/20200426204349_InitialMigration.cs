@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Blog.Gateways.Persistence.Migrations
+namespace EnduranceContestManager.Gateways.Persistence.Migrations
 {
     public partial class InitialMigration : Migration
     {

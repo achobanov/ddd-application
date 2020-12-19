@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using Blog.Application.Contracts;
+using EnduranceContestManager.Application.Contracts;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Blog.Application.Infrastructure.Behaviours
+namespace EnduranceContestManager.Application.Infrastructure.Behaviours
 {
     public class RequestPerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
@@ -43,7 +43,7 @@ namespace Blog.Application.Infrastructure.Behaviours
             var username = this.authenticationContext.Username;
 
             this.logger.LogWarning(
-                "Blog Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Username} {@Request}",
+                "EnduranceContestManager Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Username} {@Request}",
                 requestName, 
                 elapsedMilliseconds, 
                 username ?? "Anonymous",

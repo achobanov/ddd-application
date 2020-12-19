@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using Blog.Common.ConventionalServices;
-using Blog.Gateways.Web.Contracts;
-using Blog.Gateways.Web.Providers;
-using Blog.Gateways.Web.Startup;
+using EnduranceContestManager.Common.ConventionalServices;
+using EnduranceContestManager.Gateways.Web.Contracts;
+using EnduranceContestManager.Gateways.Web.Providers;
+using EnduranceContestManager.Gateways.Web.Startup;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Blog.Gateways.Web
+namespace EnduranceContestManager.Gateways.Web
 {
     public static class WebServices
     {

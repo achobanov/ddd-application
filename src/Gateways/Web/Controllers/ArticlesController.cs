@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Blog.Gateways.Web.Infrastructure.Controllers;
-using Blog.Application.Articles.Queries;
+using EnduranceContestManager.Application.Articles.Queries;
+using EnduranceContestManager.Gateways.Web.Infrastructure.Controllers;
 
-namespace Blog.Gateways.Web.Controllers
+namespace EnduranceContestManager.Gateways.Web.Controllers
 {
     public class ArticlesController : BaseViewController
     {

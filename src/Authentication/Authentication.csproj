@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Blog.Authentication</RootNamespace>
-    <AssemblyName>Blog.Authentication</AssemblyName>
+    <RootNamespace>EnduranceContestManager.Authentication</RootNamespace>
+    <AssemblyName>EnduranceContestManager.Authentication</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace Blog.Common.ConventionalServices
+﻿namespace EnduranceContestManager.Common.ConventionalServices
 {
     public interface ISingletonService
     {

@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Blog.Common.Mappings;
-using Blog.Gateways.Web.Contracts;
-using static Blog.Gateways.Web.Infrastructure.WebConstants.ViewConstants;
+using EnduranceContestManager.Common.Mappings;
+using EnduranceContestManager.Gateways.Web.Contracts;
+using EnduranceContestManager.Gateways.Web.Infrastructure;
+using static EnduranceContestManager.Gateways.Web.Infrastructure.WebConstants.ViewConstants;
 
-namespace Blog.Gateways.Web.Areas.Authentication.Models
+namespace EnduranceContestManager.Gateways.Web.Areas.Authentication.Models
 {
     public class LoginViewModel : BaseAuthenticationViewModel, ILoginContext, IMapFrom<RegisterViewModel>
     {
-        [Display(Name = Labels.RememberMe)]
+        [Display(Name = WebConstants.ViewConstants.Labels.RememberMe)]
         public bool RememberMe { get; set; }
     }
 }

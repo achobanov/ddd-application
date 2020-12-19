@@ -1,4 +1,4 @@
-﻿namespace Blog.Gateways.Web.Infrastructure
+﻿namespace EnduranceContestManager.Gateways.Web.Infrastructure
 {
     public static class WebConstants
     {

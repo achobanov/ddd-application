@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Blog.Authentication.Infrastructure
+namespace EnduranceContestManager.Authentication.Infrastructure
 {
     public static class SymmetricKeyFactory
     {

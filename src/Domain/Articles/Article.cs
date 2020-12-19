@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Blog.Domain.Authors;
-using Blog.Domain.Comments;
-using Blog.Domain.Infrastructure.Entities;
+using EnduranceContestManager.Domain.Authors;
+using EnduranceContestManager.Domain.Comments;
+using EnduranceContestManager.Domain.Infrastructure.Entities;
 
-namespace Blog.Domain.Articles
+namespace EnduranceContestManager.Domain.Articles
 {
     public class Article : AuditableEntity
     {

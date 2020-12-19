@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Blog.Common.ConventionalServices
+namespace EnduranceContestManager.Common.ConventionalServices
 {
     public interface IContractProvider
     {

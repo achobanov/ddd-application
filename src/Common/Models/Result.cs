@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Blog.Common.Models
+namespace EnduranceContestManager.Common.Models
 {
     public class Result
     {

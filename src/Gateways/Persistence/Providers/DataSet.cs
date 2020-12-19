@@ -5,10 +5,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Blog.Application.Contracts;
+using EnduranceContestManager.Application.Contracts;
 using Microsoft.EntityFrameworkCore;
 
-namespace Blog.Gateways.Persistence.Providers
+namespace EnduranceContestManager.Gateways.Persistence.Providers
 {
     public class DataSet<TEntity> : IDataSetContext<TEntity>
         where TEntity : class

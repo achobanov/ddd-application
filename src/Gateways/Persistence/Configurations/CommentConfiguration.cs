@@ -1,8 +1,8 @@
-﻿using Blog.Domain.Comments;
+﻿using EnduranceContestManager.Domain.Comments;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Blog.Gateways.Persistence.Configurations
+namespace EnduranceContestManager.Gateways.Persistence.Configurations
 {
     public class CommentConfiguration : AuditableEntityConfiguration<Comment>
     {

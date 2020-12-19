@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using MediatR;
 
-namespace Blog.Application.Infrastructure.Handlers
+namespace EnduranceContestManager.Application.Infrastructure.Handlers
 {
     public abstract class Handler<TRequest> : AsyncRequestHandler<TRequest> where TRequest : IRequest
     {

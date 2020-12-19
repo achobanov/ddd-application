@@ -1,6 +1,6 @@
-﻿using Blog.Common.ConventionalServices;
+﻿using EnduranceContestManager.Common.ConventionalServices;
 
-namespace Blog.Application.Contracts
+namespace EnduranceContestManager.Application.Contracts
 {
     public interface IAuthenticationContext : IScopedService
     {

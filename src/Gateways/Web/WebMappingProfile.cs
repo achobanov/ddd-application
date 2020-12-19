@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-using Blog.Common.Mappings;
+using EnduranceContestManager.Common.Mappings;
 
-namespace Blog.Gateways.Web
+namespace EnduranceContestManager.Gateways.Web
 {
     public class WebMappingProfile : MappingProfile
     {

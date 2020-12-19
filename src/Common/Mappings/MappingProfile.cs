@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Reflection;
 using AutoMapper;
-using Blog.Common.Extensions;
+using EnduranceContestManager.Common.Extensions;
 
-namespace Blog.Common.Mappings
+namespace EnduranceContestManager.Common.Mappings
 {
     public abstract class MappingProfile : Profile
     {

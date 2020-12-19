@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
-using Blog.Application.Infrastructure.Behaviours;
+using EnduranceContestManager.Application.Infrastructure.Behaviours;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Blog.Application
+namespace EnduranceContestManager.Application
 {
     public static class ApplicationServices
     {

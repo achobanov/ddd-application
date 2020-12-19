@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
-using Blog.Authentication.Infrastructure;
-using Blog.Common.Models;
-using Blog.Gateways.Web.Contracts;
+using EnduranceContestManager.Authentication.Infrastructure;
+using EnduranceContestManager.Common.Models;
+using EnduranceContestManager.Gateways.Web.Contracts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 
-namespace Blog.Authentication.Providers
+namespace EnduranceContestManager.Authentication.Providers
 {
     public class IdentityService : IAuthenticationContract
     {

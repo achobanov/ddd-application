@@ -1,26 +1,26 @@
 ﻿using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using Blog.Application.Contracts;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Blog.Common.Contracts;
-using Blog.Domain.Infrastructure.Entities;
-using Blog.Domain.Authors;
-using Blog.Domain.Articles;
-using Blog.Domain.Comments;
+using EnduranceContestManager.Application.Contracts;
+using EnduranceContestManager.Common.Contracts;
+using EnduranceContestManager.Domain.Articles;
+using EnduranceContestManager.Domain.Authors;
+using EnduranceContestManager.Domain.Comments;
+using EnduranceContestManager.Domain.Infrastructure.Entities;
 
-namespace Blog.Gateways.Persistence.Providers
+namespace EnduranceContestManager.Gateways.Persistence.Providers
 {
-    public class BlogDbContext : ApiAuthorizationDbContext<IdentityUser>, IPersistenceContract
+    public class EnduranceContestManagerDbContext : ApiAuthorizationDbContext<IdentityUser>, IPersistenceContract
     {
         private readonly IAuthenticationContext authenticationContext;
         private readonly IDateTime dateTime;
 
-        public BlogDbContext(
+        public EnduranceContestManagerDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions,
             IAuthenticationContext authenticationContext,

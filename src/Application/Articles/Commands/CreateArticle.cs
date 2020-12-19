@@ -1,11 +1,11 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Blog.Application.Infrastructure.Handlers;
-using Blog.Application.Contracts;
 using MediatR;
-using Blog.Domain.Articles;
+using EnduranceContestManager.Application.Contracts;
+using EnduranceContestManager.Application.Infrastructure.Handlers;
+using EnduranceContestManager.Domain.Articles;
 
-namespace Blog.Application.Articles.Commands
+namespace EnduranceContestManager.Application.Articles.Commands
 {
     public class CreateArticle : IRequest<int>
     {

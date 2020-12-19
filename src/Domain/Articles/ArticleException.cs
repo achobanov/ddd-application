@@ -1,7 +1,7 @@
 ﻿using System;
-using Blog.Domain.Infrastructure;
+using EnduranceContestManager.Domain.Infrastructure;
 
-namespace Blog.Domain.Articles
+namespace EnduranceContestManager.Domain.Articles
 {
     public class ArticleException : DomainException
     {

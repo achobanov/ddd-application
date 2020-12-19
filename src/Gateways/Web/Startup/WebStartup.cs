@@ -1,17 +1,17 @@
-using Blog.Application;
-using Blog.Gateways.Persistence;
+using EnduranceContestManager.Gateways.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Blog.Common;
-using Blog.Domain;
-using Blog.Gateways.Persistence.Providers;
-using Blog.Authentication;
+using EnduranceContestManager.Authentication;
+using EnduranceContestManager.Application;
+using EnduranceContestManager.Common;
+using EnduranceContestManager.Domain;
+using EnduranceContestManager.Gateways.Persistence.Providers;
 
-namespace Blog.Gateways.Web
+namespace EnduranceContestManager.Gateways.Web
 {
     public class WebStartup
     {
@@ -31,11 +31,11 @@ namespace Blog.Gateways.Web
                 .AddApplication()
                 .AddPersistence(this.Configuration)
                 .AddWeb()
-                .AddAuthentication<BlogDbContext>(this.Configuration);
+                .AddAuthentication<EnduranceContestManagerDbContext>(this.Configuration);
 
             services
                 .AddHealthChecks()
-                .AddDbContextCheck<BlogDbContext>();
+                .AddDbContextCheck<EnduranceContestManagerDbContext>();
 
             services
                 .AddControllers()

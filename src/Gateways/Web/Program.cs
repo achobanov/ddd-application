@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using Blog.Gateways.Web.Infrastructure.Extensions;
+using EnduranceContestManager.Gateways.Web.Infrastructure.Extensions;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Blog.Gateways.Web
+namespace EnduranceContestManager.Gateways.Web
 {
     public class Program
     {

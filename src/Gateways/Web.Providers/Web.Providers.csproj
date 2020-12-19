@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Blog.Gateways.Web.Providers</RootNamespace>
-    <AssemblyName>Blog.Gateways.Web.Providers</AssemblyName>
+    <RootNamespace>EnduranceContestManager.Gateways.Web.Providers</RootNamespace>
+    <AssemblyName>EnduranceContestManager.Gateways.Web.Providers</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

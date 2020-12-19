@@ -1,14 +1,14 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Blog.Application.Infrastructure.Handlers;
-using Blog.Application.Contracts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Blog.Domain.Articles;
-using Blog.Common.Mappings;
+using EnduranceContestManager.Common.Mappings;
+using EnduranceContestManager.Application.Contracts;
+using EnduranceContestManager.Application.Infrastructure.Handlers;
+using EnduranceContestManager.Domain.Articles;
 
-namespace Blog.Application.Articles.Queries
+namespace EnduranceContestManager.Application.Articles.Queries
 {
     public class GetArticleDetails : IRequest<ArticleDetailsModel>
     {

@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-using Blog.Common.Mappings;
+using EnduranceContestManager.Common.Mappings;
 
-namespace Blog.Application
+namespace EnduranceContestManager.Application
 {
     public class ApplicationMappingProfile : MappingProfile
     {

@@ -1,9 +1,9 @@
 ﻿using System;
-using Blog.Domain.Articles;
-using Blog.Domain.Authors;
-using Blog.Domain.Infrastructure.Entities;
+using EnduranceContestManager.Domain.Articles;
+using EnduranceContestManager.Domain.Authors;
+using EnduranceContestManager.Domain.Infrastructure.Entities;
 
-namespace Blog.Domain.Comments
+namespace EnduranceContestManager.Domain.Comments
 {
     public class Comment : AuditableEntity
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blog.Application.Infrastructure.Exceptions
+namespace EnduranceContestManager.Application.Infrastructure.Exceptions
 {
     public class NotFoundException : Exception
     {

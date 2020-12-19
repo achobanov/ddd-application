@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Blog.Gateways.Web.Contracts
+namespace EnduranceContestManager.Gateways.Web.Contracts
 {
     public interface IInitializer
     {

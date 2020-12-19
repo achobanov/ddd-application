@@ -1,12 +1,12 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Blog.Application.Infrastructure.Handlers;
-using Blog.Application.Contracts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Blog.Domain.Articles;
+using EnduranceContestManager.Application.Contracts;
+using EnduranceContestManager.Application.Infrastructure.Handlers;
+using EnduranceContestManager.Domain.Articles;
 
-namespace Blog.Application.Articles.Queries.IsByUser
+namespace EnduranceContestManager.Application.Articles.Queries.IsByUser
 {
     public class IsArticleByAuthor : IRequest<bool>
     {

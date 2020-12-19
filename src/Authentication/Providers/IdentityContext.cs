@@ -1,8 +1,8 @@
-﻿using Blog.Application.Contracts;
+﻿using EnduranceContestManager.Application.Contracts;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace Blog.Authentication.Providers
+namespace EnduranceContestManager.Authentication.Providers
 {
     public class IdentityContext : IAuthenticationContext
     {

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
-using Blog.Application.Infrastructure.Exceptions;
+using EnduranceContestManager.Application.Infrastructure.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
-namespace Blog.Gateways.Web.Infrastructure.Middleware
+namespace EnduranceContestManager.Gateways.Web.Infrastructure.Middleware
 {
     public class ExceptionHandlerMiddleware
     {

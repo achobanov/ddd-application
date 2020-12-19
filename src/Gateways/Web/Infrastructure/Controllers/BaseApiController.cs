@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Blog.Gateways.Web.Infrastructure.Controllers
+namespace EnduranceContestManager.Gateways.Web.Infrastructure.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

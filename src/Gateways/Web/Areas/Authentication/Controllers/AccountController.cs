@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
-using Blog.Gateways.Web.Areas.Authentication.Models;
-using Blog.Gateways.Web.Infrastructure.Extensions;
-using Blog.Gateways.Web.Contracts;
+using EnduranceContestManager.Gateways.Web.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Mvc;
-using static Blog.Gateways.Web.Infrastructure.WebConstants;
-using Blog.Gateways.Web.Infrastructure.Controllers;
+using static EnduranceContestManager.Gateways.Web.Infrastructure.WebConstants;
+using EnduranceContestManager.Gateways.Web.Areas.Authentication.Models;
+using EnduranceContestManager.Gateways.Web.Contracts;
+using EnduranceContestManager.Gateways.Web.Infrastructure.Controllers;
 
-namespace Blog.Gateways.Web.Areas.Authentication.Controllers
+namespace EnduranceContestManager.Gateways.Web.Areas.Authentication.Controllers
 {
     [Area("Authentication")]
     [Route("/Account/[action]")]

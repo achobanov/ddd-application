@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 
-namespace Blog.Common.Mappings
+namespace EnduranceContestManager.Common.Mappings
 {
     public static class MappingApi
     {
