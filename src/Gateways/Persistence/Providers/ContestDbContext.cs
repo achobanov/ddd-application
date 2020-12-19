@@ -9,8 +9,6 @@ using Microsoft.Extensions.Options;
 using EnduranceContestManager.Application.Contracts;
 using EnduranceContestManager.Common.Contracts;
 using EnduranceContestManager.Domain.Articles;
-using EnduranceContestManager.Domain.Authors;
-using EnduranceContestManager.Domain.Comments;
 using EnduranceContestManager.Domain.Infrastructure.Entities;
 
 namespace EnduranceContestManager.Gateways.Persistence.Providers
@@ -31,11 +29,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Providers
             this.dateTime = dateTime;
         }
 
-        public DbSet<Author> Authors { get; set; }
-
         public DbSet<Article> Articles { get; set; }
-
-        public DbSet<Comment> Comments { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

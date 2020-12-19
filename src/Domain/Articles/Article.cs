@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using EnduranceContestManager.Domain.Authors;
-using EnduranceContestManager.Domain.Comments;
 using EnduranceContestManager.Domain.Infrastructure.Entities;
 
 namespace EnduranceContestManager.Domain.Articles
@@ -53,14 +50,5 @@ namespace EnduranceContestManager.Domain.Articles
         public bool IsPublic { get; set; }
 
         public DateTime? PublishedOn { get; set; }
-
-        public Author Author { get; set; }
-
-        public int AuthorId { get; set; }
-
-        public ICollection<Comment> Comments { get; } = new List<Comment>();
-
-        public void AddComment(string comment, string userId)
-            => this.Comments.Add(new Comment(comment, userId));
     }
 }

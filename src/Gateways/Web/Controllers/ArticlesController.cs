@@ -11,7 +11,7 @@ namespace EnduranceContestManager.Gateways.Web.Controllers
         public async Task<ActionResult> Index([FromRoute] GetArticleDetails query)
         {
             var articleDetails = await Mediator.Send(query);
-            
+
             return View(articleDetails);
         }
     }
