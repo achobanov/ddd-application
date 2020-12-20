@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>EnduranceContestManager.Gateways.Desktop.Interfaces</RootNamespace>
+        <AssemblyName>EnduranceContestManager.Gateways.Desktop.Interfaces</AssemblyName>
+    </PropertyGroup>
+
+</Project>
