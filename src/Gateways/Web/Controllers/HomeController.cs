@@ -1,5 +1,5 @@
 ﻿using EnduranceContestManager.Gateways.Web.Infrastructure.Extensions;
-using EnduranceContestManager.Application.Contracts;
+using EnduranceContestManager.Application.Interfaces;
 using EnduranceContestManager.Gateways.Web.Infrastructure.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

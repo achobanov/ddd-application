@@ -29,8 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Application.root\Application.Contracts\Application.Contracts.csproj" />
     <ProjectReference Include="..\..\Application.root\Application.Core\Application.Core.csproj" />
+    <ProjectReference Include="..\..\Application.root\Application.Interfaces\Application.Interfaces.csproj" />
     <ProjectReference Include="..\..\Application.root\Application\Application.csproj" />
     <ProjectReference Include="..\..\Gateways\Persistence\Persistence.csproj" />
     <ProjectReference Include="..\..\Common\Common.csproj" />

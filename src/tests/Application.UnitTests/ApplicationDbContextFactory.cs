@@ -3,7 +3,7 @@ using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Moq;
-using EnduranceContestManager.Application.Contracts;
+using EnduranceContestManager.Application.Interfaces;
 using EnduranceContestManager.Common.Contracts;
 using EnduranceContestManager.Domain.Articles;
 using EnduranceContestManager.Gateways.Persistence.Providers;

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using EnduranceContestManager.Common.Mappings;
-using EnduranceContestManager.Application.Contracts;
+using EnduranceContestManager.Application.Interfaces;
 using EnduranceContestManager.Application.Core.Handlers;
 using EnduranceContestManager.Domain.Articles;
 

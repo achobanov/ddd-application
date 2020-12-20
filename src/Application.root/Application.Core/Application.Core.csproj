@@ -18,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Application.Contracts\Application.Contracts.csproj" />
+      <ProjectReference Include="..\Application.Interfaces\Application.Interfaces.csproj" />
     </ItemGroup>
 
 </Project>

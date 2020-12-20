@@ -1,4 +1,4 @@
-﻿using EnduranceContestManager.Application.Contracts;
+﻿using EnduranceContestManager.Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 

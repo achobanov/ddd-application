@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using EnduranceContestManager.Application.Contracts;
+using EnduranceContestManager.Application.Interfaces;
 using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
 

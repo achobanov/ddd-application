@@ -47,7 +47,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application.root", "Applica
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application.root\Application\Application.csproj", "{E85BFB11-397F-4DDD-985C-D56CA166096F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Contracts", "Application.root\Application.Contracts\Application.Contracts.csproj", "{E00E1719-191F-46EC-8C03-86BF16970C4C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Interfaces", "Application.root\Application.Interfaces\Application.Interfaces.csproj", "{E00E1719-191F-46EC-8C03-86BF16970C4C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Core", "Application.root\Application.Core\Application.Core.csproj", "{65A3519A-7C75-48DF-B70A-E490DBF3D5B9}"
 EndProject

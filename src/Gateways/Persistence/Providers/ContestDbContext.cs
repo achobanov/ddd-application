@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using EnduranceContestManager.Application.Contracts;
+using EnduranceContestManager.Application.Interfaces;
 using EnduranceContestManager.Common.Contracts;
 using EnduranceContestManager.Domain.Articles;
 using EnduranceContestManager.Domain.Infrastructure.Entities;

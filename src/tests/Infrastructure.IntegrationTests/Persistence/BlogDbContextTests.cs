@@ -1,4 +1,4 @@
-﻿using EnduranceContestManager.Application.Contracts;
+﻿using EnduranceContestManager.Application.Interfaces;
 using EnduranceContestManager.Common.Contracts;
 using EnduranceContestManager.Domain.Articles;
 using EnduranceContestManager.Gateways.Persistence.Providers;

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Application.Contracts
+namespace EnduranceContestManager.Application.Interfaces
 {
     public interface IPersistenceContract
     {

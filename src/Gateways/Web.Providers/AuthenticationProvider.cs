@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using EnduranceContestManager.Application.Contracts;
+using EnduranceContestManager.Application.Interfaces;
 using EnduranceContestManager.Authentication.Providers;
 using EnduranceContestManager.Common.ConventionalServices;
 using EnduranceContestManager.Gateways.Web.Contracts;

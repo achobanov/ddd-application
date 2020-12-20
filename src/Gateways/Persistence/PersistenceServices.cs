@@ -1,4 +1,4 @@
-﻿using EnduranceContestManager.Application.Contracts;
+﻿using EnduranceContestManager.Application.Interfaces;
 using EnduranceContestManager.Gateways.Persistence.Providers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using EnduranceContestManager.Application.Contracts;
+using EnduranceContestManager.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace EnduranceContestManager.Gateways.Persistence.Providers

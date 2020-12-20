@@ -1,6 +1,6 @@
 ﻿using EnduranceContestManager.Common.ConventionalServices;
 
-namespace EnduranceContestManager.Application.Contracts
+namespace EnduranceContestManager.Application.Interfaces
 {
     public interface IAuthenticationContext : IScopedService
     {
