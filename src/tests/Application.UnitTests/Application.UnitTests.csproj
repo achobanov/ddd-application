@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Application.root\Application\Application.csproj" />
     <ProjectReference Include="..\..\Application\Application.csproj" />
     <ProjectReference Include="..\..\Gateways\Persistence\Persistence.csproj" />
     <ProjectReference Include="..\..\Common\Common.csproj" />

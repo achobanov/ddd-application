@@ -22,6 +22,7 @@
 
   
   <ItemGroup>
+    <ProjectReference Include="..\..\Application.root\Application.Contracts\Application.Contracts.csproj" />
     <ProjectReference Include="..\..\Application\Application.csproj" />
     <ProjectReference Include="..\Web.Contracts\Web.Contracts.csproj" />
   </ItemGroup>
