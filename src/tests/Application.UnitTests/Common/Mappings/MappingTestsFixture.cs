@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EnduranceContestManager.Application;
+using EnduranceContestManager.Application.Core;
 
 namespace Blog.Application.UnitTests.Common.Mappings
 {

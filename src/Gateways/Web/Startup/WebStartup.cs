@@ -1,15 +1,12 @@
 using EnduranceContestManager.Gateways.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using EnduranceContestManager.Authentication;
-using EnduranceContestManager.Application;
+using EnduranceContestManager.Application.Core;
 using EnduranceContestManager.Core;
 using EnduranceContestManager.Domain;
-using EnduranceContestManager.Gateways.Persistence.Providers;
 
 namespace EnduranceContestManager.Gateways.Web
 {
@@ -23,7 +20,7 @@ namespace EnduranceContestManager.Gateways.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddCommon(
+                .AddCore(
                     typeof(WebMappingProfile).Assembly,
                     typeof(ApplicationMappingProfile).Assembly,
                     typeof(DomainMappingProfile).Assembly,
@@ -31,19 +28,6 @@ namespace EnduranceContestManager.Gateways.Web
                 .AddApplication()
                 .AddPersistence(this.Configuration)
                 .AddWeb();
-
-            services
-                .AddHealthChecks()
-                .AddDbContextCheck<ContestDbContext>();
-
-            services
-                .AddControllers()
-                .AddNewtonsoftJson();
-
-            services.Configure<ApiBehaviorOptions>(options => // probably unnecessary 
-            {
-                options.SuppressModelStateInvalidFilter = true;
-            });
         }
 
         public void Configure(IApplicationBuilder application, IWebHostEnvironment environment)

@@ -3,7 +3,7 @@ using EnduranceContestManager.Application.Core.Behaviours;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace EnduranceContestManager.Application
+namespace EnduranceContestManager.Application.Core
 {
     public static class ApplicationServices
     {

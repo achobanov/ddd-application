@@ -8,7 +8,7 @@ namespace EnduranceContestManager.Core
 {
     public static class CoreServices
     {
-        public static IServiceCollection AddCommon(this IServiceCollection services, params Assembly[] assemblies)
+        public static IServiceCollection AddCore(this IServiceCollection services, params Assembly[] assemblies)
             => services
                 .AddConventionalServices(assemblies)
                 .AddMapping(assemblies);

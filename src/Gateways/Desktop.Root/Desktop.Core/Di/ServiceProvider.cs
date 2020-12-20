@@ -1,7 +1,7 @@
 ﻿using Prism.Ioc;
 using System;
 
-namespace EnduranceContestManager.Gateways.Desktop.Core
+namespace EnduranceContestManager.Gateways.Desktop.Core.DI
 {
     public class ServiceProvider : IServiceProvider
     {

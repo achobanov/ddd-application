@@ -1,6 +1,7 @@
 using System;
 using AutoMapper;
 using EnduranceContestManager.Application;
+using EnduranceContestManager.Application.Core;
 using EnduranceContestManager.Gateways.Persistence.Providers;
 using Xunit;
 

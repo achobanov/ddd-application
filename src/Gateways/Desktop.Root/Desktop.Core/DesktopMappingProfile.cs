@@ -1,9 +1,9 @@
-﻿using System.Reflection;
 using EnduranceContestManager.Core.Mappings;
+using System.Reflection;
 
-namespace EnduranceContestManager.Application
+namespace EnduranceContestManager.Gateways.Desktop.Core
 {
-    public class ApplicationMappingProfile : MappingProfile
+    public class DesktopMappingProfile : MappingProfile
     {
         protected override Assembly[] Assemblies => new[] { Assembly.GetExecutingAssembly() };
     }
