@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using EnduranceContestManager.Application.Articles.Commands;
 using EnduranceContestManager.Application.Articles.Queries;
-using EnduranceContestManager.Application.Articles.Queries.IsByUser;
 using EnduranceContestManager.Gateways.Web.Infrastructure.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -29,9 +28,5 @@ namespace EnduranceContestManager.Gateways.Web.Areas.Api
 
             return this.NoContent();
         }
-
-        [HttpGet("[action]/{id}")]
-        public async Task<ActionResult<bool>> IsByUser([FromRoute] IsArticleByAuthor query)
-            => await this.Mediator.Send(query);
     }
 }

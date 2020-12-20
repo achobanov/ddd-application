@@ -1,5 +1,4 @@
-﻿using EnduranceContestManager.Application.Interfaces;
-using EnduranceContestManager.Common.Contracts;
+﻿using EnduranceContestManager.Common.Contracts;
 using EnduranceContestManager.Gateways.Web;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +18,6 @@ namespace Blog.Web.IntegrationTests
             base.ConfigureServices(services);
 
             services
-                .ReplaceTransient<IAuthenticationContext>(_ => Mocks.IdentityContext)
                 .ReplaceTransient<IDateTime>(_ => Mocks.DateTime);
         }
     }

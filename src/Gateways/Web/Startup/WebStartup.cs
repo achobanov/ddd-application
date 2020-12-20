@@ -30,8 +30,7 @@ namespace EnduranceContestManager.Gateways.Web
                     typeof(CommonMappingProfile).Assembly)
                 .AddApplication()
                 .AddPersistence(this.Configuration)
-                .AddWeb()
-                .AddAuthentication<ContestDbContext>(this.Configuration);
+                .AddWeb();
 
             services
                 .AddHealthChecks()
@@ -58,7 +57,7 @@ namespace EnduranceContestManager.Gateways.Web
             {
                 application.UseHsts();
             }
-            
+
             application
                 // app.UseCustomExceptionHandler();
                 .UseHealthChecks("/health")

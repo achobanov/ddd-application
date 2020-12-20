@@ -1,11 +1,7 @@
 ﻿using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using IdentityServer4.EntityFramework.Options;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using EnduranceContestManager.Application.Interfaces;
 using EnduranceContestManager.Common.Contracts;
 using EnduranceContestManager.Domain.Articles;
@@ -13,21 +9,13 @@ using EnduranceContestManager.Domain.Infrastructure.Entities;
 
 namespace EnduranceContestManager.Gateways.Persistence.Providers
 {
-    public class ContestDbContext : ApiAuthorizationDbContext<IdentityUser>, IPersistenceContract
+    public class ContestDbContext : DbContext, IPersistenceContract
     {
-        private readonly IAuthenticationContext authenticationContext;
         private readonly IDateTime dateTime;
 
-        public ContestDbContext(
-            DbContextOptions options,
-            IOptions<OperationalStoreOptions> operationalStoreOptions,
-            IAuthenticationContext authenticationContext,
-            IDateTime dateTime)
-            : base(options, operationalStoreOptions)
-        {
-            this.authenticationContext = authenticationContext;
-            this.dateTime = dateTime;
-        }
+        public ContestDbContext(DbContextOptions options, IDateTime dateTime)
+            : base(options)
+            => this.dateTime = dateTime;
 
         public DbSet<Article> Articles { get; set; }
 
@@ -38,11 +26,9 @@ namespace EnduranceContestManager.Gateways.Persistence.Providers
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedBy ??= this.authenticationContext.Username;
                         entry.Entity.CreatedOn = this.dateTime.Now;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.ModifiedBy = this.authenticationContext.Username;
                         entry.Entity.ModifiedOn = this.dateTime.Now;
                         break;
                 }

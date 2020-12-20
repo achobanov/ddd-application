@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.IntegrationTests", "Tes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{D327FC5A-4CE3-4663-A655-D4420E57240A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication", "Authentication\Authentication.csproj", "{98966538-AF49-403F-B8F6-3B959AEFDC12}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Contracts", "Gateways\Web.Contracts\Web.Contracts.csproj", "{866268CF-7EAD-4CC7-AEEB-523AE5CED06F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Providers", "Gateways\Web.Providers\Web.Providers.csproj", "{BD49768C-15CA-4154-A12B-62BAFBCCD388}"
@@ -85,10 +83,6 @@ Global
 		{249CD809-1CC6-49CF-80A7-7D437E86A6E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{249CD809-1CC6-49CF-80A7-7D437E86A6E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{249CD809-1CC6-49CF-80A7-7D437E86A6E1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{98966538-AF49-403F-B8F6-3B959AEFDC12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98966538-AF49-403F-B8F6-3B959AEFDC12}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98966538-AF49-403F-B8F6-3B959AEFDC12}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98966538-AF49-403F-B8F6-3B959AEFDC12}.Release|Any CPU.Build.0 = Release|Any CPU
 		{866268CF-7EAD-4CC7-AEEB-523AE5CED06F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{866268CF-7EAD-4CC7-AEEB-523AE5CED06F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{866268CF-7EAD-4CC7-AEEB-523AE5CED06F}.Release|Any CPU.ActiveCfg = Release|Any CPU

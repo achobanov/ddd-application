@@ -30,7 +30,7 @@ namespace EnduranceContestManager.Gateways.Persistence
         {
             var defaultUser = new IdentityUser
             {
-                UserName = "admin@dev.com", 
+                UserName = "admin@dev.com",
                 Email = "admin@dev.com"
             };
 
@@ -44,13 +44,11 @@ namespace EnduranceContestManager.Gateways.Persistence
                 return;
             }
 
-            var user = await data.Users.FirstAsync();
             var article = new Article("Test Article", "Test Article Content")
             {
                 CreatedOn = DateTime.Now.AddDays(-1),
                 IsPublic = true,
                 PublishedOn = DateTime.Now,
-                CreatedBy = user.Id,
             };
 
             data.Articles.Add(article);

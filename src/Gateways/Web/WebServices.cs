@@ -16,7 +16,7 @@ namespace EnduranceContestManager.Gateways.Web
             => services
                 .AddHttpContextAccessor()
                 .AddSingleton<IInitializer, WebInitializer>()
-                .AddContractProviders(typeof(AuthenticationProvider).Assembly);
+                .AddContractProviders(typeof(PersistenceProvider).Assembly);
 
         public static IServiceCollection AddContractProviders(
             this IServiceCollection services,

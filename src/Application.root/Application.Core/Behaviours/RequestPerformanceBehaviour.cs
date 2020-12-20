@@ -11,14 +11,12 @@ namespace EnduranceContestManager.Application.Core.Behaviours
     {
         private readonly Stopwatch timer;
         private readonly ILogger<TRequest> logger;
-        private readonly IAuthenticationContext authenticationContext;
 
-        public RequestPerformanceBehaviour(ILogger<TRequest> logger, IAuthenticationContext authenticationContext)
+        public RequestPerformanceBehaviour(ILogger<TRequest> logger)
         {
             this.timer = new Stopwatch();
             
             this.logger = logger;
-            this.authenticationContext = authenticationContext;
         }
 
         public async Task<TResponse> Handle(
@@ -40,13 +38,11 @@ namespace EnduranceContestManager.Application.Core.Behaviours
             }
 
             var requestName = typeof(TRequest).Name;
-            var username = this.authenticationContext.Username;
 
             this.logger.LogWarning(
-                "EnduranceContestManager Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Username} {@Request}",
+                "EnduranceContestManager Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}",
                 requestName, 
                 elapsedMilliseconds, 
-                username ?? "Anonymous",
                 request);
 
             return response;

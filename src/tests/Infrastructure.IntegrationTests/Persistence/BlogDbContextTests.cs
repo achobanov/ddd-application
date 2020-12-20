@@ -1,12 +1,9 @@
-﻿using EnduranceContestManager.Application.Interfaces;
-using EnduranceContestManager.Common.Contracts;
+﻿using EnduranceContestManager.Common.Contracts;
 using EnduranceContestManager.Domain.Articles;
 using EnduranceContestManager.Gateways.Persistence.Providers;
 using System;
 using System.Threading.Tasks;
-using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Moq;
 using Shouldly;
 using Xunit;
@@ -27,21 +24,12 @@ namespace Blog.Infrastructure.IntegrationTests.Persistence
             dateTimeMock.SetupGet(dt => dt.Now).Returns(this.dateTime);
 
             this.username = "mevolent";
-            var authenticationMock = new Mock<IAuthenticationContext>();
-            authenticationMock.Setup(m => m.Username).Returns(this.username);
 
             var options = new DbContextOptionsBuilder<ContestDbContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
 
-            var operationalStoreOptions = Options.Create(
-                new OperationalStoreOptions
-                {
-                    DeviceFlowCodes = new TableConfiguration("DeviceCodes"),
-                    PersistedGrants = new TableConfiguration("PersistedGrants")
-                });
-
-            this.data = new ContestDbContext(options, operationalStoreOptions, authenticationMock.Object, dateTimeMock.Object);
+            this.data = new ContestDbContext(options, dateTimeMock.Object);
 
             this.data.Articles.Add(new Article("Test Title", "Test Content") { CreatedBy = this.username });
 
