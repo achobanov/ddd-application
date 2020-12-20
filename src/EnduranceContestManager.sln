@@ -39,7 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_solution-items", "_solutio
 		Directory.Build.targets = Directory.Build.targets
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop.Root", "Desktop.Root", "{EA979980-8817-4169-A3AA-B5D4ECEBEDD5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop.root", "Desktop.root", "{EA979980-8817-4169-A3AA-B5D4ECEBEDD5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "Gateways\Desktop.Root\Desktop\Desktop\Desktop.csproj", "{F2222C46-6EBB-466D-9726-BAC7B6753D60}"
 EndProject
