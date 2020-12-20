@@ -1,19 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>WinExe</OutputType>
-        <TargetFramework>net5.0-windows</TargetFramework>
-        <UseWPF>true</UseWPF>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
         <RootNamespace>EnduranceContestManager.Gateways.Desktop.Core</RootNamespace>
         <AssemblyName>EnduranceContestManager.Gateways.Desktop.Core</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Prism.DryIoc" Version="8.0.0.1909" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Regions" />
     </ItemGroup>
 
 </Project>

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net5.0-windows</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <RootNamespace>EnduranceContestManager.Gateways.Desktop</RootNamespace>
+        <AssemblyName>EnduranceContestManager.Gateways.Desktop</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Regions" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Desktop.Core\Desktop.Core.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,9 +1,9 @@
-﻿using EnduranceContestManager.Gateways.Desktop.Core.Views;
+﻿using EnduranceContestManager.Gateways.Desktop.Views;
 using Prism.DryIoc;
 using Prism.Ioc;
 using System.Windows;
 
-namespace EnduranceContestManager.Gateways.Desktop.Core
+namespace EnduranceContestManager.Gateways.Desktop
 {
     public partial class App : PrismApplication
     {

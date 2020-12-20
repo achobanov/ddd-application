@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace EnduranceContestManager.Gateways.Desktop.Core.Views
+namespace EnduranceContestManager.Gateways.Desktop.Views
 {
     public partial class ShellWindow : Window
     {
