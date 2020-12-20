@@ -15,7 +15,7 @@ namespace Blog.Web.IntegrationTests
 
         public void ConfigureTestServices(IServiceCollection services)
         {
-            base.ConfigureServices(services);
+            this.ConfigureServices(services);
 
             services
                 .ReplaceTransient<IDateTime>(_ => Mocks.DateTime);
