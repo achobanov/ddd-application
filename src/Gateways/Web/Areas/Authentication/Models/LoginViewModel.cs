@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using EnduranceContestManager.Common.Mappings;
+using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Gateways.Web.Contracts;
 using EnduranceContestManager.Gateways.Web.Infrastructure;
 using static EnduranceContestManager.Gateways.Web.Infrastructure.WebConstants.ViewConstants;

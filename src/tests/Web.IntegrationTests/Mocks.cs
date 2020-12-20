@@ -1,4 +1,4 @@
-﻿using EnduranceContestManager.Common.Contracts;
+﻿using EnduranceContestManager.Core.Contracts;
 using Moq;
 
 namespace Blog.Web.IntegrationTests

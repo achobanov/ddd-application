@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using EnduranceContestManager.Common.Mappings;
+using EnduranceContestManager.Core.Mappings;
 
 namespace EnduranceContestManager.Gateways.Web
 {

@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EnduranceContestManager.Application.Interfaces;
-using EnduranceContestManager.Common.Contracts;
+using EnduranceContestManager.Core.Contracts;
 using EnduranceContestManager.Domain.Articles;
 using EnduranceContestManager.Domain.Infrastructure.Entities;
 

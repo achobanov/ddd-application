@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using EnduranceContestManager.Common.Extensions;
+using EnduranceContestManager.Core.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace EnduranceContestManager.Common
+namespace EnduranceContestManager.Core
 {
-    public static class CommonServices
+    public static class CoreServices
     {
         public static IServiceCollection AddCommon(this IServiceCollection services, params Assembly[] assemblies)
             => services

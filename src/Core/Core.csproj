@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>EnduranceContestManager.Common</RootNamespace>
-    <AssemblyName>EnduranceContestManager.Common</AssemblyName>
+    <RootNamespace>EnduranceContestManager.Core</RootNamespace>
+    <AssemblyName>EnduranceContestManager.Core</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

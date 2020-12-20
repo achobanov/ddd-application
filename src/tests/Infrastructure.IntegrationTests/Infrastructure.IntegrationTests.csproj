@@ -30,8 +30,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Application.root\Application.Interfaces\Application.Interfaces.csproj" />
+    <ProjectReference Include="..\..\Core\Core.csproj" />
     <ProjectReference Include="..\..\Gateways\Persistence\Persistence.csproj" />
-    <ProjectReference Include="..\..\Common\Common.csproj" />
   </ItemGroup>
 
 </Project>

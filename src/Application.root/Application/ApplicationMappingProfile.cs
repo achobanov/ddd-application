@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
-using EnduranceContestManager.Common.Mappings;
+using EnduranceContestManager.Core.Mappings;
 
 namespace EnduranceContestManager.Application
 {
     public class ApplicationMappingProfile : MappingProfile
     {
-        protected override Assembly[] Assemblies => new[] { Assembly.GetExecutingAssembly() };  
+        protected override Assembly[] Assemblies => new[] { Assembly.GetExecutingAssembly() };
     }
 }

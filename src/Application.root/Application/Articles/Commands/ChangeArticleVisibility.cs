@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using EnduranceContestManager.Application.Interfaces;
 using EnduranceContestManager.Application.Core.Handlers;
-using EnduranceContestManager.Common.Contracts;
+using EnduranceContestManager.Core.Contracts;
 using EnduranceContestManager.Domain.Articles;
 
 namespace EnduranceContestManager.Application.Articles.Commands

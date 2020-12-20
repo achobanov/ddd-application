@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using EnduranceContestManager.Common.Models;
+using EnduranceContestManager.Core.Models;
 
 namespace EnduranceContestManager.Gateways.Web.Contracts
 {

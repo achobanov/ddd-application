@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using EnduranceContestManager.Common.ConventionalServices;
+using EnduranceContestManager.Core.ConventionalServices;
 using EnduranceContestManager.Gateways.Web.Contracts;
 using EnduranceContestManager.Gateways.Web.Providers;
 using EnduranceContestManager.Gateways.Web.Startup;

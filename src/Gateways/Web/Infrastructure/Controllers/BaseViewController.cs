@@ -1,6 +1,6 @@
 ﻿using System;
-using EnduranceContestManager.Common.Extensions;
-using EnduranceContestManager.Common.Models;
+using EnduranceContestManager.Core.Extensions;
+using EnduranceContestManager.Core.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;

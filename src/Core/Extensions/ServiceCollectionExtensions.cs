@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using EnduranceContestManager.Common.ConventionalServices;
+using EnduranceContestManager.Core.ConventionalServices;
 
-namespace EnduranceContestManager.Common.Extensions
+namespace EnduranceContestManager.Core.Extensions
 {
 
     public static class ServiceCollectionExtensions

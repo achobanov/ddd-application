@@ -25,8 +25,9 @@
   <ItemGroup>
     <EditorConfigFiles Update="E:\Software Development\web-application\src\Domain\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 
 </Project>

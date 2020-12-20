@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
-using EnduranceContestManager.Common.Mappings;
+using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Gateways.Web.Contracts;
 
 namespace EnduranceContestManager.Gateways.Web.Startup

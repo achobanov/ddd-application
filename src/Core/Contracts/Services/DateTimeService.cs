@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EnduranceContestManager.Common.Contracts.Services
+namespace EnduranceContestManager.Core.Contracts.Services
 {
     public class DateTimeService : IDateTime
     {

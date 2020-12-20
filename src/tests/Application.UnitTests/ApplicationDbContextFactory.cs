@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Moq;
 using EnduranceContestManager.Application.Interfaces;
-using EnduranceContestManager.Common.Contracts;
+using EnduranceContestManager.Core.Contracts;
 using EnduranceContestManager.Domain.Articles;
 using EnduranceContestManager.Gateways.Persistence.Providers;
 

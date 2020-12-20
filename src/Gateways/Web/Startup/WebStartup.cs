@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using EnduranceContestManager.Authentication;
 using EnduranceContestManager.Application;
-using EnduranceContestManager.Common;
+using EnduranceContestManager.Core;
 using EnduranceContestManager.Domain;
 using EnduranceContestManager.Gateways.Persistence.Providers;
 
@@ -27,7 +27,7 @@ namespace EnduranceContestManager.Gateways.Web
                     typeof(WebMappingProfile).Assembly,
                     typeof(ApplicationMappingProfile).Assembly,
                     typeof(DomainMappingProfile).Assembly,
-                    typeof(CommonMappingProfile).Assembly)
+                    typeof(CoreMappingProfile).Assembly)
                 .AddApplication()
                 .AddPersistence(this.Configuration)
                 .AddWeb();

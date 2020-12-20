@@ -1,5 +1,5 @@
 ﻿using System;
-using EnduranceContestManager.Common.Mappings;
+using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Articles;
 
 namespace EnduranceContestManager.Application.Articles.Queries

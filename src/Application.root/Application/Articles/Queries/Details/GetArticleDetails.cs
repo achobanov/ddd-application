@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using EnduranceContestManager.Common.Mappings;
+using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Application.Interfaces;
 using EnduranceContestManager.Application.Core.Handlers;
 using EnduranceContestManager.Domain.Articles;

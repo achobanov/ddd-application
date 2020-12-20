@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
 using EnduranceContestManager.Core.Mappings;
 
-namespace EnduranceContestManager.Domain
+namespace EnduranceContestManager.Core
 {
-    public class DomainMappingProfile : MappingProfile
+    public class CoreMappingProfile : MappingProfile
     {
         protected override Assembly[] Assemblies => new[] { Assembly.GetExecutingAssembly() };
     }

@@ -1,4 +1,4 @@
-﻿using EnduranceContestManager.Common.Contracts;
+﻿using EnduranceContestManager.Core.Contracts;
 using EnduranceContestManager.Gateways.Web;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
