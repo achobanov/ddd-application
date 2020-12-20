@@ -1,7 +1,7 @@
-﻿using System;
+﻿using EnduranceContestManager.Application.Core.Exceptions;
+using System;
 using System.Net;
 using System.Threading.Tasks;
-using EnduranceContestManager.Application.Infrastructure.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;

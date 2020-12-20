@@ -5,7 +5,7 @@ using EnduranceContestManager.Application.Contracts;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace EnduranceContestManager.Application.Infrastructure.Behaviours
+namespace EnduranceContestManager.Application.Core.Behaviours
 {
     public class RequestPerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {

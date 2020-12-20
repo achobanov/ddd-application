@@ -4,7 +4,7 @@ using EnduranceContestManager.Application.Contracts;
 using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
 
-namespace EnduranceContestManager.Application.Infrastructure.Behaviours
+namespace EnduranceContestManager.Application.Core.Behaviours
 {
     public class RequestLogger<TRequest> : IRequestPreProcessor<TRequest>
     {
@@ -12,7 +12,7 @@ namespace EnduranceContestManager.Application.Infrastructure.Behaviours
         private readonly IAuthenticationContext authenticationContext;
 
         public RequestLogger(
-            ILogger<TRequest> logger, 
+            ILogger logger, 
             IAuthenticationContext authenticationContext)
         {
             this.logger = logger;

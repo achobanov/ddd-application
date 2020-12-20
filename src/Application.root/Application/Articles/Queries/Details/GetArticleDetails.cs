@@ -5,7 +5,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using EnduranceContestManager.Common.Mappings;
 using EnduranceContestManager.Application.Contracts;
-using EnduranceContestManager.Application.Infrastructure.Handlers;
+using EnduranceContestManager.Application.Core.Handlers;
 using EnduranceContestManager.Domain.Articles;
 
 namespace EnduranceContestManager.Application.Articles.Queries

@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using EnduranceContestManager.Application.Infrastructure.Behaviours;
+using EnduranceContestManager.Application.Core.Behaviours;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
