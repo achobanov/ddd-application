@@ -18,7 +18,7 @@ namespace EnduranceContestManager.Gateways.Desktop
         protected override Window CreateShell()
         {
             // Call initializers
-            this.Container.Resolve<ShellWindow>();
+            return this.Container.Resolve<ShellWindow>();
         }
     }
 }
