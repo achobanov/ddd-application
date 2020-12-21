@@ -9,12 +9,12 @@ namespace EnduranceContestManager.Gateways.Desktop
     public class Module : IModule
     {
         private readonly IRegionManager regionManager;
-        private readonly IInitializerInterface initialier;
+        private readonly IInitializerInterface initializerInterface;
 
-        public Module(IRegionManager regionManager, IInitializerInterface initialier)
+        public Module(IRegionManager regionManager, IInitializerInterface initializerInterface)
         {
             this.regionManager = regionManager;
-            this.initialier = initialier;
+            this.initializerInterface = initializerInterface;
         }
         
         public void RegisterTypes(IContainerRegistry containerRegistry)
