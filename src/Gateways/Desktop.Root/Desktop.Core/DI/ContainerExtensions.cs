@@ -12,9 +12,15 @@ namespace EnduranceContestManager.Gateways.Desktop.Core.DI
     {
         public static IContainerRegistry AddServices(this IContainerRegistry container)
         {
+            var adapter = new DesktopContainerAdapter(container);
             var services = new ServiceCollection().AddProjectServices();
 
-            return container.RegisterServiceCollection(services);
+            foreach (var serviceDescriptor in services)
+            {
+                adapter.Register(serviceDescriptor);
+            }
+
+            return container;
         }
 
         private static IServiceCollection AddProjectServices(this IServiceCollection services)
@@ -26,20 +32,6 @@ namespace EnduranceContestManager.Gateways.Desktop.Core.DI
                     typeof(CoreMappingProfile).Assembly)
                 .AddApplication()
                 .AddDesktop();
-
-        private static IContainerRegistry RegisterServiceCollection(
-            this IContainerRegistry container,
-            IServiceCollection services)
-        {
-            var adapter = new DesktopContainerAdapter(container);
-            
-            foreach (var serviceDescriptor in services)
-            {
-                adapter.Register(serviceDescriptor);
-            }
-
-            return container;
-        }
 
         private static void Register(this DesktopContainerAdapter adapter, ServiceDescriptor service)
         {
