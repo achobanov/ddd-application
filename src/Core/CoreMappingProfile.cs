@@ -5,6 +5,6 @@ namespace EnduranceContestManager.Core
 {
     public class CoreMappingProfile : MappingProfile
     {
-        protected override Assembly[] Assemblies => new[] { Assembly.GetExecutingAssembly() };
+        protected override Assembly[] Assemblies => CoreConstants.Assemblies;
     }
 }

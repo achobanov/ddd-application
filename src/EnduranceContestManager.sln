@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_solution-items", "_solutio
 	ProjectSection(SolutionItems) = preProject
 		Global.ruleset = Global.ruleset
 		Directory.Build.targets = Directory.Build.targets
+		.editorconfig = .editorconfig
+		stylecop.json = stylecop.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop.root", "Desktop.root", "{EA979980-8817-4169-A3AA-B5D4ECEBEDD5}"

@@ -5,6 +5,6 @@ namespace EnduranceContestManager.Domain
 {
     public class DomainMappingProfile : MappingProfile
     {
-        protected override Assembly[] Assemblies => new[] { Assembly.GetExecutingAssembly() };
+        protected override Assembly[] Assemblies => DomainConstants.Assemblies;
     }
 }

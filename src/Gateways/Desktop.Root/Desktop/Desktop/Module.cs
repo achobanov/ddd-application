@@ -1,4 +1,4 @@
-using EnduranceContestManager.Gateways.Desktop.Interfaces;
+using EnduranceContestManager.Core.Contracts;
 using EnduranceContestManager.Gateways.Desktop.Views;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -9,12 +9,12 @@ namespace EnduranceContestManager.Gateways.Desktop
     public class Module : IModule
     {
         private readonly IRegionManager regionManager;
-        private readonly IInitializerInterface initializerInterface;
+        private readonly IDateTime dateTime;
 
-        public Module(IRegionManager regionManager, IInitializerInterface initializerInterface)
+        public Module(IRegionManager regionManager, IDateTime dateTime)
         {
             this.regionManager = regionManager;
-            this.initializerInterface = initializerInterface;
+            this.dateTime = dateTime;
         }
         
         public void RegisterTypes(IContainerRegistry containerRegistry)

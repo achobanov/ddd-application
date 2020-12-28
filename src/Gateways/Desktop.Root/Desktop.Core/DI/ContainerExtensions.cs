@@ -5,6 +5,8 @@ using EnduranceContestManager.Gateways.Desktop.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Ioc;
 using System;
+using System.Reflection;
+using System.Linq;
 
 namespace EnduranceContestManager.Gateways.Desktop.Core.DI
 {
@@ -24,14 +26,18 @@ namespace EnduranceContestManager.Gateways.Desktop.Core.DI
         }
 
         private static IServiceCollection AddProjectServices(this IServiceCollection services)
-            => services
-                .AddCore(
-                    typeof(DesktopMappingProfile).Assembly,
-                    typeof(ApplicationMappingProfile).Assembly,
-                    typeof(DomainMappingProfile).Assembly,
-                    typeof(CoreMappingProfile).Assembly)
+        {
+            var assemblies = CoreConstants.Assemblies
+                .Concat(DomainConstants.Assemblies)
+                .Concat(ApplicationConstants.Assemblies)
+                .Concat(DesktopConstants.Assemblies)
+                .ToArray();
+
+            return services
+                .AddCore(assemblies)
                 .AddApplication()
                 .AddDesktop();
+        }
 
         private static void Register(this DesktopContainerAdapter adapter, ServiceDescriptor service)
         {
@@ -75,5 +81,6 @@ namespace EnduranceContestManager.Gateways.Desktop.Core.DI
                 }
             }
         }
+        
     }
 }
