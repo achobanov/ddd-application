@@ -1,7 +1,7 @@
-﻿using System;
+﻿using EnduranceContestManager.Domain.Blog.Articles;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using EnduranceContestManager.Domain.Articles;
 using EnduranceContestManager.Gateways.Desktop.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 

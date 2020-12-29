@@ -1,8 +1,8 @@
-﻿using EnduranceContestManager.Domain.Infrastructure;
+﻿using EnduranceContestManager.Domain.Core;
 using System;
-using EnduranceContestManager.Domain.Infrastructure.Entities;
+using EnduranceContestManager.Domain.Core.Entities;
 
-namespace EnduranceContestManager.Domain.Articles
+namespace EnduranceContestManager.Domain.Blog.Articles
 {
     public class Article : AuditableEntity, IAggregateRoot
     {

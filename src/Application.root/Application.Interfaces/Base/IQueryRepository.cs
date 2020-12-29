@@ -1,5 +1,5 @@
 using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Infrastructure;
+using EnduranceContestManager.Domain.Core;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

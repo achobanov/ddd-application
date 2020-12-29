@@ -3,8 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EnduranceContestManager.Core.Interfaces;
-using EnduranceContestManager.Domain.Articles;
-using EnduranceContestManager.Domain.Infrastructure.Entities;
+using EnduranceContestManager.Domain.Blog.Articles;
+using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Gateways.Persistence.Blog;
 using System;
 

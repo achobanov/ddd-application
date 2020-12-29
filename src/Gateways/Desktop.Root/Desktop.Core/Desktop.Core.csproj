@@ -15,6 +15,8 @@
       <ProjectReference Include="..\..\..\Application.root\Application.Core\Application.Core.csproj" />
       <ProjectReference Include="..\..\..\Application.root\Application\Application.csproj" />
       <ProjectReference Include="..\..\..\Core\Core.csproj" />
+      <ProjectReference Include="..\..\..\Domain.root\Domain.Core\Domain.Core.csproj" />
+      <ProjectReference Include="..\..\..\Domain.root\Domain\Domain.csproj" />
       <ProjectReference Include="..\..\..\Domain\Domain.csproj" />
       <ProjectReference Include="..\..\Persistence.root\Persistence\Persistence.csproj" />
       <ProjectReference Include="..\..\Persistence\Persistence.csproj" />

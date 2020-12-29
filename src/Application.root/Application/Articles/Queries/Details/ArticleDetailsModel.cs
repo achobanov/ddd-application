@@ -1,6 +1,6 @@
 ﻿using System;
 using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Articles;
+using EnduranceContestManager.Domain.Blog.Articles;
 
 namespace EnduranceContestManager.Application.Articles.Queries.Details
 {

@@ -1,4 +1,4 @@
-﻿namespace EnduranceContestManager.Domain.Infrastructure.Entities
+﻿namespace EnduranceContestManager.Domain.Core.Entities
 {
     public abstract class Entity : IEntity
     {

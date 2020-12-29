@@ -1,6 +1,6 @@
 using EnduranceContestManager.Application.Interfaces.Base;
 using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Infrastructure;
+using EnduranceContestManager.Domain.Core;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;

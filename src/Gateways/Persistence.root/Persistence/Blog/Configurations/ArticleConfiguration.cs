@@ -1,4 +1,4 @@
-﻿using EnduranceContestManager.Domain.Articles;
+﻿using EnduranceContestManager.Domain.Blog.Articles;
 using EnduranceContestManager.Gateways.Persistence.Core.Configurations;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

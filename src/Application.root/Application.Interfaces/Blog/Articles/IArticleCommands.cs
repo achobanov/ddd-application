@@ -1,5 +1,5 @@
 using EnduranceContestManager.Application.Interfaces.Base;
-using EnduranceContestManager.Domain.Articles;
+using EnduranceContestManager.Domain.Blog.Articles;
 
 namespace EnduranceContestManager.Application.Interfaces.Blog.Articles
 {

@@ -1,4 +1,4 @@
-﻿using EnduranceContestManager.Domain.Infrastructure.Entities;
+﻿using EnduranceContestManager.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

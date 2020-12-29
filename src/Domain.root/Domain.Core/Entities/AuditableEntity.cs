@@ -1,6 +1,7 @@
-﻿using System;
+﻿using EnduranceContestManager.Domain.Core.Exceptions;
+using System;
 
-namespace EnduranceContestManager.Domain.Infrastructure.Entities
+namespace EnduranceContestManager.Domain.Core.Entities
 {
     public abstract class AuditableEntity : Entity, IAuditableEntity
     {

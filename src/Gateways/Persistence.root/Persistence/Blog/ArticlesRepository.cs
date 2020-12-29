@@ -1,5 +1,5 @@
 using EnduranceContestManager.Application.Interfaces.Blog.Articles;
-using EnduranceContestManager.Domain.Articles;
+using EnduranceContestManager.Domain.Blog.Articles;
 using EnduranceContestManager.Gateways.Persistence.Core;
 
 namespace EnduranceContestManager.Gateways.Persistence.Blog

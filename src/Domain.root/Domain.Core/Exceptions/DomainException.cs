@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EnduranceContestManager.Domain.Infrastructure
+namespace EnduranceContestManager.Domain.Core.Exceptions
 {
     public class DomainException : Exception
     {
