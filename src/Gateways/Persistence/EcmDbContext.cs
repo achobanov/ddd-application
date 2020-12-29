@@ -2,18 +2,19 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using EnduranceContestManager.Application.Interfaces;
-using EnduranceContestManager.Core.Contracts;
+using EnduranceContestManager.Core.Interfaces;
 using EnduranceContestManager.Domain.Articles;
 using EnduranceContestManager.Domain.Infrastructure.Entities;
+using EnduranceContestManager.Gateways.Persistence.Blog;
+using System;
 
-namespace EnduranceContestManager.Gateways.Persistence.Providers
+namespace EnduranceContestManager.Gateways.Persistence
 {
-    public class ContestDbContext : DbContext, IPersistenceContract
+    public class EcmDbContext : DbContext, IBlogDbContext
     {
         private readonly IDateTime dateTime;
 
-        public ContestDbContext(DbContextOptions options, IDateTime dateTime)
+        public EcmDbContext(DbContextOptions options, IDateTime dateTime)
             : base(options)
             => this.dateTime = dateTime;
 
@@ -31,6 +32,8 @@ namespace EnduranceContestManager.Gateways.Persistence.Providers
                     case EntityState.Modified:
                         entry.Entity.ModifiedOn = this.dateTime.Now;
                         break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
 
@@ -43,15 +46,5 @@ namespace EnduranceContestManager.Gateways.Persistence.Providers
 
             base.OnModelCreating(builder);
         }
-
-#region IPersistenceContract implementation
-
-        IDataSetContext<TEntity> IPersistenceContract.Set<TEntity>()
-            => new DataSet<TEntity>(this.Set<TEntity>());
-
-        public Task<int> SaveChanges(CancellationToken cancellationToken = default)
-            => this.SaveChangesAsync(cancellationToken);
-
-#endregion
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace EnduranceContestManager.Domain.Infrastructure.Entities
 {
-    public abstract class Entity
+    public abstract class Entity : IEntity
     {
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
 
         // Add GetHashCode(), Equals(), etc.
     }

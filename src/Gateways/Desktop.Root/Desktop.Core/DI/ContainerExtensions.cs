@@ -2,11 +2,13 @@ using EnduranceContestManager.Application.Core;
 using EnduranceContestManager.Core;
 using EnduranceContestManager.Domain;
 using EnduranceContestManager.Gateways.Desktop.Core.Services;
+using EnduranceContestManager.Gateways.Persistence;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Ioc;
 using System;
 using System.Reflection;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace EnduranceContestManager.Gateways.Desktop.Core.DI
 {
@@ -30,57 +32,60 @@ namespace EnduranceContestManager.Gateways.Desktop.Core.DI
             var assemblies = CoreConstants.Assemblies
                 .Concat(DomainConstants.Assemblies)
                 .Concat(ApplicationConstants.Assemblies)
+                .Concat(PersistenceConstants.Assemblies)
                 .Concat(DesktopConstants.Assemblies)
                 .ToArray();
 
             return services
                 .AddCore(assemblies)
                 .AddApplication()
+                .AddPersistence()
                 .AddDesktop();
         }
 
         private static void Register(this DesktopContainerAdapter adapter, ServiceDescriptor service)
         {
-            if (service.Lifetime != ServiceLifetime.Singleton &&
-                service.Lifetime != ServiceLifetime.Transient)
+            if (service.Lifetime == ServiceLifetime.Transient &&
+                service.Lifetime == ServiceLifetime.Scoped)
             {
-                throw new InvalidOperationException($"Unsupported service lifestyle: {service.Lifetime}");
-            }
-            
-            if (service.ImplementationInstance != null)
-            {
-                if (service.Lifetime == ServiceLifetime.Singleton)
-                {
-                    adapter.RegisterSingleton(service.ServiceType, service.ImplementationInstance);
-                }
-                else
-                {
-                    adapter.Register(service.ServiceType, service.ImplementationInstance);
-                }
-            }
-            else if (service.ImplementationFactory != null)
-            {
-                if (service.Lifetime == ServiceLifetime.Singleton)
-                {
-                    adapter.RegisterSingleton(service.ServiceType, service.ImplementationFactory);
-                }
-                else
-                {
-                    adapter.Register(service.ServiceType, service.ImplementationFactory);
-                }
+                RegisterTransient(adapter, service);
             }
             else
             {
-                if (service.Lifetime == ServiceLifetime.Singleton)
-                {
-                    adapter.RegisterSingleton(service.ServiceType, service.ImplementationType);
-                }
-                else
-                {
-                    adapter.Register(service.ServiceType, service.ImplementationType);
-                }
+                RegisterSingleton(adapter, service);
             }
         }
-        
+
+        private static void RegisterSingleton(DesktopContainerAdapter adapter, ServiceDescriptor service)
+        {
+            if (service.ImplementationInstance != null)
+            {
+                adapter.RegisterSingleton(service.ServiceType, service.ImplementationInstance);
+            }
+            else if (service.ImplementationFactory != null)
+            {
+                adapter.RegisterSingleton(service.ServiceType, service.ImplementationFactory);
+            }
+            else
+            {
+                adapter.RegisterSingleton(service.ServiceType, service.ImplementationType);
+            }
+        }
+
+        private static void RegisterTransient(DesktopContainerAdapter adapter, ServiceDescriptor service)
+        {
+            if (service.ImplementationInstance != null)
+            {
+                adapter.Register(service.ServiceType, service.ImplementationInstance);
+            }
+            else if (service.ImplementationFactory != null)
+            {
+                adapter.Register(service.ServiceType, service.ImplementationFactory);
+            }
+            else
+            {
+                adapter.Register(service.ServiceType, service.ImplementationType);
+            }
+        }
     }
 }

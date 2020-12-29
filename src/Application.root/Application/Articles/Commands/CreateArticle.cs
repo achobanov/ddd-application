@@ -1,8 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using EnduranceContestManager.Application.Interfaces;
 using EnduranceContestManager.Application.Core.Handlers;
+using EnduranceContestManager.Application.Interfaces.Blog.Articles;
 using EnduranceContestManager.Domain.Articles;
 
 namespace EnduranceContestManager.Application.Articles.Commands
@@ -15,10 +15,10 @@ namespace EnduranceContestManager.Application.Articles.Commands
 
         public class CreateArticleHandler : Handler<CreateArticle, int>
         {
-            private readonly IPersistenceContract persistence;
+            private readonly IArticleCommands commands;
 
-            public CreateArticleHandler(IPersistenceContract data)
-                => this.persistence = data;
+            public CreateArticleHandler(IArticleCommands commands)
+                => this.commands = commands;
 
             public override async Task<int> Handle(
                 CreateArticle request,
@@ -26,11 +26,7 @@ namespace EnduranceContestManager.Application.Articles.Commands
             {
                 var article = new Article(request.Title, request.Content);
 
-                await this.persistence
-                    .Set<Article>()
-                    .Add(article);
-
-                await this.persistence.SaveChanges(cancellationToken);
+                await this.commands.Save(article, cancellationToken);
 
                 return article.Id;
             }

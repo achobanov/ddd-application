@@ -33,7 +33,7 @@ namespace EnduranceContestManager.Core.Mappings
             return Mapper.Map<IEnumerable<TDestination>>(source);
         }
 
-        public static IQueryable<TDestination> MapCollection<TDestination>(this IQueryable source)
+        public static IQueryable<TDestination> Map<TDestination>(this IQueryable source)
         {
             ValidateConfiguration();
 

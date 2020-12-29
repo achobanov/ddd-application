@@ -1,14 +1,10 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Application.Interfaces;
 using EnduranceContestManager.Application.Core.Handlers;
-using EnduranceContestManager.Domain.Articles;
+using EnduranceContestManager.Application.Interfaces.Blog.Articles;
 
-namespace EnduranceContestManager.Application.Articles.Queries
+namespace EnduranceContestManager.Application.Articles.Queries.Details
 {
     public class GetArticleDetails : IRequest<ArticleDetailsModel>
     {
@@ -16,19 +12,15 @@ namespace EnduranceContestManager.Application.Articles.Queries
 
         public class GetArticleDetailsHandler : Handler<GetArticleDetails, ArticleDetailsModel>
         {
-            private readonly IPersistenceContract data;
+            private readonly IArticleQueries queries;
 
-            public GetArticleDetailsHandler(IPersistenceContract data)
-                => this.data = data;
+            public GetArticleDetailsHandler(IArticleQueries queries)
+                => this.queries = queries;
 
             public override async Task<ArticleDetailsModel> Handle(
                 GetArticleDetails request,
                 CancellationToken cancellationToken)
-                => await this.data
-                    .Set<Article>()
-                    .Where(a => a.Id == request.Id)
-                    .MapCollection<ArticleDetailsModel>()
-                    .FirstOrDefaultAsync(cancellationToken);
+                => await this.queries.Find<ArticleDetailsModel>(request.Id);
         }
     }
 }

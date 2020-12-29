@@ -1,7 +1,7 @@
 ﻿using System;
 using EnduranceContestManager.Core.ConventionalServices;
 
-namespace EnduranceContestManager.Core.Contracts
+namespace EnduranceContestManager.Core.Interfaces
 {
     public interface IDateTime : IService
     {

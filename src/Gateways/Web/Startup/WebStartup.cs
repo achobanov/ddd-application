@@ -26,7 +26,7 @@ namespace EnduranceContestManager.Gateways.Web
                     typeof(DomainMappingProfile).Assembly,
                     typeof(CoreMappingProfile).Assembly)
                 .AddApplication()
-                .AddPersistence(this.Configuration)
+                .AddPersistence()
                 .AddWeb();
         }
 

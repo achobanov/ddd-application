@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EnduranceContestManager.Application.Articles.Queries;
+using EnduranceContestManager.Application.Articles.Queries.Details;
 using EnduranceContestManager.Gateways.Web.Infrastructure.Controllers;
 
 namespace EnduranceContestManager.Gateways.Web.Controllers

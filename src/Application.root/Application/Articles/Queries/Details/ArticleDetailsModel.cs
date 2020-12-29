@@ -2,7 +2,7 @@
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Articles;
 
-namespace EnduranceContestManager.Application.Articles.Queries
+namespace EnduranceContestManager.Application.Articles.Queries.Details
 {
     public class ArticleDetailsModel : IMapFrom<Article>
     {

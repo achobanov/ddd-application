@@ -1,23 +1,33 @@
-﻿using EnduranceContestManager.Application.Interfaces;
-using EnduranceContestManager.Gateways.Persistence.Providers;
+﻿using EnduranceContestManager.Application.Interfaces.Blog.Articles;
+using EnduranceContestManager.Gateways.Desktop.Interfaces;
+using EnduranceContestManager.Gateways.Persistence.Blog;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace EnduranceContestManager.Gateways.Persistence
 {
     public static class PersistenceServices
     {
-        public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddPersistence(this IServiceCollection services)
             => services
-                .AddDatabase(configuration)
-                .AddScoped<IPersistenceContract, ContestDbContext>();
+                .AddDatabase()
+                .AddTransient<IBlogDbContext, EcmDbContext>()
+                .AddRepositories()
+                .AddSingleton<IInitializerInterface, PersistenceInitializer>();
 
-        private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
+        private static IServiceCollection AddDatabase(this IServiceCollection services)
             => services
-                .AddDbContext<ContestDbContext>(options => options
-                    .UseSqlServer(
-                        configuration.GetConnectionString("DefaultConnection"),
-                        b => b.MigrationsAssembly(typeof(ContestDbContext).Assembly.FullName)));
+                .AddDbContext<EcmDbContext>(options =>
+                    options
+                        .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                        .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning)));
+
+        private static IServiceCollection AddRepositories(this IServiceCollection services)
+            => services
+                .AddTransient<IArticleCommands, ArticlesRepository>()
+                .AddTransient<IArticleQueries, ArticlesRepository>();
     }
 }

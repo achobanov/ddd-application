@@ -2,43 +2,22 @@
 using System.Linq;
 using System.Threading.Tasks;
 using EnduranceContestManager.Domain.Articles;
-using EnduranceContestManager.Gateways.Persistence.Providers;
-using EnduranceContestManager.Gateways.Web.Contracts;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+using EnduranceContestManager.Gateways.Desktop.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EnduranceContestManager.Gateways.Persistence
 {
-    public class PersistenceInitializer : IInitializer
+    public class PersistenceInitializer : IInitializerInterface
     {
-        public async Task Initialize(IServiceProvider serviceProvider)
+        public async Task Run(IServiceProvider serviceProvider)
         {
-            var dbContext = serviceProvider.GetService<ContestDbContext>();
-            var userManager = serviceProvider.GetService<UserManager<IdentityUser>>();
+            var dbContext = serviceProvider.GetService<EcmDbContext>();
 
-            this.Migrate(dbContext);
-            await this.SeedAsync(dbContext, userManager);
+            await this.SeedAsync(dbContext);
         }
 
-        private void Migrate(ContestDbContext dbContext)
-            => dbContext.Database.Migrate();
-
-        private async Task SeedAsync(
-            ContestDbContext data,
-            UserManager<IdentityUser> userManager)
+        private async Task SeedAsync(EcmDbContext data)
         {
-            var defaultUser = new IdentityUser
-            {
-                UserName = "admin@dev.com",
-                Email = "admin@dev.com"
-            };
-
-            if (userManager.Users.All(u => u.Id != defaultUser.Id))
-            {
-                await userManager.CreateAsync(defaultUser, "Test1!");
-            }
-
             if (data.Articles.Any())
             {
                 return;
@@ -51,8 +30,7 @@ namespace EnduranceContestManager.Gateways.Persistence
                 PublishedOn = DateTime.Now,
             };
 
-            data.Articles.Add(article);
-
+            await data.Articles.AddAsync(article);
             await data.SaveChangesAsync();
         }
     }
