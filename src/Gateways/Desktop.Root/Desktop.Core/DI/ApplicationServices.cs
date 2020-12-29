@@ -1,7 +1,6 @@
 using EnduranceContestManager.Application.Core;
 using EnduranceContestManager.Core;
 using EnduranceContestManager.Domain;
-using EnduranceContestManager.Gateways.Desktop.Core.Services;
 using EnduranceContestManager.Gateways.Persistence;
 using EnduranceContestManager.Gateways.Persistence.Startup;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,22 +9,9 @@ using System.Linq;
 
 namespace EnduranceContestManager.Gateways.Desktop.Core.DI
 {
-    public static class ContainerExtensions
+    public static class ApplicationServices
     {
-        public static IContainerRegistry AddServices(this IContainerRegistry container)
-        {
-            var adapter = new DesktopContainerAdapter(container);
-            var services = new ServiceCollection().AddProjectServices();
-
-            foreach (var serviceDescriptor in services)
-            {
-                adapter.Register(serviceDescriptor);
-            }
-
-            return container;
-        }
-
-        private static IServiceCollection AddProjectServices(this IServiceCollection services)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             var assemblies = CoreConstants.Assemblies
                 .Concat(DomainConstants.Assemblies)
@@ -37,8 +23,20 @@ namespace EnduranceContestManager.Gateways.Desktop.Core.DI
             return services
                 .AddCore(assemblies)
                 .AddApplication()
-                .AddPersistence()
-                .AddDesktop();
+                .AddPersistence();
+        }
+
+        public static IServiceCollection AdaptToDesktop(
+            this IServiceCollection services,
+            IContainerRegistry desktopContainer)
+        {
+            var adapter = new DesktopContainerAdapter(desktopContainer);
+            foreach (var serviceDescriptor in services)
+            {
+                adapter.Register(serviceDescriptor);
+            }
+
+            return services;
         }
 
         private static void Register(this DesktopContainerAdapter adapter, ServiceDescriptor service)

@@ -1,4 +1,4 @@
-﻿using EnduranceContestManager.Gateways.Desktop.Core.DI;
+﻿using EnduranceContestManager.Gateways.Desktop.Startup;
 using EnduranceContestManager.Gateways.Desktop.Views;
 using Prism.DryIoc;
 using Prism.Ioc;
