@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <RootNamespace>EnduranceContestManager.Gateways.Persistence.Core</RootNamespace>
+        <AssemblyName>EnduranceContestManager.Gateways.Persistence.Core</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Application.root\Application.Interfaces\Application.Interfaces.csproj" />
+    </ItemGroup>
+
+</Project>

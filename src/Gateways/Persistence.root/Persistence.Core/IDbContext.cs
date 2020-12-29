@@ -1,7 +1,7 @@
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace EnduranceContestManager.Gateways.Persistence.Core
 {

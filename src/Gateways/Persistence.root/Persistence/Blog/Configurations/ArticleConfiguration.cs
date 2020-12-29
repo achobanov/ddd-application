@@ -1,7 +1,8 @@
 ﻿using EnduranceContestManager.Domain.Articles;
+using EnduranceContestManager.Gateways.Persistence.Core.Configurations;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace EnduranceContestManager.Gateways.Persistence.Configurations
+namespace EnduranceContestManager.Gateways.Persistence.Blog.Configurations
 {
     public class ArticleConfiguration : AuditableEntityConfiguration<Article>
     {

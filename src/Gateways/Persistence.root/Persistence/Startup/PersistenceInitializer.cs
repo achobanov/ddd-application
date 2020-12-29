@@ -5,7 +5,7 @@ using EnduranceContestManager.Domain.Articles;
 using EnduranceContestManager.Gateways.Desktop.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace EnduranceContestManager.Gateways.Persistence
+namespace EnduranceContestManager.Gateways.Persistence.Startup
 {
     public class PersistenceInitializer : IInitializerInterface
     {

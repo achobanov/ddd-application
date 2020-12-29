@@ -3,12 +3,10 @@ using EnduranceContestManager.Core;
 using EnduranceContestManager.Domain;
 using EnduranceContestManager.Gateways.Desktop.Core.Services;
 using EnduranceContestManager.Gateways.Persistence;
+using EnduranceContestManager.Gateways.Persistence.Startup;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Ioc;
-using System;
-using System.Reflection;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace EnduranceContestManager.Gateways.Desktop.Core.DI
 {

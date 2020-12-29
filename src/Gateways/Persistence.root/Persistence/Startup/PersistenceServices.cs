@@ -3,11 +3,10 @@ using EnduranceContestManager.Gateways.Desktop.Interfaces;
 using EnduranceContestManager.Gateways.Persistence.Blog;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace EnduranceContestManager.Gateways.Persistence
+namespace EnduranceContestManager.Gateways.Persistence.Startup
 {
     public static class PersistenceServices
     {
