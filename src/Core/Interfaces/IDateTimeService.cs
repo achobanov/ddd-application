@@ -3,7 +3,7 @@ using EnduranceContestManager.Core.ConventionalServices;
 
 namespace EnduranceContestManager.Core.Interfaces
 {
-    public interface IDateTime : IService
+    public interface IDateTimeService : IService
     {
         DateTime Now { get; }
     }

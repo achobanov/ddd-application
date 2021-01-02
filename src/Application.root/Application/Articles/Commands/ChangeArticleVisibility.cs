@@ -15,13 +15,13 @@ namespace EnduranceContestManager.Application.Articles.Commands
         {
             private readonly IArticleCommands commands;
 
-            public ChangeArticleVisibilityHandler(IArticleCommands commands, IDateTime dateTime)
+            public ChangeArticleVisibilityHandler(IArticleCommands commands, IDateTimeService dateTime)
             {
                 this.commands = commands;
-                this.DateTime = dateTime;
+                this.DateTimeService = dateTime;
             }
 
-            public IDateTime DateTime { get; }
+            public IDateTimeService DateTimeService { get; }
 
             protected override async Task Handle(
                 ChangeArticleVisibility request,
@@ -34,7 +34,7 @@ namespace EnduranceContestManager.Application.Articles.Commands
                 }
 
                 article.IsPublic = !article.IsPublic;
-                article.PublishedOn ??= this.DateTime.Now;
+                article.PublishedOn ??= this.DateTimeService.Now;
 
                 await this.commands.Save(article, cancellationToken);
             }

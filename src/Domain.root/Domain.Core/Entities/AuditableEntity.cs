@@ -19,7 +19,7 @@ namespace EnduranceContestManager.Domain.Core.Entities
         public string ModifiedBy
         {
             get => this.modifiedBy;
-            set => this.modifiedBy = value ?? throw new DomainException(this.GetType().Name, nameof(this.ModifiedBy));
+            set => this.modifiedBy = value;
         }
 
         public DateTime? ModifiedOn { get; set; }

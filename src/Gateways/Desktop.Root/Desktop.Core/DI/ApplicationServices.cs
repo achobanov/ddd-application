@@ -3,6 +3,7 @@ using EnduranceContestManager.Core;
 using EnduranceContestManager.Domain;
 using EnduranceContestManager.Domain.Core;
 using EnduranceContestManager.Gateways.Persistence;
+using EnduranceContestManager.Gateways.Persistence.Core;
 using EnduranceContestManager.Gateways.Persistence.Startup;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Ioc;
@@ -17,7 +18,7 @@ namespace EnduranceContestManager.Gateways.Desktop.Core.DI
             var assemblies = CoreConstants.Assemblies
                 .Concat(DomainConstants.Assemblies)
                 .Concat(ApplicationConstants.Assemblies)
-                .Concat(PersistenceConstants.Assemblies)
+                .Concat(PersistenceCoreConstants.Assemblies)
                 .Concat(DesktopConstants.Assemblies)
                 .ToArray();
 

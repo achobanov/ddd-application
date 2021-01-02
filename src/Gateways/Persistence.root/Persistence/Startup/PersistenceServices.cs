@@ -11,11 +11,15 @@ namespace EnduranceContestManager.Gateways.Persistence.Startup
     public static class PersistenceServices
     {
         public static IServiceCollection AddPersistence(this IServiceCollection services)
-            => services
+        {
+            services.AddDataProtection();
+
+            return services
                 .AddDatabase()
                 .AddTransient<IBlogDbContext, EcmDbContext>()
                 .AddRepositories()
                 .AddSingleton<IInitializerInterface, PersistenceInitializer>();
+        }
 
         private static IServiceCollection AddDatabase(this IServiceCollection services)
             => services

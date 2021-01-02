@@ -6,17 +6,22 @@ using EnduranceContestManager.Core.Interfaces;
 using EnduranceContestManager.Domain.Blog.Articles;
 using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Gateways.Persistence.Blog;
+using EnduranceContestManager.Gateways.Persistence.Core.Services;
 using System;
 
 namespace EnduranceContestManager.Gateways.Persistence
 {
     public class EcmDbContext : DbContext, IBlogDbContext
     {
-        private readonly IDateTime dateTime;
+        private readonly IDateTimeService dateTime;
+        private readonly IBackupService backup;
 
-        public EcmDbContext(DbContextOptions options, IDateTime dateTime)
+        public EcmDbContext(DbContextOptions options, IDateTimeService dateTime, IBackupService backup)
             : base(options)
-            => this.dateTime = dateTime;
+        {
+            this.dateTime = dateTime;
+            this.backup = backup;
+        }
 
         public DbSet<Article> Articles { get; set; }
 
@@ -37,7 +42,11 @@ namespace EnduranceContestManager.Gateways.Persistence
                 }
             }
 
-            return base.SaveChangesAsync(cancellationToken);
+            var result = base.SaveChangesAsync(cancellationToken);
+
+            this.backup.Create(this);
+
+            return result;
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

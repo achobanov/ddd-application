@@ -1,6 +1,7 @@
 using EnduranceContestManager.Application.Interfaces.Base;
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Core;
+using EnduranceContestManager.Gateways.Persistence.Core.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,9 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
         where TEntity : class, IAggregateRoot
     {
         protected Repository(TDbContext db)
-            => this.Data = db;
+        {
+            this.Data = db;
+        }
 
         protected TDbContext Data { get; }
 

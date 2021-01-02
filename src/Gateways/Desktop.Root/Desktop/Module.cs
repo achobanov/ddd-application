@@ -14,9 +14,9 @@ namespace EnduranceContestManager.Gateways.Desktop
     public class Module : IModule
     {
         private readonly IRegionManager regionManager;
-        private readonly IDateTime dateTime;
+        private readonly IDateTimeService dateTime;
 
-        public Module(IRegionManager regionManager, IDateTime dateTime)
+        public Module(IRegionManager regionManager, IDateTimeService dateTime)
         {
             this.regionManager = regionManager;
             this.dateTime = dateTime;

@@ -16,29 +16,32 @@ namespace EnduranceContestManager.Core.Extensions
             var singletonServiceInterfaceType = typeof(ISingletonService);
             var scopedServiceInterfaceType = typeof(IScopedService);
 
-            var types = assemblies
+            var exportedClasses = assemblies
                 .SelectMany(x => x.GetExportedTypes())
-                .Where(t => t.IsClass && !t.IsAbstract)
+                .Where(t => t.IsClass && !t.IsAbstract);
+
+            var registrationDescriptors = exportedClasses
                 .Select(t => new
                 {
-                    Service = t.GetInterface($"I{t.Name.Replace("Service", string.Empty)}"),
+                    Service = t.GetInterface($"I{t.Name}"),
                     Implementation = t
-                })
-                .Where(t => t.Service != null);
+                });
 
-            foreach (var type in types)
+            var conventionalServices = registrationDescriptors.Where(t => t.Service != null);
+
+            foreach (var service in conventionalServices)
             {
-                if (serviceInterfaceType.IsAssignableFrom(type.Service))
+                if (serviceInterfaceType.IsAssignableFrom(service.Service))
                 {
-                    services.AddTransient(type.Service, type.Implementation);
+                    services.AddTransient(service.Service, service.Implementation);
                 }
-                else if (singletonServiceInterfaceType.IsAssignableFrom(type.Service))
+                else if (singletonServiceInterfaceType.IsAssignableFrom(service.Service))
                 {
-                    services.AddSingleton(type.Service, type.Implementation);
+                    services.AddSingleton(service.Service, service.Implementation);
                 }
-                else if (scopedServiceInterfaceType.IsAssignableFrom(type.Service))
+                else if (scopedServiceInterfaceType.IsAssignableFrom(service.Service))
                 {
-                    services.AddScoped(type.Service, type.Implementation);
+                    services.AddScoped(service.Service, service.Implementation);
                 }
             }
 

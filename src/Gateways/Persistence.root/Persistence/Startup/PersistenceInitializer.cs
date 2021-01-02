@@ -3,12 +3,20 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using EnduranceContestManager.Gateways.Desktop.Interfaces;
+using EnduranceContestManager.Gateways.Persistence.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EnduranceContestManager.Gateways.Persistence.Startup
 {
     public class PersistenceInitializer : IInitializerInterface
     {
+        private readonly IBackupService backup;
+
+        public PersistenceInitializer(IBackupService backup)
+        {
+            this.backup = backup;
+        }
+
         public async Task Run(IServiceProvider serviceProvider)
         {
             var dbContext = serviceProvider.GetService<EcmDbContext>();
@@ -16,9 +24,9 @@ namespace EnduranceContestManager.Gateways.Persistence.Startup
             await this.SeedAsync(dbContext);
         }
 
-        private async Task SeedAsync(EcmDbContext data)
+        private async Task SeedAsync(EcmDbContext dbContext)
         {
-            if (data.Articles.Any())
+            if (dbContext.Articles.Any())
             {
                 return;
             }
@@ -28,10 +36,14 @@ namespace EnduranceContestManager.Gateways.Persistence.Startup
                 CreatedOn = DateTime.Now.AddDays(-1),
                 IsPublic = true,
                 PublishedOn = DateTime.Now,
+                CreatedBy = "Me",
             };
 
-            await data.Articles.AddAsync(article);
-            await data.SaveChangesAsync();
+            await dbContext.Articles.AddAsync(article);
+            // await this.backup.Restore(dbContext);
+            await dbContext.SaveChangesAsync();
+
+            await this.backup.Create(dbContext);
         }
     }
 }

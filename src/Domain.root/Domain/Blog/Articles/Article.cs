@@ -9,6 +9,10 @@ namespace EnduranceContestManager.Domain.Blog.Articles
         private string title;
         private string content;
 
+        public Article()
+        {
+        }
+
         public Article(string title, string content)
         {
             this.Title = title;

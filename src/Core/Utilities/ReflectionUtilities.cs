@@ -24,5 +24,12 @@ namespace EnduranceContestManager.Core.Utilities
 
             return assemblies;
         }
+
+        public static PropertyInfo[] GetProperties<T>(BindingFlags bindingFlags)
+        {
+            var properties = typeof(T).GetProperties(bindingFlags);
+
+            return properties;
+        }
     }
 }
