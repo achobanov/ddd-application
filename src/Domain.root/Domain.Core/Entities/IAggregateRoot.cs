@@ -1,6 +1,4 @@
-using EnduranceContestManager.Domain.Core.Entities;
-
-namespace EnduranceContestManager.Domain.Core
+namespace EnduranceContestManager.Domain.Core.Entities
 {
     public interface IAggregateRoot : IEntity
     {

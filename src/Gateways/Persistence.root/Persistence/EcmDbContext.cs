@@ -13,13 +13,11 @@ namespace EnduranceContestManager.Gateways.Persistence
 {
     public class EcmDbContext : DbContext, IBlogDbContext
     {
-        private readonly IDateTimeService dateTime;
         private readonly IBackupService backup;
 
         public EcmDbContext(DbContextOptions options, IDateTimeService dateTime, IBackupService backup)
             : base(options)
         {
-            this.dateTime = dateTime;
             this.backup = backup;
         }
 
@@ -27,21 +25,6 @@ namespace EnduranceContestManager.Gateways.Persistence
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            foreach (var entry in this.ChangeTracker.Entries<IAuditableEntity>())
-            {
-                switch (entry.State)
-                {
-                    case EntityState.Added:
-                        entry.Entity.CreatedOn = this.dateTime.Now;
-                        break;
-                    case EntityState.Modified:
-                        entry.Entity.ModifiedOn = this.dateTime.Now;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-
             var result = base.SaveChangesAsync(cancellationToken);
 
             this.backup.Create(this);

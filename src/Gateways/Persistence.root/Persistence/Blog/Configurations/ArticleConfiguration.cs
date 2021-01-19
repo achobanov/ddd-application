@@ -1,15 +1,13 @@
 ﻿using EnduranceContestManager.Domain.Blog.Articles;
-using EnduranceContestManager.Gateways.Persistence.Core.Configurations;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EnduranceContestManager.Gateways.Persistence.Blog.Configurations
 {
-    public class ArticleConfiguration : AuditableEntityConfiguration<Article>
+    public class ArticleConfiguration : IEntityTypeConfiguration<Article>
     {
-        public override void Configure(EntityTypeBuilder<Article> builder)
+        public void Configure(EntityTypeBuilder<Article> builder)
         {
-            base.Configure(builder);
-
             builder.HasKey(a => a.Id);
         }
     }

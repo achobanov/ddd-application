@@ -1,10 +1,9 @@
-﻿using EnduranceContestManager.Domain.Core;
-using System;
+﻿using System;
 using EnduranceContestManager.Domain.Core.Entities;
 
 namespace EnduranceContestManager.Domain.Blog.Articles
 {
-    public class Article : AuditableEntity, IAggregateRoot
+    public class Article : Entity, IAggregateRoot
     {
         private string title;
         private string content;

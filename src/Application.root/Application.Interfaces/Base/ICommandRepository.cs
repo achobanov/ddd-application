@@ -1,4 +1,4 @@
-using EnduranceContestManager.Domain.Core;
+using EnduranceContestManager.Domain.Core.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 

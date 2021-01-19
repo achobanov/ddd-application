@@ -1,10 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Nullable>enable</Nullable>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>EnduranceContestManager.Domain</RootNamespace>
     <AssemblyName>EnduranceContestManager.Domain</AssemblyName>
     <Configurations>Debug;Release</Configurations>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Blog" />
+    <Folder Include="Models" />
   </ItemGroup>
 
 </Project>

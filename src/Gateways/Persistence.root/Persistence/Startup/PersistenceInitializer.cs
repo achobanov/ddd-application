@@ -33,10 +33,8 @@ namespace EnduranceContestManager.Gateways.Persistence.Startup
 
             var article = new Article("Test Article", "Test Article Content")
             {
-                CreatedOn = DateTime.Now.AddDays(-1),
                 IsPublic = true,
                 PublishedOn = DateTime.Now,
-                CreatedBy = "Me",
             };
 
             await dbContext.Articles.AddAsync(article);
