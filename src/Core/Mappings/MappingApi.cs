@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using System.Runtime.CompilerServices;
 
 namespace EnduranceContestManager.Core.Mappings
 {
@@ -26,23 +27,23 @@ namespace EnduranceContestManager.Core.Mappings
             return Mapper.Map<TDestination>(value);
         }
 
-        public static IEnumerable<TDestination> MapCollection<TDestination>(this IEnumerable source)
+        public static IEnumerable<TDestination> MapEnumerable<TDestination>(this IEnumerable source)
         {
             ValidateConfiguration();
 
             return Mapper.Map<IEnumerable<TDestination>>(source);
         }
 
-        public static IQueryable<TDestination> Map<TDestination>(this IQueryable source)
+        public static IQueryable<TDestination> MapQueryable<TDestination>(this IQueryable source)
         {
             ValidateConfiguration();
 
             return source.ProjectTo<TDestination>(Mapper.ConfigurationProvider);
         }
 
-        public static async Task<IEnumerable<TDestination>> MapCollection<TDestination>(this Task source)
+        public static async Task<IEnumerable<TDestination>> MapEnumerable<TDestination>(this Task source)
         {
-            var value = (await (dynamic)source);
+            var value = await (dynamic)source;
             if (value is IEnumerable enumerable)
             {
                 return Mapper.Map<IEnumerable<TDestination>>(enumerable);
@@ -51,6 +52,13 @@ namespace EnduranceContestManager.Core.Mappings
             throw new ArgumentException(
                 "Cannot map collection - argument value is not 'IEnumerable'.",
                 nameof(source));
+        }
+
+        public static T MapFrom<T>(this T destination, T source)
+        {
+            ValidateConfiguration();
+
+            return Mapper.Map(source, destination);
         }
 
         #region AutoMapper configuration

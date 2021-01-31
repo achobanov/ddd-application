@@ -1,9 +1,9 @@
 using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Core.Entities;
+using EnduranceContestManager.Domain.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Application.Interfaces.Base
+namespace EnduranceContestManager.Application.Interfaces.Core
 {
     public interface IQueryRepository<TEntity>
         where TEntity : IAggregateRoot

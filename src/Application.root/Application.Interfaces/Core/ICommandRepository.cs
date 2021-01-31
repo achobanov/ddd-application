@@ -1,8 +1,8 @@
-using EnduranceContestManager.Domain.Core.Entities;
+using EnduranceContestManager.Domain.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Application.Interfaces.Base
+namespace EnduranceContestManager.Application.Interfaces.Core
 {
     public interface ICommandRepository<TEntity>
         where TEntity : IAggregateRoot
