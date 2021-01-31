@@ -15,8 +15,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Core.csproj" />
+    <ProjectReference Include="..\..\Domain.root\Domain.Core\Domain.Core.csproj" />
     <ProjectReference Include="..\..\Domain.root\Domain\Domain.csproj" />
-    <ProjectReference Include="..\..\Domain\Domain.csproj" />
     <ProjectReference Include="..\Application.Core\Application.Core.csproj" />
     <ProjectReference Include="..\Application.Interfaces\Application.Interfaces.csproj" />
   </ItemGroup>

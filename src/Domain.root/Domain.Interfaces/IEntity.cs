@@ -1,4 +1,4 @@
-namespace EnduranceContestManager.Domain.Core.Entities
+namespace EnduranceContestManager.Domain.Interfaces
 {
     public interface IEntity
     {
