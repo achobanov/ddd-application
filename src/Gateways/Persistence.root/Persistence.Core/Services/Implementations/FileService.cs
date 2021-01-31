@@ -12,16 +12,25 @@ namespace EnduranceContestManager.Gateways.Persistence.Core.Services.Implementat
         {
             var path = this.BuildFilePath(name);
 
-            await using var stream = new StreamWriter(path);
-            await stream.WriteAsync(content);
+            await using (var stream = new StreamWriter(path))
+            {
+                await stream.WriteAsync(content);
+            }
         }
 
         public async Task<string> Read(string name)
         {
             var path = this.BuildFilePath(name);
 
-            using var stream = new StreamReader(path);
-            return await stream.ReadToEndAsync();
+            if (!File.Exists(path))
+            {
+                return null;
+            }
+
+            using (var stream = new StreamReader(path))
+            {
+                return await stream.ReadToEndAsync();
+            }
         }
 
         private string BuildFilePath(string fileName)

@@ -1,6 +1,6 @@
-﻿using EnduranceContestManager.Application.Interfaces.Blog.Articles;
+﻿using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Gateways.Desktop.Interfaces;
-using EnduranceContestManager.Gateways.Persistence.Blog;
+using EnduranceContestManager.Gateways.Persistence.Repositories.Contests;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +16,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Startup
 
             return services
                 .AddDatabase()
-                .AddTransient<IBlogDbContext, EcmDbContext>()
+                .AddTransient<IContestsDataStore, EcmDbContext>()
                 .AddRepositories()
                 .AddSingleton<IInitializerInterface, PersistenceInitializer>();
         }
@@ -26,11 +26,12 @@ namespace EnduranceContestManager.Gateways.Persistence.Startup
                 .AddDbContext<EcmDbContext>(options =>
                     options
                         .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                        .EnableSensitiveDataLogging()
                         .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning)));
 
         private static IServiceCollection AddRepositories(this IServiceCollection services)
             => services
-                .AddTransient<IArticleCommands, ArticlesRepository>()
-                .AddTransient<IArticleQueries, ArticlesRepository>();
+                .AddTransient<IContestCommands, ContestRepository>()
+                .AddTransient<IContestQueries, ContestRepository>();
     }
 }

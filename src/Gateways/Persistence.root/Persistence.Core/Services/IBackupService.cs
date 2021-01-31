@@ -5,10 +5,10 @@ namespace EnduranceContestManager.Gateways.Persistence.Core.Services
 {
     public interface IBackupService : IService
     {
-        Task Create<TDbContext>(TDbContext dbContext)
-            where TDbContext : IDbContext;
+        Task Create<TDataStore>(TDataStore dbContext)
+            where TDataStore : IDataStore;
 
-        Task Restore<TDbContext>(TDbContext dbContext)
-            where TDbContext : IDbContext;
+        Task Restore<TDataStore>(TDataStore dbContext)
+            where TDataStore : IDataStore;
     }
 }

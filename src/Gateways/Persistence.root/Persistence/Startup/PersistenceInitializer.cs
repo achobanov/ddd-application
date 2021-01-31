@@ -1,5 +1,4 @@
-﻿using EnduranceContestManager.Domain.Blog.Articles;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using EnduranceContestManager.Gateways.Desktop.Interfaces;
@@ -26,22 +25,13 @@ namespace EnduranceContestManager.Gateways.Persistence.Startup
 
         private async Task SeedAsync(EcmDbContext dbContext)
         {
-            if (dbContext.Articles.Any())
+            if (dbContext.Contests.Any())
             {
                 return;
             }
 
-            var article = new Article("Test Article", "Test Article Content")
-            {
-                IsPublic = true,
-                PublishedOn = DateTime.Now,
-            };
-
-            await dbContext.Articles.AddAsync(article);
-            // await this.backup.Restore(dbContext);
-            await dbContext.SaveChangesAsync();
-
-            await this.backup.Create(dbContext);
+            await this.backup.Restore(dbContext);
+            await dbContext.Commit(performBackup: false);
         }
     }
 }

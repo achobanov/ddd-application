@@ -5,9 +5,7 @@ namespace EnduranceContestManager.Core.Interfaces
 {
     public interface ISerializationService : IService
     {
-        string Serialize<T>(T data);
-
-        string Serialize(object data, Type dataType);
+        string Serialize(object data);
 
         T Deserialize<T>(string serialized);
 

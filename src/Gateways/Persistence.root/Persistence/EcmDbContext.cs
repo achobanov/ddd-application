@@ -3,15 +3,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EnduranceContestManager.Core.Interfaces;
-using EnduranceContestManager.Domain.Blog.Articles;
-using EnduranceContestManager.Domain.Core.Entities;
-using EnduranceContestManager.Gateways.Persistence.Blog;
+using EnduranceContestManager.Domain.Entities.Contests;
 using EnduranceContestManager.Gateways.Persistence.Core.Services;
-using System;
+using EnduranceContestManager.Gateways.Persistence.Repositories.Contests;
 
 namespace EnduranceContestManager.Gateways.Persistence
 {
-    public class EcmDbContext : DbContext, IBlogDbContext
+    public class EcmDbContext : DbContext, IContestsDataStore
     {
         private readonly IBackupService backup;
 
@@ -21,13 +19,18 @@ namespace EnduranceContestManager.Gateways.Persistence
             this.backup = backup;
         }
 
-        public DbSet<Article> Articles { get; set; }
+        public DbSet<Contest> Contests { get; set; }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        public async Task<int> Commit(
+            CancellationToken cancellationToken = default,
+            bool performBackup = true)
         {
-            var result = base.SaveChangesAsync(cancellationToken);
+            var result = await this.SaveChangesAsync(cancellationToken);
 
-            this.backup.Create(this);
+            if (performBackup)
+            {
+                await this.backup.Create(this);
+            }
 
             return result;
         }

@@ -13,12 +13,10 @@
     </PackageReference>
   </ItemGroup>
 
-  
   <ItemGroup>
     <ProjectReference Include="..\..\..\Application.root\Application.Interfaces\Application.Interfaces.csproj" />
     <ProjectReference Include="..\..\..\Domain.root\Domain.Core\Domain.Core.csproj" />
     <ProjectReference Include="..\..\..\Domain.root\Domain\Domain.csproj" />
-    <ProjectReference Include="..\..\..\Domain\Domain.csproj" />
     <ProjectReference Include="..\..\Desktop.Root\Desktop.Interfaces\Desktop.Interfaces.csproj" />
     <ProjectReference Include="..\Persistence.Core\Persistence.Core.csproj" />
   </ItemGroup>

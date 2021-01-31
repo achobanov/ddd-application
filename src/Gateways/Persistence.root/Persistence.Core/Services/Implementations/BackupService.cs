@@ -23,10 +23,10 @@ namespace EnduranceContestManager.Gateways.Persistence.Core.Services.Implementat
             this.serialization = serialization;
         }
 
-        public async Task Create<TDbContext>(TDbContext dbContext)
-            where TDbContext : IDbContext
+        public async Task Create<TDataStore>(TDataStore dbContext)
+            where TDataStore : IDataStore
         {
-            var dbSetProperties = this.GetEntitySets<TDbContext>();
+            var dbSetProperties = this.GetEntitySets<TDataStore>();
 
             var data = dbSetProperties.ToDictionary(
                 propertyInfo => propertyInfo.Name,
@@ -36,18 +36,23 @@ namespace EnduranceContestManager.Gateways.Persistence.Core.Services.Implementat
             var serialized = this.serialization.Serialize(data);
             var encrypted = this.encryption.Encrypt(serialized);
 
-            await this.file.Create("backup.txt", encrypted);
+            await this.file.Create(BackupFileName, encrypted);
         }
 
-        public async Task Restore<TDbContext>(TDbContext dbContext)
-            where TDbContext : IDbContext
+        public async Task Restore<TDataStore>(TDataStore dbContext)
+            where TDataStore : IDataStore
         {
             var encrypted = await this.file.Read(BackupFileName);
+            if (string.IsNullOrEmpty(encrypted))
+            {
+                return;
+            }
+
             var decrypted = this.encryption.Decrypt(encrypted);
             var deserialized = this.serialization.Deserialize<Dictionary<string, string>>(decrypted);
 
-            var dbContextType = typeof(TDbContext);
-            var dbSetProperties = this.GetEntitySets<TDbContext>();
+            var dbContextType = typeof(TDataStore);
+            var dbSetProperties = this.GetEntitySets<TDataStore>();
 
             foreach (var (setName, serializedSet) in deserialized)
             {
@@ -84,15 +89,24 @@ namespace EnduranceContestManager.Gateways.Persistence.Core.Services.Implementat
                 .GetGenericArguments()
                 .First();
 
+
             var entityCollectionType = Types.List.MakeGenericType(entityType);
             var entityCollection = this.serialization.Deserialize(serializedEntityCollection, entityCollectionType);
 
             var entitySetType = Types.DbSet.MakeGenericType(entityType);
             var addRangeMethod = entitySetType.GetMethod("AddRange", new[] { entityCollectionType });
 
+            // Expression
+            // db =>
             var dbContextParam = Expression.Parameter(dbContextType, "dbContext");
+
+            // db => db.<DbSet property>
             var dbSetAccessor = Expression.Property(dbContextParam, dbSetName);
+
+            // entities
             var entityCollectionParam = Expression.Parameter(entityCollectionType, "entities");
+
+            // db => db.SetName.AddRange(entities)
             var call = Expression.Call(dbSetAccessor, addRangeMethod, entityCollectionParam);
 
             var lambdaType = Types.Action.MakeGenericType(dbContextType, entityCollectionType);

@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 
 namespace EnduranceContestManager.Gateways.Persistence.Core
 {
-    public interface IDbContext
+    public interface IDataStore
     {
+        ChangeTracker ChangeTracker { get; }
+
         DbSet<TEntity> Set<TEntity>()
             where TEntity : class;
 
@@ -16,6 +18,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
         ValueTask<TEntity> FindAsync<TEntity>(params object[] keyValuePairs)
             where TEntity : class;
 
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+        Task<int> Commit(CancellationToken cancellationToken = default, bool performBackup = true);
     }
 }
