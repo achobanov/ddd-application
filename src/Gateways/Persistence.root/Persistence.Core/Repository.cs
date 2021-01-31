@@ -37,12 +37,11 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
                 .ToListAsync();
 
         public async Task<TEntity> Find(int id)
-            => await this.DataStore
-                .Set<TEntity>()
-                .FirstOrDefaultAsync(x => x.Id == id);
+            => await this.DataStore.FindAsync<TEntity>(id);
 
         public async Task<int> Save(TEntity entity, CancellationToken cancellationToken = default)
         {
+            // TODO: Fix this method for update
             var entry = this.DataStore.Update(entity);
 
             await this.DataStore.Commit(cancellationToken);
