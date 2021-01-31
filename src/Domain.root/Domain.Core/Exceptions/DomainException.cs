@@ -2,18 +2,18 @@
 
 namespace EnduranceContestManager.Domain.Core.Exceptions
 {
-    public class DomainException : Exception
+    public abstract class DomainException : Exception
     {
-        public const string PropertyIsRequiredMessage = "Property '{0}' on '{1}' is required.";
+        public string Template { get; set; }
 
-        public DomainException(string entityName, string propertyName)
-            : base(string.Format(PropertyIsRequiredMessage, propertyName, entityName))
-            => this.PropertyName = propertyName;
+        public string Error
+            => string.Format($"{this.Entity}: {this.Template}", this.Arguments);
 
-        public DomainException(string entityName, string propertyName, string messageTemplate)
-            : base(string.Format(messageTemplate, entityName, propertyName))
-            => this.PropertyName = propertyName;
+        public void WithArguments(params object[] arguments)
+            => this.Arguments = arguments;
 
-        public string PropertyName { get; }
+        protected abstract string Entity { get; }
+
+        protected object[] Arguments { get; set; }
     }
 }
