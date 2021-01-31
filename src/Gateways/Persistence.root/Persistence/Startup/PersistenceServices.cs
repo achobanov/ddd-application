@@ -31,7 +31,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Startup
 
         private static IServiceCollection AddRepositories(this IServiceCollection services)
             => services
-                .AddTransient<IContestCommands, ContestRepository>()
-                .AddTransient<IContestQueries, ContestRepository>();
+                .AddTransient<IContestCommands, ContestsRepository>()
+                .AddTransient<IContestQueries, ContestsRepository>();
     }
 }
