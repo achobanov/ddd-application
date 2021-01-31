@@ -1,6 +1,5 @@
 using EnduranceContestManager.Gateways.Desktop.Interfaces;
 using EnduranceContestManager.Gateways.Desktop.Core.DI;
-using EnduranceContestManager.Gateways.Desktop.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Ioc;
 

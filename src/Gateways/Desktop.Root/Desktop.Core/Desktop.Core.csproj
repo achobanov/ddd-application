@@ -17,10 +17,8 @@
       <ProjectReference Include="..\..\..\Core\Core.csproj" />
       <ProjectReference Include="..\..\..\Domain.root\Domain.Core\Domain.Core.csproj" />
       <ProjectReference Include="..\..\..\Domain.root\Domain\Domain.csproj" />
-      <ProjectReference Include="..\..\..\Domain\Domain.csproj" />
       <ProjectReference Include="..\..\Persistence.root\Persistence.Core\Persistence.Core.csproj" />
       <ProjectReference Include="..\..\Persistence.root\Persistence\Persistence.csproj" />
-      <ProjectReference Include="..\..\Persistence\Persistence.csproj" />
       <ProjectReference Include="..\Desktop.Interfaces\Desktop.Interfaces.csproj" />
     </ItemGroup>
 

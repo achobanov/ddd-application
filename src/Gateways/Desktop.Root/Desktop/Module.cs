@@ -1,4 +1,5 @@
-using EnduranceContestManager.Application.Articles.Queries.Details;
+using EnduranceContestManager.Application.Contests.Commands;
+using EnduranceContestManager.Application.Contests.Queries.Details;
 using EnduranceContestManager.Core.Interfaces;
 using EnduranceContestManager.Gateways.Desktop.Interfaces;
 using EnduranceContestManager.Gateways.Desktop.Views;
@@ -16,12 +17,11 @@ namespace EnduranceContestManager.Gateways.Desktop
         private readonly IRegionManager regionManager;
         private readonly IDateTimeService dateTime;
 
-        public Module(IRegionManager regionManager, IDateTimeService dateTime)
+        public Module(IRegionManager regionManager)
         {
             this.regionManager = regionManager;
-            this.dateTime = dateTime;
         }
-        
+
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
         }
@@ -37,8 +37,35 @@ namespace EnduranceContestManager.Gateways.Desktop
 
             var mediator = containerProvider.Resolve<IMediator>();
 
-            var query = new GetArticleDetails { Id = 1 };
-            var result = await mediator.Send(query);
+
+            var create = new CreateContest
+            {
+                Country = "Bege",
+                Name = "Name",
+                PresidentGroundJury = "President Ground",
+                ActiveVet = "Active Vet",
+                ForeignJudge = "Foreign Judge",
+                PopulatedPlace = "Place",
+                FeiTechDelegate = "Tech Delegate",
+                FeiVetDelegate = "Vet Delegate",
+                PresidentVetCommission = "President Vet",
+            };
+
+            var update = new UpdateContest()
+            {
+                Id = 1,
+                Country = "Updated",
+                Name = "Updated",
+                PresidentGroundJury = "PUpdated resident Ground",
+                ActiveVet = "Updated Active Vet",
+                ForeignJudge = "UpdatedForeign Judge",
+                PopulatedPlace = "Updated Place",
+                FeiTechDelegate = "UpdatedTech Delegate",
+                FeiVetDelegate = "Updated Vet Delegate",
+                PresidentVetCommission = "Updated President Vet",
+            };
+
+            await mediator.Send(update);
 
             this.regionManager.RegisterViewWithRegion("ContentRegion", typeof(ViewA));
         }

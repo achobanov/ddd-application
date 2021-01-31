@@ -4,7 +4,7 @@ using EnduranceContestManager.Gateways.Desktop.Interfaces;
 using System;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Gateways.Desktop.Core.Services
+namespace EnduranceContestManager.Gateways.Desktop.Startup
 {
     public class DesktopInitializer : IInitializerInterface
     {
