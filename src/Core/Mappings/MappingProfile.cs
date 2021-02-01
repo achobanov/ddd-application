@@ -8,6 +8,10 @@ namespace EnduranceContestManager.Core.Mappings
 {
     public abstract class MappingProfile : Profile
     {
+        private readonly Type mapFromType = typeof(IMapFrom);
+        private readonly Type mapToType = typeof(IMapTo);
+        private readonly Type mapExplicitlyType = typeof(IMapExplicitly);
+
         public MappingProfile()
             => this.RegisterMaps();
 
@@ -31,18 +35,16 @@ namespace EnduranceContestManager.Core.Mappings
             {
                 mapFrom.CreateFromMap(this);
             }
-            else if (instance is IMapTo mapTo)
+
+            if (instance is IMapTo mapTo)
             {
                 mapTo.CreateToMap(this);
             }
-            else if (instance is IMapExplicitly mapExplicitly)
+
+            if (instance is IMapExplicitly mapExplicitly)
             {
                 mapExplicitly.CreateExplicitMap(this);
             }
-
-            throw new ArgumentException(
-                $"Type '{type}' does not implement 'IMapCreator'.",
-                nameof(type));
         }
     }
 }

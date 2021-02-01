@@ -24,12 +24,10 @@ namespace EnduranceContestManager.Domain.Entities.Contests
 
         public string ActiveVet { get; }
 
-        IList<string> MembersOfVetCommittee { get; }
-
-        IList<string> MembersOfJudgeCommittee { get; }
-
-        IList<string> Stewards { get; }
-
-        IList<Trial> Trials { get; }
+        // IList<string> MembersOfVetCommittee { get; }
+        //
+        // IList<string> MembersOfJudgeCommittee { get; }
+        //
+        // IList<string> Stewards { get; }
     }
 }

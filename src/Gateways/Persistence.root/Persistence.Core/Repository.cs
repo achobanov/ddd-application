@@ -21,7 +21,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
 
         protected TDataStore DataStore { get; }
 
-        public async Task<TModel> Find<TModel>(int id)
+        public virtual async Task<TModel> Find<TModel>(int id)
             => await this.DataStore
                 .Set<TDataEntry>()
                 .Where(x => x.Id == id)

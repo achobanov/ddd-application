@@ -1,5 +1,6 @@
 using EnduranceContestManager.Application.Contests.Commands;
 using EnduranceContestManager.Application.Contests.Queries.Details;
+using EnduranceContestManager.Application.Test;
 using EnduranceContestManager.Core.Interfaces;
 using EnduranceContestManager.Gateways.Desktop.Interfaces;
 using EnduranceContestManager.Gateways.Desktop.Views;
@@ -37,35 +38,9 @@ namespace EnduranceContestManager.Gateways.Desktop
 
             var mediator = containerProvider.Resolve<IMediator>();
 
+            var test = new Test();
 
-            var create = new CreateContest
-            {
-                Country = "Bege",
-                Name = "Name",
-                PresidentGroundJury = "President Ground",
-                ActiveVet = "Active Vet",
-                ForeignJudge = "Foreign Judge",
-                PopulatedPlace = "Place",
-                FeiTechDelegate = "Tech Delegate",
-                FeiVetDelegate = "Vet Delegate",
-                PresidentVetCommission = "President Vet",
-            };
-
-            var update = new UpdateContest()
-            {
-                Id = 1,
-                Country = "Updated",
-                Name = "Updated",
-                PresidentGroundJury = "PUpdated resident Ground",
-                ActiveVet = "Updated Active Vet",
-                ForeignJudge = "UpdatedForeign Judge",
-                PopulatedPlace = "Updated Place",
-                FeiTechDelegate = "UpdatedTech Delegate",
-                FeiVetDelegate = "Updated Vet Delegate",
-                PresidentVetCommission = "Updated President Vet",
-            };
-
-            await mediator.Send(update);
+            await mediator.Send(test);
 
             this.regionManager.RegisterViewWithRegion("ContentRegion", typeof(ViewA));
         }

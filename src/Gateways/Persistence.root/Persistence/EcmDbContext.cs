@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EnduranceContestManager.Core.Interfaces;
-using EnduranceContestManager.Domain.Entities.Contests;
 using EnduranceContestManager.Gateways.Persistence.Core.Services;
 using EnduranceContestManager.Gateways.Persistence.Data.Contests;
 using EnduranceContestManager.Gateways.Persistence.Repositories.Contests;
@@ -21,6 +20,8 @@ namespace EnduranceContestManager.Gateways.Persistence
         }
 
         public DbSet<ContestData> Contests { get; set; }
+
+        public DbSet<TrialData> Trials { get; set; }
 
         public async Task<int> Commit(
             CancellationToken cancellationToken = default,

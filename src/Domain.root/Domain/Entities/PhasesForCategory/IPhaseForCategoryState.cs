@@ -1,15 +1,21 @@
+using EnduranceContestManager.Domain.Entities.Phases;
+using EnduranceContestManager.Domain.Enums;
 using EnduranceContestManager.Domain.Interfaces;
 
 namespace EnduranceContestManager.Domain.Entities.PhasesForCategory
 {
     public interface IPhaseForCategoryState : IEntityState
     {
+        int MaxRecoveryTimeInMinutes { get; }
+
+        int RestTimeInMinutes { get; }
+
         int? MinSpeedInKilometersPerHour { get; }
 
         int? MaxSpeedInKilometersPerHour { get; }
 
-        int MaxRecoveryTimeInMinutes { get; }
+        Phase Phase { get; }
 
-        int RestTimeInMinutes { get; }
+        Category Category { get; }
     }
 }

@@ -2,7 +2,6 @@ using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Entities.Trials;
 using EnduranceContestManager.Domain.Interfaces;
 using EnduranceContestManager.Domain.Validation;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +9,6 @@ namespace EnduranceContestManager.Domain.Entities.Contests
 {
     public class Contest : Entity, IContestState, IAggregateRoot
     {
-        [JsonConstructor]
         public Contest(
             int id,
             string name,
@@ -21,10 +19,7 @@ namespace EnduranceContestManager.Domain.Entities.Contests
             string feiVetDelegate,
             string presidentVetCommission,
             string foreignJudge,
-            string activeVet,
-            IList<string> membersOfVetCommittee,
-            IList<string> stewards,
-            IList<Trial> trials)
+            string activeVet)
             : base(id)
         {
             this.Name = name;
@@ -36,9 +31,9 @@ namespace EnduranceContestManager.Domain.Entities.Contests
             this.PresidentVetCommission = this.ValidatePersonName(presidentVetCommission);
             this.ForeignJudge = this.ValidatePersonName(foreignJudge);
             this.ActiveVet = this.ValidatePersonName(activeVet);
-            this.MembersOfVetCommittee = this.ValidatePersonName(membersOfVetCommittee);
-            this.Stewards = this.ValidatePersonName(stewards);
-            this.Trials = trials;
+            // this.MembersOfVetCommittee = this.ValidatePersonName(membersOfVetCommittee);
+            // this.MembersOfJudgeCommittee = this.ValidatePersonName(membersOfJudgeCommittee);
+            // this.Stewards = this.ValidatePersonName(stewards);
         }
 
         public string Name { get; private set; }
@@ -59,13 +54,14 @@ namespace EnduranceContestManager.Domain.Entities.Contests
 
         public string ActiveVet { get; private set; }
 
-        public IList<string> MembersOfVetCommittee { get; private set; }
+        public IList<Trial> Trials { get; private set; } = new List<Trial>();
 
-        public IList<string> MembersOfJudgeCommittee { get; private set; }
-
-        public IList<string> Stewards { get; private set; }
-
-        public IList<Trial> Trials { get; private set; }
+        public Contest AddTrial(Trial trial)
+        {
+            // TODO: Validations?
+            this.Trials.Add(trial);
+            return this;
+        }
 
         private IList<string> ValidatePersonName(IList<string> names)
             => names
