@@ -3,6 +3,7 @@ using EnduranceContestManager.Application.Core.Handlers;
 using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Domain.Entities.Contests;
 using EnduranceContestManager.Domain.Entities.Trials;
+using EnduranceContestManager.Gateways.Persistence.Data.Contests;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Application.Contests.Commands
@@ -35,9 +36,9 @@ namespace EnduranceContestManager.Application.Contests.Commands
 
         public IList<Trial> Trials { get; set; }
 
-        public class CreateArticleHandler : CreateHandler<Contest, CreateContest>
+        public class CreateContestHandler : CreateHandler<Contest, ContestData, CreateContest>
         {
-            public CreateArticleHandler(IContestFactory factory, IContestCommands commands)
+            public CreateContestHandler(IContestFactory factory, IContestCommands commands)
                 : base(factory, commands)
             {
             }

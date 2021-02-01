@@ -2,22 +2,28 @@
 
 namespace EnduranceContestManager.Core.Mappings
 {
-    public interface IMapFrom<T> : IMapCreator
-    {   
-        void IMapCreator.CreateMap(Profile mapper) => mapper.CreateMap(typeof(T), this.GetType());
+    public interface IMapFrom<T> : IMapFrom
+    {
+        void IMapFrom.CreateFromMap(Profile mapper) => mapper.CreateMap(typeof(T), this.GetType());
     }
 
-    public interface IMapTo<T> : IMapCreator
+    public interface IMapTo<T> : IMapTo
     {
-        void IMapCreator.CreateMap(Profile mapper) => mapper.CreateMap(this.GetType(), typeof(T));
+        void IMapTo.CreateToMap(Profile mapper) => mapper.CreateMap(this.GetType(), typeof(T));
     }
 
-    public interface IMapExplicitly : IMapCreator
+    public interface IMapExplicitly
     {
+        void CreateExplicitMap(Profile mapper);
     }
 
-    public interface IMapCreator
+    public interface IMapFrom
     {
-        void CreateMap(Profile mapper);
+        void CreateFromMap(Profile mapper);
+    }
+
+    public interface IMapTo
+    {
+        void CreateToMap(Profile mapper);
     }
 }

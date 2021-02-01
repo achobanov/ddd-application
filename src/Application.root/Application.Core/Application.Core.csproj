@@ -12,7 +12,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Application.Interfaces\Application.Interfaces.csproj" />
+      <ProjectReference Include="..\..\Core\Core.csproj" />
+      <ProjectReference Include="..\..\Gateways\Persistence.root\Persistence.Data\Persistence.Data.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,9 +1,8 @@
-using EnduranceContestManager.Application.Interfaces.Core;
-using EnduranceContestManager.Domain.Entities.Contests;
+using EnduranceContestManager.Application.Core.Interfaces;
 
 namespace EnduranceContestManager.Application.Interfaces.Contests
 {
-    public interface IContestQueries : IQueryRepository<Contest>
+    public interface IContestQueries : IQueryRepository
     {
     }
 }

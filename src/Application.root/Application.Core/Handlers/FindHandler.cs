@@ -1,21 +1,21 @@
+using EnduranceContestManager.Application.Core.Interfaces;
 using EnduranceContestManager.Application.Core.Requests;
-using EnduranceContestManager.Application.Interfaces.Core;
 using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Interfaces;
+using EnduranceContestManager.Gateways.Persistence.Data;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace EnduranceContestManager.Application.Core.Handlers
 {
-    public class FindHandler<TEntity, TRequest, TResponse> : Handler<TRequest, TResponse>
-        where TEntity : IAggregateRoot
+    public class FindHandler<TDataEntry, TRequest, TResponse> : Handler<TRequest, TResponse>
+        where TDataEntry : DataEntry
         where TRequest : IIdentifiableRequest, IRequest<TResponse>
-        where TResponse : IMapFrom<TEntity>
+        where TResponse : IMapFrom<TDataEntry>
     {
-        private readonly IQueryRepository<TEntity> query;
+        private readonly IQueryRepository query;
 
-        public FindHandler(IQueryRepository<TEntity> query)
+        public FindHandler(IQueryRepository query)
         {
             this.query = query;
         }

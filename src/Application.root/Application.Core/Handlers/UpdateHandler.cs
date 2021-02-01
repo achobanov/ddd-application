@@ -1,41 +1,40 @@
+using EnduranceContestManager.Application.Core.Interfaces;
 using EnduranceContestManager.Application.Core.Requests;
-using EnduranceContestManager.Application.Interfaces.Core;
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Interfaces;
-using System;
+using EnduranceContestManager.Gateways.Persistence.Data;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace EnduranceContestManager.Application.Core.Handlers
 {
-    public class UpdateHandler<TEntity, TRequest> : Handler<TRequest>
+    public class UpdateHandler<TEntity, TDataEntry, TRequest> : Handler<TRequest>
         where TEntity : IAggregateRoot
+        where TDataEntry : DataEntry
         where TRequest : IIdentifiableRequest, IMapTo<TEntity>
     {
-        private readonly ICommandRepository<TEntity> commands;
+        private readonly ICommandRepository<TDataEntry> commands;
 
-        protected UpdateHandler(ICommandRepository<TEntity> commands)
+        protected UpdateHandler(ICommandRepository<TDataEntry> commands)
         {
             this.commands = commands;
         }
 
         protected override async Task Handle(TRequest request, CancellationToken cancellationToken)
         {
-            var entity = await this.commands.Find(request.Id);
+            var entity = await this.commands.Find<TEntity>(request.Id);
 
-            if (this.CustomUpdate != default)
-            {
-                entity = this.CustomUpdate(request);
-            }
-            else
-            {
-                var update = request.Map<TEntity>();
-                entity = entity.MapFrom(update);
-            }
+            this.Update(entity, request);
 
-            await this.commands.Save(entity, cancellationToken);
+            var dataEntry = entity.Map<TDataEntry>();
+
+            await this.commands.Save(dataEntry, cancellationToken);
         }
 
-        protected Func<TRequest, TEntity> CustomUpdate { private get; set; }
+        protected virtual void Update(TEntity existing, TRequest request)
+        {
+            var update = request.Map<TEntity>();
+            existing.MapFrom(update);
+        }
     }
 }

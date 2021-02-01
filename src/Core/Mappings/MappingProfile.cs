@@ -19,16 +19,25 @@ namespace EnduranceContestManager.Core.Mappings
                 .Where(t =>
                     !t.IsAbstract
                      && !t.IsInterface
-                     && typeof(IMapCreator).IsAssignableFrom(t))
+                     && (typeof(IMapExplicitly).IsAssignableFrom(t)
+                         || typeof(IMapTo).IsAssignableFrom(t)
+                         || typeof(IMapFrom).IsAssignableFrom(t)))
                 .ForEach(this.CreateMap);
 
         private void CreateMap(Type type)
         {
-            if (Activator.CreateInstance(type) is IMapCreator instance)
+            var instance = Activator.CreateInstance(type);
+            if (instance is IMapFrom mapFrom)
             {
-                instance.CreateMap(this);
-                
-                return;
+                mapFrom.CreateFromMap(this);
+            }
+            else if (instance is IMapTo mapTo)
+            {
+                mapTo.CreateToMap(this);
+            }
+            else if (instance is IMapExplicitly mapExplicitly)
+            {
+                mapExplicitly.CreateExplicitMap(this);
             }
 
             throw new ArgumentException(

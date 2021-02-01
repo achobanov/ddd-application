@@ -16,9 +16,6 @@ namespace EnduranceContestManager.Application.Contests
                 state.FeiVetDelegate,
                 state.PresidentVetCommission,
                 state.ForeignJudge,
-                state.ActiveVet,
-                state.MembersOfVetCommittee,
-                state.Stewards,
-                state.Trials);
+                state.ActiveVet);
     }
 }

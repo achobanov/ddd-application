@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EnduranceContestManager.Domain.Entities.Contests;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using EnduranceContestManager.Gateways.Desktop.Interfaces;
@@ -25,12 +26,31 @@ namespace EnduranceContestManager.Gateways.Persistence.Startup
 
         private async Task SeedAsync(EcmDbContext dbContext)
         {
+            await this.backup.Restore(dbContext);
+
             if (dbContext.Contests.Any())
             {
                 return;
             }
 
-            await this.backup.Restore(dbContext);
+            // TODO: Move seed entities in Domain.
+            var contest = new Contest(
+                1,
+                "Default contest",
+                "Default Populated place",
+                "Bulgaria",
+                "Default Mr President",
+                "Default Fei tech",
+                "Default Fei Vet",
+                "Default Mr Vet President",
+                "Default Foreign Judge",
+                "Default Active vet");
+                // new List<string> { "Default Vet committee member 1", "Default Vet committee member 2" },
+                // new List<string> { "Default Judge committee member 1", "Default Judge committee member 2" },
+                // new List<string> { "Default steward 1", "Default steward 2" });
+
+            await dbContext.AddAsync(contest);
+
             await dbContext.Commit(performBackup: false);
         }
     }

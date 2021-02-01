@@ -1,6 +1,6 @@
-using EnduranceContestManager.Application.Interfaces.Core;
+using EnduranceContestManager.Application.Core.Interfaces;
 using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Interfaces;
+using EnduranceContestManager.Gateways.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Collections.Generic;
@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace EnduranceContestManager.Gateways.Persistence.Core
 {
-    public abstract class Repository<TDataStore, TEntity> : IQueryRepository<TEntity>, ICommandRepository<TEntity>
+    public abstract class Repository<TDataStore, TDataEntry> : ICommandRepository<TDataEntry>
         where TDataStore : IDataStore
-        where TEntity : class, IAggregateRoot
+        where TDataEntry : DataEntry
     {
         protected Repository(TDataStore dataStore)
         {
@@ -22,34 +22,32 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
         protected TDataStore DataStore { get; }
 
         public async Task<TModel> Find<TModel>(int id)
-            where TModel : IMapFrom<TEntity>
             => await this.DataStore
-                .Set<TEntity>()
+                .Set<TDataEntry>()
                 .Where(x => x.Id == id)
                 .MapQueryable<TModel>()
                 .FirstOrDefaultAsync();
 
         public async Task<IList<TModel>> All<TModel>()
-            where TModel : IMapFrom<TEntity>
             => await this.DataStore
-                .Set<TEntity>()
+                .Set<TDataEntry>()
                 .MapQueryable<TModel>()
                 .ToListAsync();
 
-        public async Task<TEntity> Find(int id)
-            => await this.DataStore.FindAsync<TEntity>(id);
+        public async Task<TDataEntry> Find(int id)
+            => await this.DataStore.FindAsync<TDataEntry>(id);
 
-        public async Task<int> Save(TEntity entity, CancellationToken cancellationToken = default)
+        public async Task<int> Save(TDataEntry data, CancellationToken cancellationToken = default)
         {
             // TODO: Fix this method for update
-            var entry = this.DataStore.Update(entity);
+            var entry = this.DataStore.Update(data);
 
             await this.DataStore.Commit(cancellationToken);
 
             return entry.Entity.Id;
         }
 
-        protected EntityEntry<TEntity> GetTracked(TEntity entity)
+        protected EntityEntry<TDataEntry> GetTracked(TDataEntry entity)
         {
             if (entity.Id == default)
             {
@@ -58,7 +56,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
 
             return this.DataStore
                 .ChangeTracker
-                .Entries<TEntity>()
+                .Entries<TDataEntry>()
                 .FirstOrDefault(x => x.Entity.Id == entity.Id);
         }
     }

@@ -10,6 +10,8 @@
     <ProjectReference Include="..\..\Core\Core.csproj" />
     <ProjectReference Include="..\..\Domain.root\Domain.Interfaces\Domain.Interfaces.csproj" />
     <ProjectReference Include="..\..\Domain.root\Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\Gateways\Persistence.root\Persistence.Data\Persistence.Data.csproj" />
+    <ProjectReference Include="..\Application.Core\Application.Core.csproj" />
   </ItemGroup>
 
 </Project>

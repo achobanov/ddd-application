@@ -4,6 +4,7 @@ using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Entities.Contests;
 using EnduranceContestManager.Domain.Entities.Trials;
+using EnduranceContestManager.Gateways.Persistence.Data.Contests;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Application.Contests.Commands
@@ -38,7 +39,7 @@ namespace EnduranceContestManager.Application.Contests.Commands
 
         public IList<Trial> Trials { get; set; }
 
-        public class UpdateContestHandler : UpdateHandler<Contest, UpdateContest>
+        public class UpdateContestHandler : UpdateHandler<Contest, ContestData, UpdateContest>
         {
             public UpdateContestHandler(IContestCommands commands)
                 : base(commands)

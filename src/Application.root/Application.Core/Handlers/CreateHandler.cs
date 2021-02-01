@@ -1,20 +1,23 @@
 using EnduranceContestManager.Application.Core.Factories;
-using EnduranceContestManager.Application.Interfaces.Core;
+using EnduranceContestManager.Application.Core.Interfaces;
+using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Interfaces;
+using EnduranceContestManager.Gateways.Persistence.Data;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace EnduranceContestManager.Application.Core.Handlers
 {
-    public abstract class CreateHandler<TEntity, TRequest> : Handler<TRequest, int>
+    public abstract class CreateHandler<TEntity, TDataEntry, TRequest> : Handler<TRequest, int>
         where TEntity : IAggregateRoot
+        where TDataEntry : DataEntry
         where TRequest : IRequest<int>, IEntityState
     {
         private readonly IFactory<TEntity> factory;
-        private readonly ICommandRepository<TEntity> commands;
+        private readonly ICommandRepository<TDataEntry> commands;
 
-        protected CreateHandler(IFactory<TEntity> factory, ICommandRepository<TEntity> commands)
+        protected CreateHandler(IFactory<TEntity> factory, ICommandRepository<TDataEntry> commands)
         {
             this.factory = factory;
             this.commands = commands;
@@ -24,7 +27,9 @@ namespace EnduranceContestManager.Application.Core.Handlers
         {
             var entity = this.factory.Create(request);
 
-            await this.commands.Save(entity, cancellationToken);
+            var dataEntry = entity.Map<TDataEntry>();
+
+            await this.commands.Save(dataEntry, cancellationToken);
 
             return entity.Id;
         }
