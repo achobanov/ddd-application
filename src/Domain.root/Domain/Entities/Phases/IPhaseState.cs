@@ -1,6 +1,6 @@
+using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Entities.PhasesForCategory;
 using EnduranceContestManager.Domain.Entities.Trials;
-using EnduranceContestManager.Domain.Interfaces;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Domain.Entities.Phases

@@ -1,6 +1,4 @@
-﻿using EnduranceContestManager.Domain.Interfaces;
-
-namespace EnduranceContestManager.Domain.Core.Entities
+﻿namespace EnduranceContestManager.Domain.Core.Entities
 {
     public abstract class Entity : IEntity
     {

@@ -1,4 +1,4 @@
-namespace EnduranceContestManager.Domain.Interfaces
+namespace EnduranceContestManager.Domain.Core.Entities
 {
     public interface IAggregateRoot : IEntity
     {

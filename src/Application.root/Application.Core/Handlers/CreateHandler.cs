@@ -1,6 +1,6 @@
 using EnduranceContestManager.Application.Core.Factories;
 using EnduranceContestManager.Application.Core.Interfaces;
-using EnduranceContestManager.Domain.Interfaces;
+using EnduranceContestManager.Domain.Core.Entities;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;

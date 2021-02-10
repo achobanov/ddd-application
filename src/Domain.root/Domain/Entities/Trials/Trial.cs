@@ -2,7 +2,6 @@ using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Core.Exceptions;
 using EnduranceContestManager.Domain.Entities.Contests;
 using EnduranceContestManager.Domain.Entities.Phases;
-using EnduranceContestManager.Domain.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 

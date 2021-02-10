@@ -1,6 +1,5 @@
 using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Entities.Trials;
-using EnduranceContestManager.Domain.Interfaces;
 using EnduranceContestManager.Domain.Validation;
 using System.Collections.Generic;
 using System.Linq;

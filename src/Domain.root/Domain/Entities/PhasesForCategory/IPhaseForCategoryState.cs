@@ -1,6 +1,6 @@
+using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Entities.Phases;
 using EnduranceContestManager.Domain.Enums;
-using EnduranceContestManager.Domain.Interfaces;
 
 namespace EnduranceContestManager.Domain.Entities.PhasesForCategory
 {

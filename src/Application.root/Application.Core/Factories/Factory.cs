@@ -1,5 +1,5 @@
 using EnduranceContestManager.Application.Core.Exceptions;
-using EnduranceContestManager.Domain.Interfaces;
+using EnduranceContestManager.Domain.Core.Entities;
 
 namespace EnduranceContestManager.Application.Core.Factories
 {

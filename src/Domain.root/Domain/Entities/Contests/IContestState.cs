@@ -1,6 +1,4 @@
-using EnduranceContestManager.Domain.Entities.Trials;
-using EnduranceContestManager.Domain.Interfaces;
-using System.Collections.Generic;
+using EnduranceContestManager.Domain.Core.Entities;
 
 namespace EnduranceContestManager.Domain.Entities.Contests
 {
