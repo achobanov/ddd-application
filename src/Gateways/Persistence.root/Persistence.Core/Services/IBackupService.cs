@@ -1,4 +1,5 @@
 using EnduranceContestManager.Core.ConventionalServices;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace EnduranceContestManager.Gateways.Persistence.Core.Services
@@ -9,6 +10,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Core.Services
             where TDataStore : IDataStore;
 
         Task Restore<TDataStore>(TDataStore dbContext)
-            where TDataStore : IDataStore;
+            where TDataStore : DbContext;
     }
 }

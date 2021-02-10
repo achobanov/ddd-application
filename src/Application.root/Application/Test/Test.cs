@@ -60,9 +60,9 @@ namespace EnduranceContestManager.Application.Test
 
                 var contestData = contest.Map<ContestData>();
 
-                var id = await this.contestCommands.Save(contestData, cancellationToken);
+                //var id = await this.contestCommands.Save(contestData, cancellationToken);
 
-                var kur = await this.contestCommands.Find<Contest>(id);
+                var kur = await this.contestCommands.Find<Contest>(1);
                 ;
             }
         }

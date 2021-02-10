@@ -12,20 +12,21 @@ namespace EnduranceContestManager.Gateways.Persistence.Data.Contests
         }
 
         [JsonConstructor]
-        public TrialData(int id, int lengthInKilometers, int durationInDays)
+        public TrialData(int id, int lengthInKilometers, int durationInDays, int contestId)
             : base(id)
         {
             this.LengthInKilometers = lengthInKilometers;
             this.DurationInDays = durationInDays;
+            this.ContestId = contestId;
         }
 
         public int LengthInKilometers { get; internal set; }
 
         public int DurationInDays { get; internal set; }
 
-        public int ContestDataId { get; set; }
+        public int ContestId { get; internal set; }
 
         [JsonIgnore]
-        public ContestData Contest { get; set; }
+        public ContestData Contest { get; internal set; }
     }
 }

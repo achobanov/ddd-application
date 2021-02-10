@@ -1,5 +1,6 @@
 using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Core.Exceptions;
+using EnduranceContestManager.Domain.Entities.Contests;
 using EnduranceContestManager.Domain.Entities.Phases;
 using EnduranceContestManager.Domain.Interfaces;
 using System.Collections.Generic;
@@ -20,7 +21,15 @@ namespace EnduranceContestManager.Domain.Entities.Trials
 
         public int DurationInDays { get; private set; }
 
+        public Contest Contest { get; private set; }
+
         public IList<Phase> Phases { get; private set; } = new List<Phase>();
+
+        public Trial SetContest(Contest contest)
+        {
+            this.Contest = contest;
+            return this;
+        }
 
         public Trial AddPhase(Phase phase)
         {

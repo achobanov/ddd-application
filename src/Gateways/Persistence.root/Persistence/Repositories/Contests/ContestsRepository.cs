@@ -22,6 +22,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Repositories.Contests
                 .Set<ContestData>()
                 .Where(x => x.Id == id)
                 .Include(x => x.Trials)
+                .ThenInclude(x => x.Contest)
                 .MapQueryable<TModel>()
                 .FirstOrDefaultAsync();
     }

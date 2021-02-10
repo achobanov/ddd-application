@@ -38,28 +38,23 @@ namespace EnduranceContestManager.Gateways.Persistence.Data.Contests
 
         public string Name { get; private set; }
 
-        public string PopulatedPlace { get; private set; }
+        public string PopulatedPlace { get; internal set; }
 
-        public string Country { get; private set; }
+        public string Country { get; internal set; }
 
-        public string PresidentGroundJury { get; private set; }
+        public string PresidentGroundJury { get; internal set; }
 
-        public string FeiTechDelegate { get; private set; }
+        public string FeiTechDelegate { get; internal set; }
 
-        public string PresidentVetCommission { get; private set; }
+        public string PresidentVetCommission { get; internal set; }
 
-        public string FeiVetDelegate { get; private set; }
+        public string FeiVetDelegate { get; internal set; }
 
-        public string ForeignJudge { get; private set; }
+        public string ForeignJudge { get; internal set; }
 
-        public string ActiveVet { get; private set; }
+        public string ActiveVet { get; internal set; }
 
-        // public IList<string> MembersOfVetCommittee { get; set; }
-        //
-        // public IList<string> MembersOfJudgeCommittee { get; set; }
-        //
-        // public IList<string> Stewards { get; set; }
-
-        public IList<TrialData> Trials { get; private set; }
+        [JsonIgnore]
+        public IList<TrialData> Trials { get; internal set; }
     }
 }

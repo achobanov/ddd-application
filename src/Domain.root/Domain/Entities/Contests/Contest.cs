@@ -59,6 +59,7 @@ namespace EnduranceContestManager.Domain.Entities.Contests
         public Contest AddTrial(Trial trial)
         {
             // TODO: Validations?
+            trial.SetContest(this);
             this.Trials.Add(trial);
             return this;
         }
