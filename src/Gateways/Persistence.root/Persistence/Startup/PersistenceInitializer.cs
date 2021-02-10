@@ -1,10 +1,8 @@
-﻿using EnduranceContestManager.Domain.Entities.Contests;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using EnduranceContestManager.Gateways.Desktop.Interfaces;
 using EnduranceContestManager.Gateways.Persistence.Core.Services;
-using EnduranceContestManager.Gateways.Persistence.Data.Contests;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EnduranceContestManager.Gateways.Persistence.Startup

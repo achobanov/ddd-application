@@ -2,13 +2,11 @@ using EnduranceContestManager.Application.Contests;
 using EnduranceContestManager.Application.Contests.Commands;
 using EnduranceContestManager.Application.Core.Handlers;
 using EnduranceContestManager.Application.Interfaces.Contests;
-using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Entities.Contests;
 using EnduranceContestManager.Domain.Entities.Phases;
 using EnduranceContestManager.Domain.Entities.PhasesForCategory;
 using EnduranceContestManager.Domain.Entities.Trials;
 using EnduranceContestManager.Domain.Enums;
-using EnduranceContestManager.Gateways.Persistence.Data.Contests;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -58,9 +56,7 @@ namespace EnduranceContestManager.Application.Test
 
                 contest.AddTrial(trial);
 
-                var contestData = contest.Map<ContestData>();
-
-                //var id = await this.contestCommands.Save(contestData, cancellationToken);
+                var id = await this.contestCommands.Save(contest, cancellationToken);
 
                 var kur = await this.contestCommands.Find<Contest>(1);
                 ;

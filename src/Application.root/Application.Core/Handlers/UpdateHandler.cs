@@ -2,20 +2,18 @@ using EnduranceContestManager.Application.Core.Interfaces;
 using EnduranceContestManager.Application.Core.Requests;
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Interfaces;
-using EnduranceContestManager.Gateways.Persistence.Data;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace EnduranceContestManager.Application.Core.Handlers
 {
-    public class UpdateHandler<TEntity, TDataEntry, TRequest> : Handler<TRequest>
-        where TEntity : IAggregateRoot
-        where TDataEntry : DataEntry
+    public class UpdateHandler<TRequest, TEntity> : Handler<TRequest>
         where TRequest : IIdentifiableRequest, IMapTo<TEntity>
+        where TEntity : IAggregateRoot
     {
-        private readonly ICommandRepository<TDataEntry> commands;
+        private readonly ICommandRepository<TEntity> commands;
 
-        protected UpdateHandler(ICommandRepository<TDataEntry> commands)
+        protected UpdateHandler(ICommandRepository<TEntity> commands)
         {
             this.commands = commands;
         }
@@ -26,15 +24,13 @@ namespace EnduranceContestManager.Application.Core.Handlers
 
             this.Update(entity, request);
 
-            var dataEntry = entity.Map<TDataEntry>();
-
-            await this.commands.Save(dataEntry, cancellationToken);
+            await this.commands.Save(entity, cancellationToken);
         }
 
-        protected virtual void Update(TEntity existing, TRequest request)
+        protected virtual void Update(TEntity entity, TRequest request)
         {
             var update = request.Map<TEntity>();
-            existing.MapFrom(update);
+            entity.MapFrom(update);
         }
     }
 }

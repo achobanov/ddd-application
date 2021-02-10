@@ -61,6 +61,13 @@ namespace EnduranceContestManager.Core.Mappings
             return Mapper.Map(source, destination);
         }
 
+        public static T MapFrom<T>(this T destination, object source)
+        {
+            ValidateConfiguration();
+
+            return Mapper.Map(source, destination);
+        }
+
         #region AutoMapper configuration
 
         public const string NotConfiguredMessage =

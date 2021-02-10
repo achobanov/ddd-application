@@ -1,9 +1,6 @@
-using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Gateways.Persistence.Data.Contests;
-
-namespace EnduranceContestManager.Application.Contests.Queries
+namespace EnduranceContestManager.Application.Contests.Queries.Details
 {
-    public class ContestDetailsModel : IMapFrom<ContestData>
+    public class ContestDetailsModel
     {
         public string Name { get; set; }
 

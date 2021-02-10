@@ -1,12 +1,12 @@
-using EnduranceContestManager.Gateways.Persistence.Data;
+using EnduranceContestManager.Domain.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace EnduranceContestManager.Application.Core.Interfaces
 {
-    public interface ICommandRepository<in TDataEntry> : IQueryRepository
-        where TDataEntry : DataEntry
+    public interface ICommandRepository<in TEntity> : IQueryRepository
+        where TEntity : IAggregateRoot
     {
-        Task<int> Save(TDataEntry data, CancellationToken cancellationToken = default);
+        Task<int> Save(TEntity entity, CancellationToken cancellationToken = default);
     }
 }

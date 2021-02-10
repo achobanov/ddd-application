@@ -1,14 +1,15 @@
 using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Core.Mappings;
+using EnduranceContestManager.Domain.Entities.Contests;
 using EnduranceContestManager.Gateways.Persistence.Core;
-using EnduranceContestManager.Gateways.Persistence.Data.Contests;
+using EnduranceContestManager.Gateways.Persistence.Stores.Contests;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Linq;
 
 namespace EnduranceContestManager.Gateways.Persistence.Repositories.Contests
 {
-    public class ContestsRepository : Repository<IContestsDataStore, ContestData>,
+    public class ContestsRepository : Repository<IContestsDataStore, ContestData, Contest>,
         IContestCommands,
         IContestQueries
     {
@@ -22,7 +23,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Repositories.Contests
                 .Set<ContestData>()
                 .Where(x => x.Id == id)
                 .Include(x => x.Trials)
-                .ThenInclude(x => x.Contest)
                 .MapQueryable<TModel>()
                 .FirstOrDefaultAsync();
     }

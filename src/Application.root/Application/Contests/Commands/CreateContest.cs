@@ -2,7 +2,6 @@
 using EnduranceContestManager.Application.Core.Handlers;
 using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Domain.Entities.Contests;
-using EnduranceContestManager.Gateways.Persistence.Data.Contests;
 
 namespace EnduranceContestManager.Application.Contests.Commands
 {
@@ -26,7 +25,7 @@ namespace EnduranceContestManager.Application.Contests.Commands
 
         public string ActiveVet { get; set; }
 
-        public class CreateContestHandler : CreateHandler<Contest, ContestData, CreateContest>
+        public class CreateContestHandler : CreateHandler<CreateContest, Contest>
         {
             public CreateContestHandler(IContestFactory factory, IContestCommands commands)
                 : base(factory, commands)

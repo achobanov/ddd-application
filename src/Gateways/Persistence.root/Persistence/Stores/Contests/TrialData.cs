@@ -1,8 +1,9 @@
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Entities.Trials;
+using EnduranceContestManager.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 
-namespace EnduranceContestManager.Gateways.Persistence.Data.Contests
+namespace EnduranceContestManager.Gateways.Persistence.Stores.Contests
 {
     // TODO: Do I need **Data classes?
     public class TrialData : DataEntry, ITrialState, IMapFrom<Trial>, IMapTo<Trial>

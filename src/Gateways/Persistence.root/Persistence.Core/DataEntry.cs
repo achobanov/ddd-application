@@ -1,4 +1,4 @@
-namespace EnduranceContestManager.Gateways.Persistence.Data
+namespace EnduranceContestManager.Gateways.Persistence.Core
 {
     public abstract class DataEntry
     {

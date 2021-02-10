@@ -1,10 +1,8 @@
 using EnduranceContestManager.Core.Interfaces;
 using EnduranceContestManager.Core.Utilities;
-using EnduranceContestManager.Gateways.Persistence.Data.Contests;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -54,21 +52,13 @@ namespace EnduranceContestManager.Gateways.Persistence.Core.Services.Implementat
             var decrypted = this.encryption.Decrypt(encrypted);
             var deserialized = this.serialization.Deserialize<Dictionary<string, string>>(decrypted);
 
-            var contests = this.serialization.Deserialize<List<ContestData>>(deserialized["Contests"]);
-            var trials = this.serialization.Deserialize<List<TrialData>>(deserialized["Trials"]);
+            var dbContextType = typeof(TDataStore);
+            var dbSetProperties = this.GetEntitySets<TDataStore>();
 
-            await dbContext.AddRangeAsync(contests);
-            await dbContext.AddRangeAsync(trials);
-
-            await dbContext.SaveChangesAsync();
-            ;
-            // var dbContextType = typeof(TDataStore);
-            // var dbSetProperties = this.GetEntitySets<TDataStore>();
-            //
-            // foreach (var (setName, serializedSet) in deserialized)
-            // {
-            //     this.Restore(setName, serializedSet, dbContext, dbContextType, dbSetProperties);
-            // }
+            foreach (var (setName, serializedSet) in deserialized)
+            {
+                this.Restore(setName, serializedSet, dbContext, dbContextType, dbSetProperties);
+            }
         }
 
         private IList<PropertyInfo> GetEntitySets<TDbContext>()

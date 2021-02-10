@@ -20,5 +20,5 @@
     <ProjectReference Include="..\..\Desktop.Root\Desktop.Interfaces\Desktop.Interfaces.csproj" />
     <ProjectReference Include="..\Persistence.Core\Persistence.Core.csproj" />
   </ItemGroup>
-
+  
 </Project>

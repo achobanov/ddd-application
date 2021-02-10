@@ -12,6 +12,9 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
         DbSet<TEntity> Set<TEntity>()
             where TEntity : class;
 
+        EntityEntry<TEntity> Add<TEntity>(TEntity entity)
+            where TEntity : class;
+
         EntityEntry<TEntity> Update<TEntity>(TEntity entity)
             where TEntity : class;
 

@@ -1,6 +1,6 @@
 using EnduranceContestManager.Application.Core.Interfaces;
 using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Gateways.Persistence.Data;
+using EnduranceContestManager.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Collections.Generic;
@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace EnduranceContestManager.Gateways.Persistence.Core
 {
-    public abstract class Repository<TDataStore, TDataEntry> : ICommandRepository<TDataEntry>
+    public abstract class Repository<TDataStore, TDataEntry, TEntity> : ICommandRepository<TEntity>
+        where TEntity : IAggregateRoot
         where TDataStore : IDataStore
         where TDataEntry : DataEntry
     {
@@ -37,14 +38,23 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
         public async Task<TDataEntry> Find(int id)
             => await this.DataStore.FindAsync<TDataEntry>(id);
 
-        public async Task<int> Save(TDataEntry data, CancellationToken cancellationToken = default)
+        public async Task<int> Save(TEntity entity, CancellationToken cancellationToken = default)
         {
-            // TODO: Fix this method for update
-            var entry = this.DataStore.Update(data);
+            var dataEntry = await this.DataStore.FindAsync<TDataEntry>(entity.Id);
+            if (dataEntry == null)
+            {
+                dataEntry = entity.Map<TDataEntry>();
+                this.DataStore.Add(dataEntry);
+            }
+            else
+            {
+                dataEntry.MapFrom(entity);
+                this.DataStore.Update(dataEntry);
+            }
 
             await this.DataStore.Commit(cancellationToken);
 
-            return entry.Entity.Id;
+            return dataEntry.Id;
         }
 
         protected EntityEntry<TDataEntry> GetTracked(TDataEntry entity)
