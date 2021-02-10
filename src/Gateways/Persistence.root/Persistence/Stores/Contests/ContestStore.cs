@@ -6,14 +6,14 @@ using System.Collections.Generic;
 
 namespace EnduranceContestManager.Gateways.Persistence.Stores.Contests
 {
-    public class ContestData : DataEntry, IContestState, IMapFrom<Contest>, IMapTo<Contest>
+    public class ContestStore : EntityStore, IContestState, IMapFrom<Contest>, IMapTo<Contest>
     {
-        public ContestData()
+        public ContestStore()
         {
         }
 
         [JsonConstructor]
-        public ContestData(
+        public ContestStore(
             int id,
             string name,
             string populatedPlace,
@@ -56,6 +56,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Stores.Contests
         public string ActiveVet { get; internal set; }
 
         [JsonIgnore]
-        public IList<TrialData> Trials { get; internal set; }
+        public IList<TrialStore> Trials { get; internal set; }
     }
 }

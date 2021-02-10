@@ -6,14 +6,14 @@ using Newtonsoft.Json;
 namespace EnduranceContestManager.Gateways.Persistence.Stores.Contests
 {
     // TODO: Do I need **Data classes?
-    public class TrialData : DataEntry, ITrialState, IMapFrom<Trial>, IMapTo<Trial>
+    public class TrialStore : EntityStore, ITrialState, IMapFrom<Trial>, IMapTo<Trial>
     {
-        public TrialData()
+        public TrialStore()
         {
         }
 
         [JsonConstructor]
-        public TrialData(int id, int lengthInKilometers, int durationInDays, int contestId)
+        public TrialStore(int id, int lengthInKilometers, int durationInDays, int contestId)
             : base(id)
         {
             this.LengthInKilometers = lengthInKilometers;
@@ -28,6 +28,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Stores.Contests
         public int ContestId { get; internal set; }
 
         [JsonIgnore]
-        public ContestData Contest { get; internal set; }
+        public ContestStore Contest { get; internal set; }
     }
 }

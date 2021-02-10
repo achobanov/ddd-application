@@ -7,8 +7,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
 {
     public interface IDataStore
     {
-        ChangeTracker ChangeTracker { get; }
-
         DbSet<TEntity> Set<TEntity>()
             where TEntity : class;
 

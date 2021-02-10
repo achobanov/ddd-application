@@ -1,12 +1,12 @@
 namespace EnduranceContestManager.Gateways.Persistence.Core
 {
-    public abstract class DataEntry
+    public abstract class EntityStore
     {
-        protected DataEntry()
+        protected EntityStore()
         {
         }
 
-        protected DataEntry(int id)
+        protected EntityStore(int id)
         {
             this.Id = id;
         }

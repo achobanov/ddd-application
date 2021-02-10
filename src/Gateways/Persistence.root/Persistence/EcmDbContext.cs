@@ -19,9 +19,9 @@ namespace EnduranceContestManager.Gateways.Persistence
             this.backup = backup;
         }
 
-        public DbSet<ContestData> Contests { get; set; }
+        public DbSet<ContestStore> Contests { get; set; }
 
-        public DbSet<TrialData> Trials { get; set; }
+        public DbSet<TrialStore> Trials { get; set; }
 
         public async Task<int> Commit(
             CancellationToken cancellationToken = default,

@@ -2,7 +2,6 @@ using EnduranceContestManager.Application.Core.Interfaces;
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -10,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace EnduranceContestManager.Gateways.Persistence.Core
 {
-    public abstract class Repository<TDataStore, TDataEntry, TEntity> : ICommandRepository<TEntity>
+    public abstract class StoreRepository<TDataStore, TEntityStore, TEntity> : ICommandRepository<TEntity>
         where TEntity : IAggregateRoot
         where TDataStore : IDataStore
-        where TDataEntry : DataEntry
+        where TEntityStore : EntityStore
     {
-        protected Repository(TDataStore dataStore)
+        protected StoreRepository(TDataStore dataStore)
         {
             this.DataStore = dataStore;
         }
@@ -24,26 +23,26 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
 
         public virtual async Task<TModel> Find<TModel>(int id)
             => await this.DataStore
-                .Set<TDataEntry>()
+                .Set<TEntityStore>()
                 .Where(x => x.Id == id)
                 .MapQueryable<TModel>()
                 .FirstOrDefaultAsync();
 
-        public async Task<IList<TModel>> All<TModel>()
+        public virtual async Task<IList<TModel>> All<TModel>()
             => await this.DataStore
-                .Set<TDataEntry>()
+                .Set<TEntityStore>()
                 .MapQueryable<TModel>()
                 .ToListAsync();
 
-        public async Task<TDataEntry> Find(int id)
-            => await this.DataStore.FindAsync<TDataEntry>(id);
+        public virtual async Task<TEntityStore> Find(int id)
+            => await this.DataStore.FindAsync<TEntityStore>(id);
 
         public async Task<int> Save(TEntity entity, CancellationToken cancellationToken = default)
         {
-            var dataEntry = await this.DataStore.FindAsync<TDataEntry>(entity.Id);
+            var dataEntry = await this.DataStore.FindAsync<TEntityStore>(entity.Id);
             if (dataEntry == null)
             {
-                dataEntry = entity.Map<TDataEntry>();
+                dataEntry = entity.Map<TEntityStore>();
                 this.DataStore.Add(dataEntry);
             }
             else
@@ -55,19 +54,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
             await this.DataStore.Commit(cancellationToken);
 
             return dataEntry.Id;
-        }
-
-        protected EntityEntry<TDataEntry> GetTracked(TDataEntry entity)
-        {
-            if (entity.Id == default)
-            {
-                return null;
-            }
-
-            return this.DataStore
-                .ChangeTracker
-                .Entries<TDataEntry>()
-                .FirstOrDefault(x => x.Entity.Id == entity.Id);
         }
     }
 }

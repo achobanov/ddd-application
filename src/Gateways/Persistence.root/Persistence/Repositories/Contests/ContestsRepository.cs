@@ -9,18 +9,18 @@ using System.Linq;
 
 namespace EnduranceContestManager.Gateways.Persistence.Repositories.Contests
 {
-    public class ContestsRepository : Repository<IContestsDataStore, ContestData, Contest>,
+    public class ContestsRepository : StoreRepository<IContestsDataStore, ContestStore, Contest>,
         IContestCommands,
         IContestQueries
     {
-        public ContestsRepository(IContestsDataStore db)
-            : base(db)
+        public ContestsRepository(IContestsDataStore dataStore)
+            : base(dataStore)
         {
         }
 
         public override Task<TModel> Find<TModel>(int id)
             => this.DataStore
-                .Set<ContestData>()
+                .Set<ContestStore>()
                 .Where(x => x.Id == id)
                 .Include(x => x.Trials)
                 .MapQueryable<TModel>()
