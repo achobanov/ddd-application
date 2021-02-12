@@ -1,6 +1,7 @@
 using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Entities.Trials;
 using EnduranceContestManager.Domain.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -57,9 +58,22 @@ namespace EnduranceContestManager.Domain.Entities.Contests
 
         public Contest AddTrial(Trial trial)
         {
-            // TODO: Validations?
             trial.SetContest(this);
             this.Trials.Add(trial);
+            return this;
+        }
+
+        public Contest RemoveTrial(Func<Trial, bool> filter)
+        {
+            var trial = this.Trials.SingleOrDefault(filter);
+            if (trial == null)
+            {
+                throw new ContestException() { Template = "Trial does not exist" };
+            }
+
+            this.Trials.Remove(trial);
+            trial.ClearContest();
+
             return this;
         }
 

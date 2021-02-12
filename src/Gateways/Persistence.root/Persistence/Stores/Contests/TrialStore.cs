@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 
 namespace EnduranceContestManager.Gateways.Persistence.Stores.Contests
 {
-    // TODO: Do I need **Data classes?
     public class TrialStore : EntityStore, ITrialState, IMapFrom<Trial>, IMapTo<Trial>
     {
         public TrialStore()

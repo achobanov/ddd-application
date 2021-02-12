@@ -38,7 +38,10 @@ namespace EnduranceContestManager.Gateways.Desktop
 
             var mediator = containerProvider.Resolve<IMediator>();
 
-            var test = new Test();
+            var test = new Test
+            {
+                Name = "TestName",
+            };
 
             await mediator.Send(test);
 

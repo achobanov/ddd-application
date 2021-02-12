@@ -30,6 +30,12 @@ namespace EnduranceContestManager.Domain.Entities.Trials
             return this;
         }
 
+        public Trial ClearContest()
+        {
+            this.Contest = null;
+            return this;
+        }
+
         public Trial AddPhase(Phase phase)
         {
             if (phase is FinalPhase finalPhase && this.Phases.Any(x => x is FinalPhase))
