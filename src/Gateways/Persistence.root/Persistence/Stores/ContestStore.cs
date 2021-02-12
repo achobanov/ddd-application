@@ -1,12 +1,11 @@
-using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Entities.Contests;
 using EnduranceContestManager.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Gateways.Persistence.Stores.Contests
+namespace EnduranceContestManager.Gateways.Persistence.Stores
 {
-    public class ContestStore : EntityStore, IContestState, IMapFrom<Contest>, IMapTo<Contest>
+    public class ContestStore : EntityStore<Contest>, IContestState
     {
         public ContestStore()
         {

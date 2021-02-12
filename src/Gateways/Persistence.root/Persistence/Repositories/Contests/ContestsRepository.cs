@@ -2,7 +2,7 @@ using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Entities.Contests;
 using EnduranceContestManager.Gateways.Persistence.Core;
-using EnduranceContestManager.Gateways.Persistence.Stores.Contests;
+using EnduranceContestManager.Gateways.Persistence.Stores;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Linq;

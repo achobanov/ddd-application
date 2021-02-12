@@ -1,6 +1,10 @@
+using EnduranceContestManager.Core.Mappings;
+using EnduranceContestManager.Domain.Core.Entities;
+
 namespace EnduranceContestManager.Gateways.Persistence.Core
 {
-    public abstract class EntityStore
+    public abstract class EntityStore<TEntity> : IMapFrom<TEntity>, IMapTo<TEntity>
+        where TEntity : IEntity
     {
         protected EntityStore()
         {

@@ -12,7 +12,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
     public abstract class StoreRepository<TDataStore, TEntityStore, TEntity> : ICommandRepository<TEntity>
         where TEntity : IAggregateRoot
         where TDataStore : IDataStore
-        where TEntityStore : EntityStore
+        where TEntityStore : EntityStore<TEntity>
     {
         protected StoreRepository(TDataStore dataStore)
         {

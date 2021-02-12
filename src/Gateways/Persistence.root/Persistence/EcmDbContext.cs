@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using EnduranceContestManager.Core.Interfaces;
 using EnduranceContestManager.Gateways.Persistence.Core.Services;
 using EnduranceContestManager.Gateways.Persistence.Repositories.Contests;
-using EnduranceContestManager.Gateways.Persistence.Stores.Contests;
+using EnduranceContestManager.Gateways.Persistence.Stores;
 
 namespace EnduranceContestManager.Gateways.Persistence
 {

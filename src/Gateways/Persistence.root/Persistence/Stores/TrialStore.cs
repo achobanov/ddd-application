@@ -3,9 +3,9 @@ using EnduranceContestManager.Domain.Entities.Trials;
 using EnduranceContestManager.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 
-namespace EnduranceContestManager.Gateways.Persistence.Stores.Contests
+namespace EnduranceContestManager.Gateways.Persistence.Stores
 {
-    public class TrialStore : EntityStore, ITrialState, IMapFrom<Trial>, IMapTo<Trial>
+    public class TrialStore : EntityStore<Trial>, ITrialState
     {
         public TrialStore()
         {
