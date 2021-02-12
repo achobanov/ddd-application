@@ -1,4 +1,5 @@
 using EnduranceContestManager.Domain.Core.Entities;
+using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Entities.Trials;
 using EnduranceContestManager.Domain.Validation;
 using System;
@@ -65,14 +66,9 @@ namespace EnduranceContestManager.Domain.Entities.Contests
 
         public Contest RemoveTrial(Func<Trial, bool> filter)
         {
-            var trial = this.Trials.SingleOrDefault(filter);
-            if (trial == null)
-            {
-                throw new ContestException() { Template = "Trial does not exist" };
-            }
-
-            this.Trials.Remove(trial);
-            trial.ClearContest();
+            var trial = this.Trials
+                .CheckAndRemove<Trial, ContestException>(filter)
+                .ClearContest();
 
             return this;
         }
@@ -84,7 +80,7 @@ namespace EnduranceContestManager.Domain.Entities.Contests
 
         private string ValidatePersonName(string name)
         {
-            var result = PersonNameValidation<ContestException>.Validate(name);
+            var result = name.CheckPersonName<ContestException>();
             return result;
         }
     }

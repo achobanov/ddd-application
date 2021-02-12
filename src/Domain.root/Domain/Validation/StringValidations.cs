@@ -5,14 +5,15 @@ using System.Linq;
 
 namespace EnduranceContestManager.Domain.Validation
 {
-    public static class PersonNameValidation<TException>
-        where TException : DomainException, new()
+    public static class StringValidations
     {
         private const string Template = "Invalid name '{0}'";
+        private const string PersonNameLabel = "Person name";
 
-        public static string Validate(string name)
+        public static string CheckPersonName<TException>(this string text)
+            where TException : DomainException, new()
         {
-            NotDefaultValidation<TException>.Validate(name, nameof(name));
+            var name = text.CheckNotDefault<string, TException>(PersonNameLabel);
 
             var parts = name.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
