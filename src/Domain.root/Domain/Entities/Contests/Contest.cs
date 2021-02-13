@@ -67,7 +67,7 @@ namespace EnduranceContestManager.Domain.Entities.Contests
         public Contest RemoveTrial(Func<Trial, bool> filter)
         {
             var trial = this.Trials
-                .CheckAndRemove<Trial, ContestException>(filter)
+                .CheckNotExistingAndRemove<Trial, ContestException>(filter)
                 .ClearContest();
 
             return this;

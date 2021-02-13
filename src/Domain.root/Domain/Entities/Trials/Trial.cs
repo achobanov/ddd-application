@@ -1,9 +1,8 @@
 using EnduranceContestManager.Domain.Core.Entities;
-using EnduranceContestManager.Domain.Core.Exceptions;
+using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Entities.Contests;
 using EnduranceContestManager.Domain.Entities.Phases;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace EnduranceContestManager.Domain.Entities.Trials
 {
@@ -38,12 +37,8 @@ namespace EnduranceContestManager.Domain.Entities.Trials
 
         public Trial AddPhase(Phase phase)
         {
-            if (phase is FinalPhase finalPhase && this.Phases.Any(x => x is FinalPhase))
-            {
-                Thrower.Throw<TrialException>("cannot add phase: Final phase already exists");
-            }
-
-            this.Phases.Add(phase);
+            this.Phases.CheckExistingAndAdd<Phase, TrialException>(phase);
+            phase.SetTrial(this);
             return this;
         }
     }

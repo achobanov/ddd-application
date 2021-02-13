@@ -1,7 +1,10 @@
 using EnduranceContestManager.Core.Mappings;
+using EnduranceContestManager.Domain.Entities.Phases;
 using EnduranceContestManager.Domain.Entities.Trials;
 using EnduranceContestManager.Gateways.Persistence.Core;
 using Newtonsoft.Json;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace EnduranceContestManager.Gateways.Persistence.Stores
 {
@@ -28,5 +31,8 @@ namespace EnduranceContestManager.Gateways.Persistence.Stores
 
         [JsonIgnore]
         public ContestStore Contest { get; internal set; }
+
+        [JsonIgnore]
+        public IList<PhaseStore> Phases { get; internal set; }
     }
 }

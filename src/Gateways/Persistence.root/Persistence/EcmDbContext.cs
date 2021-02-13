@@ -23,6 +23,12 @@ namespace EnduranceContestManager.Gateways.Persistence
 
         public DbSet<TrialStore> Trials { get; set; }
 
+        public DbSet<PhaseStore> Phases { get; set; }
+
+        public DbSet<FinalPhaseStore> FinalPhases { get; set; }
+
+        public DbSet<PhaseForCategoryStore> PhasesForCategories { get; set; }
+
         public async Task<int> Commit(
             CancellationToken cancellationToken = default,
             bool performBackup = true)

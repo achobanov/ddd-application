@@ -33,6 +33,12 @@ namespace EnduranceContestManager.Domain.Entities.PhasesForCategory
 
         public Category Category { get; private set; }
 
+        public PhaseForCategory SetPhase(Phase phase)
+        {
+            this.Phase = phase;
+            return this;
+        }
+
         // public IList<ParticipationInPhase> Participations { get; private set; }
     }
 }

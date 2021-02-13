@@ -1,5 +1,6 @@
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Core.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace EnduranceContestManager.Gateways.Persistence.Core
 {
@@ -15,6 +16,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
             this.Id = id;
         }
 
+        [Key]
         public int Id { get; set; }
     }
 }
