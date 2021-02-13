@@ -44,20 +44,20 @@ namespace EnduranceContestManager.Application.Test
                     "Active Vet");
 
                 var trial = new Trial(0, 100, 2);
-                var trial2 = new Trial(0, 200, 2);
+                // var trial2 = new Trial(0, 200, 2);
                 contest.AddTrial(trial);
-                contest.AddTrial(trial2);
+                // contest.AddTrial(trial2);
 
                 await this.contestCommands.Save(contest, cancellationToken);
-                var contest2 = await this.contestCommands.Find<Contest>(1);
-
-                for (var i = 1; i <= 2; i++)
-                {
-                    var newTrial = new Trial(0, 60 * i, 3);
-                    contest2.AddTrial(newTrial);
-                }
-
-                await this.contestCommands.Save(contest2, cancellationToken);
+                // var contest2 = await this.contestCommands.Find<Contest>(1);
+                //
+                // for (var i = 1; i <= 2; i++)
+                // {
+                //     var newTrial = new Trial(0, 60 * i, 3);
+                //     contest2.AddTrial(newTrial);
+                // }
+                //
+                // await this.contestCommands.Save(contest2, cancellationToken);
 
                 // var firstPhase = new Phase(0, 20, 0);
                 // var finalPhase = new FinalPhase(0, 30, 0);

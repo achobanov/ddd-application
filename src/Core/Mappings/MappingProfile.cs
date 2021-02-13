@@ -3,16 +3,17 @@ using System.Linq;
 using System.Reflection;
 using AutoMapper;
 using EnduranceContestManager.Core.Extensions;
+using System.Collections.Generic;
 
 namespace EnduranceContestManager.Core.Mappings
 {
     public abstract class MappingProfile : Profile
     {
-        private readonly Type mapFromType = typeof(IMapFrom);
-        private readonly Type mapToType = typeof(IMapTo);
-        private readonly Type mapExplicitlyType = typeof(IMapExplicitly);
+        private static readonly Type MapFromType = typeof(IMapFrom<>);
+        private static readonly Type MapToType = typeof(IMapTo<>);
+        private static readonly Type MapExplicitlyType = typeof(IMapExplicitly);
 
-        public MappingProfile()
+        protected MappingProfile()
             => this.RegisterMaps();
 
         protected abstract Assembly[] Assemblies { get; }
@@ -20,31 +21,29 @@ namespace EnduranceContestManager.Core.Mappings
         private void RegisterMaps()
             => this.Assemblies
                 .SelectMany(a => a.GetExportedTypes())
-                .Where(t =>
-                    !t.IsAbstract
-                     && !t.IsInterface
-                     && (typeof(IMapExplicitly).IsAssignableFrom(t)
-                         || typeof(IMapTo).IsAssignableFrom(t)
-                         || typeof(IMapFrom).IsAssignableFrom(t)))
-                .ForEach(this.CreateMap);
+                .Where(t => t.IsClass && !t.IsAbstract)
+                .Select(t => new
+                {
+                    Type = t,
+                    AllMapFrom = GetMappingModels(t, MapFromType),
+                    AllMapTo = GetMappingModels(t, MapToType),
+                    ExplicitMap = t
+                        .GetInterfaces()
+                        .Where(i => MapExplicitlyType.IsAssignableFrom(i))
+                        .Select(i => (IMapExplicitly)Activator.CreateInstance(t)!)
+                        .FirstOrDefault(),
+                })
+                .ForEach(obj =>
+                {
+                    obj.AllMapFrom.ForEach(mapFrom => this.CreateMap(mapFrom, obj.Type));
+                    obj.AllMapTo.ForEach(mapTo => this.CreateMap(obj.Type, mapTo));
+                    obj.ExplicitMap?.CreateExplicitMap(this);
+                });
 
-        private void CreateMap(Type type)
-        {
-            var instance = Activator.CreateInstance(type);
-            if (instance is IMapFrom mapFrom)
-            {
-                mapFrom.CreateFromMap(this);
-            }
-
-            if (instance is IMapTo mapTo)
-            {
-                mapTo.CreateToMap(this);
-            }
-
-            if (instance is IMapExplicitly mapExplicitly)
-            {
-                mapExplicitly.CreateExplicitMap(this);
-            }
-        }
+        private static IEnumerable<Type> GetMappingModels(Type source, Type mappingType)
+            => source
+                .GetInterfaces()
+                .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == mappingType)
+                .Select(i => i.GetGenericArguments().First());
     }
 }
