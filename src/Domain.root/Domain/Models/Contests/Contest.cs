@@ -1,14 +1,14 @@
 using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Core.Validation;
-using EnduranceContestManager.Domain.Entities.Trials;
+using EnduranceContestManager.Domain.Models.Trials;
 using EnduranceContestManager.Domain.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EnduranceContestManager.Domain.Entities.Contests
+namespace EnduranceContestManager.Domain.Models.Contests
 {
-    public class Contest : Entity, IContestState, IAggregateRoot
+    public class Contest : DomainModel, IContestState, IAggregateRoot
     {
         public Contest(
             int id,

@@ -1,6 +1,6 @@
 using EnduranceContestManager.Domain.Core.Exceptions;
 
-namespace EnduranceContestManager.Domain.Entities.Contests
+namespace EnduranceContestManager.Domain.Models.Contests
 {
     public class ContestException : DomainException
     {

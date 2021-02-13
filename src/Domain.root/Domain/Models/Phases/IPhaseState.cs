@@ -1,8 +1,8 @@
 using EnduranceContestManager.Domain.Core.Entities;
 
-namespace EnduranceContestManager.Domain.Entities.Phases
+namespace EnduranceContestManager.Domain.Models.Phases
 {
-    public interface IPhaseState : IEntityState
+    public interface IPhaseState : IDomainModelState
     {
         int LengthInKilometers { get; }
 

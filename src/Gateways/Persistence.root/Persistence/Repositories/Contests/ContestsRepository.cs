@@ -1,15 +1,15 @@
 using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Entities.Contests;
+using EnduranceContestManager.Domain.Models.Contests;
 using EnduranceContestManager.Gateways.Persistence.Core;
-using EnduranceContestManager.Gateways.Persistence.Stores;
+using EnduranceContestManager.Gateways.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Linq;
 
 namespace EnduranceContestManager.Gateways.Persistence.Repositories.Contests
 {
-    public class ContestsRepository : StoreRepository<IContestsDataStore, ContestStore, Contest>,
+    public class ContestsRepository : StoreRepository<IContestsDataStore, ContestEntity, Contest>,
         IContestCommands,
         IContestQueries
     {
@@ -20,7 +20,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Repositories.Contests
 
         public override Task<TModel> Find<TModel>(int id)
             => this.DataStore
-                .Set<ContestStore>()
+                .Set<ContestEntity>()
                 .Where(x => x.Id == id)
                 .Include(x => x.Trials)
                 .MapQueryable<TModel>()

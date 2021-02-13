@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace EnduranceContestManager.Gateways.Persistence.Core
 {
-    public abstract class StoreRepository<TDataStore, TEntityStore, TEntity> : ICommandRepository<TEntity>
-        where TEntity : IAggregateRoot
+    public abstract class StoreRepository<TDataStore, TEntityModel, TDomainModel> : ICommandRepository<TDomainModel>
+        where TDomainModel : IAggregateRoot
         where TDataStore : IDataStore
-        where TEntityStore : EntityStore<TEntity>
+        where TEntityModel : EntityModel<TDomainModel>
     {
         protected StoreRepository(TDataStore dataStore)
         {
@@ -23,26 +23,26 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
 
         public virtual async Task<TModel> Find<TModel>(int id)
             => await this.DataStore
-                .Set<TEntityStore>()
+                .Set<TEntityModel>()
                 .Where(x => x.Id == id)
                 .MapQueryable<TModel>()
                 .FirstOrDefaultAsync();
 
         public virtual async Task<IList<TModel>> All<TModel>()
             => await this.DataStore
-                .Set<TEntityStore>()
+                .Set<TEntityModel>()
                 .MapQueryable<TModel>()
                 .ToListAsync();
 
-        public virtual async Task<TEntityStore> Find(int id)
-            => await this.DataStore.FindAsync<TEntityStore>(id);
+        public virtual async Task<TEntityModel> Find(int id)
+            => await this.DataStore.FindAsync<TEntityModel>(id);
 
-        public async Task<int> Save(TEntity entity, CancellationToken cancellationToken = default)
+        public async Task<int> Save(TDomainModel entity, CancellationToken cancellationToken = default)
         {
-            var dataEntry = await this.DataStore.FindAsync<TEntityStore>(entity.Id);
+            var dataEntry = await this.DataStore.FindAsync<TEntityModel>(entity.Id);
             if (dataEntry == null)
             {
-                dataEntry = entity.Map<TEntityStore>();
+                dataEntry = entity.Map<TEntityModel>();
                 this.DataStore.Add(dataEntry);
             }
             else

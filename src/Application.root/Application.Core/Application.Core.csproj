@@ -13,7 +13,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Core\Core.csproj" />
-      <ProjectReference Include="..\..\Gateways\Persistence.root\Persistence.Data\Persistence.Data.csproj" />
+      <ProjectReference Include="..\..\Domain.root\Domain.Core\Domain.Core.csproj" />
     </ItemGroup>
 
 </Project>

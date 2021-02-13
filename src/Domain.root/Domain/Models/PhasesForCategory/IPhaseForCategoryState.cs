@@ -1,9 +1,9 @@
 using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Enums;
 
-namespace EnduranceContestManager.Domain.Entities.PhasesForCategory
+namespace EnduranceContestManager.Domain.Models.PhasesForCategory
 {
-    public interface IPhaseForCategoryState : IEntityState
+    public interface IPhaseForCategoryState : IDomainModelState
     {
         int MaxRecoveryTimeInMinutes { get; }
 

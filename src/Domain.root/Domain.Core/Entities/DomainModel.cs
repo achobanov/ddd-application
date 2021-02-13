@@ -1,8 +1,8 @@
 ﻿namespace EnduranceContestManager.Domain.Core.Entities
 {
-    public abstract class Entity : IEntity
+    public abstract class DomainModel : IDomainModel
     {
-        protected Entity(int? id)
+        protected DomainModel(int? id)
         {
             this.Id = id ?? default;
         }

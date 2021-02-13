@@ -1,18 +1,18 @@
-using EnduranceContestManager.Domain.Entities.Contests;
+using EnduranceContestManager.Domain.Models.Contests;
 using EnduranceContestManager.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Gateways.Persistence.Stores
+namespace EnduranceContestManager.Gateways.Persistence.Entities
 {
-    public class ContestStore : EntityStore<Contest>, IContestState
+    public class ContestEntity : EntityModel<Contest>, IContestState
     {
-        public ContestStore()
+        public ContestEntity()
         {
         }
 
         [JsonConstructor]
-        public ContestStore(
+        public ContestEntity(
             int id,
             string name,
             string populatedPlace,
@@ -55,6 +55,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Stores
         public string ActiveVet { get; internal set; }
 
         [JsonIgnore]
-        public IList<TrialStore> Trials { get; internal set; }
+        public IList<TrialEntity> Trials { get; internal set; }
     }
 }

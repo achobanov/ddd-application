@@ -1,6 +1,6 @@
 namespace EnduranceContestManager.Domain.Core.Entities
 {
-    public interface IAggregateRoot : IEntity
+    public interface IAggregateRoot : IDomainModel
     {
     }
 }

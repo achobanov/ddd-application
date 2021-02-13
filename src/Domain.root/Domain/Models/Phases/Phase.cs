@@ -1,12 +1,12 @@
 using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Core.Validation;
-using EnduranceContestManager.Domain.Entities.PhasesForCategory;
-using EnduranceContestManager.Domain.Entities.Trials;
+using EnduranceContestManager.Domain.Models.PhasesForCategory;
+using EnduranceContestManager.Domain.Models.Trials;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain.Entities.Phases
+namespace EnduranceContestManager.Domain.Models.Phases
 {
-    public class Phase : Entity, IPhaseState, IAggregateRoot
+    public class Phase : DomainModel, IPhaseState, IAggregateRoot
     {
         public Phase(int id, int lengthInKilometers, int trialId)
             : base(id)
@@ -27,7 +27,7 @@ namespace EnduranceContestManager.Domain.Entities.Phases
 
         public Phase SetTrial(Trial trial)
         {
-            this.Trial = trial;
+            this.Trial.CheckNotNullAndSet<Trial, PhaseException>(trial);
             return this;
         }
 

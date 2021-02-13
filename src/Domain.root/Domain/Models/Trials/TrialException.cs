@@ -1,6 +1,6 @@
 using EnduranceContestManager.Domain.Core.Exceptions;
 
-namespace EnduranceContestManager.Domain.Entities.Trials
+namespace EnduranceContestManager.Domain.Models.Trials
 {
     public class TrialException : DomainException
     {

@@ -1,10 +1,12 @@
 using EnduranceContestManager.Domain.Core.Entities;
-using EnduranceContestManager.Domain.Entities.Phases;
+using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Enums;
+using EnduranceContestManager.Domain.Models.Phases;
+using System.Reflection.Metadata;
 
-namespace EnduranceContestManager.Domain.Entities.PhasesForCategory
+namespace EnduranceContestManager.Domain.Models.PhasesForCategory
 {
-    public class PhaseForCategory : Entity, IPhaseForCategoryState, IAggregateRoot
+    public class PhaseForCategory : DomainModel, IPhaseForCategoryState, IAggregateRoot
     {
         public PhaseForCategory(
             int id,
@@ -35,7 +37,7 @@ namespace EnduranceContestManager.Domain.Entities.PhasesForCategory
 
         public PhaseForCategory SetPhase(Phase phase)
         {
-            this.Phase = phase;
+            this.Phase.CheckNotNullAndSet<Phase, PhaseForCategoryException>(phase);
             return this;
         }
 

@@ -3,20 +3,20 @@ using EnduranceContestManager.Domain.Core.Entities;
 
 namespace EnduranceContestManager.Application.Core.Factories
 {
-    public abstract class Factory<TEntity, TEntityState> : IFactory<TEntity>
-        where TEntity : TEntityState
-        where TEntityState : IEntityState
+    public abstract class Factory<TDomainModel, TDomainModelState> : IFactory<TDomainModel>
+        where TDomainModel : TDomainModelState
+        where TDomainModelState : IDomainModelState
     {
-        protected abstract TEntity FromState(TEntityState state);
+        protected abstract TDomainModel FromState(TDomainModelState state);
 
-        public TEntity Create(IEntityState state)
+        public TDomainModel Create(IDomainModelState state)
         {
-            if (state is TEntityState entityState)
+            if (state is TDomainModelState entityState)
             {
                 return this.FromState(entityState);
             }
 
-            throw new FactoryException(typeof(TEntity).Name, typeof(TEntityState).Name);
+            throw new FactoryException(typeof(TDomainModel).Name, typeof(TDomainModelState).Name);
         }
     }
 }

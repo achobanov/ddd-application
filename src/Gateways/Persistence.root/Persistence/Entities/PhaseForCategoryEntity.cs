@@ -1,18 +1,18 @@
-using EnduranceContestManager.Domain.Entities.PhasesForCategory;
+using EnduranceContestManager.Domain.Models.PhasesForCategory;
 using EnduranceContestManager.Domain.Enums;
 using EnduranceContestManager.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 
-namespace EnduranceContestManager.Gateways.Persistence.Stores
+namespace EnduranceContestManager.Gateways.Persistence.Entities
 {
-    public class PhaseForCategoryStore : EntityStore<PhaseForCategory>, IPhaseForCategoryState
+    public class PhaseForCategoryEntity : EntityModel<PhaseForCategory>, IPhaseForCategoryState
     {
-        public PhaseForCategoryStore()
+        public PhaseForCategoryEntity()
         {
         }
 
         [JsonConstructor]
-        public PhaseForCategoryStore(
+        public PhaseForCategoryEntity(
             int id,
             int maxRecoveryTimeInMinutes,
             int restTimeInMinutes,
@@ -43,6 +43,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Stores
         public int PhaseId { get; internal set; }
 
         [JsonIgnore]
-        public PhaseStore Phase { get; internal set; }
+        public PhaseEntity Phase { get; internal set; }
     }
 }

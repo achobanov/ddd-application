@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace EnduranceContestManager.Application.Core.Handlers
 {
     public abstract class CreateHandler<TRequest, TEntity> : Handler<TRequest, int>
-        where TRequest : IRequest<int>, IEntityState
+        where TRequest : IRequest<int>, IDomainModelState
         where TEntity : IAggregateRoot
     {
         private readonly IFactory<TEntity> factory;

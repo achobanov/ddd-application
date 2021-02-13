@@ -2,9 +2,9 @@ using EnduranceContestManager.Application.Contests;
 using EnduranceContestManager.Application.Core.Handlers;
 using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Entities.Contests;
-using EnduranceContestManager.Domain.Entities.Phases;
-using EnduranceContestManager.Domain.Entities.Trials;
+using EnduranceContestManager.Domain.Models.Contests;
+using EnduranceContestManager.Domain.Models.Phases;
+using EnduranceContestManager.Domain.Models.Trials;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -40,26 +40,21 @@ namespace EnduranceContestManager.Application.Test
                     "Foreign Judge",
                     "Active Vet");
 
-                // var contest2 = await this.contestCommands.Find<Contest>(1);
-                //
-                // for (var i = 1; i <= 2; i++)
-                // {
-                //     var newTrial = new Trial(0, 60 * i, 3);
-                //     contest2.AddTrial(newTrial);
-                // }
-                //
-                // await this.contestCommands.Save(contest2, cancellationToken);
-
                 var firstPhase = new Phase(0, 20, 0);
 
                 var trial = new Trial(0, 100, 2)
-                    .AddPhase(firstPhase)
+                    .AddPhase(firstPhase);
 
                 contest.AddTrial(trial);
 
                 await this.contestCommands.Save(contest, cancellationToken);
 
                 var result = await this.contestCommands.Find<Contest>(1);
+
+                var trial2 = new Trial(0, 200, 3).AddPhase(firstPhase);
+
+
+
                 ;
             }
         }

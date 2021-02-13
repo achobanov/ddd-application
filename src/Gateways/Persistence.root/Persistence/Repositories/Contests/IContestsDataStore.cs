@@ -1,13 +1,13 @@
 using EnduranceContestManager.Gateways.Persistence.Core;
-using EnduranceContestManager.Gateways.Persistence.Stores;
+using EnduranceContestManager.Gateways.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EnduranceContestManager.Gateways.Persistence.Repositories.Contests
 {
     public interface IContestsDataStore : IDataStore
     {
-        public DbSet<ContestStore> Contests { get; }
+        public DbSet<ContestEntity> Contests { get; }
 
-        public DbSet<TrialStore> Trials { get; }
+        public DbSet<TrialEntity> Trials { get; }
     }
 }

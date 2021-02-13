@@ -1,8 +1,8 @@
 using EnduranceContestManager.Domain.Core.Entities;
 
-namespace EnduranceContestManager.Domain.Entities.Trials
+namespace EnduranceContestManager.Domain.Models.Trials
 {
-    public interface ITrialState : IEntityState
+    public interface ITrialState : IDomainModelState
     {
         int LengthInKilometers { get;  }
 

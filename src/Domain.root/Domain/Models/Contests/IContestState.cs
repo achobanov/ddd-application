@@ -1,8 +1,8 @@
 using EnduranceContestManager.Domain.Core.Entities;
 
-namespace EnduranceContestManager.Domain.Entities.Contests
+namespace EnduranceContestManager.Domain.Models.Contests
 {
-    public interface IContestState : IEntityState
+    public interface IContestState : IDomainModelState
     {
         public string Name { get; }
 

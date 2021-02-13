@@ -1,7 +1,6 @@
 namespace EnduranceContestManager.Domain.Core.Entities
 {
-    public interface IEntity
+    public interface IDomainModelState
     {
-        public int Id { get; }
     }
 }

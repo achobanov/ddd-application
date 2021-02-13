@@ -5,6 +5,6 @@ namespace EnduranceContestManager.Application.Core.Factories
 {
     public interface IFactory<out TEntity> : IService
     {
-        TEntity Create(IEntityState state);
+        TEntity Create(IDomainModelState state);
     }
 }

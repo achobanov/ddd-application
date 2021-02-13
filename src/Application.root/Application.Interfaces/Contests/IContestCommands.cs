@@ -1,5 +1,5 @@
 using EnduranceContestManager.Application.Core.Interfaces;
-using EnduranceContestManager.Domain.Entities.Contests;
+using EnduranceContestManager.Domain.Models.Contests;
 
 namespace EnduranceContestManager.Application.Interfaces.Contests
 {

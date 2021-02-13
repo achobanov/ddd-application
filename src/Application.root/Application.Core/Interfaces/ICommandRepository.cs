@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace EnduranceContestManager.Application.Core.Interfaces
 {
-    public interface ICommandRepository<in TEntity> : IQueryRepository
-        where TEntity : IAggregateRoot
+    public interface ICommandRepository<in TDomainModel> : IQueryRepository
+        where TDomainModel : IAggregateRoot
     {
-        Task<int> Save(TEntity entity, CancellationToken cancellationToken = default);
+        Task<int> Save(TDomainModel entity, CancellationToken cancellationToken = default);
     }
 }

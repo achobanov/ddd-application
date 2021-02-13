@@ -11,6 +11,8 @@ namespace EnduranceContestManager.Domain.Core.Validation
         private const string NotDefaultTemplate = "Property '{0}' cannot be '{1}'";
         private const string CannotRemoveItemTemplate = "Cannot remove {0} because it is not found.";
         private const string CannotAddItemTemplate = "Cannot add {0} because entity with Id '{1}' already exists.";
+        private const string CannotSetOneToOneRelationTemplate
+            = "Cannot set '{0}' relation because it's already set to instance with id: {}";
 
         public static TValue CheckNotDefault<TValue, TException>(this TValue value, string name = null)
             where TException : DomainException, new()
@@ -23,10 +25,22 @@ namespace EnduranceContestManager.Domain.Core.Validation
             return value;
         }
 
+        public static void CheckNotNullAndSet<TValue, TException>(this TValue @object, TValue value)
+            where TException : DomainException, new()
+            where TValue : IDomainModel
+        {
+            if (@object != null)
+            {
+                Thrower.Throw<TException>(CannotSetOneToOneRelationTemplate, typeof(TValue).Name, @object.Id);
+            }
+
+            @object = value;
+        }
+
         public static TEntity CheckNotExistingAndRemove<TEntity, TException>(
             this ICollection<TEntity> collection,
             Func<TEntity, bool> filter)
-            where TEntity : IEntity
+            where TEntity : IDomainModel
             where TException : DomainException, new()
         {
             var entity = collection.FirstOrDefault(filter);
@@ -42,7 +56,7 @@ namespace EnduranceContestManager.Domain.Core.Validation
         public static TEntity CheckExistingAndAdd<TEntity, TException>(
             this ICollection<TEntity> collection,
             TEntity entity)
-            where TEntity : IEntity
+            where TEntity : IDomainModel
             where TException : DomainException, new()
         {
             if (collection.Any(x => x.Id != default && x.Id == entity.Id))

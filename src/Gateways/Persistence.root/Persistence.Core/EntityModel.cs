@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EnduranceContestManager.Gateways.Persistence.Core
 {
-    public abstract class EntityStore<TEntity> : IMapFrom<TEntity>, IMapTo<TEntity>
-        where TEntity : IEntity
+    public abstract class EntityModel<TEntity> : IMapFrom<TEntity>, IMapTo<TEntity>
+        where TEntity : IDomainModel
     {
-        protected EntityStore()
+        protected EntityModel()
         {
         }
 
-        protected EntityStore(int id)
+        protected EntityModel(int id)
         {
             this.Id = id;
         }

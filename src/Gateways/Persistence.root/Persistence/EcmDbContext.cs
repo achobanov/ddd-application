@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using EnduranceContestManager.Core.Interfaces;
 using EnduranceContestManager.Gateways.Persistence.Core.Services;
 using EnduranceContestManager.Gateways.Persistence.Repositories.Contests;
-using EnduranceContestManager.Gateways.Persistence.Stores;
+using EnduranceContestManager.Gateways.Persistence.Entities;
 
 namespace EnduranceContestManager.Gateways.Persistence
 {
@@ -19,13 +19,13 @@ namespace EnduranceContestManager.Gateways.Persistence
             this.backup = backup;
         }
 
-        public DbSet<ContestStore> Contests { get; set; }
+        public DbSet<ContestEntity> Contests { get; set; }
 
-        public DbSet<TrialStore> Trials { get; set; }
+        public DbSet<TrialEntity> Trials { get; set; }
 
-        public DbSet<PhaseStore> Phases { get; set; }
+        public DbSet<PhaseEntity> Phases { get; set; }
 
-        public DbSet<PhaseForCategoryStore> PhasesForCategories { get; set; }
+        public DbSet<PhaseForCategoryEntity> PhasesForCategories { get; set; }
 
         public async Task<int> Commit(
             CancellationToken cancellationToken = default,

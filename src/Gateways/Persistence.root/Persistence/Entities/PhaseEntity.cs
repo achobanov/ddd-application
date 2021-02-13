@@ -1,19 +1,19 @@
-using EnduranceContestManager.Domain.Entities.Phases;
-using EnduranceContestManager.Domain.Entities.Trials;
+using EnduranceContestManager.Domain.Models.Phases;
+using EnduranceContestManager.Domain.Models.Trials;
 using EnduranceContestManager.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Gateways.Persistence.Stores
+namespace EnduranceContestManager.Gateways.Persistence.Entities
 {
-    public class PhaseStore : EntityStore<Phase>, IPhaseState
+    public class PhaseEntity : EntityModel<Phase>, IPhaseState
     {
-        public PhaseStore()
+        public PhaseEntity()
         {
         }
 
         [JsonConstructor]
-        public PhaseStore(int id, int lengthInKilometers, int trialId)
+        public PhaseEntity(int id, int lengthInKilometers, int trialId)
             : base(id)
         {
             this.LengthInKilometers = lengthInKilometers;
@@ -25,7 +25,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Stores
         public bool IsFinal { get; internal set; }
 
         [JsonIgnore]
-        public IList<PhaseForCategoryStore> PhasesForCategories { get; internal set; }
+        public IList<PhaseForCategoryEntity> PhasesForCategories { get; internal set; }
 
         public int TrialId { get; internal set; }
 

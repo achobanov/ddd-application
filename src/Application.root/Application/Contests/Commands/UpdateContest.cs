@@ -2,8 +2,8 @@ using EnduranceContestManager.Application.Core.Handlers;
 using EnduranceContestManager.Application.Core.Requests;
 using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Entities.Contests;
-using EnduranceContestManager.Domain.Entities.Trials;
+using EnduranceContestManager.Domain.Models.Contests;
+using EnduranceContestManager.Domain.Models.Trials;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Application.Contests.Commands
