@@ -5,5 +5,7 @@ namespace EnduranceContestManager.Domain.Entities.Phases
     public interface IPhaseState : IEntityState
     {
         int LengthInKilometers { get; }
+
+        bool IsFinal { get; }
     }
 }

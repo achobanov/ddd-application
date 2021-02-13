@@ -22,6 +22,8 @@ namespace EnduranceContestManager.Gateways.Persistence.Stores
 
         public int LengthInKilometers { get; internal set; }
 
+        public bool IsFinal { get; internal set; }
+
         [JsonIgnore]
         public IList<PhaseForCategoryStore> PhasesForCategories { get; internal set; }
 

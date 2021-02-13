@@ -25,8 +25,6 @@ namespace EnduranceContestManager.Gateways.Persistence
 
         public DbSet<PhaseStore> Phases { get; set; }
 
-        public DbSet<FinalPhaseStore> FinalPhases { get; set; }
-
         public DbSet<PhaseForCategoryStore> PhasesForCategories { get; set; }
 
         public async Task<int> Commit(

@@ -1,10 +1,12 @@
+using AutoMapper;
+using EnduranceContestManager.Core.Extensions;
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Entities.Phases;
 using EnduranceContestManager.Domain.Entities.Trials;
 using EnduranceContestManager.Gateways.Persistence.Core;
 using Newtonsoft.Json;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EnduranceContestManager.Gateways.Persistence.Stores
 {

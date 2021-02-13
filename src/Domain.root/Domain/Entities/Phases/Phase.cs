@@ -17,6 +17,8 @@ namespace EnduranceContestManager.Domain.Entities.Phases
 
         public int LengthInKilometers { get; private set; }
 
+        public bool IsFinal { get; private set; }
+
         public IList<PhaseForCategory> PhasesForCategories { get; private set; } = new List<PhaseForCategory>();
 
         public int TrialId { get; private set; }
