@@ -25,43 +25,44 @@ namespace EnduranceContestManager.Domain.Core.Validation
             return value;
         }
 
-        public static void CheckNotNullAndSet<TValue, TException>(this TValue @object, TValue value)
+        public static TValue CheckNotNullAndSet<TValue, TException>(this TValue obj, TValue value)
             where TException : DomainException, new()
             where TValue : IDomainModel
         {
-            if (@object != null)
+            if (obj != null)
             {
-                Thrower.Throw<TException>(CannotSetOneToOneRelationTemplate, typeof(TValue).Name, @object.Id);
+                Thrower.Throw<TException>(CannotSetOneToOneRelationTemplate, typeof(TValue).Name, obj.Id);
             }
 
-            @object = value;
+            obj = value;
+
+            return value;
         }
 
-        public static TEntity CheckNotExistingAndRemove<TEntity, TException>(
-            this ICollection<TEntity> collection,
-            Func<TEntity, bool> filter)
-            where TEntity : IDomainModel
+        public static TDomainModel CheckNotExistingAndRemove<TDomainModel, TException>(
+            this ICollection<TDomainModel> collection,
+            TDomainModel model)
+            where TDomainModel : IDomainModel
             where TException : DomainException, new()
         {
-            var entity = collection.FirstOrDefault(filter);
-            if (entity == null)
+            if (model == null)
             {
-                Thrower.Throw<TException>(CannotRemoveItemTemplate, typeof(TEntity).Name);
+                Thrower.Throw<TException>(CannotRemoveItemTemplate, typeof(TDomainModel).Name);
             }
 
-            collection.Remove(entity);
-            return entity;
+            collection.Remove(model);
+            return model;
         }
 
-        public static TEntity CheckExistingAndAdd<TEntity, TException>(
-            this ICollection<TEntity> collection,
-            TEntity entity)
-            where TEntity : IDomainModel
+        public static TDomainModel CheckExistingAndAdd<TDomainModel, TException>(
+            this ICollection<TDomainModel> collection,
+            TDomainModel entity)
+            where TDomainModel : IDomainModel
             where TException : DomainException, new()
         {
             if (collection.Any(x => x.Id != default && x.Id == entity.Id))
             {
-                Thrower.Throw<TException>(CannotAddItemTemplate, typeof(TEntity).Name, entity.Id);
+                Thrower.Throw<TException>(CannotAddItemTemplate, typeof(TDomainModel).Name, entity.Id);
             }
 
             collection.Add(entity);
