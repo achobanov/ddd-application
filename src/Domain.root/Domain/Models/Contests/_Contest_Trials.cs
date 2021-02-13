@@ -2,12 +2,14 @@ using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Models.Trials;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace EnduranceContestManager.Domain.Models.Contests
 {
     public partial class Contest
     {
+        [NotMapped]
         public IList<Trial> Trials { get; private set; } = new List<Trial>();
 
         public Contest Add(Trial trial)
