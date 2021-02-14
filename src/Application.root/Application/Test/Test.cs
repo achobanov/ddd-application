@@ -18,13 +18,8 @@ namespace EnduranceContestManager.Application.Test
 
         public class TestHandler : Handler<Test>
         {
-            private readonly IContestCommands contestCommands;
-            private readonly IContestFactory factory;
-
-            public TestHandler(IContestCommands contestCommands, IContestFactory factory)
+            public TestHandler()
             {
-                this.contestCommands = contestCommands;
-                this.factory = factory;
             }
 
             protected override async Task Handle(Test request, CancellationToken cancellationToken)

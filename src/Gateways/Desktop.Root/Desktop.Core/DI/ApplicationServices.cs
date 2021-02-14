@@ -24,8 +24,8 @@ namespace EnduranceContestManager.Gateways.Desktop.Core.DI
 
             return services
                 .AddCore(assemblies)
-                .AddApplication()
-                .AddPersistence();
+                .AddApplication();
+            // .AddPersistence();
         }
 
         public static IServiceCollection AdaptToDesktop(
