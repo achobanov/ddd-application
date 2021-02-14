@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace EnduranceContestManager.Domain.Core
 {
-    public static class DomainConstants
+    public static class DomainCoreConstants
     {
         public static Assembly[] Assemblies
         {

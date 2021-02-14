@@ -1,5 +1,6 @@
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Models.Contests.ContestWorkers;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,23 +11,25 @@ namespace EnduranceContestManager.Domain.Models.Contests
     public partial class Contest
     {
         [NotMapped]
-        public IList<ContestWorker> MembersOfVetCommittee { get; private set; } = new List<ContestWorker>();
+        public List<ContestWorker> MembersOfVetCommittee { get; private set; } = new();
 
-        public Contest AddMembersOfVetCommittee(ContestWorker worker)
+        public Contest AddMembersOfVetCommittee(ContestWorker personnel)
         {
-            this.MembersOfVetCommittee
-                .CheckExistingAndAdd<ContestWorker, ContestException>(worker)
-                .SetContest(this);
+            this.Add(
+                this,
+                contest => contest.MembersOfVetCommittee,
+                personnel);
 
             return this;
         }
 
         public Contest RemoveMemberOfVetCommittee(Func<ContestWorker, bool> filter)
         {
-            var worker = this.MembersOfVetCommittee.FirstOrDefault(filter);
-            this.MembersOfVetCommittee
-                .CheckNotExistingAndRemove<ContestWorker, ContestException>(worker)
-                .ClearContest();
+            var personnel = this.MembersOfVetCommittee.FirstOrDefault(filter);
+            this.Remove(
+                this,
+                contest => contest.MembersOfVetCommittee,
+                personnel);
 
             return this;
         }

@@ -8,9 +8,14 @@ namespace EnduranceContestManager.Domain.Models.Contests
         [NotMapped]
         public ContestWorker FeiVetDelegate { get; private set; }
 
-        public Contest SetFeiVetDelegate(ContestWorker worker)
+        public Contest SetFeiVetDelegate(ContestWorker personnel)
         {
-            this.FeiVetDelegate = worker.SetContest(this);
+            this.Set(
+                this,
+                contest => contest.FeiVetDelegate,
+                (contest, p) => contest.FeiVetDelegate = p,
+                personnel);
+
             return this;
         }
     }

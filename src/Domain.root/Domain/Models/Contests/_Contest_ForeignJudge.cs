@@ -8,9 +8,14 @@ namespace EnduranceContestManager.Domain.Models.Contests
         [NotMapped]
         public ContestWorker ForeignJudge { get; private set; }
 
-        public Contest SetForeignJudge(ContestWorker worker)
+        public Contest SetForeignJudge(ContestWorker personnel)
         {
-            this.ForeignJudge = worker.SetContest(this);
+            this.Set(
+                this,
+                contest => contest.ForeignJudge,
+                (contest, p) => contest.ForeignJudge = p,
+                personnel);
+
             return this;
         }
     }

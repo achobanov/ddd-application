@@ -2,7 +2,7 @@ using EnduranceContestManager.Domain.Core.Entities;
 
 namespace EnduranceContestManager.Domain.Models.Contests
 {
-    public partial class Contest : DomainModel, IContestState, IAggregateRoot
+    public partial class Contest : DomainModel<ContestException>, IContestState, IAggregateRoot
     {
         public Contest(int id, string name, string populatedPlace, string country)
             : base(id)

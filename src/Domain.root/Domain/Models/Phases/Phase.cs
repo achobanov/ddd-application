@@ -6,36 +6,36 @@ using System.Collections.Generic;
 
 namespace EnduranceContestManager.Domain.Models.Phases
 {
-    public class Phase : DomainModel, IPhaseState, IAggregateRoot
+    public class Phase : DomainModel<PhaseException>, IPhaseState, IAggregateRoot,
+        IDependsOn<Trial>
     {
-        public Phase(int id, int lengthInKilometers, int trialId)
+        public Phase(int id, int lengthInKilometers)
             : base(id)
         {
-            this.TrialId = trialId;
-            this.LengthInKilometers = lengthInKilometers;
+            this.Except(() =>
+            {
+                this.LengthInKilometers = lengthInKilometers.CheckNotDefault(nameof(lengthInKilometers));
+            });
         }
 
         public int LengthInKilometers { get; private set; }
 
         public bool IsFinal { get; private set; }
 
-        public IList<PhaseForCategory> PhasesForCategories { get; private set; } = new List<PhaseForCategory>();
-
-        public int TrialId { get; private set; }
+        public List<PhaseForCategory> PhasesForCategories { get; private set; } = new();
 
         public Trial Trial { get; private set; }
 
-        public Phase SetTrial(Trial trial)
-        {
-            this.Trial.CheckNotNullAndSet<Trial, PhaseException>(trial);
-            return this;
-        }
+        void IDependsOn<Trial>.Set(Trial domainModel)
+            => this.Except(() =>
+            {
+                this.Trial.CheckNotRelated();
+                this.Trial = domainModel;
+            });
 
-        public Phase AddPhaseForCategory(PhaseForCategory phaseForCategory)
+        void IDependsOn<Trial>.Clear(Trial domainModel)
         {
-            this.PhasesForCategories.CheckExistingAndAdd<PhaseForCategory, PhaseException>(phaseForCategory);
-            phaseForCategory.SetPhase(this);
-            return this;
+            this.Trial = null;
         }
     }
 }

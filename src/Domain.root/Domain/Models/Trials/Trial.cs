@@ -6,13 +6,17 @@ using System.Collections.Generic;
 
 namespace EnduranceContestManager.Domain.Models.Trials
 {
-    public class Trial : DomainModel, ITrialState, IAggregateRoot
+    public class Trial : DomainModel<TrialException>, ITrialState, IAggregateRoot,
+        IDependsOn<Contest>
     {
         public Trial(int id, int lengthInKilometers, int durationInDays)
             : base(id)
         {
-            this.LengthInKilometers = lengthInKilometers;
-            this.DurationInDays = durationInDays;
+            this.Except(() =>
+            {
+                this.LengthInKilometers = lengthInKilometers.CheckNotDefault(nameof(lengthInKilometers));
+                this.DurationInDays = durationInDays.CheckNotDefault(nameof(durationInDays));
+            });
         }
 
         public int LengthInKilometers { get; private set;  }
@@ -21,25 +25,18 @@ namespace EnduranceContestManager.Domain.Models.Trials
 
         public Contest Contest { get; private set; }
 
-        public IList<Phase> Phases { get; private set; } = new List<Phase>();
+        public List<Phase> Phases { get; private set; } = new();
 
-        public Trial SetContest(Contest contest)
-        {
-            this.Contest.CheckNotNullAndSet<Contest, TrialException>(contest);
-            return this;
-        }
+        void IDependsOn<Contest>.Set(Contest domainModel)
+            => this.Except(() =>
+            {
+                this.Contest.CheckNotRelated();
+                this.Contest = domainModel;
+            });
 
-        public Trial ClearContest()
+        void IDependsOn<Contest>.Clear(Contest domainModel)
         {
             this.Contest = null;
-            return this;
-        }
-
-        public Trial AddPhase(Phase phase)
-        {
-            this.Phases.CheckExistingAndAdd<Phase, TrialException>(phase);
-            phase.SetTrial(this);
-            return this;
         }
     }
 }

@@ -9,11 +9,13 @@ namespace EnduranceContestManager.Domain.Models.Contests
         [NotMapped]
         public ContestWorker PresidentVetCommission { get; private set; }
 
-        public Contest SetPresidentVetCommission(ContestWorker presidentVetCommission)
+        public Contest SetPresidentVetCommission(ContestWorker personnel)
         {
-            this.PresidentVetCommission
-                .CheckNotNullAndSet<ContestWorker, ContestException>(presidentVetCommission)
-                .SetContest(this);
+            this.Set(
+                this,
+                contest => contest.PresidentVetCommission,
+                (contest, worker) => contest.PresidentVetCommission = worker,
+                personnel);
 
             return this;
         }

@@ -5,7 +5,7 @@ using System;
 
 namespace EnduranceContestManager.Domain.Models.ImportAggregate.Riders
 {
-    public class Rider : DomainModel, IRiderState, IAggregateRoot
+    public class Rider : DomainModel<RiderException>, IRiderState, IAggregateRoot
     {
         public Rider(
             int id,
@@ -17,12 +17,15 @@ namespace EnduranceContestManager.Domain.Models.ImportAggregate.Riders
             string country)
             : base(id)
         {
-            this.FeiId = feiId.CheckNotDefault<int, RiderException>();
-            this.FirstName = firstName.CheckNotDefault<string, RiderException>();
-            this.LastName = lastName.CheckNotDefault<string, RiderException>();
-            this.Gender = gender.CheckValidGender<RiderException>();
-            this.BirthDate = birthDate.CheckDatePassed<RiderException>();
-            this.Country = country; // TODO: countries?
+            this.Except(() =>
+            {
+                this.FeiId = feiId.CheckNotDefault(nameof(feiId));
+                this.FirstName = firstName.CheckNotDefault(nameof(firstName));
+                this.LastName = lastName.CheckNotDefault(nameof(lastName));
+                this.Gender = gender.CheckValidGender();
+                this.BirthDate = birthDate.CheckDatePassed();
+                this.Country = country; // TODO: countries?
+            });
         }
 
         public int FeiId { get; set; }

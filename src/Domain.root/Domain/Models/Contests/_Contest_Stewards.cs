@@ -10,22 +10,19 @@ namespace EnduranceContestManager.Domain.Models.Contests
     public partial class Contest
     {
         [NotMapped]
-        public IList<ContestWorker> Stewards { get; private set; } = new List<ContestWorker>();
+        public List<ContestWorker> Stewards { get; private set; } = new();
 
-        public Contest AddSteward(ContestWorker worker)
+        public Contest AddSteward(ContestWorker personnel)
         {
-            this.Stewards
-                .CheckExistingAndAdd<ContestWorker, ContestException>(worker)
-                !.SetContest(this);
+            this.Add(this, x => x.Stewards, personnel);
+
             return this;
         }
 
         public Contest RemoveSteward(Func<ContestWorker, bool> filter)
         {
             var steward = this.MembersOfJudgeCommittee.FirstOrDefault(filter);
-            this.MembersOfJudgeCommittee
-                .CheckNotExistingAndRemove<ContestWorker, ContestException>(steward)
-                !.ClearContest();
+            this.Remove(this, x => x.Stewards, steward);
 
             return this;
         }

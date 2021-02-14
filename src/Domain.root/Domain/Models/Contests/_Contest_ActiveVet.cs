@@ -8,9 +8,14 @@ namespace EnduranceContestManager.Domain.Models.Contests
         [NotMapped]
         public ContestWorker ActiveVet { get; private set; }
 
-        public Contest SetActiveVet(ContestWorker worker)
+        public Contest SetActiveVet(ContestWorker personnel)
         {
-            this.ActiveVet = worker.SetContest(this);
+            this.Set(
+                this,
+                contest => contest.ActiveVet,
+                (contest, p) => contest.ActiveVet = p,
+                personnel);
+
             return this;
         }
     }

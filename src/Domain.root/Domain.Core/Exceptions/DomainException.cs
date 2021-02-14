@@ -4,16 +4,11 @@ namespace EnduranceContestManager.Domain.Core.Exceptions
 {
     public abstract class DomainException : Exception
     {
-        public string Template { get; set; }
+        public string DomainMessage { private get; set; }
 
-        public string Error
-            => string.Format($"{this.Entity}: {this.Template}", this.Arguments);
-
-        public void WithArguments(params object[] arguments)
-            => this.Arguments = arguments;
+        public override string Message
+            => string.Format($"{this.Entity} {this.DomainMessage}");
 
         protected abstract string Entity { get; }
-
-        protected object[] Arguments { get; set; }
     }
 }

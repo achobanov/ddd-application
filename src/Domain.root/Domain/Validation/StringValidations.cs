@@ -1,4 +1,3 @@
-using EnduranceContestManager.Domain.Core.Exceptions;
 using EnduranceContestManager.Domain.Core.Validation;
 using System;
 using System.Linq;
@@ -8,34 +7,32 @@ namespace EnduranceContestManager.Domain.Validation
 {
     public static class StringValidations
     {
-        private const string Template = "Invalid name '{0}'";
+        private const string Template = "has invalid name '{0}'. Must contain first and last name.";
         private const string PersonNameLabel = "Person name";
-        private const string InvalidGenderTemplate = "Invalid gender: '{0}'";
+        private const string InvalidGenderTemplate = "has invalid gender: '{0}'";
 
-        public static string CheckPersonName<TException>(this string text)
-            where TException : DomainException, new()
+        public static string CheckPersonName(this string text)
         {
-            var name = text.CheckNotDefault<string, TException>(PersonNameLabel);
+            var name = text.CheckNotDefault(PersonNameLabel);
 
             var parts = name.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
             var firstName = parts.FirstOrDefault();
             var lastName = parts.LastOrDefault();
 
-            if (parts.Length < 2 && firstName == null && lastName == null)
+            if (parts.Length < 2 || string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
             {
-                Thrower.Throw<TException>(Template, name);
+                throw new ValidationException(Template, name);
             }
 
             return name;
         }
 
-        public static string CheckValidGender<TException>(this string value)
-            where TException : DomainException, new()
+        public static string CheckValidGender(this string value)
         {
             if (value != Gender.Female && value != Gender.Male)
             {
-                Thrower.Throw<TException>(InvalidGenderTemplate, value);
+                throw new ValidationException(InvalidGenderTemplate, value);
             }
 
             return value;

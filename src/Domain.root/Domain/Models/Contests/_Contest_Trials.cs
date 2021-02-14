@@ -1,4 +1,3 @@
-using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Models.Trials;
 using System;
 using System.Collections.Generic;
@@ -10,13 +9,11 @@ namespace EnduranceContestManager.Domain.Models.Contests
     public partial class Contest
     {
         [NotMapped]
-        public IList<Trial> Trials { get; private set; } = new List<Trial>();
+        public List<Trial> Trials { get; private set; } = new();
 
         public Contest Add(Trial trial)
         {
-            this.Trials
-                .CheckExistingAndAdd<Trial, ContestException>(trial)
-                .SetContest(this);
+            this.Add(this, x => x.Trials, trial);
 
             return this;
         }
@@ -24,9 +21,12 @@ namespace EnduranceContestManager.Domain.Models.Contests
         public Contest Remove(Func<Trial, bool> filter)
         {
             var trial = this.Trials.FirstOrDefault(filter);
-            this.Trials
-                .CheckNotExistingAndRemove<Trial, ContestException>(trial)
-                .ClearContest();
+            return this.Remove(trial);
+        }
+
+        public Contest Remove(Trial trial)
+        {
+            this.Remove(this, x => x.Trials, trial);
 
             return this;
         }

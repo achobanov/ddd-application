@@ -8,9 +8,14 @@ namespace EnduranceContestManager.Domain.Models.Contests
         [NotMapped]
         public ContestWorker PresidentGroundJury { get; private set; }
 
-        public Contest SetPresidentGroundJury(ContestWorker worker)
+        public Contest SetPresidentGroundJury(ContestWorker personnel)
         {
-            this.PresidentGroundJury = worker.SetContest(this);
+            this.Set(
+                this,
+                contest => contest.PresidentGroundJury,
+                (contest, p) => contest.PresidentGroundJury = p,
+                personnel);
+
             return this;
         }
     }

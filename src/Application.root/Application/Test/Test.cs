@@ -25,11 +25,14 @@ namespace EnduranceContestManager.Application.Test
             protected override async Task Handle(Test request, CancellationToken cancellationToken)
             {
                 var contest = new Contest(0, "Name", "Populated place", "Country");
+                var contest2 = new Contest(1, "Name2", "Populated place2", "Country");
 
-                var presidentGrandJury = new ContestWorker(0, "PresidentGroundJury");
+                var presidentGrandJury = new ContestWorker(0, "President GroundJury");
+                var trial = new Trial(0, 100, 2);
+                var trial2 = new Trial(0, 200, 3);
 
-                contest.SetPresidentGroundJury(presidentGrandJury);
-                contest.SetPresidentVetCommission(presidentGrandJury);
+                contest.Add(trial).Add(trial2).Remove(x => x.DurationInDays == 3).Remove(trial);
+                contest2.Add(trial).Add(trial2);
                 ;
             }
         }

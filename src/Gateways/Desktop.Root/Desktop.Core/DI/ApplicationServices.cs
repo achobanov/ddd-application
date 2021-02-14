@@ -16,7 +16,7 @@ namespace EnduranceContestManager.Gateways.Desktop.Core.DI
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             var assemblies = CoreConstants.Assemblies
-                .Concat(DomainConstants.Assemblies)
+                .Concat(DomainCoreConstants.Assemblies)
                 .Concat(ApplicationConstants.Assemblies)
                 .Concat(PersistenceCoreConstants.Assemblies)
                 .Concat(DesktopConstants.Assemblies)
