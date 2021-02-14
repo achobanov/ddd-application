@@ -15,7 +15,6 @@ namespace EnduranceContestManager.Domain.Models.Contests
         public Contest AddMembersOfJudgeCommittee(ContestWorker personnel)
         {
             this.Add(
-                this,
                 contest => contest.MembersOfJudgeCommittee,
                 personnel);
 
@@ -26,7 +25,6 @@ namespace EnduranceContestManager.Domain.Models.Contests
         {
             var personnel = this.MembersOfJudgeCommittee.FirstOrDefault(filter);
             this.Remove(
-                this,
                 contest => contest.MembersOfJudgeCommittee,
                 personnel);
 

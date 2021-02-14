@@ -14,7 +14,7 @@ namespace EnduranceContestManager.Domain.Models.Contests
 
         public Contest AddSteward(ContestWorker personnel)
         {
-            this.Add(this, x => x.Stewards, personnel);
+            this.Add(x => x.Stewards, personnel);
 
             return this;
         }
@@ -22,7 +22,7 @@ namespace EnduranceContestManager.Domain.Models.Contests
         public Contest RemoveSteward(Func<ContestWorker, bool> filter)
         {
             var steward = this.MembersOfJudgeCommittee.FirstOrDefault(filter);
-            this.Remove(this, x => x.Stewards, steward);
+            this.Remove(x => x.Stewards, steward);
 
             return this;
         }

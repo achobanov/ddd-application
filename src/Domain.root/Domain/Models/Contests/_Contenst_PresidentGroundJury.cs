@@ -11,7 +11,6 @@ namespace EnduranceContestManager.Domain.Models.Contests
         public Contest SetPresidentGroundJury(ContestWorker personnel)
         {
             this.Set(
-                this,
                 contest => contest.PresidentGroundJury,
                 (contest, p) => contest.PresidentGroundJury = p,
                 personnel);

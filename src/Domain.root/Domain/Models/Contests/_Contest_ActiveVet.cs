@@ -11,7 +11,6 @@ namespace EnduranceContestManager.Domain.Models.Contests
         public Contest SetActiveVet(ContestWorker personnel)
         {
             this.Set(
-                this,
                 contest => contest.ActiveVet,
                 (contest, p) => contest.ActiveVet = p,
                 personnel);

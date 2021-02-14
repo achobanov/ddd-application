@@ -12,7 +12,6 @@ namespace EnduranceContestManager.Domain.Models.Contests
         public Contest SetPresidentVetCommission(ContestWorker personnel)
         {
             this.Set(
-                this,
                 contest => contest.PresidentVetCommission,
                 (contest, worker) => contest.PresidentVetCommission = worker,
                 personnel);

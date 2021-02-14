@@ -11,7 +11,6 @@ namespace EnduranceContestManager.Domain.Models.Contests
         public Contest SetForeignJudge(ContestWorker personnel)
         {
             this.Set(
-                this,
                 contest => contest.ForeignJudge,
                 (contest, p) => contest.ForeignJudge = p,
                 personnel);

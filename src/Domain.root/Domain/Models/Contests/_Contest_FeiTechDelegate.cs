@@ -11,7 +11,6 @@ namespace EnduranceContestManager.Domain.Models.Contests
         public Contest SetFeiTechDelegate(ContestWorker personnel)
         {
             this.Set(
-                this,
                 contest => contest.FeiTechDelegate,
                 (contest, p) => contest.FeiTechDelegate = p,
                 personnel);

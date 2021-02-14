@@ -13,7 +13,7 @@ namespace EnduranceContestManager.Domain.Models.Contests
 
         public Contest Add(Trial trial)
         {
-            this.Add(this, x => x.Trials, trial);
+            this.Add(x => x.Trials, trial);
 
             return this;
         }
@@ -26,7 +26,7 @@ namespace EnduranceContestManager.Domain.Models.Contests
 
         public Contest Remove(Trial trial)
         {
-            this.Remove(this, x => x.Trials, trial);
+            this.Remove(x => x.Trials, trial);
 
             return this;
         }

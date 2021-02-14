@@ -31,6 +31,8 @@ namespace EnduranceContestManager.Application.Test
                 var trial = new Trial(0, 100, 2);
                 var trial2 = new Trial(0, 200, 3);
 
+                contest.SetPresidentGroundJury(presidentGrandJury);
+
                 contest.Add(trial).Add(trial2).Remove(x => x.DurationInDays == 3).Remove(trial);
                 contest2.Add(trial).Add(trial2);
                 ;

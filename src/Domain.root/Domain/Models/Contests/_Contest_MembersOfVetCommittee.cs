@@ -16,7 +16,6 @@ namespace EnduranceContestManager.Domain.Models.Contests
         public Contest AddMembersOfVetCommittee(ContestWorker personnel)
         {
             this.Add(
-                this,
                 contest => contest.MembersOfVetCommittee,
                 personnel);
 
@@ -27,7 +26,6 @@ namespace EnduranceContestManager.Domain.Models.Contests
         {
             var personnel = this.MembersOfVetCommittee.FirstOrDefault(filter);
             this.Remove(
-                this,
                 contest => contest.MembersOfVetCommittee,
                 personnel);
 
