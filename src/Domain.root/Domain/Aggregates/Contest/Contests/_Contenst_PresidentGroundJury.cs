@@ -1,14 +1,14 @@
-using EnduranceContestManager.Domain.Models.Contests.ContestWorkers;
+using EnduranceContestManager.Domain.Aggregates.Contest.ContestPersonnel;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EnduranceContestManager.Domain.Models.Contests
+namespace EnduranceContestManager.Domain.Aggregates.Contest.Contests
 {
     public partial class Contest
     {
         [NotMapped]
-        public ContestWorker PresidentGroundJury { get; private set; }
+        public Personnel PresidentGroundJury { get; private set; }
 
-        public Contest SetPresidentGroundJury(ContestWorker personnel)
+        public Contest SetPresidentGroundJury(Personnel personnel)
         {
             this.Set(
                 contest => contest.PresidentGroundJury,

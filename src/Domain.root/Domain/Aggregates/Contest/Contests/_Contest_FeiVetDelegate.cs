@@ -1,14 +1,14 @@
-using EnduranceContestManager.Domain.Models.Contests.ContestWorkers;
+using EnduranceContestManager.Domain.Aggregates.Contest.ContestPersonnel;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EnduranceContestManager.Domain.Models.Contests
+namespace EnduranceContestManager.Domain.Aggregates.Contest.Contests
 {
     public partial class Contest
     {
         [NotMapped]
-        public ContestWorker FeiVetDelegate { get; private set; }
+        public Personnel FeiVetDelegate { get; private set; }
 
-        public Contest SetFeiVetDelegate(ContestWorker personnel)
+        public Contest SetFeiVetDelegate(Personnel personnel)
         {
             this.Set(
                 contest => contest.FeiVetDelegate,

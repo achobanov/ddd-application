@@ -1,4 +1,4 @@
-using EnduranceContestManager.Domain.Models.PhasesForCategory;
+using EnduranceContestManager.Domain.Aggregates.Contest.PhasesForCategory;
 using EnduranceContestManager.Domain.Enums;
 using EnduranceContestManager.Gateways.Persistence.Core;
 using Newtonsoft.Json;

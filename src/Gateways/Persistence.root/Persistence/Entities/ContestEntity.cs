@@ -1,4 +1,4 @@
-using EnduranceContestManager.Domain.Models.Contests;
+using EnduranceContestManager.Domain.Aggregates.Contest.Contests;
 using EnduranceContestManager.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 using System.Collections.Generic;

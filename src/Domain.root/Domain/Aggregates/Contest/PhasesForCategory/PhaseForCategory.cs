@@ -1,9 +1,9 @@
 using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Enums;
-using EnduranceContestManager.Domain.Models.Phases;
+using EnduranceContestManager.Domain.Aggregates.Contest.Phases;
 
-namespace EnduranceContestManager.Domain.Models.PhasesForCategory
+namespace EnduranceContestManager.Domain.Aggregates.Contest.PhasesForCategory
 {
     public class PhaseForCategory : DomainModel<PhaseForCategoryException>, IPhaseForCategoryState, IAggregateRoot,
         IDependsOn<Phase>

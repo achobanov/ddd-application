@@ -1,7 +1,7 @@
 using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Enums;
 
-namespace EnduranceContestManager.Domain.Models.PhasesForCategory
+namespace EnduranceContestManager.Domain.Aggregates.Contest.PhasesForCategory
 {
     public interface IPhaseForCategoryState : IDomainModelState
     {

@@ -1,10 +1,10 @@
-using EnduranceContestManager.Domain.Models.Trials;
+using EnduranceContestManager.Domain.Aggregates.Contest.Trials;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace EnduranceContestManager.Domain.Models.Contests
+namespace EnduranceContestManager.Domain.Aggregates.Contest.Contests
 {
     public partial class Contest
     {

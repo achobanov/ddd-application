@@ -1,10 +1,10 @@
 using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Core.Validation;
-using EnduranceContestManager.Domain.Models.PhasesForCategory;
-using EnduranceContestManager.Domain.Models.Trials;
+using EnduranceContestManager.Domain.Aggregates.Contest.PhasesForCategory;
+using EnduranceContestManager.Domain.Aggregates.Contest.Trials;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain.Models.Phases
+namespace EnduranceContestManager.Domain.Aggregates.Contest.Phases
 {
     public class Phase : DomainModel<PhaseException>, IPhaseState, IAggregateRoot,
         IDependsOn<Trial>

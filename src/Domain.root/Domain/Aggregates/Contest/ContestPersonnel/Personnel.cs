@@ -1,12 +1,13 @@
+using EnduranceContestManager.Domain.Aggregates.Contest.Contests;
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Validation;
 
-namespace EnduranceContestManager.Domain.Models.Contests.ContestWorkers
+namespace EnduranceContestManager.Domain.Aggregates.Contest.ContestPersonnel
 {
-    public class ContestWorker : DomainModel<ContestWorkerException>, IContestWorkerState,
-        IDependsOn<Contest>
+    public class Personnel : DomainModel<PersonnelException>, IPersonnelState,
+        IDependsOn<Contests.Contest>
     {
-        public ContestWorker(int id, string name)
+        public Personnel(int id, string name)
             : base(id)
         {
             this.Except(() =>
@@ -17,16 +18,16 @@ namespace EnduranceContestManager.Domain.Models.Contests.ContestWorkers
 
         public string Name { get; private set; }
 
-        public Contest Contest { get; private set; }
+        public Contests.Contest Contest { get; private set; }
 
-        void IDependsOn<Contest>.Set(Contest domainModel)
+        void IDependsOn<Contests.Contest>.Set(Contests.Contest domainModel)
             => this.Except(() =>
             {
                 this.Contest.CheckNotRelated();
                 this.Contest = domainModel;
             });
 
-        void IDependsOn<Contest>.Clear(Contest domainModel)
+        void IDependsOn<Contests.Contest>.Clear(Contests.Contest domainModel)
         {
             this.Contest = null;
         }

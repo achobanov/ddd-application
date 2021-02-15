@@ -12,5 +12,9 @@
     <ProjectReference Include="..\..\Core\Core.csproj" />
     <ProjectReference Include="..\Domain.Core\Domain.Core.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Aggregates\Manager" />
+  </ItemGroup>
     
 </Project>

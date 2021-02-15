@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using EnduranceContestManager.Application.Core.Handlers;
 using EnduranceContestManager.Application.Interfaces.Contests;
-using EnduranceContestManager.Domain.Models.Contests;
+using EnduranceContestManager.Domain.Aggregates.Contest.Contests;
 
 namespace EnduranceContestManager.Application.Contests.Commands
 {

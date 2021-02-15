@@ -1,18 +1,18 @@
+using EnduranceContestManager.Domain.Aggregates.Contest.ContestPersonnel;
 using EnduranceContestManager.Domain.Core.Validation;
-using EnduranceContestManager.Domain.Models.Contests.ContestWorkers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace EnduranceContestManager.Domain.Models.Contests
+namespace EnduranceContestManager.Domain.Aggregates.Contest.Contests
 {
     public partial class Contest
     {
         [NotMapped]
-        public List<ContestWorker> MembersOfJudgeCommittee { get; private set; } = new();
+        public List<Personnel> MembersOfJudgeCommittee { get; private set; } = new();
 
-        public Contest AddMembersOfJudgeCommittee(ContestWorker personnel)
+        public Contest AddMembersOfJudgeCommittee(Personnel personnel)
         {
             this.Add(
                 contest => contest.MembersOfJudgeCommittee,
@@ -21,7 +21,7 @@ namespace EnduranceContestManager.Domain.Models.Contests
             return this;
         }
 
-        public Contest RemoveMemberOfJudgeCommittee(Func<ContestWorker, bool> filter)
+        public Contest RemoveMemberOfJudgeCommittee(Func<Personnel, bool> filter)
         {
             var personnel = this.MembersOfJudgeCommittee.FirstOrDefault(filter);
             this.Remove(
