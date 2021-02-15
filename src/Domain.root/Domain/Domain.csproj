@@ -12,5 +12,5 @@
     <ProjectReference Include="..\..\Core\Core.csproj" />
     <ProjectReference Include="..\Domain.Core\Domain.Core.csproj" />
   </ItemGroup>
-
+    
 </Project>

@@ -1,11 +1,11 @@
 using EnduranceContestManager.Domain.Core.Entities;
 using System;
 
-namespace EnduranceContestManager.Domain.Models.ImportAggregate.Riders
+namespace EnduranceContestManager.Domain.Aggregates.Import.Riders
 {
     public interface IRiderState : IDomainModelState
     {
-        public int FeiId { get; }
+        public string FeiId { get; }
 
         public string FirstName { get; }
 

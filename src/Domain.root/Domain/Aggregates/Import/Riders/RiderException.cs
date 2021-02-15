@@ -1,6 +1,6 @@
 using EnduranceContestManager.Domain.Core.Exceptions;
 
-namespace EnduranceContestManager.Domain.Models.ImportAggregate.Riders
+namespace EnduranceContestManager.Domain.Aggregates.Import.Riders
 {
     public class RiderException : DomainException
     {

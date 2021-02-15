@@ -3,13 +3,13 @@ using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Validation;
 using System;
 
-namespace EnduranceContestManager.Domain.Models.ImportAggregate.Riders
+namespace EnduranceContestManager.Domain.Aggregates.Import.Riders
 {
     public class Rider : DomainModel<RiderException>, IRiderState, IAggregateRoot
     {
         public Rider(
             int id,
-            int feiId,
+            string feiId,
             string firstName,
             string lastName,
             string gender,
@@ -28,7 +28,7 @@ namespace EnduranceContestManager.Domain.Models.ImportAggregate.Riders
             });
         }
 
-        public int FeiId { get; set; }
+        public string FeiId { get; set; }
 
         public string FirstName { get; set; }
 
