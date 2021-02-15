@@ -20,11 +20,21 @@ namespace EnduranceContestManager.Domain.Core.Validation
             }
         }
 
-        public static TValue CheckNotDefault<TValue>(this TValue value, string name)
+        public static TValue IsRequired<TValue>(this TValue value, string name)
         {
             if (value?.Equals(default(TValue)) ?? true)
             {
                 throw new ValidationException(NotDefaultTemplate, name, value);
+            }
+
+            return value;
+        }
+
+        public static TValue NotDefault<TValue>(this TValue value, string message)
+        {
+            if (value?.Equals(default(TValue)) ?? true)
+            {
+                throw new ValidationException(message);
             }
 
             return value;

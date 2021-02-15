@@ -19,11 +19,11 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Riders
         {
             this.Except(() =>
             {
-                this.FeiId = feiId.CheckNotDefault(nameof(feiId));
-                this.FirstName = firstName.CheckNotDefault(nameof(firstName));
-                this.LastName = lastName.CheckNotDefault(nameof(lastName));
+                this.FeiId = feiId.IsRequired(nameof(feiId));
+                this.FirstName = firstName.IsRequired(nameof(firstName));
+                this.LastName = lastName.IsRequired(nameof(lastName));
                 this.Gender = gender.CheckValidGender();
-                this.BirthDate = birthDate.CheckDatePassed();
+                this.BirthDate = birthDate.CheckDateHasPassed();
                 this.Country = country; // TODO: countries?
             });
         }

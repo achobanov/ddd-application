@@ -6,13 +6,12 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Participants
     public class Participant : DomainModel<ParticipantException>, IParticipantState,
         IDependsOn<Trial>
     {
-        public Participant(int? id, string rfId, int contestNumber)
-            : base(id)
+        public Participant(int id, string rfId, int contestNumber) : base(id)
         {
             this.Except(() =>
             {
-                this.RfId = rfId.CheckNotDefault(nameof(rfId));
-                this.ContestNumber = contestNumber.CheckNotDefault(nameof(contestNumber));
+                this.RfId = rfId.IsRequired(nameof(rfId));
+                this.ContestNumber = contestNumber.IsRequired(nameof(contestNumber));
             });
         }
 

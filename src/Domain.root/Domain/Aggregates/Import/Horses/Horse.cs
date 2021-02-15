@@ -18,10 +18,10 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Horses
         {
             this.Except(() =>
             {
-                this.Name = name.CheckNotDefault(nameof(name));
+                this.Name = name.IsRequired(nameof(name));
                 this.Gender = gender.CheckValidGender();
-                this.BirthDay = birthDay.CheckDatePassed();
-                this.Owner = owner.CheckNotDefault(nameof(owner));
+                this.BirthDay = birthDay.CheckDateHasPassed();
+                this.Owner = owner.IsRequired(nameof(owner));
             });
 
             this.Country = country;

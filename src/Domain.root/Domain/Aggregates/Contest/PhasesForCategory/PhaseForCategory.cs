@@ -20,10 +20,10 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.PhasesForCategory
             this.Except(() =>
             {
                 this.MaxRecoveryTimeInMinutes = maxRecoveryTimeInMinutes
-                    .CheckNotDefault(nameof(MaxRecoveryTimeInMinutes));
+                    .IsRequired(nameof(MaxRecoveryTimeInMinutes));
 
-                this.RestTimeInMinutes = restTimeInMinutes.CheckNotDefault(nameof(restTimeInMinutes));
-                this.Category = category.CheckNotDefault(nameof(category));
+                this.RestTimeInMinutes = restTimeInMinutes.IsRequired(nameof(restTimeInMinutes));
+                this.Category = category.IsRequired(nameof(category));
             });
 
             this.MinSpeedInKilometersPerHour = minSpeedInKilometersPerHour;

@@ -5,8 +5,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Participants
     public class Rider : DomainModel<ParticipantException>,
         IDependsOn<Participant>
     {
-        public Rider(int? id)
-            : base(id)
+        public Rider(int id) : base(id)
         {
         }
 

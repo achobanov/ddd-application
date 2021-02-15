@@ -14,8 +14,8 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Trials
         {
             this.Except(() =>
             {
-                this.LengthInKilometers = lengthInKilometers.CheckNotDefault(nameof(lengthInKilometers));
-                this.DurationInDays = durationInDays.CheckNotDefault(nameof(durationInDays));
+                this.LengthInKilometers = lengthInKilometers.IsRequired(nameof(lengthInKilometers));
+                this.DurationInDays = durationInDays.IsRequired(nameof(durationInDays));
             });
         }
 

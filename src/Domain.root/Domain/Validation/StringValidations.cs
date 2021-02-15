@@ -13,7 +13,7 @@ namespace EnduranceContestManager.Domain.Validation
 
         public static string CheckPersonName(this string text)
         {
-            var name = text.CheckNotDefault(PersonNameLabel);
+            var name = text.IsRequired(PersonNameLabel);
 
             var parts = name.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 

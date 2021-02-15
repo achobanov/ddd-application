@@ -7,13 +7,12 @@ namespace EnduranceContestManager.Domain
     public abstract class DomainModel<TException> : IInternalDomainModel
         where TException : DomainException, new()
     {
-        protected DomainModel(int? id)
+        protected DomainModel(int id)
         {
-            this.Id = id ?? default;
+            this.Id = id;
         }
 
         public int Id { get; private set; }
-
 
         void IInternalDomainModel.Except(Action action)
             => this.Except(action);
