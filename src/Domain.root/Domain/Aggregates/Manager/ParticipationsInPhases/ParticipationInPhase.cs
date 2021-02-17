@@ -1,3 +1,4 @@
+using EnduranceContestManager.Domain.Aggregates.Contest.Phases;
 using EnduranceContestManager.Domain.Aggregates.Contest.PhasesForCategory;
 using EnduranceContestManager.Domain.Aggregates.Manager.Participations;
 using EnduranceContestManager.Domain.Aggregates.Manager.ResultsInPhases;
@@ -8,26 +9,17 @@ using System;
 namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhases
 {
     public class ParticipationInPhase : DomainModel<ParticipationInPhaseException>, IParticipationInPhaseState,
-        IDependsOn<Participation>,
-        IDependsOn<PhaseForCategory>
+        IDependsOn<Participation>
     {
         private const string NullPhaseOrPhaseForCategory = "Average speed cannot be determined without set Phase.";
         private const string NullTimeSpan = "Average speed cannot be determined without Phase Time or Loop Time.";
 
-        public ParticipationInPhase(
-            int id,
-            DateTime startTime,
-            DateTime? arrivalTime,
-            DateTime? inspectionTime,
-            DateTime? reInspectionTime)
-            : base(id)
+        public ParticipationInPhase(DateTime startTime)
+            : base(default)
         {
             this.Except(() =>
             {
                 this.StartTime = startTime.CheckDateHasPassed();
-                this.ArrivalTime = arrivalTime.CheckDateHasPassed();
-                this.InspectionTime = inspectionTime.CheckDateHasPassed();
-                this.ReInspectionTime = reInspectionTime.CheckDateHasPassed();
             });
         }
 
@@ -36,8 +28,9 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
         public DateTime? InspectionTime { get; private set; }
         public DateTime? ReInspectionTime { get; private set; }
         public Participation Participation { get; private set; }
-        public PhaseForCategory PhaseForCategory { get; private set; }
         public ResultInPhase ResultInPhase { get; private set; }
+        public IPhaseState Phase { get; private set; }
+        public IPhaseForCategoryState PhaseForCategory { get; private set; }
 
         public TimeSpan? RecoverySpan
         {
@@ -79,7 +72,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
                     : this.PhaseSpan;
 
                 timeSpan.NotDefault(NullTimeSpan);
-                var phaseLengthInKm = this.PhaseForCategory.Phase.LengthInKilometers;
+                var phaseLengthInKm = this.Phase.LengthInKilometers;
                 var totalHours = timeSpan!.Value.TotalHours;
 
                 return  phaseLengthInKm / totalHours;
@@ -92,6 +85,30 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
             {
                 return this.ResultInPhase != null;
             }
+        }
+
+        public ParticipationInPhase Start(IPhaseState phase)
+        {
+            this.Phase = phase;
+            return this;
+        }
+
+        public ParticipationInPhase InCategory(IPhaseForCategoryState phaseForCategoryState)
+        {
+            this.PhaseForCategory = phaseForCategoryState;
+            return this;
+        }
+
+        public ParticipationInPhase Arrive(DateTime time)
+        {
+            this.ArrivalTime = time;
+            return this;
+        }
+
+        public ParticipationInPhase Inspect(DateTime time)
+        {
+            this.InspectionTime = time;
+            return this;
         }
 
         public ParticipationInPhase CompleteSuccessful()
@@ -112,18 +129,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
                 result);
 
             return this;
-        }
-
-        void IDependsOn<PhaseForCategory>.Set(PhaseForCategory domainModel)
-            => this.Except(() =>
-            {
-                this.PhaseForCategory.CheckNotRelated();
-                this.PhaseForCategory = domainModel;
-            });
-
-        void IDependsOn<PhaseForCategory>.Clear(PhaseForCategory domainModel)
-        {
-            this.PhaseForCategory = null;
         }
 
         void IDependsOn<Participation>.Set(Participation domainModel)
