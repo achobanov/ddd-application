@@ -2,6 +2,7 @@ using EnduranceContestManager.Application.Core.Handlers;
 using EnduranceContestManager.Application.Core.Requests;
 using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Core.Mappings;
+using EnduranceContestManager.Domain.Aggregates.Common;
 using EnduranceContestManager.Domain.Aggregates.Contest.Contests;
 using EnduranceContestManager.Domain.Aggregates.Contest.Trials;
 using System.Collections.Generic;

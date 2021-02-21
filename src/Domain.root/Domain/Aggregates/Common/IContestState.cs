@@ -1,6 +1,6 @@
 using EnduranceContestManager.Domain.Core.Entities;
 
-namespace EnduranceContestManager.Domain.Aggregates.Contest.Contests
+namespace EnduranceContestManager.Domain.Aggregates.Common
 {
     public interface IContestState : IDomainModelState
     {

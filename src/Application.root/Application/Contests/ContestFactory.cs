@@ -1,4 +1,5 @@
 using EnduranceContestManager.Application.Core.Factories;
+using EnduranceContestManager.Domain.Aggregates.Common;
 using EnduranceContestManager.Domain.Aggregates.Contest.Contests;
 
 namespace EnduranceContestManager.Application.Contests

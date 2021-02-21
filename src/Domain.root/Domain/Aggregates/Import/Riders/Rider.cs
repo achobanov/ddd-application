@@ -1,4 +1,3 @@
-using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Enums;
 using EnduranceContestManager.Domain.Validation;
@@ -6,7 +5,7 @@ using System;
 
 namespace EnduranceContestManager.Domain.Aggregates.Import.Riders
 {
-    public class Rider : DomainModel<RiderException>, IRiderState, IAggregateRoot
+    public class Rider : DomainModel<RiderException>, IRiderState
     {
         private const int AdultAgeInYears = 18;
 
