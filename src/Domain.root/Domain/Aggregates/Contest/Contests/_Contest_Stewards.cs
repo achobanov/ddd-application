@@ -1,5 +1,4 @@
 using EnduranceContestManager.Domain.Aggregates.Contest.ContestPersonnel;
-using EnduranceContestManager.Domain.Core.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,21 +8,21 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Contests
 {
     public partial class Contest
     {
+        private readonly List<Personnel> stewards = new();
+
         [NotMapped]
-        public List<Personnel> Stewards { get; private set; } = new();
+        public IReadOnlyList<Personnel> Stewards => this.stewards.AsReadOnly();
 
         public Contest AddSteward(Personnel personnel)
         {
-            this.Add(x => x.Stewards, personnel);
-
+            this.Add(x => x.stewards, personnel);
             return this;
         }
 
         public Contest RemoveSteward(Func<Personnel, bool> filter)
         {
-            var steward = this.MembersOfJudgeCommittee.FirstOrDefault(filter);
-            this.Remove(x => x.Stewards, steward);
-
+            var steward = this.stewards.FirstOrDefault(filter);
+            this.Remove(x => x.stewards, steward);
             return this;
         }
     }

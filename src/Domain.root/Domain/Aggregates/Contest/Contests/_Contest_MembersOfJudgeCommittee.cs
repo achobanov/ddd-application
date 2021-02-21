@@ -1,5 +1,4 @@
 using EnduranceContestManager.Domain.Aggregates.Contest.ContestPersonnel;
-using EnduranceContestManager.Domain.Core.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,13 +8,15 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Contests
 {
     public partial class Contest
     {
+        private readonly List<Personnel> membersOfJudgeCommittee = new();
+
         [NotMapped]
-        public List<Personnel> MembersOfJudgeCommittee { get; private set; } = new();
+        public IReadOnlyList<Personnel> MembersOfJudgeCommittee => this.membersOfJudgeCommittee.AsReadOnly();
 
         public Contest AddMembersOfJudgeCommittee(Personnel personnel)
         {
             this.Add(
-                contest => contest.MembersOfJudgeCommittee,
+                contest => contest.membersOfJudgeCommittee,
                 personnel);
 
             return this;
@@ -23,9 +24,9 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Contests
 
         public Contest RemoveMemberOfJudgeCommittee(Func<Personnel, bool> filter)
         {
-            var personnel = this.MembersOfJudgeCommittee.FirstOrDefault(filter);
+            var personnel = this.membersOfJudgeCommittee.FirstOrDefault(filter);
             this.Remove(
-                contest => contest.MembersOfJudgeCommittee,
+                contest => contest.membersOfJudgeCommittee,
                 personnel);
 
             return this;

@@ -19,11 +19,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Participants
         public int ContestNumber { get; private set; }
 
         public Horse Horse { get; private set; }
-
-        public Rider Rider { get; private set; }
-
-        public Trial Trial { get; private set; }
-
         public Participant Set(Horse horse)
         {
             this.Set(
@@ -34,6 +29,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Participants
             return this;
         }
 
+        public Rider Rider { get; private set; }
         public Participant Set(Rider rider)
         {
             this.Set(
@@ -44,13 +40,13 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Participants
             return this;
         }
 
+        public Trial Trial { get; private set; }
         void IDependsOn<Trial>.Set(Trial domainModel)
             => this.Except(() =>
             {
                 this.Trial.CheckNotRelated();
                 this.Trial = domainModel;
             });
-
         void IDependsOn<Trial>.Clear(Trial domainModel)
         {
             this.Trial = null;

@@ -1,5 +1,4 @@
 using EnduranceContestManager.Domain.Aggregates.Contest.ContestPersonnel;
-using EnduranceContestManager.Domain.Core.Validation;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EnduranceContestManager.Domain.Aggregates.Contest.Contests

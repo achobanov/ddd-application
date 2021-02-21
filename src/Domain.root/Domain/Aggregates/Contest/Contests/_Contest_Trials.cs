@@ -8,26 +8,26 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Contests
 {
     public partial class Contest
     {
+        private readonly List<Trial> trials = new();
+
         [NotMapped]
-        public List<Trial> Trials { get; private set; } = new();
+        public IReadOnlyList<Trial> Trials => this.trials.AsReadOnly();
 
         public Contest Add(Trial trial)
         {
-            this.Add(x => x.Trials, trial);
-
+            this.Add(x => x.trials, trial);
             return this;
         }
 
         public Contest Remove(Func<Trial, bool> filter)
         {
-            var trial = this.Trials.FirstOrDefault(filter);
+            var trial = this.trials.FirstOrDefault(filter);
             return this.Remove(trial);
         }
 
         public Contest Remove(Trial trial)
         {
-            this.Remove(x => x.Trials, trial);
-
+            this.Remove(x => x.trials, trial);
             return this;
         }
     }

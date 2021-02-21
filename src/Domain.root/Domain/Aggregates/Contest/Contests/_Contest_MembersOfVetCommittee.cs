@@ -1,6 +1,4 @@
 using EnduranceContestManager.Domain.Aggregates.Contest.ContestPersonnel;
-using EnduranceContestManager.Domain.Core.Validation;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,13 +8,15 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Contests
 {
     public partial class Contest
     {
+        private readonly List<Personnel> membersOfVetCommittee = new();
+
         [NotMapped]
-        public List<Personnel> MembersOfVetCommittee { get; private set; } = new();
+        public IReadOnlyList<Personnel> MembersOfVetCommittee => this.membersOfVetCommittee.AsReadOnly();
 
         public Contest AddMembersOfVetCommittee(Personnel personnel)
         {
             this.Add(
-                contest => contest.MembersOfVetCommittee,
+                contest => contest.membersOfVetCommittee,
                 personnel);
 
             return this;
@@ -24,9 +24,9 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Contests
 
         public Contest RemoveMemberOfVetCommittee(Func<Personnel, bool> filter)
         {
-            var personnel = this.MembersOfVetCommittee.FirstOrDefault(filter);
+            var personnel = this.membersOfVetCommittee.FirstOrDefault(filter);
             this.Remove(
-                contest => contest.MembersOfVetCommittee,
+                contest => contest.membersOfVetCommittee,
                 personnel);
 
             return this;

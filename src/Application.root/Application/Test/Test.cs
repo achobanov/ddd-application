@@ -28,8 +28,8 @@ namespace EnduranceContestManager.Application.Test
                 var contest2 = new Contest(1, "Name2", "Populated place2", "Country");
 
                 var presidentGrandJury = new Personnel(0, "President GroundJury");
-                var trial = new Trial(0, 100, 2);
-                var trial2 = new Trial(0, 200, 3);
+                var trial = new Trial(0, 2);
+                var trial2 = new Trial(0, 3);
 
                 contest.SetPresidentGroundJury(presidentGrandJury);
 
