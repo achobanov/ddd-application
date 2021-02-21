@@ -10,15 +10,8 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Riders
     {
         private const int AdultAgeInYears = 18;
 
-        public Rider(
-            int id,
-            string feiId,
-            string firstName,
-            string lastName,
-            string gender,
-            DateTime birthDate,
-            string country)
-            : base(id)
+        public Rider(string feiId, string firstName, string lastName, string gender, DateTime birthDate, string country)
+            : base(default)
         {
             this.Except(() =>
             {
@@ -29,29 +22,25 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Riders
                 this.BirthDate = birthDate.CheckDateHasPassed();
                 this.Country = country; // TODO: countries?
             });
+
+            this.SetCategory(birthDate);
         }
 
-        public string FeiId { get; set; }
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public string Gender { get; set; }
-
-        public DateTime BirthDate { get; set; }
-
-        public string Country { get; set; }
-
+        public string FeiId { get; private set; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
+        public string Gender { get; private set; }
+        public DateTime BirthDate { get; private set; }
+        public string Country { get; private set; }
         public Category Category { get; private set; }
 
-        private Category GetCategory(DateTime birthDate)
+        private void SetCategory(DateTime birthDate)
         {
             var category = birthDate.AddYears(AdultAgeInYears) <= DateTime.Now
                 ? Category.Adults
                 : Category.Kids;
 
-            return category;
+            this.Category = category;
         }
     }
 }

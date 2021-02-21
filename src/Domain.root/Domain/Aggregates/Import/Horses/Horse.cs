@@ -6,15 +6,8 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Horses
 {
     public class Horse : DomainModel<HorseException>, IHorseState
     {
-        public Horse(
-            int id,
-            string name,
-            string gender,
-            bool isStallion,
-            DateTime birthDay,
-            string country,
-            string owner)
-            : base(id)
+        public Horse(string name, string gender, bool isStallion, DateTime birthDay, string country, string owner)
+            : base(default)
         {
             this.Except(() =>
             {
@@ -29,15 +22,10 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Horses
         }
 
         public string Name { get; private set; }
-
         public string Gender { get; private set; }
-
         public bool IsStallion { get; private set; }
-
         public DateTime BirthDay { get; private set; }
-
         public string Country { get; private set; }
-
         public string Owner { get; private set; }
     }
 }
