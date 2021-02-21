@@ -26,6 +26,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ResultsInPhases
         public bool IsRanked { get; private set; }
         public bool IsQualified { get; private set; }
         public string Code { get; private set; }
+
         public ParticipationInPhase ParticipationInPhase { get; private set; }
 
         public bool IsSuccessful

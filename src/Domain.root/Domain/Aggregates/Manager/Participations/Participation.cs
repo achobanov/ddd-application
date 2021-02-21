@@ -1,7 +1,5 @@
 using EnduranceContestManager.Domain.Aggregates.Contest.Phases;
-using EnduranceContestManager.Domain.Aggregates.Contest.PhasesForCategory;
 using EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhases;
-using EnduranceContestManager.Domain.Aggregates.Manager.Results;
 using EnduranceContestManager.Domain.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -19,8 +17,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.Participations
         public Participant Participant { get; private set; }
         public ParticipationInPhase Current { get; private set; }
         public List<ParticipationInPhase> ParticipationInPhases { get; private set; } = new();
-
-        public Result Result { get; } = new();
 
         public ParticipationInPhase StartPhase(IPhaseState phase)
         {

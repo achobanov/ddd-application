@@ -1,5 +1,6 @@
 using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Core.Validation;
+using EnduranceContestManager.Domain.Enums;
 using EnduranceContestManager.Domain.Validation;
 using System;
 
@@ -7,6 +8,8 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Riders
 {
     public class Rider : DomainModel<RiderException>, IRiderState, IAggregateRoot
     {
+        private const int AdultAgeInYears = 18;
+
         public Rider(
             int id,
             string feiId,
@@ -39,5 +42,16 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Riders
         public DateTime BirthDate { get; set; }
 
         public string Country { get; set; }
+
+        public Category Category { get; private set; }
+
+        private Category GetCategory(DateTime birthDate)
+        {
+            var category = birthDate.AddYears(AdultAgeInYears) <= DateTime.Now
+                ? Category.Adults
+                : Category.Kids;
+
+            return category;
+        }
     }
 }
