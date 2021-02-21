@@ -1,22 +1,18 @@
 using EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhases;
 using EnduranceContestManager.Domain.Core.Validation;
-using System;
-using System.Reflection.Emit;
 
 namespace EnduranceContestManager.Domain.Aggregates.Manager.ResultsInPhases
 {
-    public class ResultInPhase : DomainModel<ResultInPhaseException>, IResultInPhaseState,
+    public class ResultInPhase : DomainModel<ManagerResultInPhaseException>, IResultInPhaseState,
         IDependsOn<ParticipationInPhase>
     {
-        internal ResultInPhase()
-            : base(default)
+        internal ResultInPhase() : base(default)
         {
             this.IsQualified = true;
             this.IsRanked = true;
         }
 
-        internal ResultInPhase(string code, bool isRanked, bool isQualified)
-            : base(default)
+        internal ResultInPhase(string code, bool isRanked, bool isQualified) : base(default)
         {
             this.Code = code;
             this.IsRanked = isRanked;
