@@ -12,7 +12,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Ranking.Participations
     {
         private const string MissingFinalPhase = "Invalid participation - missing result for Final phase.";
 
-        public Participation(Category category, List<ResultInPhase> resultsInPhases) : base(default)
+        internal Participation(Category category, List<ResultInPhase> resultsInPhases) : base(default)
             => this.Except(() =>
             {
                 this.Category = category.IsRequired(nameof(category));
