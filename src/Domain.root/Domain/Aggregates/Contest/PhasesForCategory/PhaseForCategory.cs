@@ -12,7 +12,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.PhasesForCategory
             int maxRecoveryTimeInMinutes,
             int restTimeInMinutes,
             Category category,
-            int? minSpeedInKilometersPerHour = null,
             int? maxSpeedInKilometersPerHour = null)
             : base(id)
         {
@@ -25,13 +24,11 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.PhasesForCategory
                 this.Category = category.IsRequired(nameof(category));
             });
 
-            this.MinSpeedInKilometersPerHour = minSpeedInKilometersPerHour;
             this.MaxSpeedInKilometersPerHour = maxSpeedInKilometersPerHour;
         }
 
         public int MaxRecoveryTimeInMinutes { get; private set; }
         public int RestTimeInMinutes { get; private set; }
-        public int? MinSpeedInKilometersPerHour { get; private set; }
         public int? MaxSpeedInKilometersPerHour { get; private set; }
         public Category Category { get; private set; }
 

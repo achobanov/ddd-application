@@ -16,7 +16,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Entities
             int id,
             int maxRecoveryTimeInMinutes,
             int restTimeInMinutes,
-            int? minSpeedInKilometersPerHour,
             int? maxSpeedInKilometersPerHour,
             Category category,
             int phaseId)
@@ -24,7 +23,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Entities
         {
             this.MaxRecoveryTimeInMinutes = maxRecoveryTimeInMinutes;
             this.RestTimeInMinutes = restTimeInMinutes;
-            this.MinSpeedInKilometersPerHour = minSpeedInKilometersPerHour;
             this.MaxSpeedInKilometersPerHour = maxSpeedInKilometersPerHour;
             this.Category = category;
             this.PhaseId = phaseId;
@@ -33,9 +31,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Entities
         public int MaxRecoveryTimeInMinutes { get; internal set;}
 
         public int RestTimeInMinutes { get; internal set;}
-
-        public int? MinSpeedInKilometersPerHour { get; internal set;}
-
         public int? MaxSpeedInKilometersPerHour { get; internal set;}
 
         public Category Category { get; internal set; }

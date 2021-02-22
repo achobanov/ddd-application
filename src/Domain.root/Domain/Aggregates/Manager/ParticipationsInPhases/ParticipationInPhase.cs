@@ -51,14 +51,14 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
             }
         }
 
+        // TODO: Split into averate speed with/without RestTime.
         public double AverageSpeedInKpH
         {
             get
             {
                 this.PhaseForCategory?.NotDefault(NullPhaseOrPhaseForCategory);
 
-                var hasSpeedLimit = this.PhaseForCategory!.MinSpeedInKilometersPerHour.HasValue
-                    || this.PhaseForCategory!.MaxSpeedInKilometersPerHour.HasValue;
+                var hasSpeedLimit = this.PhaseForCategory!.MaxSpeedInKilometersPerHour.HasValue;
 
                 var timeSpan = hasSpeedLimit
                     ? this.LoopSpan
@@ -105,6 +105,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
         }
         public ParticipationInPhase ReInspect(DateTime time)
         {
+            // TODO: ReInspection does not reset the RestTime for the Horse. Check if needed
             this.ReInspectionTime = time.IsRequired(nameof(time));
             return this;
         }
@@ -114,6 +115,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
         {
             var successfulResult = new ResultInPhase();
             return this.Set(successfulResult);
+            // TODO: Calculate Next Phase start time from this.ReInnspectionTme ??  this.InspectionTime and complete.
         }
         public ParticipationInPhase CompleteUnsuccessful(string code, bool isQualified = false)
         {
