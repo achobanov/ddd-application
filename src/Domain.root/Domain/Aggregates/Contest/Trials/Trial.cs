@@ -1,6 +1,7 @@
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Aggregates.Contest.Participants;
 using EnduranceContestManager.Domain.Aggregates.Contest.Phases;
+using EnduranceContestManager.Domain.Enums;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Domain.Aggregates.Contest.Trials
@@ -8,14 +9,13 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Trials
     public class Trial : DomainModel<TrialException>, ITrialState,
         IDependsOn<Contests.Contest>
     {
-        public Trial(int id, int durationInDays) : base(id)
+        public Trial(int id, CompetitionType type) : base(id)
             => this.Except(() =>
             {
-                this.DurationInDays = durationInDays.IsRequired(nameof(durationInDays));
+                this.Type = type.IsRequired(nameof(type));
             });
 
-        public int DurationInDays { get; private set; }
-
+        public CompetitionType Type { get; private set; }
 
         private readonly List<Phase> phases = new();
         public IReadOnlyList<Phase> Phases => this.phases.AsReadOnly();

@@ -1,11 +1,9 @@
-using EnduranceContestManager.Application.Contests;
 using EnduranceContestManager.Application.Core.Handlers;
-using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Aggregates.Contest.Contests;
 using EnduranceContestManager.Domain.Aggregates.Contest.ContestPersonnel;
-using EnduranceContestManager.Domain.Aggregates.Contest.Phases;
 using EnduranceContestManager.Domain.Aggregates.Contest.Trials;
+using EnduranceContestManager.Domain.Enums;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,12 +26,12 @@ namespace EnduranceContestManager.Application.Test
                 var contest2 = new Contest(1, "Name2", "Populated place2", "Country");
 
                 var presidentGrandJury = new Personnel(0, "President GroundJury");
-                var trial = new Trial(0, 2);
-                var trial2 = new Trial(0, 3);
+                var trial = new Trial(0, CompetitionType.National);
+                var trial2 = new Trial(0, CompetitionType.International);
 
                 contest.SetPresidentGroundJury(presidentGrandJury);
 
-                contest.Add(trial).Add(trial2).Remove(x => x.DurationInDays == 3).Remove(trial);
+                contest.Add(trial).Add(trial2).Remove(x => x.Type == CompetitionType.National).Remove(trial);
                 contest2.Add(trial).Add(trial2);
                 ;
             }
