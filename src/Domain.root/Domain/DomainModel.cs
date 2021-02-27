@@ -14,10 +14,10 @@ namespace EnduranceContestManager.Domain
 
         public int Id { get; private set; }
 
-        void IInternalDomainModel.Except(Action action)
-            => this.Except(action);
+        void IInternalDomainModel.Validate(Action action)
+            => this.Validate(action);
 
-        internal void Except(Action action)
+        internal void Validate(Action action)
         {
             try
             {

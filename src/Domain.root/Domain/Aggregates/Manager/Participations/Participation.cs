@@ -1,54 +1,75 @@
-using EnduranceContestManager.Domain.Aggregates.Contest.Phases;
-using EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhases;
-using EnduranceContestManager.Domain.Core.Entities;
+using EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTrials;
+using EnduranceContestManager.Domain.Core.Validation;
+using EnduranceContestManager.Domain.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace EnduranceContestManager.Domain.Aggregates.Manager.Participations
 {
-    public class Participation : DomainModel<ManagerParticipationException>, IAggregateRoot
+    public class Participation : DomainModel<ManagerParticipationException>
     {
-        public Participation(int id) : base(id)
+        private const string AlreadyStartedMessage = "has already started";
+
+        private readonly List<TrialDto> trials;
+        private readonly List<ParticipationInTrial> participationsInTrials = new();
+
+        public Participation(List<TrialDto> trials) : base(default)
         {
+            this.trials = trials;
+
+            this.Validate(this.Start);
         }
 
-        public double AverageSpeedInKpH
-        {
-            get
+        public bool HasExceededSpeedRestriction
+            => this.participationsInTrials.All(participation => participation.HasExceededSpeedRestriction);
+
+        public bool IsComplete
+            => this.participationsInTrials.All(participation => participation.IsComplete);
+
+        public IReadOnlyList<ParticipationInTrial> ParticipationsInTrials => this.participationsInTrials.AsReadOnly();
+
+        private void Start()
+            => this.Validate(() =>
             {
-                var sum = this.participationsInPhases
-                    .Where(x => x.IsComplete)
-                    .Aggregate(0d, (participationSum, x) => participationSum + x.AverageSpeedInKpH);
+                this.participationsInTrials.IsEmpty(AlreadyStartedMessage);
 
-                var count = this.participationsInPhases.Count;
+                foreach (var participationInTrial in this.trials.Select(trial => new ParticipationInTrial(trial)))
+                {
+                    this.participationsInTrials.Add(participationInTrial);
+                }
+            });
+        public void Arrive(DateTime time)
+        {
+            this.Update(participation => participation.CurrentPhase.Arrive(time));
+        }
+        public void Inspect(DateTime time)
+        {
+            this.Update(participation => participation.CurrentPhase.Inspect(time));
+        }
+        public void ReInspect(DateTime time)
+        {
+            this.Update(participation => participation.CurrentPhase.ReInspect(time));
+        }
+        public void CompleteSuccessful()
+        {
+            this.Update(participation => participation.CompleteSuccessful());
+        }
+        public void CompleteUnsuccessful(string code)
+        {
+            this.Update(participation => participation.CompleteUnsuccessful(code));
+        }
+        public void StartNextPhase()
+        {
+            this.Update(participation => participation.StartNextPhase());
+        }
 
-                return sum / count;
+        private void Update(Action<ParticipationInTrial> action)
+        {
+            foreach (var participation in this.participationsInTrials.Where(trial => !trial.IsComplete))
+            {
+                action(participation);
             }
-        }
-
-        private readonly List<ParticipationInPhase> participationsInPhases = new();
-        public IReadOnlyList<ParticipationInPhase> ParticipationsInPhases => this.participationsInPhases.AsReadOnly();
-        public ParticipationInPhase Current { get; private set; }
-        public ParticipationInPhase StartPhase(IPhaseState phase)
-        {
-            this.Current = new ParticipationInPhase(DateTime.Now)
-                .Start(phase);
-
-            this.Add(x => x.participationsInPhases, this.Current);
-
-            return this.Current;
-        }
-
-        public Participant Participant { get; private set; }
-        public Participation Set(Participant participant)
-        {
-            this.Set(
-                participation => participation.Participant,
-                (participation, p) => participation.Participant = p,
-                participant);
-
-            return this;
         }
     }
 }

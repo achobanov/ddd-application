@@ -9,7 +9,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Phases
         IDependsOn<Trial>
     {
         public Phase(int id, int lengthInKilometers, bool isFinal = false) : base(id)
-            => this.Except(() =>
+            => this.Validate(() =>
             {
                 this.IsFinal = isFinal;
                 this.LengthInKilometers = lengthInKilometers.IsRequired(nameof(lengthInKilometers));
@@ -29,9 +29,9 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Phases
 
         public Trial Trial { get; private set; }
         void IDependsOn<Trial>.Set(Trial domainModel)
-            => this.Except(() =>
+            => this.Validate(() =>
             {
-                this.Trial.CheckNotRelated();
+                this.Trial.IsNotRelated();
                 this.Trial = domainModel;
             });
         void IDependsOn<Trial>.Clear(Trial domainModel)

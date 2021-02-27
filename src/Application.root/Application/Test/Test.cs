@@ -1,10 +1,12 @@
 using EnduranceContestManager.Application.Core.Handlers;
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Aggregates.Contest.Contests;
-using EnduranceContestManager.Domain.Aggregates.Contest.ContestPersonnel;
-using EnduranceContestManager.Domain.Aggregates.Contest.Trials;
+using EnduranceContestManager.Domain.Aggregates.Manager.Participant;
+using EnduranceContestManager.Domain.DTOs;
 using EnduranceContestManager.Domain.Enums;
 using MediatR;
+using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,18 +24,96 @@ namespace EnduranceContestManager.Application.Test
 
             protected override async Task Handle(Test request, CancellationToken cancellationToken)
             {
-                var contest = new Contest(0, "Name", "Populated place", "Country");
-                var contest2 = new Contest(1, "Name2", "Populated place2", "Country");
+                var trial60 = new TrialDto
+                {
+                    StartTime = DateTime.Now,
+                    Type = CompetitionType.National,
+                    Phases = new List<PhaseDto>
+                    {
+                        new PhaseDto
+                        {
+                            Category = Category.Kids,
+                            IsFinal = false,
+                            OrderBy = 1,
+                            LengthInKilometers = 20,
+                            RestTimeInMinutes = 15,
+                            MaxRecoveryTimeInMinutes = 15,
+                            MaxSpeedInKpH = 25,
+                        },
+                        new PhaseDto
+                        {
+                            Category = Category.Kids,
+                            IsFinal = true,
+                            OrderBy = 1,
+                            LengthInKilometers = 30,
+                            RestTimeInMinutes = 20,
+                            MaxRecoveryTimeInMinutes = 15,
+                            MaxSpeedInKpH = 20,
+                        }
+                    }
+                };
 
-                var presidentGrandJury = new Personnel(0, "President GroundJury");
-                var trial = new Trial(0, CompetitionType.National);
-                var trial2 = new Trial(0, CompetitionType.International);
+                var trial100 = new TrialDto
+                {
+                    StartTime = DateTime.Now,
+                    Type = CompetitionType.National,
+                    Phases = new List<PhaseDto>
+                    {
+                        new PhaseDto
+                        {
+                            Category = Category.Kids,
+                            IsFinal = false,
+                            OrderBy = 1,
+                            LengthInKilometers = 25,
+                            RestTimeInMinutes = 15,
+                            MaxRecoveryTimeInMinutes = 15,
+                            MaxSpeedInKpH = 20,
+                        },
+                        new PhaseDto
+                        {
+                            Category = Category.Kids,
+                            IsFinal = false,
+                            OrderBy = 1,
+                            LengthInKilometers = 35,
+                            RestTimeInMinutes = 20,
+                            MaxRecoveryTimeInMinutes = 15,
+                            MaxSpeedInKpH = 20,
+                        },
+                        new PhaseDto
+                        {
+                            Category = Category.Kids,
+                            IsFinal = true,
+                            OrderBy = 1,
+                            LengthInKilometers = 40,
+                            RestTimeInMinutes = 20,
+                            MaxRecoveryTimeInMinutes = 15,
+                            MaxSpeedInKpH = 20,
+                        }
+                    }
+                };
 
-                contest.SetPresidentGroundJury(presidentGrandJury);
+                var participant = new Participant(new List<TrialDto> { trial60, trial100 });
 
-                contest.Add(trial).Add(trial2).Remove(x => x.Type == CompetitionType.National).Remove(trial);
-                contest2.Add(trial).Add(trial2);
+                participant.Start();
+
+                participant.Participation.Arrive(DateTime.Now.AddMinutes(60));
+                participant.Participation.Inspect(DateTime.Now.AddMinutes(65));
+                participant.Participation.CompleteSuccessful();
+
+                participant.Participation.StartNextPhase();
+
+                participant.Participation.Arrive(DateTime.Now.AddMinutes(100));
+                participant.Participation.Inspect(DateTime.Now.AddMinutes(115));
+                participant.Participation.CompleteSuccessful();
+
+                participant.Participation.StartNextPhase();
+
+                participant.Participation.Arrive(DateTime.Now.AddMinutes(200));
+                participant.Participation.Inspect(DateTime.Now.AddMinutes(221));
+                participant.Participation.ReInspect(DateTime.Now.AddMinutes(225));
+                participant.Participation.CompleteUnsuccessful("KUR");
                 ;
+
             }
         }
     }

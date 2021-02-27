@@ -14,7 +14,7 @@ namespace EnduranceContestManager.Domain
             where TPrincipal : IInternalDomainModel
             where TDependant : class, IDependsOn<TPrincipal>
         {
-            principal.Except(() =>
+            principal.Validate(() =>
             {
                 collectionSelector(principal).CheckExistingAndAdd(dependant);
                 dependant.Set(principal);
@@ -28,7 +28,7 @@ namespace EnduranceContestManager.Domain
             where TPrincipal : IInternalDomainModel
             where TDependant : class, IDependsOn<TPrincipal>
         {
-            principal.Except(() =>
+            principal.Validate(() =>
             {
                 collectionSelector(principal).CheckNotExistingAndRemove(dependant);
                 dependant.Clear(principal);
@@ -43,7 +43,7 @@ namespace EnduranceContestManager.Domain
             where TPrincipal : IInternalDomainModel
             where TDependant : class, IDependsOn<TPrincipal>
         {
-            principal.Except(() =>
+            principal.Validate(() =>
             {
                 var existing = selector(principal);
                 existing?.Clear(principal);
@@ -60,7 +60,7 @@ namespace EnduranceContestManager.Domain
             where TPrincipal : IInternalDomainModel
             where TDependant : class, IDependsOn<TPrincipal>
         {
-            principal.Except(() =>
+            principal.Validate(() =>
             {
                 var existingDependant = selector(principal);
                 if (existingDependant != null)

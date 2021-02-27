@@ -9,12 +9,12 @@ namespace EnduranceContestManager.Domain.Validation
     {
         private const string InvalidBirthDateTemplate = "has invalid birth date: {0}";
 
-        public static DateTime? CheckDateHasPassed(this DateTime? dateTime)
+        public static DateTime? HasDatePassed(this DateTime? dateTime)
         {
-            return dateTime?.CheckDateHasPassed();
+            return dateTime?.HasDatePassed();
         }
 
-        public static DateTime CheckDateHasPassed(this DateTime dateTime)
+        public static DateTime HasDatePassed(this DateTime dateTime)
         {
             if (dateTime >= DateTime.Now)
             {

@@ -10,7 +10,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Trials
         IDependsOn<Contests.Contest>
     {
         public Trial(int id, CompetitionType type) : base(id)
-            => this.Except(() =>
+            => this.Validate(() =>
             {
                 this.Type = type.IsRequired(nameof(type));
             });
@@ -27,17 +27,21 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Trials
 
         private readonly List<Participant> participants = new();
         public IReadOnlyList<Participant> Participants => this.participants.AsReadOnly();
-        public Trial AddParticipant(Participant participant)
+
+        public void Add(Participant child)
         {
-            this.Add(trial => trial.participants, participant);
-            return this;
+            throw new System.NotImplementedException();
+        }
+        public void Remove(Participant child)
+        {
+            throw new System.NotImplementedException();
         }
 
         public Contests.Contest Contest { get; private set; }
         void IDependsOn<Contests.Contest>.Set(Contests.Contest domainModel)
-            => this.Except(() =>
+            => this.Validate(() =>
             {
-                this.Contest.CheckNotRelated();
+                this.Contest.IsNotRelated();
                 this.Contest = domainModel;
             });
 

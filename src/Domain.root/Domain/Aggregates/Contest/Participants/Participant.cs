@@ -1,14 +1,15 @@
 using EnduranceContestManager.Domain.Aggregates.Contest.Trials;
 using EnduranceContestManager.Domain.Core.Validation;
+using System.Collections.Generic;
 
 namespace EnduranceContestManager.Domain.Aggregates.Contest.Participants
 {
     public class Participant : DomainModel<ParticipantException>, IParticipantState,
-        IDependsOn<Trial>
+        IDependsOnMany<Trial>
     {
         public Participant(int id, string rfId, int contestNumber) : base(id)
         {
-            this.Except(() =>
+            this.Validate(() =>
             {
                 this.RfId = rfId.IsRequired(nameof(rfId));
                 this.ContestNumber = contestNumber.IsRequired(nameof(contestNumber));
@@ -40,16 +41,18 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Participants
             return this;
         }
 
-        public Trial Trial { get; private set; }
-        void IDependsOn<Trial>.Set(Trial domainModel)
-            => this.Except(() =>
+        private readonly List<Trial> trials = new();
+        public IReadOnlyList<Trial> Trials => this.trials.AsReadOnly();
+        void IDependsOnMany<Trial>.AddOne(Trial principal)
+            => this.Validate(() =>
             {
-                this.Trial.CheckNotRelated();
-                this.Trial = domainModel;
+                this.trials.CheckExistingAndAdd(principal);
             });
-        void IDependsOn<Trial>.Clear(Trial domainModel)
-        {
-            this.Trial = null;
-        }
+
+        void IDependsOnMany<Trial>.RemoveOne(Trial principal)
+            => this.Validate(() =>
+            {
+                this.trials.CheckNotExistingAndRemove(principal);
+            });
     }
 }

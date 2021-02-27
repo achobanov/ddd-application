@@ -10,7 +10,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.PhasesForCategory
         int RestTimeInMinutes { get; }
 
         // TODO: move to Participant
-        int? MaxSpeedInKilometersPerHour { get; }
+        int? MaxSpeedInKpH { get; }
 
         Category Category { get; }
     }

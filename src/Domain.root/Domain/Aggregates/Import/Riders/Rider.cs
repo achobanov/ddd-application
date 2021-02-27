@@ -12,13 +12,13 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Riders
         public Rider(string feiId, string firstName, string lastName, string gender, DateTime birthDate, string country)
             : base(default)
         {
-            this.Except(() =>
+            this.Validate(() =>
             {
                 this.FeiId = feiId.IsRequired(nameof(feiId));
                 this.FirstName = firstName.IsRequired(nameof(firstName));
                 this.LastName = lastName.IsRequired(nameof(lastName));
                 this.Gender = gender.CheckValidGender();
-                this.BirthDate = birthDate.CheckDateHasPassed();
+                this.BirthDate = birthDate.HasDatePassed();
                 this.Country = country; // TODO: countries?
             });
 

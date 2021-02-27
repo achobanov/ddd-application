@@ -5,6 +5,6 @@ namespace EnduranceContestManager.Domain
 {
     internal interface IInternalDomainModel : IDomainModel
     {
-        void Except(Action action);
+        void Validate(Action action);
     }
 }

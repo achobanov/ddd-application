@@ -6,7 +6,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Ranking.Trials
 {
     public class Trial : DomainModel<RankingTrialException>
     {
-        internal Trial(int lengthInKilometers, List<Participation> participations) : base(default)
+        public Trial(int lengthInKilometers, List<Participation> participations) : base(default)
         {
             this.Participations = participations;
             this.LengthInKilometers = lengthInKilometers.IsRequired(nameof(lengthInKilometers));

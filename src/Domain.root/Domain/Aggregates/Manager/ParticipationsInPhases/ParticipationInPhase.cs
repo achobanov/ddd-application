@@ -1,23 +1,28 @@
-using EnduranceContestManager.Domain.Aggregates.Contest.Phases;
-using EnduranceContestManager.Domain.Aggregates.Contest.PhasesForCategory;
-using EnduranceContestManager.Domain.Aggregates.Manager.Participations;
+using EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTrials;
 using EnduranceContestManager.Domain.Aggregates.Manager.ResultsInPhases;
 using EnduranceContestManager.Domain.Core.Validation;
+using EnduranceContestManager.Domain.DTOs;
 using EnduranceContestManager.Domain.Validation;
 using System;
 
 namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhases
 {
     public class ParticipationInPhase : DomainModel<ParticipationInPhaseException>, IParticipationInPhaseState,
-        IDependsOn<Participation>
+        IDependsOn<ParticipationInTrial>
     {
-        private const string NullPhaseOrPhaseForCategory = "Average speed cannot be determined without set Phase.";
-        private const string NullTimeSpan = "Average speed cannot be determined without Phase Time or Loop Time.";
+        private static readonly string ArrivalTimeIsNullMessage = $"cannot complete: ArrivalTime cannot be null.";
+        private static readonly string InspectionTimeIsNullMessage = $"cannot complete: InspectionTime cannot be null";
 
-        internal ParticipationInPhase(DateTime startTime) : base(default)
-            => this.Except(() =>
+        private PhaseDto phase;
+
+        internal ParticipationInPhase(DateTime startTime, PhaseDto phase) : base(default)
+            => this.Validate(() =>
             {
-                this.StartTime = startTime.CheckDateHasPassed();
+                this.StartTime = startTime
+                    .IsRequired(nameof(startTime))
+                    .HasDatePassed();
+
+                this.phase = phase.IsRequired(nameof(phase));
             });
 
         public DateTime StartTime { get; private set; }
@@ -30,120 +35,101 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
             get
             {
                 var inspectionTime = this.ReInspectionTime ?? this.InspectionTime;
-
                 return this.ArrivalTime - inspectionTime;
             }
         }
 
         public TimeSpan? LoopSpan
-        {
-            get
-            {
-                return this.ArrivalTime - this.StartTime;
-            }
-        }
+            => this.ArrivalTime - this.StartTime;
 
         public TimeSpan? PhaseSpan
+            => this.ArrivalTime - this.InspectionTime;
+
+        // TODO: Split into average speed with/without RestTime.
+        public double? AverageSpeedInKpH
         {
             get
             {
-                return this.ArrivalTime - this.InspectionTime;
-            }
-        }
+                if (this.phase == null || this.LoopSpan == null && this.PhaseSpan == null)
+                {
+                    return null;
+                }
 
-        // TODO: Split into averate speed with/without RestTime.
-        public double AverageSpeedInKpH
-        {
-            get
-            {
-                this.PhaseForCategory?.NotDefault(NullPhaseOrPhaseForCategory);
-
-                var hasSpeedLimit = this.PhaseForCategory!.MaxSpeedInKilometersPerHour.HasValue;
+                var hasSpeedLimit = this.phase!.MaxSpeedInKpH.HasValue;
 
                 var timeSpan = hasSpeedLimit
                     ? this.LoopSpan
                     : this.PhaseSpan;
 
-                timeSpan.NotDefault(NullTimeSpan);
-
-                var phaseLengthInKm = this.Phase.LengthInKilometers;
+                var phaseLengthInKm = this.phase.LengthInKilometers;
                 var totalHours = timeSpan!.Value.TotalHours;
 
                 return  phaseLengthInKm / totalHours;
             }
         }
 
-        public bool IsComplete
-        {
-            get
-            {
-                return this.ResultInPhase != null;
-            }
-        }
+        public bool HasExceededSpeedRestriction
+            => this.AverageSpeedInKpH > this.phase?.MaxSpeedInKpH;
 
-        public IPhaseState Phase { get; private set; }
-        public IPhaseForCategoryState PhaseForCategory { get; private set; }
-        public ParticipationInPhase Start(IPhaseState phase)
-        {
-            this.Phase = phase.IsRequired(nameof(phase));
-            return this;
-        }
-        public ParticipationInPhase InCategory(IPhaseForCategoryState phaseForCategoryState)
-        {
-            this.PhaseForCategory = phaseForCategoryState.IsRequired(nameof(phaseForCategoryState));
-            return this;
-        }
-        public ParticipationInPhase Arrive(DateTime time)
+        public bool IsComplete
+            => this.ResultInPhase != null;
+
+        internal void Arrive(DateTime time)
         {
             this.ArrivalTime = time.IsRequired(nameof(time));
-            return this;
         }
-        public ParticipationInPhase Inspect(DateTime time)
+
+        internal void Inspect(DateTime time)
         {
             this.InspectionTime = time.IsRequired(nameof(time));
-            return this;
         }
-        public ParticipationInPhase ReInspect(DateTime time)
+
+        internal void ReInspect(DateTime time)
         {
             // TODO: ReInspection does not reset the RestTime for the Horse. Check if needed
             this.ReInspectionTime = time.IsRequired(nameof(time));
-            return this;
         }
 
         public ResultInPhase ResultInPhase { get; private set; }
-        public ParticipationInPhase CompleteSuccessful()
+
+        internal void CompleteSuccessful()
         {
+        // TODO: Calculate Next Phase start time from this.ReInnspectionTme ??  this.InspectionTime and complete.
             var successfulResult = new ResultInPhase();
-            return this.Set(successfulResult);
-            // TODO: Calculate Next Phase start time from this.ReInnspectionTme ??  this.InspectionTime and complete.
+            this.Complete(successfulResult);
         }
-        public ParticipationInPhase CompleteUnsuccessful(string code, bool isQualified = false)
+
+        internal void CompleteUnsuccessful(string code, bool isQualified = false)
         {
             var unsuccessfulResult = new ResultInPhase(code, isRanked: false, isQualified);
-            return this.Set(unsuccessfulResult);
+            this.Complete(unsuccessfulResult);
         }
 
-        public Participation Participation { get; private set; }
-        void IDependsOn<Participation>.Set(Participation domainModel)
-            => this.Except(() =>
+        public ParticipationInTrial ParticipationInTrial { get; private set; }
+        void IDependsOn<ParticipationInTrial>.Set(ParticipationInTrial domainModel)
+            => this.Validate(() =>
             {
-                this.Participation.CheckNotRelated();
-                this.Participation = domainModel;
+                this.ParticipationInTrial.IsNotRelated();
+                this.ParticipationInTrial = domainModel;
             });
 
-        void IDependsOn<Participation>.Clear(Participation domainModel)
+        void IDependsOn<ParticipationInTrial>.Clear(ParticipationInTrial domainModel)
         {
-            this.Participation = null;
+            this.ParticipationInTrial = null;
         }
 
-        private ParticipationInPhase Set(ResultInPhase result)
+        private void Complete(ResultInPhase result)
         {
+            this.Validate(() =>
+            {
+                this.ArrivalTime.IsNotDefault(ArrivalTimeIsNullMessage);
+                this.InspectionTime.IsNotDefault(InspectionTimeIsNullMessage);
+            });
+
             this.Set(
                 participationInPhase => participationInPhase.ResultInPhase,
                 (participationInPhase, r) => participationInPhase.ResultInPhase = r,
                 result);
-
-            return this;
         }
     }
 }

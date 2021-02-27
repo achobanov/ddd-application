@@ -7,7 +7,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Participants
         IDependsOn<Participant>
     {
         public Rider(int id, Category category) : base(id)
-            => this.Except(() =>
+            => this.Validate(() =>
             {
                 this.Category = category.IsRequired(nameof(category));
             });
@@ -17,7 +17,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Participants
         public Participant Participant { get; private set; }
         void IDependsOn<Participant>.Set(Participant domainModel)
         {
-            this.Participant.CheckNotRelated();
+            this.Participant.IsNotRelated();
             this.Participant = domainModel;
         }
         void IDependsOn<Participant>.Clear(Participant domainModel)

@@ -6,7 +6,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Common
         where TException : DomainException, new()
     {
         protected BaseContest(int id, string name, string country, string populatedPlace) : base(id)
-            => this.Except(() =>
+            => this.Validate(() =>
             {
                 this.Name = name;
                 this.Country = country;

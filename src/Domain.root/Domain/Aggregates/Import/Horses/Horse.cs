@@ -9,11 +9,11 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Horses
         public Horse(string name, string gender, bool isStallion, DateTime birthDay, string country, string owner)
             : base(default)
         {
-            this.Except(() =>
+            this.Validate(() =>
             {
                 this.Name = name.IsRequired(nameof(name));
                 this.Gender = gender.CheckValidGender();
-                this.BirthDay = birthDay.CheckDateHasPassed();
+                this.BirthDay = birthDay.HasDatePassed();
                 this.Owner = owner.IsRequired(nameof(owner));
             });
 

@@ -15,7 +15,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.PhasesForCategory
             int? maxSpeedInKilometersPerHour = null)
             : base(id)
         {
-            this.Except(() =>
+            this.Validate(() =>
             {
                 this.MaxRecoveryTimeInMinutes = maxRecoveryTimeInMinutes
                     .IsRequired(nameof(maxRecoveryTimeInMinutes));
@@ -24,19 +24,19 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.PhasesForCategory
                 this.Category = category.IsRequired(nameof(category));
             });
 
-            this.MaxSpeedInKilometersPerHour = maxSpeedInKilometersPerHour;
+            this.MaxSpeedInKpH = maxSpeedInKilometersPerHour;
         }
 
         public int MaxRecoveryTimeInMinutes { get; private set; }
         public int RestTimeInMinutes { get; private set; }
-        public int? MaxSpeedInKilometersPerHour { get; private set; }
+        public int? MaxSpeedInKpH { get; private set; }
         public Category Category { get; private set; }
 
         public Phase Phase { get; private set; }
         void IDependsOn<Phase>.Set(Phase domainModel)
-            => this.Except(() =>
+            => this.Validate(() =>
             {
-                this.Phase.CheckNotRelated();
+                this.Phase.IsNotRelated();
                 this.Phase = domainModel;
             });
         void IDependsOn<Phase>.Clear(Phase domainModel)

@@ -14,12 +14,13 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ResultsInPhases
 
         internal ResultInPhase(string code, bool isRanked, bool isQualified) : base(default)
         {
-            this.Code = code;
+            this.Code = code; // TODO: Validate code
             this.IsRanked = isRanked;
             this.IsQualified = isQualified;
         }
 
         public bool IsRanked { get; private set; }
+        // TODO: Remove this
         public bool IsQualified { get; private set; }
         public string Code { get; private set; }
 
@@ -34,9 +35,9 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ResultsInPhases
         }
 
         void IDependsOn<ParticipationInPhase>.Set(ParticipationInPhase domainModel)
-            => this.Except(() =>
+            => this.Validate(() =>
             {
-                this.ParticipationInPhase.CheckNotRelated();
+                this.ParticipationInPhase.IsNotRelated();
                 this.ParticipationInPhase = domainModel;
             });
 

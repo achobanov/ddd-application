@@ -8,7 +8,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.ContestPersonnel
     {
         public Personnel(int id, string name)
             : base(id)
-            => this.Except(() =>
+            => this.Validate(() =>
             {
                 this.Name = name.CheckPersonName();
             });
@@ -17,9 +17,9 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.ContestPersonnel
 
         public Contests.Contest Contest { get; private set; }
         void IDependsOn<Contests.Contest>.Set(Contests.Contest domainModel)
-            => this.Except(() =>
+            => this.Validate(() =>
             {
-                this.Contest.CheckNotRelated();
+                this.Contest.IsNotRelated();
                 this.Contest = domainModel;
             });
         void IDependsOn<Contests.Contest>.Clear(Contests.Contest domainModel)

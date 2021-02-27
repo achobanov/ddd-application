@@ -8,7 +8,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Participants
     public class Participant : DomainModel<ImportParticipantException>
     {
         public Participant(Rider rider, Horse horse) : base(default)
-            => this.Except(() =>
+            => this.Validate(() =>
             {
                 this.Rider = rider.IsRequired(nameof(rider));
                 this.Horse = horse.IsRequired(nameof(horse));

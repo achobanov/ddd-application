@@ -11,7 +11,7 @@ namespace EnduranceContestManager.Domain.Core.Validation
         private const string CannotRemoveItemTemplate = "cannot remove {0} because it is not found.";
         private const string CannotAddItemTemplate = "cannot add {0} because entity with Id '{1}' already exists.";
 
-        public static void CheckNotRelated<TDomainModel>(this TDomainModel model)
+        public static void IsNotRelated<TDomainModel>(this TDomainModel model)
             where TDomainModel : IDomainModel
         {
             if (!model?.Equals(default(TDomainModel)) ?? false)
@@ -30,7 +30,7 @@ namespace EnduranceContestManager.Domain.Core.Validation
             return value;
         }
 
-        public static TValue NotDefault<TValue>(this TValue value, string message)
+        public static TValue IsNotDefault<TValue>(this TValue value, string message)
         {
             if (value?.Equals(default(TValue)) ?? true)
             {
@@ -38,6 +38,32 @@ namespace EnduranceContestManager.Domain.Core.Validation
             }
 
             return value;
+        }
+
+        public static TValue IsDefault<TValue>(this TValue value, string message)
+        {
+            if (!value?.Equals(default(TValue)) ?? false)
+            {
+                throw new ValidationException(message);
+            }
+
+            return value;
+        }
+
+        public static void IsNotEmpty<TValue>(this IEnumerable<TValue> enumerable, string message)
+        {
+            if (!enumerable.Any())
+            {
+                throw new ValidationException(message);
+            }
+        }
+
+        public static void IsEmpty<TValue>(this IEnumerable<TValue> enumerable, string message)
+        {
+            if (enumerable.Any())
+            {
+                throw new ValidationException(message);
+            }
         }
 
         public static TDomainModel CheckNotExistingAndRemove<TDomainModel>(
@@ -49,6 +75,8 @@ namespace EnduranceContestManager.Domain.Core.Validation
             {
                 throw new ValidationException(CannotRemoveItemTemplate, typeof(TDomainModel).Name);
             }
+
+            // TODO: Create Equals override and  perform actual check here.
 
             collection.Remove(model);
             return model;
