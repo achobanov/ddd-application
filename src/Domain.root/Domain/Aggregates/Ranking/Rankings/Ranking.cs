@@ -22,6 +22,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Ranking.Rankings
             }
         }
 
-        public IReadOnlyList<Classification> Classifications => this.classifications;
+        public IReadOnlyList<Classification> Classifications => this.classifications.AsReadOnly();
     }
 }

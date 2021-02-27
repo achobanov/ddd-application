@@ -6,14 +6,13 @@ namespace EnduranceContestManager.Domain.Aggregates.Ranking.Trials
 {
     public class Trial : DomainModel<RankingTrialException>
     {
-        public Trial(int lengthInKilometers, List<Participation> participations) : base(default)
+        private readonly List<Participation> participations = new();
+
+        public Trial() : base(default)
         {
-            this.Participations = participations;
-            this.LengthInKilometers = lengthInKilometers.IsRequired(nameof(lengthInKilometers));
         }
 
         public int LengthInKilometers { get; private set; }
-
-        internal List<Participation> Participations { get; private set; }
+        public IReadOnlyList<Participation> Participations => this.participations.AsReadOnly();
     }
 }

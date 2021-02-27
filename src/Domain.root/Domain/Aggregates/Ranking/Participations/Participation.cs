@@ -1,5 +1,4 @@
 using EnduranceContestManager.Domain.Aggregates.Ranking.ResultsInPhases;
-using EnduranceContestManager.Domain.Aggregates.Ranking.Trials;
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Enums;
 using System;
@@ -12,23 +11,17 @@ namespace EnduranceContestManager.Domain.Aggregates.Ranking.Participations
     {
         private const string MissingFinalPhase = "Invalid participation - missing result for Final phase.";
 
-        public Participation(Category category, List<ResultInPhase> resultsInPhases) : base(default)
-            => this.Validate(() =>
-            {
-                // Add validation for single final phase.
-                this.Category = category.IsRequired(nameof(category));
-                this.ResultsInPhases = resultsInPhases;
-            });
+        private readonly List<ResultInPhase> resultsInPhases = new();
+
+        internal Participation() : base(default)
+        {
+        }
 
         public Category Category { get; private set; }
+        public IReadOnlyList<ResultInPhase> ResultsInPhases => this.resultsInPhases.AsReadOnly();
 
         public bool IsRanked
-        {
-            get
-            {
-                return this.ResultsInPhases.All(x => x.IsRanked);
-            }
-        }
+            => this.ResultsInPhases.All(x => x.IsRanked);
 
         public DateTime FinalTime
         {
@@ -41,7 +34,5 @@ namespace EnduranceContestManager.Domain.Aggregates.Ranking.Participations
                 return finalPhase.ArrivalTime;
             }
         }
-
-        private List<ResultInPhase> ResultsInPhases { get; set; }
     }
 }
