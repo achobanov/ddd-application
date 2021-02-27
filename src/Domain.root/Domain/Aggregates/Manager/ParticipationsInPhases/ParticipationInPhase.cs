@@ -99,9 +99,9 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
             this.Complete(successfulResult);
         }
 
-        internal void CompleteUnsuccessful(string code, bool isQualified = false)
+        internal void CompleteUnsuccessful(string code)
         {
-            var unsuccessfulResult = new ResultInPhase(code, isRanked: false, isQualified);
+            var unsuccessfulResult = new ResultInPhase(code, isRanked: false);
             this.Complete(unsuccessfulResult);
         }
 

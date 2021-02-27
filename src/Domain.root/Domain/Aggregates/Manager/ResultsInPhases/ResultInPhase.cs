@@ -8,31 +8,19 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ResultsInPhases
     {
         internal ResultInPhase() : base(default)
         {
-            this.IsQualified = true;
             this.IsRanked = true;
         }
 
-        internal ResultInPhase(string code, bool isRanked, bool isQualified) : base(default)
+        internal ResultInPhase(string code, bool isRanked) : base(default)
         {
-            this.Code = code; // TODO: Validate code
+            this.Code = code;
             this.IsRanked = isRanked;
-            this.IsQualified = isQualified;
         }
 
         public bool IsRanked { get; private set; }
-        // TODO: Remove this
-        public bool IsQualified { get; private set; }
         public string Code { get; private set; }
 
         public ParticipationInPhase ParticipationInPhase { get; private set; }
-
-        public bool IsSuccessful
-        {
-            get
-            {
-                return this.IsRanked && this.IsQualified;
-            }
-        }
 
         void IDependsOn<ParticipationInPhase>.Set(ParticipationInPhase domainModel)
             => this.Validate(() =>

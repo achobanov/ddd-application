@@ -6,8 +6,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ResultsInPhases
     {
         bool IsRanked { get; }
 
-        bool IsQualified { get; }
-
         string Code { get; }
     }
 }
