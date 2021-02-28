@@ -14,6 +14,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTria
         private const string CurrentPhaseIsNullMessage = "cannot complete - no current phase.";
 
         private readonly TrialDto trial;
+        private readonly int? maxAverageSpeedInKpH;
 
         internal ParticipationInTrial(TrialDto trial, int? maxAverageSpeedInKpH) : base(default)
         {
@@ -22,13 +23,12 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTria
                 trial.Phases.IsNotEmpty(EmptyPhasesCollection);
             });
 
-            this.MaxAverageSpeedInKpH = maxAverageSpeedInKpH;
+            this.maxAverageSpeedInKpH = maxAverageSpeedInKpH;
             this.trial = trial;
 
             this.StartPhase();
         }
 
-        public int? MaxAverageSpeedInKpH { get; private set; }
 
         public bool IsComplete
             => this.trial.Phases.Count == this.participationsInPhases.Count;
@@ -37,7 +37,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTria
             => this.trial.Type;
 
         public bool HasExceededSpeedRestriction
-            => this.participationsInPhases.Any(participation => participation.HasExceededSpeedRestriction);
+            => this.AverageSpeedInKpH > this.maxAverageSpeedInKpH;
 
         public double? AverageSpeedInKpH
         {
@@ -52,7 +52,11 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTria
                     return null;
                 }
 
-                var averageSpeedSum = completedPhases.Aggregate(0d, (sum, x) => sum + x.AverageSpeedInKpH!.Value);
+                var averageSpeedInPhases = this.TrialType == CompetitionType.International
+                    ? completedPhases.Select(x => x.AverageSpeedForPhaseInKpH!.Value)
+                    : completedPhases.Select(x => x.AverageSpeedForLoopInKpH!.Value);
+
+                var averageSpeedSum = averageSpeedInPhases.Aggregate(0d, (sum, average) => sum + average);
                 var phasesCount = this.participationsInPhases.Count;
 
                 return averageSpeedSum / phasesCount;
@@ -76,7 +80,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTria
                                 ?? this.CurrentPhase?.InspectionTime?.AddMinutes(restTime!.Value)
                                 ?? this.trial.StartTime;
 
-                var participation = new ParticipationInPhase(nextPhase, nextStartTime, this.MaxAverageSpeedInKpH);
+                var participation = new ParticipationInPhase(nextPhase, nextStartTime);
                 this.participationsInPhases.Add(participation);
             });
         internal void CompleteSuccessful()

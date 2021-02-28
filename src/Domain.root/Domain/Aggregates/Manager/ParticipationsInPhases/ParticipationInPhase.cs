@@ -11,7 +11,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
         private static readonly string ArrivalTimeIsNullMessage = $"cannot complete: ArrivalTime cannot be null.";
         private static readonly string InspectionTimeIsNullMessage = $"cannot complete: InspectionTime cannot be null";
 
-        internal ParticipationInPhase(PhaseDto phase, DateTime startTime, int? maxAverageSpeedInKpH)
+        internal ParticipationInPhase(PhaseDto phase, DateTime startTime)
             : base(default)
             => this.Validate(() =>
             {
@@ -20,7 +20,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
                     .HasDatePassed();
 
                 this.Phase = phase.IsRequired(nameof(phase));
-                this.MaxAverageSpeedInKpH = maxAverageSpeedInKpH;
             });
 
         public DateTime StartTime { get; private set; }
@@ -28,17 +27,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
         public DateTime? InspectionTime { get; private set; }
         public DateTime? ReInspectionTime { get; private set; }
 
-        public int? MaxAverageSpeedInKpH { get; private set; }
         public PhaseDto Phase { get; private set; }
-
-        public TimeSpan? RecoverySpan
-        {
-            get
-            {
-                var inspectionTime = this.ReInspectionTime ?? this.InspectionTime;
-                return this.ArrivalTime - inspectionTime;
-            }
-        }
 
         public TimeSpan? LoopSpan
             => this.ArrivalTime - this.StartTime;
@@ -46,31 +35,38 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
         public TimeSpan? PhaseSpan
             => this.ArrivalTime - this.InspectionTime;
 
-        // TODO: Split into average speed with/without RestTime.
-        public double? AverageSpeedInKpH
+        public double? AverageSpeedForLoopInKpH
         {
             get
             {
-                if (this.Phase == null || this.LoopSpan == null && this.PhaseSpan == null)
+                if (this.Phase == null || this.LoopSpan == null)
                 {
                     return null;
                 }
 
-                var hasSpeedLimit = this.MaxAverageSpeedInKpH.HasValue;
+                return this.GetAverageSpeed(this.LoopSpan.Value);
+            }
+        }
+        public double? AverageSpeedForPhaseInKpH
+        {
+            get
+            {
+                if (this.Phase == null || this.PhaseSpan == null)
+                {
+                    return null;
+                }
 
-                var timeSpan = hasSpeedLimit
-                    ? this.LoopSpan
-                    : this.PhaseSpan;
-
-                var phaseLengthInKm = this.Phase.LengthInKilometers;
-                var totalHours = timeSpan!.Value.TotalHours;
-
-                return  phaseLengthInKm / totalHours;
+                return this.GetAverageSpeed(this.PhaseSpan.Value);
             }
         }
 
-        public bool HasExceededSpeedRestriction
-            => this.AverageSpeedInKpH > this.MaxAverageSpeedInKpH;
+        private double GetAverageSpeed(TimeSpan timeSpan)
+        {
+            var phaseLengthInKm = this.Phase.LengthInKilometers;
+            var totalHours = timeSpan.TotalHours;
+
+            return  phaseLengthInKm / totalHours;
+        }
 
         public bool IsComplete
             => this.ResultInPhase != null;
