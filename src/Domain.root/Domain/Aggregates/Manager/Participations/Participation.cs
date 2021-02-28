@@ -1,6 +1,6 @@
 using EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTrials;
 using EnduranceContestManager.Domain.Core.Validation;
-using EnduranceContestManager.Domain.DTOs;
+using EnduranceContestManager.Domain.Aggregates.Manager.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +11,10 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.Participations
     {
         private const string AlreadyStartedMessage = "has already started";
 
-        private readonly List<TrialDto> trials;
+        private readonly IReadOnlyList<TrialDto> trials;
         private readonly List<ParticipationInTrial> participationsInTrials = new();
 
-        public Participation(List<TrialDto> trials) : base(default)
+        public Participation(IReadOnlyList<TrialDto> trials) : base(default)
         {
             this.trials = trials;
 
@@ -58,10 +58,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.Participations
         public void CompleteUnsuccessful(string code)
         {
             this.Update(participation => participation.CompleteUnsuccessful(code));
-        }
-        public void StartNextPhase()
-        {
-            this.Update(participation => participation.StartNextPhase());
         }
 
         private void Update(Action<ParticipationInTrial> action)

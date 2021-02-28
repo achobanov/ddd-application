@@ -1,7 +1,7 @@
 using EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTrials;
 using EnduranceContestManager.Domain.Aggregates.Manager.ResultsInPhases;
 using EnduranceContestManager.Domain.Core.Validation;
-using EnduranceContestManager.Domain.DTOs;
+using EnduranceContestManager.Domain.Aggregates.Manager.DTOs;
 using EnduranceContestManager.Domain.Validation;
 using System;
 
@@ -13,8 +13,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
         private static readonly string ArrivalTimeIsNullMessage = $"cannot complete: ArrivalTime cannot be null.";
         private static readonly string InspectionTimeIsNullMessage = $"cannot complete: InspectionTime cannot be null";
 
-        private PhaseDto phase;
-
         internal ParticipationInPhase(DateTime startTime, PhaseDto phase) : base(default)
             => this.Validate(() =>
             {
@@ -22,13 +20,15 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
                     .IsRequired(nameof(startTime))
                     .HasDatePassed();
 
-                this.phase = phase.IsRequired(nameof(phase));
+                this.Phase = phase.IsRequired(nameof(phase));
             });
 
         public DateTime StartTime { get; private set; }
         public DateTime? ArrivalTime { get; private set; }
         public DateTime? InspectionTime { get; private set; }
         public DateTime? ReInspectionTime { get; private set; }
+
+        public PhaseDto Phase { get; private set; }
 
         public TimeSpan? RecoverySpan
         {
@@ -50,18 +50,18 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
         {
             get
             {
-                if (this.phase == null || this.LoopSpan == null && this.PhaseSpan == null)
+                if (this.Phase == null || this.LoopSpan == null && this.PhaseSpan == null)
                 {
                     return null;
                 }
 
-                var hasSpeedLimit = this.phase!.MaxSpeedInKpH.HasValue;
+                var hasSpeedLimit = this.Phase!.MaxSpeedInKpH.HasValue;
 
                 var timeSpan = hasSpeedLimit
                     ? this.LoopSpan
                     : this.PhaseSpan;
 
-                var phaseLengthInKm = this.phase.LengthInKilometers;
+                var phaseLengthInKm = this.Phase.LengthInKilometers;
                 var totalHours = timeSpan!.Value.TotalHours;
 
                 return  phaseLengthInKm / totalHours;
@@ -69,7 +69,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
         }
 
         public bool HasExceededSpeedRestriction
-            => this.AverageSpeedInKpH > this.phase?.MaxSpeedInKpH;
+            => this.AverageSpeedInKpH > this.Phase?.MaxSpeedInKpH;
 
         public bool IsComplete
             => this.ResultInPhase != null;
@@ -86,7 +86,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
 
         internal void ReInspect(DateTime time)
         {
-            // TODO: ReInspection does not reset the RestTime for the Horse. Check if needed
             this.ReInspectionTime = time.IsRequired(nameof(time));
         }
 
@@ -94,7 +93,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
 
         internal void CompleteSuccessful()
         {
-        // TODO: Calculate Next Phase start time from this.ReInnspectionTme ??  this.InspectionTime and complete.
             var successfulResult = new ResultInPhase();
             this.Complete(successfulResult);
         }

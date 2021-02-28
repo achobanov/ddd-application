@@ -22,7 +22,7 @@ namespace EnduranceContestManager.Domain.Validation
             return dateTime;
         }
 
-        public static DateTime DateHasNotPassed(this DateTime dateTime, string message)
+        public static DateTime IsDateInTheFuture(this DateTime dateTime, string message)
         {
             if (dateTime <= DateTime.Now)
             {

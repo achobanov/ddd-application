@@ -1,20 +1,21 @@
 using EnduranceContestManager.Domain.Aggregates.Manager.Participations;
 using EnduranceContestManager.Domain.Core.Entities;
-using EnduranceContestManager.Domain.DTOs;
+using EnduranceContestManager.Domain.Aggregates.Manager.DTOs;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Domain.Aggregates.Manager.Participant
 {
     public class Participant : DomainModel<ManagerParticipantException>, IAggregateRoot
     {
-        public Participant(List<TrialDto> trials) : base(default)
+        private readonly List<TrialDto> trials = new();
+
+        private Participant() : base(default)
         {
-            this.Trials = trials;
         }
 
         public Participation Participation { get; private set; }
 
-        public List<TrialDto> Trials { get; private set; }
+        public IReadOnlyList<TrialDto> Trials => this.trials.AsReadOnly();
 
         public Participant Start()
         {

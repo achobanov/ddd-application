@@ -2,7 +2,7 @@ using EnduranceContestManager.Domain.Enums;
 using System;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain.DTOs
+namespace EnduranceContestManager.Domain.Aggregates.Manager.DTOs
 {
     public class TrialDto
     {
