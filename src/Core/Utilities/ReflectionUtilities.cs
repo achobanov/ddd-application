@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Reflection;
 
@@ -28,7 +29,12 @@ namespace EnduranceContestManager.Core.Utilities
         public static PropertyInfo[] GetProperties<T>(BindingFlags bindingFlags)
         {
             var properties = typeof(T).GetProperties(bindingFlags);
+            return properties;
+        }
 
+        public static PropertyInfo[] GetProperties(Type type, BindingFlags bindingFlags)
+        {
+            var properties = type.GetProperties(bindingFlags);
             return properties;
         }
     }

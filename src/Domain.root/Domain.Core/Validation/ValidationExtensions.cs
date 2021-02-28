@@ -8,8 +8,10 @@ namespace EnduranceContestManager.Domain.Core.Validation
     {
         private const string EntityIsAlreadyRelatedTemplate = "is already related to '{0}' with id: '{1}'";
         private const string NotDefaultTemplate = "property '{0}' is required.";
-        private const string CannotRemoveItemTemplate = "cannot remove {0} because it is not found.";
-        private const string CannotAddItemTemplate = "cannot add {0} because entity with Id '{1}' already exists.";
+        private const string CannotRemoveNullItemTemplate = "cannot remove '{0}' - it is null.";
+        private const string CannotRemoveItemIsNotFoundTemplate = "cannot remove '{0}' - it is not found.";
+        private const string CannotAddNullItemTemplate = "cannot add '{0}' because entity with Id '{1}' already exists.";
+        private const string CannotAddItemExistsTemplate = "cannot add '{0}' because entity with Id '{1}' already exists.";
 
         public static void IsNotRelated<TDomainModel>(this TDomainModel model)
             where TDomainModel : IDomainModel
@@ -66,34 +68,42 @@ namespace EnduranceContestManager.Domain.Core.Validation
             }
         }
 
-        public static TDomainModel CheckNotExistingAndRemove<TDomainModel>(
+        public static TDomainModel ValidateAndRemove<TDomainModel>(
             this ICollection<TDomainModel> collection,
             TDomainModel model)
             where TDomainModel : IDomainModel
         {
             if (model == null)
             {
-                throw new ValidationException(CannotRemoveItemTemplate, typeof(TDomainModel).Name);
+                throw new ValidationException(CannotRemoveNullItemTemplate, typeof(TDomainModel).Name);
             }
 
-            // TODO: Create Equals override and  perform actual check here.
+            if (!collection.Contains(model))
+            {
+                throw new ValidationException(CannotRemoveItemIsNotFoundTemplate, typeof(TDomainModel).Name);
+            }
 
             collection.Remove(model);
             return model;
         }
 
-        public static TDomainModel CheckExistingAndAdd<TDomainModel>(
+        public static TDomainModel ValidateAndAdd<TDomainModel>(
             this ICollection<TDomainModel> collection,
-            TDomainModel entity)
+            TDomainModel model)
             where TDomainModel : IDomainModel
         {
-            if (collection.Any(x => x.Id != default && x.Id == entity.Id))
+            if (model == null)
             {
-                throw new ValidationException(CannotAddItemTemplate, typeof(TDomainModel).Name, entity.Id);
+                throw new ValidationException(CannotAddNullItemTemplate, typeof(TDomainModel).Name);
             }
 
-            collection.Add(entity);
-            return entity;
+            if (collection.Contains(model))
+            {
+                throw new ValidationException(CannotAddItemExistsTemplate, typeof(TDomainModel).Name, model.Id);
+            }
+
+            collection.Add(model);
+            return model;
         }
     }
 }

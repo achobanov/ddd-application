@@ -16,7 +16,7 @@ namespace EnduranceContestManager.Domain
         {
             principal.Validate(() =>
             {
-                collectionSelector(principal).CheckExistingAndAdd(dependant);
+                collectionSelector(principal).ValidateAndAdd(dependant);
                 dependant.Set(principal);
             });
         }
@@ -30,7 +30,7 @@ namespace EnduranceContestManager.Domain
         {
             principal.Validate(() =>
             {
-                collectionSelector(principal).CheckNotExistingAndRemove(dependant);
+                collectionSelector(principal).ValidateAndRemove(dependant);
                 dependant.Clear(principal);
             });
         }

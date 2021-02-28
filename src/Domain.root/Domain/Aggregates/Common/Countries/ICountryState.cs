@@ -2,7 +2,7 @@ using EnduranceContestManager.Domain.Core.Entities;
 
 namespace EnduranceContestManager.Domain.Aggregates.Common.Countries
 {
-    public interface ICountryState : IDomainModel
+    public interface ICountryState : IDomainModelState
     {
         string IsoCode { get; }
 

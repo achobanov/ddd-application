@@ -47,13 +47,13 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Participants
         void IDependsOnMany<Trial>.AddOne(Trial principal)
             => this.Validate(() =>
             {
-                this.trials.CheckExistingAndAdd(principal);
+                this.trials.ValidateAndAdd(principal);
             });
 
         void IDependsOnMany<Trial>.RemoveOne(Trial principal)
             => this.Validate(() =>
             {
-                this.trials.CheckNotExistingAndRemove(principal);
+                this.trials.ValidateAndRemove(principal);
             });
     }
 }
