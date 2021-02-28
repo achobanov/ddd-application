@@ -11,10 +11,10 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ResultsInPhases
             this.IsRanked = true;
         }
 
-        internal ResultInPhase(string code, bool isRanked) : base(default)
+        internal ResultInPhase(string code) : base(default)
         {
             this.Code = code;
-            this.IsRanked = isRanked;
+            this.IsRanked = false;
         }
 
         public bool IsRanked { get; private set; }

@@ -18,6 +18,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Participants
 
         public string RfId { get; private set; }
         public int ContestNumber { get; private set; }
+        public int? MaxAverageSpeedInKpH { get; private set; }
 
         public Horse Horse { get; private set; }
         public Participant Set(Horse horse)

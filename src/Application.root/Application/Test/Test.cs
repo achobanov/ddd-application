@@ -1,7 +1,7 @@
 using EnduranceContestManager.Application.Core.Handlers;
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Aggregates.Contest.Contests;
-using EnduranceContestManager.Domain.Aggregates.Manager.Participant;
+using EnduranceContestManager.Domain.Aggregates.Manager.Participants;
 using EnduranceContestManager.Domain.Aggregates.Manager.DTOs;
 using EnduranceContestManager.Domain.Enums;
 using MediatR;

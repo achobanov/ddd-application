@@ -15,16 +15,20 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTria
 
         private readonly TrialDto trial;
 
-        internal ParticipationInTrial(TrialDto trial) : base(default)
+        internal ParticipationInTrial(TrialDto trial, int? maxAverageSpeedInKpH) : base(default)
         {
             this.Validate(() =>
             {
                 trial.Phases.IsNotEmpty(EmptyPhasesCollection);
             });
 
+            this.MaxAverageSpeedInKpH = maxAverageSpeedInKpH;
             this.trial = trial;
+
             this.StartPhase();
         }
+
+        public int? MaxAverageSpeedInKpH { get; private set; }
 
         public bool IsComplete
             => this.trial.Phases.Count == this.participationsInPhases.Count;
@@ -72,9 +76,8 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTria
                                 ?? this.CurrentPhase?.InspectionTime?.AddMinutes(restTime!.Value)
                                 ?? this.trial.StartTime;
 
-                var participation = new ParticipationInPhase(nextStartTime, nextPhase);
-
-                this.Add(x => x.participationsInPhases, participation);
+                var participation = new ParticipationInPhase(nextPhase, nextStartTime, this.MaxAverageSpeedInKpH);
+                this.participationsInPhases.Add(participation);
             });
         internal void CompleteSuccessful()
             => this.Validate(() =>

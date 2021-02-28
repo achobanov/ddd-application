@@ -6,5 +6,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.Participants
     {
         public string RfId { get; }
         public int ContestNumber { get; }
+        int? MaxAverageSpeedInKpH { get; }
     }
 }

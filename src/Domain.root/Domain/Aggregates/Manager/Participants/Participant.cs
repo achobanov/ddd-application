@@ -3,23 +3,21 @@ using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Aggregates.Manager.DTOs;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain.Aggregates.Manager.Participant
+namespace EnduranceContestManager.Domain.Aggregates.Manager.Participants
 {
     public class Participant : DomainModel<ManagerParticipantException>, IAggregateRoot
     {
-        private readonly List<TrialDto> trials = new();
-
         private Participant() : base(default)
         {
         }
 
+        public int? MaxAverageSpeedInKpH { get; private set; }
+        public IReadOnlyList<TrialDto> Trials { get; private set; }
+
         public Participation Participation { get; private set; }
-
-        public IReadOnlyList<TrialDto> Trials => this.trials.AsReadOnly();
-
         public Participant Start()
         {
-            this.Participation = new Participation(this.Trials);
+            this.Participation = new Participation(this.Trials, this.MaxAverageSpeedInKpH);
             return this;
         }
     }

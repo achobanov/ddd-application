@@ -11,8 +11,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.PhasesForCategory
             int id,
             int maxRecoveryTimeInMinutes,
             int restTimeInMinutes,
-            Category category,
-            int? maxSpeedInKilometersPerHour = null)
+            Category category)
             : base(id)
         {
             this.Validate(() =>
@@ -23,13 +22,10 @@ namespace EnduranceContestManager.Domain.Aggregates.Contest.PhasesForCategory
                 this.RestTimeInMinutes = restTimeInMinutes.IsRequired(nameof(restTimeInMinutes));
                 this.Category = category.IsRequired(nameof(category));
             });
-
-            this.MaxSpeedInKpH = maxSpeedInKilometersPerHour;
         }
 
         public int MaxRecoveryTimeInMinutes { get; private set; }
         public int RestTimeInMinutes { get; private set; }
-        public int? MaxSpeedInKpH { get; private set; }
         public Category Category { get; private set; }
 
         public Phase Phase { get; private set; }

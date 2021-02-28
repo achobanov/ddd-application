@@ -1,4 +1,3 @@
-using EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTrials;
 using EnduranceContestManager.Domain.Aggregates.Manager.ResultsInPhases;
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Aggregates.Manager.DTOs;
@@ -7,13 +6,13 @@ using System;
 
 namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhases
 {
-    public class ParticipationInPhase : DomainModel<ParticipationInPhaseException>, IParticipationInPhaseState,
-        IDependsOn<ParticipationInTrial>
+    public class ParticipationInPhase : DomainModel<ParticipationInPhaseException>, IParticipationInPhaseState
     {
         private static readonly string ArrivalTimeIsNullMessage = $"cannot complete: ArrivalTime cannot be null.";
         private static readonly string InspectionTimeIsNullMessage = $"cannot complete: InspectionTime cannot be null";
 
-        internal ParticipationInPhase(DateTime startTime, PhaseDto phase) : base(default)
+        internal ParticipationInPhase(PhaseDto phase, DateTime startTime, int? maxAverageSpeedInKpH)
+            : base(default)
             => this.Validate(() =>
             {
                 this.StartTime = startTime
@@ -21,6 +20,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
                     .HasDatePassed();
 
                 this.Phase = phase.IsRequired(nameof(phase));
+                this.MaxAverageSpeedInKpH = maxAverageSpeedInKpH;
             });
 
         public DateTime StartTime { get; private set; }
@@ -28,6 +28,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
         public DateTime? InspectionTime { get; private set; }
         public DateTime? ReInspectionTime { get; private set; }
 
+        public int? MaxAverageSpeedInKpH { get; private set; }
         public PhaseDto Phase { get; private set; }
 
         public TimeSpan? RecoverySpan
@@ -55,7 +56,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
                     return null;
                 }
 
-                var hasSpeedLimit = this.Phase!.MaxSpeedInKpH.HasValue;
+                var hasSpeedLimit = this.MaxAverageSpeedInKpH.HasValue;
 
                 var timeSpan = hasSpeedLimit
                     ? this.LoopSpan
@@ -69,7 +70,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
         }
 
         public bool HasExceededSpeedRestriction
-            => this.AverageSpeedInKpH > this.Phase?.MaxSpeedInKpH;
+            => this.AverageSpeedInKpH > this.MaxAverageSpeedInKpH;
 
         public bool IsComplete
             => this.ResultInPhase != null;
@@ -99,21 +100,8 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhas
 
         internal void CompleteUnsuccessful(string code)
         {
-            var unsuccessfulResult = new ResultInPhase(code, isRanked: false);
+            var unsuccessfulResult = new ResultInPhase(code);
             this.Complete(unsuccessfulResult);
-        }
-
-        public ParticipationInTrial ParticipationInTrial { get; private set; }
-        void IDependsOn<ParticipationInTrial>.Set(ParticipationInTrial domainModel)
-            => this.Validate(() =>
-            {
-                this.ParticipationInTrial.IsNotRelated();
-                this.ParticipationInTrial = domainModel;
-            });
-
-        void IDependsOn<ParticipationInTrial>.Clear(ParticipationInTrial domainModel)
-        {
-            this.ParticipationInTrial = null;
         }
 
         private void Complete(ResultInPhase result)

@@ -1,6 +1,7 @@
 using EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTrials;
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Aggregates.Manager.DTOs;
+using EnduranceContestManager.Domain.Aggregates.Manager.Participants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,15 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.Participations
         private readonly IReadOnlyList<TrialDto> trials;
         private readonly List<ParticipationInTrial> participationsInTrials = new();
 
-        public Participation(IReadOnlyList<TrialDto> trials) : base(default)
+        internal Participation(IReadOnlyList<TrialDto> trials, int? maxAverageSpeedInKpH) : base(default)
         {
+            this.MaxAverageSpeedInKpH = maxAverageSpeedInKpH;
             this.trials = trials;
 
             this.Validate(this.Start);
         }
+
+        public int? MaxAverageSpeedInKpH { get; private set; }
 
         public bool HasExceededSpeedRestriction
             => this.participationsInTrials.All(participation => participation.HasExceededSpeedRestriction);
@@ -34,7 +38,8 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.Participations
             {
                 this.participationsInTrials.IsEmpty(AlreadyStartedMessage);
 
-                foreach (var participationInTrial in this.trials.Select(trial => new ParticipationInTrial(trial)))
+                foreach (var participationInTrial in this.trials
+                    .Select(trial => new ParticipationInTrial(trial, this.MaxAverageSpeedInKpH)))
                 {
                     this.participationsInTrials.Add(participationInTrial);
                 }

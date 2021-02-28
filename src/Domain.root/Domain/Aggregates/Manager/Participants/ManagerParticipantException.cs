@@ -1,6 +1,6 @@
 using EnduranceContestManager.Domain.Core.Exceptions;
 
-namespace EnduranceContestManager.Domain.Aggregates.Manager.Participant
+namespace EnduranceContestManager.Domain.Aggregates.Manager.Participants
 {
     public class ManagerParticipantException : DomainException
     {

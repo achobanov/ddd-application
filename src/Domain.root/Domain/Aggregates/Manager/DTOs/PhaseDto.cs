@@ -16,8 +16,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.DTOs
 
         public int RestTimeInMinutes { get; }
 
-        public int? MaxSpeedInKpH { get; }
-
         public Category Category { get; }
     }
 }
