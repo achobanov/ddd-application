@@ -1,5 +1,3 @@
-using System;
-
 namespace EnduranceContestManager.Domain.Aggregates.Ranking.ResultsInPhases
 {
     public class ResultInPhase : DomainModel<RankingResultInPhaseException>
@@ -9,9 +7,5 @@ namespace EnduranceContestManager.Domain.Aggregates.Ranking.ResultsInPhases
         }
 
         public bool IsRanked { get; private set; }
-
-        public bool IsFinalPhase { get; private set; }
-
-        public DateTime ArrivalTime { get; private set; }
     }
 }

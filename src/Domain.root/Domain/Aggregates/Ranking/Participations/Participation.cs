@@ -1,4 +1,4 @@
-using EnduranceContestManager.Domain.Aggregates.Ranking.ResultsInPhases;
+using EnduranceContestManager.Domain.Aggregates.Ranking.ParticipationsInPhases;
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Enums;
 using System;
@@ -9,29 +9,40 @@ namespace EnduranceContestManager.Domain.Aggregates.Ranking.Participations
 {
     public class Participation : DomainModel<RankingParticipationException>
     {
-        private const string MissingFinalPhase = "Invalid participation - missing result for Final phase.";
-
-        private readonly List<ResultInPhase> resultsInPhases = new();
+        private const string NotRankedMessage = "cannot be classified as they are not qualified for ranking.";
 
         internal Participation() : base(default)
         {
         }
 
         public Category Category { get; private set; }
-        public IReadOnlyList<ResultInPhase> ResultsInPhases => this.resultsInPhases.AsReadOnly();
+        public IReadOnlyList<ParticipationInPhase> ParticipationsInPhases { get; private set; }
 
         public bool IsRanked
-            => this.ResultsInPhases.All(x => x.IsRanked);
+            => this.ParticipationsInPhases.All(participation => participation.Result.IsRanked);
 
         public DateTime FinalTime
         {
             get
             {
-                var finalPhase = this.ResultsInPhases
-                    .SingleOrDefault(x => x.IsFinalPhase)
-                    .IsNotDefault(MissingFinalPhase);
+                this.IsRanked.IsNotDefault(NotRankedMessage);
 
+                var finalPhase = this.ParticipationsInPhases.Single(participation => participation.Phase.IsFinalPhase);
                 return finalPhase.ArrivalTime;
+            }
+        }
+
+        public long RecoverySpanInTicks
+        {
+            get
+            {
+                this.IsRanked.IsNotDefault(NotRankedMessage);
+
+                var recoverySum = this.ParticipationsInPhases.Aggregate(
+                    TimeSpan.Zero,
+                    (sum, participation) => sum.Add(participation.RecoverySpan));
+
+                return recoverySum.Ticks;
             }
         }
     }
