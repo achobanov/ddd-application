@@ -19,12 +19,10 @@ namespace EnduranceContestManager.Gateways.Persistence
             this.backup = backup;
         }
 
+        public DbSet<CountryEntity> Countries { get; set; }
         public DbSet<ContestEntity> Contests { get; set; }
-
         public DbSet<TrialEntity> Trials { get; set; }
-
         public DbSet<PhaseEntity> Phases { get; set; }
-
         public DbSet<PhaseForCategoryEntity> PhasesForCategories { get; set; }
 
         public async Task<int> Commit(

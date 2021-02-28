@@ -6,7 +6,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Horses
 {
     public class Horse : DomainModel<HorseException>, IHorseState
     {
-        public Horse(string name, string gender, bool isStallion, DateTime birthDay, string country, string owner)
+        public Horse(string name, string gender, bool isStallion, DateTime birthDay, string owner)
             : base(default)
         {
             this.Validate(() =>
@@ -17,7 +17,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Horses
                 this.Owner = owner.IsRequired(nameof(owner));
             });
 
-            this.Country = country;
             this.IsStallion = isStallion;
         }
 
@@ -25,7 +24,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Horses
         public string Gender { get; private set; }
         public bool IsStallion { get; private set; }
         public DateTime BirthDay { get; private set; }
-        public string Country { get; private set; }
         public string Owner { get; private set; }
     }
 }

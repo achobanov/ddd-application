@@ -13,8 +13,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Horses
 
         DateTime BirthDay { get; }
 
-        string Country { get; }
-
         string Owner { get; }
     }
 }

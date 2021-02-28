@@ -7,7 +7,5 @@ namespace EnduranceContestManager.Domain.Aggregates.Common
         public string Name { get; }
 
         public string PopulatedPlace { get; }
-
-        public string Country { get; }
     }
 }

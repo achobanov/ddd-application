@@ -9,8 +9,8 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Contests
     {
         private readonly List<Trial> trials;
 
-        public Contest(string name, string country, string populatedPlace, List<Trial> trials)
-            : base(default, name, country, populatedPlace)
+        public Contest(string name, string populatedPlace, List<Trial> trials)
+            : base(default, name, populatedPlace)
         {
             this.trials = trials;
         }

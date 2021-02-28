@@ -17,7 +17,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Entities
             int id,
             string name,
             string populatedPlace,
-            string country,
             string presidentGroundJury,
             string feiTechDelegate,
             string feiVetDelegate,
@@ -28,7 +27,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Entities
         {
             this.Name = name;
             this.PopulatedPlace = populatedPlace;
-            this.Country = country;
             this.PresidentGroundJury = presidentGroundJury;
             this.FeiTechDelegate = feiTechDelegate;
             this.FeiVetDelegate = feiVetDelegate;
@@ -40,8 +38,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Entities
         public string Name { get; private set; }
 
         public string PopulatedPlace { get; internal set; }
-
-        public string Country { get; internal set; }
 
         public string PresidentGroundJury { get; internal set; }
 

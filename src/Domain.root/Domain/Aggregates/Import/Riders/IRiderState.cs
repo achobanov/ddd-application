@@ -1,4 +1,5 @@
 using EnduranceContestManager.Domain.Core.Entities;
+using EnduranceContestManager.Domain.Enums;
 using System;
 
 namespace EnduranceContestManager.Domain.Aggregates.Import.Riders
@@ -15,6 +16,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Riders
 
         public DateTime BirthDate { get; }
 
-        public string Country { get; }
+        public Category Category { get; }
     }
 }

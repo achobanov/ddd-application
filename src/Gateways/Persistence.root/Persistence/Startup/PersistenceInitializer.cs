@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EnduranceContestManager.Gateways.Desktop.Interfaces;
 using EnduranceContestManager.Gateways.Persistence.Core.Services;
+using EnduranceContestManager.Gateways.Persistence.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EnduranceContestManager.Gateways.Persistence.Startup
@@ -10,10 +11,12 @@ namespace EnduranceContestManager.Gateways.Persistence.Startup
     public class PersistenceInitializer : IInitializerInterface
     {
         private readonly IBackupService backup;
+        private readonly ISeederService seeder;
 
-        public PersistenceInitializer(IBackupService backup)
+        public PersistenceInitializer(IBackupService backup, ISeederService seeder)
         {
             this.backup = backup;
+            this.seeder = seeder;
         }
 
         public async Task Run(IServiceProvider serviceProvider)

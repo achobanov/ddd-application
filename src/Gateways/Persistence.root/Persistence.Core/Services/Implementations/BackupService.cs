@@ -67,7 +67,8 @@ namespace EnduranceContestManager.Gateways.Persistence.Core.Services.Implementat
             var dbSetProperties = properties
                 .Where(propertyInfo =>
                     propertyInfo.PropertyType.IsGenericType &&
-                    (propertyInfo.PropertyType.BaseType?.IsAssignableFrom(Types.DbSet) ?? false))
+                    (propertyInfo.PropertyType.BaseType?.IsAssignableFrom(Types.DbSet) ?? false) &&
+                    propertyInfo.PropertyType.Name != "CountryEntity") // Improve
                 .ToList();
 
             return dbSetProperties;
