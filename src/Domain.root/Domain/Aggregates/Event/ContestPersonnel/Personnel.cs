@@ -4,7 +4,7 @@ using EnduranceContestManager.Domain.Validation;
 namespace EnduranceContestManager.Domain.Aggregates.Event.ContestPersonnel
 {
     public class Personnel : DomainModel<PersonnelException>, IPersonnelState,
-        IDependsOn<Contests.Contest>
+        IDependsOn<Events.Event>
     {
         public Personnel(int id, string name)
             : base(id)
@@ -15,16 +15,16 @@ namespace EnduranceContestManager.Domain.Aggregates.Event.ContestPersonnel
 
         public string Name { get; private set; }
 
-        public Contests.Contest Contest { get; private set; }
-        void IDependsOn<Contests.Contest>.Set(Contests.Contest domainModel)
+        public Events.Event Event { get; private set; }
+        void IDependsOn<Events.Event>.Set(Events.Event domainModel)
             => this.Validate(() =>
             {
-                this.Contest.IsNotRelated();
-                this.Contest = domainModel;
+                this.Event.IsNotRelated();
+                this.Event = domainModel;
             });
-        void IDependsOn<Contests.Contest>.Clear(Contests.Contest domainModel)
+        void IDependsOn<Events.Event>.Clear(Events.Event domainModel)
         {
-            this.Contest = null;
+            this.Event = null;
         }
     }
 }

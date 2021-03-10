@@ -1,19 +1,19 @@
 using EnduranceContestManager.Domain.Aggregates.Common;
-using EnduranceContestManager.Domain.Aggregates.Event.Contests;
+using EnduranceContestManager.Domain.Aggregates.Event.Events;
 using EnduranceContestManager.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Gateways.Persistence.Entities
 {
-    public class ContestEntity : EntityModel<Contest>, IContestState
+    public class EventEntity : EntityModel<Event>, IEventState
     {
-        public ContestEntity()
+        public EventEntity()
         {
         }
 
         [JsonConstructor]
-        public ContestEntity(
+        public EventEntity(
             int id,
             string name,
             string populatedPlace,

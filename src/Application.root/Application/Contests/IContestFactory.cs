@@ -1,10 +1,10 @@
 using EnduranceContestManager.Application.Core.Factories;
-using EnduranceContestManager.Domain.Aggregates.Event.Contests;
+using EnduranceContestManager.Domain.Aggregates.Event.Events;
 
 namespace EnduranceContestManager.Application.Contests
 {
-    public interface IContestFactory : IFactory<Contest>
+    public interface IContestFactory : IFactory<Event>
     {
-        Contest Update(Contest contest, string name = null, string populatedPlace = null);
+        Event Update(Event @event, string name = null, string populatedPlace = null);
     }
 }

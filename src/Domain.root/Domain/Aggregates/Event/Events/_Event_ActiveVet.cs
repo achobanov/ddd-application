@@ -1,14 +1,14 @@
 using EnduranceContestManager.Domain.Aggregates.Event.ContestPersonnel;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EnduranceContestManager.Domain.Aggregates.Event.Contests
+namespace EnduranceContestManager.Domain.Aggregates.Event.Events
 {
-    public partial class Contest
+    public partial class Event
     {
         [NotMapped]
         public Personnel ActiveVet { get; private set; }
 
-        public Contest SetActiveVet(Personnel personnel)
+        public Event SetActiveVet(Personnel personnel)
         {
             this.Set(
                 contest => contest.ActiveVet,

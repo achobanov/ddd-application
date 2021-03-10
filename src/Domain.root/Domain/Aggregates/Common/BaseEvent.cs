@@ -4,10 +4,10 @@ using EnduranceContestManager.Domain.Core.Validation;
 
 namespace EnduranceContestManager.Domain.Aggregates.Common
 {
-    public abstract class BaseContest<TException> : DomainModel<TException>, IContestState
+    public abstract class BaseEvent<TException> : DomainModel<TException>, IEventState
         where TException : DomainException, new()
     {
-        protected BaseContest(int id, string name, string populatedPlace) : base(id)
+        protected BaseEvent(int id, string name, string populatedPlace) : base(id)
             => this.Validate(() =>
             {
                 this.Name = name.IsRequired(nameof(name));

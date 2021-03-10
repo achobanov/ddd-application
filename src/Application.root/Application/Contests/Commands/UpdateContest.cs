@@ -3,13 +3,13 @@ using EnduranceContestManager.Application.Core.Requests;
 using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Aggregates.Common;
-using EnduranceContestManager.Domain.Aggregates.Event.Contests;
+using EnduranceContestManager.Domain.Aggregates.Event.Events;
 using EnduranceContestManager.Domain.Aggregates.Event.Trials;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Application.Contests.Commands
 {
-    public class UpdateContest : IIdentifiableRequest, IContestState, IMapTo<Contest>
+    public class UpdateEvent : IIdentifiableRequest, IEventState, IMapTo<Event>
     {
         public int Id { get; set; }
 
@@ -39,7 +39,7 @@ namespace EnduranceContestManager.Application.Contests.Commands
 
         public IList<Trial> Trials { get; set; }
 
-        public class UpdateContestHandler : UpdateHandler<UpdateContest, Contest>
+        public class UpdateContestHandler : UpdateHandler<UpdateEvent, Event>
         {
             public UpdateContestHandler(IContestCommands commands)
                 : base(commands)

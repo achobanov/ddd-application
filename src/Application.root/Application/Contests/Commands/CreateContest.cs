@@ -2,11 +2,11 @@
 using EnduranceContestManager.Application.Core.Handlers;
 using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Domain.Aggregates.Common;
-using EnduranceContestManager.Domain.Aggregates.Event.Contests;
+using EnduranceContestManager.Domain.Aggregates.Event.Events;
 
 namespace EnduranceContestManager.Application.Contests.Commands
 {
-    public class CreateContest : IRequest<int>, IContestState
+    public class CreateEvent : IRequest<int>, IEventState
     {
         public string Name { get; set; }
 
@@ -26,7 +26,7 @@ namespace EnduranceContestManager.Application.Contests.Commands
 
         public string ActiveVet { get; set; }
 
-        public class CreateContestHandler : CreateHandler<CreateContest, Contest>
+        public class CreateContestHandler : CreateHandler<CreateEvent, Event>
         {
             public CreateContestHandler(IContestFactory factory, IContestCommands commands)
                 : base(factory, commands)

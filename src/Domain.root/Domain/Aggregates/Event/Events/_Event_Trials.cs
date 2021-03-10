@@ -4,28 +4,28 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace EnduranceContestManager.Domain.Aggregates.Event.Contests
+namespace EnduranceContestManager.Domain.Aggregates.Event.Events
 {
-    public partial class Contest
+    public partial class Event
     {
         private readonly List<Trial> trials = new();
 
         [NotMapped]
         public IReadOnlyList<Trial> Trials => this.trials.AsReadOnly();
 
-        public Contest Add(Trial trial)
+        public Event Add(Trial trial)
         {
             this.Add(x => x.trials, trial);
             return this;
         }
 
-        public Contest Remove(Func<Trial, bool> filter)
+        public Event Remove(Func<Trial, bool> filter)
         {
             var trial = this.trials.FirstOrDefault(filter);
             return this.Remove(trial);
         }
 
-        public Contest Remove(Trial trial)
+        public Event Remove(Trial trial)
         {
             this.Remove(x => x.trials, trial);
             return this;

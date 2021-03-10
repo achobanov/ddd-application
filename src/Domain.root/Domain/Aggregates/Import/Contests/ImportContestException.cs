@@ -4,6 +4,6 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Contests
 {
     public class ImportContestException : DomainException
     {
-        protected override string Entity { get; } = $"Import {nameof(Contest)}";
+        protected override string Entity { get; } = $"Import {nameof(Event)}";
     }
 }

@@ -1,18 +1,18 @@
 using EnduranceContestManager.Application.Core.Factories;
 using EnduranceContestManager.Domain.Aggregates.Common;
-using EnduranceContestManager.Domain.Aggregates.Event.Contests;
+using EnduranceContestManager.Domain.Aggregates.Event.Events;
 
 namespace EnduranceContestManager.Application.Contests
 {
-    public class ContestFactory : Factory<Contest, IContestState>, IContestFactory
+    public class ContestFactory : Factory<Event, IEventState>, IContestFactory
     {
-        public Contest Update(Contest contest, string name = null, string populatedPlace = null)
-            => new Contest(
-                contest.Id,
-                name ?? contest.Name,
-                populatedPlace ?? contest.PopulatedPlace);
+        public Event Update(Event @event, string name = null, string populatedPlace = null)
+            => new Event(
+                @event.Id,
+                name ?? @event.Name,
+                populatedPlace ?? @event.PopulatedPlace);
 
-        protected override Contest FromState(IContestState state)
-            => new Contest(default, state.Name, state.PopulatedPlace);
+        protected override Event FromState(IEventState state)
+            => new Event(default, state.Name, state.PopulatedPlace);
     }
 }

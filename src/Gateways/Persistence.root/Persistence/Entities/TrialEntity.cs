@@ -28,7 +28,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Entities
         public int ContestId { get; internal set; }
 
         [JsonIgnore]
-        public ContestEntity Contest { get; internal set; }
+        public EventEntity Event { get; internal set; }
 
         [JsonIgnore]
         public IList<PhaseEntity> Phases { get; internal set; }

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace EnduranceContestManager.Domain.Aggregates.Event.Trials
 {
     public class Trial : DomainModel<TrialException>, ITrialState,
-        IDependsOn<Contests.Contest>
+        IDependsOn<Events.Event>
     {
         public Trial(int id, CompetitionType type) : base(id)
             => this.Validate(() =>
@@ -37,17 +37,17 @@ namespace EnduranceContestManager.Domain.Aggregates.Event.Trials
             throw new System.NotImplementedException();
         }
 
-        public Contests.Contest Contest { get; private set; }
-        void IDependsOn<Contests.Contest>.Set(Contests.Contest domainModel)
+        public Events.Event Event { get; private set; }
+        void IDependsOn<Events.Event>.Set(Events.Event domainModel)
             => this.Validate(() =>
             {
-                this.Contest.IsNotRelated();
-                this.Contest = domainModel;
+                this.Event.IsNotRelated();
+                this.Event = domainModel;
             });
 
-        void IDependsOn<Contests.Contest>.Clear(Contests.Contest domainModel)
+        void IDependsOn<Events.Event>.Clear(Events.Event domainModel)
         {
-            this.Contest = null;
+            this.Event = null;
         }
     }
 }

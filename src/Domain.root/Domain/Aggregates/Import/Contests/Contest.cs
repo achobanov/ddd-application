@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 namespace EnduranceContestManager.Domain.Aggregates.Import.Contests
 {
-    public class Contest : BaseContest<ImportContestException>, IAggregateRoot
+    public class Event : BaseEvent<ImportContestException>, IAggregateRoot
     {
         private readonly List<Trial> trials;
 
-        public Contest(string name, string populatedPlace, List<Trial> trials)
+        public Event(string name, string populatedPlace, List<Trial> trials)
             : base(default, name, populatedPlace)
         {
             this.trials = trials;
