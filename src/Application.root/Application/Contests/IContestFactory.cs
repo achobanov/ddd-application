@@ -1,5 +1,5 @@
 using EnduranceContestManager.Application.Core.Factories;
-using EnduranceContestManager.Domain.Aggregates.Contest.Contests;
+using EnduranceContestManager.Domain.Aggregates.Event.Contests;
 
 namespace EnduranceContestManager.Application.Contests
 {

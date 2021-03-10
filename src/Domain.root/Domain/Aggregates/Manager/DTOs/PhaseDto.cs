@@ -1,5 +1,5 @@
-using EnduranceContestManager.Domain.Aggregates.Contest.Phases;
-using EnduranceContestManager.Domain.Aggregates.Contest.PhasesForCategory;
+using EnduranceContestManager.Domain.Aggregates.Event.Phases;
+using EnduranceContestManager.Domain.Aggregates.Event.PhasesForCategory;
 using EnduranceContestManager.Domain.Enums;
 
 namespace EnduranceContestManager.Domain.Aggregates.Manager.DTOs

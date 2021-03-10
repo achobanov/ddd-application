@@ -1,6 +1,6 @@
 using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Aggregates.Contest.Contests;
+using EnduranceContestManager.Domain.Aggregates.Event.Contests;
 using EnduranceContestManager.Gateways.Persistence.Core;
 using EnduranceContestManager.Gateways.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;

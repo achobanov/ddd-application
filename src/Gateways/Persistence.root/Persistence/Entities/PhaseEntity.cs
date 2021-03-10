@@ -1,5 +1,5 @@
-using EnduranceContestManager.Domain.Aggregates.Contest.Phases;
-using EnduranceContestManager.Domain.Aggregates.Contest.Trials;
+using EnduranceContestManager.Domain.Aggregates.Event.Phases;
+using EnduranceContestManager.Domain.Aggregates.Event.Trials;
 using EnduranceContestManager.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-using EnduranceContestManager.Domain.Aggregates.Contest.Trials;
+using EnduranceContestManager.Domain.Aggregates.Event.Trials;
 using EnduranceContestManager.Domain.Enums;
 using EnduranceContestManager.Gateways.Persistence.Core;
 using Newtonsoft.Json;

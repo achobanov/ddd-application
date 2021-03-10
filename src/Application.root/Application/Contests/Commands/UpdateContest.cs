@@ -3,8 +3,8 @@ using EnduranceContestManager.Application.Core.Requests;
 using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Aggregates.Common;
-using EnduranceContestManager.Domain.Aggregates.Contest.Contests;
-using EnduranceContestManager.Domain.Aggregates.Contest.Trials;
+using EnduranceContestManager.Domain.Aggregates.Event.Contests;
+using EnduranceContestManager.Domain.Aggregates.Event.Trials;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Application.Contests.Commands

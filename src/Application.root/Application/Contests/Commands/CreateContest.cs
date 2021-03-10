@@ -2,7 +2,7 @@
 using EnduranceContestManager.Application.Core.Handlers;
 using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Domain.Aggregates.Common;
-using EnduranceContestManager.Domain.Aggregates.Contest.Contests;
+using EnduranceContestManager.Domain.Aggregates.Event.Contests;
 
 namespace EnduranceContestManager.Application.Contests.Commands
 {
