@@ -1,11 +1,11 @@
-using EnduranceContestManager.Domain.Aggregates.Event.Trials;
+using EnduranceContestManager.Domain.Aggregates.Event.Competitions;
 using EnduranceContestManager.Domain.Core.Validation;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Domain.Aggregates.Event.Participants
 {
     public class Participant : DomainModel<ParticipantException>, IParticipantState,
-        IDependsOnMany<Trial>
+        IDependsOnMany<Competition>
     {
         public Participant(int id, string rfId, int contestNumber) : base(id)
         {
@@ -42,18 +42,18 @@ namespace EnduranceContestManager.Domain.Aggregates.Event.Participants
             return this;
         }
 
-        private readonly List<Trial> trials = new();
-        public IReadOnlyList<Trial> Trials => this.trials.AsReadOnly();
-        void IDependsOnMany<Trial>.AddOne(Trial principal)
+        private readonly List<Competition> competitions = new();
+        public IReadOnlyList<Competition> Competitions => this.competitions.AsReadOnly();
+        void IDependsOnMany<Competition>.AddOne(Competition principal)
             => this.Validate(() =>
             {
-                this.trials.ValidateAndAdd(principal);
+                this.competitions.ValidateAndAdd(principal);
             });
 
-        void IDependsOnMany<Trial>.RemoveOne(Trial principal)
+        void IDependsOnMany<Competition>.RemoveOne(Competition principal)
             => this.Validate(() =>
             {
-                this.trials.ValidateAndRemove(principal);
+                this.competitions.ValidateAndRemove(principal);
             });
     }
 }

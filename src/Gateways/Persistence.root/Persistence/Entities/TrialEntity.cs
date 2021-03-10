@@ -1,4 +1,4 @@
-using EnduranceContestManager.Domain.Aggregates.Event.Trials;
+using EnduranceContestManager.Domain.Aggregates.Event.Competitions;
 using EnduranceContestManager.Domain.Enums;
 using EnduranceContestManager.Gateways.Persistence.Core;
 using Newtonsoft.Json;
@@ -6,14 +6,14 @@ using System.Collections.Generic;
 
 namespace EnduranceContestManager.Gateways.Persistence.Entities
 {
-    public class TrialEntity : EntityModel<Trial>, ITrialState
+    public class CompetitionEntity : EntityModel<Competition>, ICompetitionState
     {
-        public TrialEntity()
+        public CompetitionEntity()
         {
         }
 
         [JsonConstructor]
-        public TrialEntity(int id, int lengthInKilometers, CompetitionType type, int contestId)
+        public CompetitionEntity(int id, int lengthInKilometers, CompetitionType type, int contestId)
             : base(id)
         {
             this.LengthInKilometers = lengthInKilometers;

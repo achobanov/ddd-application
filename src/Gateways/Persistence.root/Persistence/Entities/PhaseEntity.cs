@@ -1,5 +1,5 @@
 using EnduranceContestManager.Domain.Aggregates.Event.Phases;
-using EnduranceContestManager.Domain.Aggregates.Event.Trials;
+using EnduranceContestManager.Domain.Aggregates.Event.Competitions;
 using EnduranceContestManager.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -30,6 +30,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Entities
         public int TrialId { get; internal set; }
 
         [JsonIgnore]
-        public Trial Trial { get; internal set; }
+        public Competition Competition { get; internal set; }
     }
 }

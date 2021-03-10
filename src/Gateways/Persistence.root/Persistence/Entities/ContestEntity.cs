@@ -52,6 +52,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Entities
         public string ActiveVet { get; internal set; }
 
         [JsonIgnore]
-        public IList<TrialEntity> Trials { get; internal set; }
+        public IList<CompetitionEntity> Trials { get; internal set; }
     }
 }

@@ -1,14 +1,11 @@
 using EnduranceContestManager.Application.Core.Handlers;
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Aggregates.Event.Events;
-using EnduranceContestManager.Domain.Aggregates.Event.Trials;
+using EnduranceContestManager.Domain.Aggregates.Event.Competitions;
 using EnduranceContestManager.Domain.Aggregates.Manager.Participants;
 using EnduranceContestManager.Domain.Aggregates.Manager.DTOs;
 using EnduranceContestManager.Domain.Enums;
 using MediatR;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,15 +25,15 @@ namespace EnduranceContestManager.Application.Test
             {
                 var contest = new Event(0, "Name", "place");
 
-                var trial1 = new Trial(0, CompetitionType.International);
-                var trial2 = new Trial(1, CompetitionType.National);
-                var trialSame = new Trial(1, CompetitionType.National);
+                var competition1 = new Competition(0, CompetitionType.International);
+                var competition2 = new Competition(1, CompetitionType.National);
+                var competition3 = new Competition(1, CompetitionType.National);
 
-                contest.Add(trial1);
-                contest.Add(trial2);
+                contest.Add(competition1);
+                contest.Add(competition2);
 
-                contest.Remove(trial1);
-                contest.Add(trialSame);
+                contest.Remove(competition1);
+                contest.Add(competition3);
             }
         }
     }

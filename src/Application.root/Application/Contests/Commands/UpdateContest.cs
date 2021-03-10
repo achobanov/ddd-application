@@ -4,7 +4,7 @@ using EnduranceContestManager.Application.Interfaces.Contests;
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Aggregates.Common;
 using EnduranceContestManager.Domain.Aggregates.Event.Events;
-using EnduranceContestManager.Domain.Aggregates.Event.Trials;
+using EnduranceContestManager.Domain.Aggregates.Event.Competitions;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Application.Contests.Commands
@@ -37,7 +37,7 @@ namespace EnduranceContestManager.Application.Contests.Commands
 
         public IList<string> Stewards { get; set; }
 
-        public IList<Trial> Trials { get; set; }
+        public IList<Competition> Competitions { get; set; }
 
         public class UpdateContestHandler : UpdateHandler<UpdateEvent, Event>
         {

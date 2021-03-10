@@ -8,6 +8,6 @@ namespace EnduranceContestManager.Gateways.Persistence.Repositories.Contests
     {
         public DbSet<EventEntity> Contests { get; }
 
-        public DbSet<TrialEntity> Trials { get; }
+        public DbSet<CompetitionEntity> Trials { get; }
     }
 }

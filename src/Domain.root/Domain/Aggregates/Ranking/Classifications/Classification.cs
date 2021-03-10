@@ -1,5 +1,5 @@
 using EnduranceContestManager.Domain.Aggregates.Ranking.Participations;
-using EnduranceContestManager.Domain.Aggregates.Ranking.Trials;
+using EnduranceContestManager.Domain.Aggregates.Ranking.Competitions;
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Enums;
 using System.Collections.Generic;
@@ -9,15 +9,15 @@ namespace EnduranceContestManager.Domain.Aggregates.Ranking.Classifications
 {
     public class Classification : DomainModel<ClassificationException>
     {
-        internal Classification(Category category, Trial trial) : base(default)
+        internal Classification(Category category, Competition competition) : base(default)
         {
             this.Validate(() =>
             {
                 this.Category = category.IsRequired(nameof(category));
             });
 
-            this.LengthInKilometers = trial.LengthInKilometers;
-            this.RankList = this.Classify(trial.Participations);
+            this.LengthInKilometers = competition.LengthInKilometers;
+            this.RankList = this.Classify(competition.Participations);
         }
 
         public int LengthInKilometers { get; }

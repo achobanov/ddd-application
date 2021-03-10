@@ -2,13 +2,13 @@ using EnduranceContestManager.Domain.Aggregates.Ranking.Participations;
 using EnduranceContestManager.Domain.Core.Validation;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain.Aggregates.Ranking.Trials
+namespace EnduranceContestManager.Domain.Aggregates.Ranking.Competitions
 {
-    public class Trial : DomainModel<RankingTrialException>
+    public class Competition : DomainModel<RankingCompetitionException>
     {
         private readonly List<Participation> participations = new();
 
-        public Trial() : base(default)
+        public Competition() : base(default)
         {
         }
 

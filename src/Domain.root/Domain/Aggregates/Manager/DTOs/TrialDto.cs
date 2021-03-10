@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace EnduranceContestManager.Domain.Aggregates.Manager.DTOs
 {
-    public class TrialDto
+    public class CompetitionDto
     {
         public DateTime StartTime { get; set; }
 

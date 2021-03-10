@@ -1,5 +1,5 @@
 using EnduranceContestManager.Domain.Aggregates.Common;
-using EnduranceContestManager.Domain.Aggregates.Import.Trials;
+using EnduranceContestManager.Domain.Aggregates.Import.Competitions;
 using EnduranceContestManager.Domain.Core.Entities;
 using System.Collections.Generic;
 
@@ -7,14 +7,14 @@ namespace EnduranceContestManager.Domain.Aggregates.Import.Contests
 {
     public class Event : BaseEvent<ImportContestException>, IAggregateRoot
     {
-        private readonly List<Trial> trials;
+        private readonly List<Competition> competitions;
 
-        public Event(string name, string populatedPlace, List<Trial> trials)
+        public Event(string name, string populatedPlace, List<Competition> competitions)
             : base(default, name, populatedPlace)
         {
-            this.trials = trials;
+            this.competitions = competitions;
         }
 
-        public IReadOnlyList<Trial> Trials => this.trials.AsReadOnly();
+        public IReadOnlyList<Competition> Competitions => this.competitions.AsReadOnly();
     }
 }

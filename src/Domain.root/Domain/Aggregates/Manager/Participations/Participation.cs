@@ -1,4 +1,4 @@
-using EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTrials;
+using EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInCompetitions;
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Aggregates.Manager.DTOs;
 using System;
@@ -11,35 +11,36 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.Participations
     {
         private const string AlreadyStartedMessage = "has already started";
 
-        private readonly IReadOnlyList<TrialDto> trials;
-        private readonly List<ParticipationInTrial> participationsInTrials = new();
+        private readonly IReadOnlyList<CompetitionDto> competitions;
+        private readonly List<ParticipationInCompetition> participationsInCompetitions = new();
         private readonly int? maxAverageSpeedInKpH;
 
-        internal Participation(IReadOnlyList<TrialDto> trials, int? maxAverageSpeedInKpH) : base(default)
+        internal Participation(IReadOnlyList<CompetitionDto> competitions, int? maxAverageSpeedInKpH) : base(default)
         {
             this.maxAverageSpeedInKpH = maxAverageSpeedInKpH;
-            this.trials = trials;
+            this.competitions = competitions;
 
             this.Validate(this.Start);
         }
 
         public bool HasExceededSpeedRestriction
-            => this.participationsInTrials.All(participation => participation.HasExceededSpeedRestriction);
+            => this.participationsInCompetitions.All(participation => participation.HasExceededSpeedRestriction);
 
         public bool IsComplete
-            => this.participationsInTrials.All(participation => participation.IsComplete);
+            => this.participationsInCompetitions.All(participation => participation.IsComplete);
 
-        public IReadOnlyList<ParticipationInTrial> ParticipationsInTrials => this.participationsInTrials.AsReadOnly();
+        public IReadOnlyList<ParticipationInCompetition> ParticipationsInCompetitions
+            => this.participationsInCompetitions.AsReadOnly();
 
         private void Start()
             => this.Validate(() =>
             {
-                this.participationsInTrials.IsEmpty(AlreadyStartedMessage);
+                this.participationsInCompetitions.IsEmpty(AlreadyStartedMessage);
 
-                foreach (var participationInTrial in this.trials
-                    .Select(trial => new ParticipationInTrial(trial, this.maxAverageSpeedInKpH)))
+                foreach (var participationInCompetition in this.competitions
+                    .Select(competition => new ParticipationInCompetition(competition, this.maxAverageSpeedInKpH)))
                 {
-                    this.participationsInTrials.Add(participationInTrial);
+                    this.participationsInCompetitions.Add(participationInCompetition);
                 }
             });
         public void Arrive(DateTime time)
@@ -63,9 +64,10 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.Participations
             this.Update(participation => participation.CompleteUnsuccessful(code));
         }
 
-        private void Update(Action<ParticipationInTrial> action)
+        private void Update(Action<ParticipationInCompetition> action)
         {
-            foreach (var participation in this.participationsInTrials.Where(trial => !trial.IsComplete))
+            foreach (var participation in this.participationsInCompetitions
+                .Where(competition => !competition.IsComplete))
             {
                 action(participation);
             }

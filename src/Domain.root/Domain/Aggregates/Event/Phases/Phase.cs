@@ -1,12 +1,12 @@
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Aggregates.Event.PhasesForCategory;
-using EnduranceContestManager.Domain.Aggregates.Event.Trials;
+using EnduranceContestManager.Domain.Aggregates.Event.Competitions;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Domain.Aggregates.Event.Phases
 {
     public class Phase : DomainModel<PhaseException>, IPhaseState,
-        IDependsOn<Trial>
+        IDependsOn<Competition>
     {
         public Phase(int id, int lengthInKilometers, bool isFinal = false) : base(id)
             => this.Validate(() =>
@@ -27,16 +27,16 @@ namespace EnduranceContestManager.Domain.Aggregates.Event.Phases
             return this;
         }
 
-        public Trial Trial { get; private set; }
-        void IDependsOn<Trial>.Set(Trial domainModel)
+        public Competition Competition { get; private set; }
+        void IDependsOn<Competition>.Set(Competition domainModel)
             => this.Validate(() =>
             {
-                this.Trial.IsNotRelated();
-                this.Trial = domainModel;
+                this.Competition.IsNotRelated();
+                this.Competition = domainModel;
             });
-        void IDependsOn<Trial>.Clear(Trial domainModel)
+        void IDependsOn<Competition>.Clear(Competition domainModel)
         {
-            this.Trial = null;
+            this.Competition = null;
         }
     }
 }

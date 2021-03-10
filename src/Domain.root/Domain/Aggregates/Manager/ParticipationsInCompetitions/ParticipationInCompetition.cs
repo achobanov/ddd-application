@@ -5,36 +5,36 @@ using EnduranceContestManager.Domain.Enums;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTrials
+namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInCompetitions
 {
-    public class ParticipationInTrial : DomainModel<ParticipationInTrialException>
+    public class ParticipationInCompetition : DomainModel<ParticipationInCompetitionException>
     {
         private const string EmptyPhasesCollection = "cannot start - Phases collection is empty";
         private const string NextPhaseIsNullMessage = "cannot start - there is no Next Phase.";
         private const string CurrentPhaseIsNullMessage = "cannot complete - no current phase.";
 
-        private readonly TrialDto trial;
+        private readonly CompetitionDto competition;
         private readonly int? maxAverageSpeedInKpH;
 
-        internal ParticipationInTrial(TrialDto trial, int? maxAverageSpeedInKpH) : base(default)
+        internal ParticipationInCompetition(CompetitionDto competition, int? maxAverageSpeedInKpH) : base(default)
         {
             this.Validate(() =>
             {
-                trial.Phases.IsNotEmpty(EmptyPhasesCollection);
+                competition.Phases.IsNotEmpty(EmptyPhasesCollection);
             });
 
             this.maxAverageSpeedInKpH = maxAverageSpeedInKpH;
-            this.trial = trial;
+            this.competition = competition;
 
             this.StartPhase();
         }
 
 
         public bool IsComplete
-            => this.trial.Phases.Count == this.participationsInPhases.Count;
+            => this.competition.Phases.Count == this.participationsInPhases.Count;
 
-        public CompetitionType TrialType
-            => this.trial.Type;
+        public CompetitionType CompetitionType
+            => this.competition.Type;
 
         public bool HasExceededSpeedRestriction
             => this.AverageSpeedInKpH > this.maxAverageSpeedInKpH;
@@ -52,7 +52,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTria
                     return null;
                 }
 
-                var averageSpeedInPhases = this.TrialType == CompetitionType.International
+                var averageSpeedInPhases = this.CompetitionType == CompetitionType.International
                     ? completedPhases.Select(x => x.AverageSpeedForPhaseInKpH!.Value)
                     : completedPhases.Select(x => x.AverageSpeedForLoopInKpH!.Value);
 
@@ -69,7 +69,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTria
         private void StartPhase()
             => this.Validate(() =>
             {
-                var nextPhase = this.trial.Phases
+                var nextPhase = this.competition.Phases
                     .OrderBy(x => x.OrderBy)
                     .Skip(this.participationsInPhases.Count)
                     .FirstOrDefault()
@@ -78,7 +78,7 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInTria
                 var restTime = this.CurrentPhase?.Phase.RestTimeInMinutes;
                 var nextStartTime = this.CurrentPhase?.ReInspectionTime?.AddMinutes(restTime!.Value)
                                 ?? this.CurrentPhase?.InspectionTime?.AddMinutes(restTime!.Value)
-                                ?? this.trial.StartTime;
+                                ?? this.competition.StartTime;
 
                 var participation = new ParticipationInPhase(nextPhase, nextStartTime);
                 this.participationsInPhases.Add(participation);

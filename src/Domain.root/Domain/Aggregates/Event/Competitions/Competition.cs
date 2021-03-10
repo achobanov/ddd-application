@@ -4,12 +4,12 @@ using EnduranceContestManager.Domain.Aggregates.Event.Phases;
 using EnduranceContestManager.Domain.Enums;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain.Aggregates.Event.Trials
+namespace EnduranceContestManager.Domain.Aggregates.Event.Competitions
 {
-    public class Trial : DomainModel<TrialException>, ITrialState,
+    public class Competition : DomainModel<CompetitionException>, ICompetitionState,
         IDependsOn<Events.Event>
     {
-        public Trial(int id, CompetitionType type) : base(id)
+        public Competition(int id, CompetitionType type) : base(id)
             => this.Validate(() =>
             {
                 this.Type = type.IsRequired(nameof(type));
@@ -19,9 +19,9 @@ namespace EnduranceContestManager.Domain.Aggregates.Event.Trials
 
         private readonly List<Phase> phases = new();
         public IReadOnlyList<Phase> Phases => this.phases.AsReadOnly();
-        public Trial AddPhase(Phase phase)
+        public Competition AddPhase(Phase phase)
         {
-            this.Add(trial => trial.phases, phase);
+            this.Add(competition => competition.phases, phase);
             return this;
         }
 

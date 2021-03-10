@@ -12,12 +12,12 @@ namespace EnduranceContestManager.Domain.Aggregates.Manager.Participants
         }
 
         public int? MaxAverageSpeedInKpH { get; private set; }
-        public IReadOnlyList<TrialDto> Trials { get; private set; }
+        public IReadOnlyList<CompetitionDto> Competitions { get; private set; }
 
         public Participation Participation { get; private set; }
         public Participant Start()
         {
-            this.Participation = new Participation(this.Trials, this.MaxAverageSpeedInKpH);
+            this.Participation = new Participation(this.Competitions, this.MaxAverageSpeedInKpH);
             return this;
         }
     }

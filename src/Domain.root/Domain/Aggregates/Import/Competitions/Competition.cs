@@ -1,13 +1,13 @@
 using EnduranceContestManager.Domain.Aggregates.Import.Participants;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain.Aggregates.Import.Trials
+namespace EnduranceContestManager.Domain.Aggregates.Import.Competitions
 {
-    public class Trial : DomainModel<ImportTrialException>
+    public class Competition : DomainModel<ImportCompetitionException>
     {
         private readonly List<Participant> participants;
 
-        public Trial(List<Participant> participants) : base(default)
+        public Competition(List<Participant> participants) : base(default)
         {
             this.participants = participants;
         }

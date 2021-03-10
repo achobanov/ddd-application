@@ -21,7 +21,7 @@ namespace EnduranceContestManager.Gateways.Persistence
 
         public DbSet<CountryEntity> Countries { get; set; }
         public DbSet<EventEntity> Contests { get; set; }
-        public DbSet<TrialEntity> Trials { get; set; }
+        public DbSet<CompetitionEntity> Trials { get; set; }
         public DbSet<PhaseEntity> Phases { get; set; }
         public DbSet<PhaseForCategoryEntity> PhasesForCategories { get; set; }
 
