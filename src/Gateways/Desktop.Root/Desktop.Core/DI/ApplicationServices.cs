@@ -1,3 +1,4 @@
+using EnduranceContestManager.Application;
 using EnduranceContestManager.Application.Core;
 using EnduranceContestManager.Core;
 using EnduranceContestManager.Domain;

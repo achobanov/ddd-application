@@ -1,7 +1,7 @@
 using EnduranceContestManager.Core.Utilities;
 using System.Reflection;
 
-namespace EnduranceContestManager.Application.Core
+namespace EnduranceContestManager.Application
 {
     public static class ApplicationConstants
     {
