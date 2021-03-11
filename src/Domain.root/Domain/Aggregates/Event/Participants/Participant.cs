@@ -31,13 +31,13 @@ namespace EnduranceContestManager.Domain.Aggregates.Event.Participants
             return this;
         }
 
-        public Rider Rider { get; private set; }
-        public Participant Set(Rider rider)
+        public Athlete Athlete { get; private set; }
+        public Participant Set(Athlete athlete)
         {
             this.Set(
-                participant => participant.Rider,
-                (participant, r) => participant.Rider = r,
-                rider);
+                participant => participant.Athlete,
+                (participant, r) => participant.Athlete = r,
+                athlete);
 
             return this;
         }

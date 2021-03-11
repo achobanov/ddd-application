@@ -4,13 +4,13 @@ using EnduranceContestManager.Domain.Enums;
 using EnduranceContestManager.Domain.Validation;
 using System;
 
-namespace EnduranceContestManager.Domain.Aggregates.Import.Riders
+namespace EnduranceContestManager.Domain.Aggregates.Import.Athletes
 {
-    public class Rider : DomainModel<RiderException>, IRiderState
+    public class Athlete : DomainModel<RiderException>, IAthleteState
     {
         private const int AdultAgeInYears = 18;
 
-        public Rider(string feiId, string firstName, string lastName, string gender, DateTime birthDate)
+        public Athlete(string feiId, string firstName, string lastName, string gender, DateTime birthDate)
             : base(default)
         {
             this.Validate(() =>

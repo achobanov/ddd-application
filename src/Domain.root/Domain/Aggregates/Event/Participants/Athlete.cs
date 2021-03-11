@@ -3,10 +3,10 @@ using EnduranceContestManager.Domain.Enums;
 
 namespace EnduranceContestManager.Domain.Aggregates.Event.Participants
 {
-    public class Rider : DomainModel<ParticipantException>,
+    public class Athlete : DomainModel<ParticipantException>,
         IDependsOn<Participant>
     {
-        public Rider(int id, Category category) : base(id)
+        public Athlete(int id, Category category) : base(id)
             => this.Validate(() =>
             {
                 this.Category = category.IsRequired(nameof(category));

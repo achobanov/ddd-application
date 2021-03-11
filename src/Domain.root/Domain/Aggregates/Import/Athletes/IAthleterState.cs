@@ -2,9 +2,9 @@ using EnduranceContestManager.Domain.Core.Entities;
 using EnduranceContestManager.Domain.Enums;
 using System;
 
-namespace EnduranceContestManager.Domain.Aggregates.Import.Riders
+namespace EnduranceContestManager.Domain.Aggregates.Import.Athletes
 {
-    public interface IRiderState : IDomainModelState
+    public interface IAthleteState : IDomainModelState
     {
         public string FeiId { get; }
 
