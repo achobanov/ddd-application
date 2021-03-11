@@ -1,5 +1,4 @@
 using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Core.Utilities;
 using System.Reflection;
 
 namespace EnduranceContestManager.Gateways.Desktop.Core

@@ -1,7 +1,7 @@
 using EnduranceContestManager.Core.Utilities;
 using System.Reflection;
 
-namespace EnduranceContestManager.Gateways.Desktop.Core
+namespace EnduranceContestManager.Gateways.Desktop
 {
     public static class DesktopConstants
     {

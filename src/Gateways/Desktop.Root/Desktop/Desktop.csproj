@@ -9,15 +9,17 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\Application.root\Application\Application.csproj" />
       <ProjectReference Include="..\..\..\Core\Core.csproj" />
       <ProjectReference Include="..\..\..\Domain.root\Domain\Domain.csproj" />
       <ProjectReference Include="..\..\Persistence.root\Persistence\Persistence.csproj" />
-      <ProjectReference Include="..\Desktop.Core\Desktop.Core.csproj" />
       <ProjectReference Include="..\Desktop.Interfaces\Desktop.Interfaces.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Prism.Core" Version="8.0.0.1909" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+        <PackageReference Include="Prism.DryIoc" Version="8.0.0.1909" />
+        <PackageReference Include="Prism.Core" Version="8.0.0.1909" />
     </ItemGroup>
 
 </Project>
