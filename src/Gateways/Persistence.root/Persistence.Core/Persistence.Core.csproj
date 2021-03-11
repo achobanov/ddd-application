@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Application.root\Application.Core\Application.Core.csproj" />
+      <ProjectReference Include="..\..\..\Application.root\Application.Interfaces\Application.Interfaces.csproj" />
       <ProjectReference Include="..\..\..\Domain.root\Domain\Domain.csproj" />
     </ItemGroup>
 

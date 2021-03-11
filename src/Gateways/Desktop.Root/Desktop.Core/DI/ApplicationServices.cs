@@ -1,10 +1,7 @@
 using EnduranceContestManager.Application.Core;
 using EnduranceContestManager.Core;
-using EnduranceContestManager.Domain;
 using EnduranceContestManager.Domain.Core;
-using EnduranceContestManager.Gateways.Persistence;
 using EnduranceContestManager.Gateways.Persistence.Core;
-using EnduranceContestManager.Gateways.Persistence.Startup;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Ioc;
 using System.Linq;

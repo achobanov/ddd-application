@@ -1,4 +1,4 @@
-using EnduranceContestManager.Application.Core.Interfaces;
+using EnduranceContestManager.Application.Interfaces.Core;
 
 namespace EnduranceContestManager.Application.Interfaces.Contests
 {

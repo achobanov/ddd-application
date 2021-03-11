@@ -1,5 +1,5 @@
-using EnduranceContestManager.Application.Core.Interfaces;
 using EnduranceContestManager.Application.Core.Requests;
+using EnduranceContestManager.Application.Interfaces.Core;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;

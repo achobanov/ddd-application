@@ -1,4 +1,4 @@
-using EnduranceContestManager.Application.Core.Interfaces;
+using EnduranceContestManager.Application.Interfaces.Core;
 using EnduranceContestManager.Core.Mappings;
 using EnduranceContestManager.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
