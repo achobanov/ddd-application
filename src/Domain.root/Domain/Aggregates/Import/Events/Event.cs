@@ -1,6 +1,6 @@
 using EnduranceContestManager.Domain.Aggregates.Common;
 using EnduranceContestManager.Domain.Aggregates.Import.Competitions;
-using EnduranceContestManager.Domain.Core.Entities;
+using EnduranceContestManager.Domain.Core.Models;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Domain.Aggregates.Import.Events

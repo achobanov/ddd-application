@@ -1,4 +1,5 @@
 using EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhases;
+using EnduranceContestManager.Domain.Core.Models;
 using EnduranceContestManager.Domain.Core.Validation;
 
 namespace EnduranceContestManager.Domain.Aggregates.Manager.ResultsInPhases

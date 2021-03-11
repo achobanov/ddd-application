@@ -1,9 +1,9 @@
-using EnduranceContestManager.Domain.Core.Entities;
+using EnduranceContestManager.Domain.Core.Models;
 using EnduranceContestManager.Domain.Core.Validation;
 using System;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain
+namespace EnduranceContestManager.Domain.Core.Extensions
 {
     internal static class DomainModelExtensions
     {

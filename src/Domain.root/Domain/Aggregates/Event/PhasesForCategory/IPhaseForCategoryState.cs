@@ -1,4 +1,4 @@
-using EnduranceContestManager.Domain.Core.Entities;
+using EnduranceContestManager.Domain.Core.Models;
 using EnduranceContestManager.Domain.Enums;
 
 namespace EnduranceContestManager.Domain.Aggregates.Event.PhasesForCategory

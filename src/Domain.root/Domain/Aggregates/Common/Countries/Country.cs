@@ -1,3 +1,5 @@
+using EnduranceContestManager.Domain.Core.Models;
+
 namespace EnduranceContestManager.Domain.Aggregates.Common.Countries
 {
     public class Country : DomainModel<CountryException>, ICountryState

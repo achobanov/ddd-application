@@ -1,4 +1,5 @@
 using EnduranceContestManager.Domain.Aggregates.Ranking.ParticipationsInPhases;
+using EnduranceContestManager.Domain.Core.Models;
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Enums;
 using System;

@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
 using EnduranceContestManager.Core.Mappings;
 
-namespace EnduranceContestManager.Domain.Core
+namespace EnduranceContestManager.Domain
 {
     public class DomainMappingProfile : MappingProfile
     {
-        protected override Assembly[] Assemblies => DomainCoreConstants.Assemblies;
+        protected override Assembly[] Assemblies => DomainConstants.Assemblies;
     }
 }

@@ -1,6 +1,7 @@
 using EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInCompetitions;
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Aggregates.Manager.DTOs;
+using EnduranceContestManager.Domain.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

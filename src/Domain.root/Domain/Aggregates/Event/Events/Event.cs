@@ -1,5 +1,5 @@
 using EnduranceContestManager.Domain.Aggregates.Common;
-using EnduranceContestManager.Domain.Core.Entities;
+using EnduranceContestManager.Domain.Core.Models;
 
 namespace EnduranceContestManager.Domain.Aggregates.Event.Events
 {

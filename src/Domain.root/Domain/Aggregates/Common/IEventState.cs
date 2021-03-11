@@ -1,4 +1,4 @@
-using EnduranceContestManager.Domain.Core.Entities;
+using EnduranceContestManager.Domain.Core.Models;
 
 namespace EnduranceContestManager.Domain.Aggregates.Common
 {

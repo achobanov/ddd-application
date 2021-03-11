@@ -1,5 +1,5 @@
 using EnduranceContestManager.Domain.Aggregates.Ranking.Participations;
-using EnduranceContestManager.Domain.Core.Validation;
+using EnduranceContestManager.Domain.Core.Models;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Domain.Aggregates.Ranking.Competitions

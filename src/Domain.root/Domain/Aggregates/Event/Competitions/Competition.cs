@@ -1,6 +1,8 @@
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Aggregates.Event.Participants;
 using EnduranceContestManager.Domain.Aggregates.Event.Phases;
+using EnduranceContestManager.Domain.Core.Extensions;
+using EnduranceContestManager.Domain.Core.Models;
 using EnduranceContestManager.Domain.Enums;
 using System.Collections.Generic;
 

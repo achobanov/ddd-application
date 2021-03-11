@@ -1,6 +1,7 @@
 using EnduranceContestManager.Domain.Aggregates.Ranking.Classifications;
 using EnduranceContestManager.Domain.Aggregates.Ranking.Competitions;
-using EnduranceContestManager.Domain.Core.Entities;
+using EnduranceContestManager.Domain.Core;
+using EnduranceContestManager.Domain.Core.Models;
 using EnduranceContestManager.Domain.Enums;
 using System.Collections.Generic;
 

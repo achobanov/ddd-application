@@ -1,4 +1,4 @@
-namespace EnduranceContestManager.Domain.Core.Entities
+namespace EnduranceContestManager.Domain.Core.Models
 {
     public interface IDomainModelState
     {

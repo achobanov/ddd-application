@@ -1,6 +1,8 @@
 using EnduranceContestManager.Domain.Aggregates.Manager.ResultsInPhases;
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Aggregates.Manager.DTOs;
+using EnduranceContestManager.Domain.Core.Extensions;
+using EnduranceContestManager.Domain.Core.Models;
 using EnduranceContestManager.Domain.Validation;
 using System;
 

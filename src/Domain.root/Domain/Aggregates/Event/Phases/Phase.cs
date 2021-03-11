@@ -1,6 +1,8 @@
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Aggregates.Event.PhasesForCategory;
 using EnduranceContestManager.Domain.Aggregates.Event.Competitions;
+using EnduranceContestManager.Domain.Core.Extensions;
+using EnduranceContestManager.Domain.Core.Models;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Domain.Aggregates.Event.Phases

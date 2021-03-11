@@ -1,6 +1,7 @@
 using EnduranceContestManager.Domain.Aggregates.Manager.Participations;
-using EnduranceContestManager.Domain.Core.Entities;
+using EnduranceContestManager.Domain.Core.Models;
 using EnduranceContestManager.Domain.Aggregates.Manager.DTOs;
+using EnduranceContestManager.Domain.Core;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Domain.Aggregates.Manager.Participants

@@ -1,5 +1,6 @@
 using EnduranceContestManager.Domain.Aggregates.Common.Countries;
 using EnduranceContestManager.Domain.Core.Exceptions;
+using EnduranceContestManager.Domain.Core.Models;
 using EnduranceContestManager.Domain.Core.Validation;
 
 namespace EnduranceContestManager.Domain.Aggregates.Common

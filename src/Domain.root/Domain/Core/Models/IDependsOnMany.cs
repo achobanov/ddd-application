@@ -1,4 +1,4 @@
-namespace EnduranceContestManager.Domain
+namespace EnduranceContestManager.Domain.Core.Models
 {
     internal interface IDependsOnMany<in TDomainModel>
         where TDomainModel : IInternalDomainModel

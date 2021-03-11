@@ -1,4 +1,5 @@
 using EnduranceContestManager.Domain.Aggregates.Event.ContestPersonnel;
+using EnduranceContestManager.Domain.Core.Extensions;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EnduranceContestManager.Domain.Aggregates.Event.Events

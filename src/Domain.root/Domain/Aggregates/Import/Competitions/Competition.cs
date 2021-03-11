@@ -1,4 +1,5 @@
 using EnduranceContestManager.Domain.Aggregates.Import.Participants;
+using EnduranceContestManager.Domain.Core.Models;
 using System.Collections.Generic;
 
 namespace EnduranceContestManager.Domain.Aggregates.Import.Competitions

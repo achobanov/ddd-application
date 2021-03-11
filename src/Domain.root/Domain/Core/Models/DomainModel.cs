@@ -1,9 +1,9 @@
-﻿using EnduranceContestManager.Domain.Core.Entities;
+﻿using EnduranceContestManager.Domain.Core.Models;
 using EnduranceContestManager.Domain.Core.Exceptions;
 using EnduranceContestManager.Domain.Core.Validation;
 using System;
 
-namespace EnduranceContestManager.Domain
+namespace EnduranceContestManager.Domain.Core.Models
 {
     public abstract class DomainModel<TException> : IInternalDomainModel
         where TException : DomainException, new()

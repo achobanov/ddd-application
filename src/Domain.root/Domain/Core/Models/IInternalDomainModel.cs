@@ -1,7 +1,6 @@
-using EnduranceContestManager.Domain.Core.Entities;
 using System;
 
-namespace EnduranceContestManager.Domain
+namespace EnduranceContestManager.Domain.Core.Models
 {
     internal interface IInternalDomainModel : IDomainModel
     {

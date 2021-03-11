@@ -1,5 +1,5 @@
 using EnduranceContestManager.Core.ConventionalServices;
-using EnduranceContestManager.Domain.Core.Entities;
+using EnduranceContestManager.Domain.Core.Models;
 
 namespace EnduranceContestManager.Application.Core.Factories
 {

@@ -1,6 +1,7 @@
 using EnduranceContestManager.Domain.Core.Validation;
 using EnduranceContestManager.Domain.Enums;
 using EnduranceContestManager.Domain.Aggregates.Event.Phases;
+using EnduranceContestManager.Domain.Core.Models;
 
 namespace EnduranceContestManager.Domain.Aggregates.Event.PhasesForCategory
 {

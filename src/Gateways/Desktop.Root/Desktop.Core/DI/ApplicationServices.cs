@@ -1,6 +1,6 @@
 using EnduranceContestManager.Application.Core;
 using EnduranceContestManager.Core;
-using EnduranceContestManager.Domain.Core;
+using EnduranceContestManager.Domain;
 using EnduranceContestManager.Gateways.Persistence.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Ioc;
@@ -13,7 +13,7 @@ namespace EnduranceContestManager.Gateways.Desktop.Core.DI
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             var assemblies = CoreConstants.Assemblies
-                .Concat(DomainCoreConstants.Assemblies)
+                .Concat(DomainConstants.Assemblies)
                 .Concat(ApplicationConstants.Assemblies)
                 .Concat(PersistenceCoreConstants.Assemblies)
                 .Concat(DesktopConstants.Assemblies)

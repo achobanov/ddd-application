@@ -1,7 +1,7 @@
 using EnduranceContestManager.Application.Core.Requests;
 using EnduranceContestManager.Application.Interfaces.Core;
 using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Core.Entities;
+using EnduranceContestManager.Domain.Core.Models;
 using System.Threading;
 using System.Threading.Tasks;
 

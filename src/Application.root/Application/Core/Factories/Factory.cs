@@ -1,5 +1,5 @@
 using EnduranceContestManager.Application.Core.Exceptions;
-using EnduranceContestManager.Domain.Core.Entities;
+using EnduranceContestManager.Domain.Core.Models;
 using EnduranceContestManager.Domain.Core.Exceptions;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Common;

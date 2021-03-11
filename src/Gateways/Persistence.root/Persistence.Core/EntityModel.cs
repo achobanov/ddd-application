@@ -1,5 +1,5 @@
 using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Core.Entities;
+using EnduranceContestManager.Domain.Core.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace EnduranceContestManager.Gateways.Persistence.Core

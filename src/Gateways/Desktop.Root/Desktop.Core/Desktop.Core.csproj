@@ -14,7 +14,6 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\Application.root\Application\Application.csproj" />
       <ProjectReference Include="..\..\..\Core\Core.csproj" />
-      <ProjectReference Include="..\..\..\Domain.root\Domain.Core\Domain.Core.csproj" />
       <ProjectReference Include="..\..\..\Domain.root\Domain\Domain.csproj" />
       <ProjectReference Include="..\..\Persistence.root\Persistence.Core\Persistence.Core.csproj" />
       <ProjectReference Include="..\..\Persistence.root\Persistence\Persistence.csproj" />
