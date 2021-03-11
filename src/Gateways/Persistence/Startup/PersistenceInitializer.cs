@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using EnduranceContestManager.Core.Interfaces;
+using System;
 using System.Threading.Tasks;
-using EnduranceContestManager.Gateways.Desktop.Interfaces;
 using EnduranceContestManager.Gateways.Persistence.Core.Services;
 using EnduranceContestManager.Gateways.Persistence.Services;
 using Microsoft.Extensions.DependencyInjection;

@@ -1,6 +1,6 @@
 using AutoMapper;
+using EnduranceContestManager.Core.Interfaces;
 using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Gateways.Desktop.Interfaces;
 using System;
 using System.Threading.Tasks;
 

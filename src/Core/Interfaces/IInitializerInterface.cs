@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Gateways.Desktop.Interfaces
+namespace EnduranceContestManager.Core.Interfaces
 {
     public interface IInitializerInterface
     {

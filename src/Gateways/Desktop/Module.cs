@@ -1,8 +1,5 @@
-using EnduranceContestManager.Application.Contests.Commands;
-using EnduranceContestManager.Application.Contests.Queries.Details;
 using EnduranceContestManager.Application.Test;
 using EnduranceContestManager.Core.Interfaces;
-using EnduranceContestManager.Gateways.Desktop.Interfaces;
 using EnduranceContestManager.Gateways.Desktop.Views;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;

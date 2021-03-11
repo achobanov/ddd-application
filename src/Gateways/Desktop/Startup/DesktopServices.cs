@@ -1,4 +1,4 @@
-using EnduranceContestManager.Gateways.Desktop.Interfaces;
+using EnduranceContestManager.Core.Interfaces;
 using EnduranceContestManager.Gateways.Desktop.Core.DI;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Ioc;
