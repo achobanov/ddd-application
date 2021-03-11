@@ -3,9 +3,9 @@ using EnduranceContestManager.Domain.Aggregates.Import.Competitions;
 using EnduranceContestManager.Domain.Core.Entities;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain.Aggregates.Import.Contests
+namespace EnduranceContestManager.Domain.Aggregates.Import.Events
 {
-    public class Event : BaseEvent<ImportContestException>, IAggregateRoot
+    public class Event : BaseEvent<ImportEventException>, IAggregateRoot
     {
         private readonly List<Competition> competitions;
 
