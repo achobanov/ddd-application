@@ -5,6 +5,6 @@ namespace EnduranceJudge.Gateways.Persistence.Core
 {
     public class PersistenceMappingProfile : MappingProfile
     {
-        protected override Assembly[] Assemblies => PersistenceCoreConstants.Assemblies;
+        protected override Assembly[] Assemblies => PersistenceConstants.Assemblies;
     }
 }

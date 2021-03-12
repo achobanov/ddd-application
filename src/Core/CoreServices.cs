@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.EquivalencyExpression;
 using EnduranceJudge.Core.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
@@ -16,6 +17,10 @@ namespace EnduranceJudge.Core
         private static IServiceCollection AddMapping(
             this IServiceCollection services,
             IEnumerable<Assembly> assemblies)
-            => services.AddAutoMapper(assemblies);
+            => services.AddAutoMapper(configuration =>
+                {
+                    configuration.AddCollectionMappers();
+                },
+                assemblies);
     }
 }

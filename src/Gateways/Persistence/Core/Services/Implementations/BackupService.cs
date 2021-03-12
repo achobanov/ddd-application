@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
-using static EnduranceJudge.Gateways.Persistence.Core.PersistenceCoreConstants;
+using static EnduranceJudge.Gateways.Persistence.PersistenceConstants;
 
 namespace EnduranceJudge.Gateways.Persistence.Core.Services.Implementations
 {
@@ -37,13 +37,13 @@ namespace EnduranceJudge.Gateways.Persistence.Core.Services.Implementations
             var serialized = this.serialization.Serialize(data);
             var encrypted = this.encryption.Encrypt(serialized);
 
-            await this.file.Create(BackupFileName, encrypted);
+            await this.file.Create(PersistenceConstants.BackupFileName, encrypted);
         }
 
         public async Task Restore<TDataStore>(TDataStore dbContext)
             where TDataStore : DbContext
         {
-            var encrypted = await this.file.Read(BackupFileName);
+            var encrypted = await this.file.Read(PersistenceConstants.BackupFileName);
             if (string.IsNullOrEmpty(encrypted))
             {
                 return;
@@ -67,7 +67,7 @@ namespace EnduranceJudge.Gateways.Persistence.Core.Services.Implementations
             var dbSetProperties = properties
                 .Where(propertyInfo =>
                     propertyInfo.PropertyType.IsGenericType &&
-                    (propertyInfo.PropertyType.BaseType?.IsAssignableFrom(PersistenceCoreConstants.Types.DbSet) ?? false) &&
+                    (propertyInfo.PropertyType.BaseType?.IsAssignableFrom(Types.DbSet) ?? false) &&
                     propertyInfo.PropertyType.Name != "CountryEntity") // Improve
                 .ToList();
 
@@ -92,10 +92,10 @@ namespace EnduranceJudge.Gateways.Persistence.Core.Services.Implementations
                 .First();
 
 
-            var entityCollectionType = PersistenceCoreConstants.Types.List.MakeGenericType(entityType);
+            var entityCollectionType = Types.List.MakeGenericType(entityType);
             var entityCollection = this.serialization.Deserialize(serializedEntityCollection, entityCollectionType);
 
-            var entitySetType = PersistenceCoreConstants.Types.DbSet.MakeGenericType(entityType);
+            var entitySetType = Types.DbSet.MakeGenericType(entityType);
             var addRangeMethod = entitySetType.GetMethod("AddRange", new[] { entityCollectionType });
 
             // Expression
@@ -111,7 +111,7 @@ namespace EnduranceJudge.Gateways.Persistence.Core.Services.Implementations
             // db => db.SetName.AddRange(entities)
             var call = Expression.Call(dbSetAccessor, addRangeMethod, entityCollectionParam);
 
-            var lambdaType = PersistenceCoreConstants.Types.Action.MakeGenericType(dbContextType, entityCollectionType);
+            var lambdaType = Types.Action.MakeGenericType(dbContextType, entityCollectionType);
             var lambda = Expression.Lambda(lambdaType, call, dbContextParam, entityCollectionParam);
 
             lambda.Compile().DynamicInvoke(dbContext, entityCollection);

@@ -4,23 +4,20 @@ using EnduranceJudge.Core.Mappings;
 using System;
 using System.Threading.Tasks;
 
-namespace EnduranceJudge.Gateways.Desktop.Startup
+namespace EnduranceJudge.Core
 {
-    public class DesktopInitializer : IInitializerInterface
+    public class CoreInitializer : IInitializerInterface
     {
         private readonly IMapper mapper;
 
-        public DesktopInitializer(IMapper mapper)
+        public CoreInitializer(IMapper mapper)
             => this.mapper = mapper;
 
         public Task Run(IServiceProvider serviceProvider)
         {
-            this.ConfigureMappingApi();
+            MappingApi.Initialize(this.mapper);
 
             return Task.CompletedTask;
         }
-
-        private void ConfigureMappingApi()
-            => MappingApi.Configure(this.mapper);
     }
 }

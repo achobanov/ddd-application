@@ -75,7 +75,7 @@ namespace EnduranceJudge.Core.Mappings
 
         private static IMapper Mapper;
 
-        public static void Configure(IMapper mapper)
+        public static void Initialize(IMapper mapper)
             => Mapper = mapper;
 
         private static void ValidateConfiguration()

@@ -11,14 +11,9 @@ namespace EnduranceJudge.Gateways.Desktop.Startup
         {
             new ServiceCollection()
                 .AddApplicationServices()
-                .AddDesktop()
                 .AdaptToDesktop(container);
 
             return container;
         }
-
-        private static IServiceCollection AddDesktop(this IServiceCollection services)
-            => services
-                .AddSingleton<IInitializerInterface, DesktopInitializer>();
     }
 }

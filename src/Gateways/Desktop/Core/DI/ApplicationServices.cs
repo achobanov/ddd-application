@@ -2,7 +2,8 @@ using EnduranceJudge.Application.Core;
 using EnduranceJudge.Application;
 using EnduranceJudge.Core;
 using EnduranceJudge.Domain;
-using EnduranceJudge.Gateways.Persistence.Core;
+using EnduranceJudge.Gateways.Persistence;
+using EnduranceJudge.Gateways.Persistence.Startup;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Ioc;
 using System.Linq;
@@ -16,14 +17,14 @@ namespace EnduranceJudge.Gateways.Desktop.Core.DI
             var assemblies = CoreConstants.Assemblies
                 .Concat(DomainConstants.Assemblies)
                 .Concat(ApplicationConstants.Assemblies)
-                .Concat(PersistenceCoreConstants.Assemblies)
+                .Concat(PersistenceConstants.Assemblies)
                 .Concat(DesktopConstants.Assemblies)
                 .ToArray();
 
             return services
                 .AddCore(assemblies)
-                .AddApplication();
-            // .AddPersistence();
+                .AddApplication()
+                .AddPersistence();
         }
 
         public static IServiceCollection AdaptToDesktop(
