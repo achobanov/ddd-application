@@ -19,6 +19,8 @@ namespace EnduranceJudge.Gateways.Persistence.Startup
             this.seeder = seeder;
         }
 
+        public int Order { get; } = 10;
+
         public async Task Run(IServiceProvider serviceProvider)
         {
             var dbContext = serviceProvider.GetService<EnduranceJudgeDbContext>();

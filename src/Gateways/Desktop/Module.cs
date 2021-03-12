@@ -7,6 +7,7 @@ using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
 using System;
+using System.Linq;
 
 namespace EnduranceJudge.Gateways.Desktop
 {
@@ -28,7 +29,7 @@ namespace EnduranceJudge.Gateways.Desktop
         {
             var aspNetProvider = containerProvider.Resolve<IServiceProvider>();
             var initializers = aspNetProvider.GetServices<IInitializerInterface>();
-            foreach (var initializer in initializers)
+            foreach (var initializer in initializers.OrderBy(x => x.Order))
             {
                 await initializer.Run(aspNetProvider);
             }
