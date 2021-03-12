@@ -1,15 +1,15 @@
-using EnduranceContestManager.Application.Core.Handlers;
-using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Aggregates.Event.Events;
-using EnduranceContestManager.Domain.Aggregates.Event.Competitions;
-using EnduranceContestManager.Domain.Aggregates.Manager.Participants;
-using EnduranceContestManager.Domain.Aggregates.Manager.DTOs;
-using EnduranceContestManager.Domain.Enums;
+using EnduranceJudge.Domain.Aggregates.Manager.Participants;
+using EnduranceJudge.Domain.Aggregates.Manager.DTOs;
+using EnduranceJudge.Application.Core.Handlers;
+using EnduranceJudge.Core.Mappings;
+using EnduranceJudge.Domain.Aggregates.Event.Competitions;
+using EnduranceJudge.Domain.Aggregates.Event.Events;
+using EnduranceJudge.Domain.Enums;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Application.Test
+namespace EnduranceJudge.Application.Test
 {
     public class Test : IRequest, IMapTo<Event>
     {

@@ -1,6 +1,6 @@
-using EnduranceContestManager.Domain.Core.Exceptions;
+using EnduranceJudge.Domain.Core.Exceptions;
 
-namespace EnduranceContestManager.Domain.Aggregates.Import.Horses
+namespace EnduranceJudge.Domain.Aggregates.Import.Horses
 {
     public class HorseException : DomainException
     {

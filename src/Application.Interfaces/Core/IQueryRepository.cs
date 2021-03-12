@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Application.Interfaces.Core
+namespace EnduranceJudge.Application.Interfaces.Core
 {
     public interface IQueryRepository
     {

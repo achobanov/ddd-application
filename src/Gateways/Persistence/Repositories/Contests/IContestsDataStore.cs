@@ -1,8 +1,8 @@
-using EnduranceContestManager.Gateways.Persistence.Core;
-using EnduranceContestManager.Gateways.Persistence.Entities;
+using EnduranceJudge.Gateways.Persistence.Core;
+using EnduranceJudge.Gateways.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace EnduranceContestManager.Gateways.Persistence.Repositories.Contests
+namespace EnduranceJudge.Gateways.Persistence.Repositories.Contests
 {
     public interface IContestsDataStore : IDataStore
     {

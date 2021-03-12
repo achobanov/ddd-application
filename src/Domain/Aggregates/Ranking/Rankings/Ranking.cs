@@ -1,11 +1,11 @@
-using EnduranceContestManager.Domain.Aggregates.Ranking.Classifications;
-using EnduranceContestManager.Domain.Aggregates.Ranking.Competitions;
-using EnduranceContestManager.Domain.Core;
-using EnduranceContestManager.Domain.Core.Models;
-using EnduranceContestManager.Domain.Enums;
+using EnduranceJudge.Domain.Core;
+using EnduranceJudge.Domain.Aggregates.Ranking.Classifications;
+using EnduranceJudge.Domain.Aggregates.Ranking.Competitions;
+using EnduranceJudge.Domain.Core.Models;
+using EnduranceJudge.Domain.Enums;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain.Aggregates.Ranking.Rankings
+namespace EnduranceJudge.Domain.Aggregates.Ranking.Rankings
 {
     public class Ranking : DomainModel<RankingException>, IAggregateRoot
     {

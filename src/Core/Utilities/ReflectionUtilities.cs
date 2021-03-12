@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-namespace EnduranceContestManager.Core.Utilities
+namespace EnduranceJudge.Core.Utilities
 {
     public static class ReflectionUtilities
     {

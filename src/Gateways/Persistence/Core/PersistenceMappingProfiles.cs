@@ -1,7 +1,7 @@
-using EnduranceContestManager.Core.Mappings;
+using EnduranceJudge.Core.Mappings;
 using System.Reflection;
 
-namespace EnduranceContestManager.Gateways.Persistence.Core
+namespace EnduranceJudge.Gateways.Persistence.Core
 {
     public class PersistenceMappingProfile : MappingProfile
     {

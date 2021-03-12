@@ -1,8 +1,8 @@
-using EnduranceContestManager.Domain.Enums;
+using EnduranceJudge.Domain.Enums;
 using System;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain.Aggregates.Manager.DTOs
+namespace EnduranceJudge.Domain.Aggregates.Manager.DTOs
 {
     public class CompetitionDto
     {

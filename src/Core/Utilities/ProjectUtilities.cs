@@ -1,4 +1,4 @@
-namespace EnduranceContestManager.Core.Utilities
+namespace EnduranceJudge.Core.Utilities
 {
     public static class ProjectUtilities
     {

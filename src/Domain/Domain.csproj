@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>EnduranceContestManager.Domain</RootNamespace>
-    <AssemblyName>EnduranceContestManager.Domain</AssemblyName>
+    <RootNamespace>EnduranceJudge.Domain</RootNamespace>
+    <AssemblyName>EnduranceJudge.Domain</AssemblyName>
     <Configurations>Debug;Release</Configurations>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>

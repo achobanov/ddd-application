@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Core.Extensions
+namespace EnduranceJudge.Core.Extensions
 {
     public static class EnumerableExtensions
     {

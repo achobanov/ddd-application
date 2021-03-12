@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Gateways.Persistence.Core
+namespace EnduranceJudge.Gateways.Persistence.Core
 {
     public interface IDataStore
     {

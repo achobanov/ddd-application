@@ -1,11 +1,11 @@
-﻿using EnduranceContestManager.Gateways.Desktop.Startup;
-using EnduranceContestManager.Gateways.Desktop.Views;
+﻿using EnduranceJudge.Gateways.Desktop.Startup;
+using EnduranceJudge.Gateways.Desktop.Views;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Modularity;
 using System.Windows;
 
-namespace EnduranceContestManager.Gateways.Desktop
+namespace EnduranceJudge.Gateways.Desktop
 {
     public partial class App : PrismApplication
     {

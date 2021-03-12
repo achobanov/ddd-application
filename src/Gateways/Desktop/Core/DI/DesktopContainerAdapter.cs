@@ -1,7 +1,7 @@
 using Prism.Ioc;
 using System;
 
-namespace EnduranceContestManager.Gateways.Desktop.Core.DI
+namespace EnduranceJudge.Gateways.Desktop.Core.DI
 {
     internal class DesktopContainerAdapter
     {

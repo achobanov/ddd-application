@@ -1,6 +1,6 @@
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Domain.Core.Models;
 
-namespace EnduranceContestManager.Domain.Aggregates.Common
+namespace EnduranceJudge.Domain.Aggregates.Common
 {
     public interface IEventState : IDomainModelState
     {

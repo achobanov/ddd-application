@@ -1,7 +1,7 @@
-using EnduranceContestManager.Domain.Core.Models;
-using EnduranceContestManager.Domain.Enums;
+using EnduranceJudge.Domain.Core.Models;
+using EnduranceJudge.Domain.Enums;
 
-namespace EnduranceContestManager.Domain.Aggregates.Event.Competitions
+namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
 {
     public interface ICompetitionState : IDomainModelState
     {

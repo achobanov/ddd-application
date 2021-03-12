@@ -1,6 +1,6 @@
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Domain.Core.Models;
 
-namespace EnduranceContestManager.Domain.Aggregates.Ranking.ResultsInPhases
+namespace EnduranceJudge.Domain.Aggregates.Ranking.ResultsInPhases
 {
     public class ResultInPhase : DomainModel<RankingResultInPhaseException>
     {

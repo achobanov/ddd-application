@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace EnduranceContestManager.Core.Mappings
+namespace EnduranceJudge.Core.Mappings
 {
     public interface IMapFrom<T>
     {

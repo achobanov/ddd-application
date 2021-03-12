@@ -1,8 +1,8 @@
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Domain.Core.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EnduranceContestManager.Domain.Core.Validation
+namespace EnduranceJudge.Domain.Core.Validation
 {
     public static class ValidationExtensions
     {

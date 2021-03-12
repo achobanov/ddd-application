@@ -1,13 +1,13 @@
-using EnduranceContestManager.Application;
-using EnduranceContestManager.Application.Core;
-using EnduranceContestManager.Core;
-using EnduranceContestManager.Domain;
-using EnduranceContestManager.Gateways.Persistence.Core;
+using EnduranceJudge.Application.Core;
+using EnduranceJudge.Application;
+using EnduranceJudge.Core;
+using EnduranceJudge.Domain;
+using EnduranceJudge.Gateways.Persistence.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Ioc;
 using System.Linq;
 
-namespace EnduranceContestManager.Gateways.Desktop.Core.DI
+namespace EnduranceJudge.Gateways.Desktop.Core.DI
 {
     public static class ApplicationServices
     {

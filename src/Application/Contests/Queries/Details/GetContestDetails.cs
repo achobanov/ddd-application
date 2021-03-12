@@ -1,9 +1,9 @@
-using EnduranceContestManager.Application.Core.Handlers;
-using EnduranceContestManager.Application.Core.Requests;
-using EnduranceContestManager.Application.Interfaces.Contests;
+using EnduranceJudge.Application.Core.Handlers;
+using EnduranceJudge.Application.Core.Requests;
+using EnduranceJudge.Application.Interfaces.Contests;
 using MediatR;
 
-namespace EnduranceContestManager.Application.Contests.Queries.Details
+namespace EnduranceJudge.Application.Contests.Queries.Details
 {
     public class GetContestDetails : IRequest<ContestDetailsModel>, IIdentifiableRequest
     {

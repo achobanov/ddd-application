@@ -1,8 +1,8 @@
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Domain.Core.Models;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Application.Interfaces.Core
+namespace EnduranceJudge.Application.Interfaces.Core
 {
     public interface ICommandRepository<in TDomainModel> : IQueryRepository
         where TDomainModel : IAggregateRoot

@@ -1,7 +1,7 @@
-using EnduranceContestManager.Domain.Core.Validation;
+using EnduranceJudge.Domain.Core.Validation;
 using System;
 
-namespace EnduranceContestManager.Domain.Validation
+namespace EnduranceJudge.Domain.Validation
 {
     public static class DateTimeValidations
     {

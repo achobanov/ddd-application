@@ -1,9 +1,9 @@
-using EnduranceContestManager.Domain.Aggregates.Common.Countries;
-using EnduranceContestManager.Domain.Core.Exceptions;
-using EnduranceContestManager.Domain.Core.Models;
-using EnduranceContestManager.Domain.Core.Validation;
+using EnduranceJudge.Domain.Core.Validation;
+using EnduranceJudge.Domain.Aggregates.Common.Countries;
+using EnduranceJudge.Domain.Core.Exceptions;
+using EnduranceJudge.Domain.Core.Models;
 
-namespace EnduranceContestManager.Domain.Aggregates.Common
+namespace EnduranceJudge.Domain.Aggregates.Common
 {
     public abstract class BaseEvent<TException> : DomainModel<TException>, IEventState
         where TException : DomainException, new()

@@ -1,7 +1,7 @@
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Domain.Core.Models;
 using System;
 
-namespace EnduranceContestManager.Domain.Aggregates.Import.Horses
+namespace EnduranceJudge.Domain.Aggregates.Import.Horses
 {
     public interface IHorseState : IDomainModelState
     {

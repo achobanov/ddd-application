@@ -1,6 +1,6 @@
-using EnduranceContestManager.Application.Test;
-using EnduranceContestManager.Core.Interfaces;
-using EnduranceContestManager.Gateways.Desktop.Views;
+using EnduranceJudge.Application.Test;
+using EnduranceJudge.Core.Interfaces;
+using EnduranceJudge.Gateways.Desktop.Views;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Ioc;
@@ -8,7 +8,7 @@ using Prism.Modularity;
 using Prism.Regions;
 using System;
 
-namespace EnduranceContestManager.Gateways.Desktop
+namespace EnduranceJudge.Gateways.Desktop
 {
     public class Module : IModule
     {

@@ -1,6 +1,6 @@
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Domain.Core.Models;
 
-namespace EnduranceContestManager.Domain.Core.Models
+namespace EnduranceJudge.Domain.Core.Models
 {
     internal interface IDependsOn<in TPrincipal> : IDomainModel
         where TPrincipal : IDomainModel

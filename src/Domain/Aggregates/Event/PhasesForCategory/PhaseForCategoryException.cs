@@ -1,6 +1,6 @@
-using EnduranceContestManager.Domain.Core.Exceptions;
+using EnduranceJudge.Domain.Core.Exceptions;
 
-namespace EnduranceContestManager.Domain.Aggregates.Event.PhasesForCategory
+namespace EnduranceJudge.Domain.Aggregates.Event.PhasesForCategory
 {
     public class PhaseForCategoryException : DomainException
     {

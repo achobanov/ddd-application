@@ -1,4 +1,4 @@
-namespace EnduranceContestManager.Gateways.Persistence
+namespace EnduranceJudge.Gateways.Persistence
 {
     public static class PersistenceConstants
     {

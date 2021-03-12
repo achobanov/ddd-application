@@ -1,11 +1,11 @@
-using EnduranceContestManager.Domain.Aggregates.Common.Countries;
-using EnduranceContestManager.Domain.Core.Models;
-using EnduranceContestManager.Domain.Core.Validation;
-using EnduranceContestManager.Domain.Enums;
-using EnduranceContestManager.Domain.Validation;
+using EnduranceJudge.Domain.Core.Validation;
+using EnduranceJudge.Domain.Validation;
+using EnduranceJudge.Domain.Aggregates.Common.Countries;
+using EnduranceJudge.Domain.Core.Models;
+using EnduranceJudge.Domain.Enums;
 using System;
 
-namespace EnduranceContestManager.Domain.Aggregates.Import.Athletes
+namespace EnduranceJudge.Domain.Aggregates.Import.Athletes
 {
     public class Athlete : DomainModel<RiderException>, IAthleteState
     {

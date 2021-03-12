@@ -1,8 +1,8 @@
-using EnduranceContestManager.Domain.Core.Models;
-using EnduranceContestManager.Domain.Enums;
+using EnduranceJudge.Domain.Core.Models;
+using EnduranceJudge.Domain.Enums;
 using System;
 
-namespace EnduranceContestManager.Domain.Aggregates.Import.Athletes
+namespace EnduranceJudge.Domain.Aggregates.Import.Athletes
 {
     public interface IAthleteState : IDomainModelState
     {

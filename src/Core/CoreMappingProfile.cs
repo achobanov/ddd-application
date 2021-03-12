@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-using EnduranceContestManager.Core.Mappings;
+using EnduranceJudge.Core.Mappings;
 
-namespace EnduranceContestManager.Core
+namespace EnduranceJudge.Core
 {
     public class CoreMappingProfile : MappingProfile
     {

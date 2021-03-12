@@ -1,6 +1,6 @@
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Domain.Core.Models;
 
-namespace EnduranceContestManager.Domain.Aggregates.Common.Countries
+namespace EnduranceJudge.Domain.Aggregates.Common.Countries
 {
     public class Country : DomainModel<CountryException>, ICountryState
     {

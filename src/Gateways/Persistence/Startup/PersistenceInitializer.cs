@@ -1,11 +1,11 @@
-﻿using EnduranceContestManager.Core.Interfaces;
-using System;
+﻿using System;
 using System.Threading.Tasks;
-using EnduranceContestManager.Gateways.Persistence.Core.Services;
-using EnduranceContestManager.Gateways.Persistence.Services;
+using EnduranceJudge.Core.Interfaces;
+using EnduranceJudge.Gateways.Persistence.Core.Services;
+using EnduranceJudge.Gateways.Persistence.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace EnduranceContestManager.Gateways.Persistence.Startup
+namespace EnduranceJudge.Gateways.Persistence.Startup
 {
     public class PersistenceInitializer : IInitializerInterface
     {

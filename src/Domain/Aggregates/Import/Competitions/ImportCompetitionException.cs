@@ -1,6 +1,6 @@
-using EnduranceContestManager.Domain.Core.Exceptions;
+using EnduranceJudge.Domain.Core.Exceptions;
 
-namespace EnduranceContestManager.Domain.Aggregates.Import.Competitions
+namespace EnduranceJudge.Domain.Aggregates.Import.Competitions
 {
     public class ImportCompetitionException : DomainException
     {

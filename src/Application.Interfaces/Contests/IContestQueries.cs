@@ -1,6 +1,6 @@
-using EnduranceContestManager.Application.Interfaces.Core;
+using EnduranceJudge.Application.Interfaces.Core;
 
-namespace EnduranceContestManager.Application.Interfaces.Contests
+namespace EnduranceJudge.Application.Interfaces.Contests
 {
     public interface IContestQueries : IQueryRepository
     {

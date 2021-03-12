@@ -1,8 +1,8 @@
-using EnduranceContestManager.Domain.Aggregates.Import.Participants;
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Domain.Aggregates.Import.Participants;
+using EnduranceJudge.Domain.Core.Models;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain.Aggregates.Import.Competitions
+namespace EnduranceJudge.Domain.Aggregates.Import.Competitions
 {
     public class Competition : DomainModel<ImportCompetitionException>
     {

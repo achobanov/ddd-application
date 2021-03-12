@@ -1,9 +1,9 @@
-using EnduranceContestManager.Core.Interfaces;
-using EnduranceContestManager.Gateways.Desktop.Core.DI;
+using EnduranceJudge.Gateways.Desktop.Core.DI;
+using EnduranceJudge.Core.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Ioc;
 
-namespace EnduranceContestManager.Gateways.Desktop.Startup
+namespace EnduranceJudge.Gateways.Desktop.Startup
 {
     public static class DesktopServices
     {

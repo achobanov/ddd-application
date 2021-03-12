@@ -1,8 +1,8 @@
-using EnduranceContestManager.Application.Core.Factories;
-using EnduranceContestManager.Domain.Aggregates.Common;
-using EnduranceContestManager.Domain.Aggregates.Event.Events;
+using EnduranceJudge.Application.Core.Factories;
+using EnduranceJudge.Domain.Aggregates.Common;
+using EnduranceJudge.Domain.Aggregates.Event.Events;
 
-namespace EnduranceContestManager.Application.Contests
+namespace EnduranceJudge.Application.Contests
 {
     public class ContestFactory : Factory<Event, IEventState>, IContestFactory
     {

@@ -1,10 +1,10 @@
-using EnduranceContestManager.Domain.Aggregates.Manager.Participations;
-using EnduranceContestManager.Domain.Core.Models;
-using EnduranceContestManager.Domain.Aggregates.Manager.DTOs;
-using EnduranceContestManager.Domain.Core;
+using EnduranceJudge.Domain.Core;
+using EnduranceJudge.Domain.Aggregates.Manager.DTOs;
+using EnduranceJudge.Domain.Aggregates.Manager.Participations;
+using EnduranceJudge.Domain.Core.Models;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain.Aggregates.Manager.Participants
+namespace EnduranceJudge.Domain.Aggregates.Manager.Participants
 {
     public class Participant : DomainModel<ManagerParticipantException>, IAggregateRoot
     {

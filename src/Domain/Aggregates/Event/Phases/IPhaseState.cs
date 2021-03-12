@@ -1,6 +1,6 @@
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Domain.Core.Models;
 
-namespace EnduranceContestManager.Domain.Aggregates.Event.Phases
+namespace EnduranceJudge.Domain.Aggregates.Event.Phases
 {
     public interface IPhaseState : IDomainModelState
     {

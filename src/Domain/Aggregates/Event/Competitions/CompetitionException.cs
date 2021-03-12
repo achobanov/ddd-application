@@ -1,6 +1,6 @@
-using EnduranceContestManager.Domain.Core.Exceptions;
+using EnduranceJudge.Domain.Core.Exceptions;
 
-namespace EnduranceContestManager.Domain.Aggregates.Event.Competitions
+namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
 {
     public class CompetitionException : DomainException
     {

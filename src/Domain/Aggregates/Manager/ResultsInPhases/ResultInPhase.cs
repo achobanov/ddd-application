@@ -1,8 +1,8 @@
-using EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhases;
-using EnduranceContestManager.Domain.Core.Models;
-using EnduranceContestManager.Domain.Core.Validation;
+using EnduranceJudge.Domain.Core.Validation;
+using EnduranceJudge.Domain.Aggregates.Manager.ParticipationsInPhases;
+using EnduranceJudge.Domain.Core.Models;
 
-namespace EnduranceContestManager.Domain.Aggregates.Manager.ResultsInPhases
+namespace EnduranceJudge.Domain.Aggregates.Manager.ResultsInPhases
 {
     public class ResultInPhase : DomainModel<ManagerResultInPhaseException>, IResultInPhaseState,
         IDependsOn<ParticipationInPhase>

@@ -1,7 +1,7 @@
-using EnduranceContestManager.Core.ConventionalServices;
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Core.ConventionalServices;
+using EnduranceJudge.Domain.Core.Models;
 
-namespace EnduranceContestManager.Application.Core.Factories
+namespace EnduranceJudge.Application.Core.Factories
 {
     public interface IFactory<out TEntity> : IService
     {

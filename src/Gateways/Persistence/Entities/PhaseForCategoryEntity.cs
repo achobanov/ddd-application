@@ -1,9 +1,9 @@
-using EnduranceContestManager.Domain.Aggregates.Event.PhasesForCategory;
-using EnduranceContestManager.Domain.Enums;
-using EnduranceContestManager.Gateways.Persistence.Core;
+using EnduranceJudge.Domain.Aggregates.Event.PhasesForCategory;
+using EnduranceJudge.Domain.Enums;
+using EnduranceJudge.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 
-namespace EnduranceContestManager.Gateways.Persistence.Entities
+namespace EnduranceJudge.Gateways.Persistence.Entities
 {
     public class PhaseForCategoryEntity : EntityModel<PhaseForCategory>, IPhaseForCategoryState
     {

@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>EnduranceContestManager.Core</RootNamespace>
-    <AssemblyName>EnduranceContestManager.Core</AssemblyName>
+    <RootNamespace>EnduranceJudge.Core</RootNamespace>
+    <AssemblyName>EnduranceJudge.Core</AssemblyName>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 

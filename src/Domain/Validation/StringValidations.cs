@@ -1,9 +1,9 @@
-using EnduranceContestManager.Domain.Core.Validation;
+using EnduranceJudge.Domain.Core.Validation;
 using System;
 using System.Linq;
-using static EnduranceContestManager.Domain.DomainConstants;
+using static EnduranceJudge.Domain.DomainConstants;
 
-namespace EnduranceContestManager.Domain.Validation
+namespace EnduranceJudge.Domain.Validation
 {
     public static class StringValidations
     {
@@ -30,7 +30,7 @@ namespace EnduranceContestManager.Domain.Validation
 
         public static string CheckValidGender(this string value)
         {
-            if (value != Gender.Female && value != Gender.Male)
+            if (value != DomainConstants.Gender.Female && value != DomainConstants.Gender.Male)
             {
                 throw new ValidationException(InvalidGenderTemplate, value);
             }

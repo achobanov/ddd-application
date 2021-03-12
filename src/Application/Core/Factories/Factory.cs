@@ -1,11 +1,11 @@
-using EnduranceContestManager.Application.Core.Exceptions;
-using EnduranceContestManager.Domain.Core.Models;
-using EnduranceContestManager.Domain.Core.Exceptions;
+using EnduranceJudge.Domain.Core.Exceptions;
+using EnduranceJudge.Application.Core.Exceptions;
+using EnduranceJudge.Domain.Core.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
 using ValidationResult = IdentityServer4.Validation.ValidationResult;
 
-namespace EnduranceContestManager.Application.Core.Factories
+namespace EnduranceJudge.Application.Core.Factories
 {
     public abstract class Factory<TDomainModel, TDomainModelState> : IFactory<TDomainModel>
         where TDomainModel : TDomainModelState

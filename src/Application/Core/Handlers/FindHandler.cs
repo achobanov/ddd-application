@@ -1,10 +1,10 @@
-using EnduranceContestManager.Application.Core.Requests;
-using EnduranceContestManager.Application.Interfaces.Core;
+using EnduranceJudge.Application.Core.Requests;
+using EnduranceJudge.Application.Interfaces.Core;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Application.Core.Handlers
+namespace EnduranceJudge.Application.Core.Handlers
 {
     public class FindHandler<TRequest, TResponse> : Handler<TRequest, TResponse>
         where TRequest : IIdentifiableRequest, IRequest<TResponse>

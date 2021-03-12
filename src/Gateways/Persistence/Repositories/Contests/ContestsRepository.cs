@@ -1,13 +1,13 @@
-using EnduranceContestManager.Application.Interfaces.Contests;
-using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Aggregates.Event.Events;
-using EnduranceContestManager.Gateways.Persistence.Core;
-using EnduranceContestManager.Gateways.Persistence.Entities;
+using EnduranceJudge.Core.Mappings;
+using EnduranceJudge.Application.Interfaces.Contests;
+using EnduranceJudge.Domain.Aggregates.Event.Events;
+using EnduranceJudge.Gateways.Persistence.Core;
+using EnduranceJudge.Gateways.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace EnduranceContestManager.Gateways.Persistence.Repositories.Contests
+namespace EnduranceJudge.Gateways.Persistence.Repositories.Contests
 {
     public class ContestsRepository : StoreRepository<IContestsDataStore, EventEntity, Event>,
         IContestCommands,

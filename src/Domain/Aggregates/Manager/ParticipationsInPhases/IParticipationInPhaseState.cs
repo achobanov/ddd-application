@@ -1,7 +1,7 @@
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Domain.Core.Models;
 using System;
 
-namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhases
+namespace EnduranceJudge.Domain.Aggregates.Manager.ParticipationsInPhases
 {
     public interface IParticipationInPhaseState : IDomainModelState
     {

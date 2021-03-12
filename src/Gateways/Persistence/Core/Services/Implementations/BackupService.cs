@@ -1,5 +1,5 @@
-using EnduranceContestManager.Core.Interfaces;
-using EnduranceContestManager.Core.Utilities;
+using EnduranceJudge.Core.Interfaces;
+using EnduranceJudge.Core.Utilities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,9 +7,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
-using static EnduranceContestManager.Gateways.Persistence.Core.PersistenceCoreConstants;
+using static EnduranceJudge.Gateways.Persistence.Core.PersistenceCoreConstants;
 
-namespace EnduranceContestManager.Gateways.Persistence.Core.Services.Implementations
+namespace EnduranceJudge.Gateways.Persistence.Core.Services.Implementations
 {
     public class BackupService : IBackupService
     {
@@ -67,7 +67,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Core.Services.Implementat
             var dbSetProperties = properties
                 .Where(propertyInfo =>
                     propertyInfo.PropertyType.IsGenericType &&
-                    (propertyInfo.PropertyType.BaseType?.IsAssignableFrom(Types.DbSet) ?? false) &&
+                    (propertyInfo.PropertyType.BaseType?.IsAssignableFrom(PersistenceCoreConstants.Types.DbSet) ?? false) &&
                     propertyInfo.PropertyType.Name != "CountryEntity") // Improve
                 .ToList();
 
@@ -92,10 +92,10 @@ namespace EnduranceContestManager.Gateways.Persistence.Core.Services.Implementat
                 .First();
 
 
-            var entityCollectionType = Types.List.MakeGenericType(entityType);
+            var entityCollectionType = PersistenceCoreConstants.Types.List.MakeGenericType(entityType);
             var entityCollection = this.serialization.Deserialize(serializedEntityCollection, entityCollectionType);
 
-            var entitySetType = Types.DbSet.MakeGenericType(entityType);
+            var entitySetType = PersistenceCoreConstants.Types.DbSet.MakeGenericType(entityType);
             var addRangeMethod = entitySetType.GetMethod("AddRange", new[] { entityCollectionType });
 
             // Expression
@@ -111,7 +111,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Core.Services.Implementat
             // db => db.SetName.AddRange(entities)
             var call = Expression.Call(dbSetAccessor, addRangeMethod, entityCollectionParam);
 
-            var lambdaType = Types.Action.MakeGenericType(dbContextType, entityCollectionType);
+            var lambdaType = PersistenceCoreConstants.Types.Action.MakeGenericType(dbContextType, entityCollectionType);
             var lambda = Expression.Lambda(lambdaType, call, dbContextParam, entityCollectionParam);
 
             lambda.Compile().DynamicInvoke(dbContext, entityCollection);

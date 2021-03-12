@@ -1,8 +1,8 @@
-using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Core.Mappings;
+using EnduranceJudge.Domain.Core.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace EnduranceContestManager.Gateways.Persistence.Core
+namespace EnduranceJudge.Gateways.Persistence.Core
 {
     public abstract class EntityModel<TEntity> : IMapFrom<TEntity>, IMapTo<TEntity>
         where TEntity : IDomainModel

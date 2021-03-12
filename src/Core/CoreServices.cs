@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using EnduranceContestManager.Core.Extensions;
+using EnduranceJudge.Core.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace EnduranceContestManager.Core
+namespace EnduranceJudge.Core
 {
     public static class CoreServices
     {

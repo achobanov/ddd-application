@@ -1,8 +1,8 @@
-﻿using EnduranceContestManager.Application.Core.Behaviours;
+﻿using EnduranceJudge.Application.Core.Behaviours;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace EnduranceContestManager.Application.Core
+namespace EnduranceJudge.Application.Core
 {
     public static class ApplicationServices
     {

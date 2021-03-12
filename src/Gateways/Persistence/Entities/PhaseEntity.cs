@@ -1,10 +1,10 @@
-using EnduranceContestManager.Domain.Aggregates.Event.Phases;
-using EnduranceContestManager.Domain.Aggregates.Event.Competitions;
-using EnduranceContestManager.Gateways.Persistence.Core;
+using EnduranceJudge.Domain.Aggregates.Event.Competitions;
+using EnduranceJudge.Domain.Aggregates.Event.Phases;
+using EnduranceJudge.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Gateways.Persistence.Entities
+namespace EnduranceJudge.Gateways.Persistence.Entities
 {
     public class PhaseEntity : EntityModel<Phase>, IPhaseState
     {

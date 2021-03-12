@@ -1,13 +1,13 @@
-using EnduranceContestManager.Application.Interfaces.Core;
-using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Core.Mappings;
+using EnduranceJudge.Application.Interfaces.Core;
+using EnduranceJudge.Domain.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Gateways.Persistence.Core
+namespace EnduranceJudge.Gateways.Persistence.Core
 {
     public abstract class StoreRepository<TDataStore, TEntityModel, TDomainModel> : ICommandRepository<TDomainModel>
         where TDomainModel : IAggregateRoot

@@ -1,10 +1,10 @@
 ﻿using MediatR;
-using EnduranceContestManager.Application.Core.Handlers;
-using EnduranceContestManager.Application.Interfaces.Contests;
-using EnduranceContestManager.Domain.Aggregates.Common;
-using EnduranceContestManager.Domain.Aggregates.Event.Events;
+using EnduranceJudge.Application.Core.Handlers;
+using EnduranceJudge.Application.Interfaces.Contests;
+using EnduranceJudge.Domain.Aggregates.Common;
+using EnduranceJudge.Domain.Aggregates.Event.Events;
 
-namespace EnduranceContestManager.Application.Contests.Commands
+namespace EnduranceJudge.Application.Contests.Commands
 {
     public class CreateEvent : IRequest<int>, IEventState
     {

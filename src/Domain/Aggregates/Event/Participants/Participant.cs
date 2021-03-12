@@ -1,10 +1,10 @@
-using EnduranceContestManager.Domain.Aggregates.Event.Competitions;
-using EnduranceContestManager.Domain.Core.Extensions;
-using EnduranceContestManager.Domain.Core.Models;
-using EnduranceContestManager.Domain.Core.Validation;
+using EnduranceJudge.Domain.Core.Extensions;
+using EnduranceJudge.Domain.Core.Validation;
+using EnduranceJudge.Domain.Aggregates.Event.Competitions;
+using EnduranceJudge.Domain.Core.Models;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain.Aggregates.Event.Participants
+namespace EnduranceJudge.Domain.Aggregates.Event.Participants
 {
     public class Participant : DomainModel<ParticipantException>, IParticipantState,
         IDependsOnMany<Competition>

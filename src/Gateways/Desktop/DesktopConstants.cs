@@ -1,7 +1,7 @@
-using EnduranceContestManager.Core.Utilities;
+using EnduranceJudge.Core.Utilities;
 using System.Reflection;
 
-namespace EnduranceContestManager.Gateways.Desktop
+namespace EnduranceJudge.Gateways.Desktop
 {
     public static class DesktopConstants
     {

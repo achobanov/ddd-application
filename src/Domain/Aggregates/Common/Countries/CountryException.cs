@@ -1,6 +1,6 @@
-using EnduranceContestManager.Domain.Core.Exceptions;
+using EnduranceJudge.Domain.Core.Exceptions;
 
-namespace EnduranceContestManager.Domain.Aggregates.Common.Countries
+namespace EnduranceJudge.Domain.Aggregates.Common.Countries
 {
     public class CountryException : DomainException
     {

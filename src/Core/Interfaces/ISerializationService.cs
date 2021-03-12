@@ -1,7 +1,7 @@
-using EnduranceContestManager.Core.ConventionalServices;
+using EnduranceJudge.Core.ConventionalServices;
 using System;
 
-namespace EnduranceContestManager.Core.Interfaces
+namespace EnduranceJudge.Core.Interfaces
 {
     public interface ISerializationService : IService
     {

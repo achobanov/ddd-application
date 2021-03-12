@@ -1,8 +1,8 @@
-using EnduranceContestManager.Domain.Aggregates.Event.ContestPersonnel;
-using EnduranceContestManager.Domain.Core.Extensions;
+using EnduranceJudge.Domain.Core.Extensions;
+using EnduranceJudge.Domain.Aggregates.Event.ContestPersonnel;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EnduranceContestManager.Domain.Aggregates.Event.Events
+namespace EnduranceJudge.Domain.Aggregates.Event.Events
 {
     public partial class Event
     {

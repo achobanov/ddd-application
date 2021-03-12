@@ -1,12 +1,12 @@
-using EnduranceContestManager.Domain.Core.Validation;
-using EnduranceContestManager.Domain.Aggregates.Event.Participants;
-using EnduranceContestManager.Domain.Aggregates.Event.Phases;
-using EnduranceContestManager.Domain.Core.Extensions;
-using EnduranceContestManager.Domain.Core.Models;
-using EnduranceContestManager.Domain.Enums;
+using EnduranceJudge.Domain.Core.Validation;
+using EnduranceJudge.Domain.Core.Extensions;
+using EnduranceJudge.Domain.Aggregates.Event.Participants;
+using EnduranceJudge.Domain.Aggregates.Event.Phases;
+using EnduranceJudge.Domain.Core.Models;
+using EnduranceJudge.Domain.Enums;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain.Aggregates.Event.Competitions
+namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
 {
     public class Competition : DomainModel<CompetitionException>, ICompetitionState,
         IDependsOn<Events.Event>

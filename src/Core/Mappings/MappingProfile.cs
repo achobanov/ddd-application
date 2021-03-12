@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Reflection;
 using AutoMapper;
-using EnduranceContestManager.Core.Extensions;
+using EnduranceJudge.Core.Extensions;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Core.Mappings
+namespace EnduranceJudge.Core.Mappings
 {
     public abstract class MappingProfile : Profile
     {

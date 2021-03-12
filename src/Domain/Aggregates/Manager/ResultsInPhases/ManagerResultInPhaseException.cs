@@ -1,6 +1,6 @@
-using EnduranceContestManager.Domain.Core.Exceptions;
+using EnduranceJudge.Domain.Core.Exceptions;
 
-namespace EnduranceContestManager.Domain.Aggregates.Manager.ResultsInPhases
+namespace EnduranceJudge.Domain.Aggregates.Manager.ResultsInPhases
 {
     public class ManagerResultInPhaseException : DomainException
     {

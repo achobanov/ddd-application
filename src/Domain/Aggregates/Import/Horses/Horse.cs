@@ -1,9 +1,9 @@
-using EnduranceContestManager.Domain.Core.Models;
-using EnduranceContestManager.Domain.Core.Validation;
-using EnduranceContestManager.Domain.Validation;
+using EnduranceJudge.Domain.Core.Validation;
+using EnduranceJudge.Domain.Validation;
+using EnduranceJudge.Domain.Core.Models;
 using System;
 
-namespace EnduranceContestManager.Domain.Aggregates.Import.Horses
+namespace EnduranceJudge.Domain.Aggregates.Import.Horses
 {
     public class Horse : DomainModel<HorseException>, IHorseState
     {

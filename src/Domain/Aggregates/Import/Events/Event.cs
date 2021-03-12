@@ -1,9 +1,9 @@
-using EnduranceContestManager.Domain.Aggregates.Common;
-using EnduranceContestManager.Domain.Aggregates.Import.Competitions;
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Domain.Aggregates.Common;
+using EnduranceJudge.Domain.Aggregates.Import.Competitions;
+using EnduranceJudge.Domain.Core.Models;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain.Aggregates.Import.Events
+namespace EnduranceJudge.Domain.Aggregates.Import.Events
 {
     public class Event : BaseEvent<ImportEventException>, IAggregateRoot
     {

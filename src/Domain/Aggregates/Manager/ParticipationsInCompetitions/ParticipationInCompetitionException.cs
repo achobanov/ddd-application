@@ -1,6 +1,6 @@
-using EnduranceContestManager.Domain.Core.Exceptions;
+using EnduranceJudge.Domain.Core.Exceptions;
 
-namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInCompetitions
+namespace EnduranceJudge.Domain.Aggregates.Manager.ParticipationsInCompetitions
 {
     public class ParticipationInCompetitionException : DomainException
     {

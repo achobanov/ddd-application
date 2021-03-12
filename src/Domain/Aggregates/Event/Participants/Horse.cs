@@ -1,7 +1,7 @@
-using EnduranceContestManager.Domain.Core.Models;
-using EnduranceContestManager.Domain.Core.Validation;
+using EnduranceJudge.Domain.Core.Validation;
+using EnduranceJudge.Domain.Core.Models;
 
-namespace EnduranceContestManager.Domain.Aggregates.Event.Participants
+namespace EnduranceJudge.Domain.Aggregates.Event.Participants
 {
     public class Horse : DomainModel<ParticipantException>,
         IDependsOn<Participant>

@@ -1,8 +1,8 @@
-using EnduranceContestManager.Domain.Aggregates.Ranking.Participations;
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Domain.Aggregates.Ranking.Participations;
+using EnduranceJudge.Domain.Core.Models;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Domain.Aggregates.Ranking.Competitions
+namespace EnduranceJudge.Domain.Aggregates.Ranking.Competitions
 {
     public class Competition : DomainModel<RankingCompetitionException>
     {

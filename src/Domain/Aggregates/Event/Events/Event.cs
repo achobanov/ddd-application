@@ -1,7 +1,7 @@
-using EnduranceContestManager.Domain.Aggregates.Common;
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Domain.Aggregates.Common;
+using EnduranceJudge.Domain.Core.Models;
 
-namespace EnduranceContestManager.Domain.Aggregates.Event.Events
+namespace EnduranceJudge.Domain.Aggregates.Event.Events
 {
     public partial class Event : BaseEvent<EventException>, IAggregateRoot
     {

@@ -1,4 +1,4 @@
-namespace EnduranceContestManager.Application.Contests.Queries.Details
+namespace EnduranceJudge.Application.Contests.Queries.Details
 {
     public class ContestDetailsModel
     {

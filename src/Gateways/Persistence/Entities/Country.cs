@@ -1,7 +1,7 @@
-using EnduranceContestManager.Domain.Aggregates.Common.Countries;
-using EnduranceContestManager.Gateways.Persistence.Core;
+using EnduranceJudge.Domain.Aggregates.Common.Countries;
+using EnduranceJudge.Gateways.Persistence.Core;
 
-namespace EnduranceContestManager.Gateways.Persistence.Entities
+namespace EnduranceJudge.Gateways.Persistence.Entities
 {
     public class CountryEntity : EntityModel<Country>, ICountryState
     {

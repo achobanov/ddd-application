@@ -1,7 +1,7 @@
-using EnduranceContestManager.Core.Utilities;
+using EnduranceJudge.Core.Utilities;
 using System.Reflection;
 
-namespace EnduranceContestManager.Application
+namespace EnduranceJudge.Application
 {
     public static class ApplicationConstants
     {

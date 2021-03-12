@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace EnduranceContestManager.Gateways.Desktop.Views
+namespace EnduranceJudge.Gateways.Desktop.Views
 {
     public partial class ViewA : UserControl
     {

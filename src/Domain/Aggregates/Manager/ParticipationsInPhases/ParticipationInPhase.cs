@@ -1,12 +1,12 @@
-using EnduranceContestManager.Domain.Aggregates.Manager.ResultsInPhases;
-using EnduranceContestManager.Domain.Core.Validation;
-using EnduranceContestManager.Domain.Aggregates.Manager.DTOs;
-using EnduranceContestManager.Domain.Core.Extensions;
-using EnduranceContestManager.Domain.Core.Models;
-using EnduranceContestManager.Domain.Validation;
+using EnduranceJudge.Domain.Core.Validation;
+using EnduranceJudge.Domain.Core.Extensions;
+using EnduranceJudge.Domain.Validation;
+using EnduranceJudge.Domain.Aggregates.Manager.DTOs;
+using EnduranceJudge.Domain.Aggregates.Manager.ResultsInPhases;
+using EnduranceJudge.Domain.Core.Models;
 using System;
 
-namespace EnduranceContestManager.Domain.Aggregates.Manager.ParticipationsInPhases
+namespace EnduranceJudge.Domain.Aggregates.Manager.ParticipationsInPhases
 {
     public class ParticipationInPhase : DomainModel<ParticipationInPhaseException>, IParticipationInPhaseState
     {

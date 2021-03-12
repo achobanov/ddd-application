@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using System;
 
-namespace EnduranceContestManager.Core.Interfaces.Services
+namespace EnduranceJudge.Core.Interfaces.Services
 {
     public class SerializationService : ISerializationService
     {

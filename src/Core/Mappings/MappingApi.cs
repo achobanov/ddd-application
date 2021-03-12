@@ -7,7 +7,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using System.Runtime.CompilerServices;
 
-namespace EnduranceContestManager.Core.Mappings
+namespace EnduranceJudge.Core.Mappings
 {
     public static class MappingApi
     {

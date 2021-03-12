@@ -1,11 +1,11 @@
-using EnduranceContestManager.Application.Core.Requests;
-using EnduranceContestManager.Application.Interfaces.Core;
-using EnduranceContestManager.Core.Mappings;
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Application.Core.Requests;
+using EnduranceJudge.Application.Interfaces.Core;
+using EnduranceJudge.Core.Mappings;
+using EnduranceJudge.Domain.Core.Models;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Application.Core.Handlers
+namespace EnduranceJudge.Application.Core.Handlers
 {
     public class UpdateHandler<TRequest, TEntity> : Handler<TRequest>
         where TRequest : IIdentifiableRequest, IMapTo<TEntity>

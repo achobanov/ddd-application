@@ -1,4 +1,4 @@
-namespace EnduranceContestManager.Domain.Core.Exceptions
+namespace EnduranceJudge.Domain.Core.Exceptions
 {
     public static class Thrower
     {

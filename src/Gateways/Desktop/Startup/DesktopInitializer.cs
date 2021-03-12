@@ -1,10 +1,10 @@
 using AutoMapper;
-using EnduranceContestManager.Core.Interfaces;
-using EnduranceContestManager.Core.Mappings;
+using EnduranceJudge.Core.Interfaces;
+using EnduranceJudge.Core.Mappings;
 using System;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Gateways.Desktop.Startup
+namespace EnduranceJudge.Gateways.Desktop.Startup
 {
     public class DesktopInitializer : IInitializerInterface
     {

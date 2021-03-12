@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace EnduranceContestManager.Application.Core.Requests
+namespace EnduranceJudge.Application.Core.Requests
 {
     public interface IIdentifiableRequest : IRequest
     {

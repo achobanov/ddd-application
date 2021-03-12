@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EnduranceContestManager.Application.Core.Exceptions
+namespace EnduranceJudge.Application.Core.Exceptions
 {
     public class NotFoundException : Exception
     {

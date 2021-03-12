@@ -1,9 +1,9 @@
-using EnduranceContestManager.Domain.Aggregates.Import.Horses;
-using EnduranceContestManager.Domain.Aggregates.Import.Athletes;
-using EnduranceContestManager.Domain.Core.Models;
-using EnduranceContestManager.Domain.Core.Validation;
+using EnduranceJudge.Domain.Core.Validation;
+using EnduranceJudge.Domain.Aggregates.Import.Athletes;
+using EnduranceJudge.Domain.Aggregates.Import.Horses;
+using EnduranceJudge.Domain.Core.Models;
 
-namespace EnduranceContestManager.Domain.Aggregates.Import.Participants
+namespace EnduranceJudge.Domain.Aggregates.Import.Participants
 {
     public class Participant : DomainModel<ImportParticipantException>
     {

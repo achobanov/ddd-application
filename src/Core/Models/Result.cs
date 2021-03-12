@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EnduranceContestManager.Core.Models
+namespace EnduranceJudge.Core.Models
 {
     public class Result
     {

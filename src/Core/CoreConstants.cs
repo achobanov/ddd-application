@@ -1,12 +1,12 @@
-using EnduranceContestManager.Core.Utilities;
+using EnduranceJudge.Core.Utilities;
 using System.Reflection;
 
-namespace EnduranceContestManager.Core
+namespace EnduranceJudge.Core
 {
     public static class CoreConstants
     {
-        public const string ProjectNameTemplate = "EnduranceContestManager.{0}";
-        public const string CoreProjectNameTemplate = "EnduranceContestManager.{0}.Core";
+        public const string ProjectNameTemplate = "EnduranceJudge.{0}";
+        public const string CoreProjectNameTemplate = "EnduranceJudge.{0}.Core";
 
         public static Assembly[] Assemblies
         {

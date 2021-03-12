@@ -1,8 +1,8 @@
-using EnduranceContestManager.Domain.Aggregates.Event.Phases;
-using EnduranceContestManager.Domain.Aggregates.Event.PhasesForCategory;
-using EnduranceContestManager.Domain.Enums;
+using EnduranceJudge.Domain.Aggregates.Event.Phases;
+using EnduranceJudge.Domain.Aggregates.Event.PhasesForCategory;
+using EnduranceJudge.Domain.Enums;
 
-namespace EnduranceContestManager.Domain.Aggregates.Manager.DTOs
+namespace EnduranceJudge.Domain.Aggregates.Manager.DTOs
 {
     public class PhaseDto : IPhaseState, IPhaseForCategoryState
     {

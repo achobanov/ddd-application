@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Gateways.Persistence.Core.Services.Implementations
+namespace EnduranceJudge.Gateways.Persistence.Core.Services.Implementations
 {
     public class FileService : IFileService
     {

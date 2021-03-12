@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>EnduranceContestManager.Gateways.Persistence</RootNamespace>
-    <AssemblyName>EnduranceContestManager.Gateways.Persistence</AssemblyName>
+    <RootNamespace>EnduranceJudge.Gateways.Persistence</RootNamespace>
+    <AssemblyName>EnduranceJudge.Gateways.Persistence</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

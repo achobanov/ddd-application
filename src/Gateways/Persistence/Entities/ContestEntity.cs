@@ -1,10 +1,10 @@
-using EnduranceContestManager.Domain.Aggregates.Common;
-using EnduranceContestManager.Domain.Aggregates.Event.Events;
-using EnduranceContestManager.Gateways.Persistence.Core;
+using EnduranceJudge.Domain.Aggregates.Common;
+using EnduranceJudge.Domain.Aggregates.Event.Events;
+using EnduranceJudge.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Gateways.Persistence.Entities
+namespace EnduranceJudge.Gateways.Persistence.Entities
 {
     public class EventEntity : EntityModel<Event>, IEventState
     {

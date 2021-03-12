@@ -1,7 +1,7 @@
-using EnduranceContestManager.Core.Utilities;
+using EnduranceJudge.Core.Utilities;
 using System.Reflection;
 
-namespace EnduranceContestManager.Domain
+namespace EnduranceJudge.Domain
 {
     public static class DomainConstants
     {

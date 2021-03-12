@@ -1,7 +1,7 @@
-using EnduranceContestManager.Core.Mappings;
+using EnduranceJudge.Core.Mappings;
 using System.Reflection;
 
-namespace EnduranceContestManager.Gateways.Desktop.Core
+namespace EnduranceJudge.Gateways.Desktop.Core
 {
     public class DesktopMappingProfile : MappingProfile
     {

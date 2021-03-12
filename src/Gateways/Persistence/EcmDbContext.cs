@@ -2,12 +2,12 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using EnduranceContestManager.Core.Interfaces;
-using EnduranceContestManager.Gateways.Persistence.Core.Services;
-using EnduranceContestManager.Gateways.Persistence.Repositories.Contests;
-using EnduranceContestManager.Gateways.Persistence.Entities;
+using EnduranceJudge.Core.Interfaces;
+using EnduranceJudge.Gateways.Persistence.Core.Services;
+using EnduranceJudge.Gateways.Persistence.Entities;
+using EnduranceJudge.Gateways.Persistence.Repositories.Contests;
 
-namespace EnduranceContestManager.Gateways.Persistence
+namespace EnduranceJudge.Gateways.Persistence
 {
     public class EcmDbContext : DbContext, IContestsDataStore
     {

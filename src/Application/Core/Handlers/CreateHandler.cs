@@ -1,11 +1,11 @@
-using EnduranceContestManager.Application.Core.Factories;
-using EnduranceContestManager.Application.Interfaces.Core;
-using EnduranceContestManager.Domain.Core.Models;
+using EnduranceJudge.Application.Core.Factories;
+using EnduranceJudge.Application.Interfaces.Core;
+using EnduranceJudge.Domain.Core.Models;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Application.Core.Handlers
+namespace EnduranceJudge.Application.Core.Handlers
 {
     public abstract class CreateHandler<TRequest, TEntity> : Handler<TRequest, int>
         where TRequest : IRequest<int>, IDomainModelState

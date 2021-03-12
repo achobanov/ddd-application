@@ -1,8 +1,8 @@
-using EnduranceContestManager.Domain.Core.Models;
-using EnduranceContestManager.Domain.Core.Validation;
-using EnduranceContestManager.Domain.Validation;
+using EnduranceJudge.Domain.Core.Validation;
+using EnduranceJudge.Domain.Validation;
+using EnduranceJudge.Domain.Core.Models;
 
-namespace EnduranceContestManager.Domain.Aggregates.Event.ContestPersonnel
+namespace EnduranceJudge.Domain.Aggregates.Event.ContestPersonnel
 {
     public class Personnel : DomainModel<PersonnelException>, IPersonnelState,
         IDependsOn<Events.Event>

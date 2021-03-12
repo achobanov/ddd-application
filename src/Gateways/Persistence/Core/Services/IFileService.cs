@@ -1,7 +1,7 @@
-using EnduranceContestManager.Core.ConventionalServices;
+using EnduranceJudge.Core.ConventionalServices;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Gateways.Persistence.Core.Services
+namespace EnduranceJudge.Gateways.Persistence.Core.Services
 {
     public interface IFileService : IService
     {

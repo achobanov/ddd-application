@@ -1,12 +1,12 @@
-﻿using EnduranceContestManager.Application.Interfaces.Contests;
-using EnduranceContestManager.Core.Interfaces;
-using EnduranceContestManager.Gateways.Persistence.Repositories.Contests;
+﻿using EnduranceJudge.Application.Interfaces.Contests;
+using EnduranceJudge.Core.Interfaces;
+using EnduranceJudge.Gateways.Persistence.Repositories.Contests;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace EnduranceContestManager.Gateways.Persistence.Startup
+namespace EnduranceJudge.Gateways.Persistence.Startup
 {
     public static class PersistenceServices
     {

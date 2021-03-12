@@ -1,8 +1,8 @@
-using EnduranceContestManager.Gateways.Persistence.Entities;
+using EnduranceJudge.Gateways.Persistence.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Gateways.Persistence.Services
+namespace EnduranceJudge.Gateways.Persistence.Services
 {
     public class SeederService : ISeederService
     {

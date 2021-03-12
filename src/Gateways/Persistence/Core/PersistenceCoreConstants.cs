@@ -1,11 +1,11 @@
-using EnduranceContestManager.Core.Utilities;
+using EnduranceJudge.Core.Utilities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace EnduranceContestManager.Gateways.Persistence.Core
+namespace EnduranceJudge.Gateways.Persistence.Core
 {
     public static class PersistenceCoreConstants
     {
@@ -17,7 +17,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
             {
                 var projectNames = ProjectUtilities
                     .GetConventionalProjectNames("Gateways.Persistence")
-                    .Concat(new[] {"EnduranceContestManager.Gateways.Persistence.Data"})
+                    .Concat(new[] {"EnduranceJudge.Gateways.Persistence.Data"})
                     .ToArray();
 
                 var assemblies = ReflectionUtilities.GetAssemblies(projectNames);

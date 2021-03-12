@@ -1,4 +1,4 @@
-namespace EnduranceContestManager.Domain.Aggregates.Ranking.DTOs
+namespace EnduranceJudge.Domain.Aggregates.Ranking.DTOs
 {
     public class PhaseForRanking
     {

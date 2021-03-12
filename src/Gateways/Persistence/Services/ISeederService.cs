@@ -1,7 +1,7 @@
-using EnduranceContestManager.Core.ConventionalServices;
+using EnduranceJudge.Core.ConventionalServices;
 using System.Threading.Tasks;
 
-namespace EnduranceContestManager.Gateways.Persistence.Services
+namespace EnduranceJudge.Gateways.Persistence.Services
 {
     public interface ISeederService : IService
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace EnduranceContestManager.Domain.Core.Validation
+namespace EnduranceJudge.Domain.Core.Validation
 {
     public class ValidationException : Exception
     {

@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>EnduranceContestManager.Application.Interfaces</RootNamespace>
-    <AssemblyName>EnduranceContestManager.Application.Interfaces</AssemblyName>
+    <RootNamespace>EnduranceJudge.Application.Interfaces</RootNamespace>
+    <AssemblyName>EnduranceJudge.Application.Interfaces</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
