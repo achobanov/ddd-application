@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using EnduranceJudge.Application.Core.Handlers;
-using EnduranceJudge.Application.Interfaces.Contests;
+using EnduranceJudge.Application.Interfaces.Events;
 using EnduranceJudge.Domain.Aggregates.Common;
 using EnduranceJudge.Domain.Aggregates.Event.Events;
 
@@ -28,7 +28,7 @@ namespace EnduranceJudge.Application.Contests.Commands
 
         public class CreateContestHandler : CreateHandler<CreateEvent, Event>
         {
-            public CreateContestHandler(IContestFactory factory, IContestCommands commands)
+            public CreateContestHandler(IContestFactory factory, IEventCommands commands)
                 : base(factory, commands)
             {
             }

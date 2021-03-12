@@ -1,6 +1,6 @@
-﻿using EnduranceJudge.Application.Interfaces.Contests;
+﻿using EnduranceJudge.Application.Interfaces.Events;
 using EnduranceJudge.Core.Interfaces;
-using EnduranceJudge.Gateways.Persistence.Repositories.Contests;
+using EnduranceJudge.Gateways.Persistence.Repositories.Events;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +16,7 @@ namespace EnduranceJudge.Gateways.Persistence.Startup
 
             return services
                 .AddDatabase()
-                .AddTransient<IContestsDataStore, EnduranceJudgeDbContext>()
+                .AddTransient<IEventsDataStore, EnduranceJudgeDbContext>()
                 .AddRepositories()
                 .AddSingleton<IInitializerInterface, PersistenceInitializer>();
         }
@@ -31,7 +31,7 @@ namespace EnduranceJudge.Gateways.Persistence.Startup
 
         private static IServiceCollection AddRepositories(this IServiceCollection services)
             => services
-                .AddTransient<IContestCommands, ContestsRepository>()
-                .AddTransient<IContestQueries, ContestsRepository>();
+                .AddTransient<IEventCommands, EventsRepository>()
+                .AddTransient<IEventQueries, EventsRepository>();
     }
 }

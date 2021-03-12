@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Persistence.Core
 {
-    public abstract class StoreRepository<TDataStore, TEntityModel, TDomainModel> : ICommandRepository<TDomainModel>
+    internal abstract class StoreRepository<TDataStore, TEntityModel, TDomainModel> : ICommandRepository<TDomainModel>
         where TDomainModel : IAggregateRoot
         where TDataStore : IDataStore
         where TEntityModel : EntityModel<TDomainModel>

@@ -1,6 +1,6 @@
 using EnduranceJudge.Application.Core.Handlers;
 using EnduranceJudge.Application.Core.Requests;
-using EnduranceJudge.Application.Interfaces.Contests;
+using EnduranceJudge.Application.Interfaces.Events;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Common;
 using EnduranceJudge.Domain.Aggregates.Event.Competitions;
@@ -41,7 +41,7 @@ namespace EnduranceJudge.Application.Contests.Commands
 
         public class UpdateContestHandler : UpdateHandler<UpdateEvent, Event>
         {
-            public UpdateContestHandler(IContestCommands commands)
+            public UpdateContestHandler(IEventCommands commands)
                 : base(commands)
             {
             }

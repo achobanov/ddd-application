@@ -1,6 +1,6 @@
 using EnduranceJudge.Application.Core.Handlers;
 using EnduranceJudge.Application.Core.Requests;
-using EnduranceJudge.Application.Interfaces.Contests;
+using EnduranceJudge.Application.Interfaces.Events;
 using MediatR;
 
 namespace EnduranceJudge.Application.Contests.Queries.Details
@@ -11,7 +11,7 @@ namespace EnduranceJudge.Application.Contests.Queries.Details
 
         public class GetContestDetailsHandler : FindHandler<GetContestDetails, ContestDetailsModel>
         {
-            public GetContestDetailsHandler(IContestQueries queries)
+            public GetContestDetailsHandler(IEventQueries queries)
                 : base(queries)
             {
             }

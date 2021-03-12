@@ -7,34 +7,15 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
 {
     public class PhaseForCategoryEntity : EntityModel<PhaseForCategory>, IPhaseForCategoryState
     {
-        public PhaseForCategoryEntity()
-        {
-        }
+        public int MaxRecoveryTimeInMinutes { get; set;}
 
-        [JsonConstructor]
-        public PhaseForCategoryEntity(
-            int id,
-            int maxRecoveryTimeInMinutes,
-            int restTimeInMinutes,
-            Category category,
-            int phaseId)
-            : base(id)
-        {
-            this.MaxRecoveryTimeInMinutes = maxRecoveryTimeInMinutes;
-            this.RestTimeInMinutes = restTimeInMinutes;
-            this.Category = category;
-            this.PhaseId = phaseId;
-        }
+        public int RestTimeInMinutes { get; set;}
 
-        public int MaxRecoveryTimeInMinutes { get; internal set;}
+        public Category Category { get; set; }
 
-        public int RestTimeInMinutes { get; internal set;}
-
-        public Category Category { get; internal set; }
-
-        public int PhaseId { get; internal set; }
+        public int PhaseId { get; set; }
 
         [JsonIgnore]
-        public PhaseEntity Phase { get; internal set; }
+        public PhaseEntity Phase { get; set; }
     }
 }

@@ -5,11 +5,12 @@ using Microsoft.EntityFrameworkCore;
 using EnduranceJudge.Core.Interfaces;
 using EnduranceJudge.Gateways.Persistence.Core.Services;
 using EnduranceJudge.Gateways.Persistence.Entities;
-using EnduranceJudge.Gateways.Persistence.Repositories.Contests;
+using EnduranceJudge.Gateways.Persistence.Repositories.Events;
+using Microsoft.AspNetCore.Server.IIS.Core;
 
 namespace EnduranceJudge.Gateways.Persistence
 {
-    public class EnduranceJudgeDbContext : DbContext, IContestsDataStore
+    public class EnduranceJudgeDbContext : DbContext, IEventsDataStore
     {
         private readonly IBackupService backup;
 
@@ -20,8 +21,8 @@ namespace EnduranceJudge.Gateways.Persistence
         }
 
         public DbSet<CountryEntity> Countries { get; set; }
-        public DbSet<EventEntity> Contests { get; set; }
-        public DbSet<CompetitionEntity> Trials { get; set; }
+        public DbSet<EventEntity> Events { get; set; }
+        public DbSet<CompetitionEntity> Competitions { get; set; }
         public DbSet<PhaseEntity> Phases { get; set; }
         public DbSet<PhaseForCategoryEntity> PhasesForCategories { get; set; }
 

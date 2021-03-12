@@ -8,28 +8,16 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
 {
     public class PhaseEntity : EntityModel<Phase>, IPhaseState
     {
-        public PhaseEntity()
-        {
-        }
+        public int LengthInKilometers { get; set; }
 
-        [JsonConstructor]
-        public PhaseEntity(int id, int lengthInKilometers, int trialId)
-            : base(id)
-        {
-            this.LengthInKilometers = lengthInKilometers;
-            this.TrialId = trialId;
-        }
-
-        public int LengthInKilometers { get; internal set; }
-
-        public bool IsFinal { get; internal set; }
+        public bool IsFinal { get; set; }
 
         [JsonIgnore]
-        public IList<PhaseForCategoryEntity> PhasesForCategories { get; internal set; }
+        public IList<PhaseForCategoryEntity> PhasesForCategories { get; set; }
 
-        public int TrialId { get; internal set; }
+        public int CompetitionId { get; set; }
 
         [JsonIgnore]
-        public Competition Competition { get; internal set; }
+        public Competition Competition { get; set; }
     }
 }
