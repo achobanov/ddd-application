@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using EnduranceJudge.Core.Interfaces;
 using EnduranceJudge.Gateways.Persistence.Core.Services;
 using EnduranceJudge.Gateways.Persistence.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EnduranceJudge.Gateways.Persistence.Startup
@@ -20,16 +21,21 @@ namespace EnduranceJudge.Gateways.Persistence.Startup
 
         public async Task Run(IServiceProvider serviceProvider)
         {
-            var dbContext = serviceProvider.GetService<EcmDbContext>();
+            var dbContext = serviceProvider.GetService<EnduranceJudgeDbContext>();
 
             await this.SeedAsync(dbContext);
         }
 
-        private async Task SeedAsync(EcmDbContext dbContext)
+        private async Task SeedAsync(EnduranceJudgeDbContext dbContext)
         {
             await this.backup.Restore(dbContext);
 
-            await dbContext.Commit(performBackup: false);
+            if (!await dbContext.Contests.AnyAsync())
+            {
+                await this.seeder.Seed();
+            }
+
+            await dbContext.SaveChangesAsync();
         }
     }
 }

@@ -9,11 +9,11 @@ using EnduranceJudge.Gateways.Persistence.Repositories.Contests;
 
 namespace EnduranceJudge.Gateways.Persistence
 {
-    public class EcmDbContext : DbContext, IContestsDataStore
+    public class EnduranceJudgeDbContext : DbContext, IContestsDataStore
     {
         private readonly IBackupService backup;
 
-        public EcmDbContext(DbContextOptions options, IDateTimeService dateTime, IBackupService backup)
+        public EnduranceJudgeDbContext(DbContextOptions options, IDateTimeService dateTime, IBackupService backup)
             : base(options)
         {
             this.backup = backup;
@@ -25,16 +25,11 @@ namespace EnduranceJudge.Gateways.Persistence
         public DbSet<PhaseEntity> Phases { get; set; }
         public DbSet<PhaseForCategoryEntity> PhasesForCategories { get; set; }
 
-        public async Task<int> Commit(
-            CancellationToken cancellationToken = default,
-            bool performBackup = true)
+        public async Task<int> Commit(CancellationToken cancellationToken = default)
         {
             var result = await this.SaveChangesAsync(cancellationToken);
 
-            if (performBackup)
-            {
-                await this.backup.Create(this);
-            }
+            await this.backup.Create(this);
 
             return result;
         }

@@ -16,14 +16,14 @@ namespace EnduranceJudge.Gateways.Persistence.Startup
 
             return services
                 .AddDatabase()
-                .AddTransient<IContestsDataStore, EcmDbContext>()
+                .AddTransient<IContestsDataStore, EnduranceJudgeDbContext>()
                 .AddRepositories()
                 .AddSingleton<IInitializerInterface, PersistenceInitializer>();
         }
 
         private static IServiceCollection AddDatabase(this IServiceCollection services)
             => services
-                .AddDbContext<EcmDbContext>(options =>
+                .AddDbContext<EnduranceJudgeDbContext>(options =>
                     options
                         .UseInMemoryDatabase(Guid.NewGuid().ToString())
                         .EnableSensitiveDataLogging()

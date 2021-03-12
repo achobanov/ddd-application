@@ -6,9 +6,9 @@ namespace EnduranceJudge.Gateways.Persistence.Services
 {
     public class SeederService : ISeederService
     {
-        private readonly EcmDbContext dbContext;
+        private readonly EnduranceJudgeDbContext dbContext;
 
-        public SeederService(EcmDbContext dbContext)
+        public SeederService(EnduranceJudgeDbContext dbContext)
         {
             this.dbContext = dbContext;
         }

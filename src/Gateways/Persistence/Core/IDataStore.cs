@@ -19,6 +19,6 @@ namespace EnduranceJudge.Gateways.Persistence.Core
         ValueTask<TEntity> FindAsync<TEntity>(params object[] keyValuePairs)
             where TEntity : class;
 
-        Task<int> Commit(CancellationToken cancellationToken = default, bool performBackup = true);
+        Task<int> Commit(CancellationToken cancellationToken = default);
     }
 }
