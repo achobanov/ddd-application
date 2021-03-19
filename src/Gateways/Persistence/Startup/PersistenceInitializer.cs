@@ -19,7 +19,7 @@ namespace EnduranceJudge.Gateways.Persistence.Startup
             this.seeder = seeder;
         }
 
-        public int Order { get; } = 10;
+        public int RunningOrder => 10;
 
         public async Task Run(IServiceProvider serviceProvider)
         {

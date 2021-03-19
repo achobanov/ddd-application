@@ -17,10 +17,8 @@ namespace EnduranceJudge.Core
         private static IServiceCollection AddMapping(
             this IServiceCollection services,
             IEnumerable<Assembly> assemblies)
-            => services.AddAutoMapper(configuration =>
-                {
-                    configuration.AddCollectionMappers();
-                },
+            => services.AddAutoMapper(
+                configuration => configuration.AddCollectionMappers(),
                 assemblies);
     }
 }

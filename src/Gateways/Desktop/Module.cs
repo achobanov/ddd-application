@@ -29,7 +29,7 @@ namespace EnduranceJudge.Gateways.Desktop
         {
             var aspNetProvider = containerProvider.Resolve<IServiceProvider>();
             var initializers = aspNetProvider.GetServices<IInitializerInterface>();
-            foreach (var initializer in initializers.OrderBy(x => x.Order))
+            foreach (var initializer in initializers.OrderBy(x => x.RunningOrder))
             {
                 await initializer.Run(aspNetProvider);
             }

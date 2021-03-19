@@ -13,7 +13,7 @@ namespace EnduranceJudge.Core
         public CoreInitializer(IMapper mapper)
             => this.mapper = mapper;
 
-        public int Order { get; } = 0;
+        public int RunningOrder => 0;
 
         public Task Run(IServiceProvider serviceProvider)
         {
