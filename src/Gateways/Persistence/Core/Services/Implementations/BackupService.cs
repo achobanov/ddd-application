@@ -40,13 +40,13 @@ namespace EnduranceJudge.Gateways.Persistence.Core.Services.Implementations
             await this.file.Create(PersistenceConstants.BackupFileName, encrypted);
         }
 
-        public async Task Restore<TDataStore>(TDataStore dbContext)
+        public async Task<bool> Restore<TDataStore>(TDataStore dbContext)
             where TDataStore : DbContext
         {
             var encrypted = await this.file.Read(PersistenceConstants.BackupFileName);
             if (string.IsNullOrEmpty(encrypted))
             {
-                return;
+                return false;
             }
 
             var decrypted = this.encryption.Decrypt(encrypted);
@@ -55,10 +55,17 @@ namespace EnduranceJudge.Gateways.Persistence.Core.Services.Implementations
             var dbContextType = typeof(TDataStore);
             var dbSetProperties = this.GetEntitySets<TDataStore>();
 
+            if (!deserialized.Any())
+            {
+                return false;
+            }
+
             foreach (var (setName, serializedSet) in deserialized)
             {
                 this.Restore(setName, serializedSet, dbContext, dbContextType, dbSetProperties);
             }
+
+            return true;
         }
 
         private IList<PropertyInfo> GetEntitySets<TDbContext>()

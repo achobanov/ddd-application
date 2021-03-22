@@ -30,9 +30,9 @@ namespace EnduranceJudge.Gateways.Persistence.Startup
 
         private async Task SeedAsync(EnduranceJudgeDbContext dbContext)
         {
-            await this.backup.Restore(dbContext);
+            var hasData = await this.backup.Restore(dbContext);
 
-            if (!await dbContext.Countries.Local.AnyAsync())
+            if (!hasData)
             {
                 await this.seeder.Seed();
             }
