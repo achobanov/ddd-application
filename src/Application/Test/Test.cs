@@ -1,6 +1,5 @@
-using EnduranceJudge.Domain.Aggregates.Manager.Participants;
-using EnduranceJudge.Domain.Aggregates.Manager.DTOs;
 using EnduranceJudge.Application.Core.Handlers;
+using EnduranceJudge.Application.Interfaces.Events;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Aggregates.Event.Events;
@@ -17,23 +16,28 @@ namespace EnduranceJudge.Application.Test
 
         public class TestHandler : Handler<Test>
         {
-            public TestHandler()
+            private readonly IEventCommands commands;
+
+            public TestHandler(IEventCommands commands)
             {
+                this.commands = commands;
             }
 
             protected override async Task Handle(Test request, CancellationToken cancellationToken)
             {
-                var contest = new Event(0, "Name", "place");
+                var event_ = new Event(0, "Name", "place");
 
                 var competition1 = new Competition(0, CompetitionType.International);
                 var competition2 = new Competition(1, CompetitionType.National);
-                var competition3 = new Competition(1, CompetitionType.National);
+                var competition3 = new Competition(2, CompetitionType.National);
 
-                contest.Add(competition1);
-                contest.Add(competition2);
+                event_.Add(competition1);
+                event_.Add(competition2);
+                event_.Add(competition3);
 
-                contest.Remove(competition1);
-                contest.Add(competition3);
+                // event_.Remove(competition1);
+
+                await this.commands.Save(event_, cancellationToken);
             }
         }
     }

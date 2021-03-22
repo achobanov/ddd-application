@@ -1,3 +1,4 @@
+using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Common;
 using EnduranceJudge.Domain.Aggregates.Event.Events;
 using EnduranceJudge.Gateways.Persistence.Core;
@@ -6,7 +7,7 @@ using System.Collections.Generic;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
-    public class EventEntity : EntityModel<Event>, IEventState
+    public class EventEntity : EntityModel, IEventState, IMapFrom<Event>
     {
         public string Name { get; set; }
 

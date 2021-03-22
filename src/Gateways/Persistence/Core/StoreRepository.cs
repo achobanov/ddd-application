@@ -12,7 +12,7 @@ namespace EnduranceJudge.Gateways.Persistence.Core
     internal abstract class StoreRepository<TDataStore, TEntityModel, TDomainModel> : ICommandRepository<TDomainModel>
         where TDomainModel : IAggregateRoot
         where TDataStore : IDataStore
-        where TEntityModel : EntityModel<TDomainModel>
+        where TEntityModel : EntityModel
     {
         protected StoreRepository(TDataStore dataStore)
         {

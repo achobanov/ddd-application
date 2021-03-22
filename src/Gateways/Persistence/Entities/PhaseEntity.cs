@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
-    public class PhaseEntity : EntityModel<Phase>, IPhaseState
+    public class PhaseEntity : EntityModel, IPhaseState
     {
         public int LengthInKilometers { get; set; }
 

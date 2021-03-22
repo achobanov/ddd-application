@@ -1,3 +1,4 @@
+using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Enums;
 using EnduranceJudge.Gateways.Persistence.Core;
@@ -6,7 +7,7 @@ using System.Collections.Generic;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
-    public class CompetitionEntity : EntityModel<Competition>, ICompetitionState
+    public class CompetitionEntity : EntityModel, ICompetitionState, IMapFrom<Competition>
     {
         public CompetitionType Type { get; set; }
 

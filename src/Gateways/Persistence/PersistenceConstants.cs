@@ -2,7 +2,6 @@ using EnduranceJudge.Core.Utilities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 namespace EnduranceJudge.Gateways.Persistence
@@ -15,11 +14,7 @@ namespace EnduranceJudge.Gateways.Persistence
         {
             get
             {
-                var projectNames = ProjectUtilities
-                    .GetConventionalProjectNames("Gateways.Persistence")
-                    .Concat(new[] {"EnduranceJudge.Gateways.Persistence.Data"})
-                    .ToArray();
-
+                var projectNames = ProjectUtilities.GetConventionalProjectNames("Gateways.Persistence");
                 var assemblies = ReflectionUtilities.GetAssemblies(projectNames);
 
                 return assemblies;

@@ -32,7 +32,7 @@ namespace EnduranceJudge.Gateways.Persistence.Core.Services.Implementations
             var data = dbSetProperties.ToDictionary(
                 propertyInfo => propertyInfo.Name,
                 propertyInfo => this.serialization.Serialize(
-                    propertyInfo.GetValue(dbContext)));
+                    propertyInfo.GetValue(dbContext)!));
 
             var serialized = this.serialization.Serialize(data);
             var encrypted = this.encryption.Encrypt(serialized);

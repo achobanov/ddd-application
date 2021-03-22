@@ -32,7 +32,7 @@ namespace EnduranceJudge.Gateways.Persistence.Startup
         {
             await this.backup.Restore(dbContext);
 
-            if (!await dbContext.Events.AnyAsync())
+            if (!await dbContext.Countries.Local.AnyAsync())
             {
                 await this.seeder.Seed();
             }

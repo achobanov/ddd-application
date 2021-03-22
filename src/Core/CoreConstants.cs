@@ -6,7 +6,6 @@ namespace EnduranceJudge.Core
     public static class CoreConstants
     {
         public const string ProjectNameTemplate = "EnduranceJudge.{0}";
-        public const string CoreProjectNameTemplate = "EnduranceJudge.{0}.Core";
 
         public static Assembly[] Assemblies
         {

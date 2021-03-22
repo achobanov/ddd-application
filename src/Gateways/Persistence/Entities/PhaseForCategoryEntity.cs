@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
-    public class PhaseForCategoryEntity : EntityModel<PhaseForCategory>, IPhaseForCategoryState
+    public class PhaseForCategoryEntity : EntityModel, IPhaseForCategoryState
     {
         public int MaxRecoveryTimeInMinutes { get; set;}
 

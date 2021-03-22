@@ -6,7 +6,6 @@ namespace EnduranceJudge.Core.Utilities
             => new[]
             {
                 string.Format(CoreConstants.ProjectNameTemplate, project),
-                string.Format(CoreConstants.CoreProjectNameTemplate, project),
             };
     }
 }

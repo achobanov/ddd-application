@@ -3,10 +3,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EnduranceJudge.Core.Interfaces;
+using EnduranceJudge.Domain.Aggregates;
 using EnduranceJudge.Gateways.Persistence.Core.Services;
 using EnduranceJudge.Gateways.Persistence.Entities;
 using EnduranceJudge.Gateways.Persistence.Repositories.Events;
-using Microsoft.AspNetCore.Server.IIS.Core;
 
 namespace EnduranceJudge.Gateways.Persistence
 {
@@ -38,6 +38,8 @@ namespace EnduranceJudge.Gateways.Persistence
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            builder.Ignore<Domain.Aggregates.Event.Competitions.Competition>();
 
             base.OnModelCreating(builder);
         }

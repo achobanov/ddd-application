@@ -3,7 +3,7 @@ using EnduranceJudge.Gateways.Persistence.Core;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
-    public class CountryEntity : EntityModel<Country>, ICountryState
+    public class CountryEntity : EntityModel, ICountryState
     {
         public string IsoCode { get; set; }
 
