@@ -9,10 +9,17 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Events
 {
     public partial class Event
     {
-        private readonly List<Competition> competitions = new();
+        private List<Competition> competitions = new();
 
         [NotMapped]
-        public IReadOnlyList<Competition> Competitions => this.competitions.AsReadOnly();
+        public IReadOnlyList<Competition> Competitions
+        {
+            get
+            {
+                return this.competitions.AsReadOnly();
+            }
+            private set => this.competitions = value.ToList();
+        }
 
         public Event Add(Competition competition)
         {

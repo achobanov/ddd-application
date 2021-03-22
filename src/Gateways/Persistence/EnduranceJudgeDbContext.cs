@@ -3,16 +3,21 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EnduranceJudge.Core.Interfaces;
-using EnduranceJudge.Domain.Aggregates;
 using EnduranceJudge.Gateways.Persistence.Core.Services;
 using EnduranceJudge.Gateways.Persistence.Entities;
 using EnduranceJudge.Gateways.Persistence.Repositories.Events;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using System;
 
 namespace EnduranceJudge.Gateways.Persistence
 {
     public class EnduranceJudgeDbContext : DbContext, IEventsDataStore
     {
         private readonly IBackupService backup;
+
+        public EnduranceJudgeDbContext()
+        {
+        }
 
         public EnduranceJudgeDbContext(DbContextOptions options, IDateTimeService dateTime, IBackupService backup)
             : base(options)
@@ -30,7 +35,7 @@ namespace EnduranceJudge.Gateways.Persistence
         {
             var result = await this.SaveChangesAsync(cancellationToken);
 
-            await this.backup.Create(this);
+            // await this.backup.Create(this);
 
             return result;
         }
@@ -41,7 +46,22 @@ namespace EnduranceJudge.Gateways.Persistence
 
             builder.Ignore<Domain.Aggregates.Event.Competitions.Competition>();
 
+            builder.Entity<EventEntity>()
+                .HasMany(x => x.Competitions)
+                .WithOne(y => y.Event)
+                .HasForeignKey(y => y.EventId);
+
             base.OnModelCreating(builder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                .EnableSensitiveDataLogging()
+                .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
+
+            base.OnConfiguring(optionsBuilder);
         }
     }
 }

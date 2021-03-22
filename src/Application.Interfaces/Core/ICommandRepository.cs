@@ -7,6 +7,6 @@ namespace EnduranceJudge.Application.Interfaces.Core
     public interface ICommandRepository<in TDomainModel> : IQueryRepository
         where TDomainModel : IAggregateRoot
     {
-        Task<int> Save(TDomainModel entity, CancellationToken cancellationToken = default);
+        Task<int> Save(TDomainModel domainModel, CancellationToken cancellationToken = default);
     }
 }

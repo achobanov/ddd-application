@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using EnduranceJudge.Core.Interfaces;
 using EnduranceJudge.Gateways.Persistence.Core.Services;
 using EnduranceJudge.Gateways.Persistence.Services;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EnduranceJudge.Gateways.Persistence.Startup

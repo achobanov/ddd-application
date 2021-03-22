@@ -24,7 +24,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.DI
             return services
                 .AddCore(assemblies)
                 .AddApplication()
-                .AddPersistence();
+                .AddPersistence(assemblies);
         }
 
         public static IServiceCollection AdaptToDesktop(
