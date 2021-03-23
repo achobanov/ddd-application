@@ -6,7 +6,6 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Events
 {
     public partial class Event
     {
-        [NotMapped]
         public Personnel ForeignJudge { get; private set; }
 
         public Event SetForeignJudge(Personnel personnel)

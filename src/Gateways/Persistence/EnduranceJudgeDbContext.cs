@@ -44,8 +44,6 @@ namespace EnduranceJudge.Gateways.Persistence
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            builder.Ignore<Domain.Aggregates.Event.Competitions.Competition>();
-
             builder.Entity<EventEntity>()
                 .HasMany(x => x.Competitions)
                 .WithOne(y => y.Event)

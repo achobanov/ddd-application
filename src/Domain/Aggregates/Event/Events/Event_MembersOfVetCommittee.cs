@@ -11,7 +11,6 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Events
     {
         private readonly List<Personnel> membersOfVetCommittee = new();
 
-        [NotMapped]
         public IReadOnlyList<Personnel> MembersOfVetCommittee => this.membersOfVetCommittee.AsReadOnly();
 
         public Event AddMembersOfVetCommittee(Personnel personnel)

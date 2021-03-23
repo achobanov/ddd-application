@@ -11,13 +11,9 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Events
     {
         private List<Competition> competitions = new();
 
-        [NotMapped]
         public IReadOnlyList<Competition> Competitions
         {
-            get
-            {
-                return this.competitions.AsReadOnly();
-            }
+            get => this.competitions.AsReadOnly();
             private set => this.competitions = value.ToList();
         }
 

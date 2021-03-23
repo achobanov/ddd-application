@@ -18,6 +18,6 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
         public int CompetitionId { get; set; }
 
         [JsonIgnore]
-        public Competition Competition { get; set; }
+        public CompetitionEntity Competition { get; set; }
     }
 }
