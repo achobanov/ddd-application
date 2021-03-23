@@ -45,12 +45,12 @@ namespace EnduranceJudge.Application.Test
 
             private async Task Modify(CancellationToken cancellationToken)
             {
-                var competition2 = new Competition(1, CompetitionType.National);
                 var event_ = await this.commands.Find<Event>(1);
                 event_.Remove(x => x.Id == 1);
 
                 await this.commands.Save(event_, cancellationToken);
 
+                var competition2 = new Competition(0, CompetitionType.National);
                 event_.Add(competition2);
 
                 await this.commands.Save(event_, cancellationToken);

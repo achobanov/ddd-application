@@ -35,7 +35,7 @@ namespace EnduranceJudge.Gateways.Persistence
         {
             var result = await this.SaveChangesAsync(cancellationToken);
 
-            // await this.backup.Create(this);
+            await this.backup.Create(this);
 
             return result;
         }

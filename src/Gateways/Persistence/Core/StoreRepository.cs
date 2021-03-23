@@ -3,7 +3,6 @@ using AutoMapper.EntityFrameworkCore;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Application.Interfaces.Core;
 using EnduranceJudge.Domain.Core.Models;
-using EnduranceJudge.Gateways.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,10 +53,7 @@ namespace EnduranceJudge.Gateways.Persistence.Core
             else
             {
                 entity.MapFrom(domainModel);
-                // (entity as EventEntity).Competitions.RemoveAt(0);
-                await (this.DataStore as EnduranceJudgeDbContext).Events
-                    .Persist(this.mapper)
-                    .InsertOrUpdateAsync(domainModel, cancellationToken);
+                this.DataStore.Update(entity);
             }
 
             await this.DataStore.Commit(cancellationToken);
