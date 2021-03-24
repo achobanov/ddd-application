@@ -65,7 +65,12 @@ namespace EnduranceJudge.Domain.Aggregates.Manager.ParticipationsInCompetitions
             }
         }
 
-        private readonly List<ParticipationInPhase> participationsInPhases = new();
+        private List<ParticipationInPhase> participationsInPhases = new();
+        public IReadOnlyList<ParticipationInPhase> ParticipationInPhases
+        {
+            get => this.participationsInPhases.AsReadOnly();
+            private set => this.participationsInPhases = value.ToList();
+        }
         public ParticipationInPhase CurrentPhase
             => this.participationsInPhases.SingleOrDefault(participation => !participation.IsComplete);
         private void StartPhase()
@@ -79,8 +84,8 @@ namespace EnduranceJudge.Domain.Aggregates.Manager.ParticipationsInCompetitions
 
                 var restTime = this.CurrentPhase?.Phase.RestTimeInMinutes;
                 var nextStartTime = this.CurrentPhase?.ReInspectionTime?.AddMinutes(restTime!.Value)
-                                ?? this.CurrentPhase?.InspectionTime?.AddMinutes(restTime!.Value)
-                                ?? this.competition.StartTime;
+                    ?? this.CurrentPhase?.InspectionTime?.AddMinutes(restTime!.Value)
+                    ?? this.competition.StartTime;
 
                 var participation = new ParticipationInPhase(nextPhase, nextStartTime);
                 this.participationsInPhases.Add(participation);

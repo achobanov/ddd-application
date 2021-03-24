@@ -4,6 +4,7 @@ using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Aggregates.Event.PhasesForCategory;
 using EnduranceJudge.Domain.Core.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.Phases
 {
@@ -21,8 +22,12 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Phases
         public int LengthInKilometers { get; private set; }
 
 
-        private readonly List<PhaseForCategory> phasesForCategories = new();
-        public IReadOnlyList<PhaseForCategory> PhasesForCategories => this.phasesForCategories.AsReadOnly();
+        private List<PhaseForCategory> phasesForCategories = new();
+        public IReadOnlyList<PhaseForCategory> PhasesForCategories
+        {
+            get => this.phasesForCategories.AsReadOnly();
+            private set => this.phasesForCategories = value.ToList();
+        }
         public Phase AddCategory(PhaseForCategory phaseForCategory)
         {
             this.Add(phase => phase.phasesForCategories, phaseForCategory);

@@ -1,4 +1,3 @@
-using EnduranceJudge.Domain.Core;
 using EnduranceJudge.Domain.Aggregates.Manager.DTOs;
 using EnduranceJudge.Domain.Aggregates.Manager.Participations;
 using EnduranceJudge.Domain.Core.Models;

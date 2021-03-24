@@ -5,6 +5,7 @@ using EnduranceJudge.Domain.Aggregates.Event.Phases;
 using EnduranceJudge.Domain.Core.Models;
 using EnduranceJudge.Domain.Enums;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
 {
@@ -19,17 +20,25 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
 
         public CompetitionType Type { get; private set; }
 
-        private readonly List<Phase> phases = new();
-        public IReadOnlyList<Phase> Phases => this.phases.AsReadOnly();
+        private List<Phase> phases = new();
+        public IReadOnlyList<Phase> Phases
+        {
+            get => this.phases.AsReadOnly();
+            private set => this.phases = value.ToList();
+        }
+
         public Competition AddPhase(Phase phase)
         {
             this.Add(competition => competition.phases, phase);
             return this;
         }
 
-        private readonly List<Participant> participants = new();
-        public IReadOnlyList<Participant> Participants => this.participants.AsReadOnly();
-
+        private List<Participant> participants = new();
+        public IReadOnlyList<Participant> Participants
+        {
+            get => this.participants.AsReadOnly();
+            private set => this.participants = value.ToList();
+        }
         public void Add(Participant child)
         {
             throw new System.NotImplementedException();

@@ -3,6 +3,7 @@ using EnduranceJudge.Domain.Core.Validation;
 using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Core.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.Participants
 {
@@ -44,14 +45,17 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Participants
             return this;
         }
 
-        private readonly List<Competition> competitions = new();
-        public IReadOnlyList<Competition> Competitions => this.competitions.AsReadOnly();
+        private List<Competition> competitions = new();
+        public IReadOnlyList<Competition> Competitions
+        {
+            get => this.competitions.AsReadOnly();
+            private set => this.competitions = value.ToList();
+        }
         void IDependsOnMany<Competition>.AddOne(Competition principal)
             => this.Validate(() =>
             {
                 this.competitions.ValidateAndAdd(principal);
             });
-
         void IDependsOnMany<Competition>.RemoveOne(Competition principal)
             => this.Validate(() =>
             {
