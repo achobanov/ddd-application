@@ -3,6 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EnduranceJudge.Core.Interfaces;
+using EnduranceJudge.Domain.Aggregates.Event.ContestPersonnel;
+using EnduranceJudge.Domain.Aggregates.Event.Participants;
+using EnduranceJudge.Domain.Aggregates.Event.Phases;
 using EnduranceJudge.Gateways.Persistence.Core.Services;
 using EnduranceJudge.Gateways.Persistence.Entities;
 using EnduranceJudge.Gateways.Persistence.Repositories.Events;
@@ -30,6 +33,10 @@ namespace EnduranceJudge.Gateways.Persistence
         public DbSet<CompetitionEntity> Competitions { get; set; }
         public DbSet<PhaseEntity> Phases { get; set; }
         public DbSet<PhaseForCategoryEntity> PhasesForCategories { get; set; }
+        public DbSet<PersonnelEntity> Personnel { get; set; }
+        public DbSet<AthleteEntity> Athletes { get; set; }
+        public DbSet<HorseEntity> Horses { get; set; }
+        public DbSet<ParticipantEntity> Participants { get; set; }
 
         public async Task<int> Commit(CancellationToken cancellationToken = default)
         {
@@ -48,6 +55,37 @@ namespace EnduranceJudge.Gateways.Persistence
                 .HasMany(x => x.Competitions)
                 .WithOne(y => y.Event)
                 .HasForeignKey(y => y.EventId);
+
+            builder.Entity<EventEntity>()
+                .HasMany(x => x.Personnel)
+                .WithOne(y => y.Event)
+                .HasForeignKey(y => y.EventId);
+
+            builder.Entity<CompetitionEntity>()
+                .HasMany(c => c.Phases)
+                .WithOne(p => p.Competition)
+                .HasForeignKey(p => p.CompetitionId);
+
+            builder.Entity<PhaseEntity>()
+                .HasMany(p => p.PhasesForCategories)
+                .WithOne(pfc => pfc.Phase)
+                .HasForeignKey(pfc => pfc.PhaseId);
+
+            builder.Entity<CompetitionEntity>()
+                .HasMany(c => c.Participants)
+                .WithMany(p => p.Competitions);
+
+            builder.Entity<ParticipantEntity>()
+                .HasOne(p => p.Horse)
+                .WithOne(h => h.Participant)
+                .HasForeignKey<HorseEntity>(h => h.ParticipantId);
+
+            builder.Entity<ParticipantEntity>()
+                .HasOne(p => p.Athlete)
+                .WithOne(a => a.Participant)
+                .HasForeignKey<AthleteEntity>(a => a.ParticipantId);
+
+
 
             base.OnModelCreating(builder);
         }

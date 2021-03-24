@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
-    public class EventEntity : EntityModel, IEventState, IMapFrom<Event>, IMapTo<Event>, IMapExplicitly
+    public class EventEntity : EntityModel, IEventState, IMapExplicitly
     {
         public string Name { get; set; }
 
@@ -17,6 +17,9 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
 
         [JsonIgnore]
         public IList<CompetitionEntity> Competitions { get; set; }
+
+        [JsonIgnore]
+        public IList<PersonnelEntity> Personnel { get; set; }
 
         public void CreateExplicitMap(Profile mapper)
         {
