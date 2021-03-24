@@ -1,5 +1,4 @@
-﻿using EnduranceJudge.Domain.Core.Models;
-using EnduranceJudge.Domain.Core.Exceptions;
+﻿using EnduranceJudge.Domain.Core.Exceptions;
 using EnduranceJudge.Domain.Core.Validation;
 using System;
 
