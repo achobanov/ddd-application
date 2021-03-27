@@ -1,17 +1,19 @@
 using EnduranceJudge.Application.Core.Requests;
 using EnduranceJudge.Application.Interfaces.Core;
+using EnduranceJudge.Domain.Core.Models;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace EnduranceJudge.Application.Core.Handlers
 {
-    public class FindHandler<TRequest, TResponse> : Handler<TRequest, TResponse>
+    public class FindHandler<TRequest, TResponse, TDomainModel> : Handler<TRequest, TResponse>
         where TRequest : IIdentifiableRequest, IRequest<TResponse>
+        where TDomainModel : IAggregateRoot
     {
-        private readonly IQueryRepository query;
+        private readonly IQueryRepository<TDomainModel> query;
 
-        public FindHandler(IQueryRepository query)
+        public FindHandler(IQueryRepository<TDomainModel> query)
         {
             this.query = query;
         }

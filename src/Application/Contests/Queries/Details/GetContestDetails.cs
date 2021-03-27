@@ -1,6 +1,7 @@
 using EnduranceJudge.Application.Core.Handlers;
 using EnduranceJudge.Application.Core.Requests;
 using EnduranceJudge.Application.Interfaces.Events;
+using EnduranceJudge.Domain.Aggregates.Event.Events;
 using MediatR;
 
 namespace EnduranceJudge.Application.Contests.Queries.Details
@@ -9,7 +10,7 @@ namespace EnduranceJudge.Application.Contests.Queries.Details
     {
         public int Id { get; set; }
 
-        public class GetContestDetailsHandler : FindHandler<GetContestDetails, ContestDetailsModel>
+        public class GetContestDetailsHandler : FindHandler<GetContestDetails, ContestDetailsModel, Event>
         {
             public GetContestDetailsHandler(IEventQueries queries)
                 : base(queries)

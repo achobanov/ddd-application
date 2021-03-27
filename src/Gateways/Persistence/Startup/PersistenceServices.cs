@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using AutoMapper.EntityFrameworkCore;
 using AutoMapper.EquivalencyExpression;
+using EnduranceJudge.Application.Interfaces.Countries;
 using EnduranceJudge.Application.Interfaces.Events;
 using EnduranceJudge.Core.Interfaces;
+using EnduranceJudge.Gateways.Persistence.Repositories.Countries;
 using EnduranceJudge.Gateways.Persistence.Repositories.Events;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -36,7 +38,8 @@ namespace EnduranceJudge.Gateways.Persistence.Startup
         private static IServiceCollection AddRepositories(this IServiceCollection services)
             => services
                 .AddTransient<IEventCommands, EventsRepository>()
-                .AddTransient<IEventQueries, EventsRepository>();
+                .AddTransient<IEventQueries, EventsRepository>()
+                .AddTransient<ICountryQueries, CountryRepository>();
 
         private static IServiceCollection AddMapping(
             this IServiceCollection services,

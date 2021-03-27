@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Application.Interfaces.Core
 {
-    public interface ICommandRepository<in TDomainModel> : IQueryRepository
+    public interface ICommandRepository<TDomainModel> : IQueryRepository<TDomainModel>
         where TDomainModel : IAggregateRoot
     {
         Task<int> Save(TDomainModel domainModel, CancellationToken cancellationToken = default);

@@ -14,8 +14,7 @@ namespace EnduranceJudge.Gateways.Persistence.Repositories.Events
         IEventCommands,
         IEventQueries
     {
-        public EventsRepository(EnduranceJudgeDbContext dataStore, IMapper mapper)
-            : base(dataStore, mapper)
+        public EventsRepository(EnduranceJudgeDbContext dataStore) : base(dataStore)
         {
         }
 
