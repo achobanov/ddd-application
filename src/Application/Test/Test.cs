@@ -83,6 +83,7 @@ namespace EnduranceJudge.Application.Test
                 var vetMember2 = new Personnel(0, "Vet Two", PersonnelRole.MemberOfVetCommittee);
 
                 var country = await this.countryQueries.Find(1);
+                event_ = await this.eventCommands.Find(1);
 
                 event_.Add(competition1);
                 await this.eventCommands.Save(event_, cancellationToken);
@@ -109,14 +110,14 @@ namespace EnduranceJudge.Application.Test
                     .Set(horse4)
                     .Set(athlete4);
 
-                // event_.Competitions.First(x => x.Id == 1)
-                //     .Add(participant1)
-                //     .Add(participant2)
-                //     .Add(participant3)
-                //     .Add(participant4);
-                //
-                // await this.eventCommands.Save(event_, cancellationToken);
-                // event_ = await this.eventCommands.Find(1);
+                event_.Competitions.First(x => x.Id == 1)
+                    .Add(participant1)
+                    .Add(participant2)
+                    .Add(participant3)
+                    .Add(participant4);
+
+                await this.eventCommands.Save(event_, cancellationToken);
+                event_ = await this.eventCommands.Find(1);
 
                 event_.Competitions.First(x => x.Id == 1)
                     .Add(phase1);

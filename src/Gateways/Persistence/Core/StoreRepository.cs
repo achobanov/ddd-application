@@ -1,6 +1,7 @@
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Application.Interfaces.Core;
 using EnduranceJudge.Domain.Aggregates.Event.Competitions;
+using EnduranceJudge.Domain.Aggregates.Event.Participants;
 using EnduranceJudge.Domain.Aggregates.Event.Phases;
 using EnduranceJudge.Domain.Core.Models;
 using EnduranceJudge.Domain.Enums;

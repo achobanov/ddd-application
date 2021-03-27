@@ -32,11 +32,11 @@ namespace EnduranceJudge.Domain.Core.Validation
             return value;
         }
 
-        public static TValue IsNotDefault<TValue>(this TValue value, string message)
+        public static TValue IsNotDefault<TValue>(this TValue value, string name)
         {
             if (value?.Equals(default(TValue)) ?? true)
             {
-                throw new ValidationException(message);
+                throw new ValidationException(NotDefaultTemplate, name);
             }
 
             return value;

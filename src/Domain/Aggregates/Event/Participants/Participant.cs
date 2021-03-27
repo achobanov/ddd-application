@@ -10,6 +10,10 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Participants
     public class Participant : DomainModel<ParticipantException>, IParticipantState,
         IDependsOnMany<Competition>
     {
+        private Participant() : base(default)
+        {
+        }
+
         public Participant(int id, string rfId, int contestNumber) : base(id)
         {
             this.Validate(() =>

@@ -11,7 +11,7 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
     public class PersonnelEntity : EntityModel, IPersonnelState, IMapExplicitly
     {
         public string Name { get; set; }
-        public PersonnelRole Role { get; }
+        public PersonnelRole Role { get; set; }
 
         [JsonIgnore]
         public EventEntity Event { get; set; }

@@ -4,8 +4,8 @@ using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Import.Athletes;
 using EnduranceJudge.Domain.Enums;
 using EnduranceJudge.Gateways.Persistence.Core;
+using Newtonsoft.Json;
 using System;
-using System.Text.Json.Serialization;
 using Athlete = EnduranceJudge.Domain.Aggregates.Event.Participants.Athlete;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
@@ -26,10 +26,10 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
         public void CreateExplicitMap(Profile mapper)
         {
             mapper.CreateMap<AthleteEntity, Athlete>()
-                .EqualityComparison((entity, personnel) => entity.Id == personnel.Id);
+                .EqualityComparison((ae, a) => ae.Id == a.Id);
 
             mapper.CreateMap<Athlete, AthleteEntity>()
-                .EqualityComparison((personnel, entity) => entity.Id == personnel.Id)
+                .EqualityComparison((a, ae) => ae.Id == a.Id)
                 .ForMember(x => x.ParticipantId, opt => opt.Condition(a => a.Participant != null))
                 .ForMember(x => x.Participant, opt => opt.Condition(a => a.Participant != null));
         }

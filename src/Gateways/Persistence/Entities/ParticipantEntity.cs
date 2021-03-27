@@ -23,7 +23,7 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
         public int AthleteId { get; set; }
 
         [JsonIgnore]
-        public ICollection<CompetitionEntity> Competitions { get; set; }
+        public ICollection<ParticipantInCompetition> ParticipantsInCompetitions { get; set; }
 
         public void CreateExplicitMap(Profile mapper)
         {

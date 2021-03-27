@@ -34,12 +34,13 @@ namespace EnduranceJudge.Gateways.Persistence
         public DbSet<AthleteEntity> Athletes { get; set; }
         public DbSet<HorseEntity> Horses { get; set; }
         public DbSet<ParticipantEntity> Participants { get; set; }
+        public DbSet<ParticipantInCompetition> ParticipantsInCompetitions { get; set; }
 
         public async Task<int> Commit(CancellationToken cancellationToken = default)
         {
             var result = await this.SaveChangesAsync(cancellationToken);
 
-            // await this.backup.Create(this);
+            await this.backup.Create(this);
 
             return result;
         }
@@ -69,13 +70,19 @@ namespace EnduranceJudge.Gateways.Persistence
                 .HasForeignKey(pfc => pfc.PhaseId);
 
             builder.Entity<CompetitionEntity>()
-                .HasMany(c => c.Participants)
-                .WithMany(p => p.Competitions);
+                .HasMany(c => c.ParticipantsInCompetitions)
+                .WithOne(pic => pic.Competition)
+                .HasForeignKey(pic => pic.CompetitionId);
 
             builder.Entity<ParticipantEntity>()
                 .HasOne(p => p.Horse)
                 .WithOne(h => h.Participant)
                 .HasForeignKey<HorseEntity>(h => h.ParticipantId);
+
+            builder.Entity<ParticipantEntity>()
+                .HasMany(p => p.ParticipantsInCompetitions)
+                .WithOne(pic => pic.Participant)
+                .HasForeignKey(pic => pic.ParticipantId);
 
             builder.Entity<ParticipantEntity>()
                 .HasOne(p => p.Athlete)
