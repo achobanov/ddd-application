@@ -3,8 +3,8 @@ using AutoMapper.EquivalencyExpression;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Event.Participants;
 using EnduranceJudge.Gateways.Persistence.Core;
+using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
@@ -32,10 +32,10 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
 
             mapper.CreateMap<Participant, ParticipantEntity>()
                 .EqualityComparison((personnel, entity) => entity.Id == personnel.Id)
-                .ForMember(x => x.HorseId, opt => opt.Ignore())
-                .ForMember(x => x.Horse, opt => opt.Ignore())
-                .ForMember(x => x.AthleteId, opt => opt.Ignore())
-                .ForMember(x => x.Athlete, opt => opt.Ignore());
+                .ForMember(x => x.HorseId, opt => opt.Condition(p => p.Horse != null))
+                .ForMember(x => x.Horse, opt => opt.Condition(p => p.Horse != null))
+                .ForMember(x => x.AthleteId, opt => opt.Condition(p => p.Athlete != null))
+                .ForMember(x => x.Athlete, opt => opt.Condition(p => p.Athlete != null));
         }
     }
 }

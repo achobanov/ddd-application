@@ -28,8 +28,8 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
 
             mapper.CreateMap<Horse, HorseEntity>()
                 .EqualityComparison((horse, entity) => entity.Id == horse.Id)
-                .ForMember(x => x.ParticipantId, opt => opt.Ignore())
-                .ForMember(x => x.Participant, opt => opt.Ignore());
+                .ForMember(x => x.ParticipantId, opt => opt.Condition(e => e.Participant != null))
+                .ForMember(x => x.Participant, opt => opt.Condition(e => e.Participant != null));
         }
     }
 }

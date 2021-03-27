@@ -29,8 +29,8 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
 
             mapper.CreateMap<Competition, CompetitionEntity>()
                 .EqualityComparison((domain, entity) => entity.Id == domain.Id)
-                .ForMember(x => x.EventId, opt => opt.Ignore())
-                .ForMember(x => x.Event, opt => opt.Ignore());
+                .ForMember(x => x.EventId, opt => opt.Condition(c => c.Event != null))
+                .ForMember(x => x.Event, opt => opt.Condition(c => c.Event != null));
         }
     }
 }

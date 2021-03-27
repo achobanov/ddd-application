@@ -41,12 +41,12 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Events
                 Thrower.Throw<EventException>(message);
             }
 
-            this.Add(e => e.personnel, personnel);
+            this.AddRelation(e => e.personnel, personnel);
             return this;
         }
         public Event Remove(Personnel personnel)
         {
-            this.Remove(x => x.personnel, personnel);
+            this.RemoveRelation(x => x.personnel, personnel);
             return this;
         }
 
@@ -58,7 +58,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Events
         }
         public Event Add(Competition competition)
         {
-            this.Add(x => x.competitions, competition);
+            this.AddRelation(x => x.competitions, competition);
             return this;
         }
         public Event Remove(Func<Competition, bool> filter)
@@ -68,7 +68,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Events
         }
         public Event Remove(Competition competition)
         {
-            this.Remove(x => x.competitions, competition);
+            this.RemoveRelation(x => x.competitions, competition);
             return this;
         }
     }

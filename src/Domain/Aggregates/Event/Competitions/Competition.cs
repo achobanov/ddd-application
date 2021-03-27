@@ -26,10 +26,9 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
             get => this.phases.AsReadOnly();
             private set => this.phases = value.ToList();
         }
-
-        public Competition AddPhase(Phase phase)
+        public Competition Add(Phase phase)
         {
-            this.Add(competition => competition.phases, phase);
+            this.AddRelation(competition => competition.phases, phase);
             return this;
         }
 
@@ -39,13 +38,15 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
             get => this.participants.AsReadOnly();
             private set => this.participants = value.ToList();
         }
-        public void Add(Participant child)
+        public Competition Add(Participant child)
         {
-            throw new System.NotImplementedException();
+            this.AddOneRelation(x => x.participants, child);
+            return this;
         }
-        public void Remove(Participant child)
+        public Competition Remove(Participant child)
         {
-            throw new System.NotImplementedException();
+            this.RemoveOneRelation(x => x.participants, child);
+            return this;
         }
 
         public Events.Event Event { get; private set; }

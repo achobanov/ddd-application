@@ -28,9 +28,9 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Phases
             get => this.phasesForCategories.AsReadOnly();
             private set => this.phasesForCategories = value.ToList();
         }
-        public Phase AddCategory(PhaseForCategory phaseForCategory)
+        public Phase Add(PhaseForCategory phaseForCategory)
         {
-            this.Add(phase => phase.phasesForCategories, phaseForCategory);
+            this.AddRelation(phase => phase.phasesForCategories, phaseForCategory);
             return this;
         }
 

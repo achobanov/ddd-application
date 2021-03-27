@@ -19,7 +19,6 @@ namespace EnduranceJudge.Domain.Aggregates.Common
         public string PopulatedPlace { get; protected set; }
 
         public Country Country { get; protected set; }
-
         public void Set(Country country)
             => this.Validate(() =>
             {

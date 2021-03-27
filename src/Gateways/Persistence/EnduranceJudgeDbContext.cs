@@ -3,9 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EnduranceJudge.Core.Interfaces;
-using EnduranceJudge.Domain.Aggregates.Event.ContestPersonnel;
-using EnduranceJudge.Domain.Aggregates.Event.Participants;
-using EnduranceJudge.Domain.Aggregates.Event.Phases;
 using EnduranceJudge.Gateways.Persistence.Core.Services;
 using EnduranceJudge.Gateways.Persistence.Entities;
 using EnduranceJudge.Gateways.Persistence.Repositories.Events;
@@ -42,7 +39,7 @@ namespace EnduranceJudge.Gateways.Persistence
         {
             var result = await this.SaveChangesAsync(cancellationToken);
 
-            await this.backup.Create(this);
+            // await this.backup.Create(this);
 
             return result;
         }
@@ -84,8 +81,6 @@ namespace EnduranceJudge.Gateways.Persistence
                 .HasOne(p => p.Athlete)
                 .WithOne(a => a.Participant)
                 .HasForeignKey<AthleteEntity>(a => a.ParticipantId);
-
-
 
             base.OnModelCreating(builder);
         }

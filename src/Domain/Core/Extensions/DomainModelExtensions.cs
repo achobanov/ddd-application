@@ -7,7 +7,7 @@ namespace EnduranceJudge.Domain.Core.Extensions
 {
     internal static class DomainModelExtensions
     {
-        internal static void Add<TPrincipal, TDependant>(
+        internal static void AddRelation<TPrincipal, TDependant>(
             this TPrincipal principal,
             Func<TPrincipal, List<TDependant>> collectionSelector,
             TDependant dependant)
@@ -21,7 +21,7 @@ namespace EnduranceJudge.Domain.Core.Extensions
             });
         }
 
-        internal static void Remove<TPrincipal, TDependant>(
+        internal static void RemoveRelation<TPrincipal, TDependant>(
             this TPrincipal principal,
             Func<TPrincipal, List<TDependant>> collectionSelector,
             TDependant dependant)
@@ -35,7 +35,35 @@ namespace EnduranceJudge.Domain.Core.Extensions
             });
         }
 
-        internal static void Set<TPrincipal, TDependant>(
+        internal static void AddOneRelation<TPrincipal, TDependant>(
+            this TPrincipal principal,
+            Func<TPrincipal, List<TDependant>> collectionSelector,
+            TDependant dependant)
+            where TPrincipal : IInternalDomainModel
+            where TDependant : class, IDependsOnMany<TPrincipal>
+        {
+            principal.Validate(() =>
+            {
+                collectionSelector(principal).ValidateAndAdd(dependant);
+                dependant.AddOne(principal);
+            });
+        }
+
+        internal static void RemoveOneRelation<TPrincipal, TDependant>(
+            this TPrincipal principal,
+            Func<TPrincipal, List<TDependant>> collectionSelector,
+            TDependant dependant)
+            where TPrincipal : IInternalDomainModel
+            where TDependant : class, IDependsOnMany<TPrincipal>
+        {
+            principal.Validate(() =>
+            {
+                collectionSelector(principal).ValidateAndRemove(dependant);
+                dependant.RemoveOne(principal);
+            });
+        }
+
+        internal static void SetRelation<TPrincipal, TDependant>(
             this TPrincipal principal,
             Func<TPrincipal, TDependant> selector,
             Action<TPrincipal, TDependant> assigner,
@@ -53,7 +81,7 @@ namespace EnduranceJudge.Domain.Core.Extensions
             });
         }
 
-        internal static void Clear<TPrincipal, TDependant>(
+        internal static void ClearRelation<TPrincipal, TDependant>(
             this TPrincipal principal,
             Func<TPrincipal, TDependant> selector,
             Action<TPrincipal, TDependant> assigner)
@@ -70,6 +98,5 @@ namespace EnduranceJudge.Domain.Core.Extensions
                 }
             });
         }
-
     }
 }

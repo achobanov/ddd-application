@@ -1,8 +1,10 @@
-using AutoMapper;
-using AutoMapper.EntityFrameworkCore;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Application.Interfaces.Core;
+using EnduranceJudge.Domain.Aggregates.Event.Competitions;
+using EnduranceJudge.Domain.Aggregates.Event.Phases;
 using EnduranceJudge.Domain.Core.Models;
+using EnduranceJudge.Domain.Enums;
+using EnduranceJudge.Gateways.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,20 +13,20 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Persistence.Core
 {
-    internal abstract class StoreRepository<TDataStore, TEntityModel, TDomainModel> : ICommandRepository<TDomainModel>
+    public abstract class StoreRepository<TDataStore, TEntityModel, TDomainModel> : ICommandRepository<TDomainModel>
         where TDomainModel : class, IAggregateRoot
         where TDataStore : IDataStore
         where TEntityModel : EntityModel
     {
-        private readonly IMapper mapper;
-
-        protected StoreRepository(TDataStore dataStore, IMapper mapper)
+        protected StoreRepository(TDataStore dataStore)
         {
-            this.mapper = mapper;
             this.DataStore = dataStore;
         }
 
         protected TDataStore DataStore { get; }
+
+        public virtual async Task<TDomainModel> Find(int id)
+            => await this.Find<TDomainModel>(id);
 
         public virtual async Task<TModel> Find<TModel>(int id)
             => await this.DataStore
@@ -38,9 +40,6 @@ namespace EnduranceJudge.Gateways.Persistence.Core
                 .Set<TEntityModel>()
                 .MapQueryable<TModel>()
                 .ToListAsync();
-
-        public virtual async Task<TEntityModel> Find(int id)
-            => await this.DataStore.FindAsync<TEntityModel>(id);
 
         public async Task<int> Save(TDomainModel domainModel, CancellationToken cancellationToken = default)
         {

@@ -26,7 +26,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Participants
         public Horse Horse { get; private set; }
         public Participant Set(Horse horse)
         {
-            this.Set(
+            this.SetRelation(
                 participant => participant.Horse,
                 (participant, h) => participant.Horse = h,
                 horse);
@@ -37,7 +37,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Participants
         public Athlete Athlete { get; private set; }
         public Participant Set(Athlete athlete)
         {
-            this.Set(
+            this.SetRelation(
                 participant => participant.Athlete,
                 (participant, r) => participant.Athlete = r,
                 athlete);
