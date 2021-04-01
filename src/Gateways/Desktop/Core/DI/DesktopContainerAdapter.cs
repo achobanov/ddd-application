@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using Prism.Ioc;
 using System;
 
@@ -12,28 +13,51 @@ namespace EnduranceJudge.Gateways.Desktop.Core.DI
             this.container = container;
         }
 
-        internal void RegisterSingleton(Type service, object implementation)
-            => this.container.RegisterSingleton(service, () => implementation);
+        public void Register(ServiceDescriptor service)
+        {
+            if (service.Lifetime == ServiceLifetime.Transient && service.Lifetime == ServiceLifetime.Scoped)
+            {
+                this.RegisterTransient(service);
+            }
+            else
+            {
+                this.RegisterSingleton(service);
+            }
+        }
 
-        internal void RegisterSingleton(Type service, Type implementation)
-            => this.container.RegisterSingleton(service, implementation);
+        private void RegisterSingleton(ServiceDescriptor descriptor)
+        {
+            if (descriptor.ImplementationInstance != null)
+            {
+                this.container.RegisterSingleton(descriptor.ServiceType, () => descriptor.ImplementationInstance);
+            }
+            else if (descriptor.ImplementationFactory != null)
+            {
+                var dryIotFactory = this.ToDryIotFactory(descriptor.ImplementationFactory);
+                this.container.RegisterSingleton(descriptor.ServiceType, dryIotFactory);
+            }
+            else
+            {
+                this.container.RegisterSingleton(descriptor.ServiceType, descriptor.ImplementationType);
+            }
+        }
 
-        internal void RegisterSingleton(
-            Type service,
-            Func<IServiceProvider, object> factory)
-            => this.container.RegisterSingleton(service, this.ToDryIotFactory(factory));
-
-        internal void Register(Type service, object implementation)
-            => this.container.Register(service, () => implementation);
-
-        internal void Register(Type service, Type implementation)
-            => this.container.Register(service, implementation);
-
-        internal void Register(
-            Type service,
-            Func<IServiceProvider, object> factory)
-            => this.container.Register(service, this.ToDryIotFactory(factory));
-
+        private void RegisterTransient(ServiceDescriptor descriptor)
+        {
+            if (descriptor.ImplementationInstance != null)
+            {
+                this.container.Register(descriptor.ServiceType, () => descriptor.ImplementationInstance);
+            }
+            else if (descriptor.ImplementationFactory != null)
+            {
+                var dryIotFactory = this.ToDryIotFactory(descriptor.ImplementationFactory);
+                this.container.Register(descriptor.ServiceType, dryIotFactory);
+            }
+            else
+            {
+                this.container.Register(descriptor.ServiceType, descriptor.ImplementationType);
+            }
+        }
 
         private Func<IContainerProvider, object> ToDryIotFactory(Func<IServiceProvider, object> factory)
             => container =>

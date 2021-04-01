@@ -1,15 +1,8 @@
 ﻿using AutoMapper;
-using AutoMapper.EntityFrameworkCore;
 using AutoMapper.EquivalencyExpression;
-using EnduranceJudge.Application.Interfaces.Countries;
-using EnduranceJudge.Application.Interfaces.Events;
-using EnduranceJudge.Core.Interfaces;
-using EnduranceJudge.Gateways.Persistence.Repositories.Countries;
-using EnduranceJudge.Gateways.Persistence.Repositories.Events;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
+using EnduranceJudge.Application.Interfaces.Core;
+using EnduranceJudge.Gateways.Persistence.Core;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -25,21 +18,27 @@ namespace EnduranceJudge.Gateways.Persistence.Startup
 
             return services
                 .AddDatabase()
-                .AddTransient<IEventsDataStore, EnduranceJudgeDbContext>()
                 .AddMapping(assemblies)
-                .AddRepositories()
-                .AddSingleton<IInitializerInterface, PersistenceInitializer>();
+                .AddRepositories();
         }
 
         private static IServiceCollection AddDatabase(this IServiceCollection services)
             => services
-                .AddDbContext<EnduranceJudgeDbContext>();
+                .AddDbContext<EnduranceJudgeDbContext>()
+                .Scan(scan => scan
+                    .FromCallingAssembly()
+                    .AddClasses(classes =>
+                        classes.AssignableTo<IDataStore>())
+                    .AsSelfWithInterfaces());
 
         private static IServiceCollection AddRepositories(this IServiceCollection services)
             => services
-                .AddTransient<IEventCommands, EventsRepository>()
-                .AddTransient<IEventQueries, EventsRepository>()
-                .AddTransient<ICountryQueries, CountryRepository>();
+                .Scan(scan => scan
+                    .FromCallingAssembly()
+                    .AddClasses(classes =>
+                        classes.AssignableTo(typeof(IQueryRepository<>)))
+                    .AsSelfWithInterfaces()
+                    .WithTransientLifetime());
 
         private static IServiceCollection AddMapping(
             this IServiceCollection services,
@@ -49,8 +48,6 @@ namespace EnduranceJudge.Gateways.Persistence.Startup
                 {
                     configuration.AddCollectionMappers();
                     configuration.UseEntityFrameworkCoreModel<EnduranceJudgeDbContext>();
-                    // configuration.SetGeneratePropertyMaps<
-                    //     GenerateEntityFrameworkCorePrimaryKeyPropertyMaps<EnduranceJudgeDbContext>>();
                 },
                 assemblies);
     }

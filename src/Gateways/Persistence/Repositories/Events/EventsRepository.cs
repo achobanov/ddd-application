@@ -1,4 +1,3 @@
-using AutoMapper;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Application.Interfaces.Events;
 using EnduranceJudge.Domain.Aggregates.Event.Events;
@@ -10,7 +9,7 @@ using System.Linq;
 
 namespace EnduranceJudge.Gateways.Persistence.Repositories.Events
 {
-    internal class EventsRepository : StoreRepository<EnduranceJudgeDbContext, EventEntity, Event>,
+    internal class EventsRepository : StoreRepository<IEventsDataStore, EventEntity, Event>,
         IEventCommands,
         IEventQueries
     {
