@@ -18,7 +18,7 @@ namespace EnduranceJudge.Gateways.Persistence.Core.Services.Implementations
             }
         }
 
-        public async Task<string> Read(string name)
+        public string Read(string name)
         {
             var path = this.BuildFilePath(name);
 
@@ -29,7 +29,7 @@ namespace EnduranceJudge.Gateways.Persistence.Core.Services.Implementations
 
             using (var stream = new StreamReader(path))
             {
-                return await stream.ReadToEndAsync();
+                return stream.ReadToEnd();
             }
         }
 

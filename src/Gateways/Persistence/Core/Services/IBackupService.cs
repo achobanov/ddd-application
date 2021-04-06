@@ -9,7 +9,7 @@ namespace EnduranceJudge.Gateways.Persistence.Core.Services
         Task Create<TDataStore>(TDataStore dbContext)
             where TDataStore : IDataStore;
 
-        Task<bool> Restore<TDataStore>(TDataStore dbContext)
+        bool Restore<TDataStore>(TDataStore dbContext)
             where TDataStore : DbContext;
     }
 }

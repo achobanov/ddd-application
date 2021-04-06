@@ -5,6 +5,6 @@ namespace EnduranceJudge.Gateways.Persistence.Services
 {
     public interface ISeederService : IService
     {
-        Task Seed();
+        void Seed();
     }
 }

@@ -20,23 +20,23 @@ namespace EnduranceJudge.Gateways.Persistence.Startup
 
         public int RunningOrder => 10;
 
-        public async Task Run(IServiceProvider serviceProvider)
+        public void Run(IServiceProvider serviceProvider)
         {
             var dbContext = serviceProvider.GetService<EnduranceJudgeDbContext>();
 
-            await this.SeedAsync(dbContext);
+            this.SeedAsync(dbContext);
         }
 
-        private async Task SeedAsync(EnduranceJudgeDbContext dbContext)
+        private void SeedAsync(EnduranceJudgeDbContext dbContext)
         {
-            var hasData = await this.backup.Restore(dbContext);
+            var hasData = this.backup.Restore(dbContext);
 
             if (!hasData)
             {
-                await this.seeder.Seed();
+                this.seeder.Seed();
             }
 
-            await dbContext.SaveChangesAsync();
+            dbContext.SaveChanges();
         }
     }
 }

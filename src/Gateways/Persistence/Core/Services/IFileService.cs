@@ -7,6 +7,6 @@ namespace EnduranceJudge.Gateways.Persistence.Core.Services
     {
         public Task Create(string name, string content);
 
-        public Task<string> Read(string name);
+        public string Read(string name);
     }
 }

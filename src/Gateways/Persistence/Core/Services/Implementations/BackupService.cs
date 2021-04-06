@@ -40,10 +40,10 @@ namespace EnduranceJudge.Gateways.Persistence.Core.Services.Implementations
             await this.file.Create(PersistenceConstants.BackupFileName, encrypted);
         }
 
-        public async Task<bool> Restore<TDataStore>(TDataStore dbContext)
+        public bool Restore<TDataStore>(TDataStore dbContext)
             where TDataStore : DbContext
         {
-            var encrypted = await this.file.Read(PersistenceConstants.BackupFileName);
+            var encrypted = this.file.Read(PersistenceConstants.BackupFileName);
             if (string.IsNullOrEmpty(encrypted))
             {
                 return false;

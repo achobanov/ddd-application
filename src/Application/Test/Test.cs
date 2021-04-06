@@ -34,6 +34,10 @@ namespace EnduranceJudge.Application.Test
 
             protected override async Task Handle(Test request, CancellationToken cancellationToken)
             {
+            }
+
+            private async Task BigTest(CancellationToken cancellationToken)
+            {
                 var event_ = new Event(0, "Name", "place");
 
                 var competition1 = new Competition(0, CompetitionType.National);

@@ -15,11 +15,9 @@ namespace EnduranceJudge.Core
 
         public int RunningOrder => 0;
 
-        public Task Run(IServiceProvider serviceProvider)
+        public void Run(IServiceProvider serviceProvider)
         {
             MappingApi.Initialize(this.mapper);
-
-            return Task.CompletedTask;
         }
     }
 }

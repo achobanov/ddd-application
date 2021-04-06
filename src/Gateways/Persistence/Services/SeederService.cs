@@ -13,12 +13,12 @@ namespace EnduranceJudge.Gateways.Persistence.Services
             this.dbContext = dbContext;
         }
 
-        public async Task Seed()
+        public void Seed()
         {
-            await this.SeedCountries();
+            this.SeedCountries();
         }
 
-        private async Task SeedCountries()
+        private void SeedCountries()
         {
             var countries = new List<CountryEntity>
             {
@@ -29,7 +29,7 @@ namespace EnduranceJudge.Gateways.Persistence.Services
                 },
             };
 
-            await this.dbContext.AddRangeAsync(countries);
+            this.dbContext.AddRange(countries);
         }
     }
 }

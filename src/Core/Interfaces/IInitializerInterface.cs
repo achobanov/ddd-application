@@ -7,6 +7,6 @@ namespace EnduranceJudge.Core.Interfaces
     {
         int RunningOrder { get; }
 
-        Task Run(IServiceProvider serviceProvider);
+        void Run(IServiceProvider serviceProvider);
     }
 }
