@@ -38,7 +38,9 @@ namespace EnduranceJudge.Gateways.Desktop
 
             await mediator.Send(test);
 
-            this.regionManager.RegisterViewWithRegion("ContentRegion", typeof(ViewA));
+            this.regionManager.RegisterViewWithRegion(Menu.RegionName, typeof(Menu));
+            this.regionManager.RegisterViewWithRegion(PageOne.RegionName, typeof(PageOne));
+            this.regionManager.RegisterViewWithRegion(PageTwo.RegionName, typeof(PageTwo));
         }
     }
 }

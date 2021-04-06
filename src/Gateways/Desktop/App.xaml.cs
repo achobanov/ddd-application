@@ -1,8 +1,12 @@
-﻿using EnduranceJudge.Gateways.Desktop.Startup;
+﻿using EnduranceJudge.Core.Interfaces;
+using EnduranceJudge.Gateways.Desktop.Startup;
 using EnduranceJudge.Gateways.Desktop.Views;
+using Microsoft.Extensions.DependencyInjection;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Modularity;
+using System;
+using System.Linq;
 using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop
@@ -14,7 +18,8 @@ namespace EnduranceJudge.Gateways.Desktop
 
         protected override Window CreateShell()
         {
-            // Call initializers
+            this.InitializeApplication();
+
             return this.Container.Resolve<ShellWindow>();
         }
 
@@ -22,6 +27,17 @@ namespace EnduranceJudge.Gateways.Desktop
         {
             base.ConfigureModuleCatalog(moduleCatalog);
             moduleCatalog.AddModule<Module>();
+        }
+
+        private void InitializeApplication()
+        {
+            var aspNetProvider = this.Container.Resolve<IServiceProvider>();
+            var initializers = aspNetProvider.GetServices<IInitializerInterface>();
+
+            foreach (var initializer in initializers.OrderBy(x => x.RunningOrder))
+            {
+                initializer.Run(aspNetProvider);
+            }
         }
     }
 }

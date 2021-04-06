@@ -16,4 +16,10 @@ namespace EnduranceJudge.Gateways.Desktop
             }
         }
     }
+
+    public static class Regions
+    {
+        public const string Navigation = "NavigationRegion";
+        public const string Content = "ContentRegion";
+    }
 }
