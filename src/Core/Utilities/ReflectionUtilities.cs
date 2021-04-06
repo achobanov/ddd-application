@@ -37,5 +37,16 @@ namespace EnduranceJudge.Core.Utilities
             var properties = type.GetProperties(bindingFlags);
             return properties;
         }
+
+        public static MethodInfo GetMethod(Type type, string name, params Type[] arguments)
+        {
+            var method = type.GetMethod(name, arguments);
+            if (method == null)
+            {
+                throw new InvalidOperationException($"Method '{name}' not found on type '{type}'");
+            }
+
+            return method;
+        }
     }
 }

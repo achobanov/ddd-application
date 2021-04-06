@@ -40,7 +40,7 @@ namespace EnduranceJudge.Core.Mappings
                     obj.ExplicitMap?.CreateExplicitMap(this);
                 });
 
-        private static IEnumerable<Type> GetMappingModels(Type source, Type mappingType)
+        protected static IEnumerable<Type> GetMappingModels(Type source, Type mappingType)
             => source
                 .GetInterfaces()
                 .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == mappingType)

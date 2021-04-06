@@ -7,7 +7,6 @@ using EnduranceJudge.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
-using System.Transactions;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {

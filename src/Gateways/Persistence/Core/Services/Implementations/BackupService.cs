@@ -102,7 +102,7 @@ namespace EnduranceJudge.Gateways.Persistence.Core.Services.Implementations
             var entityCollection = this.serialization.Deserialize(serializedEntityCollection, entityCollectionType);
 
             var entitySetType = Types.DbSet.MakeGenericType(entityType);
-            var addRangeMethod = entitySetType.GetMethod("AddRange", new[] { entityCollectionType });
+            var addRangeMethod = ReflectionUtilities.GetMethod(entitySetType, "AddRange", entityCollectionType);
 
             // Expression
             // db =>
