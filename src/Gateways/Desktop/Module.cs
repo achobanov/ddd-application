@@ -1,8 +1,10 @@
 using EnduranceJudge.Application.Test;
 using EnduranceJudge.Core.Interfaces;
-using EnduranceJudge.Gateways.Desktop.Views;
-using EnduranceJudge.Gateways.Desktop.Views.Content;
-using EnduranceJudge.Gateways.Desktop.Views.Navigation;
+using EnduranceJudge.Gateways.Desktop.ViewComponents;
+using EnduranceJudge.Gateways.Desktop.ViewComponents.Content;
+using EnduranceJudge.Gateways.Desktop.ViewComponents.Content.FirstPage;
+using EnduranceJudge.Gateways.Desktop.ViewComponents.Content.SecondPage;
+using EnduranceJudge.Gateways.Desktop.ViewComponents.Navigation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Ioc;
@@ -39,8 +41,8 @@ namespace EnduranceJudge.Gateways.Desktop
             await mediator.Send(test);
 
             this.regionManager.RegisterViewWithRegion(Menu.RegionName, typeof(Menu));
-            this.regionManager.RegisterViewWithRegion(PageOne.RegionName, typeof(PageOne));
-            this.regionManager.RegisterViewWithRegion(PageTwo.RegionName, typeof(PageTwo));
+            this.regionManager.RegisterViewWithRegion(First.RegionName, typeof(First));
+            this.regionManager.RegisterViewWithRegion(Second.RegionName, typeof(Second));
         }
     }
 }

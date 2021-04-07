@@ -1,12 +1,12 @@
 ﻿using System.Windows.Controls;
 
-namespace EnduranceJudge.Gateways.Desktop.Views.Content
+namespace EnduranceJudge.Gateways.Desktop.ViewComponents.Content.FirstPage
 {
-    public partial class PageTwo : UserControl
+    public partial class First : UserControl
     {
         public const string RegionName = Regions.Content;
 
-        public PageTwo()
+        public First()
         {
             InitializeComponent();
         }

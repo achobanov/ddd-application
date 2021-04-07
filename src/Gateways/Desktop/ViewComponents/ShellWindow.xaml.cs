@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace EnduranceJudge.Gateways.Desktop.Views
+namespace EnduranceJudge.Gateways.Desktop.ViewComponents
 {
     public partial class ShellWindow : Window
     {

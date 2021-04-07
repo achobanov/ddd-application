@@ -1,10 +1,11 @@
 ﻿using EnduranceJudge.Core.Interfaces;
 using EnduranceJudge.Gateways.Desktop.Startup;
-using EnduranceJudge.Gateways.Desktop.Views;
+using EnduranceJudge.Gateways.Desktop.ViewComponents;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Modularity;
+using Prism.Mvvm;
 using System;
 using System.Linq;
 using System.Windows;
@@ -38,6 +39,28 @@ namespace EnduranceJudge.Gateways.Desktop
             {
                 initializer.Run(aspNetProvider);
             }
+        }
+
+        protected override void ConfigureViewModelLocator()
+        {
+            base.ConfigureViewModelLocator();
+
+            ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver(viewType =>
+            {
+                var viewNamespace = viewType.Namespace;
+                var assembly = viewType.Assembly;
+
+                var typesInNamespace = assembly
+                    .GetExportedTypes()
+                    .Where(t => t.Namespace == viewNamespace)
+                    .ToList();
+
+                var viewModelType = typesInNamespace.FirstOrDefault(t =>
+                    t.Name.StartsWith(viewType.Name)
+                    && t.Name.EndsWith("ViewModel"));
+
+                return viewModelType;
+            });
         }
     }
 }
