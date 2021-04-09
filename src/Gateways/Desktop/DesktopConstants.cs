@@ -5,6 +5,8 @@ namespace EnduranceJudge.Gateways.Desktop
 {
     public static class DesktopConstants
     {
+        public static string Test = "testvalue";
+
         public static Assembly[] Assemblies
         {
             get

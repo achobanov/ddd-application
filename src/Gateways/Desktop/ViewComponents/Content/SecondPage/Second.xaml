@@ -6,6 +6,16 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <TextBlock>This is Page Two</TextBlock>
+    <StackPanel>
+
+        <TextBlock Style="{StaticResource Text-Heading}">
+            This is heading.
+        </TextBlock>
+
+        <TextBlock Style="{StaticResource Text-Paragraph}">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In auctor leo eu diam fermentum, id porta massa auctor. Integer vitae magna aliquam, lacinia ipsum a, hendrerit erat. Fusce eget arcu sit amet nisi sollicitudin pulvinar non ac massa. Praesent sit amet ipsum ipsum. Mauris ultricies accumsan enim lobortis luctus. Ut vestibulum ante sed tempor feugiat. Integer enim massa, tristique et placerat vitae, posuere non turpis. Aliquam sed nunc sodales, lobortis odio quis, fermentum nibh. Praesent nunc orci, pellentesque ut aliquet quis, rhoncus et mi. Mauris semper ligula posuere sem ornare hendrerit. Sed dapibus iaculis quam ut lacinia. Nullam posuere sapien quis cursus venenatis. Nulla facilisi.
+        </TextBlock>
+
+    </StackPanel>
 
 </UserControl>
