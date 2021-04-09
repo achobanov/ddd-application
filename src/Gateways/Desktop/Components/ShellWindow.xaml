@@ -1,4 +1,4 @@
-﻿<Window x:Class="EnduranceJudge.Gateways.Desktop.ViewComponents.ShellWindow"
+﻿<Window x:Class="EnduranceJudge.Gateways.Desktop.Components.ShellWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
@@ -8,14 +8,13 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <ContentControl prism:RegionManager.RegionName="{x:Static desktop:Regions.Navigation}"
                         Grid.Row="0"/>
 
         <ContentControl prism:RegionManager.RegionName="{x:Static desktop:Regions.Content}"
-                        Grid.Row="1" />
-
+                        Grid.Row="1"/>
     </Grid>
 </Window>

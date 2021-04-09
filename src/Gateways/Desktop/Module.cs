@@ -1,17 +1,15 @@
 using EnduranceJudge.Application.Test;
 using EnduranceJudge.Core.Interfaces;
-using EnduranceJudge.Gateways.Desktop.ViewComponents;
-using EnduranceJudge.Gateways.Desktop.ViewComponents.Content;
-using EnduranceJudge.Gateways.Desktop.ViewComponents.Content.FirstPage;
-using EnduranceJudge.Gateways.Desktop.ViewComponents.Content.SecondPage;
-using EnduranceJudge.Gateways.Desktop.ViewComponents.Navigation;
+using EnduranceJudge.Gateways.Desktop.Components;
+using EnduranceJudge.Gateways.Desktop.Components.Content;
+using EnduranceJudge.Gateways.Desktop.Components.Content.FirstPage;
+using EnduranceJudge.Gateways.Desktop.Components.Content.SecondPage;
+using EnduranceJudge.Gateways.Desktop.Components.Navigation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
-using System;
-using System.Linq;
 
 namespace EnduranceJudge.Gateways.Desktop
 {
@@ -27,6 +25,8 @@ namespace EnduranceJudge.Gateways.Desktop
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterForNavigation<First>();
+            containerRegistry.RegisterForNavigation<Second>();
         }
 
         public async void OnInitialized(IContainerProvider containerProvider)

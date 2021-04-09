@@ -7,5 +7,4 @@
         <ResourceDictionary Source="Components/TextBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-
 </ResourceDictionary>

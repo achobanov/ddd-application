@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace EnduranceJudge.Gateways.Desktop.ViewComponents.Navigation
+namespace EnduranceJudge.Gateways.Desktop.Components.Navigation
 {
     public partial class Menu : UserControl
     {

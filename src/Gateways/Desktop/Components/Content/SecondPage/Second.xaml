@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="EnduranceJudge.Gateways.Desktop.Components.Content.SecondPage.Second"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <StackPanel>
+
+        <TextBlock Style="{StaticResource Text-Heading}"
+                   Text="{Binding Heading}" />
+
+        <Button Style="{StaticResource Button-Primary}"
+                Command="{Binding NavigateBack}">
+            Back
+        </Button>
+    </StackPanel>
+</UserControl>
