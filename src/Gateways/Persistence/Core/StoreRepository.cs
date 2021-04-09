@@ -1,5 +1,5 @@
 using EnduranceJudge.Core.Mappings;
-using EnduranceJudge.Application.Interfaces.Core;
+using EnduranceJudge.Application.Core.Contracts;
 using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Aggregates.Event.Participants;
 using EnduranceJudge.Domain.Aggregates.Event.Phases;

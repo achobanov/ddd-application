@@ -2,7 +2,7 @@ using EnduranceJudge.Domain.Core.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace EnduranceJudge.Application.Interfaces.Core
+namespace EnduranceJudge.Application.Core.Contracts
 {
     public interface IQueryRepository<TDomainModel>
         where TDomainModel : IDomainModel

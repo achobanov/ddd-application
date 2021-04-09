@@ -15,9 +15,7 @@ namespace EnduranceJudge.Domain
         {
             get
             {
-                var projectNames = ProjectUtilities.GetConventionalProjectNames("Domain");
-                var assemblies = ReflectionUtilities.GetAssemblies(projectNames);
-
+                var assemblies = ReflectionUtilities.GetAssemblies("EnduranceJudge.Domain");
                 return assemblies;
             }
         }

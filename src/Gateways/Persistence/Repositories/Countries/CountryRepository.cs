@@ -1,4 +1,4 @@
-﻿using EnduranceJudge.Application.Interfaces.Countries;
+﻿using EnduranceJudge.Application.Contracts.Countries;
 using EnduranceJudge.Domain.Aggregates.Common.Countries;
 using EnduranceJudge.Gateways.Persistence.Core;
 using EnduranceJudge.Gateways.Persistence.Entities;

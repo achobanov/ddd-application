@@ -1,5 +1,5 @@
 using EnduranceJudge.Application.Core.Requests;
-using EnduranceJudge.Application.Interfaces.Core;
+using EnduranceJudge.Application.Core.Contracts;
 using EnduranceJudge.Domain.Core.Models;
 using MediatR;
 using System.Threading;

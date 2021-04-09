@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.EquivalencyExpression;
-using EnduranceJudge.Application.Interfaces.Core;
+using EnduranceJudge.Application.Core.Contracts;
 using EnduranceJudge.Gateways.Persistence.Core;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;

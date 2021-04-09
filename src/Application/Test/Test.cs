@@ -1,6 +1,6 @@
 using EnduranceJudge.Application.Core.Handlers;
-using EnduranceJudge.Application.Interfaces.Countries;
-using EnduranceJudge.Application.Interfaces.Events;
+using EnduranceJudge.Application.Contracts.Countries;
+using EnduranceJudge.Application.Contracts.Events;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Common.Countries;
 using EnduranceJudge.Domain.Aggregates.Event.Competitions;

@@ -9,9 +9,7 @@ namespace EnduranceJudge.Application
         {
             get
             {
-                var projectNames = ProjectUtilities.GetConventionalProjectNames("Application");
-                var assemblies = ReflectionUtilities.GetAssemblies(projectNames);
-
+                var assemblies = ReflectionUtilities.GetAssemblies("EnduranceJudge.Application");
                 return assemblies;
             }
         }

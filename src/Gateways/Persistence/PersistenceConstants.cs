@@ -14,9 +14,7 @@ namespace EnduranceJudge.Gateways.Persistence
         {
             get
             {
-                var projectNames = ProjectUtilities.GetConventionalProjectNames("Gateways.Persistence");
-                var assemblies = ReflectionUtilities.GetAssemblies(projectNames);
-
+                var assemblies = ReflectionUtilities.GetAssemblies("EnduranceJudge.Gateways.Persistence");
                 return assemblies;
             }
         }

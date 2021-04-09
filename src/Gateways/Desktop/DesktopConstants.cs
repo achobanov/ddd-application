@@ -5,15 +5,11 @@ namespace EnduranceJudge.Gateways.Desktop
 {
     public static class DesktopConstants
     {
-        public static string Test = "testvalue";
-
         public static Assembly[] Assemblies
         {
             get
             {
-                var projectNames = ProjectUtilities.GetConventionalProjectNames("Desktop");
-                var assemblies = ReflectionUtilities.GetAssemblies(projectNames);
-
+                var assemblies = ReflectionUtilities.GetAssemblies("EnduranceJudge.Gateways.Desktop");
                 return assemblies;
             }
         }

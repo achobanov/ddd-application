@@ -1,6 +1,6 @@
 using EnduranceJudge.Application.Core.Handlers;
 using EnduranceJudge.Application.Core.Requests;
-using EnduranceJudge.Application.Interfaces.Events;
+using EnduranceJudge.Application.Contracts.Events;
 using EnduranceJudge.Domain.Aggregates.Event.Events;
 using MediatR;
 

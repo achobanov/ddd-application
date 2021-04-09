@@ -25,13 +25,15 @@ namespace EnduranceJudge.Core
                 .SelectMany(x => x.GetExportedTypes())
                 .Where(t => t.IsClass && !t.IsAbstract);
 
-            var registrationDescriptors = exportedClasses.Select(t => new
-            {
-                Service = t.GetInterface($"I{t.Name}"),
-                Implementation = t
-            });
+            var registrationDescriptors = exportedClasses
+                .Select(t => new
+                {
+                    Service = t.GetInterface($"I{t.Name}"),
+                    Implementation = t
+                })
+                .Where(t => t.Service != null);
 
-            foreach (var descriptor in registrationDescriptors.Where(t => t.Service != null))
+            foreach (var descriptor in registrationDescriptors)
             {
                 if (serviceInterfaceType.IsAssignableFrom(descriptor.Service))
                 {
