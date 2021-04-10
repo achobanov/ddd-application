@@ -1,24 +1,23 @@
-using EnduranceJudge.Core.Models;
+﻿using EnduranceJudge.Core.Models;
 using EnduranceJudge.Core.Utilities;
-using EnduranceJudge.Gateways.Desktop.Core;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
 using System;
 using System.Collections.Generic;
 
-namespace EnduranceJudge.Gateways.Desktop
+namespace EnduranceJudge.Gateways.Desktop.Core
 {
-    public class Module : IModule
+    public class ModuleBase : IModule
     {
-        private static readonly Type ModuleType = typeof(Module);
+        private static readonly Type ModuleType = typeof(EntryModule);
 
-        public void RegisterTypes(IContainerRegistry containerRegistry)
+        public virtual void RegisterTypes(IContainerRegistry containerRegistry)
         {
             this.RegisterViewsForNavigation(containerRegistry);
         }
 
-        public void OnInitialized(IContainerProvider containerProvider)
+        public virtual void OnInitialized(IContainerProvider containerProvider)
         {
             this.RegisterViewsInRegions(containerProvider);
         }
@@ -44,7 +43,7 @@ namespace EnduranceJudge.Gateways.Desktop
             }
         }
 
-        private IEnumerable<TypeDescriptor<IView>> GetViewDescriptors()
+        protected IEnumerable<TypeDescriptor<IView>> GetViewDescriptors()
         {
             return ReflectionUtilities.GetDescriptors<IView>(ModuleType.Assembly);
         }

@@ -1,6 +1,8 @@
 ﻿using EnduranceJudge.Core.Interfaces;
+using EnduranceJudge.Core.Utilities;
 using EnduranceJudge.Gateways.Desktop.Startup;
 using EnduranceJudge.Gateways.Desktop.Components;
+using EnduranceJudge.Gateways.Desktop.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.DryIoc;
 using Prism.Ioc;
@@ -8,6 +10,7 @@ using Prism.Modularity;
 using Prism.Mvvm;
 using System;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop
@@ -27,7 +30,12 @@ namespace EnduranceJudge.Gateways.Desktop
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             base.ConfigureModuleCatalog(moduleCatalog);
-            moduleCatalog.AddModule<Module>();
+
+            var moduleDescriptors = ReflectionUtilities.GetDescriptors<ModuleBase>(Assembly.GetExecutingAssembly());
+            foreach (var descriptor in moduleDescriptors)
+            {
+                moduleCatalog.AddModule(descriptor.Type);
+            }
         }
 
         private void InitializeApplication()
