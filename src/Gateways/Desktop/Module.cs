@@ -1,22 +1,24 @@
 using EnduranceJudge.Application.Test;
-using EnduranceJudge.Core.Interfaces;
-using EnduranceJudge.Gateways.Desktop.Components;
-using EnduranceJudge.Gateways.Desktop.Components.Content;
+using EnduranceJudge.Core.Models;
+using EnduranceJudge.Core.Utilities;
 using EnduranceJudge.Gateways.Desktop.Components.Content.FirstPage;
 using EnduranceJudge.Gateways.Desktop.Components.Content.SecondPage;
 using EnduranceJudge.Gateways.Desktop.Components.Navigation;
+using EnduranceJudge.Gateways.Desktop.Core;
 using MediatR;
-using Microsoft.Extensions.DependencyInjection;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace EnduranceJudge.Gateways.Desktop
 {
     public class Module : IModule
     {
+        private static readonly Type ModuleType = typeof(Module);
         private readonly IRegionManager regionManager;
-        private readonly IDateTimeService dateTime;
 
         public Module(IRegionManager regionManager)
         {
@@ -25,8 +27,7 @@ namespace EnduranceJudge.Gateways.Desktop
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<First>();
-            containerRegistry.RegisterForNavigation<Second>();
+            this.RegisterViewsForNavigation(containerRegistry);
         }
 
         public async void OnInitialized(IContainerProvider containerProvider)
@@ -40,9 +41,24 @@ namespace EnduranceJudge.Gateways.Desktop
 
             await mediator.Send(test);
 
-            this.regionManager.RegisterViewWithRegion(Menu.RegionName, typeof(Menu));
-            this.regionManager.RegisterViewWithRegion(First.RegionName, typeof(First));
-            this.regionManager.RegisterViewWithRegion(Second.RegionName, typeof(Second));
+            this.regionManager.RegisterViewWithRegion(Regions.Navigation, typeof(Menu));
+            this.regionManager.RegisterViewWithRegion(Regions.Content, typeof(First));
+            this.regionManager.RegisterViewWithRegion(Regions.Content, typeof(Second));
+        }
+
+        private void RegisterViewsForNavigation(IContainerRegistry containerRegistry)
+        {
+            var descriptors = this.GetViewDescriptors();
+
+            foreach (var descriptor in descriptors)
+            {
+                containerRegistry.RegisterForNavigation(descriptor.Type, descriptor.Instance.RegionName);
+            }
+        }
+
+        private IEnumerable<TypeDescriptor<IView>> GetViewDescriptors()
+        {
+            return ReflectionUtilities.GetDescriptors<IView>(ModuleType.Assembly);
         }
     }
 }

@@ -1,4 +1,7 @@
+using AutoMapper.Execution;
+using EnduranceJudge.Core.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -47,6 +50,19 @@ namespace EnduranceJudge.Core.Utilities
             }
 
             return method;
+        }
+
+        public static IEnumerable<TypeDescriptor<T>> GetDescriptors<T>(Assembly assembly)
+            where T : class
+        {
+            var types = assembly
+                .GetExportedTypes()
+                .Where(t => t.IsClass && !t.IsAbstract && typeof(T).IsAssignableFrom(t));
+
+            var descriptors = types
+                .Select(t => new TypeDescriptor<T>(t));
+
+            return descriptors;
         }
     }
 }
