@@ -2,35 +2,34 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace EnduranceJudge.Gateways.Persistence.Core.Services.Implementations
+namespace EnduranceJudge.Core.Services.Implementations
 {
     public class FileService : IFileService
     {
         private static readonly string Directory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
+        public bool Exists(string path)
+            => File.Exists(path);
+
         public async Task Create(string name, string content)
         {
             var path = this.BuildFilePath(name);
 
-            await using (var stream = new StreamWriter(path))
-            {
-                await stream.WriteAsync(content);
-            }
+            await using var stream = new StreamWriter(path);
+            await stream.WriteAsync(content);
         }
 
         public string Read(string name)
         {
             var path = this.BuildFilePath(name);
 
-            if (!File.Exists(path))
+            if (!this.Exists(path))
             {
-                return null;
+                throw new InvalidOperationException($"File '{path}' does not exist.");
             }
 
-            using (var stream = new StreamReader(path))
-            {
-                return stream.ReadToEnd();
-            }
+            using var stream = new StreamReader(path);
+            return stream.ReadToEnd();
         }
 
         private string BuildFilePath(string fileName)

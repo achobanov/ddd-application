@@ -1,6 +1,6 @@
 using EnduranceJudge.Core.ConventionalServices;
 
-namespace EnduranceJudge.Core.Interfaces
+namespace EnduranceJudge.Core.Services
 {
     public interface IEncryptionService : IService
     {

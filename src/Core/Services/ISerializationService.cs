@@ -1,7 +1,7 @@
 using EnduranceJudge.Core.ConventionalServices;
 using System;
 
-namespace EnduranceJudge.Core.Interfaces
+namespace EnduranceJudge.Core.Services
 {
     public interface ISerializationService : IService
     {

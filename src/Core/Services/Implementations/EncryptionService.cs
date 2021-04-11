@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.DataProtection;
 
-namespace EnduranceJudge.Core.Interfaces.Services
+namespace EnduranceJudge.Core.Services.Implementations
 {
     public class EncryptionService : IEncryptionService
     {

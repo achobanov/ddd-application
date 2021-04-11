@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace EnduranceJudge.Gateways.Persistence.Repositories.Events
+namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Events
 {
     internal class EventsRepository : StoreRepository<IEventsDataStore, EventEntity, Event>,
         IEventCommands,

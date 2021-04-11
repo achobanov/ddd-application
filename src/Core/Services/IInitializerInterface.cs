@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace EnduranceJudge.Core.Interfaces
+namespace EnduranceJudge.Core.Services
 {
     public interface IInitializerInterface
     {
