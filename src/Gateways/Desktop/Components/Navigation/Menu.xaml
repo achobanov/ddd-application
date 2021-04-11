@@ -10,15 +10,12 @@
 
     <StackPanel Orientation="Horizontal">
         <Button Style="{StaticResource Button-Primary}"
-                Command="{Binding NavigateToFirst}">
-
-            Page one
-        </Button>
+                Command="{Binding NavigateToImport}">Import</Button>
 
         <Button Style="{StaticResource Button-Primary}"
-                Command="{Binding NavigateToSecond}">
+                Command="{Binding NavigateToSecond}">Page two</Button>
 
-            Page two
-        </Button>
+        <Button Style="{StaticResource Button-Primary}"
+                Command="{Binding NavigateToSecond}">Page two</Button>
     </StackPanel>
 </UserControl>
