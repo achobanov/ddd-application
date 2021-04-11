@@ -4,6 +4,6 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Services
 {
     public interface IExplorerService : IService
     {
-        string SelectFolder();
+        string SelectDirectory();
     }
 }

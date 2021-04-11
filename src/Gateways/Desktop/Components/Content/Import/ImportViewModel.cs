@@ -5,6 +5,7 @@ using EnduranceJudge.Gateways.Desktop.Core.Services;
 using MediatR;
 using Prism.Commands;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
 {
@@ -20,21 +21,22 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
             this.OpenFolderDialog = new AsyncCommand(this.OpenFolderDialogAction);
         }
 
-        private string folderPath;
-        public string FolderPath
+        private string directoryPath;
+        public string DirectoryPath
         {
-            get => this.folderPath;
-            private set => this.SetProperty(ref this.folderPath, value);
+            get => this.directoryPath;
+            private set => this.SetProperty(ref this.directoryPath, value);
         }
+
 
         public DelegateCommand OpenFolderDialog { get; }
 
         private async Task OpenFolderDialogAction()
         {
-            var selectedPath = this.explorer.SelectFolder();
+            var selectedPath = this.explorer.SelectDirectory();
             if (selectedPath != null)
             {
-                this.FolderPath = selectedPath;
+                this.DirectoryPath = selectedPath;
             }
 
             var selectWorkFileRequest = new SelectWorkFile
@@ -43,7 +45,6 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
             };
 
             var isNewFileCreated = await this.mediator.Send(selectWorkFileRequest);
-
         }
     }
 }

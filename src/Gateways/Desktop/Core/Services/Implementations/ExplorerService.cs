@@ -4,7 +4,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
 {
     public class ExplorerService : IExplorerService
     {
-        public string SelectFolder()
+        public string SelectDirectory()
         {
             using var openFolderDialog = new CommonOpenFileDialog
             {
