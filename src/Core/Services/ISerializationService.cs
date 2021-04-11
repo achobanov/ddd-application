@@ -1,9 +1,8 @@
-using EnduranceJudge.Core.ConventionalServices;
 using System;
 
 namespace EnduranceJudge.Core.Services
 {
-    public interface ISerializationService : IService
+    public interface ISerializationService
     {
         string Serialize(object data);
 

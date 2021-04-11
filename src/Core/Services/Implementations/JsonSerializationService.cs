@@ -3,7 +3,7 @@ using System;
 
 namespace EnduranceJudge.Core.Services.Implementations
 {
-    public class SerializationService : ISerializationService
+    public class JsonSerializationService : IJsonSerializationService
     {
         public string Serialize(object data)
         {
