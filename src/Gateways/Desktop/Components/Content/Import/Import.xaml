@@ -5,13 +5,28 @@
              prism:ViewModelLocator.AutoWireViewModel="True">
 
     <StackPanel>
-        <TextBox Style="{StaticResource Input-Inline}"
-                 Text="{Binding FolderPath, Mode=OneWay}"
-                 IsReadOnly="True"/>
+        <StackPanel>
+            <TextBox Style="{StaticResource Input-Inline}"
+                     Text="{Binding DirectoryPath, Mode=OneWay}"
+                     IsReadOnly="True"/>
 
-        <Button Style="{StaticResource Button-Primary}"
-                Command="{Binding OpenFolderDialog}"
-                Name="_SelectWorkDirectory">Select Work Directory</Button>
+            <Button Style="{StaticResource Button-Primary}"
+                    Command="{Binding OpenFolderDialog}"
+                    Name="_SelectWorkDirectory">Select Work Directory</Button>
+
+        </StackPanel>
+
+        <StackPanel Visibility="{Binding ImportVisibility}">
+
+            <TextBox Style="{StaticResource Input-Inline}"
+                     Text="{Binding ImportFilePath, Mode=OneWay}"
+                     IsReadOnly="True"/>
+
+            <Button Style="{StaticResource Button-Primary}"
+                    Command="{Binding OpenImportFileDialog}"
+                    Name="_SelectImportFile">Select Import File</Button>
+
+        </StackPanel>
 
     </StackPanel>
 </UserControl>

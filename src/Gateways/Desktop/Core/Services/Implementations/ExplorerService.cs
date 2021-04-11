@@ -11,9 +11,21 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
                 IsFolderPicker = true
             };
 
-            if (openFolderDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            return this.GetPath(openFolderDialog);
+        }
+
+        public string SelectFile()
+        {
+            using var selectFileDialog = new CommonOpenFileDialog();
+
+            return this.GetPath(selectFileDialog);
+        }
+
+        private string GetPath(CommonOpenFileDialog dialog)
+        {
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                return openFolderDialog.FileName;
+                return dialog.FileName;
             }
 
             return null;
