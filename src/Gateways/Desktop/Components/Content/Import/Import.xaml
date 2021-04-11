@@ -7,7 +7,7 @@
     <StackPanel>
         <StackPanel>
             <TextBox Style="{StaticResource Input-Inline}"
-                     Text="{Binding DirectoryPath, Mode=OneWay}"
+                     Text="{Binding WorkDirectoryPath, Mode=OneWay}"
                      IsReadOnly="True"/>
 
             <Button Style="{StaticResource Button-Primary}"

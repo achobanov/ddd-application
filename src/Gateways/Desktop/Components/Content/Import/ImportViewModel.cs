@@ -23,11 +23,11 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
             this.OpenImportFileDialog = new AsyncCommand(this.OpenImportFileDialogAction);
         }
 
-        private string directoryPath;
-        public string DirectoryPath
+        private string workDirectoryPath;
+        public string WorkDirectoryPath
         {
-            get => this.directoryPath;
-            private set => this.SetProperty(ref this.directoryPath, value);
+            get => this.workDirectoryPath;
+            private set => this.SetProperty(ref this.workDirectoryPath, value);
         }
 
         private Visibility importVisibility = Visibility.Hidden;
@@ -54,7 +54,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
                 return;
             }
 
-            this.DirectoryPath = selectedPath;
+            this.WorkDirectoryPath = selectedPath;
 
             var selectWorkFileRequest = new SelectWorkFile
             {
