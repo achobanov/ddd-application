@@ -1,28 +1,25 @@
 ﻿using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using EnduranceJudge.Core.Interfaces;
-using EnduranceJudge.Gateways.Persistence.Core.Services;
+using EnduranceJudge.Core.Services;
+using EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Countries;
 using EnduranceJudge.Gateways.Persistence.Entities;
-using EnduranceJudge.Gateways.Persistence.Repositories.Events;
+using EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Events;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using System;
 
 namespace EnduranceJudge.Gateways.Persistence
 {
-    public class EnduranceJudgeDbContext : DbContext, IEventsDataStore
+    public class EnduranceJudgeDbContext : DbContext,
+        IEventsDataStore,
+        ICountriesDataStore
     {
-        private readonly IBackupService backup;
-
         public EnduranceJudgeDbContext()
         {
         }
 
-        public EnduranceJudgeDbContext(DbContextOptions options, IDateTimeService dateTime, IBackupService backup)
+        public EnduranceJudgeDbContext(DbContextOptions options, IDateTimeService dateTime)
             : base(options)
         {
-            this.backup = backup;
         }
 
         public DbSet<CountryEntity> Countries { get; set; }
@@ -35,15 +32,6 @@ namespace EnduranceJudge.Gateways.Persistence
         public DbSet<HorseEntity> Horses { get; set; }
         public DbSet<ParticipantEntity> Participants { get; set; }
         public DbSet<ParticipantInCompetition> ParticipantsInCompetitions { get; set; }
-
-        public async Task<int> Commit(CancellationToken cancellationToken = default)
-        {
-            var result = await this.SaveChangesAsync(cancellationToken);
-
-            await this.backup.Create(this);
-
-            return result;
-        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

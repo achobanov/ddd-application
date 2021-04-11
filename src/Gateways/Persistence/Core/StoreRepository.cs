@@ -1,11 +1,7 @@
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Application.Core.Contracts;
-using EnduranceJudge.Domain.Aggregates.Event.Competitions;
-using EnduranceJudge.Domain.Aggregates.Event.Participants;
-using EnduranceJudge.Domain.Aggregates.Event.Phases;
 using EnduranceJudge.Domain.Core.Models;
-using EnduranceJudge.Domain.Enums;
-using EnduranceJudge.Gateways.Persistence.Entities;
+using EnduranceJudge.Gateways.Persistence.Contracts.WorkFile;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +15,11 @@ namespace EnduranceJudge.Gateways.Persistence.Core
         where TDataStore : IDataStore
         where TEntityModel : EntityModel
     {
-        protected StoreRepository(TDataStore dataStore)
+        private readonly IWorkFileUpdater workFileUpdater;
+
+        protected StoreRepository(TDataStore dataStore, IWorkFileUpdater workFileUpdater)
         {
+            this.workFileUpdater = workFileUpdater;
             this.DataStore = dataStore;
         }
 
@@ -56,7 +55,8 @@ namespace EnduranceJudge.Gateways.Persistence.Core
                 this.DataStore.Update(entity);
             }
 
-            await this.DataStore.Commit(cancellationToken);
+            await this.DataStore.SaveChangesAsync(cancellationToken);
+            await this.workFileUpdater.Snapshot();
 
             return entity.Id;
         }

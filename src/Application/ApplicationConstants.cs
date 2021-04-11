@@ -13,5 +13,7 @@ namespace EnduranceJudge.Application
                 return assemblies;
             }
         }
+
+        public const string WorkFileName = "endurance-judge-file";
     }
 }

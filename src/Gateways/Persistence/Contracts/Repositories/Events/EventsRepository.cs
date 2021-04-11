@@ -1,6 +1,8 @@
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Application.Contracts.Events;
+using EnduranceJudge.Application.Import.Contracts;
 using EnduranceJudge.Domain.Aggregates.Event.Events;
+using EnduranceJudge.Gateways.Persistence.Contracts.WorkFile;
 using EnduranceJudge.Gateways.Persistence.Core;
 using EnduranceJudge.Gateways.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +15,9 @@ namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Events
         IEventCommands,
         IEventQueries
     {
-        public EventsRepository(EnduranceJudgeDbContext dataStore) : base(dataStore)
+        public EventsRepository(
+            IEventsDataStore dataStore,
+            IWorkFileUpdater workFileUpdater) : base(dataStore, workFileUpdater)
         {
         }
 

@@ -6,33 +6,24 @@ namespace EnduranceJudge.Core.Services.Implementations
 {
     public class FileService : IFileService
     {
-        private static readonly string Directory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
         public bool Exists(string path)
             => File.Exists(path);
 
-        public async Task Create(string name, string content)
+        public async Task Create(string filePath, string content)
         {
-            var path = this.BuildFilePath(name);
-
-            await using var stream = new StreamWriter(path);
+            await using var stream = new StreamWriter(filePath);
             await stream.WriteAsync(content);
         }
 
-        public string Read(string name)
+        public string Read(string filePath)
         {
-            var path = this.BuildFilePath(name);
-
-            if (!this.Exists(path))
+            if (!this.Exists(filePath))
             {
-                throw new InvalidOperationException($"File '{path}' does not exist.");
+                throw new InvalidOperationException($"File '{filePath}' does not exist.");
             }
 
-            using var stream = new StreamReader(path);
+            using var stream = new StreamReader(filePath);
             return stream.ReadToEnd();
         }
-
-        private string BuildFilePath(string fileName)
-            => Path.Combine(Directory, fileName);
     }
 }
