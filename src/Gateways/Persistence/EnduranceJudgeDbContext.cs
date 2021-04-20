@@ -77,6 +77,14 @@ namespace EnduranceJudge.Gateways.Persistence
                 .WithOne(a => a.Participant)
                 .HasForeignKey<AthleteEntity>(a => a.ParticipantId);
 
+            builder.Entity<AthleteEntity>()
+                .HasOne(a => a.Country)
+                .WithMany(c => c.Athletes)
+                .HasForeignKey(a => a.CountryIsoCode);
+
+            builder.Entity<CountryEntity>()
+                .HasKey(x => x.IsoCode);
+
             base.OnModelCreating(builder);
         }
 

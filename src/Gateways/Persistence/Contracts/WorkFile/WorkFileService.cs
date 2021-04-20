@@ -21,14 +21,14 @@ namespace EnduranceJudge.Gateways.Persistence.Contracts.WorkFile
         private readonly ISeederService seeder;
         private readonly IEncryptionService encryption;
         private readonly IFileService file;
-        private readonly ISerializationService serialization;
+        private readonly IJsonSerializationService serialization;
         private readonly EnduranceJudgeDbContext dbContext;
 
         public WorkFileService(
             ISeederService seeder,
             IEncryptionService encryption,
             IFileService file,
-            ISerializationService serialization,
+            IJsonSerializationService serialization,
             EnduranceJudgeDbContext dbContext)
         {
             this.seeder = seeder;
@@ -77,7 +77,7 @@ namespace EnduranceJudge.Gateways.Persistence.Contracts.WorkFile
 
         private async Task RestoreFrom(string filePath)
         {
-            var encrypted = this.file.Read(filePath);
+            var encrypted = await this.file.Read(filePath);
             var decrypted = this.encryption.Decrypt(encrypted);
             var deserialized = this.serialization.Deserialize<Dictionary<string, string>>(decrypted);
 

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using AutoMapper;
 using System.Collections.Generic;
+using EnduranceJudge.Core.Extensions;
 
 namespace EnduranceJudge.Core.Mappings
 {

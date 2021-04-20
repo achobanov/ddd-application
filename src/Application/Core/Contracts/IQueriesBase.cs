@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Application.Core.Contracts
 {
-    public interface IQueryRepository<TDomainModel>
+    public interface IQueriesBase<TDomainModel>
         where TDomainModel : IDomainModel
     {
         Task<TDomainModel> Find(int id);

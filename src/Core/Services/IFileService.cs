@@ -9,6 +9,6 @@ namespace EnduranceJudge.Core.Services
 
         public Task Create(string filePath, string content);
 
-        public string Read(string name);
+        public Task<string> Read(string name);
     }
 }

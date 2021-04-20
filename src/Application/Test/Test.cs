@@ -86,7 +86,7 @@ namespace EnduranceJudge.Application.Test
                 var vetMember1 = new Personnel(0, "Vet One", PersonnelRole.MemberOfVetCommittee);
                 var vetMember2 = new Personnel(0, "Vet Two", PersonnelRole.MemberOfVetCommittee);
 
-                var country = await this.countryQueries.Find(1);
+                var country = await this.countryQueries.Find("BUL");
                 event_ = await this.eventCommands.Find(1);
 
                 event_.Add(competition1);

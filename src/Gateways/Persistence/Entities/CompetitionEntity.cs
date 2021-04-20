@@ -7,6 +7,7 @@ using EnduranceJudge.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using ImportCompetition = EnduranceJudge.Domain.Aggregates.Import.Competitions.Competition;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
@@ -34,6 +35,23 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
                 .EqualityComparison((domain, entity) => entity.Id == domain.Id)
                 .ForMember(x => x.EventId, opt => opt.Condition(c => c.Event != null))
                 .ForMember(x => x.Event, opt => opt.Condition(c => c.Event != null))
+                .ForMember(ce => ce.ParticipantsInCompetitions, opt => opt.MapFrom(c => c.Participants))
+                .AfterMap((c, ce) =>
+                {
+                    foreach (var participantInCompetition in ce.ParticipantsInCompetitions
+                        .Where(pic => pic.CompetitionId == default))
+                    {
+                        participantInCompetition.Competition = this;
+                        participantInCompetition.CompetitionId = this.Id;
+                    }
+                });
+
+            mapper.CreateMap<CompetitionEntity, ImportCompetition>()
+                .EqualityComparison((entity, domain) => entity.Id == domain.Id)
+                .ForMember(c => c.Participants, opt => opt.MapFrom(ce => ce.ParticipantsInCompetitions));
+
+            mapper.CreateMap<ImportCompetition, CompetitionEntity>()
+                .EqualityComparison((domain, entity) => entity.Id == domain.Id)
                 .ForMember(ce => ce.ParticipantsInCompetitions, opt => opt.MapFrom(c => c.Participants))
                 .AfterMap((c, ce) =>
                 {

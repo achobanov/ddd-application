@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Persistence.Core
 {
-    public abstract class StoreRepository<TDataStore, TEntityModel, TDomainModel> : ICommandRepository<TDomainModel>
+    public abstract class RepositoryBase<TDataStore, TEntityModel, TDomainModel> : ICommandsBase<TDomainModel>
         where TDomainModel : class, IAggregateRoot
         where TDataStore : IDataStore
         where TEntityModel : EntityModel
     {
         private readonly IWorkFileUpdater workFileUpdater;
 
-        protected StoreRepository(TDataStore dataStore, IWorkFileUpdater workFileUpdater)
+        protected RepositoryBase(TDataStore dataStore, IWorkFileUpdater workFileUpdater)
         {
             this.workFileUpdater = workFileUpdater;
             this.DataStore = dataStore;
@@ -29,11 +29,15 @@ namespace EnduranceJudge.Gateways.Persistence.Core
             => await this.Find<TDomainModel>(id);
 
         public virtual async Task<TModel> Find<TModel>(int id)
-            => await this.DataStore
+        {
+            var model = await this.DataStore
                 .Set<TEntityModel>()
                 .Where(x => x.Id == id)
                 .MapQueryable<TModel>()
                 .FirstOrDefaultAsync();
+
+            return model;
+        }
 
         public virtual async Task<IList<TModel>> All<TModel>()
             => await this.DataStore

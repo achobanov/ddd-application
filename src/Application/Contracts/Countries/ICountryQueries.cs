@@ -1,9 +1,10 @@
-﻿using EnduranceJudge.Application.Core.Contracts;
-using EnduranceJudge.Domain.Aggregates.Common.Countries;
+﻿using EnduranceJudge.Domain.Aggregates.Common.Countries;
+using System.Threading.Tasks;
 
 namespace EnduranceJudge.Application.Contracts.Countries
 {
-    public interface ICountryQueries : IQueryRepository<Country>
+    public interface ICountryQueries
     {
+        Task<Country> Find(string isoCode);
     }
 }

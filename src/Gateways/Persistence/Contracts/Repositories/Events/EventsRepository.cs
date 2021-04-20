@@ -1,6 +1,5 @@
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Application.Contracts.Events;
-using EnduranceJudge.Application.Import.Contracts;
 using EnduranceJudge.Domain.Aggregates.Event.Events;
 using EnduranceJudge.Gateways.Persistence.Contracts.WorkFile;
 using EnduranceJudge.Gateways.Persistence.Core;
@@ -11,7 +10,7 @@ using System.Linq;
 
 namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Events
 {
-    internal class EventsRepository : StoreRepository<IEventsDataStore, EventEntity, Event>,
+    internal class EventsRepository : RepositoryBase<IEventsDataStore, EventEntity, Event>,
         IEventCommands,
         IEventQueries
     {

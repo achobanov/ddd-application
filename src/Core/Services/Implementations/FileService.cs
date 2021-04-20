@@ -15,7 +15,7 @@ namespace EnduranceJudge.Core.Services.Implementations
             await stream.WriteAsync(content);
         }
 
-        public string Read(string filePath)
+        public async Task<string> Read(string filePath)
         {
             if (!this.Exists(filePath))
             {
@@ -23,7 +23,7 @@ namespace EnduranceJudge.Core.Services.Implementations
             }
 
             using var stream = new StreamReader(filePath);
-            return stream.ReadToEnd();
+            return await stream.ReadToEndAsync();
         }
     }
 }

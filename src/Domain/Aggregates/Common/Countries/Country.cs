@@ -1,4 +1,5 @@
 using EnduranceJudge.Domain.Core.Models;
+using EnduranceJudge.Domain.Core.Validation;
 
 namespace EnduranceJudge.Domain.Aggregates.Common.Countries
 {
@@ -7,6 +8,12 @@ namespace EnduranceJudge.Domain.Aggregates.Common.Countries
         private Country() : base(default)
         {
         }
+
+        internal Country(string isoCode) : base(default)
+            => this.Validate(() =>
+            {
+                this.IsoCode = isoCode.IsRequired(nameof(isoCode));
+            });
 
         public string IsoCode { get; private set; }
 

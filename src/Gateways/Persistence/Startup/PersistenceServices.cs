@@ -36,7 +36,7 @@ namespace EnduranceJudge.Gateways.Persistence.Startup
                 .Scan(scan => scan
                     .FromCallingAssembly()
                     .AddClasses(classes =>
-                        classes.AssignableTo(typeof(IQueryRepository<>)))
+                        classes.AssignableTo(typeof(IQueriesBase<>)))
                     .AsSelfWithInterfaces()
                     .WithTransientLifetime());
 
@@ -48,6 +48,7 @@ namespace EnduranceJudge.Gateways.Persistence.Startup
                 {
                     configuration.AddCollectionMappers();
                     configuration.UseEntityFrameworkCoreModel<EnduranceJudgeDbContext>();
+                    configuration.DisableConstructorMapping();
                 },
                 assemblies);
     }

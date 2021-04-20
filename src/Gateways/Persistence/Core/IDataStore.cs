@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,6 +13,8 @@ namespace EnduranceJudge.Gateways.Persistence.Core
 
         EntityEntry<TEntity> Add<TEntity>(TEntity entity)
             where TEntity : class;
+
+        void AddRange(IEnumerable<object> entities);
 
         EntityEntry<TEntity> Update<TEntity>(TEntity entity)
             where TEntity : class;
