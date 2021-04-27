@@ -1,4 +1,4 @@
-﻿using EnduranceJudge.Application.Import.ImportFromFile.Xml;
+﻿using EnduranceJudge.Application.Import.ImportFromFile.Models;
 using EnduranceJudge.Domain.Aggregates.Import.Horses;
 
 namespace EnduranceJudge.Application.Import.Factories.Implementations
@@ -15,13 +15,19 @@ namespace EnduranceJudge.Application.Import.Factories.Implementations
 
             var horse = new Horse(
                 data.FEIID,
-                data.Name,
-                isStallion,
-                data.StudBook,
-                data.TrainerFEIID,
-                data.TrainerFirstName,
-                data.TrainerFamilyName);
+                name: data.Name,
+                isStallion: isStallion,
+                breed: data.StudBook,
+                trainerFeiId: data.TrainerFEIID,
+                trainerFirstName: data.TrainerFirstName,
+                trainerLastName: data.TrainerFamilyName);
 
+            return horse;
+        }
+
+        public Horse Create(HorseForNationalImportModel data)
+        {
+            var horse = new Horse(data.FeiId, name: data.Name, breed: data.Breed);
             return horse;
         }
     }

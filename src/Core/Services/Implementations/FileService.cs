@@ -6,6 +6,9 @@ namespace EnduranceJudge.Core.Services.Implementations
 {
     public class FileService : IFileService
     {
+        public FileInfo Get(string path)
+            => new FileInfo(path);
+
         public bool Exists(string path)
             => File.Exists(path);
 
@@ -17,13 +20,31 @@ namespace EnduranceJudge.Core.Services.Implementations
 
         public async Task<string> Read(string filePath)
         {
-            if (!this.Exists(filePath))
-            {
-                throw new InvalidOperationException($"File '{filePath}' does not exist.");
-            }
-
-            using var stream = new StreamReader(filePath);
+            using var stream = this.ReadStream(filePath);
             return await stream.ReadToEndAsync();
         }
+
+        public StreamReader ReadStream(string filePath)
+        {
+            if (!this.Exists(filePath))
+            {
+                var message = $"File '{filePath}' does not exist.";
+                throw new InvalidOperationException(message);
+            }
+
+            try
+            {
+                var stream = new StreamReader(filePath);
+                return stream;
+            }
+            catch (IOException e) when ((e.HResult & 0x0000FFFF) == 32)
+            {
+                var message = $"Cannot read '{filePath}', because the file is open in another program.";
+                throw new InvalidOperationException(message);
+            }
+        }
+
+        public string GetExtension(string path)
+            => Path.GetExtension(path);
     }
 }

@@ -3,11 +3,19 @@ using EnduranceJudge.Domain.Core.Models;
 
 namespace EnduranceJudge.Domain.Aggregates.Import.Horses
 {
-    public class Horse : DomainModel<HorseException>, IHorseState
+    public class Horse : DomainModel<HorseException>, IHorseState, IAggregateRoot
     {
         private Horse() : base(default)
         {
         }
+
+        public Horse(string feiId, string name, string breed) : base(default)
+            => this.Validate(() =>
+            {
+                this.FeiId = feiId.IsRequired(nameof(feiId));
+                this.Name = name.IsRequired(nameof(name));
+                this.Breed = breed.IsRequired(nameof(breed));
+            });
 
         public Horse(
             string feiId,

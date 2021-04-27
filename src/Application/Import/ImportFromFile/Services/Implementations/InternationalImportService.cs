@@ -1,5 +1,5 @@
 ﻿using EnduranceJudge.Application.Import.Factories;
-using EnduranceJudge.Application.Import.ImportFromFile.Xml;
+using EnduranceJudge.Application.Import.ImportFromFile.Models;
 using EnduranceJudge.Core.Services;
 using EnduranceJudge.Domain.Aggregates.Import.Competitions;
 using EnduranceJudge.Domain.Aggregates.Import.Events;
@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace EnduranceJudge.Application.Import.ImportFromFile.Services.Implementations
 {
-    public class ImportParsesService : IImportParsesService
+    public class InternationalImportService : IInternationalImportService
     {
         private readonly IXmlSerializationService xmlSerialization;
         private readonly ICompetitionFactory competitionFactory;
@@ -17,7 +17,7 @@ namespace EnduranceJudge.Application.Import.ImportFromFile.Services.Implementati
         private readonly IAthleteFactory athleteFactory;
         private readonly IHorseFactory horseFactory;
 
-        public ImportParsesService(
+        public InternationalImportService(
             IXmlSerializationService xmlSerialization,
             ICompetitionFactory competitionFactory,
             IParticipantFactory participantFactory,

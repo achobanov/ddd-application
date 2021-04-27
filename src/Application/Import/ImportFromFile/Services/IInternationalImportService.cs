@@ -3,7 +3,7 @@ using EnduranceJudge.Domain.Aggregates.Import.Events;
 
 namespace EnduranceJudge.Application.Import.ImportFromFile.Services
 {
-    public interface IImportParsesService : IService
+    public interface IInternationalImportService : IService
     {
         Event FromInternational(string filePath);
     }

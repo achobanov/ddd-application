@@ -1,4 +1,4 @@
-﻿using EnduranceJudge.Application.Import.ImportFromFile.Xml;
+﻿using EnduranceJudge.Application.Import.ImportFromFile.Models;
 using EnduranceJudge.Domain.Aggregates.Import.Athletes;
 using System;
 using System.Globalization;
