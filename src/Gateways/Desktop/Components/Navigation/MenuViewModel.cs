@@ -1,7 +1,7 @@
-﻿using EnduranceJudge.Gateways.Desktop.Components.Content.FirstPage;
+﻿using EnduranceJudge.Gateways.Desktop.Components.Content.Event;
 using EnduranceJudge.Gateways.Desktop.Components.Content.Import;
-using EnduranceJudge.Gateways.Desktop.Components.Content.SecondPage;
 using EnduranceJudge.Gateways.Desktop.Core;
+using MediatR;
 using Prism.Commands;
 using Prism.Regions;
 
@@ -11,17 +11,15 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Navigation
     {
         private readonly IRegionManager regionManager;
 
-        public MenuViewModel(IRegionManager regionManager)
+        public MenuViewModel(IRegionManager regionManager, IMediator mediator) : base(mediator)
         {
             this.regionManager = regionManager;
-            this.NavigateToFirst = new DelegateCommand(this.GoTo<First>);
-            this.NavigateToSecond = new DelegateCommand(this.GoTo<Second>);
             this.NavigateToImport = new DelegateCommand(this.GoTo<Import>);
+            this.NavigateToEvent = new DelegateCommand(this.GoTo<Event>);
         }
 
-        public DelegateCommand NavigateToFirst { get; }
-        public DelegateCommand NavigateToSecond { get; }
         public DelegateCommand NavigateToImport { get; }
+        public DelegateCommand NavigateToEvent { get; }
 
         private void GoTo<T>()
         {

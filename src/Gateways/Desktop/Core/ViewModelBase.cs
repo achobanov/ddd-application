@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using MediatR;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 
@@ -7,6 +8,13 @@ namespace EnduranceJudge.Gateways.Desktop.Core
     public class ViewModelBase : BindableBase, INavigationAware
     {
         protected IRegionNavigationJournal journal;
+
+        public ViewModelBase(IMediator mediator)
+        {
+            this.Mediator = mediator;
+        }
+
+        protected  IMediator Mediator { get; }
 
         public DelegateCommand NavigateForward => new DelegateCommand(() => this.journal?.GoForward());
         public DelegateCommand NavigateBack => new DelegateCommand(() => this.journal?.GoBack());

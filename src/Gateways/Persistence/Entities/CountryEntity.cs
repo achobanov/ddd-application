@@ -1,5 +1,6 @@
 using AutoMapper;
 using AutoMapper.EquivalencyExpression;
+using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Common.Countries;
 using Newtonsoft.Json;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
-    public class CountryEntity : ICountryState, IMapExplicitly
+    public class CountryEntity : ICountryState, IMapExplicitly, IMapTo<CountryListingModel>
     {
         public string IsoCode { get; set; }
         public string Name { get; set; }

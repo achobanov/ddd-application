@@ -15,7 +15,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
         private readonly IExplorerService explorer;
         private readonly IMediator mediator;
 
-        public ImportViewModel(IExplorerService explorer, IMediator mediator)
+        public ImportViewModel(IExplorerService explorer, IMediator mediator) : base(mediator)
         {
             this.explorer = explorer;
             this.mediator = mediator;

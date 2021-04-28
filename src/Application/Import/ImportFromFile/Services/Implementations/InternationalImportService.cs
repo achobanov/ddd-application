@@ -73,6 +73,7 @@ namespace EnduranceJudge.Application.Import.ImportFromFile.Services.Implementati
                 competitions.Add(competition);
             }
 
+            // TODO: Extract Factory
             var _event = new Event(competitions);
             return _event;
         }

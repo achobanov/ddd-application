@@ -13,9 +13,7 @@
                 Command="{Binding NavigateToImport}">Import</Button>
 
         <Button Style="{StaticResource Button-Primary}"
-                Command="{Binding NavigateToSecond}">Page two</Button>
+                Command="{Binding NavigateToEvent}">Events</Button>
 
-        <Button Style="{StaticResource Button-Primary}"
-                Command="{Binding NavigateToSecond}">Page two</Button>
     </StackPanel>
 </UserControl>

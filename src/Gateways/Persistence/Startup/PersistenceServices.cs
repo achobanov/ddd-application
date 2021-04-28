@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.EquivalencyExpression;
+using EnduranceJudge.Application.Contracts.Countries;
 using EnduranceJudge.Application.Core.Contracts;
 using EnduranceJudge.Gateways.Persistence.Core;
 using Microsoft.Extensions.DependencyInjection;

@@ -2,6 +2,7 @@
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Common.Countries;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,6 +26,16 @@ namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Countries
                 .FirstOrDefaultAsync();
 
             return country;
+        }
+
+        public async Task<IList<T>> GetAll<T>()
+        {
+            var countries = await this.dbContext
+                .Countries
+                .MapQueryable<T>()
+                .ToListAsync();
+
+            return countries;
         }
     }
 }
