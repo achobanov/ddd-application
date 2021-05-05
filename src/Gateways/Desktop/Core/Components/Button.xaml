@@ -6,4 +6,8 @@
         <Setter Property="Height" Value="30px"></Setter>
     </Style>
 
+    <Style x:Key="Button-Form-Item" TargetType="Button">
+        <Setter Property="Height" Value="30px"></Setter>
+    </Style>
+
 </ResourceDictionary>

@@ -4,23 +4,62 @@
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True">
 
-    <StackPanel>
-        <TextBox Style="{StaticResource Input-Inline}"
-                 Text="{Binding Name}" />
+    <StackPanel Style="{StaticResource Form-Primary}">
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
 
-        <TextBox Style="{StaticResource Input-Inline}"
-                 Text="{Binding PopulatedPlace}" />
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=Name}">
+                Name
+            </Label>
 
-        <Button Style="{StaticResource Button-Primary}"
-                Command="{Binding Save}">Save</Button>
+            <TextBox Style="{StaticResource Input-Primary}"
+                     Text="{Binding Name}"
+                     Name="Name" />
+        </DockPanel>
 
-        <ComboBox ItemsSource="{Binding Countries}"
-                  DisplayMemberPath="Name"
-                  SelectedValuePath="IsoCode"
-                  SelectedValue="{Binding SelectedCountryIsoCode}"/>
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
 
-        <TextBox Style="{StaticResource Input-Inline}"
-                 Text="{Binding PresidentGroundJuryName}" />
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=PopulatedPlace}">
+                Populated place
+            </Label>
+
+            <TextBox Style="{StaticResource Input-Primary}"
+                     Text="{Binding PopulatedPlace}"
+                     Name="PopulatedPlace"/>
+        </DockPanel>
+
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
+
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=Countries}">
+                Country
+            </Label>
+
+            <ComboBox ItemsSource="{Binding Countries}"
+                      SelectedValue="{Binding SelectedCountryIsoCode}"
+                      DisplayMemberPath="Name"
+                      SelectedValuePath="IsoCode"
+                      Name="Countries" />
+        </DockPanel>
+
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
+
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=PresidentGroundJuryName}">
+                President Ground Jury
+            </Label>
+
+            <TextBox Style="{StaticResource Input-Primary}"
+                     Text="{Binding PresidentGroundJuryName}"
+                     Name="PresidentGroundJuryName" />
+        </DockPanel>
+
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
+
+            <Button Style="{StaticResource Button-Primary}"
+                    Command="{Binding Save}">Save</Button>
+        </DockPanel>
 
     </StackPanel>
 </UserControl>
