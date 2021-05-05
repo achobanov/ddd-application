@@ -7,6 +7,8 @@ using MediatR;
 using Prism.Commands;
 using Prism.Regions;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -14,12 +16,13 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
 {
     public class EventViewModel : ViewModelBase
     {
-        private IReadOnlyList<CountryListingModel> countries;
-
         public EventViewModel(IMediator mediator) : base(mediator)
         {
             this.Save = new AsyncCommand(this.SaveAction);
         }
+
+        public ObservableCollection<CountryListingModel> Countries { get; }
+            = new (Enumerable.Empty<CountryListingModel>());
 
         private string name;
         public string Name
@@ -35,12 +38,12 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
             set => this.SetProperty(ref this.populatedPlace, value);
         }
 
-        private int countryIsoCode;
+        private string selectedSelectedCountryIsoCode;
         public Visibility CountryVisibility = Visibility.Hidden;
-        public int CountryIsoCode
+        public string SelectedCountryIsoCode
         {
-            get => this.countryIsoCode;
-            set => this.SetProperty(ref this.countryIsoCode, value);
+            get => this.selectedSelectedCountryIsoCode;
+            set => this.SetProperty(ref this.selectedSelectedCountryIsoCode, value);
         }
 
         private List<int> personnelIds;
@@ -61,7 +64,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
 
             this.CountryVisibility = Visibility.Visible;
 
-            this.countries = countries.AsReadOnly();
+            this.Countries.AddRange(countries);
         }
 
         private async Task SaveAction()
@@ -70,6 +73,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
             {
                 Name = this.name,
                 PopulatedPlace = this.populatedPlace,
+                CountryIsoCode = this.SelectedCountryIsoCode,
             };
 
             await this.Mediator.Send(command);

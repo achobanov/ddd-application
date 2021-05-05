@@ -5,16 +5,19 @@
              prism:ViewModelLocator.AutoWireViewModel="True">
 
     <StackPanel>
-        <StackPanel>
-            <TextBox Style="{StaticResource Input-Inline}"
-                     Text="{Binding Name}" />
+        <TextBox Style="{StaticResource Input-Inline}"
+                 Text="{Binding Name}" />
 
-            <TextBox Style="{StaticResource Input-Inline}"
-                     Text="{Binding PopulatedPlace}" />
+        <TextBox Style="{StaticResource Input-Inline}"
+                 Text="{Binding PopulatedPlace}" />
 
-            <Button Style="{StaticResource Button-Primary}"
-                    Command="{Binding Save}">Save</Button>
+        <Button Style="{StaticResource Button-Primary}"
+                Command="{Binding Save}">Save</Button>
 
-        </StackPanel>
+        <ComboBox ItemsSource="{Binding Countries}"
+                  DisplayMemberPath="Name"
+                  SelectedValuePath="IsoCode"
+                  SelectedValue="{Binding SelectedCountryIsoCode}"/>
+
     </StackPanel>
 </UserControl>
