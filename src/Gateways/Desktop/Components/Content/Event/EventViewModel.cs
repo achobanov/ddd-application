@@ -1,6 +1,9 @@
-﻿using EnduranceJudge.Application.Events.Commands.SaveEvent;
+﻿using AutoMapper;
+using EnduranceJudge.Application.Events.Commands.SaveEvent;
 using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
 using EnduranceJudge.Core.Extensions;
+using EnduranceJudge.Core.Mappings;
+using EnduranceJudge.Core.Mappings.Converters;
 using EnduranceJudge.Gateways.Desktop.Core;
 using EnduranceJudge.Gateways.Desktop.Core.Commands;
 using MediatR;
@@ -13,8 +16,12 @@ using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
 {
-    public class EventViewModel : ViewModelBase
+    public class EventViewModel : ViewModelBase, IMapExplicitly
     {
+        public EventViewModel() : base(null)
+        {
+        }
+
         public EventViewModel(IMediator mediator) : base(mediator)
         {
             this.Save = new AsyncCommand(this.SaveAction);
@@ -45,11 +52,67 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
             set => this.SetProperty(ref this.selectedCountryIsoCode, value);
         }
 
-        private string presidentGroundJuryName;
-        public string PresidentGroundJuryName
+        private string presidentGroundJury;
+        public string PresidentGroundJury
         {
-            get => this.presidentGroundJuryName;
-            set => this.SetProperty(ref this.presidentGroundJuryName, value);
+            get => this.presidentGroundJury;
+            set => this.SetProperty(ref this.presidentGroundJury, value);
+        }
+
+        private string presidentVetCommission;
+        public string PresidentVetCommission
+        {
+            get => this.presidentGroundJury;
+            set => this.SetProperty(ref this.presidentGroundJury, value);
+        }
+
+        private string foreignJudge;
+        public string ForeignJudge
+        {
+            get => this.foreignJudge;
+            set => this.SetProperty(ref this.foreignJudge, value);
+        }
+
+        private string feiTechDelegate;
+        public string FeiTechDelegate
+        {
+            get => this.feiTechDelegate;
+            set => this.SetProperty(ref this.feiTechDelegate, value);
+        }
+
+        private string feiVetDelegate;
+        public string FeiVetDelegate
+        {
+            get => this.feiVetDelegate;
+            set => this.SetProperty(ref this.feiVetDelegate, value);
+        }
+
+        private string activeVet;
+        public string ActiveVet
+        {
+            get => this.activeVet;
+            set => this.SetProperty(ref this.activeVet, value);
+        }
+
+        private string membersOfVetCommittee;
+        public string MembersOfVetCommittee
+        {
+            get => this.membersOfVetCommittee;
+            set => this.SetProperty(ref this.membersOfVetCommittee, value);
+        }
+
+        private string membersOfJudgeCommittee;
+        public string MembersOfJudgeCommittee
+        {
+            get => this.membersOfJudgeCommittee;
+            set => this.SetProperty(ref this.membersOfJudgeCommittee, value);
+        }
+
+        private string stewards;
+        public string Stewards
+        {
+            get => this.stewards;
+            set => this.SetProperty(ref this.stewards, value);
         }
 
         public DelegateCommand Save { get; }
@@ -68,13 +131,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
 
         private async Task SaveAction()
         {
-            var command = new SaveEvent
-            {
-                Name = this.name,
-                PopulatedPlace = this.populatedPlace,
-                CountryIsoCode = this.selectedCountryIsoCode,
-                PresidentGroundJuryName = this.presidentGroundJuryName
-            };
+            var command = this.Map<SaveEvent>();
 
             await this.Mediator.Send(command);
             this.HasSaved = true;
@@ -84,6 +141,21 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
         {
             base.OnNavigatedTo(navigationContext);
             this.LoadCountries();
+        }
+
+        public void CreateExplicitMap(Profile mapper)
+        {
+            mapper.CreateMap<EventViewModel, SaveEvent>()
+                .MapMember(d => d.CountryIsoCode, s => s.SelectedCountryIsoCode)
+                .ForMember(
+                    dest => dest.MembersOfJudgeCommittee,
+                    opt => opt.ConvertUsing(StringSplitter.New))
+                .ForMember(
+                    dest => dest.MembersOfVetCommittee,
+                    opt => opt.ConvertUsing(StringSplitter.New))
+                .ForMember(
+                    dest => dest.Stewards,
+                    opt => opt.ConvertUsing(StringSplitter.New));
         }
     }
 }

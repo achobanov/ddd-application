@@ -5,6 +5,8 @@ namespace EnduranceJudge.Core
 {
     public static class CoreConstants
     {
+        public const char StringSplitChar = ';';
+
         public static Assembly[] Assemblies
         {
             get

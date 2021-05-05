@@ -26,16 +26,18 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Events
         }
         public Event Add(Personnel personnel)
         {
-            var areRoleDuplicatesAllowed = personnel.Role == PersonnelRole.MemberOfJudgeCommittee
-                || personnel.Role == PersonnelRole.MemberOfVetCommittee;
+            var isMultiPersonnelRole = personnel.Role
+                is PersonnelRole.MemberOfJudgeCommittee
+                or PersonnelRole.MemberOfVetCommittee
+                or PersonnelRole.Steward;
 
-            if (areRoleDuplicatesAllowed && this.personnel.Any(p => p.Name == personnel.Name))
+            if (isMultiPersonnelRole && this.personnel.Any(p => p.Name == personnel.Name))
             {
                 var message = $"Cannot add {personnel.Role}' - name '{personnel.Name}' already exits";
                 Thrower.Throw<EventException>(message);
             }
 
-            if (!areRoleDuplicatesAllowed && this.personnel.Any(p => p.Role == personnel.Role))
+            if (!isMultiPersonnelRole && this.personnel.Any(p => p.Role == personnel.Role))
             {
                 var message = $"Cannot add {personnel.Role} - it already exits";
                 Thrower.Throw<EventException>(message);
