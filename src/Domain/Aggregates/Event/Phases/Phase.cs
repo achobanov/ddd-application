@@ -11,6 +11,10 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Phases
     public class Phase : DomainModel<PhaseException>, IPhaseState,
         IDependsOn<Competition>
     {
+        public Phase() : base(default)
+        {
+        }
+
         public Phase(int id, int lengthInKilometers, bool isFinal = false) : base(id)
             => this.Validate(() =>
             {

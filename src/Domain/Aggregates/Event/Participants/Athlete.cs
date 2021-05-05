@@ -7,7 +7,11 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Participants
     public class Athlete : DomainModel<EventAthleteException>,
         IDependsOn<Participant>
     {
-        public Athlete(int id, Category category) : base(id)
+        public Athlete() : base(default)
+        {
+        }
+
+        public Athlete(Category category) : base(default)
             => this.Validate(() =>
             {
                 this.Category = category.IsRequired(nameof(category));

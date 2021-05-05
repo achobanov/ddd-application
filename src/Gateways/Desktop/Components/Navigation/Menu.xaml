@@ -9,11 +9,14 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <StackPanel Orientation="Horizontal">
+
         <Button Style="{StaticResource Button-Primary}"
                 Command="{Binding NavigateToImport}">Import</Button>
 
         <Button Style="{StaticResource Button-Primary}"
-                Command="{Binding NavigateToEvent}">Events</Button>
+                Command="{Binding NavigateToCreateEvent}">Events</Button>
 
+        <Button Style="{StaticResource Button-Primary}"
+                Command="{Binding NavigateToUpdateEvent}">Events</Button>
     </StackPanel>
 </UserControl>

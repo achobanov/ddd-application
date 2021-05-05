@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EnduranceJudge.Application.Events.Commands.SaveEvent;
 using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
+using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Core.Mappings.Converters;
@@ -118,17 +119,6 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
         public DelegateCommand Save { get; }
         public bool HasSaved { get; private set; }
 
-        private async Task LoadCountries()
-        {
-            var countries = await this.Mediator
-                .Send(new GetCountriesListing())
-                .ToList();
-
-            this.CountryVisibility = Visibility.Visible;
-
-            this.Countries.AddRange(countries);
-        }
-
         private async Task SaveAction()
         {
             var command = this.Map<SaveEvent>();
@@ -141,6 +131,31 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
         {
             base.OnNavigatedTo(navigationContext);
             this.LoadCountries();
+
+            var isEditView = navigationContext.Parameters.TryGetValue<int>("id", out var id);
+            if (isEditView)
+            {
+                this.LoadEvent(id);
+            }
+        }
+
+        private async Task LoadCountries()
+        {
+            var countries = await this.Mediator
+                .Send(new GetCountriesListing())
+                .ToList();
+
+            this.CountryVisibility = Visibility.Visible;
+
+            this.Countries.AddRange(countries);
+        }
+
+        private async Task LoadEvent(int id)
+        {
+            var getEvent = GetEvent.New(id);
+            var _event = await this.Mediator.Send(getEvent);
+
+            this.MapFrom(_event);
         }
 
         public void CreateExplicitMap(Profile mapper)
@@ -156,6 +171,9 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
                 .ForMember(
                     dest => dest.Stewards,
                     opt => opt.ConvertUsing(StringSplitter.New));
+
+            mapper.CreateMap<EventForUpdateModel, EventViewModel>()
+                .MapMember(d => d.SelectedCountryIsoCode, s => s.CountryIsoCode);
         }
     }
 }

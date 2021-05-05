@@ -13,6 +13,10 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Events
 {
     public class Event : BaseEvent<EventException>, IAggregateRoot
     {
+        public Event() : base(default, "default def", "default")
+        {
+        }
+
         public Event(int id, string name, string populatedPlace)
             : base(id, name, populatedPlace)
         {

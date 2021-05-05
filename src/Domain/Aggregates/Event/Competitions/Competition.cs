@@ -12,6 +12,10 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
     public class Competition : DomainModel<CompetitionException>, ICompetitionState,
         IDependsOn<Events.Event>
     {
+        public Competition() : base(default)
+        {
+        }
+
         public Competition(int id, CompetitionType type) : base(id)
             => this.Validate(() =>
             {

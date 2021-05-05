@@ -6,7 +6,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Participants
     public class Horse : DomainModel<EventHorseException>,
         IDependsOn<Participant>
     {
-        public Horse(int id) : base(id)
+        public Horse() : base(default)
         {
         }
 

@@ -43,17 +43,17 @@ namespace EnduranceJudge.Application.Test
                 var competition1 = new Competition(0, CompetitionType.National);
 
                 var participant1 = new Participant(0, "111", 11);
-                var horse1 = new Horse(0);
-                var athlete1 = new Athlete(0, Category.Kids);
+                var horse1 = new Horse();
+                var athlete1 = new Athlete(Category.Kids);
                 var participant2 = new Participant(0, "222", 22);
-                var horse2 = new Horse(0);
-                var athlete2 = new Athlete(0, Category.Kids);
+                var horse2 = new Horse();
+                var athlete2 = new Athlete(Category.Kids);
                 var participant3 = new Participant(0, "333", 33);
-                var horse3 = new Horse(0);
-                var athlete3 = new Athlete(0, Category.Adults);
+                var horse3 = new Horse();
+                var athlete3 = new Athlete(Category.Adults);
                 var participant4 = new Participant(0, "444", 44);
-                var horse4 = new Horse(0);
-                var athlete4 = new Athlete(0, Category.Adults);
+                var horse4 = new Horse();
+                var athlete4 = new Athlete(Category.Adults);
 
                 var phase1 = new Phase(0, 15);
                 var phaseForCategory1 = new PhaseForCategory(0, 10, 15, Category.Kids);
@@ -65,17 +65,17 @@ namespace EnduranceJudge.Application.Test
 
                 var competition2 = new Competition(0, CompetitionType.International);
                 var participant5= new Participant(0, "111", 11);
-                var horse5= new Horse(0);
-                var athlete5= new Athlete(0, Category.Kids);
+                var horse5= new Horse();
+                var athlete5= new Athlete(Category.Kids);
                 var participant6= new Participant(0, "222", 22);
-                var horse6= new Horse(0);
-                var athlete6= new Athlete(0, Category.Kids);
+                var horse6= new Horse();
+                var athlete6= new Athlete(Category.Kids);
                 var participant7 = new Participant(0, "333", 33);
-                var horse7 = new Horse(0);
-                var athlete7 = new Athlete(0, Category.Adults);
+                var horse7 = new Horse();
+                var athlete7 = new Athlete(Category.Adults);
                 var participant8 = new Participant(0, "444", 44);
-                var horse8 = new Horse(0);
-                var athlete8 = new Athlete(0, Category.Adults);
+                var horse8 = new Horse();
+                var athlete8 = new Athlete(Category.Adults);
 
                 var phase3 = new Phase(0, 30, true);
                 var phaseForCategory5 = new PhaseForCategory(0, 10, 15, Category.Kids);

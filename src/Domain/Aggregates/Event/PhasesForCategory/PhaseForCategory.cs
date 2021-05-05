@@ -8,6 +8,10 @@ namespace EnduranceJudge.Domain.Aggregates.Event.PhasesForCategory
     public class PhaseForCategory : DomainModel<PhaseForCategoryException>, IPhaseForCategoryState,
         IDependsOn<Phase>
     {
+        public PhaseForCategory() : base(default)
+        {
+        }
+
         public PhaseForCategory(
             int id,
             int maxRecoveryTimeInMinutes,
