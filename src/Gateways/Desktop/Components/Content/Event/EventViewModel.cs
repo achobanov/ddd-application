@@ -1,4 +1,4 @@
-﻿using EnduranceJudge.Application.Events.Commands;
+﻿using EnduranceJudge.Application.Events.Commands.SaveEvent;
 using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
 using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core;
@@ -6,7 +6,6 @@ using EnduranceJudge.Gateways.Desktop.Core.Commands;
 using MediatR;
 using Prism.Commands;
 using Prism.Regions;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,19 +37,19 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
             set => this.SetProperty(ref this.populatedPlace, value);
         }
 
-        private string selectedSelectedCountryIsoCode;
+        private string selectedCountryIsoCode;
         public Visibility CountryVisibility = Visibility.Hidden;
         public string SelectedCountryIsoCode
         {
-            get => this.selectedSelectedCountryIsoCode;
-            set => this.SetProperty(ref this.selectedSelectedCountryIsoCode, value);
+            get => this.selectedCountryIsoCode;
+            set => this.SetProperty(ref this.selectedCountryIsoCode, value);
         }
 
-        private List<int> personnelIds;
-        public List<int> PersonnelIds
+        private string presidentGroundJuryName;
+        public string PresidentGroundJuryName
         {
-            get => this.personnelIds;
-            set => this.SetProperty(ref this.personnelIds, value);
+            get => this.presidentGroundJuryName;
+            set => this.SetProperty(ref this.presidentGroundJuryName, value);
         }
 
         public DelegateCommand Save { get; }
@@ -73,7 +72,8 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
             {
                 Name = this.name,
                 PopulatedPlace = this.populatedPlace,
-                CountryIsoCode = this.SelectedCountryIsoCode,
+                CountryIsoCode = this.selectedCountryIsoCode,
+                PresidentGroundJuryName = this.presidentGroundJuryName
             };
 
             await this.Mediator.Send(command);

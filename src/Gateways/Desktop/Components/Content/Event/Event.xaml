@@ -19,5 +19,8 @@
                   SelectedValuePath="IsoCode"
                   SelectedValue="{Binding SelectedCountryIsoCode}"/>
 
+        <TextBox Style="{StaticResource Input-Inline}"
+                 Text="{Binding PresidentGroundJuryName}" />
+
     </StackPanel>
 </UserControl>

@@ -81,10 +81,10 @@ namespace EnduranceJudge.Application.Test
                 var phaseForCategory5 = new PhaseForCategory(0, 10, 15, Category.Kids);
                 var phaseForCategory6 = new PhaseForCategory(0, 10, 15, Category.Adults);
 
-                var presidentJury = new Personnel(0, "Gosho Prezidenta", PersonnelRole.PresidentGroundJury);
-                var activeVet = new Personnel(0, "House MD", PersonnelRole.ActiveVet);
-                var vetMember1 = new Personnel(0, "Vet One", PersonnelRole.MemberOfVetCommittee);
-                var vetMember2 = new Personnel(0, "Vet Two", PersonnelRole.MemberOfVetCommittee);
+                var presidentJury = new Personnel("Gosho Prezidenta", PersonnelRole.PresidentGroundJury);
+                var activeVet = new Personnel("House MD", PersonnelRole.ActiveVet);
+                var vetMember1 = new Personnel("Vet One", PersonnelRole.MemberOfVetCommittee);
+                var vetMember2 = new Personnel("Vet Two", PersonnelRole.MemberOfVetCommittee);
 
                 var country = await this.countryQueries.Find("BUL");
                 event_ = await this.eventCommands.Find(1);

@@ -8,8 +8,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.ContestPersonnel
     public class Personnel : DomainModel<PersonnelException>, IPersonnelState,
         IDependsOn<Events.Event>
     {
-        public Personnel(int id, string name, PersonnelRole role)
-            : base(id)
+        public Personnel(string name, PersonnelRole role) : base(default)
             => this.Validate(() =>
             {
                 this.Name = name.CheckPersonName();
