@@ -17,5 +17,8 @@
 
         <Button Style="{StaticResource Button-Primary}"
                 Command="{Binding NavigateToSecond}">Page two</Button>
+
+        <Button Style="{StaticResource Button-Primary}"
+                Command="{Binding NavigateToPrintExample}">Print example</Button>
     </StackPanel>
 </UserControl>
