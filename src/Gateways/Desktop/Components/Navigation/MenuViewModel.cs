@@ -1,5 +1,6 @@
 ﻿using EnduranceJudge.Gateways.Desktop.Components.Content.FirstPage;
 using EnduranceJudge.Gateways.Desktop.Components.Content.Import;
+using EnduranceJudge.Gateways.Desktop.Components.Content.PrintExample;
 using EnduranceJudge.Gateways.Desktop.Components.Content.SecondPage;
 using EnduranceJudge.Gateways.Desktop.Core;
 using Prism.Commands;
@@ -17,11 +18,13 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Navigation
             this.NavigateToFirst = new DelegateCommand(this.GoTo<First>);
             this.NavigateToSecond = new DelegateCommand(this.GoTo<Second>);
             this.NavigateToImport = new DelegateCommand(this.GoTo<Import>);
+            this.NavigateToPrintExample = new DelegateCommand(this.GoTo<PrintExample>);
         }
 
         public DelegateCommand NavigateToFirst { get; }
         public DelegateCommand NavigateToSecond { get; }
         public DelegateCommand NavigateToImport { get; }
+        public DelegateCommand NavigateToPrintExample { get; }
 
         private void GoTo<T>()
         {
