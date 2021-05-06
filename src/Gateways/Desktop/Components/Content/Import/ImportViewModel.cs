@@ -5,7 +5,6 @@ using EnduranceJudge.Gateways.Desktop.Core;
 using EnduranceJudge.Gateways.Desktop.Core.Commands;
 using EnduranceJudge.Gateways.Desktop.Core.Events;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
-using MediatR;
 using Prism.Commands;
 using Prism.Events;
 using System.Threading.Tasks;
@@ -16,13 +15,15 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
     public class ImportViewModel : ViewModelBase
     {
         private readonly IExplorerService explorer;
-        private readonly IMediator mediator;
         private readonly IEventAggregator eventAggregator;
 
-        public ImportViewModel(IExplorerService explorer, IMediator mediator, IEventAggregator eventAggregator)
+        public ImportViewModel(
+            IExplorerService explorer,
+            IEventAggregator eventAggregator,
+            IApplicationService application)
+           : base(application)
         {
             this.explorer = explorer;
-            this.mediator = mediator;
             this.eventAggregator = eventAggregator;
             this.OpenFolderDialog = new AsyncCommand(this.OpenFolderDialogAction);
             this.OpenImportFileDialog = new AsyncCommand(this.OpenImportFileDialogAction);
@@ -66,7 +67,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
                 DirectoryPath = selectedPath,
             };
 
-            var isNewFileCreated = await this.mediator.Send(selectWorkFileRequest);
+            var isNewFileCreated = await this.Application.Execute(selectWorkFileRequest);
             if (isNewFileCreated)
             {
                 this.ImportVisibility = Visibility.Visible;
@@ -92,7 +93,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
                 FilePath = path,
             };
 
-            await this.mediator.Send(importFromFileRequest);
+            await this.Application.Execute(importFromFileRequest);
 
             this.Redirect();
         }

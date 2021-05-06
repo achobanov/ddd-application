@@ -1,12 +1,29 @@
-﻿using Prism.Commands;
+﻿using EnduranceJudge.Gateways.Desktop.Core.Services;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using System;
 
 namespace EnduranceJudge.Gateways.Desktop.Core
 {
     public class ViewModelBase : BindableBase, INavigationAware
     {
+        private readonly IApplicationService application;
+
         protected IRegionNavigationJournal journal;
+
+        protected ViewModelBase()
+        {
+        }
+
+        protected ViewModelBase(IApplicationService application)
+        {
+            this.application = application;
+        }
+
+        protected IApplicationService Application
+            => this.application
+                ?? throw new InvalidOperationException("Application is null. Provide it using the base constructor.");
 
         public DelegateCommand NavigateForward => new DelegateCommand(() => this.journal?.GoForward());
         public DelegateCommand NavigateBack => new DelegateCommand(() => this.journal?.GoBack());
