@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using AutoMapper.EquivalencyExpression;
 using EnduranceJudge.Core.Mappings;
-using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Aggregates.Event.Participants;
 using EnduranceJudge.Gateways.Persistence.Core;
 using Newtonsoft.Json;
+using ImportParticipant = EnduranceJudge.Domain.Aggregates.Import.Participants.Participant;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
@@ -29,13 +29,6 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
                 .ForMember(p => p.Athlete, opt => opt.MapFrom(pic => pic.Participant.Athlete))
                 .ForMember(p => p.Horse, opt => opt.MapFrom(pic => pic.Participant.Horse));
 
-            // mapper.CreateMap<ParticipantInCompetition, Competition>()
-            //     .EqualityComparison((pic, p) => pic.CompetitionId == p.Id)
-            //     .ForMember(c => c.Id, opt => opt.MapFrom(pic => pic.CompetitionId))
-            //     .ForMember(c => c.Type, opt => opt.MapFrom(pic => pic.Competition.Type))
-            //     .ForMember(c => c.Phases, opt => opt.MapFrom(pic => pic.Competition.Phases))
-            //     .ForMember(c => c.Event, opt => opt.MapFrom(pic => pic.Competition.Event));
-
             mapper.CreateMap<Participant, ParticipantInCompetition>()
                 .EqualityComparison((p, pic) => pic.ParticipantId == p.Id)
                 .ForMember(pic => pic.Id, opt => opt.Ignore())
@@ -43,6 +36,21 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
                 .ForMember(pic => pic.CompetitionId, opt => opt.Ignore())
                 .ForMember(pic => pic.ParticipantId, opt => opt.MapFrom(p => p.Id))
                 .ForMember(pic => pic.Participant, opt => opt.MapFrom(p => p));
+
+            mapper.CreateMap<ParticipantInCompetition, ImportParticipant>()
+                .EqualityComparison((pic, p) => pic.ParticipantId == p.Id)
+                .ForMember(p => p.Id, opt => opt.MapFrom(pic => pic.ParticipantId))
+                .ForMember(p => p.Athlete, opt => opt.MapFrom(pic => pic.Participant.Athlete))
+                .ForMember(p => p.Horse, opt => opt.MapFrom(pic => pic.Participant.Horse));
+
+            mapper.CreateMap<ImportParticipant, ParticipantInCompetition>()
+                .EqualityComparison((p, pic) => pic.ParticipantId == p.Id)
+                .ForMember(pic => pic.Id, opt => opt.Ignore())
+                .ForMember(pic => pic.Competition, opt => opt.Ignore())
+                .ForMember(pic => pic.CompetitionId, opt => opt.Ignore())
+                .ForMember(pic => pic.ParticipantId, opt => opt.MapFrom(p => p.Id))
+                .ForMember(pic => pic.Participant, opt => opt.MapFrom(p => p));
+
         }
     }
 }

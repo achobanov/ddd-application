@@ -1,5 +1,5 @@
 using AutoMapper;
-using EnduranceJudge.Core.Interfaces;
+using EnduranceJudge.Core.Services;
 using EnduranceJudge.Core.Mappings;
 using System;
 using System.Threading.Tasks;

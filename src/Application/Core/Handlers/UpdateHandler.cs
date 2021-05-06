@@ -11,20 +11,20 @@ namespace EnduranceJudge.Application.Core.Handlers
         where TRequest : IIdentifiableRequest, IMapTo<TEntity>
         where TEntity : IAggregateRoot
     {
-        private readonly ICommandRepository<TEntity> commands;
+        private readonly ICommandsBase<TEntity> commandses;
 
-        protected UpdateHandler(ICommandRepository<TEntity> commands)
+        protected UpdateHandler(ICommandsBase<TEntity> commandses)
         {
-            this.commands = commands;
+            this.commandses = commandses;
         }
 
         protected override async Task Handle(TRequest request, CancellationToken cancellationToken)
         {
-            var entity = await this.commands.Find<TEntity>(request.Id);
+            var entity = await this.commandses.Find<TEntity>(request.Id);
 
             this.Update(entity, request);
 
-            await this.commands.Save(entity, cancellationToken);
+            await this.commandses.Save(entity, cancellationToken);
         }
 
         protected virtual void Update(TEntity entity, TRequest request)

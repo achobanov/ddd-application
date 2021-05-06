@@ -1,6 +1,5 @@
 ﻿using EnduranceJudge.Core.ConventionalServices;
 using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
 using System.Reflection;
 
 namespace EnduranceJudge.Core
@@ -11,45 +10,29 @@ namespace EnduranceJudge.Core
             this IServiceCollection services,
             params Assembly[] assemblies)
             => services
-                .AddConventionalServices(assemblies);
+                .AddTransientServices(assemblies)
+                .AddScopedServices(assemblies)
+                .AddSingletonServices(assemblies);
 
-        public static IServiceCollection AddConventionalServices(
-            this IServiceCollection services,
-            params Assembly[] assemblies)
-        {
-            var serviceInterfaceType = typeof(IService);
-            var singletonServiceInterfaceType = typeof(ISingletonService);
-            var scopedServiceInterfaceType = typeof(IScopedService);
+        private static IServiceCollection AddTransientServices(this IServiceCollection services, Assembly[] assemblies)
+            => services.Scan(scan => scan
+                .FromAssemblies(assemblies)
+                .AddClasses(classes => classes.AssignableTo<IService>())
+                .AsSelfWithInterfaces()
+                .WithTransientLifetime());
 
-            var exportedClasses = assemblies
-                .SelectMany(x => x.GetExportedTypes())
-                .Where(t => t.IsClass && !t.IsAbstract);
+        private static IServiceCollection AddScopedServices(this IServiceCollection services, Assembly[] assemblies)
+            => services.Scan(scan => scan
+                .FromAssemblies(assemblies)
+                .AddClasses(classes => classes.AssignableTo<IScopedService>())
+                .AsSelfWithInterfaces()
+                .WithScopedLifetime());
 
-            var registrationDescriptors = exportedClasses
-                .Select(t => new
-                {
-                    Service = t.GetInterface($"I{t.Name}"),
-                    Implementation = t
-                })
-                .Where(t => t.Service != null);
-
-            foreach (var descriptor in registrationDescriptors)
-            {
-                if (serviceInterfaceType.IsAssignableFrom(descriptor.Service))
-                {
-                    services.AddTransient(descriptor.Service!, descriptor.Implementation);
-                }
-                else if (singletonServiceInterfaceType.IsAssignableFrom(descriptor.Service))
-                {
-                    services.AddSingleton(descriptor.Service!, descriptor.Implementation);
-                }
-                else if (scopedServiceInterfaceType.IsAssignableFrom(descriptor.Service))
-                {
-                    services.AddScoped(descriptor.Service!, descriptor.Implementation);
-                }
-            }
-
-            return services;
-        }
+        private static IServiceCollection AddSingletonServices(this IServiceCollection services, Assembly[] assemblies)
+            => services.Scan(scan => scan
+                .FromAssemblies(assemblies)
+                .AddClasses(classes => classes.AssignableTo<ISingletonService>())
+                .AsSelfWithInterfaces()
+                .WithSingletonLifetime());
     }
 }

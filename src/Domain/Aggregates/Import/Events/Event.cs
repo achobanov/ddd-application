@@ -1,4 +1,3 @@
-using EnduranceJudge.Domain.Aggregates.Common;
 using EnduranceJudge.Domain.Aggregates.Import.Competitions;
 using EnduranceJudge.Domain.Core.Models;
 using System.Collections.Generic;
@@ -6,10 +5,13 @@ using System.Linq;
 
 namespace EnduranceJudge.Domain.Aggregates.Import.Events
 {
-    public class Event : BaseEvent<ImportEventException>, IAggregateRoot
+    public class Event : DomainModel<ImportEventException>, IAggregateRoot
     {
-        public Event(string name, string populatedPlace, List<Competition> competitions)
-            : base(default, name, populatedPlace)
+        private Event() : base(default)
+        {
+        }
+
+        public Event(List<Competition> competitions) : base(default)
         {
             this.competitions = competitions;
         }
@@ -19,6 +21,11 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Events
         {
             get => this.competitions.AsReadOnly();
             private set => this.competitions = value.ToList();
+        }
+
+        public void Set(List<Competition> competitions)
+        {
+            this.competitions = competitions;
         }
     }
 }

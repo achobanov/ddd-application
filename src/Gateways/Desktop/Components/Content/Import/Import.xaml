@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="EnduranceJudge.Gateways.Desktop.Components.Content.Import.Import"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <StackPanel>
+        <StackPanel>
+            <TextBox Style="{StaticResource Input-Inline}"
+                     Text="{Binding WorkDirectoryPath, Mode=OneWay}"
+                     IsReadOnly="True"/>
+
+            <Button Style="{StaticResource Button-Primary}"
+                    Command="{Binding OpenFolderDialog}"
+                    Name="_SelectWorkDirectory">Select Work Directory</Button>
+
+        </StackPanel>
+
+        <StackPanel Visibility="{Binding ImportVisibility}">
+
+            <TextBox Style="{StaticResource Input-Inline}"
+                     Text="{Binding ImportFilePath, Mode=OneWay}"
+                     IsReadOnly="True"/>
+
+            <Button Style="{StaticResource Button-Primary}"
+                    Command="{Binding OpenImportFileDialog}"
+                    Name="_SelectImportFile">Select Import File</Button>
+
+        </StackPanel>
+
+    </StackPanel>
+</UserControl>

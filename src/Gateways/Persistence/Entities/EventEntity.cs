@@ -6,6 +6,7 @@ using EnduranceJudge.Domain.Aggregates.Event.Events;
 using EnduranceJudge.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using ImportEvent = EnduranceJudge.Domain.Aggregates.Import.Events.Event;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
@@ -27,6 +28,13 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
                 .EqualityComparison((entity, domain) => entity.Id == domain.Id);
 
             mapper.CreateMap<Event, EventEntity>()
+                .EqualityComparison((domain, entity) => domain.Id == entity.Id);
+
+            mapper.CreateMap<EventEntity, ImportEvent>()
+                .EqualityComparison((entity, domain) => entity.Id == domain.Id)
+                .ForMember(x => x.Competitions, opt => opt.MapFrom(y => y.Competitions));
+
+            mapper.CreateMap<ImportEvent, EventEntity>()
                 .EqualityComparison((domain, entity) => domain.Id == entity.Id);
         }
     }

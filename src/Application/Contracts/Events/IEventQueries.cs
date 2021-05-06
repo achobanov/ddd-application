@@ -3,7 +3,7 @@ using EnduranceJudge.Domain.Aggregates.Event.Events;
 
 namespace EnduranceJudge.Application.Contracts.Events
 {
-    public interface IEventQueries : IQueryRepository<Event>
+    public interface IEventQueries : IQueriesBase<Event>
     {
     }
 }

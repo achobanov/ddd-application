@@ -1,18 +1,15 @@
 using EnduranceJudge.Domain.Core.Models;
-using System;
 
 namespace EnduranceJudge.Domain.Aggregates.Import.Horses
 {
     public interface IHorseState : IDomainModelState
     {
+        string FeiId { get; }
         string Name { get; }
-
-        string Gender { get; }
-
         bool IsStallion { get; }
-
-        DateTime BirthDay { get; }
-
-        string Owner { get; }
+        string Breed { get; }
+        string TrainerFeiId { get; }
+        string TrainerFirstName { get; }
+        string TrainerLastName { get; }
     }
 }

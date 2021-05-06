@@ -1,29 +1,26 @@
 ﻿using EnduranceJudge.Gateways.Desktop.Components.Content.FirstPage;
+using EnduranceJudge.Gateways.Desktop.Components.Content.Import;
 using EnduranceJudge.Gateways.Desktop.Components.Content.SecondPage;
 using EnduranceJudge.Gateways.Desktop.Core;
+using EnduranceJudge.Gateways.Desktop.Services;
 using Prism.Commands;
-using Prism.Regions;
 
 namespace EnduranceJudge.Gateways.Desktop.Components.Navigation
 {
     public class MenuViewModel : ViewModelBase
     {
-        private readonly IRegionManager regionManager;
+        private readonly INavigationService navigation;
 
-        public MenuViewModel(IRegionManager regionManager)
+        public MenuViewModel(INavigationService navigation)
         {
-            this.regionManager = regionManager;
-            this.NavigateToFirst = new DelegateCommand(this.GoTo<First>);
-            this.NavigateToSecond = new DelegateCommand(this.GoTo<Second>);
+            this.navigation = navigation;
+            this.NavigateToFirst = new DelegateCommand(this.navigation.NavigateTo<First>);
+            this.NavigateToSecond = new DelegateCommand(this.navigation.NavigateTo<Second>);
+            this.NavigateToImport = new DelegateCommand(this.navigation.NavigateTo<Import>);
         }
 
         public DelegateCommand NavigateToFirst { get; }
         public DelegateCommand NavigateToSecond { get; }
-
-        private void GoTo<T>()
-        {
-            var viewName = typeof(T).Name;
-            this.regionManager.RequestNavigate(Regions.Content, viewName);
-        }
+        public DelegateCommand NavigateToImport { get; }
     }
 }

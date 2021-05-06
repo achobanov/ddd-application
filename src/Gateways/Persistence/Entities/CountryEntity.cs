@@ -1,13 +1,27 @@
+using AutoMapper;
+using AutoMapper.EquivalencyExpression;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Common.Countries;
-using EnduranceJudge.Gateways.Persistence.Core;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
-    public class CountryEntity : EntityModel, ICountryState, IMapTo<Country>
+    public class CountryEntity : ICountryState, IMapExplicitly
     {
         public string IsoCode { get; set; }
-
         public string Name { get; set; }
+
+        [JsonIgnore]
+        public IList<AthleteEntity> Athletes { get; set; }
+
+        public void CreateExplicitMap(Profile mapper)
+        {
+            mapper.CreateMap<CountryEntity, Country>()
+                .EqualityComparison((entity, country) => entity.IsoCode == country.IsoCode);
+
+            mapper.CreateMap<Country, CountryEntity>()
+                .EqualityComparison((country, entity) => country.IsoCode == entity.IsoCode);
+        }
     }
 }

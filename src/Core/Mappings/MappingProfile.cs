@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Reflection;
 using AutoMapper;
-using EnduranceJudge.Core.Extensions;
 using System.Collections.Generic;
+using EnduranceJudge.Core.Extensions;
 
 namespace EnduranceJudge.Core.Mappings
 {

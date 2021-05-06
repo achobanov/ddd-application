@@ -7,6 +7,10 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Participants
 {
     public class Participant : DomainModel<ImportParticipantException>
     {
+        private Participant() : base(default)
+        {
+        }
+
         public Participant(Athlete athlete, Horse horse) : base(default)
             => this.Validate(() =>
             {

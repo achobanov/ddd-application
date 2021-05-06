@@ -1,28 +1,27 @@
 ﻿using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using EnduranceJudge.Core.Interfaces;
-using EnduranceJudge.Gateways.Persistence.Core.Services;
+using EnduranceJudge.Core.Services;
+using EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Countries;
 using EnduranceJudge.Gateways.Persistence.Entities;
-using EnduranceJudge.Gateways.Persistence.Repositories.Events;
+using EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Events;
+using EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Horses;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using System;
 
 namespace EnduranceJudge.Gateways.Persistence
 {
-    public class EnduranceJudgeDbContext : DbContext, IEventsDataStore
+    public class EnduranceJudgeDbContext : DbContext,
+        IEventsDataStore,
+        ICountriesDataStore,
+        IHorseDataStore
     {
-        private readonly IBackupService backup;
-
         public EnduranceJudgeDbContext()
         {
         }
 
-        public EnduranceJudgeDbContext(DbContextOptions options, IDateTimeService dateTime, IBackupService backup)
+        public EnduranceJudgeDbContext(DbContextOptions options, IDateTimeService dateTime)
             : base(options)
         {
-            this.backup = backup;
         }
 
         public DbSet<CountryEntity> Countries { get; set; }
@@ -35,15 +34,6 @@ namespace EnduranceJudge.Gateways.Persistence
         public DbSet<HorseEntity> Horses { get; set; }
         public DbSet<ParticipantEntity> Participants { get; set; }
         public DbSet<ParticipantInCompetition> ParticipantsInCompetitions { get; set; }
-
-        public async Task<int> Commit(CancellationToken cancellationToken = default)
-        {
-            var result = await this.SaveChangesAsync(cancellationToken);
-
-            await this.backup.Create(this);
-
-            return result;
-        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -88,6 +78,14 @@ namespace EnduranceJudge.Gateways.Persistence
                 .HasOne(p => p.Athlete)
                 .WithOne(a => a.Participant)
                 .HasForeignKey<AthleteEntity>(a => a.ParticipantId);
+
+            builder.Entity<AthleteEntity>()
+                .HasOne(a => a.Country)
+                .WithMany(c => c.Athletes)
+                .HasForeignKey(a => a.CountryIsoCode);
+
+            builder.Entity<CountryEntity>()
+                .HasKey(x => x.IsoCode);
 
             base.OnModelCreating(builder);
         }

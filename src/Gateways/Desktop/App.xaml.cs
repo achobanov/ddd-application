@@ -1,4 +1,4 @@
-﻿using EnduranceJudge.Core.Interfaces;
+﻿using EnduranceJudge.Core.Services;
 using EnduranceJudge.Core.Utilities;
 using EnduranceJudge.Gateways.Desktop.Startup;
 using EnduranceJudge.Gateways.Desktop.Components;

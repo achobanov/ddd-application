@@ -1,6 +1,4 @@
 using EnduranceJudge.Domain.Core.Validation;
-using EnduranceJudge.Domain.Validation;
-using EnduranceJudge.Domain.Aggregates.Common.Countries;
 using EnduranceJudge.Domain.Core.Models;
 using EnduranceJudge.Domain.Enums;
 using System;
@@ -11,16 +9,22 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Athletes
     {
         private const int AdultAgeInYears = 18;
 
-        public Athlete(string feiId, string firstName, string lastName, string gender, DateTime birthDate)
+        private Athlete() : base(default)
+        {
+        }
+
+        public Athlete(string feiId, string firstName, string lastName, string competingFor, DateTime birthDate)
             : base(default)
         {
             this.Validate(() =>
             {
+                birthDate.IsRequired(nameof(birthDate));
+                competingFor.IsRequired(nameof(competingFor));
+
                 this.FeiId = feiId.IsRequired(nameof(feiId));
                 this.FirstName = firstName.IsRequired(nameof(firstName));
                 this.LastName = lastName.IsRequired(nameof(lastName));
-                this.Gender = gender.CheckValidGender();
-                this.BirthDate = birthDate.HasDatePassed();
+                this.CountryIsoCode = competingFor.IsRequired(nameof(competingFor));
             });
 
             this.SetCategory(birthDate);
@@ -29,16 +33,10 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Athletes
         public string FeiId { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-        public string Gender { get; private set; }
-        public DateTime BirthDate { get; private set; }
-        public Country Country { get; private set; }
-        public void Set(Country country)
-            => this.Validate(() =>
-            {
-                this.Country = country.IsRequired(nameof(country));
-            });
 
         public Category Category { get; private set; }
+        public string CountryIsoCode { get; private set; }
+
         private void SetCategory(DateTime birthDate)
         {
             var category = birthDate.AddYears(AdultAgeInYears) <= DateTime.Now
@@ -47,6 +45,5 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Athletes
 
             this.Category = category;
         }
-
     }
 }

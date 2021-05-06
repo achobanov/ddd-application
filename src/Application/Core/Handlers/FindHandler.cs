@@ -11,9 +11,9 @@ namespace EnduranceJudge.Application.Core.Handlers
         where TRequest : IIdentifiableRequest, IRequest<TResponse>
         where TDomainModel : IAggregateRoot
     {
-        private readonly IQueryRepository<TDomainModel> query;
+        private readonly IQueriesBase<TDomainModel> query;
 
-        public FindHandler(IQueryRepository<TDomainModel> query)
+        public FindHandler(IQueriesBase<TDomainModel> query)
         {
             this.query = query;
         }
