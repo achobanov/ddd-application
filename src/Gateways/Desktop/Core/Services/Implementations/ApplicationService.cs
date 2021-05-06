@@ -27,12 +27,12 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
             catch (DomainException exception)
             {
                 this.Publish<ValidationErrorEvent>(exception.Message);
-                return default;
+                throw;
             }
             catch (AppException exception)
             {
                 this.Publish<ValidationErrorEvent>(exception.Message);
-                return default;
+                throw;
             }
         }
 

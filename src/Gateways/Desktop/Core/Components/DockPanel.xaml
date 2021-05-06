@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="Strip" TargetType="DockPanel">
+        <Setter Property="LastChildFill" Value="True"></Setter>
+    </Style>
+
+    <Style x:Key="Strip-Error" TargetType="DockPanel" BasedOn="{StaticResource Strip}">
+        <Setter Property="Background" Value="DarkRed"></Setter>
+    </Style>
+
+</ResourceDictionary>

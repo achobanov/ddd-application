@@ -6,6 +6,7 @@
         <ResourceDictionary Source="Components/TextBlock.xaml" />
         <ResourceDictionary Source="Components/TextBox.xaml" />
         <ResourceDictionary Source="Components/Label.xaml" />
+        <ResourceDictionary Source="Components/DockPanel.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
