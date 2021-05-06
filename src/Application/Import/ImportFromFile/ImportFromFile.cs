@@ -40,7 +40,7 @@ namespace EnduranceJudge.Application.Import.ImportFromFile
             {
                 var filePath = request.FilePath;
                 var fileExtension = this.file.GetExtension(filePath);
-                if (fileExtension != FileExtensions.Xml || fileExtension != FileExtensions.SupportedExcel)
+                if (fileExtension != FileExtensions.Xml && fileExtension != FileExtensions.SupportedExcel)
                 {
                     var message =
                         $"Unsupported file. Please use '{FileExtensions.Xml}' or '{FileExtensions.SupportedExcel}'.";

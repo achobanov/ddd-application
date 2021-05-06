@@ -3,33 +3,27 @@ using EnduranceJudge.Gateways.Desktop.Components.Content.Import;
 using EnduranceJudge.Gateways.Desktop.Components.Content.PrintExample;
 using EnduranceJudge.Gateways.Desktop.Components.Content.SecondPage;
 using EnduranceJudge.Gateways.Desktop.Core;
+using EnduranceJudge.Gateways.Desktop.Services;
 using Prism.Commands;
-using Prism.Regions;
 
 namespace EnduranceJudge.Gateways.Desktop.Components.Navigation
 {
     public class MenuViewModel : ViewModelBase
     {
-        private readonly IRegionManager regionManager;
+        private readonly INavigationService navigation;
 
-        public MenuViewModel(IRegionManager regionManager)
+        public MenuViewModel(INavigationService navigation)
         {
-            this.regionManager = regionManager;
-            this.NavigateToFirst = new DelegateCommand(this.GoTo<First>);
-            this.NavigateToSecond = new DelegateCommand(this.GoTo<Second>);
-            this.NavigateToImport = new DelegateCommand(this.GoTo<Import>);
-            this.NavigateToPrintExample = new DelegateCommand(this.GoTo<PrintExample>);
+            this.navigation = navigation;
+            this.NavigateToFirst = new DelegateCommand(this.navigation.NavigateTo<First>);
+            this.NavigateToSecond = new DelegateCommand(this.navigation.NavigateTo<Second>);
+            this.NavigateToImport = new DelegateCommand(this.navigation.NavigateTo<Import>);
+            this.NavigateToPrintExample = new DelegateCommand(this.navigation.NavigateTo<PrintExample>);
         }
 
         public DelegateCommand NavigateToFirst { get; }
         public DelegateCommand NavigateToSecond { get; }
         public DelegateCommand NavigateToImport { get; }
         public DelegateCommand NavigateToPrintExample { get; }
-
-        private void GoTo<T>()
-        {
-            var viewName = typeof(T).Name;
-            this.regionManager.RequestNavigate(Regions.Content, viewName);
-        }
     }
 }

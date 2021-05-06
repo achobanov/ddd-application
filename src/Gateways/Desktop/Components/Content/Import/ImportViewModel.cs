@@ -1,10 +1,13 @@
 ﻿using EnduranceJudge.Application.Import.ImportFromFile;
 using EnduranceJudge.Application.Import.WorkFile;
+using EnduranceJudge.Gateways.Desktop.Components.Content.SecondPage;
 using EnduranceJudge.Gateways.Desktop.Core;
 using EnduranceJudge.Gateways.Desktop.Core.Commands;
+using EnduranceJudge.Gateways.Desktop.Core.Events;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using MediatR;
 using Prism.Commands;
+using Prism.Events;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -14,11 +17,13 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
     {
         private readonly IExplorerService explorer;
         private readonly IMediator mediator;
+        private readonly IEventAggregator eventAggregator;
 
-        public ImportViewModel(IExplorerService explorer, IMediator mediator)
+        public ImportViewModel(IExplorerService explorer, IMediator mediator, IEventAggregator eventAggregator)
         {
             this.explorer = explorer;
             this.mediator = mediator;
+            this.eventAggregator = eventAggregator;
             this.OpenFolderDialog = new AsyncCommand(this.OpenFolderDialogAction);
             this.OpenImportFileDialog = new AsyncCommand(this.OpenImportFileDialogAction);
         }
@@ -66,6 +71,10 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
             {
                 this.ImportVisibility = Visibility.Visible;
             }
+            else
+            {
+                this.Redirect();
+            }
         }
 
         private async Task OpenImportFileDialogAction()
@@ -84,6 +93,15 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
             };
 
             await this.mediator.Send(importFromFileRequest);
+
+            this.Redirect();
+        }
+
+        private void Redirect()
+        {
+            this.eventAggregator
+                .GetEvent<NavigationEvent>()
+                .Publish(new Second());
         }
     }
 }
