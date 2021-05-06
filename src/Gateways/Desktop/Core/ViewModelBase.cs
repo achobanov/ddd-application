@@ -5,11 +5,15 @@ using Prism.Regions;
 
 namespace EnduranceJudge.Gateways.Desktop.Core
 {
-    public class ViewModelBase : BindableBase, INavigationAware
+    public abstract class ViewModelBase : BindableBase, INavigationAware
     {
         protected IRegionNavigationJournal journal;
 
-        public ViewModelBase(IMediator mediator)
+        protected ViewModelBase()
+        {
+        }
+
+        protected ViewModelBase(IMediator mediator)
         {
             this.Mediator = mediator;
         }

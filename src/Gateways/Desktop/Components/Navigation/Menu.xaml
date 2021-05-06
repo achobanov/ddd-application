@@ -18,5 +18,8 @@
 
         <Button Style="{StaticResource Button-Primary}"
                 Command="{Binding NavigateToUpdateEvent}">Events</Button>
+
+        <Button Style="{StaticResource Button-Primary}"
+                Command="{Binding NavigateToPrintExample}">Print example</Button>
     </StackPanel>
 </UserControl>
