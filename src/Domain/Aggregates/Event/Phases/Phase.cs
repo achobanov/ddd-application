@@ -1,5 +1,4 @@
 using EnduranceJudge.Domain.Core.Validation;
-using EnduranceJudge.Domain.Core.Extensions;
 using EnduranceJudge.Domain.Aggregates.Event.PhasesForCategory;
 using EnduranceJudge.Domain.Core.Models;
 using System.Collections.Generic;

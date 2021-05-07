@@ -1,5 +1,4 @@
 using EnduranceJudge.Domain.Core.Validation;
-using EnduranceJudge.Domain.Core.Extensions;
 using EnduranceJudge.Domain.Validation;
 using EnduranceJudge.Domain.Aggregates.Manager.DTOs;
 using EnduranceJudge.Domain.Aggregates.Manager.ResultsInPhases;
