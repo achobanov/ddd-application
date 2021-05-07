@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
-    public class PersonnelEntity : EntityModel, IPersonnelState, IMapExplicitly
+    public class PersonnelEntity : EntityModel, IPersonnelState, IMap<Personnel>
     {
         public string Name { get; set; }
         public PersonnelRole Role { get; set; }
@@ -16,14 +16,5 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
         [JsonIgnore]
         public EventEntity Event { get; set; }
         public int EventId { get; set; }
-
-        public void CreateExplicitMap(Profile mapper)
-        {
-            mapper.CreateMap<PersonnelEntity, Personnel>()
-                .EqualityComparison((entity, personnel) => entity.Id == personnel.Id);
-
-            mapper.CreateMap<Personnel, PersonnelEntity>()
-                .EqualityComparison((personnel, entity) => entity.Id == personnel.Id);
-        }
     }
 }

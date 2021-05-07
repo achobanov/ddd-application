@@ -9,7 +9,9 @@ using ImportHorse = EnduranceJudge.Domain.Aggregates.Import.Horses.Horse;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
-    public class HorseEntity : EntityModel, IHorseState, IMapExplicitly
+    public class HorseEntity : EntityModel, IHorseState,
+        IMap<Horse>,
+        IMap<ImportHorse>
     {
         public string FeiId { get; set; }
         public string Name { get; set; }
@@ -22,20 +24,5 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
         [JsonIgnore]
         public ParticipantEntity Participant { get; set; }
         public int ParticipantId { get; set; }
-
-        public void CreateExplicitMap(Profile mapper)
-        {
-            mapper.CreateMap<HorseEntity, Horse>()
-                .EqualityComparison((entity, horse) => entity.Id == horse.Id);
-
-            mapper.CreateMap<Horse, HorseEntity>()
-                .EqualityComparison((horse, entity) => entity.Id == horse.Id);
-
-            mapper.CreateMap<HorseEntity, ImportHorse>()
-                .EqualityComparison((entity, horse) => entity.Id == horse.Id);
-
-            mapper.CreateMap<ImportHorse, HorseEntity>()
-                .EqualityComparison((horse, entity) => entity.Id == horse.Id);
-        }
     }
 }

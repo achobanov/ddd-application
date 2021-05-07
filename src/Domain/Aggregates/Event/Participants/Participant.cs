@@ -10,13 +10,11 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Participants
         }
 
         public Participant(int id, string rfId, int contestNumber) : base(id)
-        {
-            this.Validate(() =>
+            => this.Validate(() =>
             {
                 this.RfId = rfId.IsRequired(nameof(rfId));
                 this.ContestNumber = contestNumber.IsRequired(nameof(contestNumber));
             });
-        }
 
         public string RfId { get; private set; }
         public int ContestNumber { get; private set; }
