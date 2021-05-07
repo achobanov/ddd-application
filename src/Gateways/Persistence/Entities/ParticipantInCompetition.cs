@@ -21,7 +21,6 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
         public void CreateExplicitMap(Profile mapper)
         {
             mapper.CreateMap<ParticipantInCompetition, Participant>()
-                .EqualityComparison((pic, p) => pic.ParticipantId == p.Id)
                 .ForMember(p => p.Id, opt => opt.MapFrom(pic => pic.ParticipantId))
                 .ForMember(p => p.ContestNumber, opt => opt.MapFrom(pic => pic.Participant.ContestNumber))
                 .ForMember(p => p.MaxAverageSpeedInKpH, opt => opt.MapFrom(pic => pic.Participant.MaxAverageSpeedInKpH))
@@ -30,7 +29,6 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
                 .ForMember(p => p.Horse, opt => opt.MapFrom(pic => pic.Participant.Horse));
 
             mapper.CreateMap<Participant, ParticipantInCompetition>()
-                .EqualityComparison((p, pic) => pic.ParticipantId == p.Id)
                 .ForMember(pic => pic.Id, opt => opt.Ignore())
                 .ForMember(pic => pic.Competition, opt => opt.Ignore())
                 .ForMember(pic => pic.CompetitionId, opt => opt.Ignore())
@@ -38,13 +36,11 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
                 .ForMember(pic => pic.Participant, opt => opt.MapFrom(p => p));
 
             mapper.CreateMap<ParticipantInCompetition, ImportParticipant>()
-                .EqualityComparison((pic, p) => pic.ParticipantId == p.Id)
                 .ForMember(p => p.Id, opt => opt.MapFrom(pic => pic.ParticipantId))
                 .ForMember(p => p.Athlete, opt => opt.MapFrom(pic => pic.Participant.Athlete))
                 .ForMember(p => p.Horse, opt => opt.MapFrom(pic => pic.Participant.Horse));
 
             mapper.CreateMap<ImportParticipant, ParticipantInCompetition>()
-                .EqualityComparison((p, pic) => pic.ParticipantId == p.Id)
                 .ForMember(pic => pic.Id, opt => opt.Ignore())
                 .ForMember(pic => pic.Competition, opt => opt.Ignore())
                 .ForMember(pic => pic.CompetitionId, opt => opt.Ignore())

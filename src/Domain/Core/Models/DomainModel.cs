@@ -7,6 +7,10 @@ namespace EnduranceJudge.Domain.Core.Models
     public abstract class DomainModel<TException> : IInternalDomainModel
         where TException : DomainException, new()
     {
+        protected DomainModel()
+        {
+        }
+
         protected DomainModel(int id)
         {
             this.Id = id;

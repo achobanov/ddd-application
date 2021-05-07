@@ -8,6 +8,10 @@ namespace EnduranceJudge.Domain.Aggregates.Common
     public abstract class BaseEvent<TException> : DomainModel<TException>, IEventState
         where TException : DomainException, new()
     {
+        protected BaseEvent()
+        {
+        }
+
         protected BaseEvent(int id, string name, string populatedPlace) : base(id)
             => this.Validate(() =>
             {

@@ -28,21 +28,15 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
 
         public void CreateExplicitMap(Profile mapper)
         {
-            mapper.CreateMap<ParticipantEntity, Participant>()
-                .EqualityComparison((entity, personnel) => entity.Id == personnel.Id);
-
+            mapper.CreateMap<ParticipantEntity, Participant>();
             mapper.CreateMap<Participant, ParticipantEntity>()
-                .EqualityComparison((personnel, entity) => entity.Id == personnel.Id)
                 .ForMember(x => x.HorseId, opt => opt.Condition(p => p.Horse != null))
                 .ForMember(x => x.Horse, opt => opt.Condition(p => p.Horse != null))
                 .ForMember(x => x.AthleteId, opt => opt.Condition(p => p.Athlete != null))
                 .ForMember(x => x.Athlete, opt => opt.Condition(p => p.Athlete != null));
 
-            mapper.CreateMap<ParticipantEntity, ImportParticipant>()
-                .EqualityComparison((entity, personnel) => entity.Id == personnel.Id);
-
+            mapper.CreateMap<ParticipantEntity, ImportParticipant>();
             mapper.CreateMap<ImportParticipant, ParticipantEntity>()
-                .EqualityComparison((personnel, entity) => entity.Id == personnel.Id)
                 .ForMember(x => x.HorseId, opt => opt.Condition(p => p.Horse != null))
                 .ForMember(x => x.Horse, opt => opt.Condition(p => p.Horse != null))
                 .ForMember(x => x.AthleteId, opt => opt.Condition(p => p.Athlete != null))

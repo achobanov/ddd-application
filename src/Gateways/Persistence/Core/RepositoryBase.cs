@@ -60,7 +60,7 @@ namespace EnduranceJudge.Gateways.Persistence.Core
             }
 
             await this.DataStore.SaveChangesAsync(cancellationToken);
-            await this.workFileUpdater.Snapshot();
+            // await this.workFileUpdater.Snapshot();
 
             return entity.Id;
         }

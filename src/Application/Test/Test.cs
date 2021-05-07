@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Application.Test
 {
-    public class Test : IRequest, IMapTo<Event>
+    public class Test : IRequest
     {
         public string Name { get; set; }
 
@@ -34,6 +34,7 @@ namespace EnduranceJudge.Application.Test
 
             protected override async Task Handle(Test request, CancellationToken cancellationToken)
             {
+                await this.BigTest(cancellationToken);
             }
 
             private async Task BigTest(CancellationToken cancellationToken)
@@ -87,7 +88,6 @@ namespace EnduranceJudge.Application.Test
                 var vetMember2 = new Personnel(0, "Vet Two", PersonnelRole.MemberOfVetCommittee);
 
                 var country = await this.countryQueries.Find("BUL");
-                event_ = await this.eventCommands.Find(1);
 
                 event_.Add(competition1);
                 await this.eventCommands.Save(event_, cancellationToken);
@@ -227,9 +227,15 @@ namespace EnduranceJudge.Application.Test
                 await this.eventCommands.Save(event_, cancellationToken);
                 event_ = await this.eventCommands.Find(1);
 
-                event_.Set(country);
+                // event_.Set(country);
+                //
+                // await this.eventCommands.Save(event_, cancellationToken);
+                // event_ = await this.eventCommands.Find(1);
 
+                event_.Remove(event_.Competitions.First());
+                event_.Add(new Competition(0, CompetitionType.International));
                 await this.eventCommands.Save(event_, cancellationToken);
+
                 event_ = await this.eventCommands.Find(1);
                 ;
             }
@@ -251,9 +257,12 @@ namespace EnduranceJudge.Application.Test
             private async Task Modify(CancellationToken cancellationToken)
             {
                 var event_ = await this.eventCommands.Find<Event>(1);
-                event_.Remove(x => x.Id == 1);
+                var toRemove = event_.Competitions.First();
+                var toRemove2 = event_.Competitions.Last();
+                event_.Remove(toRemove);
+                event_.Remove(toRemove2);
 
-                await this.eventCommands.Save(event_, cancellationToken);
+                // await this.eventCommands.Save(event_, cancellationToken);
 
                 var competition2 = new Competition(0, CompetitionType.National);
                 event_.Add(competition2);

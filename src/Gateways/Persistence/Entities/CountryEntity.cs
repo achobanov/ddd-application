@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
-    public class CountryEntity : ICountryState, IMapExplicitly
+    public class CountryEntity : ICountryState, IMap<Country>
     {
         public string IsoCode { get; set; }
         public string Name { get; set; }
@@ -17,11 +17,8 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
 
         public void CreateExplicitMap(Profile mapper)
         {
-            mapper.CreateMap<CountryEntity, Country>()
-                .EqualityComparison((entity, country) => entity.IsoCode == country.IsoCode);
-
-            mapper.CreateMap<Country, CountryEntity>()
-                .EqualityComparison((country, entity) => country.IsoCode == entity.IsoCode);
+            mapper.CreateMap<CountryEntity, Country>();
+            mapper.CreateMap<Country, CountryEntity>();
         }
     }
 }
