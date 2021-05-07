@@ -11,11 +11,6 @@ namespace EnduranceJudge.Domain.Core.Models
         {
         }
 
-        protected DomainModel(int id)
-        {
-            this.Id = id;
-        }
-
         public int Id { get; private set; }
 
         void IInternalDomainModel.Validate(Action action)

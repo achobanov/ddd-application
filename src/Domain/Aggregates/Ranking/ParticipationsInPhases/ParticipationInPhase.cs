@@ -8,7 +8,7 @@ namespace EnduranceJudge.Domain.Aggregates.Ranking.ParticipationsInPhases
 {
     public class ParticipationInPhase : DomainModel<RankingParticipationInPhaseException>
     {
-        private ParticipationInPhase() : base(default)
+        private ParticipationInPhase()
         {
         }
 

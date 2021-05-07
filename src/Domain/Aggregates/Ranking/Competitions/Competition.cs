@@ -7,7 +7,7 @@ namespace EnduranceJudge.Domain.Aggregates.Ranking.Competitions
 {
     public class Competition : DomainModel<RankingCompetitionException>
     {
-        public Competition() : base(default)
+        public Competition()
         {
         }
 

@@ -17,8 +17,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Events
         {
         }
 
-        public Event(int id, string name, string populatedPlace)
-            : base(id, name, populatedPlace)
+        public Event(string name, string populatedPlace) : base(name, populatedPlace)
         {
         }
 

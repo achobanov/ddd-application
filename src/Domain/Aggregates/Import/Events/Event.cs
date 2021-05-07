@@ -7,11 +7,11 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Events
 {
     public class Event : DomainModel<ImportEventException>, IAggregateRoot
     {
-        private Event() : base(default)
+        private Event()
         {
         }
 
-        public Event(List<Competition> competitions) : base(default)
+        public Event(List<Competition> competitions)
         {
             this.competitions = competitions;
         }

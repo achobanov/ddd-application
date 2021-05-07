@@ -7,7 +7,7 @@ namespace EnduranceJudge.Domain.Aggregates.Manager.Participants
 {
     public class Participant : DomainModel<ManagerParticipantException>, IAggregateRoot
     {
-        private Participant() : base(default)
+        private Participant()
         {
         }
 

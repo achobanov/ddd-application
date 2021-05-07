@@ -12,7 +12,7 @@ namespace EnduranceJudge.Domain.Aggregates.Common
         {
         }
 
-        protected BaseEvent(int id, string name, string populatedPlace) : base(id)
+        protected BaseEvent(string name, string populatedPlace)
             => this.Validate(() =>
             {
                 this.Name = name.IsRequired(nameof(name));

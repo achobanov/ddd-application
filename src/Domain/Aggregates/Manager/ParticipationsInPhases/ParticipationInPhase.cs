@@ -13,7 +13,6 @@ namespace EnduranceJudge.Domain.Aggregates.Manager.ParticipationsInPhases
         private static readonly string InspectionTimeIsNullMessage = $"cannot complete: InspectionTime cannot be null";
 
         internal ParticipationInPhase(PhaseDto phase, DateTime startTime)
-            : base(default)
             => this.Validate(() =>
             {
                 this.StartTime = startTime

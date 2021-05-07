@@ -1,5 +1,4 @@
 using EnduranceJudge.Domain.Core.Validation;
-using EnduranceJudge.Domain.Aggregates.Event.Phases;
 using EnduranceJudge.Domain.Core.Models;
 using EnduranceJudge.Domain.Enums;
 
@@ -11,14 +10,8 @@ namespace EnduranceJudge.Domain.Aggregates.Event.PhasesForCategory
         {
         }
 
-        public PhaseForCategory(
-            int id,
-            int maxRecoveryTimeInMinutes,
-            int restTimeInMinutes,
-            Category category)
-            : base(id)
-        {
-            this.Validate(() =>
+        public PhaseForCategory(int maxRecoveryTimeInMinutes, int restTimeInMinutes, Category category)
+            => this.Validate(() =>
             {
                 this.MaxRecoveryTimeInMinutes = maxRecoveryTimeInMinutes
                     .IsRequired(nameof(maxRecoveryTimeInMinutes));
@@ -26,7 +19,6 @@ namespace EnduranceJudge.Domain.Aggregates.Event.PhasesForCategory
                 this.RestTimeInMinutes = restTimeInMinutes.IsRequired(nameof(restTimeInMinutes));
                 this.Category = category.IsRequired(nameof(category));
             });
-        }
 
         public int MaxRecoveryTimeInMinutes { get; private set; }
         public int RestTimeInMinutes { get; private set; }
