@@ -15,6 +15,6 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
 
         [JsonIgnore]
         public EnduranceEventEntity EnduranceEvent { get; set; }
-        public int EventId { get; set; }
+        public int EnduranceEventId { get; set; }
     }
 }

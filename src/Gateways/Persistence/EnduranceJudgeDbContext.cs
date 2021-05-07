@@ -42,12 +42,12 @@ namespace EnduranceJudge.Gateways.Persistence
             builder.Entity<EnduranceEventEntity>()
                 .HasMany(x => x.Competitions)
                 .WithOne(y => y.EnduranceEvent)
-                .HasForeignKey(y => y.EventId);
+                .HasForeignKey(y => y.EnduranceEventId);
 
             builder.Entity<EnduranceEventEntity>()
                 .HasMany(x => x.Personnel)
                 .WithOne(y => y.EnduranceEvent)
-                .HasForeignKey(y => y.EventId);
+                .HasForeignKey(y => y.EnduranceEventId);
 
             builder.Entity<CompetitionEntity>()
                 .HasMany(c => c.Phases)
