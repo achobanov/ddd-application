@@ -3,7 +3,7 @@ using EnduranceJudge.Domain.Validation;
 using EnduranceJudge.Domain.Core.Models;
 using EnduranceJudge.Domain.Enums;
 
-namespace EnduranceJudge.Domain.Aggregates.Event.ContestPersonnel
+namespace EnduranceJudge.Domain.Aggregates.Event.Personnels
 {
     public class Personnel : DomainModel<PersonnelException>, IPersonnelState
     {

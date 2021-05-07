@@ -4,7 +4,7 @@ using EnduranceJudge.Application.Contracts.Events;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Common.Countries;
 using EnduranceJudge.Domain.Aggregates.Event.Competitions;
-using EnduranceJudge.Domain.Aggregates.Event.ContestPersonnel;
+using EnduranceJudge.Domain.Aggregates.Event.Personnels;
 using EnduranceJudge.Domain.Aggregates.Event.Events;
 using EnduranceJudge.Domain.Aggregates.Event.Participants;
 using EnduranceJudge.Domain.Aggregates.Event.Phases;

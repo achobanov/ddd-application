@@ -1,7 +1,7 @@
 using EnduranceJudge.Domain.Aggregates.Common;
 using EnduranceJudge.Domain.Aggregates.Common.Countries;
 using EnduranceJudge.Domain.Aggregates.Event.Competitions;
-using EnduranceJudge.Domain.Aggregates.Event.ContestPersonnel;
+using EnduranceJudge.Domain.Aggregates.Event.Personnels;
 using EnduranceJudge.Domain.Core.Exceptions;
 using EnduranceJudge.Domain.Core.Models;
 using EnduranceJudge.Domain.Core.Validation;

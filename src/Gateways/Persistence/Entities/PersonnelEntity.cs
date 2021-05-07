@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.EquivalencyExpression;
 using EnduranceJudge.Core.Mappings;
-using EnduranceJudge.Domain.Aggregates.Event.ContestPersonnel;
+using EnduranceJudge.Domain.Aggregates.Event.Personnels;
 using EnduranceJudge.Domain.Enums;
 using EnduranceJudge.Gateways.Persistence.Core;
 using Newtonsoft.Json;
