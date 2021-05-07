@@ -39,7 +39,7 @@ namespace EnduranceJudge.Application.Test
 
             private async Task BigTest(CancellationToken cancellationToken)
             {
-                var event_ = new Event("Name", "place");
+                var event_ = new EnduranceEvent("Name", "place");
 
                 var competition1 = new Competition(CompetitionType.National);
 
@@ -242,7 +242,7 @@ namespace EnduranceJudge.Application.Test
 
             private async Task Create(CancellationToken cancellationToken)
             {
-                var event_ = new Event("Name", "place");
+                var event_ = new EnduranceEvent("Name", "place");
                 var competition1 = new Competition(CompetitionType.International);
                 var competition2 = new Competition(CompetitionType.National);
                 var competition3 = new Competition(CompetitionType.National);
@@ -256,7 +256,7 @@ namespace EnduranceJudge.Application.Test
 
             private async Task Modify(CancellationToken cancellationToken)
             {
-                var event_ = await this.eventCommands.Find<Event>(1);
+                var event_ = await this.eventCommands.Find<EnduranceEvent>(1);
                 var toRemove = event_.Competitions.First();
                 var toRemove2 = event_.Competitions.Last();
                 event_.Remove(toRemove);

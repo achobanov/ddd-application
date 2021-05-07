@@ -2,9 +2,9 @@ using EnduranceJudge.Domain.Core.Exceptions;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
 {
-    public class EventException : DomainException
+    public class EnduranceEventException : DomainException
     {
-        private static readonly string Name = nameof(Event);
+        private static readonly string Name = nameof(EnduranceEvent);
 
         protected override string Entity => Name;
     }

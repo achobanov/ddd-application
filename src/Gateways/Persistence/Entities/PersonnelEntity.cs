@@ -14,7 +14,7 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
         public PersonnelRole Role { get; set; }
 
         [JsonIgnore]
-        public EventEntity Event { get; set; }
+        public EnduranceEventEntity EnduranceEvent { get; set; }
         public int EventId { get; set; }
     }
 }

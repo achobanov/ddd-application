@@ -24,7 +24,6 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Competitions
             get => this.participants.AsReadOnly();
             private set => this.participants = value.ToList();
         }
-
         public void Set(List<Participant> participants)
         {
             this.participants = participants;

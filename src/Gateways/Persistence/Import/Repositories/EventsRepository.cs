@@ -7,7 +7,7 @@ using EnduranceJudge.Gateways.Persistence.Entities;
 
 namespace EnduranceJudge.Gateways.Persistence.Import.Repositories
 {
-    internal class EventsRepository : RepositoryBase<IEventsDataStore, EventEntity, Event>,
+    internal class EventsRepository : RepositoryBase<IEventsDataStore, EnduranceEventEntity, Event>,
         IEventCommands
     {
         public EventsRepository(IEventsDataStore dataStore, IWorkFileUpdater workFileUpdater)

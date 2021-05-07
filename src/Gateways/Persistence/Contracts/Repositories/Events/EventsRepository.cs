@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Events
 {
-    internal class EventsRepository : RepositoryBase<IEventsDataStore, EventEntity, Event>,
+    internal class EventsRepository : RepositoryBase<IEventsDataStore, EnduranceEventEntity, EnduranceEvent>,
         IEventCommands,
         IEventQueries
     {
