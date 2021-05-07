@@ -1,6 +1,6 @@
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Application.Contracts.Events;
-using EnduranceJudge.Domain.Aggregates.Event.Events;
+using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using EnduranceJudge.Gateways.Persistence.Contracts.WorkFile;
 using EnduranceJudge.Gateways.Persistence.Core;
 using EnduranceJudge.Gateways.Persistence.Entities;

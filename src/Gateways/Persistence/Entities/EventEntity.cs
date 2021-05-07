@@ -1,6 +1,6 @@
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Common;
-using EnduranceJudge.Domain.Aggregates.Event.Events;
+using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using EnduranceJudge.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 using System.Collections.Generic;

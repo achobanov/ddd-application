@@ -1,4 +1,3 @@
-using EnduranceJudge.Domain.Aggregates.Common;
 using EnduranceJudge.Domain.Aggregates.Common.Countries;
 using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Aggregates.Event.Personnels;
@@ -10,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EnduranceJudge.Domain.Aggregates.Event.Events
+namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
 {
     public class Event : DomainModel<EventException>, IAggregateRoot
     {

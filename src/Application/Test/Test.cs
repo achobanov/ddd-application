@@ -5,7 +5,7 @@ using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Common.Countries;
 using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Aggregates.Event.Personnels;
-using EnduranceJudge.Domain.Aggregates.Event.Events;
+using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using EnduranceJudge.Domain.Aggregates.Event.Participants;
 using EnduranceJudge.Domain.Aggregates.Event.Phases;
 using EnduranceJudge.Domain.Aggregates.Event.PhasesForCategory;
