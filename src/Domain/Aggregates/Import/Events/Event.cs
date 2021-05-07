@@ -22,10 +22,5 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Events
             get => this.competitions.AsReadOnly();
             private set => this.competitions = value.ToList();
         }
-
-        public void Set(List<Competition> competitions)
-        {
-            this.competitions = competitions;
-        }
     }
 }
