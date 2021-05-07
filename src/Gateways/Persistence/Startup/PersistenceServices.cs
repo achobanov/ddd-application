@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using AutoMapper.EquivalencyExpression;
+using EnduranceJudge.Application.Contracts.Countries;
 using EnduranceJudge.Application.Core.Contracts;
+using EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Countries;
 using EnduranceJudge.Gateways.Persistence.Core;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
@@ -38,7 +40,8 @@ namespace EnduranceJudge.Gateways.Persistence.Startup
                     .AddClasses(classes =>
                         classes.AssignableTo(typeof(IQueriesBase<>)))
                     .AsSelfWithInterfaces()
-                    .WithTransientLifetime());
+                    .WithTransientLifetime())
+                .AddTransient<ICountryQueries, CountryRepository>();
 
         private static IServiceCollection AddMapping(
             this IServiceCollection services,

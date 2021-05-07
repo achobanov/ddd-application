@@ -110,10 +110,7 @@ namespace EnduranceJudge.Domain.Aggregates.Manager.ParticipationsInPhases
                 this.InspectionTime.IsNotDefault(InspectionTimeIsNullMessage);
             });
 
-            this.SetRelation(
-                participationInPhase => participationInPhase.ResultInPhase,
-                (participationInPhase, r) => participationInPhase.ResultInPhase = r,
-                result);
+            this.ResultInPhase = result; //TODO Validate?
         }
     }
 }

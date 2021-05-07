@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Application.Test
 {
-    public class Test : IRequest, IMapTo<Event>
+    public class Test : IRequest
     {
         public string Name { get; set; }
 
@@ -34,6 +34,7 @@ namespace EnduranceJudge.Application.Test
 
             protected override async Task Handle(Test request, CancellationToken cancellationToken)
             {
+                await BigTest(cancellationToken);
             }
 
             private async Task BigTest(CancellationToken cancellationToken)
@@ -87,7 +88,6 @@ namespace EnduranceJudge.Application.Test
                 var vetMember2 = new Personnel(0, "Vet Two", PersonnelRole.MemberOfVetCommittee);
 
                 var country = await this.countryQueries.Find("BUL");
-                event_ = await this.eventCommands.Find(1);
 
                 event_.Add(competition1);
                 await this.eventCommands.Save(event_, cancellationToken);

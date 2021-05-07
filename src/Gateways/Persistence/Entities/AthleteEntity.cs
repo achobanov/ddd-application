@@ -32,9 +32,7 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
                 .EqualityComparison((ae, a) => ae.Id == a.Id);
 
             mapper.CreateMap<Athlete, AthleteEntity>()
-                .EqualityComparison((a, ae) => ae.Id == a.Id)
-                .ForMember(x => x.ParticipantId, opt => opt.Condition(a => a.Participant != null))
-                .ForMember(x => x.Participant, opt => opt.Condition(a => a.Participant != null));
+                .EqualityComparison((a, ae) => ae.Id == a.Id);
 
             mapper.CreateMap<AthleteEntity, ImportAthlete>()
                 .EqualityComparison((ae, a) => ae.Id == a.Id);

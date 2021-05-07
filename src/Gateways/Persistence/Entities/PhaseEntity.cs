@@ -28,9 +28,7 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
                 .EqualityComparison((entity, phase) => entity.Id == phase.Id);
 
             mapper.CreateMap<Phase, PhaseEntity>()
-                .EqualityComparison((phase, entity) => entity.Id == phase.Id)
-                .ForMember(pe => pe.Competition, opt => opt.Condition(p => p.Competition != null))
-                .ForMember(pe => pe.CompetitionId, opt => opt.Condition(p => p.Competition != null));
+                .EqualityComparison((phase, entity) => entity.Id == phase.Id);
         }
     }
 }

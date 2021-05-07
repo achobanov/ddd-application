@@ -3,7 +3,7 @@ using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Aggregates.Event.ContestPersonnel;
 using EnduranceJudge.Domain.Core.Exceptions;
 using EnduranceJudge.Domain.Core.Models;
-using EnduranceJudge.Domain.Core.Extensions;
+using EnduranceJudge.Domain.Core.Validation;
 using EnduranceJudge.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -13,6 +13,10 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Events
 {
     public class Event : BaseEvent<EventException>, IAggregateRoot
     {
+        private Event()
+        {
+        }
+
         public Event(int id, string name, string populatedPlace)
             : base(id, name, populatedPlace)
         {
@@ -41,12 +45,12 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Events
                 Thrower.Throw<EventException>(message);
             }
 
-            this.AddRelation(e => e.personnel, personnel);
+            this.personnel.ValidateAndAdd(personnel);
             return this;
         }
         public Event Remove(Personnel personnel)
         {
-            this.RemoveRelation(x => x.personnel, personnel);
+            this.personnel.ValidateAndRemove(personnel);
             return this;
         }
 
@@ -58,7 +62,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Events
         }
         public Event Add(Competition competition)
         {
-            this.AddRelation(x => x.competitions, competition);
+            this.competitions.ValidateAndAdd(competition);
             return this;
         }
         public Event Remove(Func<Competition, bool> filter)
@@ -68,7 +72,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Events
         }
         public Event Remove(Competition competition)
         {
-            this.RemoveRelation(x => x.competitions, competition);
+            this.competitions.ValidateAndRemove(competition);
             return this;
         }
     }

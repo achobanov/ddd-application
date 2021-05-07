@@ -1,6 +1,5 @@
 using EnduranceJudge.Domain.Core.Validation;
 using EnduranceJudge.Domain.Core.Extensions;
-using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Aggregates.Event.PhasesForCategory;
 using EnduranceJudge.Domain.Core.Models;
 using System.Collections.Generic;
@@ -8,9 +7,12 @@ using System.Linq;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.Phases
 {
-    public class Phase : DomainModel<PhaseException>, IPhaseState,
-        IDependsOn<Competition>
+    public class Phase : DomainModel<PhaseException>, IPhaseState
     {
+        private Phase()
+        {
+        }
+
         public Phase(int id, int lengthInKilometers, bool isFinal = false) : base(id)
             => this.Validate(() =>
             {
@@ -30,20 +32,8 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Phases
         }
         public Phase Add(PhaseForCategory phaseForCategory)
         {
-            this.AddRelation(phase => phase.phasesForCategories, phaseForCategory);
+            this.phasesForCategories.ValidateAndAdd(phaseForCategory);
             return this;
-        }
-
-        public Competition Competition { get; private set; }
-        void IDependsOn<Competition>.Set(Competition domainModel)
-            => this.Validate(() =>
-            {
-                this.Competition.IsNotRelated();
-                this.Competition = domainModel;
-            });
-        void IDependsOn<Competition>.Clear(Competition domainModel)
-        {
-            this.Competition = null;
         }
     }
 }

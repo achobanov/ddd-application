@@ -10,7 +10,7 @@
                     Command="{Binding NavigateToImport}">Import</Button>
 
             <Button Style="{StaticResource Button-Primary}"
-                    Command="{Binding NavigateToSecond}">Page two</Button>
+                    Command="{Binding NavigateToFirst}">Page two</Button>
 
             <Button Style="{StaticResource Button-Primary}"
                     Command="{Binding NavigateToSecond}">Page two</Button>

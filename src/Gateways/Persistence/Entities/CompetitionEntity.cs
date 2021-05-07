@@ -33,8 +33,6 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
 
             mapper.CreateMap<Competition, CompetitionEntity>()
                 .EqualityComparison((domain, entity) => entity.Id == domain.Id)
-                .ForMember(x => x.EventId, opt => opt.Condition(c => c.Event != null))
-                .ForMember(x => x.Event, opt => opt.Condition(c => c.Event != null))
                 .ForMember(ce => ce.ParticipantsInCompetitions, opt => opt.MapFrom(c => c.Participants))
                 .AfterMap((c, ce) =>
                 {

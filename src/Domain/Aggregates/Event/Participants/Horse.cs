@@ -1,24 +1,15 @@
-using EnduranceJudge.Domain.Core.Validation;
 using EnduranceJudge.Domain.Core.Models;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.Participants
 {
-    public class Horse : DomainModel<EventHorseException>,
-        IDependsOn<Participant>
+    public class Horse : DomainModel<EventHorseException>
     {
-        public Horse(int id) : base(id)
+        private Horse()
         {
         }
 
-        public Participant Participant { get; private set; }
-        void IDependsOn<Participant>.Set(Participant domainModel)
+        public Horse(int id) : base(id)
         {
-            this.Participant.IsNotRelated();
-            this.Participant = domainModel;
-        }
-        void IDependsOn<Participant>.Clear(Participant domainModel)
-        {
-            this.Participant = null;
         }
     }
 }
