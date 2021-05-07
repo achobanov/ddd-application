@@ -39,7 +39,7 @@ namespace EnduranceJudge.Application.Test
 
             private async Task BigTest(CancellationToken cancellationToken)
             {
-                var event_ = new EnduranceEvent("Name", "place");
+                var enduranceEvent = new EnduranceEvent("Name", "place");
 
                 var competition1 = new Competition(CompetitionType.National);
 
@@ -89,13 +89,13 @@ namespace EnduranceJudge.Application.Test
 
                 var country = await this.countryQueries.Find("BUL");
 
-                event_.Add(competition1);
-                await this.eventCommands.Save(event_, cancellationToken);
-                event_ = await this.eventCommands.Find(1);
+                enduranceEvent.Add(competition1);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                enduranceEvent = await this.eventCommands.Find(1);
 
-                event_.Add(competition2);
-                await this.eventCommands.Save(event_, cancellationToken);
-                event_ = await this.eventCommands.Find(1);
+                enduranceEvent.Add(competition2);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                enduranceEvent = await this.eventCommands.Find(1);
 
                 // Competition 1
                 participant1
@@ -114,49 +114,49 @@ namespace EnduranceJudge.Application.Test
                     .Set(horse4)
                     .Set(athlete4);
 
-                event_.Competitions.First(x => x.Id == 1)
+                enduranceEvent.Competitions.First(x => x.Id == 1)
                     .Add(participant1)
                     .Add(participant2)
                     .Add(participant3)
                     .Add(participant4);
 
-                await this.eventCommands.Save(event_, cancellationToken);
-                event_ = await this.eventCommands.Find(1);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                enduranceEvent = await this.eventCommands.Find(1);
 
-                event_.Competitions.First(x => x.Id == 1)
+                enduranceEvent.Competitions.First(x => x.Id == 1)
                     .Add(phase1);
 
-                await this.eventCommands.Save(event_, cancellationToken);
-                event_ = await this.eventCommands.Find(1);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                enduranceEvent = await this.eventCommands.Find(1);
 
-                event_.Competitions.First(x => x.Id == 1)
+                enduranceEvent.Competitions.First(x => x.Id == 1)
                     .Phases.First(x => x.Id == 1)
                     .Add(phaseForCategory1);
 
-                await this.eventCommands.Save(event_, cancellationToken);
-                event_ = await this.eventCommands.Find(1);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                enduranceEvent = await this.eventCommands.Find(1);
 
-                event_.Competitions.First(x => x.Id == 1)
+                enduranceEvent.Competitions.First(x => x.Id == 1)
                     .Phases.First(x => x.Id == 1)
                     .Add(phaseForCategory2);
 
-                await this.eventCommands.Save(event_, cancellationToken);
-                event_ = await this.eventCommands.Find(1);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                enduranceEvent = await this.eventCommands.Find(1);
 
-                event_.Competitions.First(x => x.Id == 1)
+                enduranceEvent.Competitions.First(x => x.Id == 1)
                     .Add(phase2);
 
-                await this.eventCommands.Save(event_, cancellationToken);
-                event_ = await this.eventCommands.Find(1);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                enduranceEvent = await this.eventCommands.Find(1);
 
-                event_.Competitions.First(x => x.Id == 1)
+                enduranceEvent.Competitions.First(x => x.Id == 1)
                     .Phases.First(x => x.Id == 2)
                     .Add(phaseForCategory3);
 
-                await this.eventCommands.Save(event_, cancellationToken);
-                event_ = await this.eventCommands.Find(1);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                enduranceEvent = await this.eventCommands.Find(1);
 
-                event_.Competitions.First(x => x.Id == 1)
+                enduranceEvent.Competitions.First(x => x.Id == 1)
                     .Phases.First(x => x.Id == 2)
                     .Add(phaseForCategory4);
 
@@ -177,97 +177,97 @@ namespace EnduranceJudge.Application.Test
                     .Set(horse8)
                     .Set(athlete8);
 
-                event_.Competitions.First(x => x.Id == 2)
+                enduranceEvent.Competitions.First(x => x.Id == 2)
                     .Add(participant5)
                     .Add(participant6)
                     .Add(participant7)
                     .Add(participant8);
 
-                await this.eventCommands.Save(event_, cancellationToken);
-                event_ = await this.eventCommands.Find(1);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                enduranceEvent = await this.eventCommands.Find(1);
 
-                event_.Competitions.First(x => x.Id == 2)
+                enduranceEvent.Competitions.First(x => x.Id == 2)
                     .Add(phase3);
 
-                await this.eventCommands.Save(event_, cancellationToken);
-                event_ = await this.eventCommands.Find(1);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                enduranceEvent = await this.eventCommands.Find(1);
 
-                event_.Competitions.First(x => x.Id == 2)
+                enduranceEvent.Competitions.First(x => x.Id == 2)
                     .Phases.First(x => x.Id == 3)
                     .Add(phaseForCategory5);
 
-                await this.eventCommands.Save(event_, cancellationToken);
-                event_ = await this.eventCommands.Find(1);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                enduranceEvent = await this.eventCommands.Find(1);
 
-                event_.Competitions.First(x => x.Id == 2)
+                enduranceEvent.Competitions.First(x => x.Id == 2)
                     .Phases.First(x => x.Id == 3)
                     .Add(phaseForCategory6);
 
-                await this.eventCommands.Save(event_, cancellationToken);
-                event_ = await this.eventCommands.Find(1);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                enduranceEvent = await this.eventCommands.Find(1);
 
                 // Event
-                event_.Add(presidentJury);
+                enduranceEvent.Add(presidentJury);
 
-                await this.eventCommands.Save(event_, cancellationToken);
-                event_ = await this.eventCommands.Find(1);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                enduranceEvent = await this.eventCommands.Find(1);
 
-                event_.Add(activeVet);
+                enduranceEvent.Add(activeVet);
 
-                await this.eventCommands.Save(event_, cancellationToken);
-                event_ = await this.eventCommands.Find(1);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                enduranceEvent = await this.eventCommands.Find(1);
 
-                event_.Add(vetMember1);
+                enduranceEvent.Add(vetMember1);
 
-                await this.eventCommands.Save(event_, cancellationToken);
-                event_ = await this.eventCommands.Find(1);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                enduranceEvent = await this.eventCommands.Find(1);
 
-                event_.Add(vetMember2);
+                enduranceEvent.Add(vetMember2);
 
-                await this.eventCommands.Save(event_, cancellationToken);
-                event_ = await this.eventCommands.Find(1);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                enduranceEvent = await this.eventCommands.Find(1);
 
-                // event_.Set(country);
+                // enduranceEvent.Set(country);
                 //
-                // await this.eventCommands.Save(event_, cancellationToken);
-                // event_ = await this.eventCommands.Find(1);
+                // await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                // enduranceEvent = await this.eventCommands.Find(1);
 
-                event_.Remove(event_.Competitions.First());
-                event_.Add(new Competition(CompetitionType.International));
-                await this.eventCommands.Save(event_, cancellationToken);
+                enduranceEvent.Remove(enduranceEvent.Competitions.First());
+                enduranceEvent.Add(new Competition(CompetitionType.International));
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
 
-                event_ = await this.eventCommands.Find(1);
+                enduranceEvent = await this.eventCommands.Find(1);
                 ;
             }
 
             private async Task Create(CancellationToken cancellationToken)
             {
-                var event_ = new EnduranceEvent("Name", "place");
+                var enduranceEvent = new EnduranceEvent("Name", "place");
                 var competition1 = new Competition(CompetitionType.International);
                 var competition2 = new Competition(CompetitionType.National);
                 var competition3 = new Competition(CompetitionType.National);
 
-                event_.Add(competition1);
-                event_.Add(competition2);
-                event_.Add(competition3);
+                enduranceEvent.Add(competition1);
+                enduranceEvent.Add(competition2);
+                enduranceEvent.Add(competition3);
 
-                await this.eventCommands.Save(event_, cancellationToken);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
             }
 
             private async Task Modify(CancellationToken cancellationToken)
             {
-                var event_ = await this.eventCommands.Find<EnduranceEvent>(1);
-                var toRemove = event_.Competitions.First();
-                var toRemove2 = event_.Competitions.Last();
-                event_.Remove(toRemove);
-                event_.Remove(toRemove2);
+                var enduranceEvent = await this.eventCommands.Find<EnduranceEvent>(1);
+                var toRemove = enduranceEvent.Competitions.First();
+                var toRemove2 = enduranceEvent.Competitions.Last();
+                enduranceEvent.Remove(toRemove);
+                enduranceEvent.Remove(toRemove2);
 
-                // await this.eventCommands.Save(event_, cancellationToken);
+                // await this.eventCommands.Save(enduranceEvent, cancellationToken);
 
                 var competition2 = new Competition(CompetitionType.National);
-                event_.Add(competition2);
+                enduranceEvent.Add(competition2);
 
-                await this.eventCommands.Save(event_, cancellationToken);
+                await this.eventCommands.Save(enduranceEvent, cancellationToken);
             }
         }
     }

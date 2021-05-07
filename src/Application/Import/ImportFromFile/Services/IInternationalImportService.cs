@@ -1,10 +1,10 @@
 ﻿using EnduranceJudge.Core.ConventionalServices;
-using EnduranceJudge.Domain.Aggregates.Import.Events;
+using EnduranceJudge.Domain.Aggregates.Import.EnduranceEvents;
 
 namespace EnduranceJudge.Application.Import.ImportFromFile.Services
 {
     public interface IInternationalImportService : IService
     {
-        Event FromInternational(string filePath);
+        EnduranceEvent FromInternational(string filePath);
     }
 }

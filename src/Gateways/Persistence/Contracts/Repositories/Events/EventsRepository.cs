@@ -22,14 +22,14 @@ namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Events
 
         public override async Task<TModel> Find<TModel>(int id)
         {
-            var event_ = await this.DataStore
+            var enduranceEvent = await this.DataStore
                 .Events
                 .Where(x => x.Id == id)
                 .Include(x => x.Competitions)
                 .MapQueryable<TModel>()
                 .FirstOrDefaultAsync();
 
-            return event_;
+            return enduranceEvent;
         }
     }
 }

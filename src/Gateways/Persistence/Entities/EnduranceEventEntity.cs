@@ -3,13 +3,12 @@ using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using EnduranceJudge.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using ImportEvent = EnduranceJudge.Domain.Aggregates.Import.Events.Event;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
     public class EnduranceEventEntity : EntityModel, IEnduranceEventState,
         IMap<EnduranceEvent>,
-        IMap<ImportEvent>
+        IMap<Domain.Aggregates.Import.EnduranceEvents.EnduranceEvent>
     {
         public string Name { get; set; }
 
