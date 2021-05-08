@@ -13,5 +13,17 @@ namespace EnduranceJudge.Core.Extensions
         {
             return mapping.ForMember(destinationMemberSelector, opt => opt.MapFrom(sourceMemberSelector));
         }
+
+        public static IMappingExpression<TSource, TDestination> MapMember<
+            TSource,
+            TDestination,
+            TSourceMember,
+            TDestinationMember>(
+            this IMappingExpression<TSource, TDestination> mapping,
+            Expression<Func<TDestination, TDestinationMember>> destinationMemberSelector,
+            Expression<Func<TSource, TSourceMember>> sourceMemberSelector)
+        {
+            return mapping.ForMember(destinationMemberSelector, opt => opt.MapFrom(sourceMemberSelector));
+        }
     }
 }

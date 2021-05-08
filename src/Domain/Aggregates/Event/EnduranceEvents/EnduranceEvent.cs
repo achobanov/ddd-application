@@ -5,7 +5,6 @@ using EnduranceJudge.Domain.Core.Exceptions;
 using EnduranceJudge.Domain.Core.Models;
 using EnduranceJudge.Domain.Core.Validation;
 using EnduranceJudge.Domain.Enums;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -34,6 +33,34 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
                 this.Country = country.IsRequired(nameof(country));
             });
 
+        public Personnel PresidentGroundJury
+            => this.personnel.FirstOrDefault(p => p.Role == PersonnelRole.PresidentGroundJury);
+        public Personnel PresidentVetCommission
+            => this.personnel.FirstOrDefault(p => p.Role == PersonnelRole.PresidentVetCommission);
+        public Personnel ForeignJudge
+            => this.personnel.FirstOrDefault(p => p.Role == PersonnelRole.ForeignJudge);
+        public Personnel FeiTechDelegate
+            => this.personnel.FirstOrDefault(p => p.Role == PersonnelRole.FeiTechDelegate);
+        public Personnel FeiVetDelegate
+            => this.personnel.FirstOrDefault(p => p.Role == PersonnelRole.FeiVetDelegate);
+        public Personnel ActiveVet
+            => this.personnel.FirstOrDefault(p => p.Role == PersonnelRole.ActiveVet);
+        public IReadOnlyList<Personnel> MembersOfVetCommittee
+            => this.personnel
+                .Where(p => p.Role == PersonnelRole.MemberOfVetCommittee)
+                .ToList()
+                .AsReadOnly();
+        public IReadOnlyList<Personnel> MembersOfJudgeCommittee
+            => this.personnel
+                .Where(p => p.Role == PersonnelRole.MemberOfJudgeCommittee)
+                .ToList()
+                .AsReadOnly();
+        public IReadOnlyList<Personnel> Stewards
+            => this.personnel
+                .Where(p => p.Role == PersonnelRole.Steward)
+                .ToList()
+                .AsReadOnly();
+
         private List<Personnel> personnel = new();
         public IReadOnlyList<Personnel> Personnel
         {
@@ -42,19 +69,18 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
         }
         public EnduranceEvent Add(Personnel personnel)
         {
-            var areRoleDuplicatesAllowed = personnel.Role == PersonnelRole.MemberOfJudgeCommittee
-                || personnel.Role == PersonnelRole.MemberOfVetCommittee;
+            var areRoleDuplicatesAllowed = IsRoleMultiPersonnel(personnel.Role);
 
             if (areRoleDuplicatesAllowed && this.personnel.Any(p => p.Name == personnel.Name))
             {
                 var message = $"Cannot add {personnel.Role}' - name '{personnel.Name}' already exits";
-                Thrower.Throw<EnduranceEventException>(message);
+                this.Throw(message);
             }
 
             if (!areRoleDuplicatesAllowed && this.personnel.Any(p => p.Role == personnel.Role))
             {
                 var message = $"Cannot add {personnel.Role} - it already exits";
-                Thrower.Throw<EnduranceEventException>(message);
+                this.Throw(message);
             }
 
             this.personnel.ValidateAndAdd(personnel);
@@ -77,15 +103,20 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
             this.competitions.ValidateAndAdd(competition);
             return this;
         }
-        public EnduranceEvent Remove(Func<Competition, bool> filter)
-        {
-            var competition = this.competitions.FirstOrDefault(filter);
-            return this.Remove(competition);
-        }
         public EnduranceEvent Remove(Competition competition)
         {
             this.competitions.ValidateAndRemove(competition);
             return this;
+        }
+
+        public static bool IsRoleMultiPersonnel(PersonnelRole role)
+        {
+            var isMultiPersonnel = role
+                is PersonnelRole.Steward
+                or PersonnelRole.PresidentVetCommission
+                or PersonnelRole.MemberOfJudgeCommittee;
+
+            return isMultiPersonnel;
         }
     }
 }
