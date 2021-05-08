@@ -20,7 +20,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
 {
     public class EventViewModel : ViewModelBase, IMapExplicitly
     {
-        public EventViewModel() : base(null)
+        public EventViewModel()
         {
         }
 
