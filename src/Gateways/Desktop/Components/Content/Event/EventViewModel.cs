@@ -130,7 +130,10 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
             base.OnNavigatedTo(navigationContext);
-            this.LoadCountries();
+            if (!this.Countries.Any())
+            {
+                this.LoadCountries();
+            }
 
             var isEditView = navigationContext.Parameters.TryGetValue<int>("id", out var id);
             if (isEditView)
