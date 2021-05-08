@@ -11,11 +11,6 @@ namespace EnduranceJudge.Domain.Core.Models
         {
         }
 
-        protected DomainModel(int id)
-        {
-            this.Id = id;
-        }
-
         public int Id { get; private set; }
 
         void IInternalDomainModel.Validate(Action action)
@@ -27,11 +22,14 @@ namespace EnduranceJudge.Domain.Core.Models
             {
                 action();
             }
-            catch (ValidationException invalid)
+            catch (ValidationException exception)
             {
-                Thrower.Throw<TException>(invalid.Message);
+                this.Throw(exception.Message);
             }
         }
+
+        internal void Throw(string message)
+            => Thrower.Throw<TException>(message);
 
         public override bool Equals(object obj)
         {

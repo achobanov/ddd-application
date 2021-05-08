@@ -4,12 +4,12 @@ namespace EnduranceJudge.Domain.Aggregates.Manager.ResultsInPhases
 {
     public class ResultInPhase : DomainModel<ManagerResultInPhaseException>, IResultInPhaseState
     {
-        internal ResultInPhase() : base(default)
+        internal ResultInPhase()
         {
             this.IsRanked = true;
         }
 
-        internal ResultInPhase(string code) : base(default)
+        internal ResultInPhase(string code)
         {
             this.Code = code;
             this.IsRanked = false;

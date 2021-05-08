@@ -10,7 +10,7 @@ namespace EnduranceJudge.Domain.Aggregates.Ranking.Classifications
 {
     public class Classification : DomainModel<ClassificationException>
     {
-        internal Classification(Category category, Competition competition) : base(default)
+        internal Classification(Category category, Competition competition)
         {
             this.Validate(() =>
             {

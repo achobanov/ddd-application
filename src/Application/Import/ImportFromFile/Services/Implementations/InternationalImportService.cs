@@ -2,7 +2,7 @@
 using EnduranceJudge.Application.Import.ImportFromFile.Models;
 using EnduranceJudge.Core.Services;
 using EnduranceJudge.Domain.Aggregates.Import.Competitions;
-using EnduranceJudge.Domain.Aggregates.Import.Events;
+using EnduranceJudge.Domain.Aggregates.Import.EnduranceEvents;
 using EnduranceJudge.Domain.Aggregates.Import.Participants;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +31,7 @@ namespace EnduranceJudge.Application.Import.ImportFromFile.Services.Implementati
             this.horseFactory = horseFactory;
         }
 
-        public Event FromInternational(string filePath)
+        public EnduranceEvent FromInternational(string filePath)
         {
             var importData = this.xmlSerialization.Deserialize<HorseSport>(filePath);
 
@@ -73,8 +73,8 @@ namespace EnduranceJudge.Application.Import.ImportFromFile.Services.Implementati
                 competitions.Add(competition);
             }
 
-            var _event = new Event(competitions);
-            return _event;
+            var enduranceEvent = new EnduranceEvent(competitions);
+            return enduranceEvent;
         }
     }
 }

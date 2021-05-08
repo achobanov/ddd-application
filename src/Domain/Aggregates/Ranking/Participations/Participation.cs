@@ -12,7 +12,7 @@ namespace EnduranceJudge.Domain.Aggregates.Ranking.Participations
     {
         private const string NotRankedMessage = "cannot be classified as they are not qualified for ranking.";
 
-        internal Participation() : base(default)
+        internal Participation()
         {
         }
 

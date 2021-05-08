@@ -8,11 +8,11 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Competitions
 {
     public class Competition : DomainModel<ImportCompetitionException>
     {
-        private Competition() : base(default)
+        private Competition()
         {
         }
 
-        public Competition(List<Participant> participants) : base(default)
+        public Competition(List<Participant> participants)
             => this.Validate(() =>
             {
                 this.participants = participants.IsRequired(nameof(participants));
@@ -24,7 +24,6 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Competitions
             get => this.participants.AsReadOnly();
             private set => this.participants = value.ToList();
         }
-
         public void Set(List<Participant> participants)
         {
             this.participants = participants;

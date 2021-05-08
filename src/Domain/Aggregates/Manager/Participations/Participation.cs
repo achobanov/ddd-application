@@ -16,7 +16,7 @@ namespace EnduranceJudge.Domain.Aggregates.Manager.Participations
         private readonly List<ParticipationInCompetition> participationsInCompetitions = new();
         private readonly int? maxAverageSpeedInKpH;
 
-        internal Participation(IReadOnlyList<CompetitionDto> competitions, int? maxAverageSpeedInKpH) : base(default)
+        internal Participation(IReadOnlyList<CompetitionDto> competitions, int? maxAverageSpeedInKpH)
         {
             this.maxAverageSpeedInKpH = maxAverageSpeedInKpH;
             this.competitions = competitions;

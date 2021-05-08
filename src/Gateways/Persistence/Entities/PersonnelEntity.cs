@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.EquivalencyExpression;
 using EnduranceJudge.Core.Mappings;
-using EnduranceJudge.Domain.Aggregates.Event.ContestPersonnel;
+using EnduranceJudge.Domain.Aggregates.Event.Personnels;
 using EnduranceJudge.Domain.Enums;
 using EnduranceJudge.Gateways.Persistence.Core;
 using Newtonsoft.Json;
@@ -14,7 +14,7 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
         public PersonnelRole Role { get; set; }
 
         [JsonIgnore]
-        public EventEntity Event { get; set; }
-        public int EventId { get; set; }
+        public EnduranceEventEntity EnduranceEvent { get; set; }
+        public int EnduranceEventId { get; set; }
     }
 }

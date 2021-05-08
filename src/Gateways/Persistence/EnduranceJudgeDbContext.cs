@@ -25,7 +25,7 @@ namespace EnduranceJudge.Gateways.Persistence
         }
 
         public DbSet<CountryEntity> Countries { get; set; }
-        public DbSet<EventEntity> Events { get; set; }
+        public DbSet<EnduranceEventEntity> Events { get; set; }
         public DbSet<CompetitionEntity> Competitions { get; set; }
         public DbSet<PhaseEntity> Phases { get; set; }
         public DbSet<PhaseForCategoryEntity> PhasesForCategories { get; set; }
@@ -39,15 +39,15 @@ namespace EnduranceJudge.Gateways.Persistence
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            builder.Entity<EventEntity>()
+            builder.Entity<EnduranceEventEntity>()
                 .HasMany(x => x.Competitions)
-                .WithOne(y => y.Event)
-                .HasForeignKey(y => y.EventId);
+                .WithOne(y => y.EnduranceEvent)
+                .HasForeignKey(y => y.EnduranceEventId);
 
-            builder.Entity<EventEntity>()
+            builder.Entity<EnduranceEventEntity>()
                 .HasMany(x => x.Personnel)
-                .WithOne(y => y.Event)
-                .HasForeignKey(y => y.EventId);
+                .WithOne(y => y.EnduranceEvent)
+                .HasForeignKey(y => y.EnduranceEventId);
 
             builder.Entity<CompetitionEntity>()
                 .HasMany(c => c.Phases)

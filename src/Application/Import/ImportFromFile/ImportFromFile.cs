@@ -50,8 +50,8 @@ namespace EnduranceJudge.Application.Import.ImportFromFile
 
                 if (fileExtension == FileExtensions.Xml)
                 {
-                    var _event = this.internationalImport.FromInternational(filePath);
-                    await this.eventCommands.Save(_event, cancellationToken);
+                    var enduranceEvent = this.internationalImport.FromInternational(filePath);
+                    await this.eventCommands.Save(enduranceEvent, cancellationToken);
                 }
                 else
                 {

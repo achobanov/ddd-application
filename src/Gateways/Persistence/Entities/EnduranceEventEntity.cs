@@ -1,16 +1,14 @@
 using EnduranceJudge.Core.Mappings;
-using EnduranceJudge.Domain.Aggregates.Common;
-using EnduranceJudge.Domain.Aggregates.Event.Events;
+using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using EnduranceJudge.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using ImportEvent = EnduranceJudge.Domain.Aggregates.Import.Events.Event;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
-    public class EventEntity : EntityModel, IEventState,
-        IMap<Event>,
-        IMap<ImportEvent>
+    public class EnduranceEventEntity : EntityModel, IEnduranceEventState,
+        IMap<EnduranceEvent>,
+        IMap<Domain.Aggregates.Import.EnduranceEvents.EnduranceEvent>
     {
         public string Name { get; set; }
 

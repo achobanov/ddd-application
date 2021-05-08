@@ -9,12 +9,12 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Athletes
     {
         private const int AdultAgeInYears = 18;
 
-        private Athlete() : base(default)
+        private Athlete()
         {
         }
 
         public Athlete(string feiId, string firstName, string lastName, string competingFor, DateTime birthDate)
-            : base(default)
+
         {
             this.Validate(() =>
             {

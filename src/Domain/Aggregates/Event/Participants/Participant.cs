@@ -5,11 +5,11 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Participants
 {
     public class Participant : DomainModel<ParticipantException>, IParticipantState
     {
-        private Participant() : base(default)
+        private Participant()
         {
         }
 
-        public Participant(int id, string rfId, int contestNumber) : base(id)
+        public Participant(string rfId, int contestNumber)
             => this.Validate(() =>
             {
                 this.RfId = rfId.IsRequired(nameof(rfId));
@@ -23,14 +23,20 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Participants
         public Horse Horse { get; private set; }
         public Participant Set(Horse horse)
         {
-            this.Horse = horse; // TODO: Validate similarly to .ValidateAndAdd?
+            this.Validate(
+                () => horse.IsRequired(nameof(horse)));
+
+            this.Horse = horse;
             return this;
         }
 
         public Athlete Athlete { get; private set; }
         public Participant Set(Athlete athlete)
         {
-            this.Athlete = athlete; //TODO: Validate
+            this.Validate(
+                () => athlete.IsRequired(nameof(athlete)));
+
+            this.Athlete = athlete;
             return this;
         }
     }
