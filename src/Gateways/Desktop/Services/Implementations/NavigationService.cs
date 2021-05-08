@@ -35,7 +35,7 @@ namespace EnduranceJudge.Gateways.Desktop.Services.Implementations
         {
             var parameters = new NavigationParameters
             {
-                { nameof(id), id },
+                { DesktopConstants.NavigationIdKey, id },
             };
 
             this.NavigateTo(viewType, parameters);

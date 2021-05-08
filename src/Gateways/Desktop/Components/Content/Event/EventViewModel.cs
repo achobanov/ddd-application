@@ -7,6 +7,7 @@ using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Core.Mappings.Converters;
 using EnduranceJudge.Gateways.Desktop.Core;
 using EnduranceJudge.Gateways.Desktop.Core.Commands;
+using EnduranceJudge.Gateways.Desktop.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using Prism.Commands;
 using Prism.Regions;
@@ -135,10 +136,10 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
                 this.LoadCountries();
             }
 
-            var isEditView = navigationContext.Parameters.TryGetValue<int>("id", out var id);
-            if (isEditView)
+            var enduranceEventId = navigationContext.GetId();
+            if (enduranceEventId.HasValue)
             {
-                this.LoadEvent(id);
+                this.LoadEvent(enduranceEventId.Value);
             }
         }
 

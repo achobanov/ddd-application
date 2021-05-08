@@ -13,6 +13,8 @@ namespace EnduranceJudge.Gateways.Desktop
                 return assemblies;
             }
         }
+
+        public const string NavigationIdKey = "Id";
     }
 
     public static class Regions
