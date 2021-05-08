@@ -101,14 +101,11 @@ namespace EnduranceJudge.Domain.Aggregates.Manager.ParticipationsInPhases
         }
 
         private void Complete(ResultInPhase result)
-        {
-            this.Validate(() =>
+            => this.Validate(() =>
             {
                 this.ArrivalTime.IsNotDefault(ArrivalTimeIsNullMessage);
                 this.InspectionTime.IsNotDefault(InspectionTimeIsNullMessage);
+                this.ResultInPhase = result.IsRequired(nameof(result));
             });
-
-            this.ResultInPhase = result; //TODO Validate?
-        }
     }
 }
