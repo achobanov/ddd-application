@@ -1,5 +1,3 @@
-using AutoMapper;
-using AutoMapper.EquivalencyExpression;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Event.Phases;
 using EnduranceJudge.Gateways.Persistence.Core;
@@ -8,7 +6,7 @@ using System.Collections.Generic;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
-    public class PhaseEntity : EntityModel, IPhaseState, IMapExplicitly
+    public class PhaseEntity : EntityModel, IPhaseState, IMap<Phase>
     {
         public int LengthInKilometers { get; set; }
 
@@ -21,16 +19,5 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
 
         [JsonIgnore]
         public CompetitionEntity Competition { get; set; }
-
-        public void CreateExplicitMap(Profile mapper)
-        {
-            mapper.CreateMap<PhaseEntity, Phase>()
-                .EqualityComparison((entity, phase) => entity.Id == phase.Id);
-
-            mapper.CreateMap<Phase, PhaseEntity>()
-                .EqualityComparison((phase, entity) => entity.Id == phase.Id)
-                .ForMember(pe => pe.Competition, opt => opt.Condition(p => p.Competition != null))
-                .ForMember(pe => pe.CompetitionId, opt => opt.Condition(p => p.Competition != null));
-        }
     }
 }

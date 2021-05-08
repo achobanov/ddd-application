@@ -11,7 +11,7 @@ namespace EnduranceJudge.Domain.Aggregates.Ranking.Rankings
     {
         private readonly List<Classification> classifications = new();
 
-        public Ranking(IReadOnlyCollection<Competition> competitions) : base(default)
+        public Ranking(IReadOnlyCollection<Competition> competitions)
         {
             foreach (var competition in competitions)
             {

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EnduranceJudge.Core;
-using EnduranceJudge.Domain.Aggregates.Event.ContestPersonnel;
+using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
+using EnduranceJudge.Domain.Aggregates.Event.Personnels;
 using EnduranceJudge.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace EnduranceJudge.Application.Events.Converters
     public class PersonnelConverter : IValueConverter<IEnumerable<Personnel>, string>
     {
         private readonly PersonnelRole role;
-        private readonly bool isMultiPersonnelRole = false;
+        private readonly bool isMultiPersonnelRole;
 
         public static PersonnelConverter New(PersonnelRole role)
             => new PersonnelConverter(role);
@@ -19,13 +20,7 @@ namespace EnduranceJudge.Application.Events.Converters
         public PersonnelConverter(PersonnelRole role)
         {
             this.role = role;
-            // TODO: Extract this logic in Event domain entity
-            if (role is PersonnelRole.MemberOfJudgeCommittee
-                || role is PersonnelRole.MemberOfVetCommittee
-                || role is PersonnelRole.Steward)
-            {
-                this.isMultiPersonnelRole = true;
-            }
+            this.isMultiPersonnelRole = EnduranceEvent.IsRoleMultiPersonnel(role);
         }
 
         public string Convert(IEnumerable<Personnel> sourceMember, ResolutionContext context)

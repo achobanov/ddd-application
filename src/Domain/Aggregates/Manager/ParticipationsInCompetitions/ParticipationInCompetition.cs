@@ -18,7 +18,7 @@ namespace EnduranceJudge.Domain.Aggregates.Manager.ParticipationsInCompetitions
         private readonly CompetitionDto competition;
         private readonly int? maxAverageSpeedInKpH;
 
-        internal ParticipationInCompetition(CompetitionDto competition, int? maxAverageSpeedInKpH) : base(default)
+        internal ParticipationInCompetition(CompetitionDto competition, int? maxAverageSpeedInKpH)
         {
             this.Validate(() =>
             {

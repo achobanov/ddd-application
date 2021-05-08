@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EnduranceJudge.Application.Events.Commands.SaveEvent;
+using EnduranceJudge.Application.Events.Commands.SaveEnduranceEvent;
 using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
 using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Core.Extensions;
@@ -7,7 +7,7 @@ using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Core.Mappings.Converters;
 using EnduranceJudge.Gateways.Desktop.Core;
 using EnduranceJudge.Gateways.Desktop.Core.Commands;
-using MediatR;
+using EnduranceJudge.Gateways.Desktop.Core.Services;
 using Prism.Commands;
 using Prism.Regions;
 using System.Collections.ObjectModel;
@@ -23,7 +23,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
         {
         }
 
-        public EventViewModel(IMediator mediator) : base(mediator)
+        public EventViewModel(IApplicationService application) : base(application)
         {
             this.Save = new AsyncCommand(this.SaveAction);
         }
@@ -46,7 +46,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
         }
 
         private string selectedCountryIsoCode;
-        public Visibility CountryVisibility = Visibility.Hidden;
+        public Visibility CountryVisibility { get; private set; } = Visibility.Hidden;
         public string SelectedCountryIsoCode
         {
             get => this.selectedCountryIsoCode;
@@ -121,9 +121,9 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
 
         private async Task SaveAction()
         {
-            var command = this.Map<SaveEvent>();
+            var command = this.Map<SaveEnduranceEvent>();
 
-            await this.Mediator.Send(command);
+            await this.Application.Execute(command);
             this.HasSaved = true;
         }
 
@@ -141,8 +141,8 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
 
         private async Task LoadCountries()
         {
-            var countries = await this.Mediator
-                .Send(new GetCountriesListing())
+            var countries = await this.Application
+                .Execute(new GetCountriesListing())
                 .ToList();
 
             this.CountryVisibility = Visibility.Visible;
@@ -152,15 +152,15 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
 
         private async Task LoadEvent(int id)
         {
-            var getEvent = GetEvent.New(id);
-            var _event = await this.Mediator.Send(getEvent);
+            var getEvent = GetEnduranceEvent.New(id);
+            var enduranceEvent = await this.Application.Execute(getEvent);
 
-            this.MapFrom(_event);
+            this.MapFrom(enduranceEvent);
         }
 
         public void CreateExplicitMap(Profile mapper)
         {
-            mapper.CreateMap<EventViewModel, SaveEvent>()
+            mapper.CreateMap<EventViewModel, SaveEnduranceEvent>()
                 .MapMember(d => d.CountryIsoCode, s => s.SelectedCountryIsoCode)
                 .ForMember(
                     dest => dest.MembersOfJudgeCommittee,
@@ -172,7 +172,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event
                     dest => dest.Stewards,
                     opt => opt.ConvertUsing(StringSplitter.New));
 
-            mapper.CreateMap<EventForUpdateModel, EventViewModel>()
+            mapper.CreateMap<EnduranceEventForUpdateModel, EventViewModel>()
                 .MapMember(d => d.SelectedCountryIsoCode, s => s.CountryIsoCode);
         }
     }

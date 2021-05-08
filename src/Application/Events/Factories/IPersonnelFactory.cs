@@ -1,5 +1,5 @@
 ﻿using EnduranceJudge.Core.ConventionalServices;
-using EnduranceJudge.Domain.Aggregates.Event.ContestPersonnel;
+using EnduranceJudge.Domain.Aggregates.Event.Personnels;
 
 namespace EnduranceJudge.Application.Events.Factories
 {

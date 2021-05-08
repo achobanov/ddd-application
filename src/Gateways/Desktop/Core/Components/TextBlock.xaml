@@ -15,4 +15,10 @@
         <Setter Property="FontSize" Value="14px"></Setter>
     </Style>
 
+    <Style x:Key="Text-Error" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14px"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+
 </ResourceDictionary>

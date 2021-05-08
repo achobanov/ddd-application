@@ -16,8 +16,8 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
         public CompetitionType Type { get; set; }
 
         [JsonIgnore]
-        public EventEntity Event { get; set; }
-        public int EventId { get; set; }
+        public EnduranceEventEntity EnduranceEvent { get; set; }
+        public int EnduranceEventId { get; set; }
 
         [JsonIgnore]
         public IList<PhaseEntity> Phases { get; set; }
@@ -28,13 +28,9 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
         public void CreateExplicitMap(Profile mapper)
         {
             mapper.CreateMap<CompetitionEntity, Competition>()
-                .EqualityComparison((entity, domain) => entity.Id == domain.Id)
                 .ForMember(c => c.Participants, opt => opt.MapFrom(ce => ce.ParticipantsInCompetitions));
 
             mapper.CreateMap<Competition, CompetitionEntity>()
-                .EqualityComparison((domain, entity) => entity.Id == domain.Id)
-                .ForMember(x => x.EventId, opt => opt.Condition(c => c.Event != null))
-                .ForMember(x => x.Event, opt => opt.Condition(c => c.Event != null))
                 .ForMember(ce => ce.ParticipantsInCompetitions, opt => opt.MapFrom(c => c.Participants))
                 .AfterMap((c, ce) =>
                 {
@@ -47,11 +43,9 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
                 });
 
             mapper.CreateMap<CompetitionEntity, ImportCompetition>()
-                .EqualityComparison((entity, domain) => entity.Id == domain.Id)
                 .ForMember(c => c.Participants, opt => opt.MapFrom(ce => ce.ParticipantsInCompetitions));
 
             mapper.CreateMap<ImportCompetition, CompetitionEntity>()
-                .EqualityComparison((domain, entity) => entity.Id == domain.Id)
                 .ForMember(ce => ce.ParticipantsInCompetitions, opt => opt.MapFrom(c => c.Participants))
                 .AfterMap((c, ce) =>
                 {

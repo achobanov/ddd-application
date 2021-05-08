@@ -1,4 +1,4 @@
-﻿using EnduranceJudge.Domain.Aggregates.Event.ContestPersonnel;
+﻿using EnduranceJudge.Domain.Aggregates.Event.Personnels;
 using EnduranceJudge.Domain.Enums;
 
 namespace EnduranceJudge.Application.Events.Factories.Implementations

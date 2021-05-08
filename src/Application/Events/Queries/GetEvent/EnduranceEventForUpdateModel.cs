@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using EnduranceJudge.Application.Events.Converters;
 using EnduranceJudge.Core.Mappings;
-using EnduranceJudge.Domain.Aggregates.Event.Events;
+using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using EnduranceJudge.Domain.Enums;
 
 namespace EnduranceJudge.Application.Events.Queries.GetEvent
 {
-    public class EventForUpdateModel : IMapExplicitly
+    public class EnduranceEventForUpdateModel : IMapExplicitly
     {
         public string Name { get; set; }
         public string PopulatedPlace { get; set; }
@@ -23,7 +23,7 @@ namespace EnduranceJudge.Application.Events.Queries.GetEvent
 
         public void CreateExplicitMap(Profile mapper)
         {
-            mapper.CreateMap<Event, EventForUpdateModel>()
+            mapper.CreateMap<EnduranceEvent, EnduranceEventForUpdateModel>()
                 .ForMember(
                     d => d.PresidentGroundJury,
                     opt => opt.ConvertUsing(

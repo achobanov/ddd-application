@@ -1,31 +1,20 @@
 ﻿using AutoMapper;
 using AutoMapper.EquivalencyExpression;
 using EnduranceJudge.Core.Mappings;
-using EnduranceJudge.Domain.Aggregates.Event.ContestPersonnel;
+using EnduranceJudge.Domain.Aggregates.Event.Personnels;
 using EnduranceJudge.Domain.Enums;
 using EnduranceJudge.Gateways.Persistence.Core;
 using Newtonsoft.Json;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities
 {
-    public class PersonnelEntity : EntityModel, IPersonnelState, IMapExplicitly
+    public class PersonnelEntity : EntityModel, IPersonnelState, IMap<Personnel>
     {
         public string Name { get; set; }
         public PersonnelRole Role { get; set; }
 
         [JsonIgnore]
-        public EventEntity Event { get; set; }
-        public int EventId { get; set; }
-
-        public void CreateExplicitMap(Profile mapper)
-        {
-            mapper.CreateMap<PersonnelEntity, Personnel>()
-                .EqualityComparison((entity, personnel) => entity.Id == personnel.Id);
-
-            mapper.CreateMap<Personnel, PersonnelEntity>()
-                .EqualityComparison((personnel, entity) => entity.Id == personnel.Id)
-                .ForMember(x => x.EventId, opt => opt.Condition(p => p.Event != null))
-                .ForMember(x => x.Event, opt => opt.Condition(p => p.Event != null));
-        }
+        public EnduranceEventEntity EnduranceEvent { get; set; }
+        public int EnduranceEventId { get; set; }
     }
 }

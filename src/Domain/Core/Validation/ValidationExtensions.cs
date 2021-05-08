@@ -10,7 +10,7 @@ namespace EnduranceJudge.Domain.Core.Validation
         private const string NotDefaultTemplate = "property '{0}' is required.";
         private const string CannotRemoveNullItemTemplate = "cannot remove '{0}' - it is null.";
         private const string CannotRemoveItemIsNotFoundTemplate = "cannot remove '{0}' - it is not found.";
-        private const string CannotAddNullItemTemplate = "cannot add '{0}' because entity with Id '{1}' already exists.";
+        private const string CannotAddNullItemTemplate = "cannot add '{0}' because it is null.";
         private const string CannotAddItemExistsTemplate = "cannot add '{0}' because entity with Id '{1}' already exists.";
 
         public static void IsNotRelated<TDomainModel>(this TDomainModel model)

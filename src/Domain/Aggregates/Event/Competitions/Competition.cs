@@ -1,5 +1,4 @@
 using EnduranceJudge.Domain.Core.Validation;
-using EnduranceJudge.Domain.Core.Extensions;
 using EnduranceJudge.Domain.Aggregates.Event.Participants;
 using EnduranceJudge.Domain.Aggregates.Event.Phases;
 using EnduranceJudge.Domain.Core.Models;
@@ -9,14 +8,13 @@ using System.Linq;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
 {
-    public class Competition : DomainModel<CompetitionException>, ICompetitionState,
-        IDependsOn<Events.Event>
+    public class Competition : DomainModel<CompetitionException>, ICompetitionState
     {
-        public Competition() : base(default)
+        private Competition()
         {
         }
 
-        public Competition(int id, CompetitionType type) : base(id)
+        public Competition(CompetitionType type)
             => this.Validate(() =>
             {
                 this.Type = type.IsRequired(nameof(type));
@@ -32,7 +30,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
         }
         public Competition Add(Phase phase)
         {
-            this.AddRelation(competition => competition.phases, phase);
+            this.phases.ValidateAndAdd(phase);
             return this;
         }
 
@@ -42,28 +40,15 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
             get => this.participants.AsReadOnly();
             private set => this.participants = value.ToList();
         }
-        public Competition Add(Participant child)
+        public Competition Add(Participant participant)
         {
-            this.AddOneRelation(x => x.participants, child);
+            this.participants.ValidateAndAdd(participant);
             return this;
         }
-        public Competition Remove(Participant child)
+        public Competition Remove(Participant participant)
         {
-            this.RemoveOneRelation(x => x.participants, child);
+            this.participants.ValidateAndRemove(participant);
             return this;
-        }
-
-        public Events.Event Event { get; private set; }
-        void IDependsOn<Events.Event>.Set(Events.Event domainModel)
-            => this.Validate(() =>
-            {
-                this.Event.IsNotRelated();
-                this.Event = domainModel;
-            });
-
-        void IDependsOn<Events.Event>.Clear(Events.Event domainModel)
-        {
-            this.Event = null;
         }
     }
 }

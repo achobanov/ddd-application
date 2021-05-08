@@ -1,18 +1,15 @@
-using EnduranceJudge.Domain.Core.Validation;
-using EnduranceJudge.Domain.Aggregates.Manager.ParticipationsInPhases;
 using EnduranceJudge.Domain.Core.Models;
 
 namespace EnduranceJudge.Domain.Aggregates.Manager.ResultsInPhases
 {
-    public class ResultInPhase : DomainModel<ManagerResultInPhaseException>, IResultInPhaseState,
-        IDependsOn<ParticipationInPhase>
+    public class ResultInPhase : DomainModel<ManagerResultInPhaseException>, IResultInPhaseState
     {
-        internal ResultInPhase() : base(default)
+        internal ResultInPhase()
         {
             this.IsRanked = true;
         }
 
-        internal ResultInPhase(string code) : base(default)
+        internal ResultInPhase(string code)
         {
             this.Code = code;
             this.IsRanked = false;
@@ -20,19 +17,5 @@ namespace EnduranceJudge.Domain.Aggregates.Manager.ResultsInPhases
 
         public bool IsRanked { get; private set; }
         public string Code { get; private set; }
-
-        public ParticipationInPhase ParticipationInPhase { get; private set; }
-
-        void IDependsOn<ParticipationInPhase>.Set(ParticipationInPhase domainModel)
-            => this.Validate(() =>
-            {
-                this.ParticipationInPhase.IsNotRelated();
-                this.ParticipationInPhase = domainModel;
-            });
-
-        public void Clear(ParticipationInPhase domainModel)
-        {
-            this.ParticipationInPhase = null;
-        }
     }
 }

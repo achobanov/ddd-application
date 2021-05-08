@@ -4,30 +4,18 @@ using EnduranceJudge.Domain.Enums;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.Participants
 {
-    public class Athlete : DomainModel<EventAthleteException>,
-        IDependsOn<Participant>
+    public class Athlete : DomainModel<EventAthleteException>
     {
-        public Athlete() : base(default)
+        private Athlete()
         {
         }
 
-        public Athlete(Category category) : base(default)
+        public Athlete(Category category)
             => this.Validate(() =>
             {
                 this.Category = category.IsRequired(nameof(category));
             });
 
         public Category Category { get; private set; }
-
-        public Participant Participant { get; private set; }
-        void IDependsOn<Participant>.Set(Participant domainModel)
-        {
-            this.Participant.IsNotRelated();
-            this.Participant = domainModel;
-        }
-        void IDependsOn<Participant>.Clear(Participant domainModel)
-        {
-            this.Participant = null;
-        }
     }
 }

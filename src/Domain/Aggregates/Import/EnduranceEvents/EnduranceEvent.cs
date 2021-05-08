@@ -3,15 +3,15 @@ using EnduranceJudge.Domain.Core.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EnduranceJudge.Domain.Aggregates.Import.Events
+namespace EnduranceJudge.Domain.Aggregates.Import.EnduranceEvents
 {
-    public class Event : DomainModel<ImportEventException>, IAggregateRoot
+    public class EnduranceEvent : DomainModel<EnduranceEventException>, IAggregateRoot
     {
-        private Event() : base(default)
+        private EnduranceEvent()
         {
         }
 
-        public Event(List<Competition> competitions) : base(default)
+        public EnduranceEvent(List<Competition> competitions)
         {
             this.competitions = competitions;
         }
@@ -21,11 +21,6 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Events
         {
             get => this.competitions.AsReadOnly();
             private set => this.competitions = value.ToList();
-        }
-
-        public void Set(List<Competition> competitions)
-        {
-            this.competitions = competitions;
         }
     }
 }

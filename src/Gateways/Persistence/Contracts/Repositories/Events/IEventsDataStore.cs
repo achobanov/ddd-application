@@ -6,7 +6,7 @@ namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Events
 {
     internal interface IEventsDataStore : IDataStore
     {
-        DbSet<EventEntity> Events { get; }
+        DbSet<EnduranceEventEntity> Events { get; }
 
         DbSet<CompetitionEntity> Competitions { get; }
     }

@@ -5,11 +5,11 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Horses
 {
     public class Horse : DomainModel<HorseException>, IHorseState, IAggregateRoot
     {
-        private Horse() : base(default)
+        private Horse()
         {
         }
 
-        public Horse(string feiId, string name, string breed) : base(default)
+        public Horse(string feiId, string name, string breed)
             => this.Validate(() =>
             {
                 this.FeiId = feiId.IsRequired(nameof(feiId));
@@ -25,7 +25,7 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Horses
             string trainerFeiId,
             string trainerFirstName,
             string trainerLastName)
-            : base(default)
+
             => this.Validate(() =>
             {
                 this.FeiId = feiId.IsRequired(nameof(feiId));
