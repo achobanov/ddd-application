@@ -16,7 +16,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace EnduranceJudge.Gateways.Desktop.Components.Content.EnduranceEvent
+namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEvents
 {
     public class EventViewModel : ViewModelBase, IMapExplicitly
     {

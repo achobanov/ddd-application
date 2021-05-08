@@ -1,4 +1,4 @@
-﻿using EnduranceJudge.Gateways.Desktop.Components.Content.EnduranceEvent;
+﻿using EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEvents;
 using EnduranceJudge.Gateways.Desktop.Components.Content.Import;
 using EnduranceJudge.Gateways.Desktop.Components.Content.PrintExample;
 using EnduranceJudge.Gateways.Desktop.Core;

@@ -1,5 +1,6 @@
 ﻿using EnduranceJudge.Application.Import.ImportFromFile;
 using EnduranceJudge.Application.Import.WorkFile;
+using EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEvents;
 using EnduranceJudge.Gateways.Desktop.Core;
 using EnduranceJudge.Gateways.Desktop.Core.Commands;
 using EnduranceJudge.Gateways.Desktop.Core.Events;
@@ -101,7 +102,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
         {
             this.eventAggregator
                 .GetEvent<NavigationEvent>()
-                .Publish(new EnduranceEvent.EnduranceEvent());
+                .Publish(new EnduranceEvent());
         }
     }
 }
