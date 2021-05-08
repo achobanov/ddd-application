@@ -1,9 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
-        <RootNamespace>EnduranceContestManager.Gateways.Desktop.Interfaces</RootNamespace>
-        <AssemblyName>EnduranceContestManager.Gateways.Desktop.Interfaces</AssemblyName>
-    </PropertyGroup>
-
-</Project>
