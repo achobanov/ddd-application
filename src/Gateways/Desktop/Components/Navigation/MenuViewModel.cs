@@ -1,4 +1,4 @@
-﻿using EnduranceJudge.Gateways.Desktop.Components.Content.Event;
+﻿using EnduranceJudge.Gateways.Desktop.Components.Content.EnduranceEvent;
 using EnduranceJudge.Gateways.Desktop.Components.Content.Import;
 using EnduranceJudge.Gateways.Desktop.Components.Content.PrintExample;
 using EnduranceJudge.Gateways.Desktop.Core;
@@ -23,8 +23,8 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Navigation
             this.eventAggregator = eventAggregator;
             this.NavigateToImport = new DelegateCommand(navigation.NavigateTo<Import>);
             this.NavigateToPrintExample = new DelegateCommand(navigation.NavigateTo<PrintExample>);
-            this.NavigateToCreateEvent = new DelegateCommand(navigation.NavigateTo<Event>);
-            this.NavigateToUpdateEvent = new DelegateCommand(() => navigation.NavigateTo<Event>(1));
+            this.NavigateToCreateEvent = new DelegateCommand(navigation.NavigateTo<EnduranceEvent>);
+            this.NavigateToUpdateEvent = new DelegateCommand(() => navigation.NavigateTo<EnduranceEvent>(1));
             this.NavigateToPrintExample = new DelegateCommand(navigation.NavigateTo<PrintExample>);
             this.CloseNotification = new DelegateCommand(this.CloseNotificationAction);
 

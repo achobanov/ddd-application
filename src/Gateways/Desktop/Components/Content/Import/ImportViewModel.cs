@@ -101,7 +101,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
         {
             this.eventAggregator
                 .GetEvent<NavigationEvent>()
-                .Publish(new Event.Event());
+                .Publish(new EnduranceEvent.EnduranceEvent());
         }
     }
 }
