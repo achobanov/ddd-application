@@ -33,6 +33,30 @@
                     public const string SelectWorkDirectoryButtonText = "Select Work Directory";
                     public const string SelectImportFileButtonText = "Select Import File";
                 }
+
+                public static class EventPage
+                {
+                    public static class CommonStrings
+                    {
+                        public const string SaveButtonText = "Save";
+                    }
+
+                    public static class EnduranceEventStrings
+                    {
+                        public const string NameLabel = "Name";
+                        public const string PopulatedPlaceLabel = "Populated Place";
+                        public const string CountryLabel = "Country";
+                        public const string PresidentGroundJuryLabel = "President Ground Jury";
+                        public const string PresidentVetCommissionLabel = "President Vet Commission";
+                        public const string ForeignJudgeLabel = "Foreign Judge";
+                        public const string FeiVetDelegateLabel = "Fei Vet Delegate";
+                        public const string FeiTechDelegateLabel = "Fei Tech Delegate";
+                        public const string ActiveVetLabel = "Active Vet";
+                        public const string MembersOfJudgeCommitteeLabel = "Members of Judge Committee";
+                        public const string MembersOfVetCommitteeLabel = "Members of Vet Committee";
+                        public const string StewardsLabel = "Stewards";
+                    }
+                }
             }
         }
     }

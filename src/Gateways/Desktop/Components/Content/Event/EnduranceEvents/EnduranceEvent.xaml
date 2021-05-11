@@ -2,15 +2,15 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:local="clr-namespace:EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEvents"
              prism:ViewModelLocator.AutoWireViewModel="True">
 
     <StackPanel Style="{StaticResource Form-Primary}">
         <DockPanel Style="{StaticResource Form-Item-Primary}">
 
             <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=Name}">
-                Name
-            </Label>
+                   Target="{Binding ElementName=Name}"
+                   Content="{x:Static local:EnduranceEventContent.NameLabel}" />
 
             <TextBox Style="{StaticResource Input-Primary}"
                      Text="{Binding Name}"
@@ -19,9 +19,8 @@
         <DockPanel Style="{StaticResource Form-Item-Primary}">
 
             <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=PopulatedPlace}">
-                Populated place
-            </Label>
+                   Target="{Binding ElementName=PopulatedPlace}"
+                   Content="{x:Static local:EnduranceEventContent.PopulatedPlaceLabel}"/>
 
             <TextBox Style="{StaticResource Input-Primary}"
                      Text="{Binding PopulatedPlace}"
@@ -30,9 +29,8 @@
         <DockPanel Style="{StaticResource Form-Item-Primary}">
 
             <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=Countries}">
-                Country
-            </Label>
+                   Target="{Binding ElementName=Countries}"
+                   Content="{x:Static local:EnduranceEventContent.CountryLabel}"/>
 
             <ComboBox ItemsSource="{Binding Countries}"
                       SelectedValue="{Binding SelectedCountryIsoCode}"
@@ -43,9 +41,8 @@
         <DockPanel Style="{StaticResource Form-Item-Primary}">
 
             <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=PresidentGroundJury}">
-                President Ground Jury
-            </Label>
+                   Target="{Binding ElementName=PresidentGroundJury}"
+                   Content="{x:Static local:EnduranceEventContent.PresidentGroundJuryLabel}"/>
 
             <TextBox Style="{StaticResource Input-Primary}"
                      Text="{Binding PresidentGroundJury}"
@@ -54,9 +51,8 @@
         <DockPanel Style="{StaticResource Form-Item-Primary}">
 
             <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=PresidentVetCommission}">
-                President Vet Commission
-            </Label>
+                   Target="{Binding ElementName=PresidentVetCommission}"
+                   Content="{x:Static local:EnduranceEventContent.PresidentVetCommissionLabel}" />
 
             <TextBox Style="{StaticResource Input-Primary}"
                      Text="{Binding PresidentVetCommission}"
@@ -65,9 +61,8 @@
         <DockPanel Style="{StaticResource Form-Item-Primary}">
 
             <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=ForeignJudge}">
-                Foreign Judge
-            </Label>
+                   Target="{Binding ElementName=ForeignJudge}"
+                   Content="{x:Static local:EnduranceEventContent.ForeignJudgeLabel}" />
 
             <TextBox Style="{StaticResource Input-Primary}"
                      Text="{Binding ForeignJudge}"
@@ -76,9 +71,8 @@
         <DockPanel Style="{StaticResource Form-Item-Primary}">
 
             <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=FeiTechDelegate}">
-                FEI Tech Delegate
-            </Label>
+                   Target="{Binding ElementName=FeiTechDelegate}"
+                   Content="{x:Static local:EnduranceEventContent.FeiTechDelegateLabel}" />
 
             <TextBox Style="{StaticResource Input-Primary}"
                      Text="{Binding FeiTechDelegate}"
@@ -87,9 +81,8 @@
         <DockPanel Style="{StaticResource Form-Item-Primary}">
 
             <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=FeiVetDelegate}">
-                FEI Vet Delegate
-            </Label>
+                   Target="{Binding ElementName=FeiVetDelegate}"
+                   Content="{x:Static local:EnduranceEventContent.FeiVetDelegateLabel}" />
 
             <TextBox Style="{StaticResource Input-Primary}"
                      Text="{Binding FeiVetDelegate}"
@@ -98,9 +91,8 @@
         <DockPanel Style="{StaticResource Form-Item-Primary}">
 
             <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=ActiveVet}">
-                Active Vet
-            </Label>
+                   Target="{Binding ElementName=ActiveVet}"
+                   Content="{x:Static local:EnduranceEventContent.ActiveVetLabel}" />
 
             <TextBox Style="{StaticResource Input-Primary}"
                      Text="{Binding ActiveVet}"
@@ -109,9 +101,8 @@
         <DockPanel Style="{StaticResource Form-Item-Primary}">
 
             <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=MembersOfVetCommittee}">
-                Members of Vet Committee (separate with ';')
-            </Label>
+                   Target="{Binding ElementName=MembersOfVetCommittee}"
+                   Content="{x:Static local:EnduranceEventContent.MembersOfVetCommitteeLabel}" />
 
             <TextBox Style="{StaticResource Input-Primary}"
                      Text="{Binding MembersOfVetCommittee}"
@@ -120,9 +111,8 @@
         <DockPanel Style="{StaticResource Form-Item-Primary}">
 
             <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=MembersOfJudgeCommittee}">
-                Members of Vet Committee (separate with ';')
-            </Label>
+                   Target="{Binding ElementName=MembersOfJudgeCommittee}"
+                   Content="{x:Static local:EnduranceEventContent.MembersOfJudgeCommitteeLabel}" />
 
             <TextBox Style="{StaticResource Input-Primary}"
                      Text="{Binding MembersOfJudgeCommittee}"
@@ -131,9 +121,8 @@
         <DockPanel Style="{StaticResource Form-Item-Primary}">
 
             <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=Stewards}">
-                Stewards (separate with ';')
-            </Label>
+                   Target="{Binding ElementName=Stewards}"
+                   Content="{x:Static local:EnduranceEventContent.StewardsLabel}" />
 
             <TextBox Style="{StaticResource Input-Primary}"
                      Text="{Binding Stewards}"
@@ -142,7 +131,8 @@
         <DockPanel Style="{StaticResource Form-Item-Primary}">
 
             <Button Style="{StaticResource Button-Primary}"
-                    Command="{Binding Save}">Save</Button>
+                    Command="{Binding Save}"
+                    Content="{x:Static local:EnduranceEventContent.SaveButtonText}" />
         </DockPanel>
 
     </StackPanel>
