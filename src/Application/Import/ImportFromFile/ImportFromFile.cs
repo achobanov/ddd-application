@@ -7,6 +7,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using static EnduranceJudge.Application.ApplicationConstants;
+using static EnduranceJudge.Localization.Strings.Application;
 
 namespace EnduranceJudge.Application.Import.ImportFromFile
 {
@@ -42,8 +43,10 @@ namespace EnduranceJudge.Application.Import.ImportFromFile
                 var fileExtension = this.file.GetExtension(filePath);
                 if (fileExtension != FileExtensions.Xml && fileExtension != FileExtensions.SupportedExcel)
                 {
-                    var message =
-                        $"Unsupported file. Please use '{FileExtensions.Xml}' or '{FileExtensions.SupportedExcel}'.";
+                    var message = string.Format(
+                        UnsupportedImportFileTemplate,
+                        FileExtensions.Xml,
+                        FileExtensions.SupportedExcel);
 
                     throw new AppException(message);
                 }

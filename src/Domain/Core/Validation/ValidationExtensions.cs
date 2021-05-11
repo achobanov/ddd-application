@@ -1,32 +1,17 @@
 using EnduranceJudge.Domain.Core.Models;
 using System.Collections.Generic;
 using System.Linq;
+using static EnduranceJudge.Localization.Strings.DomainStrings;
 
 namespace EnduranceJudge.Domain.Core.Validation
 {
     public static class ValidationExtensions
     {
-        private const string EntityIsAlreadyRelatedTemplate = "is already related to '{0}' with id: '{1}'";
-        private const string NotDefaultTemplate = "property '{0}' is required.";
-        private const string CannotRemoveNullItemTemplate = "cannot remove '{0}' - it is null.";
-        private const string CannotRemoveItemIsNotFoundTemplate = "cannot remove '{0}' - it is not found.";
-        private const string CannotAddNullItemTemplate = "cannot add '{0}' because it is null.";
-        private const string CannotAddItemExistsTemplate = "cannot add '{0}' because entity with Id '{1}' already exists.";
-
-        public static void IsNotRelated<TDomainModel>(this TDomainModel model)
-            where TDomainModel : IDomainModel
-        {
-            if (!model?.Equals(default(TDomainModel)) ?? false)
-            {
-                throw new ValidationException(EntityIsAlreadyRelatedTemplate, typeof(TDomainModel).Name, model.Id);
-            }
-        }
-
         public static TValue IsRequired<TValue>(this TValue value, string name)
         {
             if (value?.Equals(default(TValue)) ?? true)
             {
-                throw new ValidationException(NotDefaultTemplate, name, value);
+                throw new ValidationException(IsRequiredTemplate, name, value);
             }
 
             return value;
@@ -36,7 +21,7 @@ namespace EnduranceJudge.Domain.Core.Validation
         {
             if (value?.Equals(default(TValue)) ?? true)
             {
-                throw new ValidationException(NotDefaultTemplate, name);
+                throw new ValidationException(IsRequiredTemplate, name);
             }
 
             return value;
