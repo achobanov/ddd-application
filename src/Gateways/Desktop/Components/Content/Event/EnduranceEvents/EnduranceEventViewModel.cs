@@ -18,13 +18,13 @@ using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEvents
 {
-    public class EventViewModel : ViewModelBase, IMapExplicitly
+    public class EnduranceEventViewModel : ViewModelBase, IMapExplicitly
     {
-        public EventViewModel()
+        public EnduranceEventViewModel()
         {
         }
 
-        public EventViewModel(IApplicationService application) : base(application)
+        public EnduranceEventViewModel(IApplicationService application) : base(application)
         {
             this.Save = new AsyncCommand(this.SaveAction);
         }
@@ -164,7 +164,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEven
 
         public void CreateExplicitMap(Profile mapper)
         {
-            mapper.CreateMap<EventViewModel, SaveEnduranceEvent>()
+            mapper.CreateMap<EnduranceEventViewModel, SaveEnduranceEvent>()
                 .MapMember(d => d.CountryIsoCode, s => s.SelectedCountryIsoCode)
                 .ForMember(
                     dest => dest.MembersOfJudgeCommittee,
@@ -176,7 +176,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEven
                     dest => dest.Stewards,
                     opt => opt.ConvertUsing(StringSplitter.New));
 
-            mapper.CreateMap<EnduranceEventForUpdateModel, EventViewModel>()
+            mapper.CreateMap<EnduranceEventForUpdateModel, EnduranceEventViewModel>()
                 .MapMember(d => d.SelectedCountryIsoCode, s => s.CountryIsoCode);
         }
     }
