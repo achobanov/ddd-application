@@ -64,8 +64,7 @@ namespace EnduranceJudge.Gateways.Desktop
                     .ToList();
 
                 var viewModelType = typesInNamespace.FirstOrDefault(t =>
-                    t.Name.StartsWith(viewType.Name)
-                    && t.Name.EndsWith("ViewModel"));
+                    typeof(ViewModelBase).IsAssignableFrom(t));
 
                 return viewModelType;
             });

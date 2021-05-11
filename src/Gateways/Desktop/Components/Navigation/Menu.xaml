@@ -19,6 +19,9 @@
 
             <Button Style="{StaticResource Button-Primary}"
                     Command="{Binding NavigateToPrintExample}">Print example</Button>
+
+            <Button Style="{StaticResource Button-Primary}"
+                    Command="{Binding NavigateToEventList}">Print example</Button>
         </StackPanel>
         <DockPanel Style="{StaticResource Strip-Error}"
                    Visibility="{Binding NotificationVisibility}">

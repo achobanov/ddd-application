@@ -1,5 +1,3 @@
-using AutoMapper;
-using AutoMapper.EquivalencyExpression;
 using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Common.Countries;

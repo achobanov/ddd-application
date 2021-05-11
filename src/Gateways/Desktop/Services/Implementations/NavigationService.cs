@@ -67,6 +67,10 @@ namespace EnduranceJudge.Gateways.Desktop.Services.Implementations
             this.eventAggregator
                 .GetEvent<NavigationEvent>()
                 .Subscribe(view => this.NavigateTo(view.GetType()));
+
+            this.eventAggregator
+                .GetEvent<NavigationEvent<int>>()
+                .Subscribe(tuple => this.NavigateTo(tuple.Item1.GetType(), tuple.Item2));
         }
     }
 }

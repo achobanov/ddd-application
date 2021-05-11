@@ -39,6 +39,7 @@
                     public static class CommonStrings
                     {
                         public const string SaveButtonText = "Save";
+                        public const string UpdateButtonText = "Update";
                     }
 
                     public static class EnduranceEventStrings

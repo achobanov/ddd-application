@@ -1,4 +1,5 @@
 ﻿using EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEvents;
+using EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEvents.List;
 using EnduranceJudge.Gateways.Desktop.Components.Content.Import;
 using EnduranceJudge.Gateways.Desktop.Components.Content.PrintExample;
 using EnduranceJudge.Gateways.Desktop.Core;
@@ -26,6 +27,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Navigation
             this.NavigateToCreateEvent = new DelegateCommand(navigation.NavigateTo<EnduranceEvent>);
             this.NavigateToUpdateEvent = new DelegateCommand(() => navigation.NavigateTo<EnduranceEvent>(1));
             this.NavigateToPrintExample = new DelegateCommand(navigation.NavigateTo<PrintExample>);
+            this.NavigateToEventList = new DelegateCommand(navigation.NavigateTo<EnduranceEventList>);
             this.CloseNotification = new DelegateCommand(this.CloseNotificationAction);
 
             this.Subscribe();
@@ -36,6 +38,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Navigation
         public DelegateCommand CloseNotification { get; }
         public DelegateCommand NavigateToCreateEvent { get; }
         public DelegateCommand NavigateToUpdateEvent { get; }
+        public DelegateCommand NavigateToEventList { get; }
 
         private Visibility notificationVisibility = Visibility.Hidden;
         public Visibility NotificationVisibility
