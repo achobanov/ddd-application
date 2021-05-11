@@ -2,15 +2,17 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:local="clr-namespace:EnduranceJudge.Gateways.Desktop.Components.Content.Import"
              prism:ViewModelLocator.AutoWireViewModel="True"
              HorizontalContentAlignment="Stretch">
 
     <StackPanel Background="Aqua">
-        <DockPanel Style="{StaticResource Form-Item-Primary}" Background="Brown">
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
 
             <Button Style="{StaticResource Button-Form-Item}"
                     Command="{Binding OpenFolderDialog}"
-                    Name="Select_WorkDirectory">Select Work Directory</Button>
+                    Name="Select_WorkDirectory"
+                    Content="{x:Static local:ImportContent.SelectWorkDirectoryButtonText}" />
 
             <TextBox Style="{StaticResource Input-Primary}"
                      Text="{Binding WorkDirectoryPath, Mode=OneWay}"
@@ -22,7 +24,8 @@
 
             <Button Style="{StaticResource Button-Primary}"
                     Command="{Binding OpenImportFileDialog}"
-                    Name="Select_ImportFile">Select Import File</Button>
+                    Name="Select_ImportFile"
+                    Content="{x:Static local:ImportContent.SelectImportFileButtonText}" />
 
             <TextBox Style="{StaticResource Input-Primary}"
                      Text="{Binding ImportFilePath, Mode=OneWay}"

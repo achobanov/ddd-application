@@ -26,13 +26,12 @@
                 public const string RankingPageButtonText = "Ranking";
             }
 
-            public static class ContentStrings
+            public static class Content
             {
-                public static class ImportPage
+                public static class ImportPageStrings
                 {
                     public const string SelectWorkDirectoryButtonText = "Select Work Directory";
                     public const string SelectImportFileButtonText = "Select Import File";
-
                 }
             }
         }
