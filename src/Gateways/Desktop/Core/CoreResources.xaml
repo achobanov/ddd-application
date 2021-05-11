@@ -9,6 +9,7 @@
         <ResourceDictionary Source="Components/DockPanel.xaml" />
         <ResourceDictionary Source="Components/Form.xaml" />
         <ResourceDictionary Source="Components/FormItem.xaml" />
+        <ResourceDictionary Source="Components/StackPanel.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

@@ -9,4 +9,8 @@
         <Setter Property="Background" Value="DarkRed"></Setter>
     </Style>
 
+    <Style x:Key="List Item" TargetType="DockPanel">
+        <Setter Property="Background" Value="DarkRed"></Setter>
+    </Style>
+
 </ResourceDictionary>
