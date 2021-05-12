@@ -3,10 +3,10 @@
 
     <Style x:Key="Strip" TargetType="DockPanel">
         <Setter Property="LastChildFill" Value="True"></Setter>
+        <Setter Property="Background" Value="Brown"></Setter>
     </Style>
 
     <Style x:Key="Form-Item-Primary" TargetType="DockPanel" BasedOn="{StaticResource Strip}">
-        <Setter Property="Background" Value="Brown"></Setter>
     </Style>
 
     <Style x:Key="Strip-Error" TargetType="DockPanel" BasedOn="{StaticResource Strip}">

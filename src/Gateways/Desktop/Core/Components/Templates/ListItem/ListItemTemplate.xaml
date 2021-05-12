@@ -4,15 +4,14 @@
                     xmlns:content="clr-namespace:EnduranceJudge.Gateways.Desktop.Core.Components">
 
     <DataTemplate DataType="{x:Type local:ListItemViewModel}">
-            <DockPanel Style="{StaticResource List-Item}">
-                <Button Style="{StaticResource Button-Primary}"
-                        Content="{x:Static content:ComponentContent.UpdateButtonText}"
-                        Command="{Binding Command}"
-                        CommandParameter="{Binding Id}"/>
+        <DockPanel Style="{StaticResource List-Item}">
+            <Button Style="{StaticResource Button-Primary}"
+                    Content="{x:Static content:ComponentContent.UpdateButtonText}"
+                    Command="{Binding Command}"
+                    CommandParameter="{Binding Id}" />
 
-                <TextBlock Style="{StaticResource Text-Paragraph}"
-                           Text="{Binding Name}" />
-            </DockPanel>
+            <TextBlock Style="{StaticResource Text-Paragraph}"
+                       Text="{Binding Name}" />
+        </DockPanel>
     </DataTemplate>
-
 </ResourceDictionary>
