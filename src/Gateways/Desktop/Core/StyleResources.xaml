@@ -8,6 +8,7 @@
         <ResourceDictionary Source="Components/Styles/Label.xaml" />
         <ResourceDictionary Source="Components/Styles/DockPanel.xaml" />
         <ResourceDictionary Source="Components/Styles/StackPanel.xaml" />
+        <ResourceDictionary Source="Components/Styles/ListBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
