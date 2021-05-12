@@ -5,5 +5,7 @@
              xmlns:local="clr-namespace:EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEvents"
              prism:ViewModelLocator.AutoWireViewModel="True">
 
-    <ListBox ItemsSource="{Binding EnduranceEvents}"></ListBox>
+    <ListBox Style="{StaticResource List}"
+             ItemsSource="{Binding EnduranceEvents}" />
+
 </UserControl>

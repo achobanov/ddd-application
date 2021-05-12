@@ -1,7 +1,5 @@
-﻿using EnduranceJudge.Application.Core.Contracts;
+﻿using EnduranceJudge.Application.Contracts.Events;
 using EnduranceJudge.Application.Core.Handlers;
-using EnduranceJudge.Core.Mappings;
-using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,9 +18,9 @@ namespace EnduranceJudge.Application.Events.Queries.GetEvent
 
         public class GetEventHandler : Handler<GetEnduranceEvent, EnduranceEventForUpdateModel>
         {
-            private readonly IQueriesBase<EnduranceEvent> eventQueries;
+            private readonly IEventQueries eventQueries;
 
-            public GetEventHandler(IQueriesBase<EnduranceEvent> eventQueries)
+            public GetEventHandler(IEventQueries eventQueries)
             {
                 this.eventQueries = eventQueries;
             }
@@ -31,10 +29,7 @@ namespace EnduranceJudge.Application.Events.Queries.GetEvent
                 GetEnduranceEvent request,
                 CancellationToken cancellationToken)
             {
-                var enduranceEvent = await this.eventQueries
-                    .Find(request.Id)
-                    .Map<EnduranceEventForUpdateModel>();
-
+                var enduranceEvent = await this.eventQueries.Find<EnduranceEventForUpdateModel>(request.Id);
                 return enduranceEvent;
             }
         }

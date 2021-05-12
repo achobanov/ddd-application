@@ -1,21 +1,17 @@
 ﻿using AutoMapper;
 using EnduranceJudge.Core;
 using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
-using EnduranceJudge.Domain.Aggregates.Event.Personnels;
 using EnduranceJudge.Domain.Enums;
-using System;
+using EnduranceJudge.Gateways.Persistence.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EnduranceJudge.Application.Events.Converters
+namespace EnduranceJudge.Gateways.Persistence.Converters
 {
-    public class PersonnelConverter : IValueConverter<IEnumerable<Personnel>, string>
+    public class PersonnelConverter : IValueConverter<IEnumerable<PersonnelEntity>, string>
     {
         private readonly PersonnelRole role;
         private readonly bool isMultiPersonnelRole;
-
-        public static PersonnelConverter New(PersonnelRole role)
-            => new PersonnelConverter(role);
 
         public PersonnelConverter(PersonnelRole role)
         {
@@ -23,13 +19,12 @@ namespace EnduranceJudge.Application.Events.Converters
             this.isMultiPersonnelRole = EnduranceEvent.IsRoleMultiPersonnel(role);
         }
 
-        public string Convert(IEnumerable<Personnel> sourceMember, ResolutionContext context)
+        public string Convert(IEnumerable<PersonnelEntity> sourceMember, ResolutionContext context)
         {
-            Func<Personnel, bool> filter = x => x.Role == this.role;
             if (this.isMultiPersonnelRole)
             {
                 var personnelNames = sourceMember
-                    .Where(filter)
+                    .Where(x => x.Role == this.role)
                     .Select(x => x.Name)
                     .ToList();
 

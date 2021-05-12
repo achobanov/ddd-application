@@ -72,6 +72,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
 
             if (areRoleDuplicatesAllowed && this.personnel.Any(p => p.Name == personnel.Name))
             {
+                // TODO: Extract in Localized text
                 var message = $"Cannot add {personnel.Role}' - name '{personnel.Name}' already exits";
                 this.Throw(message);
             }
