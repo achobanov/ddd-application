@@ -18,18 +18,18 @@ namespace EnduranceJudge.Application.Events.Queries.GetEvent
 
         public class GetEventHandler : Handler<GetEnduranceEvent, EnduranceEventForUpdateModel>
         {
-            private readonly IEventQueries eventQueries;
+            private readonly IEnduranceEventQueries enduranceEventQueries;
 
-            public GetEventHandler(IEventQueries eventQueries)
+            public GetEventHandler(IEnduranceEventQueries enduranceEventQueries)
             {
-                this.eventQueries = eventQueries;
+                this.enduranceEventQueries = enduranceEventQueries;
             }
 
             public override async Task<EnduranceEventForUpdateModel> Handle(
                 GetEnduranceEvent request,
                 CancellationToken cancellationToken)
             {
-                var enduranceEvent = await this.eventQueries.Find<EnduranceEventForUpdateModel>(request.Id);
+                var enduranceEvent = await this.enduranceEventQueries.Find<EnduranceEventForUpdateModel>(request.Id);
                 return enduranceEvent;
             }
         }

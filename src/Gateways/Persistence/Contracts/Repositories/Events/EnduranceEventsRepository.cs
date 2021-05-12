@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Events
 {
-    internal class EventsRepository : RepositoryBase<IEventsDataStore, EnduranceEventEntity, EnduranceEvent>,
-        IEventCommands,
-        IEventQueries
+    internal class EnduranceEventsRepository : RepositoryBase<IEnduranceEventsDataStore, EnduranceEventEntity, EnduranceEvent>,
+        IEnduranceEventCommands,
+        IEnduranceEventQueries
     {
-        public EventsRepository(
-            IEventsDataStore dataStore,
+        public EnduranceEventsRepository(
+            IEnduranceEventsDataStore dataStore,
             IWorkFileUpdater workFileUpdater) : base(dataStore, workFileUpdater)
         {
         }
@@ -22,7 +22,7 @@ namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Events
         public override async Task<TModel> Find<TModel>(int id)
         {
             var entity = await this.DataStore
-                .Events
+                .EnduranceEvents
                 .Include(e => e.Country)
                 .FirstOrDefaultAsync(x => x.Id == id);
 

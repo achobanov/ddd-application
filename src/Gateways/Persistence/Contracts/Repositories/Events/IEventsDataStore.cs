@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Events
 {
-    internal interface IEventsDataStore : IDataStore
+    internal interface IEnduranceEventsDataStore : IDataStore
     {
-        DbSet<EnduranceEventEntity> Events { get; }
+        DbSet<EnduranceEventEntity> EnduranceEvents { get; }
 
         DbSet<CompetitionEntity> Competitions { get; }
     }

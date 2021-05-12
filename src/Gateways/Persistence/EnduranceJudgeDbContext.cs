@@ -11,7 +11,7 @@ using System;
 namespace EnduranceJudge.Gateways.Persistence
 {
     public class EnduranceJudgeDbContext : DbContext,
-        IEventsDataStore,
+        IEnduranceEventsDataStore,
         ICountriesDataStore,
         IHorseDataStore
     {
@@ -25,7 +25,7 @@ namespace EnduranceJudge.Gateways.Persistence
         }
 
         public DbSet<CountryEntity> Countries { get; set; }
-        public DbSet<EnduranceEventEntity> Events { get; set; }
+        public DbSet<EnduranceEventEntity> EnduranceEvents { get; set; }
         public DbSet<CompetitionEntity> Competitions { get; set; }
         public DbSet<PhaseEntity> Phases { get; set; }
         public DbSet<PhaseForCategoryEntity> PhasesForCategories { get; set; }
