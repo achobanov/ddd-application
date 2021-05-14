@@ -3,6 +3,7 @@ using EnduranceJudge.Domain.Core.Exceptions;
 using EnduranceJudge.Gateways.Desktop.Core.Events;
 using MediatR;
 using Prism.Events;
+using System;
 using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
@@ -32,6 +33,11 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
             catch (AppException exception)
             {
                 this.Publish<ValidationErrorEvent>(exception.Message);
+                throw;
+            }
+            catch (Exception exception)
+            {
+                this.Publish<ValidationErrorEvent>(exception.InnerException?.Message ?? exception.Message);
                 throw;
             }
         }

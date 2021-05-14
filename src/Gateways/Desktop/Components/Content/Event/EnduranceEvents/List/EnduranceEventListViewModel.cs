@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEvents.List
 {
-    public class Kur : ViewModelBase
+    public class EnduranceEventListViewModel : ViewModelBase
     {
         private readonly IEventAggregator eventAggregator;
 
-        public Kur(
+        public EnduranceEventListViewModel(
             IApplicationService application,
             IEventAggregator eventAggregator) : base (application)
         {

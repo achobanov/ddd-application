@@ -4,4 +4,8 @@
     <Style x:Key="Form-Primary" TargetType="StackPanel">
     </Style>
 
+    <Style x:Key="Navigation" TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Horizontal" />
+    </Style>
+
 </ResourceDictionary>

@@ -18,6 +18,12 @@
 
         public static class Desktop
         {
+            public static class CommonStrings
+            {
+                public const string SaveButtonText = "Save";
+                public const string UpdateButtonText = "Update";
+            }
+
             public static class NavigationStrings
             {
                 public const string ImportPageButtonText = "Import";
@@ -36,10 +42,9 @@
 
                 public static class EventPage
                 {
-                    public static class CommonStrings
+                    public static class NavigationStripStrings
                     {
-                        public const string SaveButtonText = "Save";
-                        public const string UpdateButtonText = "Update";
+                        public const string Events = "Events";
                     }
 
                     public static class EnduranceEventStrings

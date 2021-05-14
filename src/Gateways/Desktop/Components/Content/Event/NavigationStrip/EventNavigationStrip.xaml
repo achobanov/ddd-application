@@ -5,6 +5,12 @@
              xmlns:local="clr-namespace:EnduranceJudge.Gateways.Desktop.Components.Content.Event.NavigationStrip"
              prism:ViewModelLocator.AutoWireViewModel="True">
 
-    <TextBlock>Shit KUR</TextBlock>
+    <StackPanel Style="{StaticResource Navigation}">
+        <Button Style="{StaticResource Button-Primary}"
+                Command="{Binding ChangeToEventsList}"
+                Content="{x:Static local:EventNavigationStripContent.Events}" />
+
+    </StackPanel>
+
 
 </UserControl>

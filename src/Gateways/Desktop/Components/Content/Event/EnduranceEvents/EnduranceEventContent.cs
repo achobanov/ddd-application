@@ -1,4 +1,5 @@
-﻿using static EnduranceJudge.Localization.Strings.Desktop.Content.EventPage;
+﻿using static EnduranceJudge.Localization.Strings.Desktop;
+using static EnduranceJudge.Localization.Strings.Desktop.Content.EventPage;
 
 namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEvents
 {
