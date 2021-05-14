@@ -6,14 +6,18 @@ namespace EnduranceJudge.Gateways.Desktop.Services
 {
     public interface INavigationService : ISingletonService
     {
-        void NavigateTo<T>()
+        void NavigateToImport();
+
+        void NavigateToEvent();
+
+        void ChangeTo<T>(string regionName)
             where T : IView;
 
-        void NavigateTo<T>(int id)
+        void ChangeTo<T>(string regionName, int id)
             where T : IView;
 
-        void NavigateTo(Type viewType);
+        void ChangeTo(string regionName, Type viewType);
 
-        void NavigateTo(Type viewType, int id);
+        void ChangeTo(string regionName, Type viewType, int id);
     }
 }

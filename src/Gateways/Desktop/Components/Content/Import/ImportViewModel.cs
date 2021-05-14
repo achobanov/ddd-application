@@ -101,7 +101,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
         private void Redirect()
         {
             this.eventAggregator
-                .GetEvent<NavigationEvent>()
+                .GetEvent<ChangeRegionEvent>()
                 .Publish(new EnduranceEvent());
         }
     }

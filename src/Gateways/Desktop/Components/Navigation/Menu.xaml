@@ -6,22 +6,24 @@
              mvvm:ViewModelLocator.AutoWireViewModel="True">
 
     <StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch">
             <Button Style="{StaticResource Button-Primary}"
                     Command="{Binding NavigateToImport}"
-                    Content="{x:Static local:NavigationContent.ImportPageButtonText}"></Button>
+                    Content="{x:Static local:NavigationContent.ImportPageButtonText}" />
 
-        <Button Style="{StaticResource Button-Primary}"
-                Command="{Binding NavigateToCreateEvent}">Events</Button>
+            <Button Style="{StaticResource Button-Primary}"
+                    Command="{Binding NavigateToEvent}">Event</Button>
 
-        <Button Style="{StaticResource Button-Primary}"
-                Command="{Binding NavigateToUpdateEvent}">Events</Button>
+            <Button>::</Button>
+
+            <Button Style="{StaticResource Button-Primary}"
+                    Command="{Binding NavigateToUpdateEvent}">UpdateEvent</Button>
 
             <Button Style="{StaticResource Button-Primary}"
                     Command="{Binding NavigateToPrintExample}">Print example</Button>
 
             <Button Style="{StaticResource Button-Primary}"
-                    Command="{Binding NavigateToEventList}">Print example</Button>
+                    Command="{Binding NavigateToEventList}">Events list</Button>
         </StackPanel>
         <DockPanel Style="{StaticResource Strip-Error}"
                    Visibility="{Binding NotificationVisibility}">

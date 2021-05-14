@@ -8,6 +8,7 @@ using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Services;
 using Prism.Commands;
 using Prism.Events;
+using Prism.Regions;
 using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Components.Navigation
@@ -22,21 +23,22 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Navigation
             IEventAggregator eventAggregator) : base(application)
         {
             this.eventAggregator = eventAggregator;
-            this.NavigateToImport = new DelegateCommand(navigation.NavigateTo<Import>);
-            this.NavigateToPrintExample = new DelegateCommand(navigation.NavigateTo<PrintExample>);
-            this.NavigateToCreateEvent = new DelegateCommand(navigation.NavigateTo<EnduranceEvent>);
-            this.NavigateToUpdateEvent = new DelegateCommand(() => navigation.NavigateTo<EnduranceEvent>(1));
-            this.NavigateToPrintExample = new DelegateCommand(navigation.NavigateTo<PrintExample>);
-            this.NavigateToEventList = new DelegateCommand(navigation.NavigateTo<EnduranceEventList>);
+            this.NavigateToImport = new DelegateCommand(navigation.NavigateToImport);
+            this.NavigateToEvent = new DelegateCommand(navigation.NavigateToEvent);
+
+            this.NavigateToPrintExample = new DelegateCommand(() => navigation.ChangeTo<PrintExample>(Regions.Content));
+            this.NavigateToUpdateEvent = new DelegateCommand(() => navigation.ChangeTo<EnduranceEvent>(Regions.Content, 1));
+            this.NavigateToPrintExample = new DelegateCommand(() => navigation.ChangeTo<PrintExample>(Regions.Content));
+            this.NavigateToEventList = new DelegateCommand(() => navigation.ChangeTo<EnduranceEventList>(Regions.Content));
             this.CloseNotification = new DelegateCommand(this.CloseNotificationAction);
 
             this.Subscribe();
         }
 
         public DelegateCommand NavigateToImport { get; }
+        public DelegateCommand NavigateToEvent { get; }
         public DelegateCommand NavigateToPrintExample { get; }
         public DelegateCommand CloseNotification { get; }
-        public DelegateCommand NavigateToCreateEvent { get; }
         public DelegateCommand NavigateToUpdateEvent { get; }
         public DelegateCommand NavigateToEventList { get; }
 

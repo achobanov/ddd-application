@@ -2,11 +2,11 @@
 
 namespace EnduranceJudge.Gateways.Desktop.Core.Events
 {
-    public class NavigationEvent : PubSubEvent<IView>
+    public class ChangeRegionEvent : PubSubEvent<IView>
     {
     }
 
-    public class NavigationEvent<TParameter> : PubSubEvent<(IView, TParameter)>
+    public class ChangeRegionEvent<TParameter> : PubSubEvent<(IView, TParameter)>
     {
     }
 }

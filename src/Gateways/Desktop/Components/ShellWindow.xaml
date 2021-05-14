@@ -8,13 +8,17 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="8*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <ContentControl prism:RegionManager.RegionName="{x:Static desktop:Regions.Navigation}"
                         Grid.Row="0"/>
 
-        <ContentControl prism:RegionManager.RegionName="{x:Static desktop:Regions.Content}"
+        <ContentControl prism:RegionManager.RegionName="{x:Static desktop:Regions.SubNavigation}"
                         Grid.Row="1"/>
+
+        <ContentControl prism:RegionManager.RegionName="{x:Static desktop:Regions.Content}"
+                        Grid.Row="2"/>
     </Grid>
 </Window>

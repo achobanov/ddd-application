@@ -56,7 +56,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEven
         private void RequestNavigateToUpdate(int? id)
         {
             this.eventAggregator
-                .GetEvent<NavigationEvent<int>>()
+                .GetEvent<ChangeRegionEvent<int>>()
                 .Publish((new EnduranceEvent(), id.Value));
         }
     }
