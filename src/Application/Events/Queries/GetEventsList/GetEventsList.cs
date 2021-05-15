@@ -7,9 +7,9 @@ using System.Collections.Generic;
 
 namespace EnduranceJudge.Application.Events.Queries.GetEventsList
 {
-    public class GetEventsList : IRequest<IEnumerable<ListModel>>
+    public class GetEventsList : IRequest<IEnumerable<ListItemModel>>
     {
-        public class GetEventsListHandler : GetAllHandler<GetEventsList, ListModel, EnduranceEvent>
+        public class GetEventsListHandler : GetAllHandler<GetEventsList, ListItemModel, EnduranceEvent>
         {
             public GetEventsListHandler(IQueriesBase<EnduranceEvent> queries) : base(queries)
             {

@@ -1,6 +1,6 @@
 ﻿namespace EnduranceJudge.Application.Events.Common
 {
-    public class ListModel
+    public class ListItemModel
     {
         public int Id { get; set; }
 

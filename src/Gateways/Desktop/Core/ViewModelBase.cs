@@ -1,5 +1,4 @@
-﻿using MediatR;
-using EnduranceJudge.Gateways.Desktop.Core.Services;
+﻿using EnduranceJudge.Gateways.Desktop.Core.Services;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
