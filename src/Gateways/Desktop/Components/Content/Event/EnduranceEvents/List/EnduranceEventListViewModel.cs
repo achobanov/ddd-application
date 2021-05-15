@@ -1,10 +1,9 @@
 ﻿using EnduranceJudge.Application.Events.Queries.GetEventsList;
 using EnduranceJudge.Gateways.Desktop.Core;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
-using EnduranceJudge.Gateways.Desktop.Core.Events;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
+using EnduranceJudge.Gateways.Desktop.Services;
 using Prism.Commands;
-using Prism.Events;
 using Prism.Regions;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -14,13 +13,12 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEven
 {
     public class EnduranceEventListViewModel : ViewModelBase
     {
-        private readonly IEventAggregator eventAggregator;
+        private readonly INavigationService navigation;
 
-        public EnduranceEventListViewModel(
-            IApplicationService application,
-            IEventAggregator eventAggregator) : base (application)
+        public EnduranceEventListViewModel(INavigationService navigation, IApplicationService application)
+            : base (application)
         {
-            this.eventAggregator = eventAggregator;
+            this.navigation = navigation;
         }
 
         public ObservableCollection<ListItemViewModel> EnduranceEvents { get; }
@@ -45,7 +43,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEven
             var viewModels = eventsList
                 .Select(e =>
                 {
-                    var command = new DelegateCommand<int?>(this.RequestNavigateToUpdate);
+                    var command = new DelegateCommand<int?>(this.NavigateToUpdate);
                     return new ListItemViewModel(e.Id, e.Name, command);
                 })
                 .ToList();
@@ -53,11 +51,9 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEven
             this.EnduranceEvents.AddRange(viewModels);
         }
 
-        private void RequestNavigateToUpdate(int? id)
+        private void NavigateToUpdate(int? id)
         {
-            this.eventAggregator
-                .GetEvent<ChangeRegionEvent<int>>()
-                .Publish((new EnduranceEvent(), id.Value));
+            this.navigation.ChangeTo<EnduranceEvent>(Regions.Content, id.Value);
         }
     }
 }

@@ -10,14 +10,10 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
         private static readonly Type ViewType = typeof(IView);
 
         private readonly IRegionManager regionManager;
-        private readonly IEventAggregator eventAggregator;
 
-        protected NavigationServiceBase(IRegionManager regionManager, IEventAggregator eventAggregator)
+        protected NavigationServiceBase(IRegionManager regionManager)
         {
             this.regionManager = regionManager;
-            this.eventAggregator = eventAggregator;
-
-            this.Subscribe();
         }
 
         public void ChangeTo<T>(string regionName) where T : IView
@@ -65,23 +61,6 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
         {
             var region = this.regionManager.Regions[name];
             region.RemoveAll();
-        }
-
-        private void Subscribe()
-        {
-            var regionName = Regions.Content;
-
-            this.eventAggregator
-                .GetEvent<ChangeRegionEvent>()
-                .Subscribe(view => this.ChangeTo(regionName, view.GetType()));
-
-            this.eventAggregator
-                .GetEvent<ChangeRegionEvent<int>>()
-                .Subscribe(tuple =>
-                {
-                    var (view, parameter) = tuple;
-                    this.ChangeTo(regionName, view.GetType(), parameter);
-                });
         }
     }
 }

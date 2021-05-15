@@ -1,12 +1,10 @@
 ﻿using EnduranceJudge.Application.Import.ImportFromFile;
 using EnduranceJudge.Application.Import.WorkFile;
-using EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEvents;
 using EnduranceJudge.Gateways.Desktop.Core;
 using EnduranceJudge.Gateways.Desktop.Core.Commands;
-using EnduranceJudge.Gateways.Desktop.Core.Events;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
+using EnduranceJudge.Gateways.Desktop.Services;
 using Prism.Commands;
-using Prism.Events;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -15,16 +13,13 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
     public class ImportViewModel : ViewModelBase
     {
         private readonly IExplorerService explorer;
-        private readonly IEventAggregator eventAggregator;
+        private readonly INavigationService navigation;
 
-        public ImportViewModel(
-            IExplorerService explorer,
-            IEventAggregator eventAggregator,
-            IApplicationService application)
+        public ImportViewModel(IExplorerService explorer,INavigationService navigation,IApplicationService application)
            : base(application)
         {
             this.explorer = explorer;
-            this.eventAggregator = eventAggregator;
+            this.navigation = navigation;
             this.OpenFolderDialog = new AsyncCommand(this.OpenFolderDialogAction);
             this.OpenImportFileDialog = new AsyncCommand(this.OpenImportFileDialogAction);
         }
@@ -100,9 +95,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Import
 
         private void Redirect()
         {
-            this.eventAggregator
-                .GetEvent<ChangeRegionEvent>()
-                .Publish(new EnduranceEvent());
+            this.navigation.NavigateToEvent();
         }
     }
 }
