@@ -1,12 +1,13 @@
 ﻿using EnduranceJudge.Application.Contracts.Events;
 using EnduranceJudge.Application.Core.Handlers;
+using EnduranceJudge.Application.Core.Requests;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace EnduranceJudge.Application.Events.Queries.GetEvent
 {
-    public class GetEnduranceEvent : IRequest<EnduranceEventForUpdateModel>
+    public class GetEnduranceEvent : IIdentifiableRequest<EnduranceEventForUpdateModel>
     {
         public static GetEnduranceEvent New(int id)
             => new GetEnduranceEvent()
@@ -16,11 +17,11 @@ namespace EnduranceJudge.Application.Events.Queries.GetEvent
 
         public int Id { get; set; }
 
-        public class GetEventHandler : Handler<GetEnduranceEvent, EnduranceEventForUpdateModel>
+        public class GetEnduranceEventHandler : Handler<GetEnduranceEvent, EnduranceEventForUpdateModel>
         {
             private readonly IEnduranceEventQueries enduranceEventQueries;
 
-            public GetEventHandler(IEnduranceEventQueries enduranceEventQueries)
+            public GetEnduranceEventHandler(IEnduranceEventQueries enduranceEventQueries)
             {
                 this.enduranceEventQueries = enduranceEventQueries;
             }

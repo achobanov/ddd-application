@@ -5,11 +5,8 @@ using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Core.Mappings.Converters;
-using EnduranceJudge.Gateways.Desktop.Core;
-using EnduranceJudge.Gateways.Desktop.Core.Commands;
-using EnduranceJudge.Gateways.Desktop.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
-using Prism.Commands;
+using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 using Prism.Regions;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -18,15 +15,16 @@ using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
 {
-    public class EnduranceEventViewModel : ViewModelBase, IMapExplicitly
+    public class EnduranceEventViewModel
+        : FormViewModelBase<GetEnduranceEvent, SaveEnduranceEvent, EnduranceEventForUpdateModel>,
+        IMapExplicitly
     {
-        public EnduranceEventViewModel()
+        public EnduranceEventViewModel() : base(null)
         {
         }
 
         public EnduranceEventViewModel(IApplicationService application) : base(application)
         {
-            this.Save = new AsyncCommand(this.SaveAction);
         }
 
         public ObservableCollection<CountryListingModel> Countries { get; }
@@ -117,29 +115,12 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
             set => this.SetProperty(ref this.stewards, value);
         }
 
-        public DelegateCommand Save { get; }
-        public bool HasSaved { get; private set; }
-
-        private async Task SaveAction()
-        {
-            var command = this.Map<SaveEnduranceEvent>();
-
-            await this.Application.Execute(command);
-            this.HasSaved = true;
-        }
-
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
             base.OnNavigatedTo(navigationContext);
             if (!this.Countries.Any())
             {
                 this.LoadCountries();
-            }
-
-            var enduranceEventId = navigationContext.GetId();
-            if (enduranceEventId.HasValue)
-            {
-                this.LoadEvent(enduranceEventId.Value);
             }
         }
 
@@ -152,14 +133,6 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
             this.CountryVisibility = Visibility.Visible;
 
             this.Countries.AddRange(countries);
-        }
-
-        private async Task LoadEvent(int id)
-        {
-            var getEvent = GetEnduranceEvent.New(id);
-            var enduranceEvent = await this.Application.Execute(getEvent);
-
-            this.MapFrom(enduranceEvent);
         }
 
         public void CreateExplicitMap(Profile mapper)

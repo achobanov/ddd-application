@@ -62,6 +62,11 @@
                         public const string MembersOfVetCommitteeLabel = "Members of Vet Committee";
                         public const string StewardsLabel = "Stewards";
                     }
+
+                    public static class CompetitionStrings
+                    {
+                        public const string TypeLabel = "Type";
+                    }
                 }
             }
         }

@@ -7,19 +7,19 @@
              HorizontalContentAlignment="Stretch">
 
     <StackPanel Background="Aqua">
-        <DockPanel Style="{StaticResource Form-Item-Primary}">
+        <DockPanel Style="{StaticResource Form-Item}">
 
             <Button Style="{StaticResource Button-Form-Item}"
                     Command="{Binding OpenFolderDialog}"
                     Name="Select_WorkDirectory"
                     Content="{x:Static local:ImportContent.SelectWorkDirectoryButtonText}" />
 
-            <TextBox Style="{StaticResource Input-Primary}"
+            <TextBox Style="{StaticResource Input}"
                      Text="{Binding WorkDirectoryPath, Mode=OneWay}"
                      IsReadOnly="True"/>
         </DockPanel>
 
-        <DockPanel Style="{StaticResource Form-Item-Primary}"
+        <DockPanel Style="{StaticResource Form-Item}"
                    Visibility="{Binding ImportVisibility}">
 
             <Button Style="{StaticResource Button-Primary}"
@@ -27,7 +27,7 @@
                     Name="Select_ImportFile"
                     Content="{x:Static local:ImportContent.SelectImportFileButtonText}" />
 
-            <TextBox Style="{StaticResource Input-Primary}"
+            <TextBox Style="{StaticResource Input}"
                      Text="{Binding ImportFilePath, Mode=OneWay}"
                      IsReadOnly="True"/>
         </DockPanel>

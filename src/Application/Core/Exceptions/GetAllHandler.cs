@@ -10,7 +10,7 @@ namespace EnduranceJudge.Application.Core.Exceptions
 {
     public class GetAllHandler<TRequest, TResponse, TDomainModel> : Handler<TRequest, IEnumerable<TResponse>>
         where TRequest : IRequest<IEnumerable<TResponse>>
-        where TDomainModel : IAggregateRoot
+        where TDomainModel : IDomainModel
     {
         private readonly IQueriesBase<TDomainModel> queries;
 

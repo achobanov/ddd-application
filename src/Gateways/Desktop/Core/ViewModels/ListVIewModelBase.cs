@@ -1,6 +1,7 @@
 ﻿using EnduranceJudge.Application.Events.Common;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
+using EnduranceJudge.Gateways.Desktop.Services;
 using MediatR;
 using Prism.Commands;
 using System.Collections.Generic;
@@ -10,15 +11,22 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
-    public abstract class ListVIewModelBase<TApplicationCommand> : ViewModelBase
+    public abstract class ListViewModelBase<TApplicationCommand, TView> : ViewModelBase
         where TApplicationCommand : IRequest<IEnumerable<ListItemModel>>, new()
+        where TView : IView
     {
-        protected ListVIewModelBase(IApplicationService application) : base(application)
+        protected ListViewModelBase(IApplicationService application, INavigationService navigation) : base(application)
         {
+            this.Navigation = navigation;
+            this.ChangeToCreate = new DelegateCommand(this.ChangeToCreateAction);
         }
+
+        protected INavigationService Navigation { get; }
 
         protected ObservableCollection<ListItemViewModel> ListItems { get; }
             = new (Enumerable.Empty<ListItemViewModel>());
+
+        public DelegateCommand ChangeToCreate { get; }
 
         public override void OnNavigatedTo(Prism.Regions.NavigationContext navigationContext)
         {
@@ -35,19 +43,29 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         private async Task LoadEvents()
         {
             var getEventsList = new TApplicationCommand();
-
             var eventsList = await this.Application.Execute(getEventsList);
+
             var viewModels = eventsList
-                .Select(e =>
-                {
-                    var command = new DelegateCommand<int?>(this.NavigateToUpdate);
-                    return new ListItemViewModel(e.Id, e.Name, command);
-                })
+                .Select(this.ToViewModeL)
                 .ToList();
 
             this.ListItems.AddRange(viewModels);
         }
 
-        protected abstract void NavigateToUpdate(int? id);
+        private ListItemViewModel ToViewModeL(ListItemModel model)
+        {
+            var command = new DelegateCommand<int?>(this.ChangeToUpdateAction);
+            return new ListItemViewModel(model.Id, model.Name, command);
+        }
+
+        protected virtual void ChangeToCreateAction()
+        {
+            this.Navigation.ChangeTo<TView>();
+        }
+
+        protected virtual void ChangeToUpdateAction(int? id)
+        {
+            this.Navigation.ChangeTo<TView>(id.Value);
+        }
     }
 }

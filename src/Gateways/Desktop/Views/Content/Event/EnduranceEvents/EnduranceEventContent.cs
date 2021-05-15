@@ -1,11 +1,9 @@
-﻿using static EnduranceJudge.Localization.Strings.Desktop;
-using static EnduranceJudge.Localization.Strings.Desktop.Content.EventPage;
+﻿using static EnduranceJudge.Localization.Strings.Desktop.Content.EventPage;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
 {
     public class EnduranceEventContent
     {
-        public const string SaveButtonText = CommonStrings.SaveButtonText;
         public const string NameLabel = EnduranceEventStrings.NameLabel;
         public const string PopulatedPlaceLabel = EnduranceEventStrings.PopulatedPlaceLabel;
         public const string CountryLabel = EnduranceEventStrings.CountryLabel;
