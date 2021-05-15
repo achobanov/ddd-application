@@ -1,0 +1,139 @@
+﻿<UserControl x:Class="EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.EnduranceEventView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:local="clr-namespace:EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <StackPanel Style="{StaticResource Form-Primary}">
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
+
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=Name}"
+                   Content="{x:Static local:EnduranceEventContent.NameLabel}" />
+
+            <TextBox Style="{StaticResource Input-Primary}"
+                     Text="{Binding Name}"
+                     Name="Name" />
+        </DockPanel>
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
+
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=PopulatedPlace}"
+                   Content="{x:Static local:EnduranceEventContent.PopulatedPlaceLabel}"/>
+
+            <TextBox Style="{StaticResource Input-Primary}"
+                     Text="{Binding PopulatedPlace}"
+                     Name="PopulatedPlace"/>
+        </DockPanel>
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
+
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=Countries}"
+                   Content="{x:Static local:EnduranceEventContent.CountryLabel}"/>
+
+            <ComboBox ItemsSource="{Binding Countries}"
+                      SelectedValue="{Binding SelectedCountryIsoCode}"
+                      DisplayMemberPath="Name"
+                      SelectedValuePath="IsoCode"
+                      Name="Countries" />
+        </DockPanel>
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
+
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=PresidentGroundJury}"
+                   Content="{x:Static local:EnduranceEventContent.PresidentGroundJuryLabel}"/>
+
+            <TextBox Style="{StaticResource Input-Primary}"
+                     Text="{Binding PresidentGroundJury}"
+                     Name="PresidentGroundJury" />
+        </DockPanel>
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
+
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=PresidentVetCommission}"
+                   Content="{x:Static local:EnduranceEventContent.PresidentVetCommissionLabel}" />
+
+            <TextBox Style="{StaticResource Input-Primary}"
+                     Text="{Binding PresidentVetCommission}"
+                     Name="PresidentVetCommission" />
+        </DockPanel>
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
+
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=ForeignJudge}"
+                   Content="{x:Static local:EnduranceEventContent.ForeignJudgeLabel}" />
+
+            <TextBox Style="{StaticResource Input-Primary}"
+                     Text="{Binding ForeignJudge}"
+                     Name="ForeignJudge" />
+        </DockPanel>
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
+
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=FeiTechDelegate}"
+                   Content="{x:Static local:EnduranceEventContent.FeiTechDelegateLabel}" />
+
+            <TextBox Style="{StaticResource Input-Primary}"
+                     Text="{Binding FeiTechDelegate}"
+                     Name="FeiTechDelegate" />
+        </DockPanel>
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
+
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=FeiVetDelegate}"
+                   Content="{x:Static local:EnduranceEventContent.FeiVetDelegateLabel}" />
+
+            <TextBox Style="{StaticResource Input-Primary}"
+                     Text="{Binding FeiVetDelegate}"
+                     Name="FeiVetDelegate" />
+        </DockPanel>
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
+
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=ActiveVet}"
+                   Content="{x:Static local:EnduranceEventContent.ActiveVetLabel}" />
+
+            <TextBox Style="{StaticResource Input-Primary}"
+                     Text="{Binding ActiveVet}"
+                     Name="ActiveVet" />
+        </DockPanel>
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
+
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=MembersOfVetCommittee}"
+                   Content="{x:Static local:EnduranceEventContent.MembersOfVetCommitteeLabel}" />
+
+            <TextBox Style="{StaticResource Input-Primary}"
+                     Text="{Binding MembersOfVetCommittee}"
+                     Name="MembersOfVetCommittee" />
+        </DockPanel>
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
+
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=MembersOfJudgeCommittee}"
+                   Content="{x:Static local:EnduranceEventContent.MembersOfJudgeCommitteeLabel}" />
+
+            <TextBox Style="{StaticResource Input-Primary}"
+                     Text="{Binding MembersOfJudgeCommittee}"
+                     Name="MembersOfJudgeCommittee" />
+        </DockPanel>
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
+
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=Stewards}"
+                   Content="{x:Static local:EnduranceEventContent.StewardsLabel}" />
+
+            <TextBox Style="{StaticResource Input-Primary}"
+                     Text="{Binding Stewards}"
+                     Name="Stewards" />
+        </DockPanel>
+        <DockPanel Style="{StaticResource Form-Item-Primary}">
+
+            <Button Style="{StaticResource Button-Primary}"
+                    Command="{Binding Save}"
+                    Content="{x:Static local:EnduranceEventContent.SaveButtonText}" />
+        </DockPanel>
+
+    </StackPanel>
+</UserControl>

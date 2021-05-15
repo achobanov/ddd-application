@@ -1,6 +1,6 @@
-﻿using EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEvents.List;
-using EnduranceJudge.Gateways.Desktop.Components.Content.Event.NavigationStrip;
-using EnduranceJudge.Gateways.Desktop.Components.Content.Import;
+﻿using EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.List;
+using EnduranceJudge.Gateways.Desktop.Views.Content.Event.NavigationStrip;
+using EnduranceJudge.Gateways.Desktop.Views.Content.Import;
 using EnduranceJudge.Gateways.Desktop.Core.Services.Implementations;
 using Prism.Regions;
 

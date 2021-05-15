@@ -1,7 +1,7 @@
 ﻿using EnduranceJudge.Core.Services;
 using EnduranceJudge.Core.Utilities;
 using EnduranceJudge.Gateways.Desktop.Startup;
-using EnduranceJudge.Gateways.Desktop.Components;
+using EnduranceJudge.Gateways.Desktop.Views;
 using EnduranceJudge.Gateways.Desktop.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Prism.DryIoc;
