@@ -53,7 +53,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEven
 
         private void NavigateToUpdate(int? id)
         {
-            this.navigation.ChangeTo<EnduranceEvent>(Regions.Content, id.Value);
+            this.navigation.ChangeTo<EnduranceEvent>(id.Value);
         }
     }
 }

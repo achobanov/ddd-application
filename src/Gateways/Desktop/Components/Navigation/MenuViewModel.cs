@@ -26,10 +26,10 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Navigation
             this.NavigateToImport = new DelegateCommand(navigation.NavigateToImport);
             this.NavigateToEvent = new DelegateCommand(navigation.NavigateToEvent);
 
-            this.NavigateToPrintExample = new DelegateCommand(() => navigation.ChangeTo<PrintExample>(Regions.Content));
-            this.NavigateToUpdateEvent = new DelegateCommand(() => navigation.ChangeTo<EnduranceEvent>(Regions.Content, 1));
-            this.NavigateToPrintExample = new DelegateCommand(() => navigation.ChangeTo<PrintExample>(Regions.Content));
-            this.NavigateToEventList = new DelegateCommand(() => navigation.ChangeTo<EnduranceEventList>(Regions.Content));
+            this.NavigateToPrintExample = new DelegateCommand(navigation.ChangeTo<PrintExample>);
+            this.NavigateToUpdateEvent = new DelegateCommand(() => navigation.ChangeTo<EnduranceEvent>(1));
+            this.NavigateToPrintExample = new DelegateCommand(navigation.ChangeTo<PrintExample>);
+            this.NavigateToEventList = new DelegateCommand(navigation.ChangeTo<EnduranceEventList>);
             this.CloseNotification = new DelegateCommand(this.CloseNotificationAction);
 
             this.Subscribe();

@@ -1,6 +1,4 @@
-﻿using EnduranceJudge.Gateways.Desktop.Core.Events;
-using Prism.Events;
-using Prism.Regions;
+﻿using Prism.Regions;
 using System;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
@@ -16,17 +14,27 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
             this.regionManager = regionManager;
         }
 
-        public void ChangeTo<T>(string regionName) where T : IView
+        protected void ChangeTo<T>(string regionName) where T : IView
         {
             this.ChangeTo(regionName, typeof(T));
         }
 
-        public void ChangeTo<T>(string regionName, int id) where T : IView
+        protected void ChangeTo<T>(string regionName, int id) where T : IView
         {
             this.ChangeTo(regionName, typeof(T), id);
         }
 
-        public void ChangeTo(string regionName, Type viewType, int id)
+        public void ChangeTo<T>() where T : IView
+        {
+            this.ChangeTo(Regions.Content, typeof(T));
+        }
+
+        public void ChangeTo<T>(int id) where T : IView
+        {
+            this.ChangeTo(Regions.Content, typeof(T), id);
+        }
+
+        private void ChangeTo(string regionName, Type viewType, int id)
         {
             var parameters = new NavigationParameters
             {
@@ -36,12 +44,12 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
             this.ChangeTo(viewType, regionName, parameters);
         }
 
-        public void ChangeTo(string regionName, Type viewType)
+        private void ChangeTo(string regionName, Type viewType)
         {
             this.ChangeTo(viewType, regionName, null);
         }
 
-        public void ChangeTo(Type viewType, string regionName, NavigationParameters parameters)
+        private void ChangeTo(Type viewType, string regionName, NavigationParameters parameters)
         {
             if (viewType == null)
             {

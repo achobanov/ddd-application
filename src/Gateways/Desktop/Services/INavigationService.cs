@@ -1,6 +1,5 @@
 ﻿using EnduranceJudge.Core.ConventionalServices;
 using EnduranceJudge.Gateways.Desktop.Core;
-using System;
 
 namespace EnduranceJudge.Gateways.Desktop.Services
 {
@@ -10,14 +9,10 @@ namespace EnduranceJudge.Gateways.Desktop.Services
 
         void NavigateToEvent();
 
-        void ChangeTo<T>(string regionName)
+        void ChangeTo<T>()
             where T : IView;
 
-        void ChangeTo<T>(string regionName, int id)
+        void ChangeTo<T>(int id)
             where T : IView;
-
-        void ChangeTo(string regionName, Type viewType);
-
-        void ChangeTo(string regionName, Type viewType, int id);
     }
 }

@@ -1,5 +1,4 @@
-﻿using EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEvents;
-using EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEvents.List;
+﻿using EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEvents.List;
 using EnduranceJudge.Gateways.Desktop.Components.Content.Event.NavigationStrip;
 using EnduranceJudge.Gateways.Desktop.Components.Content.Import;
 using EnduranceJudge.Gateways.Desktop.Core.Services.Implementations;
@@ -15,13 +14,13 @@ namespace EnduranceJudge.Gateways.Desktop.Services.Implementations
 
         public void NavigateToImport()
         {
-            this.ChangeTo<Import>(Regions.Content);
+            this.ChangeTo<Import>();
             this.ClearRegion(Regions.SubNavigation);
         }
 
         public void NavigateToEvent()
         {
-            this.ChangeTo<EnduranceEventList>(Regions.Content);
+            this.ChangeTo<EnduranceEventList>();
             this.ChangeTo<EventNavigationStrip>(Regions.SubNavigation);
         }
     }
