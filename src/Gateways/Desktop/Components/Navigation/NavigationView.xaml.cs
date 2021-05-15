@@ -3,11 +3,11 @@ using System.Windows.Controls;
 
 namespace EnduranceJudge.Gateways.Desktop.Components.Navigation
 {
-    public partial class Menu : UserControl, IView
+    public partial class NavigationView : UserControl, IView
     {
         public string RegionName { get; } = Regions.Navigation;
 
-        public Menu()
+        public NavigationView()
         {
             InitializeComponent();
         }

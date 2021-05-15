@@ -1,11 +1,11 @@
 ﻿using EnduranceJudge.Gateways.Desktop.Core;
 using System.Windows.Controls;
 
-namespace EnduranceJudge.Gateways.Desktop.Components.Content.PrintExample
+namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event.EnduranceEvents.List
 {
-    public partial class PrintExample : UserControl, IView
+    public partial class EnduranceEventListView : UserControl, IView
     {
-        public PrintExample()
+        public EnduranceEventListView()
         {
             InitializeComponent();
         }

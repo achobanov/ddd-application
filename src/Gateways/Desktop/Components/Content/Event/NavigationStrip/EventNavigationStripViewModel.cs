@@ -9,7 +9,7 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Content.Event.NavigationStr
     {
         public EventNavigationStripViewModel(INavigationService navigation)
         {
-            this.ChangeToEventsList = new DelegateCommand(navigation.ChangeTo<EnduranceEventList>);
+            this.ChangeToEventsList = new DelegateCommand(navigation.ChangeTo<EnduranceEventListView>);
         }
 
         public DelegateCommand ChangeToEventsList { get; }

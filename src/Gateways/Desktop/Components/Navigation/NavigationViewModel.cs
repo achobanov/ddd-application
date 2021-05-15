@@ -13,11 +13,11 @@ using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Components.Navigation
 {
-    public class MenuViewModel : ViewModelBase
+    public class NavigationViewModel : ViewModelBase
     {
         private readonly IEventAggregator eventAggregator;
 
-        public MenuViewModel(
+        public NavigationViewModel(
             INavigationService navigation,
             IApplicationService application,
             IEventAggregator eventAggregator) : base(application)
@@ -26,10 +26,10 @@ namespace EnduranceJudge.Gateways.Desktop.Components.Navigation
             this.NavigateToImport = new DelegateCommand(navigation.NavigateToImport);
             this.NavigateToEvent = new DelegateCommand(navigation.NavigateToEvent);
 
-            this.NavigateToPrintExample = new DelegateCommand(navigation.ChangeTo<PrintExample>);
-            this.NavigateToUpdateEvent = new DelegateCommand(() => navigation.ChangeTo<EnduranceEvent>(1));
-            this.NavigateToPrintExample = new DelegateCommand(navigation.ChangeTo<PrintExample>);
-            this.NavigateToEventList = new DelegateCommand(navigation.ChangeTo<EnduranceEventList>);
+            this.NavigateToPrintExample = new DelegateCommand(navigation.ChangeTo<PrintExampleView>);
+            this.NavigateToUpdateEvent = new DelegateCommand(() => navigation.ChangeTo<EnduranceEventView>(1));
+            this.NavigateToPrintExample = new DelegateCommand(navigation.ChangeTo<PrintExampleView>);
+            this.NavigateToEventList = new DelegateCommand(navigation.ChangeTo<EnduranceEventListView>);
             this.CloseNotification = new DelegateCommand(this.CloseNotificationAction);
 
             this.Subscribe();

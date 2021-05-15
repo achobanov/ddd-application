@@ -14,14 +14,14 @@ namespace EnduranceJudge.Gateways.Desktop.Services.Implementations
 
         public void NavigateToImport()
         {
-            this.ChangeTo<Import>();
+            this.ChangeTo<ImportView>();
             this.ClearRegion(Regions.SubNavigation);
         }
 
         public void NavigateToEvent()
         {
-            this.ChangeTo<EnduranceEventList>();
-            this.ChangeTo<EventNavigationStrip>(Regions.SubNavigation);
+            this.ChangeTo<EnduranceEventListView>();
+            this.ChangeTo<EventNavigationStripView>(Regions.SubNavigation);
         }
     }
 }
