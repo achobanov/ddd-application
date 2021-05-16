@@ -4,17 +4,10 @@ using System;
 
 namespace EnduranceJudge.Domain.Core.Models
 {
-    public abstract class DomainModel<TException> : IInternalDomainModel
+    public abstract class DomainBase<TException> : IDomainModel
         where TException : DomainException, new()
     {
-        protected DomainModel()
-        {
-        }
-
         public int Id { get; private set; }
-
-        void IInternalDomainModel.Validate(Action action)
-            => this.Validate(action);
 
         internal void Validate(Action action)
         {
@@ -31,14 +24,10 @@ namespace EnduranceJudge.Domain.Core.Models
         internal void Throw(string message)
             => Thrower.Throw<TException>(message);
 
+
         public override bool Equals(object obj)
         {
-            if (obj is null)
-            {
-                return false;
-            }
-
-            if (!(obj is IDomainModel other))
+            if (obj is not IDomainModel other)
             {
                 return false;
             }

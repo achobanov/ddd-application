@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace EnduranceJudge.Domain.Aggregates.Ranking.Classifications
 {
-    public class Classification : DomainModel<ClassificationException>
+    public class Classification : DomainBase<ClassificationException>
     {
         internal Classification(Category category, Competition competition)
         {

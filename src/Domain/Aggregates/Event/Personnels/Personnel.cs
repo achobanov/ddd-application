@@ -5,7 +5,7 @@ using EnduranceJudge.Domain.Enums;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.Personnels
 {
-    public class Personnel : DomainModel<PersonnelException>, IPersonnelState
+    public class Personnel : DomainBase<PersonnelException>, IPersonnelState
     {
         private Personnel()
         {

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace EnduranceJudge.Domain.Aggregates.Ranking.Rankings
 {
-    public class Ranking : DomainModel<RankingException>, IAggregateRoot
+    public class Ranking : DomainBase<RankingException>, IAggregateRoot
     {
         private readonly List<Classification> classifications = new();
 

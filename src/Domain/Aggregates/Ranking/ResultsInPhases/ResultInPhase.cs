@@ -2,7 +2,7 @@ using EnduranceJudge.Domain.Core.Models;
 
 namespace EnduranceJudge.Domain.Aggregates.Ranking.ResultsInPhases
 {
-    public class ResultInPhase : DomainModel<RankingResultInPhaseException>
+    public class ResultInPhase : DomainBase<RankingResultInPhaseException>
     {
         internal ResultInPhase() 
         {

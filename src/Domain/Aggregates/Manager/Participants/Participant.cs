@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace EnduranceJudge.Domain.Aggregates.Manager.Participants
 {
-    public class Participant : DomainModel<ManagerParticipantException>, IAggregateRoot
+    public class Participant : DomainBase<ManagerParticipantException>, IAggregateRoot
     {
         private Participant()
         {

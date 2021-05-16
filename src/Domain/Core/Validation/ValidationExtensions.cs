@@ -1,3 +1,4 @@
+using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Core.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +54,7 @@ namespace EnduranceJudge.Domain.Core.Validation
             }
         }
 
-        public static TDomainModel ValidateAndRemove<TDomainModel>(
+        public static void ValidateAndRemove<TDomainModel>(
             this ICollection<TDomainModel> collection,
             TDomainModel model)
             where TDomainModel : IDomainModel
@@ -69,10 +70,9 @@ namespace EnduranceJudge.Domain.Core.Validation
             }
 
             collection.Remove(model);
-            return model;
         }
 
-        public static TDomainModel ValidateAndAdd<TDomainModel>(
+        public static void ValidateAndAddOrUpdate<TDomainModel>(
             this ICollection<TDomainModel> collection,
             TDomainModel model)
             where TDomainModel : IDomainModel
@@ -84,11 +84,14 @@ namespace EnduranceJudge.Domain.Core.Validation
 
             if (collection.Contains(model))
             {
-                throw new ValidationException(CannotAddItemExistsTemplate, typeof(TDomainModel).Name, model.Id);
+                collection
+                    .Single(x => x.Equals(model))
+                    .MapFrom(model);
             }
-
-            collection.Add(model);
-            return model;
+            else
+            {
+                collection.Add(model);
+            }
         }
     }
 }

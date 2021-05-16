@@ -89,11 +89,11 @@ namespace EnduranceJudge.Application.Test
 
                 var country = await this.countryQueries.Find("BUL");
 
-                enduranceEvent.Add(competition1);
+                enduranceEvent.AddOrUpdate(competition1);
                 await this.enduranceEventCommands.Save(enduranceEvent, cancellationToken);
                 enduranceEvent = await this.enduranceEventCommands.Find(1);
 
-                enduranceEvent.Add(competition2);
+                enduranceEvent.AddOrUpdate(competition2);
                 await this.enduranceEventCommands.Save(enduranceEvent, cancellationToken);
                 enduranceEvent = await this.enduranceEventCommands.Find(1);
 
@@ -207,22 +207,22 @@ namespace EnduranceJudge.Application.Test
                 enduranceEvent = await this.enduranceEventCommands.Find(1);
 
                 // Event
-                enduranceEvent.Add(presidentJury);
+                enduranceEvent.AddOrUpdate(presidentJury);
 
                 await this.enduranceEventCommands.Save(enduranceEvent, cancellationToken);
                 enduranceEvent = await this.enduranceEventCommands.Find(1);
 
-                enduranceEvent.Add(activeVet);
+                enduranceEvent.AddOrUpdate(activeVet);
 
                 await this.enduranceEventCommands.Save(enduranceEvent, cancellationToken);
                 enduranceEvent = await this.enduranceEventCommands.Find(1);
 
-                enduranceEvent.Add(vetMember1);
+                enduranceEvent.AddOrUpdate(vetMember1);
 
                 await this.enduranceEventCommands.Save(enduranceEvent, cancellationToken);
                 enduranceEvent = await this.enduranceEventCommands.Find(1);
 
-                enduranceEvent.Add(vetMember2);
+                enduranceEvent.AddOrUpdate(vetMember2);
 
                 await this.enduranceEventCommands.Save(enduranceEvent, cancellationToken);
                 enduranceEvent = await this.enduranceEventCommands.Find(1);
@@ -233,7 +233,7 @@ namespace EnduranceJudge.Application.Test
                 // enduranceEvent = await this.eventCommands.Find(1);
 
                 enduranceEvent.Remove(enduranceEvent.Competitions.First());
-                enduranceEvent.Add(new Competition(CompetitionType.International));
+                enduranceEvent.AddOrUpdate(new Competition(CompetitionType.International));
                 await this.enduranceEventCommands.Save(enduranceEvent, cancellationToken);
 
                 enduranceEvent = await this.enduranceEventCommands.Find(1);
@@ -247,9 +247,9 @@ namespace EnduranceJudge.Application.Test
                 var competition2 = new Competition(CompetitionType.National);
                 var competition3 = new Competition(CompetitionType.National);
 
-                enduranceEvent.Add(competition1);
-                enduranceEvent.Add(competition2);
-                enduranceEvent.Add(competition3);
+                enduranceEvent.AddOrUpdate(competition1);
+                enduranceEvent.AddOrUpdate(competition2);
+                enduranceEvent.AddOrUpdate(competition3);
 
                 await this.enduranceEventCommands.Save(enduranceEvent, cancellationToken);
             }
@@ -265,7 +265,7 @@ namespace EnduranceJudge.Application.Test
                 // await this.eventCommands.Save(enduranceEvent, cancellationToken);
 
                 var competition2 = new Competition(CompetitionType.National);
-                enduranceEvent.Add(competition2);
+                enduranceEvent.AddOrUpdate(competition2);
 
                 await this.enduranceEventCommands.Save(enduranceEvent, cancellationToken);
             }

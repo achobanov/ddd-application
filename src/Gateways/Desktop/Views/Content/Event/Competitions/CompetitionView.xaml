@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions.CompetitionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:common="clr-namespace:EnduranceJudge.Gateways.Desktop.Views.Content.Event"
+             xmlns:local="clr-namespace:EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <StackPanel Style="{StaticResource Form}">
+
+        <DockPanel Style="{StaticResource Form-Item}">
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=_Type}"
+                   Content="{x:Static local:CompetitionContent.Type}" />
+
+            <ComboBox Style="{StaticResource Combo-Box}"
+                      ItemsSource="{Binding CompetitionTypeItems}"
+                      SelectedValue="{Binding CompetitionType}"
+                      Name="_Type" />
+        </DockPanel>
+        <DockPanel Style="{StaticResource Form-Item}">
+
+            <Button Style="{StaticResource Button}"
+                    Command="{Binding Save}"
+                    Content="{x:Static common:EventPageContent.SaveButtonText}" />
+        </DockPanel>
+    </StackPanel>
+
+</UserControl>

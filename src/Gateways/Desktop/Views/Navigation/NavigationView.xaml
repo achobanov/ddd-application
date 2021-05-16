@@ -7,28 +7,28 @@
 
     <StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch">
-            <Button Style="{StaticResource Button-Primary}"
+            <Button Style="{StaticResource Button}"
                     Command="{Binding NavigateToImport}"
                     Content="{x:Static local:NavigationContent.ImportPageButtonText}" />
 
-            <Button Style="{StaticResource Button-Primary}"
+            <Button Style="{StaticResource Button}"
                     Command="{Binding NavigateToEvent}">Event</Button>
 
             <Button>::</Button>
 
-            <Button Style="{StaticResource Button-Primary}"
+            <Button Style="{StaticResource Button}"
                     Command="{Binding NavigateToUpdateEvent}">UpdateEvent</Button>
 
-            <Button Style="{StaticResource Button-Primary}"
+            <Button Style="{StaticResource Button}"
                     Command="{Binding NavigateToPrintExample}">Print example</Button>
 
-            <Button Style="{StaticResource Button-Primary}"
+            <Button Style="{StaticResource Button}"
                     Command="{Binding NavigateToEventList}">Events list</Button>
         </StackPanel>
         <DockPanel Style="{StaticResource Strip-Error}"
                    Visibility="{Binding NotificationVisibility}">
 
-            <Button Style="{StaticResource Button-Primary}"
+            <Button Style="{StaticResource Button}"
                 Command="{Binding CloseNotification}">Close</Button>
 
             <!--TODO: Extract converter from NotificationSeverity-->

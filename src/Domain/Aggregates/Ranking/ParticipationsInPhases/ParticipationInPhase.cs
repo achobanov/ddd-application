@@ -6,7 +6,7 @@ using System;
 
 namespace EnduranceJudge.Domain.Aggregates.Ranking.ParticipationsInPhases
 {
-    public class ParticipationInPhase : DomainModel<RankingParticipationInPhaseException>
+    public class ParticipationInPhase : DomainBase<RankingParticipationInPhaseException>
     {
         private ParticipationInPhase()
         {

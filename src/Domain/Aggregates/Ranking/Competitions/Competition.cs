@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace EnduranceJudge.Domain.Aggregates.Ranking.Competitions
 {
-    public class Competition : DomainModel<RankingCompetitionException>
+    public class Competition : DomainBase<RankingCompetitionException>
     {
         public Competition()
         {

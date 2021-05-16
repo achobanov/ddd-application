@@ -2,7 +2,7 @@ using EnduranceJudge.Domain.Core.Models;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.Participants
 {
-    public class Horse : DomainModel<EventHorseException>
+    public class Horse : DomainBase<EventHorseException>
     {
         // TODO: revert to private
         public Horse()

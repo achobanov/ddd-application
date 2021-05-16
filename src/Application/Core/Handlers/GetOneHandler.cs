@@ -1,19 +1,18 @@
 using EnduranceJudge.Application.Core.Requests;
 using EnduranceJudge.Application.Core.Contracts;
 using EnduranceJudge.Domain.Core.Models;
-using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace EnduranceJudge.Application.Core.Handlers
 {
-    public class FindHandler<TRequest, TResponse, TDomainModel> : Handler<TRequest, TResponse>
-        where TRequest : IIdentifiableRequest, IRequest<TResponse>
-        where TDomainModel : IAggregateRoot
+    public class GetOneHandler<TRequest, TResponse, TDomainModel> : Handler<TRequest, TResponse>
+        where TRequest : IIdentifiableRequest<TResponse>
+        where TDomainModel : IDomainModel
     {
         private readonly IQueriesBase<TDomainModel> query;
 
-        public FindHandler(IQueriesBase<TDomainModel> query)
+        public GetOneHandler(IQueriesBase<TDomainModel> query)
         {
             this.query = query;
         }
@@ -21,7 +20,6 @@ namespace EnduranceJudge.Application.Core.Handlers
         public override Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken)
         {
             var entity = this.query.Find<TResponse>(request.Id);
-
             return entity;
         }
     }

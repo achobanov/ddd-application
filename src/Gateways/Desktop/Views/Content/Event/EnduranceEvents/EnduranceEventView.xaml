@@ -132,7 +132,7 @@
         </DockPanel>
         <DockPanel Style="{StaticResource Form-Item}">
 
-            <Button Style="{StaticResource Button-Primary}"
+            <Button Style="{StaticResource Button}"
                     Command="{Binding Save}"
                     Content="{x:Static common:EventPageContent.SaveButtonText}" />
         </DockPanel>

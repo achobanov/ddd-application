@@ -5,7 +5,7 @@ using System;
 
 namespace EnduranceJudge.Domain.Aggregates.Import.Athletes
 {
-    public class Athlete : DomainModel<RiderException>, IAthleteState
+    public class Athlete : DomainBase<RiderException>, IAthleteState
     {
         private const int AdultAgeInYears = 18;
 

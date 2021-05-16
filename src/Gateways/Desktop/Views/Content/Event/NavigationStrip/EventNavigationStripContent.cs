@@ -4,6 +4,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.NavigationStrip
 {
     public class EventNavigationStripContent
     {
-        public static string Events => NavigationStripStrings.Events;
+        public const string EnduranceEvents = NavigationStripStrings.EnduranceEvents;
+        public const string Competitions = NavigationStripStrings.Competitions;
     }
 }

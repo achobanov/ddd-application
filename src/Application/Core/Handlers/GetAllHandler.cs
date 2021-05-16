@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EnduranceJudge.Application.Core.Exceptions
+namespace EnduranceJudge.Application.Core.Handlers
 {
     public class GetAllHandler<TRequest, TResponse, TDomainModel> : Handler<TRequest, IEnumerable<TResponse>>
         where TRequest : IRequest<IEnumerable<TResponse>>

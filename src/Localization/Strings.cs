@@ -21,6 +21,7 @@
             public static class CommonStrings
             {
                 public const string SaveButtonText = "Save";
+                public const string CreateButtonText = "Create";
                 public const string UpdateButtonText = "Update";
             }
 
@@ -44,7 +45,8 @@
                 {
                     public static class NavigationStripStrings
                     {
-                        public const string Events = "Events";
+                        public const string EnduranceEvents = "Endurance Events";
+                        public const string Competitions = "Competitions";
                     }
 
                     public static class EnduranceEventStrings

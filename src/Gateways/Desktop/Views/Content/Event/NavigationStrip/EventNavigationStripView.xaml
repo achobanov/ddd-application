@@ -6,11 +6,13 @@
              prism:ViewModelLocator.AutoWireViewModel="True">
 
     <StackPanel Style="{StaticResource Navigation}">
-        <Button Style="{StaticResource Button-Primary}"
+        <Button Style="{StaticResource Button}"
                 Command="{Binding ChangeToEventsList}"
-                Content="{x:Static local:EventNavigationStripContent.Events}" />
+                Content="{x:Static local:EventNavigationStripContent.EnduranceEvents}" />
+
+        <Button Style="{StaticResource Button}"
+                Command="{Binding ChangeToCompetitionsList}"
+                Content="{x:Static local:EventNavigationStripContent.Competitions}"></Button>
 
     </StackPanel>
-
-
 </UserControl>

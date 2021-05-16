@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
 {
-    public class EnduranceEvent : DomainModel<EnduranceEventException>, IAggregateRoot
+    public class EnduranceEvent : DomainBase<EnduranceEventException>, IAggregateRoot
     {
         private EnduranceEvent()
         {
@@ -66,7 +66,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
             get => this.personnel.AsReadOnly();
             private set => this.personnel = value.ToList();
         }
-        public EnduranceEvent Add(Personnel personnel)
+        public EnduranceEvent AddOrUpdate(Personnel personnel)
         {
             var areRoleDuplicatesAllowed = IsRoleMultiPersonnel(personnel.Role);
 
@@ -83,7 +83,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
                 this.Throw(message);
             }
 
-            this.personnel.ValidateAndAdd(personnel);
+            this.personnel.ValidateAndAddOrUpdate(personnel);
             return this;
         }
         public EnduranceEvent Remove(Personnel personnel)
@@ -98,9 +98,9 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
             get => this.competitions.AsReadOnly();
             private set => this.competitions = value.ToList();
         }
-        public EnduranceEvent Add(Competition competition)
+        public EnduranceEvent AddOrUpdate(Competition competition)
         {
-            this.competitions.ValidateAndAdd(competition);
+            this.competitions.ValidateAndAddOrUpdate(competition);
             return this;
         }
         public EnduranceEvent Remove(Competition competition)

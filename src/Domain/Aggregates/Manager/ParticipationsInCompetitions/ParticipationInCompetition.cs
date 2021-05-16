@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace EnduranceJudge.Domain.Aggregates.Manager.ParticipationsInCompetitions
 {
-    public class ParticipationInCompetition : DomainModel<ParticipationInCompetitionException>
+    public class ParticipationInCompetition : DomainBase<ParticipationInCompetitionException>
     {
         private const string EmptyPhasesCollection = "cannot start - Phases collection is empty";
         private const string NextPhaseIsNullMessage = "cannot start - there is no Next Phase.";

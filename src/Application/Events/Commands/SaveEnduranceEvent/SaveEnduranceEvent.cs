@@ -60,36 +60,36 @@ namespace EnduranceJudge.Application.Events.Commands.SaveEnduranceEvent
             private void AddPersonnel(EnduranceEvent enduranceEvent, SaveEnduranceEvent request)
             {
                 var presidentGroundJury = this.personnelFactory.PresidentGroundJury(request.PresidentGroundJury);
-                enduranceEvent.Add(presidentGroundJury);
+                enduranceEvent.AddOrUpdate(presidentGroundJury);
 
                 var presidentVetCommission = this.personnelFactory.PresidentVetCommission(
                     request.PresidentVetCommission);
 
-                enduranceEvent.Add(presidentVetCommission);
+                enduranceEvent.AddOrUpdate(presidentVetCommission);
 
                 var feiTechDelegate = this.personnelFactory.FeiTechDelegate(request.FeiTechDelegate);
-                enduranceEvent.Add(feiTechDelegate);
+                enduranceEvent.AddOrUpdate(feiTechDelegate);
 
                 var feiVetDelegate = this.personnelFactory.FeiVetDelegate(request.FeiVetDelegate);
-                enduranceEvent.Add(feiVetDelegate);
+                enduranceEvent.AddOrUpdate(feiVetDelegate);
 
                 var foreignJudge = this.personnelFactory.ForeignJudge(request.ForeignJudge);
-                enduranceEvent.Add(foreignJudge);
+                enduranceEvent.AddOrUpdate(foreignJudge);
 
                 var activeVet = this.personnelFactory.ActiveVet(request.ActiveVet);
-                enduranceEvent.Add(activeVet);
+                enduranceEvent.AddOrUpdate(activeVet);
 
                 request.MembersOfJudgeCommittee
                     .Select(this.personnelFactory.MemberOfJudgeCommittee)
-                    .ForEach(enduranceEvent.Add);
+                    .ForEach(enduranceEvent.AddOrUpdate);
 
                 request.MembersOfVetCommittee
                     .Select(this.personnelFactory.MemberOfVetCommittee)
-                    .ForEach(enduranceEvent.Add);
+                    .ForEach(enduranceEvent.AddOrUpdate);
 
                 request.Stewards
                     .Select(this.personnelFactory.Steward)
-                    .ForEach(enduranceEvent.Add);
+                    .ForEach(enduranceEvent.AddOrUpdate);
             }
         }
     }

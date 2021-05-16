@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace EnduranceJudge.Domain.Aggregates.Manager.Participations
 {
-    public class Participation : DomainModel<ManagerParticipationException>
+    public class Participation : DomainBase<ManagerParticipationException>
     {
         private const string AlreadyStartedMessage = "has already started";
 

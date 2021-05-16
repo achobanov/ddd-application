@@ -22,7 +22,7 @@
         <DockPanel Style="{StaticResource Form-Item}"
                    Visibility="{Binding ImportVisibility}">
 
-            <Button Style="{StaticResource Button-Primary}"
+            <Button Style="{StaticResource Button}"
                     Command="{Binding OpenImportFileDialog}"
                     Name="Select_ImportFile"
                     Content="{x:Static local:ImportContent.SelectImportFileButtonText}" />

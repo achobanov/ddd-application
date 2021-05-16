@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:desktop="clr-namespace:EnduranceJudge.Gateways.Desktop">
 
-    <Style x:Key="Button-Primary" TargetType="Button">
+    <Style x:Key="Button" TargetType="Button">
         <Setter Property="Height" Value="30px"></Setter>
     </Style>
 

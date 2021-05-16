@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.Phases
 {
-    public class Phase : DomainModel<PhaseException>, IPhaseState
+    public class Phase : DomainBase<PhaseException>, IPhaseState
     {
         private Phase()
         {
@@ -31,7 +31,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Phases
         }
         public Phase Add(PhaseForCategory phaseForCategory)
         {
-            this.phasesForCategories.ValidateAndAdd(phaseForCategory);
+            this.phasesForCategories.ValidateAndAddOrUpdate(phaseForCategory);
             return this;
         }
     }

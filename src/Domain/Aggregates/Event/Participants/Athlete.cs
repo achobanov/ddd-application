@@ -4,7 +4,7 @@ using EnduranceJudge.Domain.Enums;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.Participants
 {
-    public class Athlete : DomainModel<EventAthleteException>
+    public class Athlete : DomainBase<EventAthleteException>
     {
         private Athlete()
         {

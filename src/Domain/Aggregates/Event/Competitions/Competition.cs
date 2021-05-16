@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
 {
-    public class Competition : DomainModel<CompetitionException>, ICompetitionState
+    public class Competition : DomainBase<CompetitionException>, ICompetitionState
     {
         private Competition()
         {
@@ -30,7 +30,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
         }
         public Competition Add(Phase phase)
         {
-            this.phases.ValidateAndAdd(phase);
+            this.phases.ValidateAndAddOrUpdate(phase);
             return this;
         }
 
@@ -42,7 +42,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
         }
         public Competition Add(Participant participant)
         {
-            this.participants.ValidateAndAdd(participant);
+            this.participants.ValidateAndAddOrUpdate(participant);
             return this;
         }
         public Competition Remove(Participant participant)

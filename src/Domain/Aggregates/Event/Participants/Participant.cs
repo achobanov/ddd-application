@@ -3,7 +3,7 @@ using EnduranceJudge.Domain.Core.Models;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.Participants
 {
-    public class Participant : DomainModel<ParticipantException>, IParticipantState
+    public class Participant : DomainBase<ParticipantException>, IParticipantState
     {
         private Participant()
         {

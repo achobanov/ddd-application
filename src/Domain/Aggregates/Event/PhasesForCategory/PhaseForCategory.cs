@@ -4,7 +4,7 @@ using EnduranceJudge.Domain.Enums;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.PhasesForCategory
 {
-    public class PhaseForCategory : DomainModel<PhaseForCategoryException>, IPhaseForCategoryState
+    public class PhaseForCategory : DomainBase<PhaseForCategoryException>, IPhaseForCategoryState
     {
         private PhaseForCategory()
         {

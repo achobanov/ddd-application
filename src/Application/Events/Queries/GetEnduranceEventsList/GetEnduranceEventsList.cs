@@ -1,5 +1,5 @@
 ﻿using EnduranceJudge.Application.Core.Contracts;
-using EnduranceJudge.Application.Core.Exceptions;
+using EnduranceJudge.Application.Core.Handlers;
 using EnduranceJudge.Application.Events.Common;
 using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using MediatR;
