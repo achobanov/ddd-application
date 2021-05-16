@@ -60,6 +60,6 @@ namespace EnduranceJudge.Application.Events.Factories.Implementations
         }
 
         private Personnel Create(string name, PersonnelRole role)
-            => new Personnel(name, role);
+            => new Personnel(default, name, role);
     }
 }

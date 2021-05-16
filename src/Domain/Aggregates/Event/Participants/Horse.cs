@@ -4,8 +4,11 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Participants
 {
     public class Horse : DomainBase<EventHorseException>
     {
-        // TODO: revert to private
-        public Horse()
+        private Horse()
+        {
+        }
+
+        public Horse(int id) : base(id)
         {
         }
     }

@@ -15,7 +15,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
         {
         }
 
-        public EnduranceEvent(string name, string populatedPlace)
+        public EnduranceEvent(int id, string name, string populatedPlace) : base(id)
             => this.Validate(() =>
             {
                 this.Name = name.IsRequired(nameof(name));

@@ -1,17 +1,13 @@
+using EnduranceJudge.Core.Models;
 using MediatR;
 
 namespace EnduranceJudge.Application.Core.Requests
 {
-    public interface IIdentifiable
-    {
-        int Id { get; set; }
-    }
-
-    public interface IIdentifiableRequest : IIdentifiable, IRequest
+    public interface IIdentifiableRequest : IReIdentifiable, IRequest
     {
     }
 
-    public interface IIdentifiableRequest<out T> : IIdentifiable, IRequest<T>
+    public interface IIdentifiableRequest<out T> : IReIdentifiable, IRequest<T>
     {
     }
 }

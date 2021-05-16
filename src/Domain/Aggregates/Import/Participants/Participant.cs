@@ -11,7 +11,7 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Participants
         {
         }
 
-        public Participant(Athlete athlete, Horse horse)
+        public Participant(Athlete athlete, Horse horse): base(default)
             => this.Validate(() =>
             {
                 this.Athlete = athlete.IsRequired(nameof(athlete));

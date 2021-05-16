@@ -14,6 +14,7 @@ namespace EnduranceJudge.Application.Events.Commands.SaveEnduranceEvent
 {
     public class SaveEnduranceEvent : IRequest, IEnduranceEventState
     {
+        public int Id { get; set;  }
         public string Name { get; set; }
         public string PopulatedPlace { get; set; }
         public string CountryIsoCode { get; set; }

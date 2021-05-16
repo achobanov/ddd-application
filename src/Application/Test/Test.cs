@@ -39,53 +39,53 @@ namespace EnduranceJudge.Application.Test
 
             private async Task BigTest(CancellationToken cancellationToken)
             {
-                var enduranceEvent = new EnduranceEvent("Name", "place");
+                var enduranceEvent = new EnduranceEvent(0, "Name", "place");
 
-                var competition1 = new Competition(CompetitionType.National);
+                var competition1 = new Competition(0, CompetitionType.National);
 
-                var participant1 = new Participant("111", 11);
-                var horse1 = new Horse();
-                var athlete1 = new Athlete(Category.Kids);
-                var participant2 = new Participant("222", 22);
-                var horse2 = new Horse();
-                var athlete2 = new Athlete(Category.Kids);
-                var participant3 = new Participant("333", 33);
-                var horse3 = new Horse();
-                var athlete3 = new Athlete(Category.Adults);
-                var participant4 = new Participant("444", 44);
-                var horse4 = new Horse();
-                var athlete4 = new Athlete(Category.Adults);
+                var participant1 = new Participant(0, "111", 11);
+                var horse1 = new Horse(0);
+                var athlete1 = new Athlete(0, Category.Kids);
+                var participant2 = new Participant(0, "222", 22);
+                var horse2 = new Horse(0);
+                var athlete2 = new Athlete(0, Category.Kids);
+                var participant3 = new Participant(0, "333", 33);
+                var horse3 = new Horse(0);
+                var athlete3 = new Athlete(0, Category.Adults);
+                var participant4 = new Participant(0, "444", 44);
+                var horse4 = new Horse(0);
+                var athlete4 = new Athlete(0, Category.Adults);
 
-                var phase1 = new Phase(15);
-                var phaseForCategory1 = new PhaseForCategory(10, 15, Category.Kids);
-                var phaseForCategory2 = new PhaseForCategory(10, 15, Category.Adults);
+                var phase1 = new Phase(0, 15);
+                var phaseForCategory1 = new PhaseForCategory(0, 10, 15, Category.Kids);
+                var phaseForCategory2 = new PhaseForCategory(0, 10, 15, Category.Adults);
 
-                var phase2 = new Phase(25, true);
-                var phaseForCategory3 = new PhaseForCategory(20, 25, Category.Kids);
-                var phaseForCategory4 = new PhaseForCategory(20, 25, Category.Adults);
+                var phase2 = new Phase(0, 25, true);
+                var phaseForCategory3 = new PhaseForCategory(0, 20, 25, Category.Kids);
+                var phaseForCategory4 = new PhaseForCategory(0, 20, 25, Category.Adults);
 
-                var competition2 = new Competition(CompetitionType.International);
-                var participant5= new Participant("111", 11);
-                var horse5= new Horse();
-                var athlete5= new Athlete(Category.Kids);
-                var participant6= new Participant("222", 22);
-                var horse6= new Horse();
-                var athlete6= new Athlete(Category.Kids);
-                var participant7 = new Participant("333", 33);
-                var horse7 = new Horse();
-                var athlete7 = new Athlete(Category.Adults);
-                var participant8 = new Participant("444", 44);
-                var horse8 = new Horse();
-                var athlete8 = new Athlete(Category.Adults);
+                var competition2 = new Competition(0, CompetitionType.International);
+                var participant5= new Participant(0, "111", 11);
+                var horse5= new Horse(0);
+                var athlete5= new Athlete(0, Category.Kids);
+                var participant6= new Participant(0, "222", 22);
+                var horse6= new Horse(0);
+                var athlete6= new Athlete(0, Category.Kids);
+                var participant7 = new Participant(0, "333", 33);
+                var horse7 = new Horse(0);
+                var athlete7 = new Athlete(0, Category.Adults);
+                var participant8 = new Participant(0, "444", 44);
+                var horse8 = new Horse(0);
+                var athlete8 = new Athlete(0, Category.Adults);
 
-                var phase3 = new Phase(30, true);
-                var phaseForCategory5 = new PhaseForCategory(10, 15, Category.Kids);
-                var phaseForCategory6 = new PhaseForCategory(10, 15, Category.Adults);
+                var phase3 = new Phase(0, 30, true);
+                var phaseForCategory5 = new PhaseForCategory(0, 10, 15, Category.Kids);
+                var phaseForCategory6 = new PhaseForCategory(0, 10, 15, Category.Adults);
 
-                var presidentJury = new Personnel("Gosho Prezidenta", PersonnelRole.PresidentGroundJury);
-                var activeVet = new Personnel("House MD", PersonnelRole.ActiveVet);
-                var vetMember1 = new Personnel("Vet One", PersonnelRole.MemberOfVetCommittee);
-                var vetMember2 = new Personnel("Vet Two", PersonnelRole.MemberOfVetCommittee);
+                var presidentJury = new Personnel(0, "Gosho Prezidenta", PersonnelRole.PresidentGroundJury);
+                var activeVet = new Personnel(0, "House MD", PersonnelRole.ActiveVet);
+                var vetMember1 = new Personnel(0, "Vet One", PersonnelRole.MemberOfVetCommittee);
+                var vetMember2 = new Personnel(0, "Vet Two", PersonnelRole.MemberOfVetCommittee);
 
                 var country = await this.countryQueries.Find("BUL");
 
@@ -233,7 +233,7 @@ namespace EnduranceJudge.Application.Test
                 // enduranceEvent = await this.eventCommands.Find(1);
 
                 enduranceEvent.Remove(enduranceEvent.Competitions.First());
-                enduranceEvent.AddOrUpdate(new Competition(CompetitionType.International));
+                enduranceEvent.AddOrUpdate(new Competition(0, CompetitionType.International));
                 await this.enduranceEventCommands.Save(enduranceEvent, cancellationToken);
 
                 enduranceEvent = await this.enduranceEventCommands.Find(1);
@@ -242,10 +242,10 @@ namespace EnduranceJudge.Application.Test
 
             private async Task Create(CancellationToken cancellationToken)
             {
-                var enduranceEvent = new EnduranceEvent("Name", "place");
-                var competition1 = new Competition(CompetitionType.International);
-                var competition2 = new Competition(CompetitionType.National);
-                var competition3 = new Competition(CompetitionType.National);
+                var enduranceEvent = new EnduranceEvent(0, "Name", "place");
+                var competition1 = new Competition(0, CompetitionType.International);
+                var competition2 = new Competition(0, CompetitionType.National);
+                var competition3 = new Competition(0, CompetitionType.National);
 
                 enduranceEvent.AddOrUpdate(competition1);
                 enduranceEvent.AddOrUpdate(competition2);
@@ -264,7 +264,7 @@ namespace EnduranceJudge.Application.Test
 
                 // await this.eventCommands.Save(enduranceEvent, cancellationToken);
 
-                var competition2 = new Competition(CompetitionType.National);
+                var competition2 = new Competition(0, CompetitionType.National);
                 enduranceEvent.AddOrUpdate(competition2);
 
                 await this.enduranceEventCommands.Save(enduranceEvent, cancellationToken);

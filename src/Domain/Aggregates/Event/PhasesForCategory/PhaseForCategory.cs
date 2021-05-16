@@ -10,7 +10,8 @@ namespace EnduranceJudge.Domain.Aggregates.Event.PhasesForCategory
         {
         }
 
-        public PhaseForCategory(int maxRecoveryTimeInMinutes, int restTimeInMinutes, Category category)
+        public PhaseForCategory(int id, int maxRecoveryTimeInMinutes, int restTimeInMinutes, Category category)
+            : base(id)
             => this.Validate(() =>
             {
                 this.MaxRecoveryTimeInMinutes = maxRecoveryTimeInMinutes

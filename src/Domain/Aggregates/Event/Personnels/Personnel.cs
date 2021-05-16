@@ -11,7 +11,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Personnels
         {
         }
 
-        public Personnel(string name, PersonnelRole role)
+        public Personnel(int id, string name, PersonnelRole role) : base(id)
             => this.Validate(() =>
             {
                 this.Name = name.CheckPersonName();

@@ -7,6 +7,18 @@ namespace EnduranceJudge.Domain.Core.Models
     public abstract class DomainBase<TException> : IDomainModel
         where TException : DomainException, new()
     {
+        private static readonly Random random = new();
+
+        protected DomainBase()
+        {
+            this.Id = random.Next(1_000_000, 1_000_000_000);
+        }
+
+        protected DomainBase(int id)
+        {
+            this.Id = id;
+        }
+
         public int Id { get; private set; }
 
         internal void Validate(Action action)
@@ -23,7 +35,6 @@ namespace EnduranceJudge.Domain.Core.Models
 
         internal void Throw(string message)
             => Thrower.Throw<TException>(message);
-
 
         public override bool Equals(object obj)
         {

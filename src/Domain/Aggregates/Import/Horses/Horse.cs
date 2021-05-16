@@ -9,7 +9,7 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Horses
         {
         }
 
-        public Horse(string feiId, string name, string breed)
+        public Horse(string feiId, string name, string breed): base(default)
             => this.Validate(() =>
             {
                 this.FeiId = feiId.IsRequired(nameof(feiId));

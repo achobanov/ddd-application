@@ -12,7 +12,7 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Competitions
         {
         }
 
-        public Competition(List<Participant> participants)
+        public Competition(List<Participant> participants): base(default)
             => this.Validate(() =>
             {
                 this.participants = participants.IsRequired(nameof(participants));

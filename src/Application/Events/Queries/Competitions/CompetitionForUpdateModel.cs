@@ -5,7 +5,7 @@ namespace EnduranceJudge.Application.Events.Queries.Competitions
 {
     public class CompetitionForUpdateModel : ICompetitionState
     {
-        public int Id { get; set; }
-        public CompetitionType Type { get; set; }
+        public int Id { get; private set; }
+        public CompetitionType Type { get; private set; }
     }
 }

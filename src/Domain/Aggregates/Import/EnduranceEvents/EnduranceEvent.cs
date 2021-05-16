@@ -11,7 +11,7 @@ namespace EnduranceJudge.Domain.Aggregates.Import.EnduranceEvents
         {
         }
 
-        public EnduranceEvent(List<Competition> competitions)
+        public EnduranceEvent(List<Competition> competitions): base(default)
         {
             this.competitions = competitions;
         }

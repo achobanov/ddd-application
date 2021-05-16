@@ -4,7 +4,7 @@ namespace EnduranceJudge.Domain.Aggregates.Ranking.ResultsInPhases
 {
     public class ResultInPhase : DomainBase<RankingResultInPhaseException>
     {
-        internal ResultInPhase() 
+        internal ResultInPhase() : base(default)
         {
         }
 

@@ -6,7 +6,7 @@ namespace EnduranceJudge.Application.Events.Factories.Implementations
     {
         public EnduranceEvent Create(IEnduranceEventState state)
         {
-            var enduranceEvent = new EnduranceEvent(state.Name, state.PopulatedPlace);
+            var enduranceEvent = new EnduranceEvent(state.Id, state.Name, state.PopulatedPlace);
             return enduranceEvent;
         }
     }

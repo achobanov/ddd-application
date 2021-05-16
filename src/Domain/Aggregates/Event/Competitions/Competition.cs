@@ -14,7 +14,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
         {
         }
 
-        public Competition(CompetitionType type)
+        public Competition(int id, CompetitionType type) : base(id)
             => this.Validate(() =>
             {
                 this.Type = type.IsRequired(nameof(type));

@@ -12,7 +12,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Phases
         {
         }
 
-        public Phase(int lengthInKilometers, bool isFinal = false)
+        public Phase(int id, int lengthInKilometers, bool isFinal = false) : base(id)
             => this.Validate(() =>
             {
                 this.IsFinal = isFinal;

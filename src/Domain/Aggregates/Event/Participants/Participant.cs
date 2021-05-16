@@ -5,11 +5,11 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Participants
 {
     public class Participant : DomainBase<ParticipantException>, IParticipantState
     {
-        private Participant()
+        private Participant() : base(default)
         {
         }
 
-        public Participant(string rfId, int contestNumber)
+        public Participant(int id, string rfId, int contestNumber) : base(id)
             => this.Validate(() =>
             {
                 this.RfId = rfId.IsRequired(nameof(rfId));

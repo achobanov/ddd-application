@@ -10,7 +10,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Participants
         {
         }
 
-        public Athlete(Category category)
+        public Athlete(int id, Category category) : base(id)
             => this.Validate(() =>
             {
                 this.Category = category.IsRequired(nameof(category));

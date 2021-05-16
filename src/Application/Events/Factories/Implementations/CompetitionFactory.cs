@@ -6,7 +6,7 @@ namespace EnduranceJudge.Application.Events.Factories.Implementations
     {
         public Competition Create(ICompetitionState state)
         {
-            var competition = new Competition(state.Type);
+            var competition = new Competition(state.Id, state.Type);
             return competition;
         }
     }

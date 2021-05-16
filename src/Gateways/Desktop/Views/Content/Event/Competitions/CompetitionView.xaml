@@ -7,6 +7,8 @@
              prism:ViewModelLocator.AutoWireViewModel="True">
 
     <StackPanel Style="{StaticResource Form}">
+        <TextBox Visibility="Hidden"
+                 Text="{Binding Id}" />
 
         <DockPanel Style="{StaticResource Form-Item}">
             <Label Style="{StaticResource Label-Primary}"
