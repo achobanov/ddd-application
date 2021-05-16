@@ -32,10 +32,6 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         {
             base.OnNavigatedTo(navigationContext);
             base.OnNavigatedTo(navigationContext);
-            if (this.ListItems.Any())
-            {
-                return;
-            }
 
             this.LoadEvents();
         }
@@ -49,6 +45,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
                 .Select(this.ToViewModeL)
                 .ToList();
 
+            this.ListItems.Clear();
             this.ListItems.AddRange(viewModels);
         }
 
