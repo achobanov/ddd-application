@@ -38,18 +38,18 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
         {
             var parameters = new NavigationParameters
             {
-                { DesktopConstants.NavigationIdKey, id },
+                { DesktopConstants.EntityIdParameter, id },
             };
 
             this.ChangeTo(viewType, regionName, parameters);
         }
 
-        private void ChangeTo(string regionName, Type viewType)
+        protected void ChangeTo(string regionName, Type viewType)
         {
             this.ChangeTo(viewType, regionName, null);
         }
 
-        private void ChangeTo(Type viewType, string regionName, NavigationParameters parameters)
+        protected void ChangeTo(Type viewType, string regionName, NavigationParameters parameters)
         {
             if (viewType == null)
             {

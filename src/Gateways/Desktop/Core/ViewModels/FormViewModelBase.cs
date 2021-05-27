@@ -1,33 +1,36 @@
 ﻿using EnduranceJudge.Application.Core.Requests;
-using EnduranceJudge.Application.Events.Commands.SaveEnduranceEvent;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Gateways.Desktop.Core.Commands;
+using EnduranceJudge.Gateways.Desktop.Core.Enums;
 using EnduranceJudge.Gateways.Desktop.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using MediatR;
 using Prism.Commands;
 using Prism.Regions;
+using System;
 using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
-    public class FormViewModelBase<TGetCommand, TSaveCommand, TUpdateModel> : ViewModelBase,
+    public abstract class FormViewModelBase<TGetCommand, TSaveCommand, TUpdateModel> : ViewModelBase,
         IMapFrom<TUpdateModel>,
         IMapTo<TSaveCommand>
         where TGetCommand : IIdentifiableRequest<TUpdateModel>, new()
         where TSaveCommand : IRequest
     {
-        public FormViewModelBase(IApplicationService application) : base(application)
+        protected FormViewModelBase(IApplicationService application) : base(application)
         {
             this.Save = new AsyncCommand(this.SaveAction);
         }
 
+        protected FormOperation OperationMode { get; private set; }
+
         public DelegateCommand Save { get; }
         public bool HasSaved { get; private set; }
 
-        private async Task SaveAction()
+        protected virtual async Task SaveAction()
         {
-            var command = this.Map<SaveEnduranceEvent>();
+            var command = this.Map<TSaveCommand>();
 
             await this.Application.Execute(command);
             this.HasSaved = true;
@@ -37,10 +40,18 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         {
             base.OnNavigatedTo(navigationContext);
 
-            var enduranceEventId = navigationContext.GetId();
-            if (enduranceEventId.HasValue)
+            this.OperationMode = navigationContext.GetOperationMode();
+
+            if (this.OperationMode == FormOperation.Update)
             {
-                this.Load(enduranceEventId.Value);
+                var id = navigationContext.GetId();
+                if (!id.HasValue)
+                {
+                    throw new InvalidOperationException(
+                        "Update operation requires Id navigational parameter");
+                }
+
+                this.Load(id.Value);
             }
         }
 

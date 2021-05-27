@@ -14,7 +14,8 @@ namespace EnduranceJudge.Gateways.Desktop
             }
         }
 
-        public const string NavigationIdKey = "Id";
+        public const string EntityIdParameter = "Id";
+        public const string OperationModeParameter = "OperationMode";
     }
 
     public static class Regions
