@@ -1,3 +1,4 @@
+using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Domain.Aggregates.Common.Countries;
 using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Aggregates.Event.Personnels;
@@ -9,23 +10,19 @@ using System.Linq;
 
 namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
 {
-    public class EnduranceEvent : DomainBase<EnduranceEventException>, IAggregateRoot
+    public class EnduranceEvent : DomainBase<EnduranceEventException>, IEnduranceEventState, IAggregateRoot
     {
-        private EnduranceEvent()
+        public EnduranceEvent()
         {
         }
 
-        public EnduranceEvent(int id, string name, string populatedPlace) : base(id)
-            => this.Validate(() =>
-            {
-                this.Name = name.IsRequired(nameof(name));
-                this.PopulatedPlace = populatedPlace.IsRequired(nameof(populatedPlace));
-            });
+        public EnduranceEvent(IEnduranceEventState state) : base(state.Id)
+            => this.Update(state);
 
-        public string Name { get; protected set; }
-        public string PopulatedPlace { get; protected set; }
+        public string Name { get; private set; }
+        public string PopulatedPlace { get; private set; }
 
-        public Country Country { get; protected set; }
+        public Country Country { get; private set; }
         public void Set(Country country)
             => this.Validate(() =>
             {
@@ -66,7 +63,13 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
             get => this.personnel.AsReadOnly();
             private set => this.personnel = value.ToList();
         }
-        public EnduranceEvent AddOrUpdate(Personnel personnel)
+
+        public EnduranceEvent Add(IEnumerable<Personnel> personnel)
+        {
+            personnel.ForEach(this.personnel.Add);
+            return this;
+        }
+        public EnduranceEvent Add(Personnel personnel)
         {
             var areRoleDuplicatesAllowed = IsRoleMultiPersonnel(personnel.Role);
 
@@ -83,12 +86,12 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
                 this.Throw(message);
             }
 
-            this.personnel.ValidateAndAddOrUpdate(personnel);
+            this.personnel.ValidateAndAdd(personnel);
             return this;
         }
-        public EnduranceEvent Remove(Personnel personnel)
+        public EnduranceEvent ClearPersonnel()
         {
-            this.personnel.ValidateAndRemove(personnel);
+            this.personnel.Clear();
             return this;
         }
 
@@ -118,5 +121,12 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
 
             return isMultiPersonnel;
         }
+
+        public void Update(IEnduranceEventState state)
+            => this.Validate(() =>
+            {
+                this.Name = state.Name.IsRequired(nameof(state.Name));
+                this.PopulatedPlace = state.PopulatedPlace.IsRequired(nameof(state.PopulatedPlace));
+            });
     }
 }

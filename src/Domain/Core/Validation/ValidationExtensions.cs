@@ -72,6 +72,19 @@ namespace EnduranceJudge.Domain.Core.Validation
             collection.Remove(model);
         }
 
+        public static void ValidateAndAdd<TDomainModel>(
+            this ICollection<TDomainModel> collection,
+            TDomainModel model)
+            where TDomainModel : IDomainModel
+        {
+            if (model == null)
+            {
+                throw new ValidationException(CannotAddNullItemTemplate, typeof(TDomainModel).Name);
+            }
+
+            collection.Add(model);
+        }
+
         public static void ValidateAndAddOrUpdate<TDomainModel>(
             this ICollection<TDomainModel> collection,
             TDomainModel model)

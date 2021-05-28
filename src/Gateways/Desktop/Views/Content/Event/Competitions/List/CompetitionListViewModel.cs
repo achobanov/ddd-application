@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions.List
 {
-    public class CompetitionListViewModel : ListViewModelBase<GetCompetitionsList, CompetitionListView>
+    public class CompetitionListViewModel : ListViewModelBase<GetCompetitionsList, CompetitionView>
     {
         public CompetitionListViewModel(IApplicationService application, INavigationService navigation)
             : base(application, navigation)

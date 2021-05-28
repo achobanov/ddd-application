@@ -2,7 +2,6 @@
 using EnduranceJudge.Application.Core.Contracts;
 using EnduranceJudge.Application.Core.Handlers;
 using EnduranceJudge.Application.Events.Factories;
-using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using MediatR;
 using System.Collections.Generic;
@@ -31,28 +30,37 @@ namespace EnduranceJudge.Application.Events.Commands.SaveEnduranceEvent
         public class SaveEnduranceEventHandler : Handler<SaveEnduranceEvent>
         {
             private readonly ICommandsBase<EnduranceEvent> eventCommands;
-            private readonly IEnduranceEventFactory enduranceEventFactory;
             private readonly IPersonnelFactory personnelFactory;
             private readonly ICountryQueries countryQueries;
 
             public SaveEnduranceEventHandler(
                 ICommandsBase<EnduranceEvent> eventCommands,
-                IEnduranceEventFactory enduranceEventFactory,
                 IPersonnelFactory personnelFactory,
                 ICountryQueries countryQueries)
             {
                 this.eventCommands = eventCommands;
-                this.enduranceEventFactory = enduranceEventFactory;
                 this.personnelFactory = personnelFactory;
                 this.countryQueries = countryQueries;
             }
 
             protected override async Task Handle(SaveEnduranceEvent request, CancellationToken cancellationToken)
             {
-                var enduranceEvent = this.enduranceEventFactory.Create(request);
-                var country = await this.countryQueries.Find(request.CountryIsoCode);
+                var enduranceEvent = await this.eventCommands.Find(request.Id);
+                if (enduranceEvent == null)
+                {
+                    enduranceEvent = new EnduranceEvent(request);
+                }
+                else
+                {
+                    enduranceEvent.Update(request);
+                }
 
-                enduranceEvent.Set(country);
+                if (enduranceEvent.Country?.IsoCode != request.CountryIsoCode)
+                {
+                    var country = await this.countryQueries.Find(request.CountryIsoCode);
+                    enduranceEvent.Set(country);
+                }
+
                 this.AddPersonnel(enduranceEvent, request);
 
                 await this.eventCommands.Save(enduranceEvent, cancellationToken);
@@ -60,37 +68,33 @@ namespace EnduranceJudge.Application.Events.Commands.SaveEnduranceEvent
 
             private void AddPersonnel(EnduranceEvent enduranceEvent, SaveEnduranceEvent request)
             {
+                var feiTechDelegate = this.personnelFactory.FeiTechDelegate(request.FeiTechDelegate);
+                var feiVetDelegate = this.personnelFactory.FeiVetDelegate(request.FeiVetDelegate);
+                var foreignJudge = this.personnelFactory.ForeignJudge(request.ForeignJudge);
+                var activeVet = this.personnelFactory.ActiveVet(request.ActiveVet);
                 var presidentGroundJury = this.personnelFactory.PresidentGroundJury(request.PresidentGroundJury);
-                enduranceEvent.AddOrUpdate(presidentGroundJury);
-
                 var presidentVetCommission = this.personnelFactory.PresidentVetCommission(
                     request.PresidentVetCommission);
 
-                enduranceEvent.AddOrUpdate(presidentVetCommission);
+                var membersOfJudgeCommittee = request.MembersOfVetCommittee.Select(
+                    this.personnelFactory.MemberOfJudgeCommittee);
 
-                var feiTechDelegate = this.personnelFactory.FeiTechDelegate(request.FeiTechDelegate);
-                enduranceEvent.AddOrUpdate(feiTechDelegate);
+                var membersOfVetCommittee = request.MembersOfVetCommittee.Select(
+                    this.personnelFactory.MemberOfVetCommittee);
 
-                var feiVetDelegate = this.personnelFactory.FeiVetDelegate(request.FeiVetDelegate);
-                enduranceEvent.AddOrUpdate(feiVetDelegate);
+                var stewards = request.Stewards.Select(this.personnelFactory.Steward);
 
-                var foreignJudge = this.personnelFactory.ForeignJudge(request.ForeignJudge);
-                enduranceEvent.AddOrUpdate(foreignJudge);
-
-                var activeVet = this.personnelFactory.ActiveVet(request.ActiveVet);
-                enduranceEvent.AddOrUpdate(activeVet);
-
-                request.MembersOfJudgeCommittee
-                    .Select(this.personnelFactory.MemberOfJudgeCommittee)
-                    .ForEach(enduranceEvent.AddOrUpdate);
-
-                request.MembersOfVetCommittee
-                    .Select(this.personnelFactory.MemberOfVetCommittee)
-                    .ForEach(enduranceEvent.AddOrUpdate);
-
-                request.Stewards
-                    .Select(this.personnelFactory.Steward)
-                    .ForEach(enduranceEvent.AddOrUpdate);
+                enduranceEvent
+                    .ClearPersonnel()
+                    .Add(presidentGroundJury)
+                    .Add(presidentVetCommission)
+                    .Add(feiTechDelegate)
+                    .Add(feiVetDelegate)
+                    .Add(foreignJudge)
+                    .Add(activeVet)
+                    .Add(membersOfJudgeCommittee)
+                    .Add(membersOfVetCommittee)
+                    .Add(stewards);
             }
         }
     }

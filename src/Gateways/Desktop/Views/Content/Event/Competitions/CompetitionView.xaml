@@ -12,12 +12,22 @@
 
         <DockPanel Style="{StaticResource Form-Item}">
             <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=EnduranceEvents}"
+                   Content="{x:Static common:EventPageContent.EnduranceEventLabel}"/>
+
+            <ComboBox Style="{StaticResource Combo-Box}"
+                      ItemsSource="{Binding EnduranceEvents}"
+                      SelectedValue="{Binding EnduranceEventId}"
+                      Name="EnduranceEvents" />
+        </DockPanel>
+        <DockPanel Style="{StaticResource Form-Item}">
+            <Label Style="{StaticResource Label-Primary}"
                    Target="{Binding ElementName=_Type}"
                    Content="{x:Static local:CompetitionContent.Type}" />
 
             <ComboBox Style="{StaticResource Combo-Box}"
-                      ItemsSource="{Binding CompetitionTypeItems}"
-                      SelectedValue="{Binding CompetitionType}"
+                      ItemsSource="{Binding CompetitionTypes}"
+                      SelectedValue="{Binding Type}"
                       Name="_Type" />
         </DockPanel>
         <DockPanel Style="{StaticResource Form-Item}">

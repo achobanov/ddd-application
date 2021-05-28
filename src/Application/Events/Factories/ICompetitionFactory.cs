@@ -1,8 +1,9 @@
-﻿using EnduranceJudge.Domain.Aggregates.Event.Competitions;
+﻿using EnduranceJudge.Core.ConventionalServices;
+using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 
 namespace EnduranceJudge.Application.Events.Factories
 {
-    public interface ICompetitionFactory
+    public interface ICompetitionFactory : IService
     {
         Competition Create(ICompetitionState state);
     }

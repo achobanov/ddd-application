@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using EnduranceJudge.Core.Services;
+using EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Competitions;
 using EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Countries;
 using EnduranceJudge.Gateways.Persistence.Entities;
 using EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Events;
@@ -13,7 +14,8 @@ namespace EnduranceJudge.Gateways.Persistence
     public class EnduranceJudgeDbContext : DbContext,
         IEnduranceEventsDataStore,
         ICountriesDataStore,
-        IHorseDataStore
+        IHorseDataStore,
+        ICompetitionsDataStore
     {
         public EnduranceJudgeDbContext()
         {

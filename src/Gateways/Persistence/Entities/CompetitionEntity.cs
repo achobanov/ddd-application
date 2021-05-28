@@ -1,5 +1,5 @@
 using AutoMapper;
-using AutoMapper.EquivalencyExpression;
+using EnduranceJudge.Application.Events.Common;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Enums;
@@ -56,6 +56,9 @@ namespace EnduranceJudge.Gateways.Persistence.Entities
                         participantInCompetition.CompetitionId = this.Id;
                     }
                 });
+
+            mapper.CreateMap<CompetitionEntity, ListItemModel>()
+                .ForMember(x => x.Name, opt => opt.MapFrom(y => y.Type.ToString()));
         }
     }
 }

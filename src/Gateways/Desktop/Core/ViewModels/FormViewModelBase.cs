@@ -42,15 +42,9 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 
             this.OperationMode = navigationContext.GetOperationMode();
 
-            if (this.OperationMode == FormOperation.Update)
+            var id = navigationContext.GetId();
+            if (id.HasValue)
             {
-                var id = navigationContext.GetId();
-                if (!id.HasValue)
-                {
-                    throw new InvalidOperationException(
-                        "Update operation requires Id navigational parameter");
-                }
-
                 this.Load(id.Value);
             }
         }

@@ -1,20 +1,26 @@
-﻿using System;
+﻿using EnduranceJudge.Application.Events.Common;
+using EnduranceJudge.Core.Mappings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ComboBoxItem
 {
-    public class ComboBoxItemViewModel
+    public class ComboBoxItemViewModel : IMapFrom<ListItemModel>
     {
+        public ComboBoxItemViewModel()
+        {
+        }
+
         public ComboBoxItemViewModel(int id, string name)
         {
             this.Id = id;
             this.Name = name;
         }
 
-        public int Id { get; }
+        public int Id { get; private set;  }
 
-        public string Name { get; }
+        public string Name { get; private set; }
 
         public static IEnumerable<ComboBoxItemViewModel> FromEnum<T>()
             where T : struct, Enum

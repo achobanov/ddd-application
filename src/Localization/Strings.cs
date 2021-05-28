@@ -23,6 +23,7 @@
                 public const string SaveButtonText = "Save";
                 public const string CreateButtonText = "Create";
                 public const string UpdateButtonText = "Update";
+                public const string EnduranceEventLabel = "Endurance Events";
             }
 
             public static class NavigationStrings

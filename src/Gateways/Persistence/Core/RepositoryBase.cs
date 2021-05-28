@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Persistence.Core
 {
-    public abstract class RepositoryBase<TDataStore, TEntityModel, TDomainModel> : ICommandsBase<TDomainModel>
-        where TDomainModel : class, IAggregateRoot
+    public class RepositoryBase<TDataStore, TEntityModel, TDomainModel> : ICommandsBase<TDomainModel>
+        where TDomainModel : class, IDomainModel
         where TDataStore : IDataStore
         where TEntityModel : EntityModel
     {
         private readonly IWorkFileUpdater workFileUpdater;
 
-        protected RepositoryBase(TDataStore dataStore, IWorkFileUpdater workFileUpdater)
+        public RepositoryBase(TDataStore dataStore, IWorkFileUpdater workFileUpdater)
         {
             this.workFileUpdater = workFileUpdater;
             this.DataStore = dataStore;
