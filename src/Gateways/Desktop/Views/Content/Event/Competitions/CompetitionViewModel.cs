@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using EnduranceJudge.Application.Events.Commands.Competitions;
+﻿using EnduranceJudge.Application.Events.Commands.Competitions;
 using EnduranceJudge.Application.Events.Queries.Competitions;
 using EnduranceJudge.Application.Events.Queries.GetEnduranceEventsList;
 using EnduranceJudge.Core.Mappings;
@@ -14,7 +13,7 @@ using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions
 {
-    public class CompetitionViewModel : FormViewModelBase<GetCompetition, SaveCompetition, CompetitionForUpdateModel>
+    public class CompetitionViewModel : UpdateFormBase<GetCompetition, CompetitionForUpdateModel, UpdateCompetition>
     {
         public CompetitionViewModel(IApplicationService application) : base(application)
         {

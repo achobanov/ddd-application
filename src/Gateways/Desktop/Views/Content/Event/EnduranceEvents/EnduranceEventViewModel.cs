@@ -15,9 +15,7 @@ using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
 {
-    public class EnduranceEventViewModel
-        : FormViewModelBase<GetEnduranceEvent, SaveEnduranceEvent, EnduranceEventForUpdateModel>,
-        IMapExplicitly
+    public class EnduranceEventViewModel : CreateFormBase<SaveEnduranceEvent>, IMapExplicitly
     {
         public EnduranceEventViewModel() : base(null)
         {

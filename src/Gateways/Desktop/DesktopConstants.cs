@@ -16,6 +16,7 @@ namespace EnduranceJudge.Gateways.Desktop
 
         public const string EntityIdParameter = "Id";
         public const string OperationModeParameter = "OperationMode";
+        public const string PrismEventPublishMethodName = "Publish";
     }
 
     public static class Regions
