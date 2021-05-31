@@ -1,5 +1,4 @@
-﻿using EnduranceJudge.Gateways.Desktop.Core.Enums;
-using Prism.Regions;
+﻿using Prism.Regions;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.Extensions
 {
@@ -14,20 +13,6 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Extensions
             }
 
             return id;
-        }
-
-        public static FormOperation GetOperationMode(this NavigationContext context)
-        {
-            var hasOperationParam = context.Parameters.TryGetValue<FormOperation>(
-                DesktopConstants.OperationModeParameter,
-                out var operation);
-
-            if (!hasOperationParam)
-            {
-                return default;
-            }
-
-            return operation;
         }
     }
 }

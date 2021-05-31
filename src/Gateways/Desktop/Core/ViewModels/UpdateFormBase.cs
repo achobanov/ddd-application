@@ -1,7 +1,6 @@
 ﻿using EnduranceJudge.Application.Core.Requests;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Gateways.Desktop.Core.Commands;
-using EnduranceJudge.Gateways.Desktop.Core.Enums;
 using EnduranceJudge.Gateways.Desktop.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using MediatR;
@@ -12,46 +11,41 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
-    public abstract class FormViewModelBase<TGetCommand, TSaveCommand, TUpdateModel> : ViewModelBase,
-        IMapFrom<TUpdateModel>,
-        IMapTo<TSaveCommand>
-        where TGetCommand : IIdentifiableRequest<TUpdateModel>, new()
-        where TSaveCommand : IRequest
+    public abstract class UpdateFormBase<TGet, TGetModel, TUpdate> : ViewModelBase,
+        IMapFrom<TGetModel>,
+        IMapTo<TUpdate>
+        where TGet : IIdentifiableRequest<TGetModel>, new()
+        where TUpdate : IRequest
     {
-        protected FormViewModelBase(IApplicationService application) : base(application)
+        protected UpdateFormBase(IApplicationService application) : base(application)
         {
-            this.Save = new AsyncCommand(this.SaveAction);
+            this.Update = new AsyncCommand(this.UpdateAction);
         }
 
-        protected FormOperation OperationMode { get; private set; }
-
-        public DelegateCommand Save { get; }
-        public bool HasSaved { get; private set; }
-
-        protected virtual async Task SaveAction()
+        public DelegateCommand Update { get; }
+        protected virtual async Task UpdateAction()
         {
-            var command = this.Map<TSaveCommand>();
+            var command = this.Map<TUpdate>();
 
             await this.Application.Execute(command);
-            this.HasSaved = true;
         }
 
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
             base.OnNavigatedTo(navigationContext);
 
-            this.OperationMode = navigationContext.GetOperationMode();
-
             var id = navigationContext.GetId();
-            if (id.HasValue)
+            if (!id.HasValue)
             {
-                this.Load(id.Value);
+                throw new InvalidOperationException("Update form requires ID parameter.");
             }
+
+            this.Load(id.Value);
         }
 
         private async Task Load(int id)
         {
-            var command = new TGetCommand
+            var command = new TGet
             {
                 Id = id
             };

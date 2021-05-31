@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Application.Events.Commands.Competitions
 {
-    public class SaveCompetition : IRequest, ICompetitionState
+    public class UpdateCompetition : IRequest, ICompetitionState
     {
         public int EnduranceEventId { get; set; }
         public int Id { get; set; }
         public CompetitionType Type { get; set; }
 
-        public class SaveCompetitionHandler : Handler<SaveCompetition>
+        public class SaveCompetitionHandler : Handler<UpdateCompetition>
         {
             private readonly IEnduranceEventCommands commands;
             private readonly ICompetitionFactory competitionFactory;
@@ -26,7 +26,7 @@ namespace EnduranceJudge.Application.Events.Commands.Competitions
                 this.competitionFactory = competitionFactory;
             }
 
-            protected override async Task Handle(SaveCompetition request, CancellationToken cancellationToken)
+            protected override async Task Handle(UpdateCompetition request, CancellationToken cancellationToken)
             {
                 var competition = this.competitionFactory.Create(request);
 
