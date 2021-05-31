@@ -5,7 +5,6 @@ using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Core.Mappings.Converters;
-using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 using Prism.Regions;
@@ -18,7 +17,6 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
 {
     public class EnduranceEventViewModel
         : FormViewModelBase<GetEnduranceEvent, SaveEnduranceEvent, EnduranceEventForUpdateModel>,
-        IEnduranceEventState,
         IMapExplicitly
     {
         public EnduranceEventViewModel() : base(null)
@@ -31,13 +29,6 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
 
         public ObservableCollection<CountryListingModel> Countries { get; }
             = new (Enumerable.Empty<CountryListingModel>());
-
-        private int id;
-        public int Id
-        {
-            get => this.id;
-            set => this.SetProperty(ref this.id, value);
-        }
 
         private string name;
         public string Name

@@ -7,7 +7,7 @@
              prism:ViewModelLocator.AutoWireViewModel="True">
 
     <StackPanel Style="{StaticResource Form}">
-        <TextBox Visibility="Hidden"
+        <TextBox Style="{StaticResource Input-Id}"
                  Text="{Binding Id}" />
 
         <DockPanel Style="{StaticResource Form-Item}">
@@ -39,7 +39,6 @@
               <ComboBox Style="{StaticResource Combo-Box}"
                       ItemsSource="{Binding Countries}"
                       SelectedValue="{Binding SelectedCountryIsoCode}"
-                      DisplayMemberPath="Name"
                       SelectedValuePath="IsoCode"
                       Name="Countries" />
         </DockPanel>
