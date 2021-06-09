@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create;
+using EnduranceJudge.Application.Events.Commands.EnduranceEvents.Update;
 using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
 using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Core.Extensions;
@@ -18,15 +18,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Create
+namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Update
 {
-    public class CreateEnduranceEventViewModel : PrincipalFormBase<CreateEnduranceEvent>, IMapExplicitly
+    public class UpdateEnduranceEventViewModel
+        : PrincipalUpdateFormBase<GetEnduranceEvent, EnduranceEventForUpdateModel, UpdateEnduranceEvent>,
+        IMapExplicitly
     {
-        public CreateEnduranceEventViewModel() : base(null, null, null)
+        public UpdateEnduranceEventViewModel() : base(null, null, null)
         {
         }
 
-        public CreateEnduranceEventViewModel(
+        public UpdateEnduranceEventViewModel(
             IApplicationService application,
             IEventAggregator eventAggregator,
             INavigationService navigation)
@@ -73,8 +75,8 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Cr
         private string presidentVetCommission;
         public string PresidentVetCommission
         {
-            get => this.presidentVetCommission;
-            set => this.SetProperty(ref this.presidentVetCommission, value);
+            get => this.presidentGroundJury;
+            set => this.SetProperty(ref this.presidentGroundJury, value);
         }
 
         private string foreignJudge;
@@ -150,7 +152,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Cr
 
         public void CreateExplicitMap(Profile mapper)
         {
-            mapper.CreateMap<CreateEnduranceEventViewModel, CreateEnduranceEvent>()
+            mapper.CreateMap<UpdateEnduranceEventViewModel, UpdateEnduranceEvent>()
                 .MapMember(d => d.CountryIsoCode, s => s.SelectedCountryIsoCode)
                 .ForMember(
                     dest => dest.MembersOfJudgeCommittee,
@@ -162,7 +164,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Cr
                     dest => dest.Stewards,
                     opt => opt.ConvertUsing(StringSplitter.New));
 
-            mapper.CreateMap<EnduranceEventForUpdateModel, CreateEnduranceEventViewModel>()
+            mapper.CreateMap<EnduranceEventForUpdateModel, UpdateEnduranceEventViewModel>()
                 .MapMember(d => d.SelectedCountryIsoCode, s => s.CountryIsoCode);
         }
 

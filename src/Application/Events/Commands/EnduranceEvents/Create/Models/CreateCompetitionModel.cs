@@ -1,7 +1,7 @@
 ﻿using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Enums;
 
-namespace EnduranceJudge.Application.Events.Commands.CreateEnduranceEvent.Models
+namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create.Models
 {
     public class CreateCompetitionModel : ICompetitionState
     {

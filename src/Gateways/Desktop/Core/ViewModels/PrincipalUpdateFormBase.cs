@@ -1,36 +1,35 @@
 ﻿using EnduranceJudge.Application.Core.Requests;
 using EnduranceJudge.Core.Mappings;
-using EnduranceJudge.Gateways.Desktop.Core.Commands;
 using EnduranceJudge.Gateways.Desktop.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
+using EnduranceJudge.Gateways.Desktop.Services;
 using MediatR;
-using Prism.Commands;
+using Prism.Events;
 using Prism.Regions;
 using System;
 using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
-    public abstract class UpdateFormBase<TGet, TGetModel, TUpdate> : ViewModelBase,
+    public abstract class PrincipalUpdateFormBase<TGet, TGetModel, TUpdate> : PrincipalFormBase<TUpdate>,
         IMapFrom<TGetModel>,
         IMapTo<TUpdate>
         where TGet : IIdentifiableRequest<TGetModel>, new()
         where TUpdate : IRequest
     {
-        protected UpdateFormBase(IApplicationService application)
+        protected PrincipalUpdateFormBase(
+            IApplicationService application,
+            IEventAggregator eventAggregator,
+            INavigationService navigation)
+            : base(application, eventAggregator, navigation)
         {
-            this.Application = application;
-            this.Update = new AsyncCommand(this.UpdateAction);
         }
 
-        protected IApplicationService Application { get; }
-
-        public DelegateCommand Update { get; }
-        protected virtual async Task UpdateAction()
+        private int id;
+        public int Id
         {
-            var command = this.Map<TUpdate>();
-
-            await this.Application.Execute(command);
+            get => this.id;
+            set => this.SetProperty(ref this.id, value);
         }
 
         public override void OnNavigatedTo(NavigationContext navigationContext)
@@ -44,6 +43,12 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             }
 
             this.Load(id.Value);
+        }
+
+        protected void ChangeTo<T>(int id)
+            where T : IView
+        {
+            this.Navigation.ChangeTo<T>(id);
         }
 
         private async Task Load(int id)

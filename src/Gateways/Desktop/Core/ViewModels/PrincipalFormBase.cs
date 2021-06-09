@@ -9,12 +9,11 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
-    public abstract class PrincipalFormBase<TSave> : FormBase,
-        IMapTo<TSave>
-        where TSave : IRequest
+    public abstract class PrincipalFormBase<TCommand> : FormBase,
+        IMapTo<TCommand>
+        where TCommand : IRequest
     {
         private readonly IEventAggregator eventAggregator;
-        private readonly INavigationService navigation;
 
         protected PrincipalFormBase(
             IApplicationService application,
@@ -23,10 +22,11 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         {
             this.Application = application;
             this.eventAggregator = eventAggregator;
-            this.navigation = navigation;
+            this.Navigation = navigation;
         }
 
         protected IApplicationService Application { get; }
+        protected INavigationService Navigation { get; }
 
         protected void AddDependent<T>(Action<T> action)
             where T : DependantFormBase
@@ -39,12 +39,12 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         protected void ChangeTo<T>()
             where T : IView
         {
-            this.navigation.ChangeTo<T>();
+            this.Navigation.ChangeTo<T>();
         }
 
         protected override async Task SubmitAction()
         {
-            var command = this.Map<TSave>();
+            var command = this.Map<TCommand>();
 
             await this.Application.Execute(command);
         }

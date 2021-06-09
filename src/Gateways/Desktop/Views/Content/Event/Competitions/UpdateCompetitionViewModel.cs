@@ -1,11 +1,9 @@
-﻿using EnduranceJudge.Application.Events.Commands.Competitions;
-using EnduranceJudge.Application.Events.Queries.Competitions;
-using EnduranceJudge.Application.Events.Queries.GetEnduranceEventsList;
+﻿using EnduranceJudge.Application.Events.Queries.GetEnduranceEventsList;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Enums;
+using EnduranceJudge.Gateways.Desktop.Core;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ComboBoxItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
-using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 using Prism.Regions;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -13,11 +11,14 @@ using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions
 {
-    public class UpdateCompetitionViewModel
-        : UpdateFormBase<GetCompetition, CompetitionForUpdateModel, UpdateCompetition>
+    public class UpdateCompetitionViewModel : ViewModelBase
+        //: PrincipalUpdateFormBase<GetCompetition, CompetitionForUpdateModel, UpdateCompetition>
     {
-        public UpdateCompetitionViewModel(IApplicationService application) : base(application)
+        private readonly IApplicationService application;
+
+        public UpdateCompetitionViewModel(IApplicationService application)
         {
+            this.application = application;
             var typeViewModels = ComboBoxItemViewModel.FromEnum<CompetitionType>();
             this.CompetitionTypes = new ObservableCollection<ComboBoxItemViewModel>(typeViewModels);
         }
@@ -51,7 +52,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions
         {
             var query = new GetEnduranceEventsList();
 
-            var enduranceEvents = await this.Application.Execute(query);
+            var enduranceEvents = await this.application.Execute(query);
             var comboBoxItems = enduranceEvents.MapEnumerable<ComboBoxItemViewModel>();
 
             this.EnduranceEvents.Clear();

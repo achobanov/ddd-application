@@ -33,7 +33,7 @@
         <DockPanel Style="{StaticResource Form-Item}">
 
             <Button Style="{StaticResource Button}"
-                    Command="{Binding Save}"
+                    Command="{Binding Submit}"
                     Content="{x:Static common:EventPageContent.SaveButtonText}" />
         </DockPanel>
     </StackPanel>
