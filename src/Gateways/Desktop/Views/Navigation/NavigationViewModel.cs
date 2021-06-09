@@ -4,7 +4,7 @@ using EnduranceJudge.Gateways.Desktop.Core.Events;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Services;
 using EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents;
-using EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.List;
+using EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Listing;
 using EnduranceJudge.Gateways.Desktop.Views.Content.PrintExample;
 using Prism.Commands;
 using Prism.Events;
@@ -17,17 +17,14 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Navigation
     {
         private readonly IEventAggregator eventAggregator;
 
-        public NavigationViewModel(
-            INavigationService navigation,
-            IApplicationService application,
-            IEventAggregator eventAggregator) : base(application)
+        public NavigationViewModel(INavigationService navigation, IEventAggregator eventAggregator)
         {
             this.eventAggregator = eventAggregator;
             this.NavigateToImport = new DelegateCommand(navigation.NavigateToImport);
             this.NavigateToEvent = new DelegateCommand(navigation.NavigateToEvent);
 
             this.NavigateToPrintExample = new DelegateCommand(navigation.ChangeTo<PrintExampleView>);
-            this.NavigateToUpdateEvent = new DelegateCommand(() => navigation.ChangeTo<EnduranceEventView>(1));
+            this.NavigateToUpdateEvent = new DelegateCommand(() => navigation.ChangeTo<CreateEnduranceEventView>(1));
             this.NavigateToPrintExample = new DelegateCommand(navigation.ChangeTo<PrintExampleView>);
             this.NavigateToEventList = new DelegateCommand(navigation.ChangeTo<EnduranceEventListView>);
             this.CloseNotification = new DelegateCommand(this.CloseNotificationAction);

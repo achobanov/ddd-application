@@ -101,7 +101,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
             get => this.competitions.AsReadOnly();
             private set => this.competitions = value.ToList();
         }
-        public EnduranceEvent AddOrUpdate(Competition competition)
+        public EnduranceEvent Add(Competition competition)
         {
             this.competitions.ValidateAndAddOrUpdate(competition);
             return this;

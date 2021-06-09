@@ -7,7 +7,12 @@ using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Core.Mappings.Converters;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
+using EnduranceJudge.Gateways.Desktop.Services;
+using EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions;
+using Prism.Commands;
+using Prism.Events;
 using Prism.Regions;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,15 +20,23 @@ using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
 {
-    public class EnduranceEventViewModel : CreateFormBase<SaveEnduranceEvent>, IMapExplicitly
+    public class CreateEnduranceEventViewModel : PrincipalFormBase<SaveEnduranceEvent>, IMapExplicitly
     {
-        public EnduranceEventViewModel() : base(null)
+        public CreateEnduranceEventViewModel() : base(null, null, null)
         {
         }
 
-        public EnduranceEventViewModel(IApplicationService application) : base(application)
+        public CreateEnduranceEventViewModel(
+        IApplicationService application,
+        IEventAggregator eventAggregator,
+        INavigationService navigation)
+            : base(application, eventAggregator, navigation)
         {
+            this.AddDependent<CompetitionDependentViewModel>(this.Add);
+            this.AddCompetition = new DelegateCommand(this.ChangeTo<CompetitionDependentView>);
         }
+
+        public DelegateCommand AddCompetition { get; }
 
         public ObservableCollection<CountryListingModel> Countries { get; }
             = new (Enumerable.Empty<CountryListingModel>());
@@ -133,9 +146,11 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
             this.Countries.AddRange(countries);
         }
 
+        public List<CompetitionDependentViewModel> Competitions { get; set; } = new();
+
         public void CreateExplicitMap(Profile mapper)
         {
-            mapper.CreateMap<EnduranceEventViewModel, SaveEnduranceEvent>()
+            mapper.CreateMap<CreateEnduranceEventViewModel, SaveEnduranceEvent>()
                 .MapMember(d => d.CountryIsoCode, s => s.SelectedCountryIsoCode)
                 .ForMember(
                     dest => dest.MembersOfJudgeCommittee,
@@ -147,8 +162,13 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
                     dest => dest.Stewards,
                     opt => opt.ConvertUsing(StringSplitter.New));
 
-            mapper.CreateMap<EnduranceEventForUpdateModel, EnduranceEventViewModel>()
+            mapper.CreateMap<EnduranceEventForUpdateModel, CreateEnduranceEventViewModel>()
                 .MapMember(d => d.SelectedCountryIsoCode, s => s.CountryIsoCode);
+        }
+
+        private void Add(CompetitionDependentViewModel competition)
+        {
+            this.Competitions.Add(competition);
         }
     }
 }

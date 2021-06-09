@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions.CompetitionView"
+﻿<UserControl x:Class="EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions.CompetitionDependentView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"
@@ -13,7 +13,7 @@
         <DockPanel Style="{StaticResource Form-Item}">
             <Label Style="{StaticResource Label-Primary}"
                    Target="{Binding ElementName=EnduranceEvents}"
-                   Content="{x:Static common:EventPageContent.EnduranceEventLabel}"/>
+                   Content="{x:Static common:EventPageContent.EnduranceEventText}"/>
 
             <ComboBox Style="{StaticResource Combo-Box}"
                       ItemsSource="{Binding EnduranceEvents}"

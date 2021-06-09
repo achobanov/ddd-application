@@ -1,7 +1,10 @@
 ﻿using EnduranceJudge.Application.Contracts.Countries;
 using EnduranceJudge.Application.Core.Contracts;
 using EnduranceJudge.Application.Core.Handlers;
+using EnduranceJudge.Application.Events.Commands.SaveEnduranceEvent.Models;
 using EnduranceJudge.Application.Events.Factories;
+using EnduranceJudge.Core.Extensions;
+using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using MediatR;
 using System.Collections.Generic;
@@ -27,6 +30,8 @@ namespace EnduranceJudge.Application.Events.Commands.SaveEnduranceEvent
         public IEnumerable<string> MembersOfJudgeCommittee { get; set; }
         public IEnumerable<string> Stewards { get; set; }
 
+        public IEnumerable<CreateCompetitionModel> Competitions { get; set;}
+
         public class SaveEnduranceEventHandler : Handler<SaveEnduranceEvent>
         {
             private readonly ICommandsBase<EnduranceEvent> eventCommands;
@@ -49,6 +54,10 @@ namespace EnduranceJudge.Application.Events.Commands.SaveEnduranceEvent
                 if (enduranceEvent == null)
                 {
                     enduranceEvent = new EnduranceEvent(request);
+
+                    request.Competitions
+                        .Select(x => new Competition(x.Id, x.Type))
+                        .ForEach(enduranceEvent.Add);
                 }
                 else
                 {

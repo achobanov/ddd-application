@@ -20,20 +20,20 @@ namespace EnduranceJudge.Application.Import.ImportFromFile
             private readonly IHorseCommands horseCommands;
             private readonly INationalImportService nationalImport;
             private readonly IInternationalImportService internationalImport;
-            private readonly IEventCommands eventCommands;
+            private readonly IEnduranceEventCommands enduranceEventCommands;
             private readonly IFileService file;
 
             public ImportFromFileHandler(
                 IHorseCommands horseCommands,
                 INationalImportService nationalImport,
                 IInternationalImportService internationalImport,
-                IEventCommands eventCommands,
+                IEnduranceEventCommands enduranceEventCommands,
                 IFileService file)
             {
                 this.horseCommands = horseCommands;
                 this.nationalImport = nationalImport;
                 this.internationalImport = internationalImport;
-                this.eventCommands = eventCommands;
+                this.enduranceEventCommands = enduranceEventCommands;
                 this.file = file;
             }
 
@@ -54,7 +54,7 @@ namespace EnduranceJudge.Application.Import.ImportFromFile
                 if (fileExtension == FileExtensions.Xml)
                 {
                     var enduranceEvent = this.internationalImport.FromInternational(filePath);
-                    await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                    await this.enduranceEventCommands.Save(enduranceEvent, cancellationToken);
                 }
                 else
                 {

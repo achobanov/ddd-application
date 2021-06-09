@@ -1,4 +1,4 @@
-﻿using EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.List;
+﻿using EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Listing;
 using EnduranceJudge.Gateways.Desktop.Views.Content.Event.NavigationStrip;
 using EnduranceJudge.Gateways.Desktop.Views.Content.Import;
 using EnduranceJudge.Gateways.Desktop.Core.Services.Implementations;

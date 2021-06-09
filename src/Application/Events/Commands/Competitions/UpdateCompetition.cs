@@ -31,7 +31,7 @@ namespace EnduranceJudge.Application.Events.Commands.Competitions
                 var competition = this.competitionFactory.Create(request);
 
                 var enduranceEvent = await this.commands.Find(request.EnduranceEventId);
-                enduranceEvent.AddOrUpdate(competition);
+                enduranceEvent.Add(competition);
 
                 await this.commands.Save(enduranceEvent, cancellationToken);
             }

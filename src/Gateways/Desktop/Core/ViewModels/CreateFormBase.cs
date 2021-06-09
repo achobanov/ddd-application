@@ -11,10 +11,13 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         IMapTo<TSave>
         where TSave : IRequest
     {
-        protected CreateFormBase(IApplicationService application) : base(application)
+        protected CreateFormBase(IApplicationService application)
         {
             this.Create = new AsyncCommand(this.CreateAction);
+            this.Application = application;
         }
+
+        protected IApplicationService Application { get; }
 
         public DelegateCommand Create { get; }
         protected virtual async Task CreateAction()

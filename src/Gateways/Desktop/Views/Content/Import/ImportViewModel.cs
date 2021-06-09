@@ -14,12 +14,16 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Import
     {
         private readonly IExplorerService explorer;
         private readonly INavigationService navigation;
+        private readonly IApplicationService application;
 
-        public ImportViewModel(IExplorerService explorer,INavigationService navigation,IApplicationService application)
-           : base(application)
+        public ImportViewModel(
+            IExplorerService explorer,
+            INavigationService navigation,
+            IApplicationService application)
         {
             this.explorer = explorer;
             this.navigation = navigation;
+            this.application = application;
             this.OpenFolderDialog = new AsyncCommand(this.OpenFolderDialogAction);
             this.OpenImportFileDialog = new AsyncCommand(this.OpenImportFileDialogAction);
         }
@@ -62,7 +66,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Import
                 DirectoryPath = selectedPath,
             };
 
-            var isNewFileCreated = await this.Application.Execute(selectWorkFileRequest);
+            var isNewFileCreated = await this.application.Execute(selectWorkFileRequest);
             if (isNewFileCreated)
             {
                 this.ImportVisibility = Visibility.Visible;
@@ -88,7 +92,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Import
                 FilePath = path,
             };
 
-            await this.Application.Execute(importFromFileRequest);
+            await this.application.Execute(importFromFileRequest);
 
             this.Redirect();
         }

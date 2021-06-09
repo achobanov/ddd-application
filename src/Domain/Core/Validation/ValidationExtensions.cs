@@ -1,5 +1,6 @@
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using static EnduranceJudge.Localization.Strings.DomainStrings;
@@ -97,14 +98,10 @@ namespace EnduranceJudge.Domain.Core.Validation
 
             if (collection.Contains(model))
             {
-                collection
-                    .Single(x => x.Equals(model))
-                    .MapFrom(model);
+                throw new ValidationException(CannotAddItemExistsTemplate, typeof(TDomainModel).Name);
             }
-            else
-            {
-                collection.Add(model);
-            }
+
+            collection.Add(model);
         }
     }
 }

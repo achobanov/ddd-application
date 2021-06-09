@@ -1,7 +1,7 @@
 ﻿using EnduranceJudge.Gateways.Desktop.Core;
 using EnduranceJudge.Gateways.Desktop.Services;
 using EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions.List;
-using EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.List;
+using EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Listing;
 using Prism.Commands;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.NavigationStrip

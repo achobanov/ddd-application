@@ -13,7 +13,7 @@
         <DockPanel Style="{StaticResource Form-Item}">
             <Label Style="{StaticResource Label-Primary}"
                    Target="{Binding ElementName=EnduranceEvents}"
-                   Content="{x:Static common:EventPageContent.EnduranceEventLabel}"/>
+                   Content="{x:Static common:EventPageContent.EnduranceEventText}"/>
 
             <ComboBox Style="{StaticResource Combo-Box}"
                       ItemsSource="{Binding EnduranceEvents}"

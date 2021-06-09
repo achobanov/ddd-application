@@ -3,9 +3,9 @@ using System.Windows.Controls;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
 {
-    public partial class EnduranceEventView : UserControl, IView
+    public partial class CreateEnduranceEventView : UserControl, IView
     {
-        public EnduranceEventView()
+        public CreateEnduranceEventView()
         {
             InitializeComponent();
         }

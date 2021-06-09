@@ -15,13 +15,15 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         where TApplicationCommand : IRequest<IEnumerable<ListItemModel>>, new()
         where TView : IView
     {
-        protected ListViewModelBase(IApplicationService application, INavigationService navigation) : base(application)
+        protected ListViewModelBase(IApplicationService application, INavigationService navigation)
         {
             this.Navigation = navigation;
             this.ChangeToCreate = new DelegateCommand(this.ChangeToCreateAction);
+            this.Application = application;
         }
 
         protected INavigationService Navigation { get; }
+        protected IApplicationService Application { get; }
 
         protected ObservableCollection<ListItemViewModel> ListItems { get; }
             = new (Enumerable.Empty<ListItemViewModel>());

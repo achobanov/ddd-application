@@ -17,10 +17,13 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         where TGet : IIdentifiableRequest<TGetModel>, new()
         where TUpdate : IRequest
     {
-        protected UpdateFormBase(IApplicationService application) : base(application)
+        protected UpdateFormBase(IApplicationService application)
         {
+            this.Application = application;
             this.Update = new AsyncCommand(this.UpdateAction);
         }
+
+        protected IApplicationService Application { get; }
 
         public DelegateCommand Update { get; }
         protected virtual async Task UpdateAction()

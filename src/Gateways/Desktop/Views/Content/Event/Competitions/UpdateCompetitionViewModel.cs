@@ -13,9 +13,10 @@ using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions
 {
-    public class CompetitionViewModel : UpdateFormBase<GetCompetition, CompetitionForUpdateModel, UpdateCompetition>
+    public class UpdateCompetitionViewModel
+        : UpdateFormBase<GetCompetition, CompetitionForUpdateModel, UpdateCompetition>
     {
-        public CompetitionViewModel(IApplicationService application) : base(application)
+        public UpdateCompetitionViewModel(IApplicationService application) : base(application)
         {
             var typeViewModels = ComboBoxItemViewModel.FromEnum<CompetitionType>();
             this.CompetitionTypes = new ObservableCollection<ComboBoxItemViewModel>(typeViewModels);

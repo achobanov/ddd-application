@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.EnduranceEventView"
+﻿<UserControl x:Class="EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.CreateEnduranceEventView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"
@@ -135,8 +135,18 @@
         <DockPanel Style="{StaticResource Form-Item}">
 
             <Button Style="{StaticResource Button}"
-                    Command="{Binding Save}"
+                    Command="{Binding Create}"
                     Content="{x:Static common:EventPageContent.SaveButtonText}" />
+        </DockPanel>
+        <DockPanel Style="{StaticResource Form-Item}">
+
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=Stewards}"
+                   Content="{x:Static local:EnduranceEventContent.StewardsLabel}" />
+
+            <Button Style="{StaticResource Button}"
+                    Command="{Binding AddCompetition}"
+                    Content="{x:Static common:EventPageContent.AddButtonText}" />
         </DockPanel>
 
     </StackPanel>
