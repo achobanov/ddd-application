@@ -3,7 +3,7 @@ using Prism.Events;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.Events
 {
-    public class FormCreateEvent<T> : PubSubEvent<T>
+    public class DependantFormSubmitEvent<T> : PubSubEvent<T>
         where T : DependantFormBase
     {
     }

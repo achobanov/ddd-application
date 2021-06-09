@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EnduranceJudge.Application.Events.Commands.SaveEnduranceEvent;
+using EnduranceJudge.Application.Events.Commands.CreateEnduranceEvent;
 using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
 using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Core.Extensions;
@@ -18,18 +18,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
+namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Create
 {
-    public class CreateEnduranceEventViewModel : PrincipalFormBase<SaveEnduranceEvent>, IMapExplicitly
+    public class CreateEnduranceEventViewModel : PrincipalFormBase<CreateEnduranceEvent>, IMapExplicitly
     {
         public CreateEnduranceEventViewModel() : base(null, null, null)
         {
         }
 
         public CreateEnduranceEventViewModel(
-        IApplicationService application,
-        IEventAggregator eventAggregator,
-        INavigationService navigation)
+            IApplicationService application,
+            IEventAggregator eventAggregator,
+            INavigationService navigation)
             : base(application, eventAggregator, navigation)
         {
             this.AddDependent<CompetitionDependentViewModel>(this.Add);
@@ -150,7 +150,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
 
         public void CreateExplicitMap(Profile mapper)
         {
-            mapper.CreateMap<CreateEnduranceEventViewModel, SaveEnduranceEvent>()
+            mapper.CreateMap<CreateEnduranceEventViewModel, CreateEnduranceEvent>()
                 .MapMember(d => d.CountryIsoCode, s => s.SelectedCountryIsoCode)
                 .ForMember(
                     dest => dest.MembersOfJudgeCommittee,

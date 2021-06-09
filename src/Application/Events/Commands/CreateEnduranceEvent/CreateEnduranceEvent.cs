@@ -1,7 +1,7 @@
 ﻿using EnduranceJudge.Application.Contracts.Countries;
 using EnduranceJudge.Application.Core.Contracts;
 using EnduranceJudge.Application.Core.Handlers;
-using EnduranceJudge.Application.Events.Commands.SaveEnduranceEvent.Models;
+using EnduranceJudge.Application.Events.Commands.CreateEnduranceEvent.Models;
 using EnduranceJudge.Application.Events.Factories;
 using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Domain.Aggregates.Event.Competitions;
@@ -12,9 +12,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EnduranceJudge.Application.Events.Commands.SaveEnduranceEvent
+namespace EnduranceJudge.Application.Events.Commands.CreateEnduranceEvent
 {
-    public class SaveEnduranceEvent : IRequest, IEnduranceEventState
+    public class CreateEnduranceEvent : IRequest, IEnduranceEventState
     {
         public int Id { get; set;  }
         public string Name { get; set; }
@@ -32,7 +32,7 @@ namespace EnduranceJudge.Application.Events.Commands.SaveEnduranceEvent
 
         public IEnumerable<CreateCompetitionModel> Competitions { get; set;}
 
-        public class SaveEnduranceEventHandler : Handler<SaveEnduranceEvent>
+        public class SaveEnduranceEventHandler : Handler<CreateEnduranceEvent>
         {
             private readonly ICommandsBase<EnduranceEvent> eventCommands;
             private readonly IPersonnelFactory personnelFactory;
@@ -48,7 +48,7 @@ namespace EnduranceJudge.Application.Events.Commands.SaveEnduranceEvent
                 this.countryQueries = countryQueries;
             }
 
-            protected override async Task Handle(SaveEnduranceEvent request, CancellationToken cancellationToken)
+            protected override async Task Handle(CreateEnduranceEvent request, CancellationToken cancellationToken)
             {
                 var enduranceEvent = await this.eventCommands.Find(request.Id);
                 if (enduranceEvent == null)
@@ -75,7 +75,7 @@ namespace EnduranceJudge.Application.Events.Commands.SaveEnduranceEvent
                 await this.eventCommands.Save(enduranceEvent, cancellationToken);
             }
 
-            private void AddPersonnel(EnduranceEvent enduranceEvent, SaveEnduranceEvent request)
+            private void AddPersonnel(EnduranceEvent enduranceEvent, CreateEnduranceEvent request)
             {
                 var feiTechDelegate = this.personnelFactory.FeiTechDelegate(request.FeiTechDelegate);
                 var feiVetDelegate = this.personnelFactory.FeiVetDelegate(request.FeiVetDelegate);

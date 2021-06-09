@@ -1,14 +1,14 @@
 ﻿using EnduranceJudge.Gateways.Desktop.Core.Events;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
-using Prism.Commands;
 using Prism.Events;
 using System;
+using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
-    public abstract class DependantFormBase : ViewModelBase
+    public abstract class DependantFormBase : FormBase
     {
-        private readonly Type formCreateEventTye = typeof(FormCreateEvent<>);
+        private readonly Type formCreateEventTye = typeof(DependantFormSubmitEvent<>);
 
         private readonly Type eventAggregatorType;
         private readonly IEventAggregator eventAggregator;
@@ -22,15 +22,11 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             this.eventAggregator = eventAggregator;
             this.eventAggregatorType = eventAggregator.GetType();
             this.Application = application;
-
-            this.Save = new DelegateCommand(this.SaveAction);
         }
 
         protected IApplicationService Application { get; }
 
-        public DelegateCommand Save { get; }
-
-        private void SaveAction()
+        protected override Task SubmitAction()
         {
             var thisType = this.GetType();
 
@@ -46,6 +42,8 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             publishMethod!.Invoke(@event, new object[] { this });
 
             this.Journal.GoBack();
+
+            return Task.CompletedTask;
         }
     }
 }

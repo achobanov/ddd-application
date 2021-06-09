@@ -1,14 +1,11 @@
-﻿using EnduranceJudge.Gateways.Desktop.Views.Content.Import;
-using EnduranceJudge.Gateways.Desktop.Core;
+﻿using EnduranceJudge.Gateways.Desktop.Core;
 using EnduranceJudge.Gateways.Desktop.Core.Events;
-using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Services;
-using EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents;
+using EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Create;
 using EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Listing;
 using EnduranceJudge.Gateways.Desktop.Views.Content.PrintExample;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Regions;
 using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Navigation

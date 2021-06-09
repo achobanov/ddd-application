@@ -3,6 +3,7 @@ using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 using EnduranceJudge.Gateways.Desktop.Services;
+using EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Create;
 using System.Collections.ObjectModel;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Listing

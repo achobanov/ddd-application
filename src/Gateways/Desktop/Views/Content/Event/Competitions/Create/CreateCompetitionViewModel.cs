@@ -1,12 +1,13 @@
-﻿using EnduranceJudge.Application.Events.Commands.Competitions;
-using EnduranceJudge.Gateways.Desktop.Core.Services;
+﻿using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
+using Prism.Events;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions.Create
 {
-    public class CreateCompetitionViewModel : CreateFormBase<UpdateCompetition>
+    public class CompetitionViewModel : DependantFormBase
     {
-        public CreateCompetitionViewModel(IApplicationService application) : base(application)
+        public CompetitionViewModel(IApplicationService application, IEventAggregator eventAggregator)
+            : base(application, eventAggregator)
         {
         }
     }
