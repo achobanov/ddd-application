@@ -11,4 +11,8 @@
         <Setter Property="Orientation" Value="Horizontal" />
     </Style>
 
+    <Style x:Key="Form-List" BasedOn="{StaticResource Wrapper}" TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Vertical"></Setter>
+    </Style>
+
 </ResourceDictionary>

@@ -45,12 +45,6 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             this.Load(id.Value);
         }
 
-        protected void ChangeTo<T>(int id)
-            where T : IView
-        {
-            this.Navigation.ChangeTo<T>(id);
-        }
-
         private async Task Load(int id)
         {
             var command = new TGet

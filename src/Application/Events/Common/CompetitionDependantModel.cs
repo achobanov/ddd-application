@@ -1,9 +1,9 @@
 ﻿using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Enums;
 
-namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create.Models
+namespace EnduranceJudge.Application.Events.Common
 {
-    public class CreateCompetitionModel : ICompetitionState
+    public class CompetitionDependantModel : ICompetitionState
     {
         public int Id { get; set; }
 

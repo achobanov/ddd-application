@@ -6,6 +6,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event
     {
         public const string SaveButtonText = CommonStrings.SaveButtonText;
         public const string CreateButtonText = CommonStrings.CreateButtonText;
+        public const string UpdateButtonText = CommonStrings.UpdateButtonText;
         public const string AddButtonText = CommonStrings.AddButtonText;
         public const string EnduranceEventText = CommonStrings.EnduranceEventText;
     }

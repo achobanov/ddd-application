@@ -36,10 +36,16 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
                 .Subscribe(action);
         }
 
-        protected void ChangeTo<T>()
+        protected Action GetCreateDelegate<T>()
             where T : IView
         {
-            this.Navigation.ChangeTo<T>();
+            return this.Navigation.ChangeTo<T>;
+        }
+
+        protected Action GetUpdateDelegate<T>(object data)
+            where T : IView
+        {
+            return () => this.Navigation.ChangeTo<T>(data);
         }
 
         protected override async Task SubmitAction()

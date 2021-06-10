@@ -2,6 +2,7 @@
 using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
 using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Core.Extensions;
+using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 using EnduranceJudge.Gateways.Desktop.Services;
@@ -20,14 +21,20 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Up
     public class UpdateEnduranceEventViewModel
         : PrincipalUpdateFormBase<GetEnduranceEvent, EnduranceEventForUpdateModel, UpdateEnduranceEvent>
     {
+        public UpdateEnduranceEventViewModel() : base(null, null, null)
+        {
+        }
+
         public UpdateEnduranceEventViewModel(
             IApplicationService application,
             IEventAggregator eventAggregator,
             INavigationService navigation)
             : base(application, eventAggregator, navigation)
         {
-            this.AddDependent<CompetitionDependentViewModel>(this.Add);
-            this.AddCompetition = new DelegateCommand(this.ChangeTo<CompetitionDependentView>);
+            this.AddDependent<CompetitionDependantViewModel>(this.UpdateCompetitions);
+
+            var createCompetition = this.GetCreateDelegate<CompetitionDependantView>();
+            this.AddCompetition = new DelegateCommand(createCompetition);
         }
 
         public DelegateCommand AddCompetition { get; }
@@ -120,10 +127,33 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Up
             set => this.SetProperty(ref this.stewards, value);
         }
 
-        public List<CompetitionDependentViewModel> Competitions { get; set; } = new();
-        private void Add(CompetitionDependentViewModel competition)
+        public List<CompetitionDependantViewModel> Competitions { get; private set; } = new();
+        public ObservableCollection<ListItemViewModel> CompetitionItems { get; } = new();
+        private void UpdateCompetitions(CompetitionDependantViewModel competition)
         {
-            this.Competitions.AddOrUpdateObject(competition);
+            if (!this.Competitions.Contains(competition))
+            {
+                this.Competitions.AddObject(competition);
+            }
+
+            this.UpdateListItems();
+        }
+
+        public void UpdateListItems()
+        {
+            var listItems = this.Competitions
+                .Select(item =>
+                {
+                    var updateCompetition = this.GetUpdateDelegate<CompetitionDependantView>(item);
+                    var navigateToUpdate = new DelegateCommand(updateCompetition);
+                    var listItem = new ListItemViewModel(item.Type, item.Name, navigateToUpdate);
+
+                    return listItem;
+                })
+                .ToList();
+
+            this.CompetitionItems.Clear();
+            this.CompetitionItems.AddRange(listItems);
         }
 
         public override void OnNavigatedTo(NavigationContext navigationContext)

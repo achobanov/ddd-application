@@ -132,22 +132,25 @@
                      Text="{Binding Stewards}"
                      Name="Stewards" />
         </DockPanel>
+
+        <StackPanel Style="{StaticResource Form-List}">
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=_AddCompetition}"
+                   Content="{x:Static local:EnduranceEventContent.CompetitionsLabel}" />
+
+            <Button Style="{StaticResource Button}"
+                    Command="{Binding AddCompetition}"
+                    Content="{x:Static common:EventPageContent.AddButtonText}"
+                    Name="_AddCompetition"/>
+
+            <ListBox Style="{StaticResource List}"
+                     ItemsSource="{Binding CompetitionItems}" />
+        </StackPanel>
         <DockPanel Style="{StaticResource Form-Item}">
 
             <Button Style="{StaticResource Button}"
                     Command="{Binding Submit}"
-                    Content="{x:Static common:EventPageContent.SaveButtonText}" />
+                    Content="{x:Static common:EventPageContent.UpdateButtonText}" />
         </DockPanel>
-        <DockPanel Style="{StaticResource Form-Item}">
-
-            <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=Stewards}"
-                   Content="{x:Static local:EnduranceEventContent.StewardsLabel}" />
-
-            <Button Style="{StaticResource Button}"
-                    Command="{Binding AddCompetition}"
-                    Content="{x:Static common:EventPageContent.AddButtonText}" />
-        </DockPanel>
-
     </StackPanel>
 </UserControl>

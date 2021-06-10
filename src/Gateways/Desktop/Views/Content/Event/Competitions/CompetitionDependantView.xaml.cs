@@ -3,9 +3,9 @@ using System.Windows.Controls;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions
 {
-    public partial class CompetitionDependentView : UserControl, IView
+    public partial class CompetitionDependantView : UserControl, IView
     {
-        public CompetitionDependentView()
+        public CompetitionDependantView()
         {
             InitializeComponent();
         }

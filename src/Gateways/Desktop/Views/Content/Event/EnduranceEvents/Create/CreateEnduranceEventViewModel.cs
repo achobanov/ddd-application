@@ -1,7 +1,6 @@
 ﻿using EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create;
 using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
 using EnduranceJudge.Core.Extensions;
-using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
@@ -13,7 +12,6 @@ using Prism.Regions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -27,8 +25,10 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Cr
             INavigationService navigation)
             : base(application, eventAggregator, navigation)
         {
-            this.AddDependent<CompetitionDependentViewModel>(this.Add);
-            this.AddCompetition = new DelegateCommand(this.ChangeTo<CompetitionDependentView>);
+            this.AddDependent<CompetitionDependantViewModel>(this.UpdateCompetitions);
+
+            var createCompetition = this.GetCreateDelegate<CompetitionDependantView>();
+            this.AddCompetition = new DelegateCommand(createCompetition);
         }
 
         public DelegateCommand AddCompetition { get; }
@@ -121,10 +121,24 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Cr
             set => this.SetProperty(ref this.stewards, value);
         }
 
-        public List<CompetitionDependentViewModel> Competitions { get; } = new();
-        private void Add(CompetitionDependentViewModel competition)
+        public List<CompetitionDependantViewModel> Competitions { get; } = new();
+        public ObservableCollection<ListItemViewModel> CompetitionItems { get; } = new();
+        private void UpdateCompetitions(CompetitionDependantViewModel competition)
         {
-            this.Competitions.AddOrUpdateObject(competition);
+            if (!this.Competitions.Contains(competition))
+            {
+                this.Competitions.AddObject(competition);
+            }
+
+            this.CompetitionItems.Clear();
+
+            foreach (var item in this.Competitions)
+            {
+                var updateCompetition = this.GetUpdateDelegate<CompetitionDependantView>(item);
+                var navigateToUpdate = new DelegateCommand(updateCompetition);
+                var listItem = new ListItemViewModel(item.Type, item.Name, navigateToUpdate);
+                this.CompetitionItems.Add(listItem);
+            }
         }
 
         public override void OnNavigatedTo(NavigationContext navigationContext)

@@ -12,14 +12,15 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
     public abstract class DependantFormBase : FormBase
     {
         private readonly Type formCreateEventTye = typeof(DependantFormSubmitEvent<>);
-
         private readonly Type eventAggregatorType;
         private readonly IEventAggregator eventAggregator;
+
+        private bool isUpdateMode;
 
         protected DependantFormBase(IApplicationService application, IEventAggregator eventAggregator)
         {
             this.eventAggregator = eventAggregator;
-            this.eventAggregatorType = eventAggregator.GetType();
+            this.eventAggregatorType = eventAggregator?.GetType();
             this.Application = application;
         }
 
@@ -27,18 +28,10 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 
         protected override Task SubmitAction()
         {
-            var thisType = this.GetType();
-
-            var eventType = this.formCreateEventTye.MakeGenericType(thisType);
-            var getEventMethodName = nameof(this.eventAggregator.GetEvent);
-            var getEventMethod = this.eventAggregatorType
-                .GetMethod(getEventMethodName)
-                !.MakeGenericMethod(eventType);
-
-            var @event = getEventMethod.Invoke(this.eventAggregator, null);
-
-            var publishMethod = eventType.GetMethod(DesktopConstants.PrismEventPublishMethodName);
-            publishMethod!.Invoke(@event, new object[] { this });
+            if (!this.isUpdateMode)
+            {
+                this.PublishCreatedEvent();
+            }
 
             this.Journal.GoBack();
 
@@ -63,8 +56,25 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             var data = navigationContext.GetData();
             if (data != null)
             {
+                this.isUpdateMode = true;
                 this.MapFrom(data);
             }
+        }
+
+        private void PublishCreatedEvent()
+        {
+            var thisType = this.GetType();
+
+            var eventType = this.formCreateEventTye.MakeGenericType(thisType);
+            var getEventMethodName = nameof(this.eventAggregator.GetEvent);
+            var getEventMethod = this.eventAggregatorType
+                .GetMethod(getEventMethodName)
+                !.MakeGenericMethod(eventType);
+
+            var @event = getEventMethod.Invoke(this.eventAggregator, null);
+
+            var publishMethod = eventType.GetMethod(DesktopConstants.PrismEventPublishMethodName);
+            publishMethod!.Invoke(@event, new object[] { this });
         }
     }
 }

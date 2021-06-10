@@ -48,7 +48,8 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
                     opt => opt.ConvertUsing(StringSplitter.New));
 
             profile.CreateMap<EnduranceEventForUpdateModel, UpdateEnduranceEventViewModel>()
-                .MapMember(d => d.SelectedCountryIsoCode, s => s.CountryIsoCode);
+                .MapMember(d => d.SelectedCountryIsoCode, s => s.CountryIsoCode)
+                .AfterMap((update, viewModel) => viewModel.UpdateListItems());
         }
     }
 }

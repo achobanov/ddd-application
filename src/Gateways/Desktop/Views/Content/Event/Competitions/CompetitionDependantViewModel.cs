@@ -2,14 +2,19 @@
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ComboBoxItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using Prism.Events;
 using System.Collections.ObjectModel;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions
 {
-    public class CompetitionDependentViewModel : DependantFormBase
+    public class CompetitionDependantViewModel : DependantFormBase
     {
-        public CompetitionDependentViewModel(IApplicationService application, IEventAggregator eventAggregator)
+        public CompetitionDependantViewModel() : base(null, null)
+        {
+        }
+
+        public CompetitionDependantViewModel(IApplicationService application, IEventAggregator eventAggregator)
             : base(application, eventAggregator)
         {
             var typeViewModels = ComboBoxItemViewModel.FromEnum<CompetitionType>();

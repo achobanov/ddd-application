@@ -1,4 +1,6 @@
-﻿using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
+﻿using EnduranceJudge.Application.Events.Common;
+using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
+using System.Collections.Generic;
 
 namespace EnduranceJudge.Application.Events.Queries.GetEvent
 {
@@ -17,5 +19,6 @@ namespace EnduranceJudge.Application.Events.Queries.GetEvent
         public string MembersOfVetCommittee { get; private set; }
         public string MembersOfJudgeCommittee { get; private set; }
         public string Stewards { get; private set; }
+        public IEnumerable<CompetitionDependantModel> Competitions { get; set; }
     }
 }
