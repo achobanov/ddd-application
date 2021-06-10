@@ -1,7 +1,7 @@
 ﻿using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Gateways.Persistence.Contracts.WorkFile;
 using EnduranceJudge.Gateways.Persistence.Core;
-using EnduranceJudge.Gateways.Persistence.Entities;
+using EnduranceJudge.Gateways.Persistence.Entities.Competitions;
 
 namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Competitions
 {

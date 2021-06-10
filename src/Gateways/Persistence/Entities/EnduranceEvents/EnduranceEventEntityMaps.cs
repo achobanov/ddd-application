@@ -1,42 +1,29 @@
-using AutoMapper;
-using EnduranceJudge.Application.Events.Common;
+﻿using AutoMapper;
 using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using EnduranceJudge.Domain.Enums;
 using EnduranceJudge.Gateways.Persistence.Converters;
-using EnduranceJudge.Gateways.Persistence.Core;
-using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace EnduranceJudge.Gateways.Persistence.Entities
+namespace EnduranceJudge.Gateways.Persistence.Entities.EnduranceEvents
 {
-    public class EnduranceEventEntity : EntityModel, IEnduranceEventState,
-        IMap<EnduranceEvent>,
-        IMap<Domain.Aggregates.Import.EnduranceEvents.EnduranceEvent>,
-        IMapTo<ListItemModel>,
-        IMapExplicitly
+    public class EnduranceEventEntityMaps : ICustomMapConfiguration
     {
-        public string Name { get; set; }
-
-        public string PopulatedPlace { get; set; }
-
-        [JsonIgnore]
-        public IList<CompetitionEntity> Competitions { get; set; }
-
-        [JsonIgnore]
-        public IList<PersonnelEntity> Personnel { get; set; }
-
-        [JsonIgnore]
-        public CountryEntity Country { get; set; }
-        public string CountryIsoCode { get; set; }
-
-        public void CreateExplicitMap(Profile mapper)
+        public void AddMaps(IProfileExpression profile)
         {
-            mapper.CreateMap<EnduranceEvent, EnduranceEventEntity>()
-                .ForMember(d => d.Country, opt => opt.Ignore());
+            this.AddFromMaps(profile);
+            this.AddToMaps(profile);
+        }
 
-            mapper.CreateMap<EnduranceEventEntity, EnduranceEventForUpdateModel>()
+        private void AddFromMaps(IProfileExpression profile)
+        {
+            profile.CreateMap<EnduranceEvent, EnduranceEventEntity>()
+                .ForMember(d => d.Country, opt => opt.Ignore());
+        }
+
+        private void AddToMaps(IProfileExpression profile)
+        {
+            profile.CreateMap<EnduranceEventEntity, EnduranceEventForUpdateModel>()
                 .ForMember(
                     d => d.PresidentGroundJury,
                     opt => opt.ConvertUsing(

@@ -13,9 +13,4 @@ namespace EnduranceJudge.Core.Mappings
     public interface IMap<T>
     {
     }
-
-    public interface IMapExplicitly
-    {
-        void CreateExplicitMap(Profile mapper);
-    }
 }

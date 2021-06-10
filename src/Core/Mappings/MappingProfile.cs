@@ -12,41 +12,64 @@ namespace EnduranceJudge.Core.Mappings
         private static readonly Type MapFromType = typeof(IMapFrom<>);
         private static readonly Type MapToType = typeof(IMapTo<>);
         private static readonly Type MapType = typeof(IMap<>);
-        private static readonly Type MapExplicitlyType = typeof(IMapExplicitly);
+        private static readonly Type CustomMapConfigurationType = typeof(ICustomMapConfiguration);
 
         protected MappingProfile()
-            => this.RegisterMaps();
+        {
+            this.AddConventionalMaps();
+            this.AddCustomMaps();
+        }
 
         protected abstract Assembly[] Assemblies { get; }
 
-        protected virtual void RegisterMaps()
-            => this.Assemblies
-                .SelectMany(a => a.GetExportedTypes())
-                .Where(t => t.IsClass && !t.IsAbstract)
+        protected void AddConventionalMaps()
+        {
+            var configurations = this
+                .GetConcreteTypes()
                 .Select(t => new
                 {
                     Type = t,
                     MapFromTypes = GetMappingModels(t, MapFromType),
                     MapToTypes = GetMappingModels(t, MapToType),
                     MapTypes = GetMappingModels(t, MapType),
-                    ExplicitMapTypes = t
-                        .GetInterfaces()
-                        .Where(i => MapExplicitlyType.IsAssignableFrom(i))
-                        .Select(i => (IMapExplicitly)Activator.CreateInstance(t)!)
-                        .FirstOrDefault(),
                 })
-                .ForEach(obj =>
-                {
-                    obj.MapFromTypes.ForEach(mapFrom => this.CreateMap(mapFrom, obj.Type));
-                    obj.MapToTypes.ForEach(mapTo => this.CreateMap(obj.Type, mapTo));
-                    obj.MapTypes.ForEach(map =>
-                    {
-                        this.CreateMap(obj.Type, map);
-                        this.CreateMap(map, obj.Type);
-                    });
+                .ToList();
 
-                    obj.ExplicitMapTypes?.CreateExplicitMap(this);
+            foreach (var configuration in configurations)
+            {
+                configuration.MapFromTypes.ForEach(mapFrom => this.CreateMap(mapFrom, configuration.Type));
+                configuration.MapToTypes.ForEach(mapTo => this.CreateMap(configuration.Type, mapTo));
+                configuration.MapTypes.ForEach(map =>
+                {
+                    this.CreateMap(configuration.Type, map);
+                    this.CreateMap(map, configuration.Type);
                 });
+            }
+        }
+
+        private void AddCustomMaps()
+        {
+            var configurations = this
+                .GetConcreteTypes()
+                .Where(t => CustomMapConfigurationType.IsAssignableFrom(t))
+                .Select(t => Activator.CreateInstance(t)!)
+                .Cast<ICustomMapConfiguration>()
+                .ToList();
+
+            foreach (var configuration in configurations)
+            {
+                configuration.AddMaps(this);
+            }
+        }
+
+        private IEnumerable<Type> GetConcreteTypes()
+        {
+            var types = this.Assemblies
+                .SelectMany(a => a.GetExportedTypes())
+                .Where(t => t.IsClass && !t.IsAbstract);
+
+            return types;
+        }
 
         protected static IEnumerable<Type> GetMappingModels(Type source, Type mappingType)
             => source

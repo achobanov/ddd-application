@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create.Models;
 using EnduranceJudge.Core.Extensions;
-using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Enums;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ComboBoxItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
@@ -11,12 +10,8 @@ using System.Collections.ObjectModel;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions
 {
-    public class CompetitionDependentViewModel : DependantFormBase, IMapExplicitly
+    public class CompetitionDependentViewModel : DependantFormBase
     {
-        public CompetitionDependentViewModel()
-        {
-        }
-
         public CompetitionDependentViewModel(IApplicationService application, IEventAggregator eventAggregator)
             : base(application, eventAggregator)
         {
@@ -31,12 +26,6 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions
         {
             get => this.type;
             set => this.SetProperty(ref this.type, value);
-        }
-
-        public void CreateExplicitMap(Profile mapper)
-        {
-            mapper.CreateMap<CompetitionDependentViewModel, CreateCompetitionModel>()
-                .MapMember(d => d.Type, s => (CompetitionType) s.Type);
         }
     }
 }

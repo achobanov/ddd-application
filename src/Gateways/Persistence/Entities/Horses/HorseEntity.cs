@@ -1,13 +1,12 @@
-﻿using AutoMapper;
-using AutoMapper.EquivalencyExpression;
-using EnduranceJudge.Core.Mappings;
+﻿using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Import.Horses;
 using EnduranceJudge.Gateways.Persistence.Core;
+using EnduranceJudge.Gateways.Persistence.Entities.Participants;
 using Newtonsoft.Json;
 using Horse = EnduranceJudge.Domain.Aggregates.Event.Participants.Horse;
 using ImportHorse = EnduranceJudge.Domain.Aggregates.Import.Horses.Horse;
 
-namespace EnduranceJudge.Gateways.Persistence.Entities
+namespace EnduranceJudge.Gateways.Persistence.Entities.Horses
 {
     public class HorseEntity : EntityModel, IHorseState,
         IMap<Horse>,

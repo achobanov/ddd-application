@@ -1,4 +1,5 @@
 using EnduranceJudge.Gateways.Persistence.Entities;
+using EnduranceJudge.Gateways.Persistence.Entities.Countries;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

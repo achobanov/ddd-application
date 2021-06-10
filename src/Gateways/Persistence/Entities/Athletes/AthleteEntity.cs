@@ -2,11 +2,13 @@
 using EnduranceJudge.Domain.Aggregates.Import.Athletes;
 using EnduranceJudge.Domain.Enums;
 using EnduranceJudge.Gateways.Persistence.Core;
+using EnduranceJudge.Gateways.Persistence.Entities.Countries;
+using EnduranceJudge.Gateways.Persistence.Entities.Participants;
 using Newtonsoft.Json;
 using Athlete = EnduranceJudge.Domain.Aggregates.Event.Participants.Athlete;
 using ImportAthlete = EnduranceJudge.Domain.Aggregates.Import.Athletes.Athlete;
 
-namespace EnduranceJudge.Gateways.Persistence.Entities
+namespace EnduranceJudge.Gateways.Persistence.Entities.Athletes
 {
     public class AthleteEntity : EntityModel, IAthleteState,
         IMap<Athlete>,

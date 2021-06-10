@@ -2,7 +2,7 @@
 using EnduranceJudge.Core;
 using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using EnduranceJudge.Domain.Enums;
-using EnduranceJudge.Gateways.Persistence.Entities;
+using EnduranceJudge.Gateways.Persistence.Entities.Personnel;
 using System.Collections.Generic;
 using System.Linq;
 

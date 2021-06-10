@@ -1,5 +1,5 @@
 ﻿using EnduranceJudge.Gateways.Persistence.Core;
-using EnduranceJudge.Gateways.Persistence.Entities;
+using EnduranceJudge.Gateways.Persistence.Entities.Competitions;
 using Microsoft.EntityFrameworkCore;
 
 namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Competitions

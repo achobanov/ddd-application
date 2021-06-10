@@ -3,13 +3,14 @@ using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using EnduranceJudge.Gateways.Persistence.Contracts.WorkFile;
 using EnduranceJudge.Gateways.Persistence.Core;
-using EnduranceJudge.Gateways.Persistence.Entities;
+using EnduranceJudge.Gateways.Persistence.Entities.EnduranceEvents;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Events
 {
-    internal class EnduranceEventsRepository : RepositoryBase<IEnduranceEventsDataStore, EnduranceEventEntity, EnduranceEvent>,
+    internal class EnduranceEventsRepository
+        : RepositoryBase<IEnduranceEventsDataStore, EnduranceEventEntity, EnduranceEvent>,
         IEnduranceEventCommands,
         IEnduranceEventQueries
     {

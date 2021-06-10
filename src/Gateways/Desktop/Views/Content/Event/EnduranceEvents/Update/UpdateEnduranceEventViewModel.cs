@@ -1,10 +1,7 @@
-﻿using AutoMapper;
-using EnduranceJudge.Application.Events.Commands.EnduranceEvents.Update;
+﻿using EnduranceJudge.Application.Events.Commands.EnduranceEvents.Update;
 using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
 using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Core.Extensions;
-using EnduranceJudge.Core.Mappings;
-using EnduranceJudge.Core.Mappings.Converters;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 using EnduranceJudge.Gateways.Desktop.Services;
@@ -21,13 +18,8 @@ using System.Windows;
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Update
 {
     public class UpdateEnduranceEventViewModel
-        : PrincipalUpdateFormBase<GetEnduranceEvent, EnduranceEventForUpdateModel, UpdateEnduranceEvent>,
-        IMapExplicitly
+        : PrincipalUpdateFormBase<GetEnduranceEvent, EnduranceEventForUpdateModel, UpdateEnduranceEvent>
     {
-        public UpdateEnduranceEventViewModel() : base(null, null, null)
-        {
-        }
-
         public UpdateEnduranceEventViewModel(
             IApplicationService application,
             IEventAggregator eventAggregator,
@@ -149,25 +141,6 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Up
         }
 
         public List<CompetitionDependentViewModel> Competitions { get; set; } = new();
-
-        public void CreateExplicitMap(Profile mapper)
-        {
-            mapper.CreateMap<UpdateEnduranceEventViewModel, UpdateEnduranceEvent>()
-                .MapMember(d => d.CountryIsoCode, s => s.SelectedCountryIsoCode)
-                .ForMember(
-                    dest => dest.MembersOfJudgeCommittee,
-                    opt => opt.ConvertUsing(StringSplitter.New))
-                .ForMember(
-                    dest => dest.MembersOfVetCommittee,
-                    opt => opt.ConvertUsing(StringSplitter.New))
-                .ForMember(
-                    dest => dest.Stewards,
-                    opt => opt.ConvertUsing(StringSplitter.New));
-
-            mapper.CreateMap<EnduranceEventForUpdateModel, UpdateEnduranceEventViewModel>()
-                .MapMember(d => d.SelectedCountryIsoCode, s => s.CountryIsoCode);
-        }
-
         private void Add(CompetitionDependentViewModel competition)
         {
             this.Competitions.Add(competition);
