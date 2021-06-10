@@ -10,6 +10,7 @@ namespace EnduranceJudge.Application.Events.Queries.Competitions
     {
         public int Id { get; set; }
         public CompetitionType Type { get; }
+        public string Name { get; }
 
         public class GetCompetitionHandler : GetOneHandler<GetCompetition, CompetitionForUpdateModel, Competition>
         {

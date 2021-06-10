@@ -1,3 +1,4 @@
+using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Domain.Core.Validation;
 using EnduranceJudge.Domain.Aggregates.Event.Participants;
 using EnduranceJudge.Domain.Aggregates.Event.Phases;
@@ -14,13 +15,15 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
         {
         }
 
-        public Competition(int id, CompetitionType type) : base(id)
+        public Competition(int id, CompetitionType type, string name) : base(id)
             => this.Validate(() =>
             {
                 this.Type = type.IsRequired(nameof(type));
+                this.Name = name.IsRequired(nameof(name));
             });
 
         public CompetitionType Type { get; private set; }
+        public string Name { get; private set; }
 
         private List<Phase> phases = new();
         public IReadOnlyList<Phase> Phases
@@ -30,7 +33,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
         }
         public Competition Add(Phase phase)
         {
-            this.phases.ValidateAndAddOrUpdate(phase);
+            this.phases.AddOrUpdateObject(phase);
             return this;
         }
 
@@ -42,12 +45,12 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
         }
         public Competition Add(Participant participant)
         {
-            this.participants.ValidateAndAddOrUpdate(participant);
+            this.participants.AddOrUpdateObject(participant);
             return this;
         }
         public Competition Remove(Participant participant)
         {
-            this.participants.ValidateAndRemove(participant);
+            this.participants.RemoveObject(participant);
             return this;
         }
     }

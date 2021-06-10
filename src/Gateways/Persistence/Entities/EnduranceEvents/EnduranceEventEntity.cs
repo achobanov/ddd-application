@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities.EnduranceEvents
 {
-    public class EnduranceEventEntity : EntityModel, IEnduranceEventState,
+    public class EnduranceEventEntity : EntityBase, IEnduranceEventState,
         IMap<EnduranceEvent>,
         IMap<Domain.Aggregates.Import.EnduranceEvents.EnduranceEvent>,
         IMapTo<ListItemModel>

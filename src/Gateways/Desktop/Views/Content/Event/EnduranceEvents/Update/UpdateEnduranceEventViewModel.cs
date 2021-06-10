@@ -67,8 +67,8 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Up
         private string presidentVetCommission;
         public string PresidentVetCommission
         {
-            get => this.presidentGroundJury;
-            set => this.SetProperty(ref this.presidentGroundJury, value);
+            get => this.presidentVetCommission;
+            set => this.SetProperty(ref this.presidentVetCommission, value);
         }
 
         private string foreignJudge;
@@ -120,6 +120,12 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Up
             set => this.SetProperty(ref this.stewards, value);
         }
 
+        public List<CompetitionDependentViewModel> Competitions { get; set; } = new();
+        private void Add(CompetitionDependentViewModel competition)
+        {
+            this.Competitions.AddOrUpdateObject(competition);
+        }
+
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
             base.OnNavigatedTo(navigationContext);
@@ -138,12 +144,6 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Up
             this.CountryVisibility = Visibility.Visible;
 
             this.Countries.AddRange(countries);
-        }
-
-        public List<CompetitionDependentViewModel> Competitions { get; set; } = new();
-        private void Add(CompetitionDependentViewModel competition)
-        {
-            this.Competitions.Add(competition);
         }
     }
 }

@@ -1,5 +1,7 @@
+using EnduranceJudge.Core.Exceptions;
 using EnduranceJudge.Domain.Core.Validation;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace EnduranceJudge.Domain.Validation
 {
@@ -16,7 +18,7 @@ namespace EnduranceJudge.Domain.Validation
         {
             if (dateTime >= DateTime.Now)
             {
-                throw new ValidationException(InvalidBirthDateTemplate, dateTime);
+                throw new CoreException(InvalidBirthDateTemplate, dateTime);
             }
 
             return dateTime;
@@ -26,7 +28,7 @@ namespace EnduranceJudge.Domain.Validation
         {
             if (dateTime <= DateTime.Now)
             {
-                throw new ValidationException(InvalidBirthDateTemplate, dateTime);
+                throw new CoreException(InvalidBirthDateTemplate, dateTime);
             }
 
             return dateTime;

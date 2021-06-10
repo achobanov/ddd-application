@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create.Models;
-using EnduranceJudge.Core.Extensions;
-using EnduranceJudge.Domain.Enums;
+﻿using EnduranceJudge.Domain.Enums;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ComboBoxItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
@@ -26,6 +23,13 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions
         {
             get => this.type;
             set => this.SetProperty(ref this.type, value);
+        }
+
+        private string name;
+        public string Name
+        {
+            get => this.name;
+            set => this.SetProperty(ref this.name, value);
         }
     }
 }

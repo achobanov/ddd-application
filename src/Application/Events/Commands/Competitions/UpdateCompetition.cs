@@ -14,6 +14,7 @@ namespace EnduranceJudge.Application.Events.Commands.Competitions
         public int EnduranceEventId { get; set; }
         public int Id { get; set; }
         public CompetitionType Type { get; set; }
+        public string Name { get; }
 
         public class SaveCompetitionHandler : Handler<UpdateCompetition>
         {

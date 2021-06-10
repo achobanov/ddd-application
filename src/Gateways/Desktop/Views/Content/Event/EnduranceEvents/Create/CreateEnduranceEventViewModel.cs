@@ -1,6 +1,8 @@
 ﻿using EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create;
 using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
 using EnduranceJudge.Core.Extensions;
+using EnduranceJudge.Core.Mappings;
+using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 using EnduranceJudge.Gateways.Desktop.Services;
@@ -11,6 +13,7 @@ using Prism.Regions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -118,6 +121,12 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Cr
             set => this.SetProperty(ref this.stewards, value);
         }
 
+        public List<CompetitionDependentViewModel> Competitions { get; } = new();
+        private void Add(CompetitionDependentViewModel competition)
+        {
+            this.Competitions.AddOrUpdateObject(competition);
+        }
+
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
             base.OnNavigatedTo(navigationContext);
@@ -136,13 +145,6 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Cr
             this.CountryVisibility = Visibility.Visible;
 
             this.Countries.AddRange(countries);
-        }
-
-        public List<CompetitionDependentViewModel> Competitions { get; set; } = new();
-
-        private void Add(CompetitionDependentViewModel competition)
-        {
-            this.Competitions.Add(competition);
         }
     }
 }

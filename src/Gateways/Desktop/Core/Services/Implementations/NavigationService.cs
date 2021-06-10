@@ -34,11 +34,26 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
             this.ChangeTo(Regions.Content, typeof(T), id);
         }
 
+        public void ChangeTo<T>(object data) where T : IView
+        {
+            this.ChangeTo(Regions.Content, typeof(T), data);
+        }
+
         private void ChangeTo(string regionName, Type viewType, int id)
         {
             var parameters = new NavigationParameters
             {
                 { DesktopConstants.EntityIdParameter, id },
+            };
+
+            this.ChangeTo(viewType, regionName, parameters);
+        }
+
+        private void ChangeTo(string regionName, Type viewType, object data)
+        {
+            var parameters = new NavigationParameters
+            {
+                { DesktopConstants.DataParameter, data },
             };
 
             this.ChangeTo(viewType, regionName, parameters);

@@ -1,3 +1,4 @@
+using EnduranceJudge.Core.Exceptions;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Core.Models;
 using System;
@@ -13,7 +14,7 @@ namespace EnduranceJudge.Domain.Core.Validation
         {
             if (value?.Equals(default(TValue)) ?? true)
             {
-                throw new ValidationException(IsRequiredTemplate, name, value);
+                throw new CoreException(IsRequiredTemplate, name, value);
             }
 
             return value;
@@ -23,7 +24,7 @@ namespace EnduranceJudge.Domain.Core.Validation
         {
             if (value?.Equals(default(TValue)) ?? true)
             {
-                throw new ValidationException(IsRequiredTemplate, name);
+                throw new CoreException(IsRequiredTemplate, name);
             }
 
             return value;
@@ -33,7 +34,7 @@ namespace EnduranceJudge.Domain.Core.Validation
         {
             if (!value?.Equals(default(TValue)) ?? false)
             {
-                throw new ValidationException(message);
+                throw new CoreException(message);
             }
 
             return value;
@@ -43,7 +44,7 @@ namespace EnduranceJudge.Domain.Core.Validation
         {
             if (!enumerable.Any())
             {
-                throw new ValidationException(message);
+                throw new CoreException(message);
             }
         }
 
@@ -51,57 +52,8 @@ namespace EnduranceJudge.Domain.Core.Validation
         {
             if (enumerable.Any())
             {
-                throw new ValidationException(message);
+                throw new CoreException(message);
             }
-        }
-
-        public static void ValidateAndRemove<TDomainModel>(
-            this ICollection<TDomainModel> collection,
-            TDomainModel model)
-            where TDomainModel : IDomainModel
-        {
-            if (model == null)
-            {
-                throw new ValidationException(CannotRemoveNullItemTemplate, typeof(TDomainModel).Name);
-            }
-
-            if (!collection.Contains(model))
-            {
-                throw new ValidationException(CannotRemoveItemIsNotFoundTemplate, typeof(TDomainModel).Name);
-            }
-
-            collection.Remove(model);
-        }
-
-        public static void ValidateAndAdd<TDomainModel>(
-            this ICollection<TDomainModel> collection,
-            TDomainModel model)
-            where TDomainModel : IDomainModel
-        {
-            if (model == null)
-            {
-                throw new ValidationException(CannotAddNullItemTemplate, typeof(TDomainModel).Name);
-            }
-
-            collection.Add(model);
-        }
-
-        public static void ValidateAndAddOrUpdate<TDomainModel>(
-            this ICollection<TDomainModel> collection,
-            TDomainModel model)
-            where TDomainModel : IDomainModel
-        {
-            if (model == null)
-            {
-                throw new ValidationException(CannotAddNullItemTemplate, typeof(TDomainModel).Name);
-            }
-
-            if (collection.Contains(model))
-            {
-                throw new ValidationException(CannotAddItemExistsTemplate, typeof(TDomainModel).Name);
-            }
-
-            collection.Add(model);
         }
     }
 }

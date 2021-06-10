@@ -86,7 +86,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
                 this.Throw(message);
             }
 
-            this.personnel.ValidateAndAdd(personnel);
+            this.personnel.AddObject(personnel);
             return this;
         }
         public EnduranceEvent ClearPersonnel()
@@ -103,12 +103,12 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
         }
         public EnduranceEvent Add(Competition competition)
         {
-            this.competitions.ValidateAndAddOrUpdate(competition);
+            this.competitions.AddOrUpdateObject(competition);
             return this;
         }
         public EnduranceEvent Remove(Competition competition)
         {
-            this.competitions.ValidateAndRemove(competition);
+            this.competitions.RemoveObject(competition);
             return this;
         }
 

@@ -10,9 +10,10 @@ using ImportCompetition = EnduranceJudge.Domain.Aggregates.Import.Competitions.C
 
 namespace EnduranceJudge.Gateways.Persistence.Entities.Competitions
 {
-    public class CompetitionEntity : EntityModel, ICompetitionState
+    public class CompetitionEntity : EntityBase, ICompetitionState
     {
         public CompetitionType Type { get; set; }
+        public string Name { get; set; }
 
         [JsonIgnore]
         public EnduranceEventEntity EnduranceEvent { get; set; }

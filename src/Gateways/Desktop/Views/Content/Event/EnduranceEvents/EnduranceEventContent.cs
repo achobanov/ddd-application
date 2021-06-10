@@ -16,5 +16,6 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
         public const string MembersOfJudgeCommitteeLabel = EnduranceEventStrings.MembersOfJudgeCommitteeLabel;
         public const string MembersOfVetCommitteeLabel = EnduranceEventStrings.MembersOfVetCommitteeLabel;
         public const string StewardsLabel = EnduranceEventStrings.StewardsLabel;
+        public const string CompetitionsLabel = EnduranceEventStrings.CompetitionsLabel;
     }
 }

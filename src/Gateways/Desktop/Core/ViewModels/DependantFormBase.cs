@@ -1,6 +1,9 @@
-﻿using EnduranceJudge.Gateways.Desktop.Core.Events;
+﻿using EnduranceJudge.Core.Mappings;
+using EnduranceJudge.Gateways.Desktop.Core.Events;
+using EnduranceJudge.Gateways.Desktop.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using Prism.Events;
+using Prism.Regions;
 using System;
 using System.Threading.Tasks;
 
@@ -12,10 +15,6 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 
         private readonly Type eventAggregatorType;
         private readonly IEventAggregator eventAggregator;
-
-        protected DependantFormBase()
-        {
-        }
 
         protected DependantFormBase(IApplicationService application, IEventAggregator eventAggregator)
         {
@@ -44,6 +43,28 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             this.Journal.GoBack();
 
             return Task.CompletedTask;
+        }
+
+        public override bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            var data = navigationContext.GetData();
+            if (data != null)
+            {
+                return this.Equals(data);
+            }
+
+            return false;
+        }
+
+        public override void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            base.OnNavigatedTo(navigationContext);
+
+            var data = navigationContext.GetData();
+            if (data != null)
+            {
+                this.MapFrom(data);
+            }
         }
     }
 }

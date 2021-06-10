@@ -8,5 +8,6 @@ namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create.Mode
         public int Id { get; set; }
 
         public CompetitionType Type { get; set; }
+        public string Name { get; set; }
     }
 }

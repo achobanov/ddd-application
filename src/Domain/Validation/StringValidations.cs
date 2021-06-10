@@ -1,3 +1,4 @@
+using EnduranceJudge.Core.Exceptions;
 using EnduranceJudge.Domain.Core.Validation;
 using System;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace EnduranceJudge.Domain.Validation
 
             if (parts.Length < 2 || string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
             {
-                throw new ValidationException(Template, name);
+                throw new CoreException(Template, name);
             }
 
             return name;
@@ -32,7 +33,7 @@ namespace EnduranceJudge.Domain.Validation
         {
             if (value != DomainConstants.Gender.Female && value != DomainConstants.Gender.Male)
             {
-                throw new ValidationException(InvalidGenderTemplate, value);
+                throw new CoreException(InvalidGenderTemplate, value);
             }
 
             return value;

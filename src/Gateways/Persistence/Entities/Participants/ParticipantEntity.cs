@@ -9,7 +9,7 @@ using ImportParticipant = EnduranceJudge.Domain.Aggregates.Import.Participants.P
 
 namespace EnduranceJudge.Gateways.Persistence.Entities.Participants
 {
-    public class ParticipantEntity : EntityModel, IParticipantState
+    public class ParticipantEntity : EntityBase, IParticipantState
     {
         public string RfId { get; set; }
         public int ContestNumber { get; set; }

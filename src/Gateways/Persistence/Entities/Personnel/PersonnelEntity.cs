@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities.Personnel
 {
-    public class PersonnelEntity : EntityModel, IPersonnelState, IMap<Domain.Aggregates.Event.Personnels.Personnel>
+    public class PersonnelEntity : EntityBase, IPersonnelState, IMap<Domain.Aggregates.Event.Personnels.Personnel>
     {
         public string Name { get; set; }
         public PersonnelRole Role { get; set; }

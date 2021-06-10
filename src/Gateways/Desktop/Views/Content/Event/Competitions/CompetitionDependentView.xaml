@@ -12,13 +12,12 @@
 
         <DockPanel Style="{StaticResource Form-Item}">
             <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=EnduranceEvents}"
-                   Content="{x:Static common:EventPageContent.EnduranceEventText}"/>
+                   Target="{Binding ElementName=_Name}"
+                   Content="{x:Static common:EventPageContent.SaveButtonText}"/>
 
-            <ComboBox Style="{StaticResource Combo-Box}"
-                      ItemsSource="{Binding EnduranceEvents}"
-                      SelectedValue="{Binding EnduranceEventId}"
-                      Name="EnduranceEvents" />
+            <TextBox Style="{StaticResource Input}"
+                     Text="{Binding Name}"
+                     Name="_Name" />
         </DockPanel>
         <DockPanel Style="{StaticResource Form-Item}">
             <Label Style="{StaticResource Label-Primary}"

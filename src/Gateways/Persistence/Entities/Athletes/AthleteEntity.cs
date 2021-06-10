@@ -10,7 +10,7 @@ using ImportAthlete = EnduranceJudge.Domain.Aggregates.Import.Athletes.Athlete;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities.Athletes
 {
-    public class AthleteEntity : EntityModel, IAthleteState,
+    public class AthleteEntity : EntityBase, IAthleteState,
         IMap<Athlete>,
         IMap<ImportAthlete>
     {

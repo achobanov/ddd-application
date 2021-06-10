@@ -41,7 +41,7 @@ namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents.Update
 
                 enduranceEvent.Update(request);
 
-                var competitions = request.Competitions.Select(x => new Competition(x.Id, x.Type));
+                var competitions = request.Competitions.Select(x => new Competition(x.Id, x.Type, x.Name));
                 competitions.ForEach(enduranceEvent.Add);
 
                 if (enduranceEvent.Country?.IsoCode != request.CountryIsoCode)

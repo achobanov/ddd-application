@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities.Phases
 {
-    public class PhaseEntity : EntityModel, IPhaseState, IMap<Phase>
+    public class PhaseEntity : EntityBase, IPhaseState, IMap<Phase>
     {
         public int LengthInKilometers { get; set; }
 

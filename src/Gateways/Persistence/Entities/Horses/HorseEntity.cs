@@ -8,7 +8,7 @@ using ImportHorse = EnduranceJudge.Domain.Aggregates.Import.Horses.Horse;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities.Horses
 {
-    public class HorseEntity : EntityModel, IHorseState,
+    public class HorseEntity : EntityBase, IHorseState,
         IMap<Horse>,
         IMap<ImportHorse>
     {

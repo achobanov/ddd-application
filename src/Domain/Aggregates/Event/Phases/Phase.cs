@@ -1,3 +1,4 @@
+using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Domain.Core.Validation;
 using EnduranceJudge.Domain.Aggregates.Event.PhasesForCategory;
 using EnduranceJudge.Domain.Core.Models;
@@ -31,7 +32,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Phases
         }
         public Phase Add(PhaseForCategory phaseForCategory)
         {
-            this.phasesForCategories.ValidateAndAddOrUpdate(phaseForCategory);
+            this.phasesForCategories.AddOrUpdateObject(phaseForCategory);
             return this;
         }
     }

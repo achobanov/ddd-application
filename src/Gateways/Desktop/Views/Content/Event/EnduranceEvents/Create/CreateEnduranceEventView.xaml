@@ -134,19 +134,19 @@
         </DockPanel>
         <DockPanel Style="{StaticResource Form-Item}">
 
-            <Button Style="{StaticResource Button}"
-                    Command="{Binding Submit}"
-                    Content="{x:Static common:EventPageContent.SaveButtonText}" />
-        </DockPanel>
-        <DockPanel Style="{StaticResource Form-Item}">
-
             <Label Style="{StaticResource Label-Primary}"
                    Target="{Binding ElementName=Stewards}"
-                   Content="{x:Static local:EnduranceEventContent.StewardsLabel}" />
+                   Content="{x:Static local:EnduranceEventContent.CompetitionsLabel}" />
 
             <Button Style="{StaticResource Button}"
                     Command="{Binding AddCompetition}"
                     Content="{x:Static common:EventPageContent.AddButtonText}" />
+        </DockPanel>
+        <DockPanel Style="{StaticResource Form-Item}">
+
+            <Button Style="{StaticResource Button}"
+                    Command="{Binding Submit}"
+                    Content="{x:Static common:EventPageContent.CreateButtonText}" />
         </DockPanel>
 
     </StackPanel>

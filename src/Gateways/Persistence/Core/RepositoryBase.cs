@@ -13,7 +13,7 @@ namespace EnduranceJudge.Gateways.Persistence.Core
     public class RepositoryBase<TDataStore, TEntityModel, TDomainModel> : ICommandsBase<TDomainModel>
         where TDomainModel : class, IDomainModel
         where TDataStore : IDataStore
-        where TEntityModel : EntityModel
+        where TEntityModel : EntityBase
     {
         private readonly IWorkFileUpdater workFileUpdater;
 

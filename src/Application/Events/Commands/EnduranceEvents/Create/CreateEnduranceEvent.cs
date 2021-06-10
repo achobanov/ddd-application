@@ -53,9 +53,11 @@ namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create
             {
                 var enduranceEvent = new EnduranceEvent(request);
 
-                request.Competitions
-                    .Select(x => new Competition(x.Id, x.Type))
-                    .ForEach(enduranceEvent.Add);
+                var competitions = request.Competitions?.Select(x => new Competition(x.Id, x.Type, x.Name));
+                foreach (var competition in competitions)
+                {
+                    enduranceEvent.Add(competition);
+                }
 
                 var personnel = this.enduranceEventService.PreparePersonnel(request);
                 personnel.ForEach(enduranceEvent.Add);

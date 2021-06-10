@@ -14,5 +14,8 @@ namespace EnduranceJudge.Gateways.Desktop.Services
 
         void ChangeTo<T>(int id)
             where T : IView;
+
+        void ChangeTo<T>(object data)
+            where T : IView;
     }
 }

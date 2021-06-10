@@ -6,7 +6,7 @@ using ImportParticipant = EnduranceJudge.Domain.Aggregates.Import.Participants.P
 
 namespace EnduranceJudge.Gateways.Persistence.Entities.ParticipantsInCompetitions
 {
-    public class ParticipantInCompetition : EntityModel
+    public class ParticipantInCompetition : EntityBase
     {
         [JsonIgnore]
         public ParticipantEntity Participant { get; set; }
