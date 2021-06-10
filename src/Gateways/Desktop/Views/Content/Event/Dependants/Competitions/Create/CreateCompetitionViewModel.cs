@@ -2,7 +2,7 @@
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 using Prism.Events;
 
-namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions.Create
+namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competitions.Create
 {
     public class CompetitionViewModel : DependantFormBase
     {

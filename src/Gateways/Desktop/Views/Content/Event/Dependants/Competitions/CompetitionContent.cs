@@ -1,6 +1,6 @@
 ﻿using static EnduranceJudge.Localization.Strings.Desktop.Content.EventPage;
 
-namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions
+namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competitions
 {
     public static class CompetitionContent
     {

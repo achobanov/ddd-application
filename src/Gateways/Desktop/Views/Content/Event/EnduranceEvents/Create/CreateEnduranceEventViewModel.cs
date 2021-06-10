@@ -5,7 +5,7 @@ using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 using EnduranceJudge.Gateways.Desktop.Services;
-using EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions;
+using EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competitions;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;

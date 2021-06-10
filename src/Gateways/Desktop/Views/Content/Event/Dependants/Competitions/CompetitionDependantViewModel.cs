@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Prism.Events;
 using System.Collections.ObjectModel;
 
-namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Competitions
+namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competitions
 {
     public class CompetitionDependantViewModel : DependantFormBase
     {
