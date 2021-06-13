@@ -28,24 +28,16 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         protected IApplicationService Application { get; }
         protected INavigationService Navigation { get; }
 
-        protected void AddDependent<T>(Action<T> action)
-            where T : DependantFormBase
-        {
-            this.eventAggregator
-                .GetEvent<DependantFormSubmitEvent<T>>()
-                .Subscribe(action);
-        }
-
         protected Action GetCreateDelegate<T>()
             where T : IView
         {
             return this.Navigation.ChangeTo<T>;
         }
 
-        protected Action GetUpdateDelegate<T>(object data)
+        protected Action GetUpdateDelegate<T>(object data, Action action)
             where T : IView
         {
-            return () => this.Navigation.ChangeTo<T>(data);
+            return () => this.Navigation.ChangeTo<T>(data, action);
         }
 
         protected override async Task SubmitAction()

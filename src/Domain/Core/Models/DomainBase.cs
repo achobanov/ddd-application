@@ -1,7 +1,6 @@
 ﻿using EnduranceJudge.Core.Exceptions;
 using EnduranceJudge.Core.Models;
 using EnduranceJudge.Domain.Core.Exceptions;
-using EnduranceJudge.Domain.Core.Validation;
 using System;
 
 namespace EnduranceJudge.Domain.Core.Models
@@ -34,5 +33,38 @@ namespace EnduranceJudge.Domain.Core.Models
 
         internal void Throw(string message)
             => Thrower.Throw<TException>(message);
+
+        public override bool Equals(IObject other)
+        {
+            return this.IsEqual(other);
+        }
+
+        public override bool Equals(object other)
+        {
+            return this.IsEqual(other);
+        }
+
+        public override int GetHashCode()
+            => base.GetHashCode() + this.Id;
+
+        private bool IsEqual(object other)
+        {
+            if (other is not IDomainModel domainModel)
+            {
+                return false;
+            }
+
+            if (this.GetType() != domainModel.GetType())
+            {
+                return false;
+            }
+
+            if (this.Id != default &&  domainModel.Id != default)
+            {
+                return this.Id == domainModel.Id;
+            }
+
+            return base.Equals(other);
+        }
     }
 }

@@ -1,17 +1,21 @@
-﻿using EnduranceJudge.Domain.Enums;
+﻿using EnduranceJudge.Core.Mappings;
+using EnduranceJudge.Domain.Enums;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ComboBoxItem;
+using EnduranceJudge.Gateways.Desktop.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
-using Microsoft.AspNetCore.Mvc;
 using Prism.Events;
+using Prism.Regions;
 using System.Collections.ObjectModel;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competitions
 {
-    public class CompetitionDependantViewModel : DependantFormBase
+    public class CompetitionDependantViewModel : DependantFormBase<CompetitionDependantViewModel>
     {
         public CompetitionDependantViewModel() : base(null, null)
         {
+            var typeViewModels = ComboBoxItemViewModel.FromEnum<CompetitionType>();
+            this.CompetitionTypes = new ObservableCollection<ComboBoxItemViewModel>(typeViewModels);
         }
 
         public CompetitionDependantViewModel(IApplicationService application, IEventAggregator eventAggregator)

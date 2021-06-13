@@ -31,8 +31,6 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Up
             INavigationService navigation)
             : base(application, eventAggregator, navigation)
         {
-            this.AddDependent<CompetitionDependantViewModel>(this.UpdateCompetitions);
-
             var createCompetition = this.GetCreateDelegate<CompetitionDependantView>();
             this.AddCompetition = new DelegateCommand(createCompetition);
         }
@@ -131,11 +129,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Up
         public ObservableCollection<ListItemViewModel> CompetitionItems { get; } = new();
         private void UpdateCompetitions(CompetitionDependantViewModel competition)
         {
-            if (!this.Competitions.Contains(competition))
-            {
-                this.Competitions.AddObject(competition);
-            }
-
+            this.Competitions.AddOrUpdateObject(competition);
             this.UpdateListItems();
         }
 

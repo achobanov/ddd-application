@@ -25,13 +25,6 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         {
         }
 
-        private int id;
-        public int Id
-        {
-            get => this.id;
-            set => this.SetProperty(ref this.id, value);
-        }
-
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
             base.OnNavigatedTo(navigationContext);

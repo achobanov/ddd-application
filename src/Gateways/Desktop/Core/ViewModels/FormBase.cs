@@ -11,6 +11,13 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             this.Submit = new AsyncCommand(this.SubmitAction);
         }
 
+        private int id;
+        public int Id
+        {
+            get => this.id;
+            set => this.SetProperty(ref this.id, value);
+        }
+
         public DelegateCommand Submit { get; }
         protected abstract Task SubmitAction();
     }

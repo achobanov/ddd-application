@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
-    public abstract class DependantFormBase : FormBase
+    public abstract class DependantFormBase<TViewModel> : FormBase, IMapFrom<TViewModel>
+        where TViewModel : DependantFormBase<TViewModel>
     {
+        private readonly Type thisType;
         private readonly Type formCreateEventTye = typeof(DependantFormSubmitEvent<>);
         private readonly Type eventAggregatorType;
         private readonly IEventAggregator eventAggregator;
@@ -19,6 +21,8 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 
         protected DependantFormBase(IApplicationService application, IEventAggregator eventAggregator)
         {
+            this.thisType = this.GetType();
+
             this.eventAggregator = eventAggregator;
             this.eventAggregatorType = eventAggregator?.GetType();
             this.Application = application;
@@ -28,10 +32,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 
         protected override Task SubmitAction()
         {
-            if (!this.isUpdateMode)
-            {
-                this.PublishCreatedEvent();
-            }
+            this.PublishCreatedEvent();
 
             this.Journal.GoBack();
 
@@ -63,9 +64,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 
         private void PublishCreatedEvent()
         {
-            var thisType = this.GetType();
-
-            var eventType = this.formCreateEventTye.MakeGenericType(thisType);
+            var eventType = this.formCreateEventTye.MakeGenericType(this.thisType);
             var getEventMethodName = nameof(this.eventAggregator.GetEvent);
             var getEventMethod = this.eventAggregatorType
                 .GetMethod(getEventMethodName)
