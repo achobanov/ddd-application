@@ -1,5 +1,4 @@
 ﻿using EnduranceJudge.Core.Mappings;
-using EnduranceJudge.Gateways.Desktop.Core.Events;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Services;
 using MediatR;
@@ -34,10 +33,10 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             return this.Navigation.ChangeTo<T>;
         }
 
-        protected Action GetUpdateDelegate<T>(object data, Action action)
-            where T : IView
+        protected Action GetUpdateDelegate<TView, TViewModel>(object data, Action<TViewModel> action)
+            where TView : IView
         {
-            return () => this.Navigation.ChangeTo<T>(data, action);
+            return () => this.Navigation.ChangeTo<TView, TViewModel>(data, action);
         }
 
         protected override async Task SubmitAction()

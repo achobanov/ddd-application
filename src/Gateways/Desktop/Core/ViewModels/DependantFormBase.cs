@@ -18,6 +18,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         private readonly IEventAggregator eventAggregator;
 
         private bool isUpdateMode;
+        private Action<TViewModel> submitAction;
 
         protected DependantFormBase(IApplicationService application, IEventAggregator eventAggregator)
         {
@@ -32,7 +33,12 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 
         protected override Task SubmitAction()
         {
-            this.PublishCreatedEvent();
+            if (this is not TViewModel viewModel)
+            {
+                throw new Exception("kur");
+            }
+
+            this.submitAction(viewModel);
 
             this.Journal.GoBack();
 
@@ -60,6 +66,8 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
                 this.isUpdateMode = true;
                 this.MapFrom(data);
             }
+
+            this.submitAction = navigationContext.GetAction<TViewModel>();
         }
 
         private void PublishCreatedEvent()

@@ -6,9 +6,8 @@ using EnduranceJudge.Domain.Enums;
 
 namespace EnduranceJudge.Application.Events.Queries.Competitions
 {
-    public class GetCompetition : IIdentifiableRequest<CompetitionForUpdateModel>, ICompetitionState
+    public class GetCompetition : IdentifiableRequest<CompetitionForUpdateModel>, ICompetitionState
     {
-        public int Id { get; set; }
         public CompetitionType Type { get; }
         public string Name { get; }
 

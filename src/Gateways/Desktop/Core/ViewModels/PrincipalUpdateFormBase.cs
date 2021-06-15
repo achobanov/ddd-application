@@ -4,6 +4,7 @@ using EnduranceJudge.Gateways.Desktop.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Services;
 using MediatR;
+using Microsoft.AspNetCore.Hosting;
 using Prism.Events;
 using Prism.Regions;
 using System;
@@ -14,7 +15,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
     public abstract class PrincipalUpdateFormBase<TGet, TGetModel, TUpdate> : PrincipalFormBase<TUpdate>,
         IMapFrom<TGetModel>,
         IMapTo<TUpdate>
-        where TGet : IIdentifiableRequest<TGetModel>, new()
+        where TGet : IdentifiableRequest<TGetModel>, new()
         where TUpdate : IRequest
     {
         protected PrincipalUpdateFormBase(
@@ -23,6 +24,13 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             INavigationService navigation)
             : base(application, eventAggregator, navigation)
         {
+        }
+
+        public override bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            var id = navigationContext.GetId();
+
+            return this.Id == id;
         }
 
         public override void OnNavigatedTo(NavigationContext navigationContext)
@@ -35,7 +43,10 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
                 throw new InvalidOperationException("Update form requires ID parameter.");
             }
 
-            this.Load(id.Value);
+            if (this.Id == default)
+            {
+                this.Load(id.Value);
+            }
         }
 
         private async Task Load(int id)

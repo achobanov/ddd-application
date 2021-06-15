@@ -1,4 +1,5 @@
-﻿using EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create;
+﻿using EnduranceJudge.Application.Events.Commands.Competitions;
+using EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create;
 using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
 using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
@@ -25,7 +26,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Cr
             INavigationService navigation)
             : base(application, eventAggregator, navigation)
         {
-            this.AddDependent<CompetitionDependantViewModel>(this.UpdateCompetitions);
+            // this.AddDependent<CompetitionDependantViewModel>(this.UpdateCompetitions);
 
             var createCompetition = this.GetCreateDelegate<CompetitionDependantView>();
             this.AddCompetition = new DelegateCommand(createCompetition);
@@ -134,7 +135,10 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Cr
 
             foreach (var item in this.Competitions)
             {
-                var updateCompetition = this.GetUpdateDelegate<CompetitionDependantView>(item);
+                var updateCompetition = this.GetUpdateDelegate<CompetitionDependantView, CompetitionDependantViewModel>(
+                    item,
+                    this.UpdateCompetitions);
+
                 var navigateToUpdate = new DelegateCommand(updateCompetition);
                 var listItem = new ListItemViewModel(item.Type, item.Name, navigateToUpdate);
                 this.CompetitionItems.Add(listItem);

@@ -125,6 +125,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Up
             set => this.SetProperty(ref this.stewards, value);
         }
 
+        // Get The action from parameters and execute
         public List<CompetitionDependantViewModel> Competitions { get; private set; } = new();
         public ObservableCollection<ListItemViewModel> CompetitionItems { get; } = new();
         private void UpdateCompetitions(CompetitionDependantViewModel competition)
@@ -138,9 +139,14 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Up
             var listItems = this.Competitions
                 .Select(item =>
                 {
-                    var updateCompetition = this.GetUpdateDelegate<CompetitionDependantView>(item);
+                    var updateCompetition = this.GetUpdateDelegate<
+                        CompetitionDependantView,
+                        CompetitionDependantViewModel>(
+                        item,
+                        this.UpdateCompetitions);
+
                     var navigateToUpdate = new DelegateCommand(updateCompetition);
-                    var listItem = new ListItemViewModel(item.Type, item.Name, navigateToUpdate);
+                    var listItem = new ListItemViewModel(item.Id, item.Name, navigateToUpdate);
 
                     return listItem;
                 })

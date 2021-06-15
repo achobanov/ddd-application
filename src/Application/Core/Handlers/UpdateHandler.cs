@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 namespace EnduranceJudge.Application.Core.Handlers
 {
     public class UpdateHandler<TRequest, TEntity> : Handler<TRequest>
-        where TRequest : IIdentifiableRequest, IMapTo<TEntity>
+        where TRequest : IdentifiableRequest, IMapTo<TEntity>
         where TEntity : IAggregateRoot
     {
-        private readonly ICommandsBase<TEntity> commandses;
+        private readonly ICommandsBase<TEntity> commands;
 
-        protected UpdateHandler(ICommandsBase<TEntity> commandses)
+        protected UpdateHandler(ICommandsBase<TEntity> commands)
         {
-            this.commandses = commandses;
+            this.commands = commands;
         }
 
         protected override async Task Handle(TRequest request, CancellationToken cancellationToken)
         {
-            var entity = await this.commandses.Find<TEntity>(request.Id);
+            var entity = await this.commands.Find<TEntity>(request.Id);
 
             this.Update(entity, request);
 
-            await this.commandses.Save(entity, cancellationToken);
+            await this.commands.Save(entity, cancellationToken);
         }
 
         protected virtual void Update(TEntity entity, TRequest request)

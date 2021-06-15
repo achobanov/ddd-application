@@ -32,7 +32,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core
 
         public Guid ObjectId { get; }
 
-        public bool Equals(IObject other)
+        public virtual bool Equals(IObject other)
         {
             if (ReferenceEquals(null, other))
             {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace EnduranceJudge.Application.Core.Handlers
 {
     public class GetOneHandler<TRequest, TResponse, TDomainModel> : Handler<TRequest, TResponse>
-        where TRequest : IIdentifiableRequest<TResponse>
+        where TRequest : IdentifiableRequest<TResponse>
         where TDomainModel : IDomainModel
     {
         private readonly IQueriesBase<TDomainModel> query;

@@ -44,6 +44,16 @@ namespace EnduranceJudge.Domain.Core.Models
             return this.IsEqual(other);
         }
 
+        public bool Equals(IIdentifiable identifiable)
+        {
+            if (this.Id != default &&  identifiable.Id != default)
+            {
+                return this.Id == identifiable.Id;
+            }
+
+            return base.Equals(identifiable);
+        }
+
         public override int GetHashCode()
             => base.GetHashCode() + this.Id;
 
@@ -59,12 +69,7 @@ namespace EnduranceJudge.Domain.Core.Models
                 return false;
             }
 
-            if (this.Id != default &&  domainModel.Id != default)
-            {
-                return this.Id == domainModel.Id;
-            }
-
-            return base.Equals(other);
+            return this.Equals(domainModel);
         }
     }
 }

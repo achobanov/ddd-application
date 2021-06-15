@@ -1,5 +1,6 @@
 ﻿using EnduranceJudge.Core.Models;
 using Prism.Regions;
+using System;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.Extensions
 {
@@ -37,6 +38,18 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Extensions
             }
 
             return data;
+        }
+
+        public static Action<T> GetAction<T>(this NavigationContext context)
+            where T : class
+        {
+            var hasData = context.Parameters.TryGetValue<Action<T>>("Action", out var action);
+            if (!hasData)
+            {
+                return null;
+            }
+
+            return action;
         }
     }
 }

@@ -6,10 +6,8 @@ using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 
 namespace EnduranceJudge.Application.Events.Queries.GetEvent
 {
-    public class GetEnduranceEvent : IIdentifiableRequest<EnduranceEventForUpdateModel>
+    public class GetEnduranceEvent : IdentifiableRequest<EnduranceEventForUpdateModel>
     {
-        public int Id { get; set; }
-
         public class GetEnduranceEventHandler
             : GetOneHandler<GetEnduranceEvent, EnduranceEventForUpdateModel, EnduranceEvent>
         {

@@ -1,6 +1,8 @@
-﻿namespace EnduranceJudge.Core.Models
+﻿using System;
+
+namespace EnduranceJudge.Core.Models
 {
-    public interface IIdentifiable
+    public interface IIdentifiable : IEquatable<IIdentifiable>
     {
         int Id { get; }
     }
