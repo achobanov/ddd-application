@@ -3,8 +3,10 @@ using EnduranceJudge.Application.Core.Contracts;
 using EnduranceJudge.Application.Core.Exceptions;
 using EnduranceJudge.Application.Core.Handlers;
 using EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create;
+using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Application.Events.Services;
 using EnduranceJudge.Core.Extensions;
+using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using System.Linq;
@@ -15,7 +17,7 @@ namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents.Update
 {
     public class UpdateEnduranceEvent : CreateEnduranceEvent
     {
-        public class UpdateEnduranceEventHandler : Handler<UpdateEnduranceEvent>
+        public class UpdateEnduranceEventHandler : Handler<UpdateEnduranceEvent, EnduranceEventForUpdateModel>
         {
             private readonly IEnduranceEventService enduranceEventService;
             private readonly ICommandsBase<EnduranceEvent> eventCommands;
@@ -31,7 +33,9 @@ namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents.Update
                 this.countryQueries = countryQueries;
             }
 
-            protected override async Task Handle(UpdateEnduranceEvent request, CancellationToken cancellationToken)
+            public override async Task<EnduranceEventForUpdateModel> Handle(
+                UpdateEnduranceEvent request,
+                CancellationToken cancellationToken)
             {
                 var enduranceEvent = await this.eventCommands.Find(request.Id);
                 if (enduranceEvent == null)
@@ -55,7 +59,11 @@ namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents.Update
                     .PreparePersonnel(request)
                     .ForEach(enduranceEvent.Add);
 
-                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                var result = await this.eventCommands.Save<EnduranceEventForUpdateModel>(
+                    enduranceEvent,
+                    cancellationToken);
+
+                return result;
             }
         }
     }

@@ -8,6 +8,7 @@
         public const string CreateButtonText = "Create";
         public const string UpdateButtonText = "Update";
         public const string AddButtonText = "Add";
+        public const string BackButtonText = "Back";
 
         // -------
         // Regions

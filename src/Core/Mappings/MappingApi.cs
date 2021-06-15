@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using EnduranceJudge.Core.Models;
 using System.Runtime.CompilerServices;
 
 namespace EnduranceJudge.Core.Mappings
@@ -58,12 +59,28 @@ namespace EnduranceJudge.Core.Mappings
         {
             ValidateConfiguration();
 
+            if (destination is IObject objectDestination && source is IObject objectSource)
+            {
+                if (objectDestination.ObjectEquals(objectSource))
+                {
+                    return destination;
+                }
+            }
+
             return Mapper.Map(source, destination);
         }
 
         public static T MapFrom<T>(this T destination, object source)
         {
             ValidateConfiguration();
+
+            if (destination is IObject objectDestination && source is IObject objectSource)
+            {
+                if (objectDestination.ObjectEquals(objectSource))
+                {
+                    return destination;
+                }
+            }
 
             return Mapper.Map(source, destination);
         }

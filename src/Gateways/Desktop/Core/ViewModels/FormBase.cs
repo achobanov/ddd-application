@@ -9,7 +9,6 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
     {
         protected FormBase()
         {
-            this.Submit = new AsyncCommand(this.SubmitAction);
         }
 
         private int id;
@@ -18,9 +17,6 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             get => this.id;
             set => this.SetProperty(ref this.id, value);
         }
-
-        public DelegateCommand Submit { get; }
-        protected abstract Task SubmitAction();
 
         public bool Equals(IIdentifiable identifiable)
         {

@@ -3,7 +3,6 @@ using EnduranceJudge.Gateways.Desktop.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using Prism.Regions;
 using System;
-using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
@@ -19,12 +18,10 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 
         protected IApplicationService Application { get; }
 
-        protected override Task SubmitAction()
+        protected override void NavigateBackAction()
         {
             this.submitAction(this);
-            this.Journal.GoBack();
-
-            return Task.CompletedTask;
+            base.NavigateBackAction();
         }
 
         public override bool IsNavigationTarget(NavigationContext navigationContext)

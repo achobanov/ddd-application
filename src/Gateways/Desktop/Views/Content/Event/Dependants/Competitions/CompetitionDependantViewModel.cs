@@ -19,13 +19,13 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competi
             this.LoadCompetitionTypes();
         }
 
-        public ObservableCollection<ComboBoxItemViewModel> CompetitionTypes { get; private set; }
+        public ObservableCollection<ComboBoxItemViewModel> CompetitionTypeItems { get; private set; }
 
-        private int type;
-        public int Type
+        private int competitionType;
+        public int CompetitionType
         {
-            get => this.type;
-            set => this.SetProperty(ref this.type, value);
+            get => this.competitionType;
+            set => this.SetProperty(ref this.competitionType, value);
         }
 
         private string name;
@@ -38,7 +38,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competi
         private void LoadCompetitionTypes()
         {
             var typeViewModels = ComboBoxItemViewModel.FromEnum<CompetitionType>();
-            this.CompetitionTypes = new ObservableCollection<ComboBoxItemViewModel>(typeViewModels);
+            this.CompetitionTypeItems = new ObservableCollection<ComboBoxItemViewModel>(typeViewModels);
         }
     }
 }

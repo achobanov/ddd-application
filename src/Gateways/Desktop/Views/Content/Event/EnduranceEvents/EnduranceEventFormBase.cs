@@ -16,13 +16,13 @@ using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
 {
-    public abstract class EnduranceEventFormBase<TCommand> : PrincipalFormBase<TCommand>
-        where TCommand : IRequest
+    public abstract class EnduranceEventFormBase<TCommand, TUpdateModel> : PrincipalFormBase<TCommand, TUpdateModel>
+        where TCommand : IRequest<TUpdateModel>
     {
         protected EnduranceEventFormBase(IApplicationService application, INavigationService navigation)
             : base(application, navigation)
         {
-            var createCompetition = this.GetCreateDelegate<CompetitionDependantView>();
+            var createCompetition = this.GetCreateDelegate<CompetitionDependantView>(this.UpdateCompetitions);
             this.AddCompetition = new DelegateCommand(createCompetition);
         }
 

@@ -35,7 +35,7 @@
                    Target="{Binding ElementName=Countries}"
                    Content="{x:Static strings:DesktopStrings.CountryLabel}"/>
 
-              <ComboBox Style="{StaticResource Combo-Box}"
+            <ComboBox Style="{StaticResource Combo-Box}"
                       ItemsSource="{Binding Countries}"
                       SelectedValue="{Binding SelectedCountryIsoCode}"
                       SelectedValuePath="IsoCode"
@@ -146,6 +146,10 @@
                      ItemsSource="{Binding CompetitionItems}" />
         </StackPanel>
         <DockPanel Style="{StaticResource Form-Item}">
+
+            <Button Style="{StaticResource Button}"
+                    Command="{Binding NavigateBack}"
+                    Content="{x:Static strings:DesktopStrings.BackButtonText}" />
 
             <Button Style="{StaticResource Button}"
                     Command="{Binding Submit}"

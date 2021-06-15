@@ -45,24 +45,36 @@ namespace EnduranceJudge.Gateways.Persistence.Core
                 .MapQueryable<TModel>()
                 .ToListAsync();
 
-        public async Task<int> Save(TDomainModel domainModel, CancellationToken cancellationToken = default)
+        public async Task Save(TDomainModel domainModel, CancellationToken cancellationToken)
         {
-            var entity = await this.DataStore.FindAsync<TEntityModel>(domainModel.Id);
+            await this.InnerSave(domainModel, cancellationToken);
+        }
+
+        public async Task<T> Save<T>(TDomainModel domainModel, CancellationToken cancellationToken)
+        {
+            var entity = await this.InnerSave(domainModel, cancellationToken);
+
+            return entity.Map<T>();
+        }
+
+        private async Task<TEntityModel> InnerSave(TDomainModel domain, CancellationToken cancellationToken)
+        {
+            var entity = await this.DataStore.FindAsync<TEntityModel>(domain.Id);
             if (entity == null)
             {
-                entity = domainModel.Map<TEntityModel>();
+                entity = domain.Map<TEntityModel>();
                 this.DataStore.Add(entity);
             }
             else
             {
-                entity.MapFrom(domainModel);
+                entity.MapFrom(domain);
                 this.DataStore.Update(entity);
             }
 
             await this.DataStore.SaveChangesAsync(cancellationToken);
             await this.workFileUpdater.Snapshot();
 
-            return entity.Id;
+            return entity;
         }
     }
 }

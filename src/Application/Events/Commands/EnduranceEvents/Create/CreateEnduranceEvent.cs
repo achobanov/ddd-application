@@ -2,8 +2,10 @@
 using EnduranceJudge.Application.Core.Contracts;
 using EnduranceJudge.Application.Core.Handlers;
 using EnduranceJudge.Application.Events.Common;
+using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Application.Events.Services;
 using EnduranceJudge.Core.Extensions;
+using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using MediatR;
@@ -14,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create
 {
-    public class CreateEnduranceEvent : IRequest, IEnduranceEventState
+    public class CreateEnduranceEvent : IRequest<EnduranceEventForUpdateModel>, IEnduranceEventState
     {
         public int Id { get; set;  }
         public string Name { get; set; }
@@ -32,7 +34,7 @@ namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create
 
         public IEnumerable<CompetitionDependantModel> Competitions { get; set;}
 
-        public class CreateEnduranceEventHandler : Handler<CreateEnduranceEvent>
+        public class CreateEnduranceEventHandler : Handler<CreateEnduranceEvent, EnduranceEventForUpdateModel>
         {
             private readonly ICommandsBase<EnduranceEvent> eventCommands;
             private readonly ICountryQueries countryQueries;
@@ -48,7 +50,9 @@ namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create
                 this.enduranceEventService = enduranceEventService;
             }
 
-            protected override async Task Handle(CreateEnduranceEvent request, CancellationToken cancellationToken)
+            public override async Task<EnduranceEventForUpdateModel> Handle(
+                CreateEnduranceEvent request,
+                CancellationToken cancellationToken)
             {
                 var enduranceEvent = new EnduranceEvent(request);
 
@@ -68,7 +72,11 @@ namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create
                 var country = await this.countryQueries.Find(request.CountryIsoCode);
                 enduranceEvent.Set(country);
 
-                await this.eventCommands.Save(enduranceEvent, cancellationToken);
+                var result = await this.eventCommands.Save<EnduranceEventForUpdateModel>(
+                    enduranceEvent,
+                    cancellationToken);
+
+                return result;
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Prism.Regions;
+﻿using EnduranceJudge.Core.Models;
+using Prism.Regions;
 using System;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.Extensions
@@ -19,18 +20,6 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Extensions
         public static object GetData(this NavigationContext context)
         {
             var hasData = context.Parameters.TryGetValue<object>(DesktopConstants.DataParameter, out var data);
-            if (!hasData)
-            {
-                return null;
-            }
-
-            return data;
-        }
-
-        public static T GetData<T>(this NavigationContext context)
-            where T : class
-        {
-            var hasData = context.Parameters.TryGetValue<T>(DesktopConstants.DataParameter, out var data);
             if (!hasData)
             {
                 return null;

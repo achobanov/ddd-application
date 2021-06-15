@@ -13,6 +13,13 @@ namespace EnduranceJudge.Core.Models
         [JsonIgnore]
         public Guid ObjectId { get; }
 
+
+        // TODO: Should be able to completely replace this
+        // With ReferenceEquals and greatly simplify the
+        // Equals inheritance chain
+        public bool ObjectEquals(IObject other)
+            => this.ObjectId == other.ObjectId;
+
         public virtual bool Equals(IObject other)
         {
             return this.IsEqual(other);

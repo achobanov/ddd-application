@@ -9,7 +9,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="9*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <ContentControl prism:RegionManager.RegionName="{x:Static desktop:Regions.Navigation}"

@@ -15,8 +15,8 @@ namespace EnduranceJudge.Gateways.Desktop.Core
 
         protected IRegionNavigationJournal Journal { get; private set; }
 
-        public DelegateCommand NavigateForward => new DelegateCommand(() => this.Journal?.GoForward());
-        public DelegateCommand NavigateBack => new DelegateCommand(() => this.Journal?.GoBack());
+        public DelegateCommand NavigateForward => new DelegateCommand(this.NavigateForwardAction);
+        public DelegateCommand NavigateBack => new DelegateCommand(this.NavigateBackAction);
 
         public virtual void OnNavigatedTo(NavigationContext navigationContext)
         {
@@ -30,7 +30,20 @@ namespace EnduranceJudge.Gateways.Desktop.Core
         {
         }
 
+        protected virtual void NavigateForwardAction()
+        {
+            this.Journal?.GoForward();
+        }
+
+        protected virtual void NavigateBackAction()
+        {
+            this.Journal?.GoBack();
+        }
+
         public Guid ObjectId { get; }
+
+        public bool ObjectEquals(IObject other)
+            => this.ObjectId == other.ObjectId;
 
         public virtual bool Equals(IObject other)
         {

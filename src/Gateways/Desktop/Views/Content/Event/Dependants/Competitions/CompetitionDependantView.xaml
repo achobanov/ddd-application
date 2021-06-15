@@ -24,15 +24,16 @@
                    Content="{x:Static strings:DesktopStrings.TypeLabel}" />
 
             <ComboBox Style="{StaticResource Combo-Box}"
-                      ItemsSource="{Binding CompetitionTypes}"
-                      SelectedValue="{Binding Type}"
+                      ItemsSource="{Binding CompetitionTypeItems}"
+                      SelectedValue="{Binding CompetitionType}"
+                      SelectedIndex="{Binding CompetitionType}"
                       Name="_Type" />
         </DockPanel>
         <DockPanel Style="{StaticResource Form-Item}">
 
             <Button Style="{StaticResource Button}"
-                    Command="{Binding Submit}"
-                    Content="{x:Static strings:DesktopStrings.SaveButtonText}" />
+                    Command="{Binding NavigateBack}"
+                    Content="{x:Static strings:DesktopStrings.BackButtonText}" />
         </DockPanel>
     </StackPanel>
 

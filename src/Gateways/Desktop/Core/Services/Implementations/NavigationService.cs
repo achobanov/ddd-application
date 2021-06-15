@@ -3,7 +3,7 @@ using System;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
 {
-    public class NavigationServiceBase
+    public abstract class NavigationServiceBase
     {
         private static readonly Type ViewType = typeof(IView);
 
@@ -19,27 +19,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
             this.ChangeTo(regionName, typeof(T));
         }
 
-        protected void ChangeTo<T>(string regionName, int id) where T : IView
-        {
-            this.ChangeTo(regionName, typeof(T), id);
-        }
-
-        public void ChangeTo<T>() where T : IView
-        {
-            this.ChangeTo(Regions.Content, typeof(T));
-        }
-
-        public void ChangeTo<T>(int id) where T : IView
-        {
-            this.ChangeTo(Regions.Content, typeof(T), id);
-        }
-
-        public void ChangeTo<TView>(object data, Action<object> action) where TView : IView
-        {
-            this.ChangeTo(Regions.Content, typeof(TView), data, action);
-        }
-
-        private void ChangeTo(string regionName, Type viewType, int id)
+        protected void ChangeTo(string regionName, Type viewType, int id)
         {
             var parameters = new NavigationParameters
             {
@@ -49,11 +29,21 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
             this.ChangeTo(viewType, regionName, parameters);
         }
 
-        private void ChangeTo(string regionName, Type viewType, object data, Action<object> action)
+        protected void ChangeTo(string regionName, Type viewType, object data, Action<object> action)
         {
             var parameters = new NavigationParameters
             {
                 { DesktopConstants.DataParameter, data },
+                { DesktopConstants.SubmitActionParameter, action },
+            };
+
+            this.ChangeTo(viewType, regionName, parameters);
+        }
+
+        protected void ChangeTo(string regionName, Type viewType, Action<object> action)
+        {
+            var parameters = new NavigationParameters
+            {
                 { DesktopConstants.SubmitActionParameter, action },
             };
 

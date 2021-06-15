@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using EnduranceJudge.Application.Events.Commands.EnduranceEvents;
 using EnduranceJudge.Application.Events.Common;
 using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Core.Mappings;
@@ -12,10 +11,13 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competi
         public void AddMaps(IProfileExpression profile)
         {
             profile.CreateMap<CompetitionDependantViewModel, CompetitionDependantModel>()
-                .MapMember(d => d.Type, s => (CompetitionType)s.Type);
+                .MapMember(d => d.Type, s => (CompetitionType)s.CompetitionType);
 
             profile.CreateMap<CompetitionDependantModel, CompetitionDependantViewModel>()
-                .MapMember(d => d.Type, s => (int)s.Type);
+                .MapMember(d => d.CompetitionType, s => (int)s.Type);
+
+            profile.CreateMap<CompetitionDependantViewModel, CompetitionDependantViewModel>()
+                .MapMember(d => d.CompetitionType, s => s.CompetitionType);
         }
     }
 }

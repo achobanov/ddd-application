@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Update
 {
-    public class UpdateEnduranceEventViewModel : EnduranceEventFormBase<UpdateEnduranceEvent>
+    public class UpdateEnduranceEventViewModel
+        : EnduranceEventFormBase<UpdateEnduranceEvent, EnduranceEventForUpdateModel>
     {
         public UpdateEnduranceEventViewModel() : base(null, null)
         {
