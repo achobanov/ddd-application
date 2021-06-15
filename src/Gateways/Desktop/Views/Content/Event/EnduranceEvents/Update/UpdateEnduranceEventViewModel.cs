@@ -8,7 +8,6 @@ using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 using EnduranceJudge.Gateways.Desktop.Services;
 using EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competitions;
 using Prism.Commands;
-using Prism.Events;
 using Prism.Regions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,15 +20,12 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Up
     public class UpdateEnduranceEventViewModel
         : PrincipalUpdateFormBase<GetEnduranceEvent, EnduranceEventForUpdateModel, UpdateEnduranceEvent>
     {
-        public UpdateEnduranceEventViewModel() : base(null, null, null)
+        public UpdateEnduranceEventViewModel() : base(null, null)
         {
         }
 
-        public UpdateEnduranceEventViewModel(
-            IApplicationService application,
-            IEventAggregator eventAggregator,
-            INavigationService navigation)
-            : base(application, eventAggregator, navigation)
+        public UpdateEnduranceEventViewModel(IApplicationService application, INavigationService navigation)
+            : base(application, navigation)
         {
             var createCompetition = this.GetCreateDelegate<CompetitionDependantView>();
             this.AddCompetition = new DelegateCommand(createCompetition);
@@ -128,8 +124,13 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Up
         // Get The action from parameters and execute
         public List<CompetitionDependantViewModel> Competitions { get; private set; } = new();
         public ObservableCollection<ListItemViewModel> CompetitionItems { get; } = new();
-        private void UpdateCompetitions(CompetitionDependantViewModel competition)
+        private void UpdateCompetitions(object obj)
         {
+            if (obj is not CompetitionDependantViewModel competition)
+            {
+                return;
+            }
+
             this.Competitions.AddOrUpdateObject(competition);
             this.UpdateListItems();
         }
@@ -139,9 +140,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Up
             var listItems = this.Competitions
                 .Select(item =>
                 {
-                    var updateCompetition = this.GetUpdateDelegate<
-                        CompetitionDependantView,
-                        CompetitionDependantViewModel>(
+                    var updateCompetition = this.GetUpdateDelegate<CompetitionDependantView>(
                         item,
                         this.UpdateCompetitions);
 

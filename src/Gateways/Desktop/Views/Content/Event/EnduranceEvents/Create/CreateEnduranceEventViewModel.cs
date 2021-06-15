@@ -1,5 +1,4 @@
-﻿using EnduranceJudge.Application.Events.Commands.Competitions;
-using EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create;
+﻿using EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create;
 using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
 using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
@@ -8,7 +7,6 @@ using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 using EnduranceJudge.Gateways.Desktop.Services;
 using EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competitions;
 using Prism.Commands;
-using Prism.Events;
 using Prism.Regions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,14 +18,9 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Cr
 {
     public class CreateEnduranceEventViewModel : PrincipalFormBase<CreateEnduranceEvent>
     {
-        public CreateEnduranceEventViewModel(
-            IApplicationService application,
-            IEventAggregator eventAggregator,
-            INavigationService navigation)
-            : base(application, eventAggregator, navigation)
+        public CreateEnduranceEventViewModel(IApplicationService application, INavigationService navigation)
+            : base(application, navigation)
         {
-            // this.AddDependent<CompetitionDependantViewModel>(this.UpdateCompetitions);
-
             var createCompetition = this.GetCreateDelegate<CompetitionDependantView>();
             this.AddCompetition = new DelegateCommand(createCompetition);
         }
@@ -124,18 +117,19 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Cr
 
         public List<CompetitionDependantViewModel> Competitions { get; } = new();
         public ObservableCollection<ListItemViewModel> CompetitionItems { get; } = new();
-        private void UpdateCompetitions(CompetitionDependantViewModel competition)
+        private void UpdateCompetitions(object obj)
         {
-            if (!this.Competitions.Contains(competition))
+            if (obj is not CompetitionDependantViewModel competition)
             {
-                this.Competitions.AddObject(competition);
+                return;
             }
 
+            this.Competitions.AddOrUpdateObject(competition);
             this.CompetitionItems.Clear();
 
             foreach (var item in this.Competitions)
             {
-                var updateCompetition = this.GetUpdateDelegate<CompetitionDependantView, CompetitionDependantViewModel>(
+                var updateCompetition = this.GetUpdateDelegate<CompetitionDependantView>(
                     item,
                     this.UpdateCompetitions);
 

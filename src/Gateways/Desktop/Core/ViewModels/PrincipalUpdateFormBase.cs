@@ -4,7 +4,6 @@ using EnduranceJudge.Gateways.Desktop.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Services;
 using MediatR;
-using Microsoft.AspNetCore.Hosting;
 using Prism.Events;
 using Prism.Regions;
 using System;
@@ -18,11 +17,8 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         where TGet : IdentifiableRequest<TGetModel>, new()
         where TUpdate : IRequest
     {
-        protected PrincipalUpdateFormBase(
-            IApplicationService application,
-            IEventAggregator eventAggregator,
-            INavigationService navigation)
-            : base(application, eventAggregator, navigation)
+        protected PrincipalUpdateFormBase(IApplicationService application, INavigationService navigation)
+            : base(application, navigation)
         {
         }
 

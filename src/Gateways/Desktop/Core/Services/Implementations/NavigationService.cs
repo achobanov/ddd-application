@@ -34,7 +34,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
             this.ChangeTo(Regions.Content, typeof(T), id);
         }
 
-        public void ChangeTo<TView, TViewModel>(object data, Action<TViewModel> action) where TView : IView
+        public void ChangeTo<TView>(object data, Action<object> action) where TView : IView
         {
             this.ChangeTo(Regions.Content, typeof(TView), data, action);
         }
@@ -49,12 +49,12 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Services.Implementations
             this.ChangeTo(viewType, regionName, parameters);
         }
 
-        private void ChangeTo<TViewModel>(string regionName, Type viewType, object data, Action<TViewModel> action)
+        private void ChangeTo(string regionName, Type viewType, object data, Action<object> action)
         {
             var parameters = new NavigationParameters
             {
                 { DesktopConstants.DataParameter, data },
-                { "Action", action },
+                { DesktopConstants.SubmitActionParameter, action },
             };
 
             this.ChangeTo(viewType, regionName, parameters);

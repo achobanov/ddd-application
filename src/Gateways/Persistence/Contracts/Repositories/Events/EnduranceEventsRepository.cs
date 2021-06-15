@@ -11,8 +11,7 @@ namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Events
 {
     internal class EnduranceEventsRepository
         : RepositoryBase<IEnduranceEventsDataStore, EnduranceEventEntity, EnduranceEvent>,
-        IEnduranceEventCommands,
-        IEnduranceEventQueries
+        IEnduranceEventCommands
     {
         public EnduranceEventsRepository(
             IEnduranceEventsDataStore dataStore,
