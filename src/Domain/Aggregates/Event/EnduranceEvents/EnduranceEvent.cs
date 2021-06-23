@@ -89,11 +89,6 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
             this.personnel.AddObject(personnel);
             return this;
         }
-        public EnduranceEvent ClearPersonnel()
-        {
-            this.personnel.Clear();
-            return this;
-        }
 
         private List<Competition> competitions = new();
         public IReadOnlyList<Competition> Competitions

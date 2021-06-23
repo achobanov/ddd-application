@@ -1,4 +1,6 @@
-﻿using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
+﻿using EnduranceJudge.Application.Events.Commands.EnduranceEvents;
+using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
+using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
@@ -16,10 +18,9 @@ using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
 {
-    public abstract class EnduranceEventFormBase<TCommand, TUpdateModel> : RootFormBase<TCommand, TUpdateModel>
-        where TCommand : IRequest<TUpdateModel>
+    public class EnduranceEventViewModel : RootFormBase<SaveEnduranceEvent, EnduranceEventForUpdateModel>
     {
-        protected EnduranceEventFormBase(IApplicationService application, INavigationService navigation)
+        protected EnduranceEventViewModel(IApplicationService application, INavigationService navigation)
             : base(application, navigation)
         {
             var createCompetition = this.NavigateToDependantCreateDelegate<CompetitionDependantView>(
@@ -171,6 +172,14 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
             this.CountryVisibility = Visibility.Visible;
 
             this.Countries.AddRange(countries);
+        }
+
+        protected override IRequest<EnduranceEventForUpdateModel> LoadCommand(int id)
+        {
+            return new GetEnduranceEvent
+            {
+                Id = id,
+            };
         }
     }
 }

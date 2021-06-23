@@ -2,21 +2,17 @@
 using EnduranceJudge.Application.Core.Contracts;
 using EnduranceJudge.Application.Core.Handlers;
 using EnduranceJudge.Application.Events.Common;
+using EnduranceJudge.Application.Events.Factories;
 using EnduranceJudge.Application.Events.Queries.GetEvent;
-using EnduranceJudge.Application.Events.Services;
-using EnduranceJudge.Core.Extensions;
-using EnduranceJudge.Core.Mappings;
-using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using MediatR;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create
+namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents
 {
-    public class CreateEnduranceEvent : IRequest<EnduranceEventForUpdateModel>, IEnduranceEventState
+    public class SaveEnduranceEvent : IRequest<EnduranceEventForUpdateModel>, IEnduranceEventState
     {
         public int Id { get; set;  }
         public string Name { get; set; }
@@ -34,40 +30,27 @@ namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create
 
         public IEnumerable<CompetitionDependantModel> Competitions { get; set;}
 
-        public class CreateEnduranceEventHandler : Handler<CreateEnduranceEvent, EnduranceEventForUpdateModel>
+        public class SaveEnduranceEventHandler : Handler<SaveEnduranceEvent, EnduranceEventForUpdateModel>
         {
+            private readonly IEnduranceEventFactory enduranceEventFactory;
             private readonly ICommandsBase<EnduranceEvent> eventCommands;
             private readonly ICountryQueries countryQueries;
-            private readonly IEnduranceEventService enduranceEventService;
 
-            public CreateEnduranceEventHandler(
+            public SaveEnduranceEventHandler(
+                IEnduranceEventFactory enduranceEventFactory,
                 ICommandsBase<EnduranceEvent> eventCommands,
-                ICountryQueries countryQueries,
-                IEnduranceEventService enduranceEventService)
+                ICountryQueries countryQueries)
             {
+                this.enduranceEventFactory = enduranceEventFactory;
                 this.eventCommands = eventCommands;
                 this.countryQueries = countryQueries;
-                this.enduranceEventService = enduranceEventService;
             }
 
             public override async Task<EnduranceEventForUpdateModel> Handle(
-                CreateEnduranceEvent request,
+                SaveEnduranceEvent request,
                 CancellationToken cancellationToken)
             {
-                var enduranceEvent = new EnduranceEvent(request);
-
-                var competitions = request
-                    .Competitions
-                    ?.Select(x => new Competition(x.Id, x.Type, x.Name))
-                    .ToList();
-
-                foreach (var competition in competitions)
-                {
-                    enduranceEvent.Add(competition);
-                }
-
-                var personnel = this.enduranceEventService.PreparePersonnel(request);
-                personnel.ForEach(enduranceEvent.Add);
+                var enduranceEvent = this.enduranceEventFactory.Create(request);
 
                 var country = await this.countryQueries.Find(request.CountryIsoCode);
                 enduranceEvent.Set(country);
@@ -77,6 +60,7 @@ namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create
                     cancellationToken);
 
                 return result;
+                ;
             }
         }
     }

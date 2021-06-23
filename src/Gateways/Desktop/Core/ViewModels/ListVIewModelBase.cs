@@ -11,10 +11,9 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
-    public abstract class ListViewModelBase<TApplicationCommand, TCreateView, TUpdateView> : ViewModelBase
+    public abstract class ListViewModelBase<TApplicationCommand, TView> : ViewModelBase
         where TApplicationCommand : IRequest<IEnumerable<ListItemModel>>, new()
-        where TCreateView : IView
-        where TUpdateView : IView
+        where TView : IView
     {
         protected ListViewModelBase(IApplicationService application, INavigationService navigation)
         {
@@ -60,12 +59,12 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 
         protected virtual void ChangeToCreateAction()
         {
-            this.Navigation.ChangeTo<TCreateView>();
+            this.Navigation.ChangeTo<TView>();
         }
 
         protected virtual void ChangeToUpdateAction(int? id)
         {
-            this.Navigation.ChangeTo<TUpdateView>(id.Value);
+            this.Navigation.ChangeTo<TView>(id.Value);
         }
     }
 }

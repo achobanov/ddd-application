@@ -1,21 +1,40 @@
-﻿using EnduranceJudge.Application.Events.Commands.EnduranceEvents.Create;
-using EnduranceJudge.Application.Events.Factories;
+﻿using EnduranceJudge.Application.Events.Commands.EnduranceEvents;
+using EnduranceJudge.Core.Extensions;
+using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using EnduranceJudge.Domain.Aggregates.Event.Personnels;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EnduranceJudge.Application.Events.Services.Implementations
+namespace EnduranceJudge.Application.Events.Factories.Implementations
 {
-    public class EnduranceEventService : IEnduranceEventService
+    public class EnduranceEventFactory : IEnduranceEventFactory
     {
+        private readonly ICompetitionFactory competitionFactory;
         private readonly IPersonnelFactory personnelFactory;
 
-        public EnduranceEventService(IPersonnelFactory personnelFactory)
+        public EnduranceEventFactory(ICompetitionFactory competitionFactory, IPersonnelFactory personnelFactory)
         {
+            this.competitionFactory = competitionFactory;
             this.personnelFactory = personnelFactory;
         }
 
-        public IEnumerable<Personnel> PreparePersonnel(CreateEnduranceEvent request)
+        public EnduranceEvent Create(SaveEnduranceEvent data)
+        {
+            var enduranceEvent = new EnduranceEvent(data);
+
+            foreach (var competitionData in data.Competitions)
+            {
+                var competition = this.competitionFactory.Create(competitionData);
+                enduranceEvent.Add(competition);
+            }
+
+            var personnel = this.PreparePersonnel(data);
+            personnel.ForEach(enduranceEvent.Add);
+
+            return enduranceEvent;
+        }
+
+        private IEnumerable<Personnel> PreparePersonnel(SaveEnduranceEvent request)
         {
             var feiTechDelegate = this.personnelFactory.FeiTechDelegate(request.FeiTechDelegate);
             var feiVetDelegate = this.personnelFactory.FeiVetDelegate(request.FeiVetDelegate);

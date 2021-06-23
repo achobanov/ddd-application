@@ -1,9 +1,11 @@
 ﻿using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Gateways.Desktop.Core.Commands;
+using EnduranceJudge.Gateways.Desktop.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Services;
 using MediatR;
 using Prism.Commands;
+using Prism.Regions;
 using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
@@ -30,5 +32,39 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 
             this.MapFrom(result);
         }
+
+        public override bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            var id = navigationContext.GetId();
+
+            return this.Id == id;
+        }
+
+        public override void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            base.OnNavigatedTo(navigationContext);
+
+            var id = navigationContext.GetId();
+            if (id.HasValue)
+            {
+                this.Load(id.Value);
+            }
+        }
+
+        private async Task Load(int id)
+        {
+            if (this.Id != default)
+            {
+                return;
+            }
+
+            var command = this.LoadCommand(id);
+
+            var enduranceEvent = await this.Application.Execute(command);
+
+            this.MapFrom(enduranceEvent);
+        }
+
+        protected abstract IRequest<TUpdateModel> LoadCommand(int id);
     }
 }
