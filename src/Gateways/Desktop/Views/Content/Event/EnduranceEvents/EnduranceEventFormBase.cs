@@ -16,13 +16,15 @@ using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
 {
-    public abstract class EnduranceEventFormBase<TCommand, TUpdateModel> : PrincipalFormBase<TCommand, TUpdateModel>
+    public abstract class EnduranceEventFormBase<TCommand, TUpdateModel> : RootFormBase<TCommand, TUpdateModel>
         where TCommand : IRequest<TUpdateModel>
     {
         protected EnduranceEventFormBase(IApplicationService application, INavigationService navigation)
             : base(application, navigation)
         {
-            var createCompetition = this.GetCreateDelegate<CompetitionDependantView>(this.UpdateCompetitions);
+            var createCompetition = this.NavigateToDependantCreateDelegate<CompetitionDependantView>(
+                this.UpdateCompetitions);
+
             this.AddCompetition = new DelegateCommand(createCompetition);
         }
 
@@ -132,21 +134,23 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
         public void UpdateListItems()
         {
             var listItems = this.Competitions
-                .Select(item =>
-                {
-                    var updateCompetition = this.GetUpdateDelegate<CompetitionDependantView>(
-                        item,
-                        this.UpdateCompetitions);
-
-                    var navigateToUpdate = new DelegateCommand(updateCompetition);
-                    var listItem = new ListItemViewModel(item.Id, item.Name, navigateToUpdate);
-
-                    return listItem;
-                })
+                .Select(this.ConvertToListItem)
                 .ToList();
 
             this.CompetitionItems.Clear();
             this.CompetitionItems.AddRange(listItems);
+        }
+
+        private ListItemViewModel ConvertToListItem(CompetitionDependantViewModel competition)
+        {
+            var updateCompetition = this.NavigateToDependantUpdateDelegate<CompetitionDependantView>(
+                competition,
+                this.UpdateCompetitions);
+
+            var navigateToUpdate = new DelegateCommand(updateCompetition);
+            var listItem = new ListItemViewModel(competition.Id, competition.Name, navigateToUpdate);
+
+            return listItem;
         }
 
         public override void OnNavigatedTo(NavigationContext navigationContext)

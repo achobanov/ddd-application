@@ -1,7 +1,6 @@
 ﻿using EnduranceJudge.Core.Models;
-using EnduranceJudge.Gateways.Desktop.Core.Commands;
-using Prism.Commands;
-using System.Threading.Tasks;
+using EnduranceJudge.Gateways.Desktop.Services;
+using System;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
@@ -11,11 +10,30 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         {
         }
 
+        protected FormBase(INavigationService navigation)
+        {
+            this.Navigation = navigation;
+        }
+
+        protected INavigationService Navigation { get; }
+
         private int id;
         public int Id
         {
             get => this.id;
             set => this.SetProperty(ref this.id, value);
+        }
+
+        protected Action NavigateToDependantCreateDelegate<T>(Action<object> action)
+            where T : IView
+        {
+            return () => this.Navigation.ChangeTo<T>(action);
+        }
+
+        protected Action NavigateToDependantUpdateDelegate<TView>(object data, Action<object> action)
+            where TView : IView
+        {
+            return () => this.Navigation.ChangeTo<TView>(data, action);
         }
 
         public bool Equals(IIdentifiable identifiable)
