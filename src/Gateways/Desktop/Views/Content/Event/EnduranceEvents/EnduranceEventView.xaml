@@ -42,105 +42,30 @@
                       SelectedValuePath="IsoCode"
                       Name="Countries" />
         </DockPanel>
-        <DockPanel Style="{StaticResource Form-Item}">
-
-            <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=PresidentGroundJury}"
-                   Content="{x:Static strings:DesktopStrings.PresidentGroundJuryLabel}" />
-
-            <TextBox Style="{StaticResource Input}"
-                     Text="{Binding PresidentGroundJury}"
-                     Name="PresidentGroundJury" />
-        </DockPanel>
-        <DockPanel Style="{StaticResource Form-Item}">
-
-            <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=PresidentVetCommission}"
-                   Content="{x:Static strings:DesktopStrings.PresidentVetCommissionLabel}" />
-
-            <TextBox Style="{StaticResource Input}"
-                     Text="{Binding PresidentVetCommission}"
-                     Name="PresidentVetCommission" />
-        </DockPanel>
-        <DockPanel Style="{StaticResource Form-Item}">
-
-            <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=ForeignJudge}"
-                   Content="{x:Static strings:DesktopStrings.ForeignJudgeLabel}" />
-
-            <TextBox Style="{StaticResource Input}"
-                     Text="{Binding ForeignJudge}"
-                     Name="ForeignJudge" />
-        </DockPanel>
-        <DockPanel Style="{StaticResource Form-Item}">
-
-            <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=FeiTechDelegate}"
-                   Content="{x:Static strings:DesktopStrings.FeiTechDelegateLabel}" />
-
-            <TextBox Style="{StaticResource Input}"
-                     Text="{Binding FeiTechDelegate}"
-                     Name="FeiTechDelegate" />
-        </DockPanel>
-        <DockPanel Style="{StaticResource Form-Item}">
-
-            <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=FeiVetDelegate}"
-                   Content="{x:Static strings:DesktopStrings.FeiVetDelegateLabel}" />
-
-            <TextBox Style="{StaticResource Input}"
-                     Text="{Binding FeiVetDelegate}"
-                     Name="FeiVetDelegate" />
-        </DockPanel>
-        <DockPanel Style="{StaticResource Form-Item}">
-
-            <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=ActiveVet}"
-                   Content="{x:Static strings:DesktopStrings.ActiveVetLabel}" />
-
-            <TextBox Style="{StaticResource Input}"
-                     Text="{Binding ActiveVet}"
-                     Name="ActiveVet" />
-        </DockPanel>
-        <DockPanel Style="{StaticResource Form-Item}">
-
-            <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=MembersOfVetCommittee}"
-                   Content="{x:Static strings:DesktopStrings.MembersOfJudgeCommitteeLabel}" />
-
-            <TextBox Style="{StaticResource Input}"
-                     Text="{Binding MembersOfVetCommittee}"
-                     Name="MembersOfVetCommittee" />
-        </DockPanel>
-        <DockPanel Style="{StaticResource Form-Item}">
-
-            <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=MembersOfJudgeCommittee}"
-                   Content="{x:Static strings:DesktopStrings.MembersOfJudgeCommitteeLabel}" />
-
-            <TextBox Style="{StaticResource Input}"
-                     Text="{Binding MembersOfJudgeCommittee}"
-                     Name="MembersOfJudgeCommittee" />
-        </DockPanel>
-        <DockPanel Style="{StaticResource Form-Item}">
-
-            <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=Stewards}"
-                   Content="{x:Static strings:DesktopStrings.StewardsLabel}" />
-
-            <TextBox Style="{StaticResource Input}"
-                     Text="{Binding Stewards}"
-                     Name="Stewards" />
-        </DockPanel>
         <StackPanel Style="{StaticResource Form-List}">
+
             <Label Style="{StaticResource Label-Primary}"
-                   Target="{Binding ElementName=_AddCompetition}"
+                   Target="{Binding ElementName=AddPersonnel}"
+                   Content="{x:Static strings:DesktopStrings.PersonnelLabel}" />
+
+            <Button Style="{StaticResource Button}"
+                    Command="{Binding AddPersonnel}"
+                    Content="{x:Static strings:DesktopStrings.AddButtonText}"
+                    Name="AddPersonnel"/>
+
+            <ListBox Style="{StaticResource List}"
+                     ItemsSource="{Binding PersonnelItems}" />
+        </StackPanel>
+        <StackPanel Style="{StaticResource Form-List}">
+
+            <Label Style="{StaticResource Label-Primary}"
+                   Target="{Binding ElementName=AddCompetition}"
                    Content="{x:Static strings:DesktopStrings.CompetitionsLabel}" />
 
             <Button Style="{StaticResource Button}"
                     Command="{Binding AddCompetition}"
                     Content="{x:Static strings:DesktopStrings.AddButtonText}"
-                    Name="_AddCompetition"/>
+                    Name="AddCompetition"/>
 
             <ListBox Style="{StaticResource List}"
                      ItemsSource="{Binding CompetitionItems}" />

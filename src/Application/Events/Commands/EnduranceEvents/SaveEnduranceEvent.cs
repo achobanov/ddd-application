@@ -18,16 +18,7 @@ namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents
         public string Name { get; set; }
         public string PopulatedPlace { get; set; }
         public string CountryIsoCode { get; set; }
-        public string PresidentGroundJury { get; set; }
-        public string PresidentVetCommission { get; set; }
-        public string ForeignJudge { get; set; }
-        public string FeiTechDelegate { get; set; }
-        public string FeiVetDelegate { get; set; }
-        public string ActiveVet { get; set; }
-        public IEnumerable<string> MembersOfVetCommittee { get; set; }
-        public IEnumerable<string> MembersOfJudgeCommittee { get; set; }
-        public IEnumerable<string> Stewards { get; set; }
-
+        public IEnumerable<PersonnelDependantModel> Personnel { get; set; }
         public IEnumerable<CompetitionDependantModel> Competitions { get; set;}
 
         public class SaveEnduranceEventHandler : Handler<SaveEnduranceEvent, EnduranceEventForUpdateModel>
@@ -59,8 +50,7 @@ namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents
                     enduranceEvent,
                     cancellationToken);
 
-                return result;
-                ;
+                return result; ;
             }
         }
     }

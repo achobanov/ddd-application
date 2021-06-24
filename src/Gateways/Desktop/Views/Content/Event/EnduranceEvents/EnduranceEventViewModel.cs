@@ -2,11 +2,13 @@
 using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
 using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Core.Extensions;
+using EnduranceJudge.Domain.Enums;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 using EnduranceJudge.Gateways.Desktop.Services;
 using EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competitions;
+using EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Personnel;
 using MediatR;
 using Prism.Commands;
 using Prism.Regions;
@@ -26,10 +28,15 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
             var createCompetition = this.NavigateToDependantCreateDelegate<CompetitionDependantView>(
                 this.UpdateCompetitions);
 
+            var navigateToPersonnel = this.NavigateToDependantCreateDelegate<PersonnelView>(
+                this.UpdatePersonnel);
+
             this.AddCompetition = new DelegateCommand(createCompetition);
+            this.AddPersonnel = new DelegateCommand(navigateToPersonnel);
         }
 
         public DelegateCommand AddCompetition { get; }
+        public DelegateCommand AddPersonnel { get; }
 
         public ObservableCollection<CountryListingModel> Countries { get; }
             = new (Enumerable.Empty<CountryListingModel>());
@@ -56,67 +63,41 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
             set => this.SetProperty(ref this.selectedCountryIsoCode, value);
         }
 
-        private string presidentGroundJury;
-        public string PresidentGroundJury
+        public List<PersonnelViewModel> Personnel { get; private set; } = new();
+        public ObservableCollection<ListItemViewModel> PersonnelItems { get; } = new();
+        private void UpdatePersonnel(object obj)
         {
-            get => this.presidentGroundJury;
-            set => this.SetProperty(ref this.presidentGroundJury, value);
+            if (obj is not PersonnelViewModel personnel)
+            {
+                return;
+            }
+
+            this.Personnel.AddOrUpdateObject(personnel);
+            this.UpdatePersonnelItems();
         }
 
-        private string presidentVetCommission;
-        public string PresidentVetCommission
+        public void UpdatePersonnelItems()
         {
-            get => this.presidentVetCommission;
-            set => this.SetProperty(ref this.presidentVetCommission, value);
+            var listItems = this.Personnel
+                .Select(this.ConvertToListItem)
+                .ToList();
+
+            this.PersonnelItems.Clear();
+            this.PersonnelItems.AddRange(listItems);
         }
 
-        private string foreignJudge;
-        public string ForeignJudge
+        private ListItemViewModel ConvertToListItem(PersonnelViewModel personnel)
         {
-            get => this.foreignJudge;
-            set => this.SetProperty(ref this.foreignJudge, value);
-        }
+            var update = this.NavigateToDependantUpdateDelegate<PersonnelView>(
+                personnel,
+                this.UpdatePersonnel);
 
-        private string feiTechDelegate;
-        public string FeiTechDelegate
-        {
-            get => this.feiTechDelegate;
-            set => this.SetProperty(ref this.feiTechDelegate, value);
-        }
+            var navigateToUpdate = new DelegateCommand(update);
+            var display = $"{(PersonnelRole)personnel.Role} - {personnel.Name}";
 
-        private string feiVetDelegate;
-        public string FeiVetDelegate
-        {
-            get => this.feiVetDelegate;
-            set => this.SetProperty(ref this.feiVetDelegate, value);
-        }
+            var listItem = new ListItemViewModel(personnel.Id, display, navigateToUpdate);
 
-        private string activeVet;
-        public string ActiveVet
-        {
-            get => this.activeVet;
-            set => this.SetProperty(ref this.activeVet, value);
-        }
-
-        private string membersOfVetCommittee;
-        public string MembersOfVetCommittee
-        {
-            get => this.membersOfVetCommittee;
-            set => this.SetProperty(ref this.membersOfVetCommittee, value);
-        }
-
-        private string membersOfJudgeCommittee;
-        public string MembersOfJudgeCommittee
-        {
-            get => this.membersOfJudgeCommittee;
-            set => this.SetProperty(ref this.membersOfJudgeCommittee, value);
-        }
-
-        private string stewards;
-        public string Stewards
-        {
-            get => this.stewards;
-            set => this.SetProperty(ref this.stewards, value);
+            return listItem;
         }
 
         public List<CompetitionDependantViewModel> Competitions { get; private set; } = new();
@@ -129,10 +110,10 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
             }
 
             this.Competitions.AddOrUpdateObject(competition);
-            this.UpdateListItems();
+            this.UpdateCompetitionItems();
         }
 
-        public void UpdateListItems()
+        public void UpdateCompetitionItems()
         {
             var listItems = this.Competitions
                 .Select(this.ConvertToListItem)

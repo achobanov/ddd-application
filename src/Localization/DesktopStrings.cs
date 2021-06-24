@@ -4,11 +4,11 @@
     {
         // ------
         // Common
-        public const string SaveButtonText = "Save";
-        public const string CreateButtonText = "Create";
-        public const string UpdateButtonText = "Update";
-        public const string AddButtonText = "Add";
-        public const string BackButtonText = "Back";
+        public const string SaveButtonText = "_Save";
+        public const string CreateButtonText = "_Create";
+        public const string UpdateButtonText = "_Update";
+        public const string AddButtonText = "_Add";
+        public const string BackButtonText = "_Back";
 
         // -------
         // Regions
@@ -32,8 +32,8 @@
         public const string CompetitionsButtonText = "Competitions";
 
         // ------ Endurance Event
-        public const string NameLabel = "Name";
-        public const string PopulatedPlaceLabel = "Populated Place";
+        public const string NameLabel = "_Name";
+        public const string PopulatedPlaceLabel = "_Populated Place";
         public const string CountryLabel = "Country";
         public const string PresidentGroundJuryLabel = "President Ground Jury";
         public const string PresidentVetCommissionLabel = "President Vet Commission";
@@ -45,8 +45,12 @@
         public const string MembersOfVetCommitteeLabel = "Members of Vet Committee";
         public const string StewardsLabel = "Stewards";
         public const string CompetitionsLabel = "Competitions";
+        public const string PersonnelLabel = "P_ersonnel";
 
         // ------ Competition
-        public const string TypeLabel = "Type";
+        public const string TypeLabel = "_Type";
+
+        // ------ Personnel
+        public const string RoleLabel = "_Role";
     }
 }
