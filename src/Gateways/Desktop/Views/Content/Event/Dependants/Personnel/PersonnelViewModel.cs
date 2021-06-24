@@ -10,13 +10,17 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Personn
 {
     public class PersonnelViewModel : DependantFormBase, IMap<PersonnelDependantModel>
     {
-        public PersonnelViewModel(IApplicationService application) : base(application)
+        private PersonnelViewModel() : base(null)
         {
-            var roles = ComboBoxItemViewModel.FromEnum<PersonnelRole>();
-            this.RoleItems = new ObservableCollection<ComboBoxItemViewModel>(roles);
+            this.LoadRoles();
         }
 
-        public ObservableCollection<ComboBoxItemViewModel> RoleItems { get; }
+        public PersonnelViewModel(IApplicationService application) : base(application)
+        {
+            this.LoadRoles();
+        }
+
+        public ObservableCollection<ComboBoxItemViewModel> RoleItems { get; private set; }
 
         private string name;
         public string Name
@@ -30,6 +34,12 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Personn
         {
             get => this.role;
             set => this.SetProperty(ref this.role, value);
+        }
+
+        private void LoadRoles()
+        {
+            var roles = ComboBoxItemViewModel.FromEnum<PersonnelRole>();
+            this.RoleItems = new ObservableCollection<ComboBoxItemViewModel>(roles);
         }
     }
 }

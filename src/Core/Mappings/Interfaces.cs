@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace EnduranceJudge.Core.Mappings
+﻿namespace EnduranceJudge.Core.Mappings
 {
     public interface IMapFrom<T>
     {

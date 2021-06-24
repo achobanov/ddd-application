@@ -24,9 +24,9 @@
                    Content="{x:Static strings:DesktopStrings.TypeLabel}" />
 
             <ComboBox Style="{StaticResource Combo-Box}"
-                      ItemsSource="{Binding CompetitionTypeItems}"
-                      SelectedValue="{Binding CompetitionType}"
-                      SelectedIndex="{Binding CompetitionType}"
+                      ItemsSource="{Binding TypeItems}"
+                      SelectedValue="{Binding Type}"
+                      SelectedIndex="{Binding Type}"
                       Name="_Type" />
         </DockPanel>
         <DockPanel Style="{StaticResource Form-Item}">

@@ -24,7 +24,12 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
         {
             profile.CreateMap<EnduranceEventForUpdateModel, EnduranceEventViewModel>()
                 .MapMember(d => d.SelectedCountryIsoCode, s => s.CountryIsoCode)
-                .AfterMap((update, viewModel) => viewModel.UpdateCompetitionItems());
+                .MapMember(d => d.Personnel, s => s.Personnel)
+                .AfterMap((update, viewModel) =>
+                {
+                    viewModel.UpdateCompetitionItems();
+                    viewModel.UpdatePersonnelItems();
+                });
         }
     }
 }

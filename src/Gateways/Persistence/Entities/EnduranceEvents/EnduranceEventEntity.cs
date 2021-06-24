@@ -1,4 +1,5 @@
 using EnduranceJudge.Application.Events.Common;
+using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using EnduranceJudge.Gateways.Persistence.Core;
@@ -13,7 +14,8 @@ namespace EnduranceJudge.Gateways.Persistence.Entities.EnduranceEvents
     public class EnduranceEventEntity : EntityBase, IEnduranceEventState,
         IMap<EnduranceEvent>,
         IMap<Domain.Aggregates.Import.EnduranceEvents.EnduranceEvent>,
-        IMapTo<ListItemModel>
+        IMapTo<ListItemModel>,
+        IMapTo<EnduranceEventForUpdateModel>
     {
         public string Name { get; set; }
 
