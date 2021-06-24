@@ -24,6 +24,10 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             set => this.SetProperty(ref this.id, value);
         }
 
+
+        // protected void AddDependant<T>(List<)
+
+
         protected Action NavigateToDependantCreateDelegate<T>(Action<object> action)
             where T : IView
         {

@@ -6,8 +6,7 @@ using System;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
-    public abstract class DependantFormBase<TViewModel> : FormBase, IMapFrom<TViewModel>
-        where TViewModel : DependantFormBase<TViewModel>
+    public abstract class DependantFormBase : FormBase
     {
         private Action<object> submitAction;
 

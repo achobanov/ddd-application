@@ -21,6 +21,8 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             this.Submit = new AsyncCommand(this.SubmitAction);
         }
 
+        private bool IsCreateForm => this.Id == default;
+
         protected IApplicationService Application { get; }
 
         public DelegateCommand Submit { get; }
@@ -35,6 +37,11 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 
         public override bool IsNavigationTarget(NavigationContext navigationContext)
         {
+            if (this.IsCreateForm)
+            {
+                return true;
+            }
+
             var id = navigationContext.GetId();
 
             return this.Id == id;

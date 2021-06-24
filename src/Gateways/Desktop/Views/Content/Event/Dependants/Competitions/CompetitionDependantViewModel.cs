@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competitions
 {
-    public class CompetitionDependantViewModel : DependantFormBase<CompetitionDependantViewModel>
+    public class CompetitionDependantViewModel : DependantFormBase
     {
         public CompetitionDependantViewModel() : base(null)
         {
