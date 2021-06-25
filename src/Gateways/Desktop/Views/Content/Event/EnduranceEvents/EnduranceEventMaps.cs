@@ -24,7 +24,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
         private void AddToMaps(IProfileExpression profile)
         {
             profile.CreateMap<EnduranceEventForUpdateModel, EnduranceEventViewModel>()
-                .IncludeBase<object, PrincipalFormBase>()
+                .IncludeBase<object, ShardableFormBase>()
                 .MapMember(d => d.SelectedCountryIsoCode, s => s.CountryIsoCode)
                 .MapMember(d => d.Personnel, s => s.Personnel);
         }

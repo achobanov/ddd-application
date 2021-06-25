@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
-    public abstract class RootFormBase<TCommand, TUpdateModel> : PrincipalFormBase,
+    public abstract class RootFormBase<TCommand, TUpdateModel> : ShardableFormBase,
         IMapTo<TCommand>
         where TCommand : IRequest<TUpdateModel>
     {

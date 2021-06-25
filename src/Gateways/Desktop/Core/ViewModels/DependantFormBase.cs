@@ -7,7 +7,7 @@ using System;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
-    public abstract class DependantFormBase : PrincipalFormBase
+    public abstract class DependantFormBase : ShardableFormBase
     {
         private Action<object> submitAction;
 

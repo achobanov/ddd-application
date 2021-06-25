@@ -1,6 +1,8 @@
-﻿using EnduranceJudge.Application.Core.Exceptions;
+﻿using AutoMapper;
+using EnduranceJudge.Application.Core.Exceptions;
 using EnduranceJudge.Core;
 using EnduranceJudge.Core.Extensions;
+using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Core.Utilities;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Services;
@@ -15,14 +17,14 @@ using CollectionExtensions = System.Collections.ObjectModel.CollectionExtensions
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
-    public abstract class PrincipalFormBase : FormBase
+    public abstract class ShardableFormBase : FormBase
     {
         private static readonly Type ObservableCollectionAddRangeExtensionType = typeof(CollectionExtensions);
 
         private readonly Dictionary<string, FormShardModel> shards = new();
         private readonly Type thisType;
 
-        protected PrincipalFormBase(INavigationService navigation) : base(navigation)
+        protected ShardableFormBase(INavigationService navigation) : base(navigation)
         {
             this.thisType = this.GetType();
 
@@ -215,5 +217,14 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             return () => this.Navigation.ChangeTo(viewType, data, action);
         }
 
+    }
+
+    public class ShardableFormMaps : ICustomMapConfiguration
+    {
+        public void AddMaps(IProfileExpression profile)
+        {
+            profile.CreateMap<object, ShardableFormBase>()
+                .AfterMap((_, destination) => destination.UpdateDependantItems());
+        }
     }
 }
