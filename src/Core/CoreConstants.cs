@@ -1,4 +1,7 @@
+using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Core.Utilities;
+using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace EnduranceJudge.Core
@@ -14,6 +17,12 @@ namespace EnduranceJudge.Core
                 var assemblies = ReflectionUtilities.GetAssemblies("EnduranceJudge.Core");
                 return assemblies;
             }
+        }
+
+        public static class Types
+        {
+            public static readonly Type ListGeneric = typeof(List<>);
+            public static readonly Type ObjectExtensions = typeof(IObjectExtensions);
         }
     }
 }

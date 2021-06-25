@@ -1,16 +1,17 @@
 ﻿using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Gateways.Desktop.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
+using EnduranceJudge.Gateways.Desktop.Services;
 using Prism.Regions;
 using System;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
-    public abstract class DependantFormBase : FormBase
+    public abstract class DependantFormBase : PrincipalFormBase
     {
         private Action<object> submitAction;
 
-        protected DependantFormBase(IApplicationService application)
+        protected DependantFormBase(IApplicationService application, INavigationService navigation) : base(navigation)
         {
             this.Application = application;
         }

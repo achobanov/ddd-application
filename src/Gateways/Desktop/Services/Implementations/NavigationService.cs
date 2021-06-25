@@ -38,12 +38,22 @@ namespace EnduranceJudge.Gateways.Desktop.Services.Implementations
 
         public void ChangeTo<TView>(Action<object> action) where TView : IView
         {
-            this.ChangeTo(Regions.Content, typeof(TView), action);
+            this.ChangeTo(typeof(TView), action);
+        }
+
+        public void ChangeTo(Type viewType, Action<object> action)
+        {
+            this.ChangeTo(Regions.Content, viewType, action);
         }
 
         public void ChangeTo<TView>(object data, Action<object> action) where TView : IView
         {
-            this.ChangeTo(Regions.Content, typeof(TView), data, action);
+            this.ChangeTo(typeof(TView), data, action);
+        }
+
+        public void ChangeTo(Type viewType, object data, Action<object> action)
+        {
+            this.ChangeTo(Regions.Content, viewType, data, action);
         }
     }
 }

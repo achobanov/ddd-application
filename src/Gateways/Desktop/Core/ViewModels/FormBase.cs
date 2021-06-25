@@ -1,43 +1,25 @@
 ﻿using EnduranceJudge.Core.Models;
+using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Services;
-using System;
+using Prism.Commands;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
     public abstract class FormBase : ViewModelBase, IIdentifiable
     {
-        protected FormBase()
-        {
-        }
-
         protected FormBase(INavigationService navigation)
         {
             this.Navigation = navigation;
         }
 
         protected INavigationService Navigation { get; }
+        protected abstract ListItemViewModel ToListItem(DelegateCommand command);
 
         private int id;
         public int Id
         {
             get => this.id;
             set => this.SetProperty(ref this.id, value);
-        }
-
-
-        // protected void AddDependant<T>(List<)
-
-
-        protected Action NavigateToDependantCreateDelegate<T>(Action<object> action)
-            where T : IView
-        {
-            return () => this.Navigation.ChangeTo<T>(action);
-        }
-
-        protected Action NavigateToDependantUpdateDelegate<TView>(object data, Action<object> action)
-            where TView : IView
-        {
-            return () => this.Navigation.ChangeTo<TView>(data, action);
         }
 
         public bool Equals(IIdentifiable identifiable)

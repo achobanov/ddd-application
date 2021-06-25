@@ -29,9 +29,26 @@ namespace EnduranceJudge.Core.Utilities
             return assemblies;
         }
 
+        public static PropertyInfo GetProperty(Type type, string name)
+        {
+            var propertyInfo = type.GetProperty(name);
+            if (propertyInfo == null)
+            {
+                throw new InvalidOperationException($"Property '{name}' does not exist on type '{type}'");
+            }
+
+            return propertyInfo;
+        }
+
         public static PropertyInfo[] GetProperties<T>(BindingFlags bindingFlags)
         {
             var properties = typeof(T).GetProperties(bindingFlags);
+            return properties;
+        }
+
+        public static PropertyInfo[] GetProperties(Type type)
+        {
+            var properties = type.GetProperties();
             return properties;
         }
 

@@ -3,6 +3,7 @@ using EnduranceJudge.Application.Events.Commands.EnduranceEvents;
 using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Core.Mappings;
+using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
 {
@@ -23,13 +24,9 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
         private void AddToMaps(IProfileExpression profile)
         {
             profile.CreateMap<EnduranceEventForUpdateModel, EnduranceEventViewModel>()
+                .IncludeBase<object, PrincipalFormBase>()
                 .MapMember(d => d.SelectedCountryIsoCode, s => s.CountryIsoCode)
-                .MapMember(d => d.Personnel, s => s.Personnel)
-                .AfterMap((update, viewModel) =>
-                {
-                    viewModel.UpdateCompetitionItems();
-                    viewModel.UpdatePersonnelItems();
-                });
+                .MapMember(d => d.Personnel, s => s.Personnel);
         }
     }
 }

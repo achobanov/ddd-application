@@ -19,7 +19,11 @@ namespace EnduranceJudge.Gateways.Desktop.Services
         void ChangeTo<TView>(Action<object> action)
             where TView : IView;
 
+        void ChangeTo(Type viewType, Action<object> action);
+
         void ChangeTo<TView>(object data, Action<object> action)
             where TView : IView;
+
+        void ChangeTo(Type viewType, object data, Action<object> action);
     }
 }
