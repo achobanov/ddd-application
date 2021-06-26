@@ -8,18 +8,16 @@ using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Services;
 using Prism.Commands;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
-using CollectionExtensions = System.Collections.ObjectModel.CollectionExtensions;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
     public abstract class ShardableFormBase : FormBase
     {
-        private static readonly Type ObservableCollectionAddRangeExtensionType = typeof(CollectionExtensions);
-
         private readonly Dictionary<string, FormShardModel> shards = new();
         private readonly Type thisType;
 
@@ -150,23 +148,13 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
                 .GetMethod(nameof(IObjectExtensions.AddOrUpdateObject))
                 !.MakeGenericMethod(dependantType);
 
-            // Items.Clear()
-            var clearItemsMethod = itemsCollectionType.GetMethod(nameof(Collection<object>.Clear));
-
-            // Items.AddRange(..)
-            var addItemsStaticMethod = ObservableCollectionAddRangeExtensionType
-                .GetMethod(nameof(CollectionExtensions.AddRange))
-                !.MakeGenericMethod(DesktopConstants.Types.ListItemViewModel);
-
-            var dependantsCollection = dependantsCollectionInfo.GetValue(this);
-            var itemsCollection = itemsCollectionInfo.GetValue(this);
+            var dependantsCollection =  dependantsCollectionInfo.GetValue(this);
+            var itemsCollection = itemsCollectionInfo.GetValue(this) as ObservableCollection<ListItemViewModel>;
 
             var principalShard = new FormShardModel(
                 dependantsCollection,
                 itemsCollection,
                 addOrUpdateObjectStaticMethod,
-                clearItemsMethod,
-                addItemsStaticMethod,
                 dependantViewType);
 
             return principalShard;

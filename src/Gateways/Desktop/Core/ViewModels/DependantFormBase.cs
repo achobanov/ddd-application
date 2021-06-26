@@ -26,6 +26,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 
         public override bool IsNavigationTarget(NavigationContext navigationContext)
         {
+            // TODO Add this.Id == default check
             var data = navigationContext.GetData();
             if (data != null)
             {

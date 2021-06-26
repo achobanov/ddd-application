@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Reflection;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
@@ -9,24 +10,18 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
     public class FormShardModel
     {
         private readonly object dependantCollection;
-        private readonly object itemsCollection;
+        private readonly ObservableCollection<ListItemViewModel> itemsCollection;
         private readonly MethodInfo addOrUpdateDependantStatic;
-        private readonly MethodInfo clearItems;
-        private readonly MethodInfo addItemsStatic;
 
         public FormShardModel(
             object dependantCollection,
-            object itemsCollection,
+            ObservableCollection<ListItemViewModel> itemsCollection,
             MethodInfo addOrUpdateDependantStatic,
-            MethodInfo clearItems,
-            MethodInfo addItemsStatic,
             Type viewType)
         {
             this.dependantCollection = dependantCollection;
             this.itemsCollection = itemsCollection;
             this.addOrUpdateDependantStatic = addOrUpdateDependantStatic;
-            this.clearItems = clearItems;
-            this.addItemsStatic = addItemsStatic;
             this.ViewType = viewType;
         }
 
@@ -44,8 +39,8 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 
         public void RefreshItems(IEnumerable<ListItemViewModel> items)
         {
-            this.clearItems.Invoke(this.itemsCollection, Array.Empty<object>());
-            this.addItemsStatic.Invoke(null, new[] { this.itemsCollection, items } );
+            this.itemsCollection.Clear();
+            this.itemsCollection.AddRange(items);
         }
     }
 }
