@@ -12,12 +12,16 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
 {
     public class EnduranceEvent : DomainBase<EnduranceEventException>, IEnduranceEventState, IAggregateRoot
     {
-        public EnduranceEvent()
+        private EnduranceEvent()
         {
         }
 
         public EnduranceEvent(IEnduranceEventState state) : base(state.Id)
-            => this.Update(state);
+            => this.Validate(() =>
+            {
+                this.Name = state.Name.IsRequired(nameof(state.Name));
+                this.PopulatedPlace = state.PopulatedPlace.IsRequired(nameof(state.PopulatedPlace));
+            });
 
         public string Name { get; private set; }
         public string PopulatedPlace { get; private set; }
@@ -116,12 +120,5 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
 
             return isMultiPersonnel;
         }
-
-        public void Update(IEnduranceEventState state)
-            => this.Validate(() =>
-            {
-                this.Name = state.Name.IsRequired(nameof(state.Name));
-                this.PopulatedPlace = state.PopulatedPlace.IsRequired(nameof(state.PopulatedPlace));
-            });
     }
 }

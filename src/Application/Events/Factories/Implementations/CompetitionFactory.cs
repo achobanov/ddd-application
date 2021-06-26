@@ -7,7 +7,7 @@ namespace EnduranceJudge.Application.Events.Factories.Implementations
     {
         public Competition Create(CompetitionDependantModel data)
         {
-            var competition = new Competition(data.Id, data.Type, data.Name);
+            var competition = new Competition(data);
             return competition;
         }
     }

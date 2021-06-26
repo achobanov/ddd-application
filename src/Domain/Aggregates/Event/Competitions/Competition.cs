@@ -15,11 +15,11 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Competitions
         {
         }
 
-        public Competition(int id, CompetitionType type, string name) : base(id)
+        public Competition(ICompetitionState state) : base(state.Id)
             => this.Validate(() =>
             {
-                this.Type = type.IsRequired(nameof(type));
-                this.Name = name.IsRequired(nameof(name));
+                this.Type = state.Type.IsRequired(nameof(state.Type));
+                this.Name = state.Name.IsRequired(nameof(state.Name));
             });
 
         public CompetitionType Type { get; private set; }
