@@ -11,14 +11,14 @@ using System.Collections.ObjectModel;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competitions
 {
-    public class CompetitionDependantViewModel : DependantFormBase, IMap<CompetitionDependantModel>
+    public class CompetitionViewModel : DependantFormBase, IMap<CompetitionDependantModel>
     {
-        public CompetitionDependantViewModel() : base(null, null)
+        public CompetitionViewModel() : base(null, null)
         {
             this.LoadTypes();
         }
 
-        public CompetitionDependantViewModel(IApplicationService application, INavigationService navigation)
+        public CompetitionViewModel(IApplicationService application, INavigationService navigation)
             : base(application, navigation)
         {
             this.LoadTypes();

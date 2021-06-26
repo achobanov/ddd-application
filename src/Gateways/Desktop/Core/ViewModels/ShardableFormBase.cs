@@ -80,7 +80,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
                     throw new Exception("kur");
                 }
 
-                var listItem = this.ConvertToListItem(key, dependant, typeof(CompetitionDependantView));
+                var listItem = this.ConvertToListItem(key, dependant, typeof(CompetitionView));
                 listItems.Add(listItem);
             }
 

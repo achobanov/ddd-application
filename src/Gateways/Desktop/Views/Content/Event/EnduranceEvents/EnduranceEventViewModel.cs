@@ -22,7 +22,7 @@ using System.Windows;
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
 {
     public class EnduranceEventViewModel : RootFormBase<SaveEnduranceEvent, EnduranceEventForUpdateModel>,
-        ICompetitionsShard<CompetitionDependantViewModel>
+        ICompetitionsShard<CompetitionViewModel>
     {
         protected EnduranceEventViewModel(IApplicationService application, INavigationService navigation)
             : base(application, navigation)
@@ -60,7 +60,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
         public List<PersonnelViewModel> Personnel { get; private set; } = new();
         public ObservableCollection<ListItemViewModel> PersonnelItems { get; } = new();
 
-        public List<CompetitionDependantViewModel> Competitions { get; private set; } = new();
+        public List<CompetitionViewModel> Competitions { get; private set; } = new();
         public ObservableCollection<ListItemViewModel> CompetitionItems { get; } = new();
 
         public override void OnNavigatedTo(NavigationContext navigationContext)

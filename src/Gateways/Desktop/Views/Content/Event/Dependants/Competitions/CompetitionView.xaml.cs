@@ -1,11 +1,11 @@
 ﻿using EnduranceJudge.Gateways.Desktop.Core;
 using System.Windows.Controls;
 
-namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competitions.List
+namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competitions
 {
-    public partial class CompetitionListView : UserControl, IView
+    public partial class CompetitionView : UserControl, IView
     {
-        public CompetitionListView()
+        public CompetitionView()
         {
             InitializeComponent();
         }

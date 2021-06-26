@@ -10,9 +10,5 @@
                 Command="{Binding ChangeToEventsList}"
                 Content="{x:Static strings:DesktopStrings.EnduranceEventButtonText}" />
 
-        <Button Style="{StaticResource Button}"
-                Command="{Binding ChangeToCompetitionsList}"
-                Content="{x:Static strings:DesktopStrings.CompetitionsButtonText}"></Button>
-
     </StackPanel>
 </UserControl>
