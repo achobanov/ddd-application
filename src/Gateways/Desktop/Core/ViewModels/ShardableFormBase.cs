@@ -6,7 +6,6 @@ using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Core.Utilities;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Services;
-using EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competitions;
 using Prism.Commands;
 using System;
 using System.Collections.Generic;
@@ -61,7 +60,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         {
             if (!this.shards.ContainsKey(key))
             {
-                throw new AppException($"Cannot add dependant - key '{key}' does not exist in dependants dictionary.");
+                throw new Exception($"Cannot add dependant - key '{key}' does not exist in dependants dictionary.");
             }
 
             var shard = this.shards[key];
@@ -80,7 +79,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
                     throw new Exception("kur");
                 }
 
-                var listItem = this.ConvertToListItem(key, dependant, typeof(CompetitionView));
+                var listItem = this.ConvertToListItem(key, dependant, shard.ViewType);
                 listItems.Add(listItem);
             }
 
@@ -124,14 +123,17 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             var dependantKey = dependantType.FullName;
             var interfaceProperties = ReflectionUtilities.GetProperties(hasDependantsInterface);
 
-            var shard = this.CreatePrincipalShardModel(dependantType, interfaceProperties);
+            var dependantViewType = this.GetViewType(hasDependantsInterface);
+
+            var shard = this.CreatePrincipalShardModel(dependantType, dependantViewType, interfaceProperties);
             this.shards.Add(dependantKey!, shard);
 
-            this.SetNavigateToCreateCommand(dependantKey, hasDependantsInterface, interfaceProperties, thisProperties);
+            this.SetNavigateToCreateCommand(dependantKey, dependantViewType, interfaceProperties, thisProperties);
         }
 
         private FormShardModel CreatePrincipalShardModel(
             Type dependantType,
+            Type dependantViewType,
             PropertyInfo[] interfaceProperties)
         {
             var dependantCollectionType = CoreConstants.Types.ListGeneric.MakeGenericType(dependantType);
@@ -164,21 +166,21 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
                 itemsCollection,
                 addOrUpdateObjectStaticMethod,
                 clearItemsMethod,
-                addItemsStaticMethod);
+                addItemsStaticMethod,
+                dependantViewType);
 
             return principalShard;
         }
 
         private void SetNavigateToCreateCommand(
             string key,
-            Type hasDependantsInterface,
+            Type dependantViewType,
             PropertyInfo[] interfaceProperties,
             PropertyInfo[] thisProperties)
         {
-            var viewType = this.GetViewType(hasDependantsInterface);
 
             var submitAction = this.GetDependantSubmitAction(key);
-            var navigateAction = this.NavigateToDependantCreateDelegate(viewType, submitAction);
+            var navigateAction = this.NavigateToDependantCreateDelegate(dependantViewType, submitAction);
             var navigateCommand = new DelegateCommand(navigateAction);
 
             var navigateCommandName = interfaceProperties

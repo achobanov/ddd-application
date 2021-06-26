@@ -19,14 +19,18 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             object itemsCollection,
             MethodInfo addOrUpdateDependantStatic,
             MethodInfo clearItems,
-            MethodInfo addItemsStatic)
+            MethodInfo addItemsStatic,
+            Type viewType)
         {
             this.dependantCollection = dependantCollection;
             this.itemsCollection = itemsCollection;
             this.addOrUpdateDependantStatic = addOrUpdateDependantStatic;
             this.clearItems = clearItems;
             this.addItemsStatic = addItemsStatic;
+            this.ViewType = viewType;
         }
+
+        public Type ViewType { get; }
 
         public IList GetDependants()
         {

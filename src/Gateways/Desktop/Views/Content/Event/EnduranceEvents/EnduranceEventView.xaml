@@ -49,7 +49,7 @@
                    Content="{x:Static strings:DesktopStrings.PersonnelLabel}" />
 
             <Button Style="{StaticResource Button}"
-                    Command="{Binding AddPersonnel}"
+                    Command="{Binding NavigateToPersonnel}"
                     Content="{x:Static strings:DesktopStrings.AddButtonText}"
                     Name="AddPersonnel"/>
 

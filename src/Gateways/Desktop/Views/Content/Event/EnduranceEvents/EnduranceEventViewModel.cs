@@ -1,9 +1,7 @@
 ﻿using EnduranceJudge.Application.Events.Commands.EnduranceEvents;
-using EnduranceJudge.Application.Events.Common;
 using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
 using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Core.Extensions;
-using EnduranceJudge.Domain.Enums;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
@@ -22,7 +20,8 @@ using System.Windows;
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
 {
     public class EnduranceEventViewModel : RootFormBase<SaveEnduranceEvent, EnduranceEventForUpdateModel>,
-        ICompetitionsShard<CompetitionViewModel>
+        ICompetitionsShard<CompetitionViewModel>,
+        IPersonnelShard<PersonnelViewModel>
     {
         protected EnduranceEventViewModel(IApplicationService application, INavigationService navigation)
             : base(application, navigation)
@@ -30,7 +29,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
         }
 
         public DelegateCommand NavigateToCompetition { get; private set; }
-        public DelegateCommand AddPersonnel { get; }
+        public DelegateCommand NavigateToPersonnel { get; private set; }
 
         public ObservableCollection<CountryListingModel> Countries { get; }
             = new (Enumerable.Empty<CountryListingModel>());
