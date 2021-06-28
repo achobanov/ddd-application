@@ -78,7 +78,7 @@
 
             <Button Style="{StaticResource Button}"
                     Command="{Binding Submit}"
-                    Content="{x:Static strings:DesktopStrings.CreateButtonText}" />
+                    Content="{x:Static strings:DesktopStrings.SaveButtonText}" />
         </DockPanel>
     </StackPanel>
 </UserControl>
