@@ -11,9 +11,9 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Roots.EnduranceEve
     public interface ICompetitionsShard<T> : IPrincipalForm, IHasView<CompetitionView>
         where T : DependantFormBase
     {
-        List<T> Competitions { get; }
-
         ObservableCollection<ListItemViewModel> CompetitionItems { get; }
+
+        List<T> Competitions { get; }
 
         DelegateCommand NavigateToCompetition { get; }
     }
@@ -21,9 +21,9 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Roots.EnduranceEve
     public interface IPersonnelShard<T> : IPrincipalForm, IHasView<PersonnelView>
         where T : DependantFormBase
     {
-        List<T> Personnel { get; }
-
         ObservableCollection<ListItemViewModel> PersonnelItems { get; }
+
+        List<T> Personnel { get; }
 
         DelegateCommand NavigateToPersonnel { get; }
     }

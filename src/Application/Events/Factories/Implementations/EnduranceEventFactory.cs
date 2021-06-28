@@ -20,14 +20,15 @@ namespace EnduranceJudge.Application.Events.Factories.Implementations
         {
             var enduranceEvent = new EnduranceEvent(data);
 
-            foreach (var competitionData in data.Competitions)
+            foreach (var competition in data.Competitions.Select(this.competitionFactory.Create))
             {
-                var competition = this.competitionFactory.Create(competitionData);
                 enduranceEvent.Add(competition);
             }
 
-            var personnel = data.Personnel.Select(this.personnelFactory.Create);
-            personnel.ForEach(enduranceEvent.Add);
+            foreach (var personnel in data.Personnel.Select(this.personnelFactory.Create))
+            {
+                enduranceEvent.Add(personnel);
+            }
 
             return enduranceEvent;
         }

@@ -28,9 +28,6 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Roots.EnduranceEve
         {
         }
 
-        public DelegateCommand NavigateToCompetition { get; private set; }
-        public DelegateCommand NavigateToPersonnel { get; private set; }
-
         public ObservableCollection<CountryListingModel> Countries { get; }
             = new (Enumerable.Empty<CountryListingModel>());
 
@@ -55,12 +52,6 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Roots.EnduranceEve
             get => this.selectedCountryIsoCode;
             set => this.SetProperty(ref this.selectedCountryIsoCode, value);
         }
-
-        public List<PersonnelViewModel> Personnel { get; private set; } = new();
-        public ObservableCollection<ListItemViewModel> PersonnelItems { get; } = new();
-
-        public List<CompetitionViewModel> Competitions { get; private set; } = new();
-        public ObservableCollection<ListItemViewModel> CompetitionItems { get; } = new();
 
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
@@ -95,5 +86,13 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Roots.EnduranceEve
             var listItem = new ListItemViewModel(this.Id, this.Name, command);
             return listItem;
         }
+
+        public DelegateCommand NavigateToPersonnel { get; private set; }
+        public List<PersonnelViewModel> Personnel { get; private set; } = new();
+        public ObservableCollection<ListItemViewModel> PersonnelItems { get; } = new();
+
+        public DelegateCommand NavigateToCompetition { get; private set; }
+        public List<CompetitionViewModel> Competitions { get; private set; } = new();
+        public ObservableCollection<ListItemViewModel> CompetitionItems { get; } = new();
     }
 }

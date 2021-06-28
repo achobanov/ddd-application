@@ -50,7 +50,7 @@ namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents
                     enduranceEvent,
                     cancellationToken);
 
-                return result; ;
+                return result;
             }
         }
     }

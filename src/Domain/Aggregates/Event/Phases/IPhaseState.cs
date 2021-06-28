@@ -4,7 +4,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Phases
 {
     public interface IPhaseState : IDomainModelState
     {
-        int LengthInKilometers { get; }
+        int LengthInKm { get; }
 
         bool IsFinal { get; }
     }

@@ -1,7 +1,9 @@
 ﻿using EnduranceJudge.Core.Models;
+using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ComboBoxItem;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Services;
 using Prism.Commands;
+using System.Collections.Generic;
 
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
@@ -10,6 +12,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         protected FormBase(INavigationService navigation)
         {
             this.Navigation = navigation;
+            this.BoolItems = ComboBoxItemViewModel.FromBool();
         }
 
         protected INavigationService Navigation { get; }
@@ -21,6 +24,8 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             get => this.id;
             set => this.SetProperty(ref this.id, value);
         }
+
+        public List<ComboBoxItemViewModel> BoolItems { get; set; }
 
         public bool Equals(IIdentifiable identifiable)
         {

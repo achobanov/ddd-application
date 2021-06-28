@@ -62,7 +62,7 @@ namespace EnduranceJudge.Domain.Aggregates.Manager.ParticipationsInPhases
 
         private double GetAverageSpeed(TimeSpan timeSpan)
         {
-            var phaseLengthInKm = this.Phase.LengthInKilometers;
+            var phaseLengthInKm = this.Phase.LengthInKm;
             var totalHours = timeSpan.TotalHours;
 
             return  phaseLengthInKm / totalHours;

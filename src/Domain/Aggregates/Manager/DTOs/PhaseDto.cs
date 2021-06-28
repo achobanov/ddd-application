@@ -8,7 +8,7 @@ namespace EnduranceJudge.Domain.Aggregates.Manager.DTOs
     {
         public int Id { get; }
         public int OrderBy { get; }
-        public int LengthInKilometers { get; }
+        public int LengthInKm { get; }
         public bool IsFinal { get; }
         public int MaxRecoveryTimeInMinutes { get; }
         public int RestTimeInMinutes { get; }

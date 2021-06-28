@@ -13,15 +13,15 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Phases
         {
         }
 
-        public Phase(int id, int lengthInKilometers, bool isFinal = false) : base(id)
+        public Phase(IPhaseState data) : base(data.Id)
             => this.Validate(() =>
             {
-                this.IsFinal = isFinal;
-                this.LengthInKilometers = lengthInKilometers.IsRequired(nameof(lengthInKilometers));
+                this.IsFinal = data.IsFinal;
+                this.LengthInKm = data.LengthInKm.IsRequired(nameof(data.LengthInKm));
             });
 
         public bool IsFinal { get; private set; }
-        public int LengthInKilometers { get; private set; }
+        public int LengthInKm { get; private set; }
 
 
         private List<PhaseForCategory> phasesForCategories = new();

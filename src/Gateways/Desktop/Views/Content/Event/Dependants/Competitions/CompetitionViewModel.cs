@@ -6,12 +6,15 @@ using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 using EnduranceJudge.Gateways.Desktop.Services;
+using EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Phases;
 using Prism.Commands;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competitions
 {
-    public class CompetitionViewModel : DependantFormBase, IMap<CompetitionDependantModel>
+    public class CompetitionViewModel : DependantFormBase, IMap<CompetitionDependantModel>,
+        IPhasesShard<PhaseViewModel>
     {
         public CompetitionViewModel() : base(null, null)
         {
@@ -51,5 +54,9 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competi
             var listItem = new ListItemViewModel(this.Id, this.Name, command);
             return listItem;
         }
+
+        public ObservableCollection<ListItemViewModel> PhaseItems { get; } = new();
+        public List<PhaseViewModel> Phases { get; private set; } = new();
+        public DelegateCommand NavigateToCreatePhase { get; private set; }
     }
 }

@@ -9,6 +9,8 @@
         public const string UpdateButtonText = "_Update";
         public const string AddButtonText = "_Add";
         public const string BackButtonText = "_Back";
+        public const string BoolTrueValue = "Yes";
+        public const string BoolFalseValue = "No";
 
         // -------
         // Regions
@@ -52,5 +54,12 @@
 
         // ------ Personnel
         public const string RoleLabel = "_Role";
+
+        // ------ Phase
+        public const string PhaseListItemDisplayTemplate = "{0}km - Is Final: {1}";
+        public const string LengthInKmLabel = "Length in Km";
+        public const string IsFinalLabel = "Is Final Phase";
+        public const string PhasesLabel = "Phases";
+
     }
 }

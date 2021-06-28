@@ -1,5 +1,6 @@
 ﻿using EnduranceJudge.Application.Events.Common;
 using EnduranceJudge.Core.Mappings;
+using EnduranceJudge.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,16 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ComboBoxItem
 
                 yield return new ComboBoxItemViewModel(value, name);
             }
+        }
+
+        public static List<ComboBoxItemViewModel> FromBool()
+        {
+            var falseItem = new ComboBoxItemViewModel(0, DesktopStrings.BoolFalseValue);
+            var trueItem = new ComboBoxItemViewModel(1, DesktopStrings.BoolTrueValue);
+
+            var result =  new List<ComboBoxItemViewModel> { falseItem, trueItem };
+
+            return result;
         }
     }
 }

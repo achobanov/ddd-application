@@ -10,7 +10,7 @@ namespace EnduranceJudge.Application.Events.Queries.GetEvent
         public string Name { get; private set; }
         public string PopulatedPlace { get; private set; }
         public string CountryIsoCode { get; private set; }
-        public IEnumerable<CompetitionDependantModel> Competitions { get; set; }
-        public IEnumerable<PersonnelDependantModel> Personnel { get; set; }
+        public IEnumerable<CompetitionDependantModel> Competitions { get; private set; }
+        public IEnumerable<PersonnelDependantModel> Personnel { get; private set; }
     }
 }

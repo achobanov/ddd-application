@@ -1,5 +1,6 @@
 ﻿using EnduranceJudge.Domain.Aggregates.Event.Competitions;
 using EnduranceJudge.Domain.Enums;
+using System.Collections.Generic;
 
 namespace EnduranceJudge.Application.Events.Common
 {
@@ -9,5 +10,7 @@ namespace EnduranceJudge.Application.Events.Common
 
         public CompetitionType Type { get; set; }
         public string Name { get; set; }
+
+        public IEnumerable<PhaseDependantModel> Phases { get; set; }
     }
 }
