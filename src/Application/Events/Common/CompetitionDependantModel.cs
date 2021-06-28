@@ -10,7 +10,7 @@ namespace EnduranceJudge.Application.Events.Common
 
         public CompetitionType Type { get; set; }
         public string Name { get; set; }
-
         public IEnumerable<PhaseDependantModel> Phases { get; set; }
+        public IEnumerable<ParticipantDependantModel> Participants { get; set; }
     }
 }

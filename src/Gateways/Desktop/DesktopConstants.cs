@@ -10,6 +10,9 @@ namespace EnduranceJudge.Gateways.Desktop
 {
     public static class DesktopConstants
     {
+        public const string True = "True";
+        public const string False = "False";
+
         public static Assembly[] Assemblies
         {
             get

@@ -12,8 +12,8 @@ namespace EnduranceJudge.Gateways.Persistence.Entities.Participants
     public class ParticipantEntity : EntityBase, IParticipantState
     {
         public string RfId { get; set; }
-        public int ContestNumber { get; set; }
-        public int? MaxAverageSpeedInKpH { get; set; }
+        public int Number { get; set; }
+        public int? MaxAverageSpeedInKmPh { get; set; }
 
         [JsonIgnore]
         public HorseEntity Horse { get; set; }

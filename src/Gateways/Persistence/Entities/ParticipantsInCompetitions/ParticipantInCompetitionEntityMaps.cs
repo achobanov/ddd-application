@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EnduranceJudge.Application.Events.Common;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Event.Participants;
 using ImportParticipant = EnduranceJudge.Domain.Aggregates.Import.Participants.Participant;
@@ -34,8 +35,8 @@ namespace EnduranceJudge.Gateways.Persistence.Entities.ParticipantsInCompetition
         {
             profile.CreateMap<ParticipantInCompetition, Participant>()
                 .ForMember(p => p.Id, opt => opt.MapFrom(pic => pic.ParticipantId))
-                .ForMember(p => p.ContestNumber, opt => opt.MapFrom(pic => pic.Participant.ContestNumber))
-                .ForMember(p => p.MaxAverageSpeedInKpH, opt => opt.MapFrom(pic => pic.Participant.MaxAverageSpeedInKpH))
+                .ForMember(p => p.Number, opt => opt.MapFrom(pic => pic.Participant.Number))
+                .ForMember(p => p.MaxAverageSpeedInKmPh, opt => opt.MapFrom(pic => pic.Participant.MaxAverageSpeedInKmPh))
                 .ForMember(p => p.RfId, opt => opt.MapFrom(pic => pic.Participant.RfId))
                 .ForMember(p => p.Athlete, opt => opt.MapFrom(pic => pic.Participant.Athlete))
                 .ForMember(p => p.Horse, opt => opt.MapFrom(pic => pic.Participant.Horse));

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EnduranceJudge.Application.Events.Common;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Event.Participants;
 using ImportParticipant = EnduranceJudge.Domain.Aggregates.Import.Participants.Participant;
@@ -32,6 +33,7 @@ namespace EnduranceJudge.Gateways.Persistence.Entities.Participants
         {
             profile.CreateMap<ParticipantEntity, Participant>();
             profile.CreateMap<ParticipantEntity, ImportParticipant>();
+            profile.CreateMap<ParticipantEntity, ParticipantDependantModel>();
         }
     }
 }

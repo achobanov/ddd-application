@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
-using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
-using EnduranceJudge.Domain.Enums;
-using EnduranceJudge.Gateways.Persistence.Converters;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities.EnduranceEvents
 {

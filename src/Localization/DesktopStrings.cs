@@ -60,6 +60,12 @@
         public const string LengthInKmLabel = "Length in Km";
         public const string IsFinalLabel = "Is Final Phase";
         public const string PhasesLabel = "Phases";
+        public const string ParticipantsLabel = "Participants";
 
+        // ------ Participant
+        public const string RfIdLabel = "_RFID Number";
+        public const string NumberLabel = "_Number";
+        public const string MaxAverageSpeedInKmPhLabel = "_Maximum Average Speed In Kilometers";
+        public const string MaxAverageSpeedInKmPhVisibilityLabel = "_Has Average Speed Limit";
     }
 }

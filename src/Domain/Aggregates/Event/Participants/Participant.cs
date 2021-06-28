@@ -9,16 +9,17 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Participants
         {
         }
 
-        public Participant(int id, string rfId, int contestNumber) : base(id)
+        public Participant(IParticipantState data) : base(data.Id)
             => this.Validate(() =>
             {
-                this.RfId = rfId.IsRequired(nameof(rfId));
-                this.ContestNumber = contestNumber.IsRequired(nameof(contestNumber));
+                this.RfId = data.RfId.IsRequired(nameof(data.RfId));
+                this.Number = data.Number.IsRequired(nameof(data.Number));
+                this.MaxAverageSpeedInKmPh = data.MaxAverageSpeedInKmPh;
             });
 
         public string RfId { get; private set; }
-        public int ContestNumber { get; private set; }
-        public int? MaxAverageSpeedInKpH { get; private set; }
+        public int Number { get; private set; }
+        public int? MaxAverageSpeedInKmPh { get; private set; }
 
         public Horse Horse { get; private set; }
         public Participant Set(Horse horse)
