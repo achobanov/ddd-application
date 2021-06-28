@@ -6,7 +6,7 @@ using Prism.Commands;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
+namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Roots.EnduranceEvents
 {
     public interface ICompetitionsShard<T> : IPrincipalForm, IHasView<CompetitionView>
         where T : DependantFormBase

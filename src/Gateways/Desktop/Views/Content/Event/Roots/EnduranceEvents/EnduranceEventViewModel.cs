@@ -17,7 +17,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
+namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Roots.EnduranceEvents
 {
     public class EnduranceEventViewModel : RootFormBase<SaveEnduranceEvent, EnduranceEventForUpdateModel>,
         ICompetitionsShard<CompetitionViewModel>,

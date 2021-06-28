@@ -5,7 +5,7 @@ using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 
-namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents
+namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Roots.EnduranceEvents
 {
     public class EnduranceEventMaps : ICustomMapConfiguration
     {

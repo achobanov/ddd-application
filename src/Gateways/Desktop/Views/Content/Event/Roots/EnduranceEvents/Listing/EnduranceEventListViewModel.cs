@@ -5,7 +5,7 @@ using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 using EnduranceJudge.Gateways.Desktop.Services;
 using System.Collections.ObjectModel;
 
-namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Listing
+namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Roots.EnduranceEvents.Listing
 {
     public class EnduranceEventListViewModel : ListViewModelBase<GetEnduranceEventsList, EnduranceEventView>
     {

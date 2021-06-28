@@ -1,8 +1,8 @@
 ﻿using EnduranceJudge.Gateways.Desktop.Core;
 using EnduranceJudge.Gateways.Desktop.Core.Events;
 using EnduranceJudge.Gateways.Desktop.Services;
-using EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents;
-using EnduranceJudge.Gateways.Desktop.Views.Content.Event.EnduranceEvents.Listing;
+using EnduranceJudge.Gateways.Desktop.Views.Content.Event.Roots.EnduranceEvents;
+using EnduranceJudge.Gateways.Desktop.Views.Content.Event.Roots.EnduranceEvents.Listing;
 using EnduranceJudge.Gateways.Desktop.Views.Content.PrintExample;
 using Prism.Commands;
 using Prism.Events;
