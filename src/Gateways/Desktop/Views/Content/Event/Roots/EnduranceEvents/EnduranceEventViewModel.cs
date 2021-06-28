@@ -20,8 +20,8 @@ using System.Windows;
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Roots.EnduranceEvents
 {
     public class EnduranceEventViewModel : RootFormBase<SaveEnduranceEvent, EnduranceEventForUpdateModel>,
-        ICompetitionsShard<CompetitionViewModel>,
-        IPersonnelShard<PersonnelViewModel>
+        ICompetitionsShard<CompetitionView>,
+        IPersonnelShard<PersonnelView>
     {
         protected EnduranceEventViewModel(IApplicationService application, INavigationService navigation)
             : base(application, navigation)

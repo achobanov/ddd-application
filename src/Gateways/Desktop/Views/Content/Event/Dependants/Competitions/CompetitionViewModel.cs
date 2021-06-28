@@ -14,7 +14,7 @@ using System.Collections.ObjectModel;
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competitions
 {
     public class CompetitionViewModel : DependantFormBase, IMap<CompetitionDependantModel>,
-        IPhasesShard<PhaseViewModel>
+        IPhasesShard<PhaseView>
     {
         public CompetitionViewModel() : base(null, null)
         {

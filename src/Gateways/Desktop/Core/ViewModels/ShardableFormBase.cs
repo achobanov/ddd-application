@@ -1,8 +1,6 @@
-﻿using AutoMapper;
-using EnduranceJudge.Application.Core.Exceptions;
+﻿using EnduranceJudge.Application.Core.Exceptions;
 using EnduranceJudge.Core;
 using EnduranceJudge.Core.Extensions;
-using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Core.Utilities;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Services;
@@ -116,14 +114,19 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 
         private void InitializeShard(Type hasDependantsInterface, PropertyInfo[] thisProperties)
         {
-            var dependantType = hasDependantsInterface
+            var interfaceProperties = ReflectionUtilities.GetProperties(hasDependantsInterface);
+
+            var dependantType = interfaceProperties
+                .Single(info => info.PropertyType.Name == CoreConstants.Types.ListGeneric.Name)
+                .PropertyType
                 .GetGenericArguments()
+                .Single();
+
+            var dependantViewType = ReflectionUtilities
+                .GetGenericArguments(hasDependantsInterface)
                 .First();
 
             var dependantKey = dependantType.FullName;
-            var interfaceProperties = ReflectionUtilities.GetProperties(hasDependantsInterface);
-
-            var dependantViewType = this.GetViewType(hasDependantsInterface);
 
             var shard = this.CreatePrincipalShardModel(dependantType, dependantViewType, interfaceProperties);
             this.shards.Add(dependantKey!, shard);
@@ -186,17 +189,6 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             }
 
             navigateCommandInfo.SetValue(this, navigateCommand);
-        }
-
-        private Type GetViewType(Type hasDependantsInterface)
-        {
-            var viewType = hasDependantsInterface
-                .GetInterfaces()
-                .Single(type => type.Name == DesktopConstants.Types.HasView.Name)
-                .GetGenericArguments()
-                .Single();
-
-            return viewType;
         }
 
         private Action NavigateToDependantCreateDelegate(Type viewType, Action<object> action)

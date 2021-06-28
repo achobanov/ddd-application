@@ -20,7 +20,6 @@ namespace EnduranceJudge.Gateways.Desktop
         }
 
         public const string EntityIdParameter = "Id";
-        public const string PrismEventPublishMethodName = "Publish";
         public const string DataParameter = "Data";
         public const string SubmitActionParameter = "SubmitAction";
 
@@ -28,9 +27,7 @@ namespace EnduranceJudge.Gateways.Desktop
         {
             public static readonly Type DelegateCommand = typeof(DelegateCommand);
             public static readonly Type ObservableListItems = typeof(ObservableCollection<ListItemViewModel>);
-            public static readonly Type ListItemViewModel = typeof(ListItemViewModel);
             public static readonly Type PrincipalForm = typeof(IPrincipalForm);
-            public static readonly Type HasView = typeof(IHasView<>);
         }
     }
 

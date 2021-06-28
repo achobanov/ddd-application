@@ -1,4 +1,5 @@
-﻿using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
+﻿using EnduranceJudge.Gateways.Desktop.Core;
+using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 using EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Phases;
 using Prism.Commands;
@@ -7,12 +8,12 @@ using System.Collections.ObjectModel;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competitions
 {
-    public interface IPhasesShard<T> : IPrincipalForm, IHasView<PhaseView>
-        where T : DependantFormBase
+    public interface IPhasesShard<TView> : IPrincipalForm
+        where TView : IView
     {
         ObservableCollection<ListItemViewModel> PhaseItems { get; }
 
-        List<T> Phases { get; }
+        List<PhaseViewModel> Phases { get; }
 
         DelegateCommand NavigateToCreatePhase { get; }
     }

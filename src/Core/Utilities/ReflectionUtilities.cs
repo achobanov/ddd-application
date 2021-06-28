@@ -81,5 +81,11 @@ namespace EnduranceJudge.Core.Utilities
 
             return descriptors;
         }
+
+        public static Type[] GetGenericArguments(Type type)
+        {
+            var types = type.GetGenericArguments();
+            return types;
+        }
     }
 }
