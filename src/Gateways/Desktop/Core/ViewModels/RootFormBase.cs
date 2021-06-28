@@ -49,13 +49,13 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
-            base.OnNavigatedTo(navigationContext);
-
             var id = navigationContext.GetId();
             if (id.HasValue)
             {
                 this.Load(id.Value);
             }
+
+            base.OnNavigatedTo(navigationContext);
         }
 
         private async Task Load(int id)

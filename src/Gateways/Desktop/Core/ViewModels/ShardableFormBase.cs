@@ -7,6 +7,7 @@ using EnduranceJudge.Core.Utilities;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Services;
 using Prism.Commands;
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,8 +31,10 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             }
         }
 
-        public void UpdateDependantItems()
+        public override void OnNavigatedTo(NavigationContext navigationContext)
         {
+            base.OnNavigatedTo(navigationContext);
+
             foreach (var (key, shard) in this.shards)
             {
                 this.UpdateListItems(key, shard);
@@ -204,16 +207,6 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         private Action NavigateToDependantUpdateDelegate(Type viewType, object data, Action<object> action)
         {
             return () => this.Navigation.ChangeTo(viewType, data, action);
-        }
-
-    }
-
-    public class ShardableFormMaps : ICustomMapConfiguration
-    {
-        public void AddMaps(IProfileExpression profile)
-        {
-            profile.CreateMap<object, ShardableFormBase>()
-                .AfterMap((_, destination) => destination.UpdateDependantItems());
         }
     }
 }
