@@ -22,7 +22,7 @@ namespace EnduranceJudge.Application.Events.Queries.GetCountriesListing
                 GetCountriesListing request,
                 CancellationToken cancellationToken)
             {
-                var countries = await this.countryQueries.GetAll<CountryListingModel>();
+                var countries = await this.countryQueries.All<CountryListingModel>();
                 return countries;
             }
         }

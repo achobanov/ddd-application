@@ -7,5 +7,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
         public string Name { get; }
 
         public string PopulatedPlace { get; }
+
+        public string CountryIsoCode { get; }
     }
 }

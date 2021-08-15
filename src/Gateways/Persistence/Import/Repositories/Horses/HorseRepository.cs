@@ -3,12 +3,13 @@ using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Import.Horses;
 using EnduranceJudge.Gateways.Persistence.Contracts.WorkFile;
 using EnduranceJudge.Gateways.Persistence.Core;
+using EnduranceJudge.Gateways.Persistence.DataStores;
 using EnduranceJudge.Gateways.Persistence.Entities.Horses;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Horses
+namespace EnduranceJudge.Gateways.Persistence.Import.Repositories.Horses
 {
     public class HorseRepository : RepositoryBase<IHorseDataStore, HorseEntity, Horse>, IHorseCommands
     {

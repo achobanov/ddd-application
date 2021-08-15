@@ -21,17 +21,13 @@ namespace EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents
             {
                 this.Name = state.Name.IsRequired(nameof(state.Name));
                 this.PopulatedPlace = state.PopulatedPlace.IsRequired(nameof(state.PopulatedPlace));
+                this.CountryIsoCode = state.CountryIsoCode.IsRequired(nameof(state.CountryIsoCode));
             });
 
         public string Name { get; private set; }
         public string PopulatedPlace { get; private set; }
 
-        public Country Country { get; private set; }
-        public void Set(Country country)
-            => this.Validate(() =>
-            {
-                this.Country = country.IsRequired(nameof(country));
-            });
+        public string CountryIsoCode { get; private set; }
 
         public Personnel PresidentGroundJury
             => this.personnel.FirstOrDefault(p => p.Role == PersonnelRole.PresidentGroundJury);

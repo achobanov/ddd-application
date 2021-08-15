@@ -7,6 +7,7 @@ using EnduranceJudge.Application.Events.Queries.GetEvent;
 using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using MediatR;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -25,16 +26,13 @@ namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents
         {
             private readonly IEnduranceEventFactory enduranceEventFactory;
             private readonly ICommandsBase<EnduranceEvent> eventCommands;
-            private readonly ICountryQueries countryQueries;
 
             public SaveEnduranceEventHandler(
                 IEnduranceEventFactory enduranceEventFactory,
-                ICommandsBase<EnduranceEvent> eventCommands,
-                ICountryQueries countryQueries)
+                ICommandsBase<EnduranceEvent> eventCommands)
             {
                 this.enduranceEventFactory = enduranceEventFactory;
                 this.eventCommands = eventCommands;
-                this.countryQueries = countryQueries;
             }
 
             public override async Task<EnduranceEventForUpdateModel> Handle(
@@ -42,9 +40,6 @@ namespace EnduranceJudge.Application.Events.Commands.EnduranceEvents
                 CancellationToken cancellationToken)
             {
                 var enduranceEvent = this.enduranceEventFactory.Create(request);
-
-                var country = await this.countryQueries.Find(request.CountryIsoCode);
-                enduranceEvent.Set(country);
 
                 var result = await this.eventCommands.Save<EnduranceEventForUpdateModel>(
                     enduranceEvent,

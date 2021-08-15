@@ -9,6 +9,6 @@ namespace EnduranceJudge.Application.Contracts.Countries
     {
         Task<Country> Find(string isoCode);
 
-        Task<IList<T>> GetAll<T>();
+        Task<IList<T>> All<T>();
     }
 }

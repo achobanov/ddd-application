@@ -1,5 +1,4 @@
 ﻿using EnduranceJudge.Application.Events.Commands.EnduranceEvents;
-using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
 using System.Linq;
 

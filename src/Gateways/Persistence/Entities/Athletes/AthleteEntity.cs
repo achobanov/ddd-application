@@ -1,18 +1,17 @@
-﻿using EnduranceJudge.Core.Mappings;
+﻿using EnduranceJudge.Application.Events.Queries.GetAthletes;
+using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Import.Athletes;
 using EnduranceJudge.Domain.Enums;
 using EnduranceJudge.Gateways.Persistence.Core;
 using EnduranceJudge.Gateways.Persistence.Entities.Countries;
 using EnduranceJudge.Gateways.Persistence.Entities.Participants;
 using Newtonsoft.Json;
-using Athlete = EnduranceJudge.Domain.Aggregates.Event.Participants.Athlete;
-using ImportAthlete = EnduranceJudge.Domain.Aggregates.Import.Athletes.Athlete;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities.Athletes
 {
     public class AthleteEntity : EntityBase, IAthleteState,
         IMap<Athlete>,
-        IMap<ImportAthlete>
+        IMapTo<AthleteModel>
     {
         public string FeiId { get; set; }
         public string FirstName { get; set; }

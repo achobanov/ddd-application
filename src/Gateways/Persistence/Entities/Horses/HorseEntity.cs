@@ -1,16 +1,15 @@
-﻿using EnduranceJudge.Core.Mappings;
+﻿using EnduranceJudge.Application.Events.Queries.GetHorses;
+using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Import.Horses;
 using EnduranceJudge.Gateways.Persistence.Core;
 using EnduranceJudge.Gateways.Persistence.Entities.Participants;
 using Newtonsoft.Json;
-using Horse = EnduranceJudge.Domain.Aggregates.Event.Participants.Horse;
-using ImportHorse = EnduranceJudge.Domain.Aggregates.Import.Horses.Horse;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities.Horses
 {
     public class HorseEntity : EntityBase, IHorseState,
         IMap<Horse>,
-        IMap<ImportHorse>
+        IMapTo<HorseModel>
     {
         public string FeiId { get; set; }
         public string Name { get; set; }

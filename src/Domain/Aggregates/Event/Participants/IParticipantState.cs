@@ -7,5 +7,7 @@ namespace EnduranceJudge.Domain.Aggregates.Event.Participants
         public string RfId { get; }
         public int Number { get; }
         int? MaxAverageSpeedInKmPh { get; }
+        int HorseId { get; }
+        int AthleteId { get; }
     }
 }

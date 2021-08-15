@@ -2,7 +2,7 @@
 using EnduranceJudge.Gateways.Persistence.Entities.Horses;
 using Microsoft.EntityFrameworkCore;
 
-namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Horses
+namespace EnduranceJudge.Gateways.Persistence.DataStores
 {
     public interface IHorseDataStore : IDataStore
     {

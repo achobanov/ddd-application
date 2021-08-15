@@ -99,16 +99,16 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         {
             var principalFormType = DesktopConstants.Types.PrincipalForm;
 
-            var dependsOnInterfaces = this.thisType
+            var shards = this.thisType
                 .GetInterfaces()
                 .Where(type => principalFormType.IsAssignableFrom(type) && principalFormType != type)
                 .ToList();
 
             var thisProperties = ReflectionUtilities.GetProperties(this.thisType);
 
-            foreach (var dependsOnInterface in dependsOnInterfaces)
+            foreach (var shard in shards)
             {
-                this.InitializeShard(dependsOnInterface, thisProperties);
+                this.InitializeShard(shard, thisProperties);
             }
         }
 
@@ -171,7 +171,6 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             PropertyInfo[] interfaceProperties,
             PropertyInfo[] thisProperties)
         {
-
             var submitAction = this.GetDependantSubmitAction(key);
             var navigateAction = this.NavigateToDependantCreateDelegate(dependantViewType, submitAction);
             var navigateCommand = new DelegateCommand(navigateAction);

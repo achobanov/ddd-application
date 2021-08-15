@@ -4,7 +4,7 @@ using EnduranceJudge.Core.Services;
 using EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Competitions;
 using EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Countries;
 using EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Events;
-using EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Horses;
+using EnduranceJudge.Gateways.Persistence.DataStores;
 using EnduranceJudge.Gateways.Persistence.Entities.Athletes;
 using EnduranceJudge.Gateways.Persistence.Entities.Competitions;
 using EnduranceJudge.Gateways.Persistence.Entities.Countries;
@@ -24,7 +24,8 @@ namespace EnduranceJudge.Gateways.Persistence
         IEnduranceEventsDataStore,
         ICountriesDataStore,
         IHorseDataStore,
-        ICompetitionsDataStore
+        ICompetitionsDataStore,
+        IAthleteDataStore
     {
         public EnduranceJudgeDbContext()
         {

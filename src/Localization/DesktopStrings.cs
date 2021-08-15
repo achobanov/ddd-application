@@ -67,5 +67,8 @@
         public const string NumberLabel = "_Number";
         public const string MaxAverageSpeedInKmPhLabel = "_Maximum Average Speed In Kilometers";
         public const string MaxAverageSpeedInKmPhVisibilityLabel = "_Has Average Speed Limit";
+        public const string AthleteLabel = "_Athlete";
+        public const string HorseLabel = "_Horse";
+        public const string CategoryLabel = "_Category";
     }
 }

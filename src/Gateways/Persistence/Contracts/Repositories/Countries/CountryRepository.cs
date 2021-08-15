@@ -28,7 +28,7 @@ namespace EnduranceJudge.Gateways.Persistence.Contracts.Repositories.Countries
             return country;
         }
 
-        public async Task<IList<T>> GetAll<T>()
+        public async Task<IList<T>> All<T>()
         {
             var countries = await this.dbContext
                 .Countries

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EnduranceJudge.Application.Events.Common;
+using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Event.Participants;
 using ImportParticipant = EnduranceJudge.Domain.Aggregates.Import.Participants.Participant;
@@ -16,12 +17,7 @@ namespace EnduranceJudge.Gateways.Persistence.Entities.Participants
 
         private void AddFromMaps(IProfileExpression profile)
         {
-            profile.CreateMap<Participant, ParticipantEntity>()
-                .ForMember(x => x.HorseId, opt => opt.Condition(p => p.Horse != null))
-                .ForMember(x => x.Horse, opt => opt.Condition(p => p.Horse != null))
-                .ForMember(x => x.AthleteId, opt => opt.Condition(p => p.Athlete != null))
-                .ForMember(x => x.Athlete, opt => opt.Condition(p => p.Athlete != null));
-
+            profile.CreateMap<Participant, ParticipantEntity>();
             profile.CreateMap<ImportParticipant, ParticipantEntity>()
                 .ForMember(x => x.HorseId, opt => opt.Condition(p => p.Horse != null))
                 .ForMember(x => x.Horse, opt => opt.Condition(p => p.Horse != null))
@@ -33,7 +29,8 @@ namespace EnduranceJudge.Gateways.Persistence.Entities.Participants
         {
             profile.CreateMap<ParticipantEntity, Participant>();
             profile.CreateMap<ParticipantEntity, ImportParticipant>();
-            profile.CreateMap<ParticipantEntity, ParticipantDependantModel>();
+            profile.CreateMap<ParticipantEntity, ParticipantDependantModel>()
+                .MapMember(x => x.CategoryId, y => (int)y.Athlete.Category);
         }
     }
 }
