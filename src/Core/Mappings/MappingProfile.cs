@@ -63,7 +63,8 @@ namespace EnduranceJudge.Core.Mappings
 
             foreach (var configuration in configurations)
             {
-                configuration.AddMaps(this);
+                configuration.AddFromMaps(this);
+                configuration.AddToMaps(this);
             }
         }
 

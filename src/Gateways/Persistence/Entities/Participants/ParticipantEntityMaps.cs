@@ -9,13 +9,7 @@ namespace EnduranceJudge.Gateways.Persistence.Entities.Participants
 {
     public class ParticipantEntityMaps : ICustomMapConfiguration
     {
-        public void AddMaps(IProfileExpression profile)
-        {
-            this.AddFromMaps(profile);
-            this.AddToMaps(profile);
-        }
-
-        private void AddFromMaps(IProfileExpression profile)
+        public void AddFromMaps(IProfileExpression profile)
         {
             profile.CreateMap<Participant, ParticipantEntity>();
             profile.CreateMap<ImportParticipant, ParticipantEntity>()
@@ -25,7 +19,7 @@ namespace EnduranceJudge.Gateways.Persistence.Entities.Participants
                 .ForMember(x => x.Athlete, opt => opt.Condition(p => p.Athlete != null));
         }
 
-        private void AddToMaps(IProfileExpression profile)
+        public void AddToMaps(IProfileExpression profile)
         {
             profile.CreateMap<ParticipantEntity, Participant>();
             profile.CreateMap<ParticipantEntity, ImportParticipant>();

@@ -4,6 +4,7 @@ namespace EnduranceJudge.Core.Mappings
 {
     public interface ICustomMapConfiguration
     {
-        void AddMaps(IProfileExpression profile);
+        void AddFromMaps(IProfileExpression profile);
+        void AddToMaps(IProfileExpression profile);
     }
 }
