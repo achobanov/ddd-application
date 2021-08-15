@@ -1,3 +1,4 @@
+using EnduranceJudge.Application.Events.Common;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Event.PhasesForCategory;
 using EnduranceJudge.Domain.Enums;
@@ -7,7 +8,10 @@ using Newtonsoft.Json;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities.PhasesForCategories
 {
-    public class PhaseForCategoryEntity : EntityBase, IPhaseForCategoryState, IMap<PhaseForCategory>
+    public class PhaseForCategoryEntity : EntityBase,
+        IPhaseForCategoryState,
+        IMap<PhaseForCategory>,
+        IMapTo<PhaseForCategoryDependantModel>
     {
         public int MaxRecoveryTimeInMinutes { get; set; }
 

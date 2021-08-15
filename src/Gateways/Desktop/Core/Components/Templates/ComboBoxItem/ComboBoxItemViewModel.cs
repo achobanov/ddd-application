@@ -19,9 +19,9 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ComboBoxItem
             this.Name = name;
         }
 
-        public int Id { get; private set;  }
+        public int Id { get; }
 
-        public string Name { get; private set; }
+        public string Name { get; }
 
         public static IEnumerable<ComboBoxItemViewModel> FromEnum<T>()
             where T : struct, Enum
@@ -32,7 +32,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ComboBoxItem
                 .Cast<int>()
                 .ToArray();
 
-            for (var i = 0; i < names.Length; i++)
+            for (var i = 1; i < names.Length; i++)
             {
                 var name = names[i];
                 var value = values[i];
