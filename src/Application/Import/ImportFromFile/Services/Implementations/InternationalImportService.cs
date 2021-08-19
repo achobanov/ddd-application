@@ -1,4 +1,5 @@
-﻿using EnduranceJudge.Application.Import.Factories;
+﻿using EnduranceJudge.Application.Factories;
+using EnduranceJudge.Application.Import.Factories;
 using EnduranceJudge.Application.Import.ImportFromFile.Models;
 using EnduranceJudge.Core.Services;
 using EnduranceJudge.Domain.Aggregates.Import.Competitions;

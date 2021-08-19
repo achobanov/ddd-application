@@ -3,7 +3,7 @@ using EnduranceJudge.Domain.Enums;
 using EnduranceJudge.Domain.States;
 using System.Collections.Generic;
 
-namespace EnduranceJudge.Application.Events.Commands.UpdateAthlete
+namespace EnduranceJudge.Application.Events.Models
 {
     public class AthleteRootModel : IAthleteState
     {

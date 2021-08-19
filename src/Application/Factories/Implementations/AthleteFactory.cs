@@ -1,9 +1,10 @@
 ﻿using EnduranceJudge.Application.Import.ImportFromFile.Models;
 using EnduranceJudge.Domain.Aggregates.Common.Athletes;
+using EnduranceJudge.Domain.States;
 using System;
 using System.Globalization;
 
-namespace EnduranceJudge.Application.Import.Factories.Implementations
+namespace EnduranceJudge.Application.Factories.Implementations
 {
     public class AthleteFactory : IAthleteFactory
     {
@@ -27,6 +28,18 @@ namespace EnduranceJudge.Application.Import.Factories.Implementations
                 data.FamilyName,
                 data.CompetingFor,
                 birthDate);
+            return athlete;
+        }
+
+        public Athlete Create(IAthleteState data)
+        {
+            var athlete = new Athlete(
+                data.Id,
+                data.FeiId,
+                data.FirstName,
+                data.LastName,
+                data.CountryIsoCode,
+                data.Category);
             return athlete;
         }
     }

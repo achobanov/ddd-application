@@ -32,6 +32,7 @@
         // ------ Navigation Strip
         public const string EnduranceEventButtonText = "Endurance Events";
         public const string AthletesButtonText = "Athletes";
+        public const string HorsesButtonText = "Horses";
 
         // ------ Endurance Event
         public const string NameLabel = "_Name";
@@ -78,5 +79,12 @@
         public const string FeiIdLabel = "Fei ID";
         public const string FirstNameLabel = "First Name";
         public const string LastNameLabel = "Last Name";
+
+        // ------ Athlete
+        public const string BreedLabel = "Breed";
+        public const string TrainerFeiId = "Trainer FEI ID";
+        public const string TrainerFirstNameLabel = "Trainer First Name";
+        public const string TrainerLastNameLabel = "Trainer Last Name";
+        public const string IsStallionLabel = "Is Stallion";
     }
 }

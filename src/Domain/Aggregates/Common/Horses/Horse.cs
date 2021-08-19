@@ -18,14 +18,14 @@ namespace EnduranceJudge.Domain.Aggregates.Common.Horses
             });
 
         public Horse(
+            int id,
             string feiId,
             string name,
             bool isStallion,
             string breed,
             string trainerFeiId,
             string trainerFirstName,
-            string trainerLastName)
-
+            string trainerLastName) : base(id)
             => this.Validate(() =>
             {
                 this.FeiId = feiId.IsRequired(nameof(feiId));

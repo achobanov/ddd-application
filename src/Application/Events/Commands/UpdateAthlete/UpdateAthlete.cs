@@ -1,6 +1,8 @@
 ﻿using EnduranceJudge.Application.Contracts.Athletes;
 using EnduranceJudge.Application.Core.Handlers;
 using EnduranceJudge.Application.Events.Factories;
+using EnduranceJudge.Application.Events.Models;
+using EnduranceJudge.Application.Factories;
 using EnduranceJudge.Domain.Enums;
 using EnduranceJudge.Domain.States;
 using MediatR;

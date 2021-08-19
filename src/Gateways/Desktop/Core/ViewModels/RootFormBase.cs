@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
     public abstract class RootFormBase<TCommand, TUpdateModel> : ShardableFormBase,
-        IMapTo<TCommand>
+        IMapTo<TCommand>,
+        IMapFrom<TUpdateModel>
         where TCommand : IRequest
     {
         protected RootFormBase(IApplicationService application, INavigationService navigation) : base(navigation)

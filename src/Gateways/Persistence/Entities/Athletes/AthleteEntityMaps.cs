@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using EnduranceJudge.Application.Events.Commands.UpdateAthlete;
 using EnduranceJudge.Application.Events.Common;
+using EnduranceJudge.Application.Events.Models;
 using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Common.Athletes;

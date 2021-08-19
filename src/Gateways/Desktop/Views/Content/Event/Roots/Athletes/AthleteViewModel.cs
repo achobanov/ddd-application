@@ -1,4 +1,5 @@
 ﻿using EnduranceJudge.Application.Events.Commands.UpdateAthlete;
+using EnduranceJudge.Application.Events.Models;
 using EnduranceJudge.Application.Events.Queries.GetAthlete;
 using EnduranceJudge.Application.Events.Queries.GetCountriesList;
 using EnduranceJudge.Core.Models;

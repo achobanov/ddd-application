@@ -12,7 +12,7 @@ using System.Collections.ObjectModel;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Phases
 {
-    public class PhaseViewModel : DependantFormBase, IMap<PhaseDependantModel>,
+    public class PhaseViewModel : DependantFormBase,
         IPhaseForCategoryShard<PhaseForCategoryView>
     {
         private PhaseViewModel() : base(null, null)

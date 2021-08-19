@@ -13,5 +13,9 @@
         <Button Style="{StaticResource Button}"
                 Command="{Binding ChangeToAthletesList}"
                 Content="{x:Static strings:DesktopStrings.AthletesButtonText}" />
+
+        <Button Style="{StaticResource Button}"
+                Command="{Binding ChangeToHorseList}"
+                Content="{x:Static strings:DesktopStrings.HorsesButtonText}" />
     </StackPanel>
 </UserControl>

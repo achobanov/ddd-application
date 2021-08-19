@@ -1,4 +1,6 @@
-﻿using EnduranceJudge.Application.Events.Queries.GetHorses;
+﻿using EnduranceJudge.Application.Events.Common;
+using EnduranceJudge.Application.Events.Models;
+using EnduranceJudge.Application.Events.Queries.GetHorses;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Common.Horses;
 using EnduranceJudge.Gateways.Persistence.Core;
@@ -9,7 +11,9 @@ namespace EnduranceJudge.Gateways.Persistence.Entities.Horses
 {
     public class HorseEntity : EntityBase, IHorseState,
         IMap<Horse>,
-        IMapTo<HorseModel>
+        IMapTo<HorseModel>,
+        IMapTo<HorseRootModel>,
+        IMapTo<ListItemModel>
     {
         public string FeiId { get; set; }
         public string Name { get; set; }

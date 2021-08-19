@@ -2,7 +2,7 @@
 using EnduranceJudge.Application.Core.Contracts;
 using EnduranceJudge.Application.Core.Handlers;
 using EnduranceJudge.Application.Core.Requests;
-using EnduranceJudge.Application.Events.Commands.UpdateAthlete;
+using EnduranceJudge.Application.Events.Models;
 using EnduranceJudge.Application.Events.Queries.GetCountriesList;
 using EnduranceJudge.Domain.Aggregates.Common.Athletes;
 using System.Threading;
