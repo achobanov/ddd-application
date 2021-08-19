@@ -1,5 +1,5 @@
 ﻿using EnduranceJudge.Application.Core.Contracts;
-using EnduranceJudge.Domain.Aggregates.Import.Horses;
+using EnduranceJudge.Domain.Aggregates.Common.Horses;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

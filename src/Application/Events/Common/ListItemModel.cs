@@ -1,6 +1,8 @@
-﻿namespace EnduranceJudge.Application.Events.Common
+﻿using EnduranceJudge.Core.Models;
+
+namespace EnduranceJudge.Application.Events.Common
 {
-    public class ListItemModel
+    public class ListItemModel : IListable
     {
         public int Id { get; set; }
 

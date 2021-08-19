@@ -1,6 +1,6 @@
 using EnduranceJudge.Domain.Core.Validation;
-using EnduranceJudge.Domain.Aggregates.Import.Athletes;
-using EnduranceJudge.Domain.Aggregates.Import.Horses;
+using EnduranceJudge.Domain.Aggregates.Common.Athletes;
+using EnduranceJudge.Domain.Aggregates.Common.Horses;
 using EnduranceJudge.Domain.Core.Models;
 
 namespace EnduranceJudge.Domain.Aggregates.Import.Participants

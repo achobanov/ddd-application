@@ -1,5 +1,5 @@
 ﻿using EnduranceJudge.Application.Contracts.Horses;
-using EnduranceJudge.Domain.Aggregates.Import.Horses;
+using EnduranceJudge.Domain.Aggregates.Common.Horses;
 using EnduranceJudge.Gateways.Persistence.Contracts.WorkFile;
 using EnduranceJudge.Gateways.Persistence.Core;
 using EnduranceJudge.Gateways.Persistence.DataStores;

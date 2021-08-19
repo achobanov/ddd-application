@@ -5,7 +5,6 @@ using EnduranceJudge.Gateways.Persistence.Entities.Horses;
 using EnduranceJudge.Gateways.Persistence.Entities.ParticipantsInCompetitions;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using ImportParticipant = EnduranceJudge.Domain.Aggregates.Import.Participants.Participant;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities.Participants
 {

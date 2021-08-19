@@ -1,4 +1,4 @@
-﻿namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
+﻿namespace EnduranceJudge.Core.Models
 {
     public interface IListable
     {

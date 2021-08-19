@@ -1,17 +1,35 @@
-﻿using EnduranceJudge.Application.Core.Contracts;
+﻿using EnduranceJudge.Application.Contracts.Countries;
+using EnduranceJudge.Application.Core.Contracts;
 using EnduranceJudge.Application.Core.Handlers;
 using EnduranceJudge.Application.Core.Requests;
+using EnduranceJudge.Application.Events.Queries.GetCountriesList;
 using EnduranceJudge.Domain.Aggregates.Event.EnduranceEvents;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace EnduranceJudge.Application.Events.Queries.GetEvent
 {
-    public class GetEnduranceEvent : IdentifiableRequest<EnduranceEventForUpdateModel>
+    public class GetEnduranceEvent : IdentifiableRequest<EnduranceEventRootModel>
     {
         public class GetEnduranceEventHandler
-            : GetOneHandler<GetEnduranceEvent, EnduranceEventForUpdateModel, EnduranceEvent>
+            : GetOneHandler<GetEnduranceEvent, EnduranceEventRootModel, EnduranceEvent>
         {
-            public GetEnduranceEventHandler(IQueriesBase<EnduranceEvent> query) : base(query)
+            private readonly ICountryQueries countryQueries;
+
+            public GetEnduranceEventHandler(IQueriesBase<EnduranceEvent> query, ICountryQueries countryQueries)
+                : base(query)
             {
+                this.countryQueries = countryQueries;
+            }
+
+            public override async Task<EnduranceEventRootModel> Handle(
+                GetEnduranceEvent request,
+                CancellationToken token)
+            {
+                var enduranceEvent = await base.Handle(request, token);
+                enduranceEvent.Countries = await this.countryQueries.All<CountryListModel>();
+
+                return enduranceEvent;
             }
         }
     }

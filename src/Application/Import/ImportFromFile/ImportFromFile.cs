@@ -37,7 +37,7 @@ namespace EnduranceJudge.Application.Import.ImportFromFile
                 this.file = file;
             }
 
-            protected override async Task Handle(ImportFromFile request, CancellationToken cancellationToken)
+            public override async Task DoHandle(ImportFromFile request, CancellationToken token)
             {
                 var filePath = request.FilePath;
                 var fileExtension = this.file.GetExtension(filePath);
@@ -54,12 +54,12 @@ namespace EnduranceJudge.Application.Import.ImportFromFile
                 if (fileExtension == FileExtensions.Xml)
                 {
                     var enduranceEvent = this.internationalImport.FromInternational(filePath);
-                    await this.enduranceEventCommands.Save(enduranceEvent, cancellationToken);
+                    await this.enduranceEventCommands.Save(enduranceEvent, token);
                 }
                 else
                 {
                     var horses = this.nationalImport.ImportForNational(filePath);
-                    await this.horseCommands.Create(horses, cancellationToken);
+                    await this.horseCommands.Create(horses, token);
                 }
             }
         }

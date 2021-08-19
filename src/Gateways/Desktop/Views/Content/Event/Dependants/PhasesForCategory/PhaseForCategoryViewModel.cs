@@ -1,4 +1,5 @@
-﻿using EnduranceJudge.Domain.Aggregates.Event.PhasesForCategory;
+﻿using EnduranceJudge.Core.Models;
+using EnduranceJudge.Domain.Aggregates.Event.PhasesForCategory;
 using EnduranceJudge.Domain.Enums;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ComboBoxItem;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;

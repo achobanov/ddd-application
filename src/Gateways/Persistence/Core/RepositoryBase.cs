@@ -26,7 +26,10 @@ namespace EnduranceJudge.Gateways.Persistence.Core
         protected TDataStore DataStore { get; }
 
         public virtual async Task<TDomainModel> Find(int id)
-            => await this.Find<TDomainModel>(id);
+        {
+            var item = await this.Find<TDomainModel>(id);
+            return item;
+        }
 
         public virtual async Task<TModel> Find<TModel>(int id)
         {
@@ -35,15 +38,17 @@ namespace EnduranceJudge.Gateways.Persistence.Core
                 .Where(x => x.Id == id)
                 .MapQueryable<TModel>()
                 .FirstOrDefaultAsync();
-
             return model;
         }
 
         public virtual async Task<IList<TModel>> All<TModel>()
-            => await this.DataStore
+        {
+            var list = await this.DataStore
                 .Set<TEntityModel>()
                 .MapQueryable<TModel>()
                 .ToListAsync();
+            return list;
+        }
 
         public async Task Save(TDomainModel domainModel, CancellationToken cancellationToken)
         {
@@ -53,7 +58,6 @@ namespace EnduranceJudge.Gateways.Persistence.Core
         public async Task<T> Save<T>(TDomainModel domainModel, CancellationToken cancellationToken)
         {
             var entity = await this.InnerSave(domainModel, cancellationToken);
-
             return entity.Map<T>();
         }
 

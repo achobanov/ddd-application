@@ -1,4 +1,5 @@
-﻿using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ComboBoxItem;
+﻿using EnduranceJudge.Core.Models;
+using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ComboBoxItem;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
 using Prism.Commands;
 
@@ -10,7 +11,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem
         {
         }
 
-        public ListItemViewModel(IListable item, DelegateCommandBase command) : base(item.Id, item.Name)
+        public ListItemViewModel(IListable item, DelegateCommandBase command) : base(item)
         {
             this.Command = command;
         }

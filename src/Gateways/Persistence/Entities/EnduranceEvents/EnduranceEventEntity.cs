@@ -15,7 +15,7 @@ namespace EnduranceJudge.Gateways.Persistence.Entities.EnduranceEvents
         IMap<EnduranceEvent>,
         IMap<Domain.Aggregates.Import.EnduranceEvents.EnduranceEvent>,
         IMapTo<ListItemModel>,
-        IMapTo<EnduranceEventForUpdateModel>
+        IMapTo<EnduranceEventRootModel>
     {
         public string Name { get; set; }
 

@@ -31,7 +31,7 @@
 
         // ------ Navigation Strip
         public const string EnduranceEventButtonText = "Endurance Events";
-        public const string CompetitionsButtonText = "Competitions";
+        public const string AthletesButtonText = "Athletes";
 
         // ------ Endurance Event
         public const string NameLabel = "_Name";
@@ -73,5 +73,10 @@
         public const string MaxRecoveryTimeInMinutesLabel = "_Max Recovery Time In Minutes";
         public const string RestTimeInMinutesLabel = "_Rest Time In Minutes";
         public const string PhasesForCategoryLabel = "_Phases for Categories";
+
+        // ------ Athlete
+        public const string FeiIdLabel = "Fei ID";
+        public const string FirstNameLabel = "First Name";
+        public const string LastNameLabel = "Last Name";
     }
 }

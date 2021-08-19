@@ -1,7 +1,7 @@
 using EnduranceJudge.Domain.Core.Validation;
 using EnduranceJudge.Domain.Core.Models;
 
-namespace EnduranceJudge.Domain.Aggregates.Import.Horses
+namespace EnduranceJudge.Domain.Aggregates.Common.Horses
 {
     public class Horse : DomainBase<HorseException>, IHorseState, IAggregateRoot
     {

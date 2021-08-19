@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using EnduranceJudge.Application.Events.Common;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Domain.Aggregates.Event.Participants;
 using ImportParticipant = EnduranceJudge.Domain.Aggregates.Import.Participants.Participant;

@@ -1,7 +1,6 @@
 ﻿using EnduranceJudge.Application.Events.Commands.EnduranceEvents;
-using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
+using EnduranceJudge.Application.Events.Queries.GetCountriesList;
 using EnduranceJudge.Application.Events.Queries.GetEvent;
-using EnduranceJudge.Core.Extensions;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Core.ViewModels;
@@ -10,16 +9,14 @@ using EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Competition
 using EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Personnel;
 using MediatR;
 using Prism.Commands;
-using Prism.Regions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Roots.EnduranceEvents
 {
-    public class EnduranceEventViewModel : RootFormBase<SaveEnduranceEvent, EnduranceEventForUpdateModel>,
+    public class EnduranceEventViewModel : RootFormBase<SaveEnduranceEvent, EnduranceEventRootModel>,
         ICompetitionsShard<CompetitionView>,
         IPersonnelShard<PersonnelView>
     {
@@ -28,52 +25,32 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Roots.EnduranceEve
         {
         }
 
-        public ObservableCollection<CountryListingModel> Countries { get; }
-            = new (Enumerable.Empty<CountryListingModel>());
+        public ObservableCollection<CountryListModel> Countries { get; }
+            = new (Enumerable.Empty<CountryListModel>());
 
         private string name;
+        private string populatedPlace;
+        private string selectedCountryIsoCode;
+
+        public Visibility CountryVisibility { get; private set; } = Visibility.Hidden;
+
         public string Name
         {
             get => this.name;
             set => this.SetProperty(ref this.name, value);
         }
-
-        private string populatedPlace;
         public string PopulatedPlace
         {
             get => this.populatedPlace;
             set => this.SetProperty(ref this.populatedPlace, value);
         }
-
-        private string selectedCountryIsoCode;
-        public Visibility CountryVisibility { get; private set; } = Visibility.Hidden;
         public string SelectedCountryIsoCode
         {
             get => this.selectedCountryIsoCode;
             set => this.SetProperty(ref this.selectedCountryIsoCode, value);
         }
 
-        public override void OnNavigatedTo(NavigationContext navigationContext)
-        {
-            base.OnNavigatedTo(navigationContext);
-            if (!this.Countries.Any())
-            {
-                this.LoadCountries();
-            }
-        }
-
-        private async Task LoadCountries()
-        {
-            var countries = await this.Application
-                .Execute(new GetCountriesListing())
-                .ToList();
-
-            this.CountryVisibility = Visibility.Visible;
-
-            this.Countries.AddRange(countries);
-        }
-
-        protected override IRequest<EnduranceEventForUpdateModel> LoadCommand(int id)
+        protected override IRequest<EnduranceEventRootModel> LoadCommand(int id)
         {
             return new GetEnduranceEvent
             {

@@ -1,4 +1,4 @@
-using EnduranceJudge.Application.Events.Queries.GetCountriesListing;
+using EnduranceJudge.Application.Events.Queries.GetCountriesList;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Core.Models;
 using EnduranceJudge.Domain.Aggregates.Common.Countries;
@@ -11,7 +11,7 @@ namespace EnduranceJudge.Gateways.Persistence.Entities.Countries
 {
     public class CountryEntity : ObjectBase, ICountryState,
         IMap<Country>,
-        IMapTo<CountryListingModel>
+        IMapTo<CountryListModel>
     {
         public string IsoCode { get; set; }
         public string Name { get; set; }

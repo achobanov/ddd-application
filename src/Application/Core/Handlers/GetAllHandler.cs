@@ -19,7 +19,7 @@ namespace EnduranceJudge.Application.Core.Handlers
             this.queries = queries;
         }
 
-        public override async Task<IEnumerable<TResponse>> Handle(TRequest request, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<TResponse>> Handle(TRequest request, CancellationToken token)
         {
             var result = await this.queries.All<TResponse>();
             return result;

@@ -6,7 +6,6 @@ using EnduranceJudge.Gateways.Persistence.Entities.ParticipantsInCompetitions;
 using EnduranceJudge.Gateways.Persistence.Entities.Phases;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using ImportCompetition = EnduranceJudge.Domain.Aggregates.Import.Competitions.Competition;
 
 namespace EnduranceJudge.Gateways.Persistence.Entities.Competitions
 {

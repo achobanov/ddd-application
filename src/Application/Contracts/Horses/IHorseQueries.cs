@@ -1,5 +1,5 @@
 ﻿using EnduranceJudge.Application.Core.Contracts;
-using EnduranceJudge.Domain.Aggregates.Import.Horses;
+using EnduranceJudge.Domain.Aggregates.Common.Horses;
 
 namespace EnduranceJudge.Application.Contracts.Horses
 {

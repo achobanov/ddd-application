@@ -1,5 +1,6 @@
 ﻿using EnduranceJudge.Application.Events.Common;
 using EnduranceJudge.Core.Mappings;
+using EnduranceJudge.Core.Models;
 using EnduranceJudge.Localization;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,12 @@ namespace EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ComboBoxItem
     {
         public ComboBoxItemViewModel()
         {
+        }
+
+        public ComboBoxItemViewModel(IListable listable)
+        {
+            this.Id = listable.Id;
+            this.Name = listable.Name;
         }
 
         public ComboBoxItemViewModel(int id, string name)

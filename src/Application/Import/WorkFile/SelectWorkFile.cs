@@ -19,11 +19,11 @@ namespace EnduranceJudge.Application.Import.WorkFile
                 this.workFile = workFile;
             }
 
-            public override async Task<bool> Handle(SelectWorkFile request, CancellationToken cancellationToken)
+            public override async Task<bool> Handle(SelectWorkFile request, CancellationToken token)
             {
                 var workFilePath = $"{request.DirectoryPath}\\{ApplicationConstants.WorkFileName}";
 
-                var isNewFileCreated = await this.workFile.Initialize(workFilePath, cancellationToken);
+                var isNewFileCreated = await this.workFile.Initialize(workFilePath, token);
 
                 return isNewFileCreated;
             }

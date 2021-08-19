@@ -1,9 +1,10 @@
 using EnduranceJudge.Domain.Core.Validation;
 using EnduranceJudge.Domain.Core.Models;
 using EnduranceJudge.Domain.Enums;
+using EnduranceJudge.Domain.States;
 using System;
 
-namespace EnduranceJudge.Domain.Aggregates.Import.Athletes
+namespace EnduranceJudge.Domain.Aggregates.Common.Athletes
 {
     public class Athlete : DomainBase<RiderException>, IAthleteState
     {
@@ -13,37 +14,35 @@ namespace EnduranceJudge.Domain.Aggregates.Import.Athletes
         {
         }
 
-        public Athlete(string feiId, string firstName, string lastName, string competingFor, DateTime birthDate)
-            : base(default)
+        public Athlete(int id, string feiId, string firstName, string lastName, string countryCode, DateTime birthDate)
+            : this(id, feiId, firstName, lastName, countryCode, GetCategory(birthDate))
         {
-            this.Validate(() =>
-            {
-                birthDate.IsRequired(nameof(birthDate));
-                competingFor.IsRequired(nameof(competingFor));
+        }
 
+        public Athlete(int id, string feiId, string firstName, string lastName, string countryCode, Category category)
+            : base(id)
+            => this.Validate(() =>
+            {
                 this.FeiId = feiId.IsRequired(nameof(feiId));
                 this.FirstName = firstName.IsRequired(nameof(firstName));
                 this.LastName = lastName.IsRequired(nameof(lastName));
-                this.CountryIsoCode = competingFor.IsRequired(nameof(competingFor));
+                this.CountryIsoCode = countryCode.IsRequired(nameof(countryCode));
+                this.Category = category.IsRequired(nameof(category));
             });
-
-            this.SetCategory(birthDate);
-        }
 
         public string FeiId { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-
         public Category Category { get; private set; }
         public string CountryIsoCode { get; private set; }
 
-        private void SetCategory(DateTime birthDate)
+        private static Category GetCategory(DateTime birthDate)
         {
             var category = birthDate.AddYears(AdultAgeInYears) <= DateTime.Now
                 ? Category.Adults
                 : Category.Kids;
 
-            this.Category = category;
+            return category;
         }
     }
 }

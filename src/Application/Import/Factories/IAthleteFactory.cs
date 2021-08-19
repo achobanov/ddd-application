@@ -1,6 +1,6 @@
 ﻿using EnduranceJudge.Application.Import.ImportFromFile.Models;
 using EnduranceJudge.Core.ConventionalServices;
-using EnduranceJudge.Domain.Aggregates.Import.Athletes;
+using EnduranceJudge.Domain.Aggregates.Common.Athletes;
 
 namespace EnduranceJudge.Application.Import.Factories
 {

@@ -1,4 +1,5 @@
 ﻿using EnduranceJudge.Application.Events.Common;
+using EnduranceJudge.Core.Models;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
 using EnduranceJudge.Gateways.Desktop.Services;
@@ -25,7 +26,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         protected INavigationService Navigation { get; }
         protected IApplicationService Application { get; }
 
-        protected ObservableCollection<ListItemViewModel> ListItems { get; }
+        public ObservableCollection<ListItemViewModel> ListItems { get; }
             = new (Enumerable.Empty<ListItemViewModel>());
 
         public DelegateCommand ChangeToCreate { get; }
@@ -44,17 +45,17 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
             var eventsList = await this.Application.Execute(getEventsList);
 
             var viewModels = eventsList
-                .Select(this.ToViewModeL)
+                .Select(this.ToViewModel)
                 .ToList();
 
             this.ListItems.Clear();
             this.ListItems.AddRange(viewModels);
         }
 
-        private ListItemViewModel ToViewModeL(ListItemModel model)
+        private ListItemViewModel ToViewModel(IListable listable)
         {
             var command = new DelegateCommand<int?>(this.ChangeToUpdateAction);
-            return new ListItemViewModel(model.Id, model.Name, command);
+            return new ListItemViewModel(listable.Id, listable.Name, command);
         }
 
         protected virtual void ChangeToCreateAction()

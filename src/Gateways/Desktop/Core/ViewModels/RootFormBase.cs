@@ -12,7 +12,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
 {
     public abstract class RootFormBase<TCommand, TUpdateModel> : ShardableFormBase,
         IMapTo<TCommand>
-        where TCommand : IRequest<TUpdateModel>
+        where TCommand : IRequest
     {
         protected RootFormBase(IApplicationService application, INavigationService navigation) : base(navigation)
         {
@@ -30,9 +30,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         {
             var command = this.Map<TCommand>();
 
-            var result = await this.Application.Execute(command);
-
-            this.MapFrom(result);
+            await this.Application.Execute(command);
         }
 
         public override bool IsNavigationTarget(NavigationContext navigationContext)
@@ -50,7 +48,7 @@ namespace EnduranceJudge.Gateways.Desktop.Core.ViewModels
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
             var id = navigationContext.GetId();
-            if (id.HasValue)
+            if (id.HasValue && this.Id == default)
             {
                 this.Load(id.Value);
             }

@@ -1,4 +1,6 @@
 ﻿using EnduranceJudge.Application.Events.Common;
+using EnduranceJudge.Application.Events.Queries.GetAthletesList;
+using EnduranceJudge.Application.Events.Queries.GetHorses;
 using EnduranceJudge.Core.Mappings;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ComboBoxItem;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
@@ -16,22 +18,16 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Partici
 {
     public class ParticipantViewModel : DependantFormBase, IMap<ParticipantDependantModel>
     {
-        private readonly IHorsesContextService horsesContext;
-        private readonly IAthletesContextService athletesContext;
+        private readonly IApplicationService application;
 
         private ParticipantViewModel() : base(null, null)
         {
         }
 
-        public ParticipantViewModel(
-            IApplicationService application,
-            INavigationService navigation,
-            IHorsesContextService horsesContext,
-            IAthletesContextService athletesContext)
+        public ParticipantViewModel(IApplicationService application, INavigationService navigation)
             : base(application, navigation)
         {
-            this.horsesContext = horsesContext;
-            this.athletesContext = athletesContext;
+            this.application = application;
             this.ToggleIsAverageSpeedInKmPhVisibility = new DelegateCommand(
                 this.ToggleIsAverageSpeedInKmPhVisibilityAction);
         }
@@ -130,11 +126,11 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Partici
 
         private async Task LoadCompetitors()
         {
-            var horses = await this.horsesContext.GetAll();
-            var athletes = await this.athletesContext.GetAll();
+            var athletes = await this.application.Execute(new GetAthletesList());
+            var horses = await this.application.Execute(new GetHorses());
 
             var horseItems = horses.Select(x => new ComboBoxItemViewModel(x.Id, x.Name));
-            var athleteItems = athletes.Select(x => new ComboBoxItemViewModel(x.Id, $"{x.FirstName} {x.LastName}"));
+            var athleteItems = athletes.Select(x => new ComboBoxItemViewModel(x));
 
             this.HorseItems.AddRange(horseItems);
             this.AthleteItems.AddRange(athleteItems);

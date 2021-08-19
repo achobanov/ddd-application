@@ -6,7 +6,7 @@ using EnduranceJudge.Core.Mappings;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Roots.EnduranceEvents
 {
-    public class EnduranceEventMaps : ICustomMapConfiguration
+    public class EnduranceEventViewModelMaps : ICustomMapConfiguration
     {
         public void AddFromMaps(IProfileExpression profile)
         {
@@ -16,7 +16,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Roots.EnduranceEve
 
         public void AddToMaps(IProfileExpression profile)
         {
-            profile.CreateMap<EnduranceEventForUpdateModel, EnduranceEventViewModel>()
+            profile.CreateMap<EnduranceEventRootModel, EnduranceEventViewModel>()
                 .MapMember(d => d.SelectedCountryIsoCode, s => s.CountryIsoCode);
         }
     }

@@ -1,6 +1,6 @@
 using EnduranceJudge.Domain.Core.Models;
 
-namespace EnduranceJudge.Domain.Aggregates.Import.Horses
+namespace EnduranceJudge.Domain.Aggregates.Common.Horses
 {
     public interface IHorseState : IDomainModelState
     {
