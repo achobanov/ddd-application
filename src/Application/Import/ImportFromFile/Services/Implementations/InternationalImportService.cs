@@ -35,7 +35,6 @@ namespace EnduranceJudge.Application.Import.ImportFromFile.Services.Implementati
         public EnduranceEvent FromInternational(string filePath)
         {
             var importData = this.xmlSerialization.Deserialize<HorseSport>(filePath);
-
             var showEntries = importData?.Items?.FirstOrDefault() as HorseSportShowEntries;
             if (showEntries == null)
             {
@@ -45,38 +44,36 @@ namespace EnduranceJudge.Application.Import.ImportFromFile.Services.Implementati
             var athleteData = showEntries.Athlete.ToList();
             var horseData = showEntries.Horse.ToList();
             var eventData = showEntries.Event.ToList();
-
             var athletes = athleteData
                 .Select(this.athleteFactory.Create)
                 .ToList();
-
             var horses = horseData
                 .Select(this.horseFactory.Create)
                 .ToList();
 
             var competitions = new List<Competition>();
-
             foreach (var data in eventData)
             {
                 var entries = data.AthleteEntry.ToList();
                 var participants = new List<Participant>();
-
                 foreach (var entry in entries)
                 {
                     var athlete = athletes.FirstOrDefault(x => x.FeiId == entry.FEIID);
                     var horse = horses.FirstOrDefault(x => x.FeiId == entry.HorseEntry.FirstOrDefault()?.FEIID);
                     var participant = this.participantFactory.Create(athlete, horse);
-
                     participants.Add(participant);
                 }
-
-                var competition = this.competitionFactory.Create(participants);
+                var competition = this.competitionFactory.Create(data.FEIID, participants);
                 competitions.Add(competition);
             }
 
-            // TODO: Extract Factory
-            var enduranceEvent = new EnduranceEvent(competitions);
-            return enduranceEvent;
+            var showData = showEntries.Show.FirstOrDefault();
+            var venue = showData?.Venue.FirstOrDefault();
+            if (venue == null)
+            {
+                return new EnduranceEvent(competitions);
+            }
+            return new EnduranceEvent(competitions, venue.Name, venue.CountryNOC);
         }
     }
 }

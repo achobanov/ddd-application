@@ -1,7 +1,8 @@
 ﻿using EnduranceJudge.Application.Events.Common;
 using EnduranceJudge.Application.Events.Queries.GetAthletesList;
-using EnduranceJudge.Application.Events.Queries.GetHorses;
+using EnduranceJudge.Application.Events.Queries.GetHorseList;
 using EnduranceJudge.Core.Mappings;
+using EnduranceJudge.Core.Models;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ComboBoxItem;
 using EnduranceJudge.Gateways.Desktop.Core.Components.Templates.ListItem;
 using EnduranceJudge.Gateways.Desktop.Core.Services;
@@ -16,7 +17,9 @@ using System.Windows;
 
 namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Participants
 {
-    public class ParticipantViewModel : DependantFormBase, IMap<ParticipantDependantModel>
+    public class ParticipantViewModel : DependantFormBase,
+        IMap<ParticipantDependantModel>,
+        IListable
     {
         private readonly IApplicationService application;
 
@@ -79,7 +82,7 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Partici
 
         protected override ListItemViewModel ToListItem(DelegateCommand command)
         {
-            var listItem = new ListItemViewModel(this.Id, this.Number.ToString(), command);
+            var listItem = new ListItemViewModel(this, command);
             return listItem;
         }
 
@@ -124,12 +127,28 @@ namespace EnduranceJudge.Gateways.Desktop.Views.Content.Event.Dependants.Partici
             set => this.SetProperty(ref this.maxAverageSpeedInKmPhPhVisibility, value);
         }
 
+        private string defaultName;
+        public string Name
+        {
+            get
+            {
+                var athlete = this.AthleteItems.FirstOrDefault(x => x.Id == this.AthleteId);
+                var horse = this.HorseItems.FirstOrDefault(x => x.Id == this.HorseId);
+                if (athlete != null && horse != null)
+                {
+                    return $"{athlete.Name} - {horse.Name}";
+                }
+                return this.defaultName;
+            }
+            set => this.defaultName = value;
+        }
+
         private async Task LoadCompetitors()
         {
+            var horses = await this.application.Execute(new GetHorseList());
             var athletes = await this.application.Execute(new GetAthletesList());
-            var horses = await this.application.Execute(new GetHorses());
 
-            var horseItems = horses.Select(x => new ComboBoxItemViewModel(x.Id, x.Name));
+            var horseItems = horses.Select(x => new ComboBoxItemViewModel(x));
             var athleteItems = athletes.Select(x => new ComboBoxItemViewModel(x));
 
             this.HorseItems.AddRange(horseItems);

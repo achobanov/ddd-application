@@ -44,11 +44,24 @@ namespace EnduranceJudge.Application.Import.ImportFromFile.Models
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.fei.org/Entry")]
     public partial class HorseSportShowEntries {
 
+        private HorseSportShowEntriesShow[] showField;
+
         private HorseSportShowEntriesAthlete[] athleteField;
 
         private HorseSportShowEntriesHorse[] horseField;
 
         private HorseSportShowEntriesEvent[] eventField;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Show")]
+        public HorseSportShowEntriesShow[] Show {
+            get {
+                return this.showField;
+            }
+            set {
+                this.showField = value;
+            }
+        }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Athlete")]
@@ -83,6 +96,155 @@ namespace EnduranceJudge.Application.Import.ImportFromFile.Models
             }
         }
     }
+
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.fei.org/Entry")]
+    public partial class HorseSportShowEntriesShow {
+
+        private HorseSportShowEntriesShowVenue[] venueField;
+
+        private string fEIIDField;
+
+        private string typeCodeField;
+
+        private string typeField;
+
+        private string startDateField;
+
+        private string endDateField;
+
+        private string timeStampField;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Venue")]
+        public HorseSportShowEntriesShowVenue[] Venue {
+            get {
+                return this.venueField;
+            }
+            set {
+                this.venueField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string FEIID {
+            get {
+                return this.fEIIDField;
+            }
+            set {
+                this.fEIIDField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string TypeCode {
+            get {
+                return this.typeCodeField;
+            }
+            set {
+                this.typeCodeField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string StartDate {
+            get {
+                return this.startDateField;
+            }
+            set {
+                this.startDateField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string EndDate {
+            get {
+                return this.endDateField;
+            }
+            set {
+                this.endDateField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string TimeStamp {
+            get {
+                return this.timeStampField;
+            }
+            set {
+                this.timeStampField = value;
+            }
+        }
+    }
+
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.fei.org/Entry")]
+    public partial class HorseSportShowEntriesShowVenue {
+
+        private string nameField;
+
+        private string countryNOCField;
+
+        private string countryField;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string CountryNOC {
+            get {
+                return this.countryNOCField;
+            }
+            set {
+                this.countryNOCField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Country {
+            get {
+                return this.countryField;
+            }
+            set {
+                this.countryField = value;
+            }
+        }
+    }
+
 
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]

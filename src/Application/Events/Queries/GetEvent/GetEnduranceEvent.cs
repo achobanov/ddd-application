@@ -27,8 +27,8 @@ namespace EnduranceJudge.Application.Events.Queries.GetEvent
                 CancellationToken token)
             {
                 var enduranceEvent = await base.Handle(request, token);
-                enduranceEvent.Countries = await this.countryQueries.All<CountryListModel>();
-
+                var countries = await this.countryQueries.All<CountryListModel>();
+                enduranceEvent.Countries = countries;
                 return enduranceEvent;
             }
         }

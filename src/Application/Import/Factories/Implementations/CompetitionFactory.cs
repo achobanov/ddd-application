@@ -6,9 +6,9 @@ namespace EnduranceJudge.Application.Import.Factories.Implementations
 {
     public class CompetitionFactory : ICompetitionFactory
     {
-        public Competition  Create(List<Participant> participants)
+        public Competition  Create(string name, List<Participant> participants)
         {
-            var competition = new Competition(participants);
+            var competition = new Competition(name, participants);
             return competition;
         }
     }

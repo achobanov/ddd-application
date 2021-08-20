@@ -7,6 +7,6 @@ namespace EnduranceJudge.Application.Import.Factories
 {
     public interface ICompetitionFactory : IService
     {
-        Competition Create(List<Participant> participants);
+        Competition Create(string name, List<Participant> participants);
     }
 }
