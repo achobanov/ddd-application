@@ -1,0 +1,28 @@
+﻿using Blog.Domain.Articles;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace Blog.Gateways.Persistence.Configurations
+{
+    public class ArticleConfiguration : AuditableEntityConfiguration<Article>
+    {
+        public override void Configure(EntityTypeBuilder<Article> builder)
+        {
+            base.Configure(builder);
+
+            builder.HasKey(a => a.Id);
+
+            builder
+                .HasOne(art => art.Author)
+                .WithMany(aut => aut.Articles)
+                .HasForeignKey(art => art.AuthorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .HasMany(a => a.Comments)
+                .WithOne(c => c.Article)
+                .HasForeignKey(c => c.ArticleId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+    }
+}
