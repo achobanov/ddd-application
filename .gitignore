@@ -349,9 +349,5 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-# Jetbrains tools
+# JebBrains tools
 .idea
-
-Tmp
-
-
